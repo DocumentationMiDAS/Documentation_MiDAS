@@ -1,0 +1,5 @@
+---
+title: "Le Fichier National des Allocataires (FNA)"
+---
+
+Le Fichier National des Allocataires suit les trajectoires d'indemnisation des demandeurs d'emploi allocataires de l'Assurance-chômage. Il contient notamment toutes les informations nécessaires pour calculer cette indemnisation : période d'affiliation, salaire journalier de référence, durée d'indemnisation potentielle...

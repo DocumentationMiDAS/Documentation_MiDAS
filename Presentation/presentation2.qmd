@@ -1,0 +1,9 @@
+---
+title: "Champ de l'appariement et temporalité des données"
+---
+
+Le tableau ci-dessous présente le champ et la temporalité des données MiDAS :
+
+| FHS | Toute personne inscrite à Pôle emploi au moins un jour depuis le 1er janvier 2017 avec son historique d'inscription remontant à 10 ans (juin 2012) pour la France entière.                                              |
+|-----|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| FNA | Demandeurs d'emploi indemnisables au moins 1 jour depuis le 1er janvier 2017. Pour ces individus, MiDAS contient tout l'historique de l'indemnisation depuis 1993, des périodes d'affiliation et de l'activité réduite. |

@@ -1,0 +1,15 @@
+---
+title: "Qu'est-ce que MiDAS ?"
+---
+
+MiDAS (**Mi**nima Sociaux, **D**roits d'**A**ssurance-chômage, parcours **S**alariés) est un appariement de données administratives mené par la Dares (département Suivi et indemnisation des demandeurs d'emploi (D-Side)), en collaboration avec la Cnaf et Pôle emploi.
+
+MiDAS regroupe ainsi les données :
+
+-   De suivi des demandeurs d'emploi par le **Fichier historique statistique (FHS)** et d'indemnisation dans le **Fichier national des allocataires (FNA)** de Pôle Emploi ;
+
+-   Du **Fichier Allstat-FR6** de la Cnaf sur les prestations sociales ;
+
+-   Sur les contrats de travail reconstituées par la Dares dans les **Mouvements de main-d'œuvre (MMO)** à partir de la Déclaration sociale nominative (DSN).
+
+![Graphique 1 : Schéma du champ MiDAS](schema_champ.png)

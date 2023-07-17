@@ -1,0 +1,6 @@
+---
+title: "Présentation générale"
+---
+
+MiDAS est un appariement de données créé pour pouvoir chiffrer de manière précise les effets de la réforme de l'Assurance-chômage initiée en 2019 et d'étudier le retour et l'insertion dans l'emploi des demandeurs d'emploi et bénéficiaires de minima sociaux. La première vague est disponible depuis janvier 2023.
+

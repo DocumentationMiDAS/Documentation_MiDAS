@@ -1,0 +1,9 @@
+---
+title: "Présentation du fichier Historique Statistique (FHS)"
+---
+
+## Présentation des données
+
+Chaque trimestre, Pôle emploi produit le Fichier Historique Statistique des demandeurs d'emploi inscrits à Pôle emploi. Ce fichier enregistre, pour les 10 dernières années, tous les événements successifs concernant les personnes qui ont été inscrites sur les listes de Pôle emploi sur cette période, qu'elles soient ou non inscrites à la date d'extraction du fichier.
+
+## Champ des données

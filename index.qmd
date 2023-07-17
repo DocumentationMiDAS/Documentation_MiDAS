@@ -1,0 +1,11 @@
+---
+title: "Documentation MiDAS"
+---
+
+La documentation de l'appariement MiDAS est évolutive et collaborative : elle vise à être progressivemen enrichir au fil de ses exploitations et par l'ensemble de ses utilisateurs. Pour toute question, vous pouvez contacter :
+
+-   contact 1
+
+-   contact 2
+
+-   contact 3

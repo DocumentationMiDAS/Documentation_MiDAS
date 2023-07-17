@@ -1,0 +1,13 @@
+---
+title: "Données de la Caisse Nationale des Allocations Familiales"
+---
+
+Les données Cnaf sont présentes au sein d'Allstat-FR6, le fichier des allocataires Caf, qui permet le suivi statistique mensuel des droits aux prestations versées par les Caf (le droit au titre du mois M étant apprécié entre le 5 et le 10 du mois M+6).
+
+Pour chaque mois de chaque année depuis 2017, trois types de tables issues des données Cnaf sont disponibles :
+
+-   un fichier **Prestations** ;
+
+-   un fichier **Ménages** ;
+
+-   une table de passage pour apparier ces informations.

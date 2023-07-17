@@ -1,0 +1,19 @@
+---
+title: "Reproduction d'indicateurs cibles"
+execute: 
+  enabled: false
+---
+
+L'ensemble des indicateurs reproduits ci-dessous sont disponibles sur le site de l' [Open Data des Allocations familiales](http://data.caf.fr/dataset/foyers-allocataires-percevant-le-revenu-de-solidarite-active-rsa-niveau-national).
+
+## Nombre de foyers allocataires du RSA
+
+```{r}
+
+#Utilisation de la table Prestations
+
+nb_rsa <- prestations %>%
+  group_by(DTREFFRE) %>%
+  summarise(BRSA_menage = n_distinct(id_menage))
+
+```

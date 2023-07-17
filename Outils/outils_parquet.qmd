@@ -1,0 +1,17 @@
+---
+title: "Parquet et duckdb"
+execute: 
+  enabled: false
+---
+
+Renvoi vers la documentation parquet
+
+Exemples de codes
+
+Mettre à disposition les schémas de données pour un import instantanné avec open_dataset :
+
+```{r}
+schema_PJC <- schema("KDDPJ" = date32(), "id_midas" = string())
+
+PJC <- open_dataset("PJC.parquet", schema = schema_PJC)
+```

@@ -1,0 +1,110 @@
+project:
+  type: website
+
+website:
+  title: "Documentation MiDAS"
+  navbar:
+    search: true
+    left:
+      - text: "MiDAS"
+        href : Presentation/présentation.qmd
+      - text : "Données Pôle Emploi"
+        href : Pole_Emploi/pole_emploi.qmd
+      - text : "Données CNAF"
+        href: CNAF/cnaf.qmd
+      - text: "Données MMO"
+        href: MMO/mmo.qmd
+      - text : "Etudes"
+        href : Etudes/etudes.qmd
+      - text : "Outils"
+        href : Outils/outils.qmd
+      - about.qmd
+      
+  sidebar: 
+    - title : "MiDAS"
+      style: "docked"
+      background: light
+      contents:
+        - href: Presentation/présentation.qmd
+        - href: Presentation/presentation1.qmd
+        - href: Presentation/presentation2.qmd
+        
+        
+    - title : "Données Pôle Emploi"
+      style: "docked"
+      background: light
+      contents:
+        - section: "Présentation"
+          contents: 
+            - Pole_Emploi/pole_emploi.qmd
+        - section: "FHS"
+          contents: 
+            - href: Pole_Emploi/FHS/FHS.qmd
+            - href: Pole_Emploi/FHS/FHS_dictionnaire.qmd
+            - href: Pole_Emploi/FHS/FHS_cibles.qmd
+            - href: Pole_Emploi/FHS/FHS_action.qmd
+            - href: Pole_Emploi/FHS/FHS_annulation.qmd
+        - section: "FNA"
+          contents: 
+            - href: Pole_Emploi/FNA/FNA.qmd
+            - href: Pole_Emploi/FNA/FNA_dictionnaire.qmd
+            - href: Pole_Emploi/FNA/FNA_cibles.qmd
+            - href: Pole_Emploi/FNA/FNA_alloc.qmd
+            - href: Pole_Emploi/FNA/FNA_motifs_fin.qmd
+            - href: Pole_Emploi/FNA/FNA_metier.qmd
+            - href: Pole_Emploi/FNA/FNA_passe_pro.qmd
+            
+    - title: "Données CNAF"
+      style: "docked"
+      background: light
+      contents: 
+        - section : "Présentation"
+          contents: 
+            - CNAF/cnaf.qmd
+        - section: "Prestations"
+          contents: 
+            - href: CNAF/prestations.qmd
+            - href: CNAF/prestations_dictionnaire.qmd
+            - href: CNAF/prestations_cibles.qmd
+        - section: "Ménages"
+          contents:
+            - href: CNAF/menages.qmd
+            - href: CNAF/menages_dictionnaire.qmd
+            - href: CNAF/menages_cibles.qmd
+            - href: CNAF/menages_activite.qmd
+
+    - title : "Données MMO"
+      style: "docked"
+      background: light
+      contents: 
+          - href: MMO/mmo.qmd
+          - href: MMO/mmo_dictionnaire.qmd
+          - href: MMO/mmo_salaire.qmd
+
+    - title : "Etudes"
+      style: "docked"
+      background: light
+      contents:
+          - href: Etudes/etudes.qmd
+          - href: Etudes/etudes_retour_emploi.qmd
+          - href: Etudes/etudes_degressivite.qmd
+
+    - title : "Outils"
+      style: "docked"
+      background: light
+      contents:
+          - href: Outils/outils.qmd
+          - href: Outils/outils_parquet.qmd
+          - href: Outils/outils_spark.qmd
+          - href: Outils/outils_benchmark.qmd
+            
+
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+editor: visual
+

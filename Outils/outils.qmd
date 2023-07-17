@@ -1,0 +1,11 @@
+---
+title: "Outils"
+---
+
+Quelques outils :
+
+-   parquet
+
+-   duckdb
+
+-   optimisation des programmes

@@ -1,0 +1,18 @@
+---
+title: "Dictionnaire des données"
+---
+
+Le FHS contient plusieurs tables :
+
+-   la table DE ;
+
+-   la table D2.
+
+## La table DE
+
+| Variable | Libellé | Modalités | Commentaire |
+|---|---|---|---|
+| DATINS | Date d'effet d'inscription de la demande |  | L'inscription commence ce jour. |
+| DATANN | Date d'annulation de la demande |  | Date exclusive. |
+
+## La table D2
