@@ -63,15 +63,15 @@ website:
             - CNAF/cnaf.qmd
         - section: "Prestations"
           contents: 
-            - href: CNAF/prestations.qmd
-            - href: CNAF/prestations_dictionnaire.qmd
-            - href: CNAF/prestations_cibles.qmd
+            - href: CNAF/Prestations/prestations.qmd
+            - href: CNAF/Prestations/prestations_dictionnaire.qmd
+            - href: CNAF/Prestations/prestations_cibles.qmd
         - section: "Ménages"
           contents:
-            - href: CNAF/menages.qmd
-            - href: CNAF/menages_dictionnaire.qmd
-            - href: CNAF/menages_cibles.qmd
-            - href: CNAF/menages_activite.qmd
+            - href: CNAF/Menages/menages.qmd
+            - href: CNAF/Menages/menages_dictionnaire.qmd
+            - href: CNAF/Menages/menages_cibles.qmd
+            - href: CNAF/Menages/menages_activite.qmd
 
     - title : "Données MMO"
       style: "docked"
