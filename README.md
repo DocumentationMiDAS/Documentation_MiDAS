@@ -2,7 +2,7 @@
 
 La documentation de l'appariement de données administratives Minima sociaux, Droits d'Assurance-chômage, parcours Salariés (MiDAS) mené par la Direction de l'animation de la recherche, des études et des statistiques (Dares), en collaboration avec la Cnaf et Pôle Emploi.
 
-Pour consulter la documentation, cliquez sur [ce lien]().
+Pour consulter la documentation, cliquez sur [ce lien](https://documentationmidas.github.io/Documentation_MiDAS/).
 
 ## Site web quarto
 
