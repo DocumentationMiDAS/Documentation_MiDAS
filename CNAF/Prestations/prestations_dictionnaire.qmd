@@ -1,8 +1,0 @@
----
-title: "Dictionnaires des données"
----
-
-| Variable | Libellé               | Description/Modalités                                                               |
-|----------|-----------------------|-------------------------------------------------------------------------------------|
-| DTREFFRE | Date Référence Frecaf | Date de référence de la vue ALLSTAT : il s'agit du 1er mois de référence du fichier |
-| RSAVERS  | Rsa versable          | 0 - pas de RSA                                                                      |

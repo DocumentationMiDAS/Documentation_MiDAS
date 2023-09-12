@@ -10,10 +10,10 @@ website:
         href : Presentation/présentation.qmd
       - text : "Données Pôle Emploi"
         href : Pole_Emploi/pole_emploi.qmd
-      - text : "Données CNAF"
-        href: CNAF/cnaf.qmd
-      - text: "Données MMO"
-        href: MMO/mmo.qmd
+      - text : "Allstat"
+        href : CNAF/cnaf.qmd
+      - text : "MMO"
+        href : MMO/mmo.qmd
       - text : "Etudes"
         href : Etudes/etudes.qmd
       - text : "Outils"
@@ -54,7 +54,7 @@ website:
             - href: Pole_Emploi/FNA/FNA_metier.qmd
             - href: Pole_Emploi/FNA/FNA_passe_pro.qmd
             
-    - title: "Données CNAF"
+    - title: "Allstat"
       style: "docked"
       background: light
       contents: 
@@ -64,16 +64,23 @@ website:
         - section: "Prestations"
           contents: 
             - href: CNAF/Prestations/prestations.qmd
-            - href: CNAF/Prestations/prestations_dictionnaire.qmd
+            - section: "Dictionnaire"
+              contents: 
+              - href: CNAF/Prestations/Dico_allstat_minima/prestations_dictionnaire.qmd
+              - href: CNAF/Prestations/Dico_allstat_minima/allstat_minima_variables/rsocclog.qmd
             - href: CNAF/Prestations/prestations_cibles.qmd
         - section: "Ménages"
           contents:
             - href: CNAF/Menages/menages.qmd
-            - href: CNAF/Menages/menages_dictionnaire.qmd
+            - section: "Dictionnaire"
+              contents:
+              - href: CNAF/Menages/Dico_allstat_foyers/menages_dictionnaire.qmd
+              - href: CNAF/Menages/Dico_allstat_foyers/allstat_foyers_variables/actrespd.qmd
+              - href: CNAF/Menages/Dico_allstat_foyers/allstat_foyers_variables/regrespd.qmd
             - href: CNAF/Menages/menages_cibles.qmd
             - href: CNAF/Menages/menages_activite.qmd
 
-    - title : "Données MMO"
+    - title : "MMO"
       style: "docked"
       background: light
       contents: 

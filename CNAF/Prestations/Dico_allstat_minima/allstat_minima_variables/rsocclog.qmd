@@ -1,0 +1,29 @@
+---
+title: "RSOCCLOG"
+---
+
+**000**. Pas de droit ou code inconnu
+
+**ACC**. Propriétaire avec charges de remboursement
+
+**BAL**. Forfait logement à appliquer
+
+**HCG**. Hébergement collectif à titre gratuit
+
+**HCO**. Hébergement collectif à titre onéreux
+
+**HGP**. Hébergement à titre gratuit par des particuliers
+
+**HOP**. Hébergement onéreux par des particuliers
+
+**HOT**. Hôtel
+
+**LOC**. Locataire ou sous locataire
+
+**OLI**. Occupation logement inconnue
+
+**PRO**. Propriétaire sans charges de remboursement
+
+**SRG**. Sans résid. stable avec forfait logement
+
+**SRO**. Sans résid. stable sans forfait logement
