@@ -1,0 +1,53 @@
+---
+title: "REGRESPD"
+---
+
+**99**. Inconnu
+
+**AA**. Artiste/auteur/compositeur
+
+**AD**. FP État/Militaire/Gendarme (non retraité)
+
+**AG**. Agricole
+
+**AL**. PF dues par adminis. sauf AL
+
+**AM**. Adminis. droit PF CAF (non retraité)
+
+**CL**. FP hospitalière /territoriale (non retraité)
+
+**EF**. EDF - GDF
+
+**EN**. Éducation Nationale
+
+**FP**. Fonction public hors Educ. Nat.
+
+**FT**. France Telecom
+
+**GE**. Général
+
+**MC**. Marin de commerce
+
+**MI**. Mines - régime minier
+
+**MO**. Mines - régime général
+
+**NI**. Navigation intérieure
+
+**PM**. Pêche PT. La Poste
+
+**RE**. Retraité étab. industriel État
+
+**RL**. FP hospitalière/territoriale (retraité)
+
+**RP**. Personnel RATP
+
+**SN**. SNCF
+
+**TG**. FP État/Militaire/Gendarme (retraité)
+
+**TM**. Transféré CMAF
+
+**TR**. Transféré RATP
+
+**TS**. Transféré SNCF

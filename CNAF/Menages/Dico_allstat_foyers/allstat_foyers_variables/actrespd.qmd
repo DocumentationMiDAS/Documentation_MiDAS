@@ -1,0 +1,182 @@
+---
+title: "ACTRESPD"
+---
+
+
+**00.** Radié (abandon en sept/03) 
+
+**000**. Inconnu 
+
+**01.** Activité normale (abandon en sept/03) 
+
+**02.** Activité en milieu protégé avec AAH (abandon en sept/03) 
+
+**03.** ETI : entrepreneur, travailleur indépendant (abandon en sept/03) 
+
+**04.** Chômeurs pouvant ouvrir droit à abattement (abandon en sept/03) 
+
+**05.** Handicapés pouvant ouvrir droit à abattement (abandon en sept/03) 
+
+**06.** Autres cas pouvant ouvrir droit à abattement (abandon en sept/03) 
+
+**07.** Chômeurs pouvant ouvrir droit à neutralisation (abandon en sept/03) 
+
+**08.** Autres cas pouvant ouvrir droit à neutralisation (abandon en sept/03) 
+
+**09.** Retraité (abandon en sept/03) 
+
+**10.** Étudiant (abandon en sept/03) 
+
+**11.** Inactif ou activité inconnue (abandon en sept/03) 
+
+**AAP**. Activité en atelier protégé 
+
+**ABA**. Chômeur-alloc de base 
+
+**ABS**. Absent foyer 
+
+**ADA**. Chômeur aud ou pare abattement 
+
+**ADN**. Chômeur aud neutralisation 
+
+**AFA**. Aide familial agricole 
+
+**AFC**. Chômeur-alloc formation reclass 
+
+**AFD**. Chômeur-alloc fin de droit 
+
+**AIN**. Chômeur-alloc insertion 
+
+**AMA**. Assistante maternelle agréée 
+
+**AMT**. Mi-temps suite plein temps 
+
+**ANI**. Chôm. non indemnisé + activ. 
+
+**APP**. Apprenti 
+
+**ASP**. Chômeur-alloc spéciale 
+
+**ASS**. Chômeur-alloc solidarité spécifique 
+
+**CAC**. Cessation activité pour enfant 
+
+**CAR**. Délai de carence ASSEDIC 
+
+**CAT**. Activité CAT 
+
+**CBS**. CAT: absent du foyer 
+
+**CCV**. Congé conventionnel 
+
+**CDA**. Chômeur aud abat. + activité 
+
+**CDN**. Chômeur aud neut. + activité 
+
+**CEA**. CES maintien abattement 
+
+**CEN**. CES maintien neutralisation 
+
+**CES**. Contrat emploi solidarité 
+
+**CGP**. Congé payé 
+
+**CHO**. Chômeur sans justificatif 
+
+**CIA**. Expl agricole en CES /DOM 
+
+**CIS**. Contrat insert. + salarié/DOM 
+
+**CJT**. Conjoint collaborateur d'ETI 
+
+**CLD**. CAT: longue maladie 
+
+**CNI**. Chômage non indemnisé 
+
+**CPL**. Chômage partiel 
+
+**CSA**. CES et salarié(e) 
+
+**CSS**. Congé sans solde 
+
+**DNL**. Sal. non rem. durée légale 
+
+**EBO**. Étudiant boursier 
+
+**ETI**. Employeur travailleur indépendant 
+
+**ETS**. Étudiant salarié 
+
+**ETU**. Étudiant 
+
+**EXP**. ETI régime agricole 
+
+**EXS**. Contrat insertion/act /DOM 
+
+**FDA**. Fonct. publique chôm. aud abat. 
+
+**FDN**. Fonct. publique chôm. aud neut. 
+
+**GSA**. Gérant salarié 
+
+**HAN**. Infirme handicapé 
+
+**INP**. Inapte 
+
+**INT**. Travailleur intermittent 
+
+**INV**. Pension invalidité 
+
+**MAL**. Malade 
+
+**MAR**. Marin pêcheur 
+
+**MAT**. Congé maternité ou paternité congé mater./pater. 
+
+**MLD**. Maladie longue durée 
+
+**MMC**. Mal matern. et chômage abat. 
+
+**MMI**. Mal maternité et chômage APL-neutralisation 
+
+**MOA**. Mb org comm en activité 
+
+**MOC**. Mb org comm ss activité 
+
+**PIL**. Stagiaire prog insert locale 
+
+**PRE**. Pré retraité 
+
+**RAC**. Réduction activité (CAT) 
+
+**RAT**. Rente AT 
+
+**RET**. Retraité 
+
+**RMA**. Titulaire contrat CIRMA/CAV 
+
+**RSA**. Retraité militaire < 60 ans 
+
+**SAB**. Congé sabbatique 
+
+**SAC**. Cessation activité bénéf AAH 
+
+**SAL**. Salarié 
+
+**SAV**. Sans activité motif CDAPH (ex-COTOREP) 
+
+**SFP**. Stage form. professionnelle 
+
+**SIN**. Activité inconnue 
+
+**SNA**. Engagé volontaire armée 
+
+**SNR**. Stage non rémunéré et RSA 
+
+**SSA**. Sans activité 
+
+**SUR**. Bénéf. rente de survivant AT 
+
+**TSA**. Travailleur saisonnier 
+
+**VRP**. Voyageur représentant placier
