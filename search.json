@@ -1,5 +1,243 @@
 [
   {
+    "objectID": "Pole_Emploi/pole_emploi.html",
+    "href": "Pole_Emploi/pole_emploi.html",
+    "title": "Données de Pôle Emploi",
+    "section": "",
+    "text": "Les données de Pôle Emploi donnent des informations :\n\nsur les inscrits à Pôle Emploi dans le Fichier Historique Statistique (FHS) ;\nsur les indemnisables à Pôle Emploi dans le Fichier National des Allocataires (FNA)."
+  },
+  {
+    "objectID": "Pole_Emploi/FHS/FHS_annulation.html",
+    "href": "Pole_Emploi/FHS/FHS_annulation.html",
+    "title": "Motif d’annulation",
+    "section": "",
+    "text": "MOTANN_a DE FHS"
+  },
+  {
+    "objectID": "Pole_Emploi/FHS/FHS_action.html",
+    "href": "Pole_Emploi/FHS/FHS_action.html",
+    "title": "Action conseillée",
+    "section": "",
+    "text": "CODACT de E3 du FHS"
+  },
+  {
+    "objectID": "Pole_Emploi/FNA/FNA.html",
+    "href": "Pole_Emploi/FNA/FNA.html",
+    "title": "Le Fichier National des Allocataires (FNA)",
+    "section": "",
+    "text": "Le Fichier National des Allocataires suit les trajectoires d’indemnisation des demandeurs d’emploi allocataires de l’Assurance-chômage. Il contient notamment toutes les informations nécessaires pour calculer cette indemnisation : période d’affiliation, salaire journalier de référence, durée d’indemnisation potentielle…"
+  },
+  {
+    "objectID": "Pole_Emploi/FNA/FNA_alloc.html",
+    "href": "Pole_Emploi/FNA/FNA_alloc.html",
+    "title": "Codes allocation FNA",
+    "section": "",
+    "text": "Modalités des variables KCAAJ de ODD et KCALF de PJC + indem de D2 FHS :\n\n\n\n\n\n\n\n\n\nCode allocation\nAllocation associée KCALF/KCAAJ\nAllocation agrégée alloc\nRégime d’indemnisation regime\n\n\n\n\nEA\nATI - Allocation des Travailleurs Indépendants\nATI\nAC - Assurance chômage\n\n\nFL\nARE2021 - Allocation de retour à l’emploi 2021\nARE\nAC - Assurance chômage\n\n\n56\nASS2004 - Allocation de Solidarité Spécifique\nASS\nEtat"
+  },
+  {
+    "objectID": "Pole_Emploi/FNA/FNA_dictionnaire.html",
+    "href": "Pole_Emploi/FNA/FNA_dictionnaire.html",
+    "title": "Dictionnaire des données",
+    "section": "",
+    "text": "Le FNA contient plusieurs tables :"
+  },
+  {
+    "objectID": "Pole_Emploi/FNA/FNA_dictionnaire.html#la-table-odd",
+    "href": "Pole_Emploi/FNA/FNA_dictionnaire.html#la-table-odd",
+    "title": "Dictionnaire des données",
+    "section": "La table ODD",
+    "text": "La table ODD\n\n\n\n\n\n\n\n\n\nVariable\nLibellé\nDescription\nModalités\n\n\n\n\nKROD\nIdentifiant de l’ouverture de droit\nRéférence de l’ouverture de droit portant le fait générateur.\n\n\n\n\nLa documentation détaillée de la variable Code allocation à l’ouverture de droit KCAAJ est disponible ici."
+  },
+  {
+    "objectID": "Pole_Emploi/FNA/FNA_passe_pro.html",
+    "href": "Pole_Emploi/FNA/FNA_passe_pro.html",
+    "title": "Nature de liquidation du passé professionnel",
+    "section": "",
+    "text": "Variable KCNPL de PAF"
+  },
+  {
+    "objectID": "Outils/outils_benchmark.html",
+    "href": "Outils/outils_benchmark.html",
+    "title": "Benchmark",
+    "section": "",
+    "text": "Présentation des solutions les plus rapides et les moins coûteuses sur des opérations usuelles"
+  },
+  {
+    "objectID": "Outils/outils_parquet.html",
+    "href": "Outils/outils_parquet.html",
+    "title": "Parquet et duckdb",
+    "section": "",
+    "text": "Renvoi vers la documentation parquet\nExemples de codes\nMettre à disposition les schémas de données pour un import instantanné avec open_dataset :\n\nschema_PJC &lt;- schema(\"KDDPJ\" = date32(), \"id_midas\" = string())\n\nPJC &lt;- open_dataset(\"PJC.parquet\", schema = schema_PJC)"
+  },
+  {
+    "objectID": "Presentation/presentation2.html",
+    "href": "Presentation/presentation2.html",
+    "title": "Champ de l’appariement et temporalité des données",
+    "section": "",
+    "text": "Le tableau ci-dessous présente le champ et la temporalité des données MiDAS :\n\n\n\n\n\n\n\nFHS\nToute personne inscrite à Pôle emploi au moins un jour depuis le 1er janvier 2017 avec son historique d’inscription remontant à 10 ans (juin 2012) pour la France entière.\n\n\n\n\nFNA\nDemandeurs d’emploi indemnisables au moins 1 jour depuis le 1er janvier 2017. Pour ces individus, MiDAS contient tout l’historique de l’indemnisation depuis 1993, des périodes d’affiliation et de l’activité réduite."
+  },
+  {
+    "objectID": "Presentation/presentation1.html",
+    "href": "Presentation/presentation1.html",
+    "title": "Qu’est-ce que MiDAS ?",
+    "section": "",
+    "text": "MiDAS (Minima Sociaux, Droits d’Assurance-chômage, parcours Salariés) est un appariement de données administratives mené par la Dares (département Suivi et indemnisation des demandeurs d’emploi (D-Side)), en collaboration avec la Cnaf et Pôle emploi.\nMiDAS regroupe ainsi les données :\n\nDe suivi des demandeurs d’emploi par le Fichier historique statistique (FHS) et d’indemnisation dans le Fichier national des allocataires (FNA) de Pôle Emploi ;\nDu Fichier Allstat-FR6 de la Cnaf sur les prestations sociales ;\nSur les contrats de travail reconstituées par la Dares dans les Mouvements de main-d’œuvre (MMO) à partir de la Déclaration sociale nominative (DSN).\n\n\n\n\nGraphique 1 : Schéma du champ MiDAS"
+  },
+  {
+    "objectID": "CNAF/Prestations/prestations.html",
+    "href": "CNAF/Prestations/prestations.html",
+    "title": "Prestations",
+    "section": "",
+    "text": "Le fichier « Prestations » qui liste les montants perçus par les individus sur le champ des foyers sociaux bénéficiaires du Revenu de solidarité active (RSA), de la prime d’activité (PA) et de l’Allocation aux adultes handicapés (AAH)."
+  },
+  {
+    "objectID": "CNAF/Prestations/Dico_allstat_minima/prestations_dictionnaire.html",
+    "href": "CNAF/Prestations/Dico_allstat_minima/prestations_dictionnaire.html",
+    "title": "Dictionnaires des variables",
+    "section": "",
+    "text": "Variable\nLibellé\nDescription/Modalités\n\n\n\n\nNUMCAF\nNUMERO CAF\nCode caisse de la CAF sur 3 caractères (N° de département + N° ordre de la Caisse dans le département (rang))\n\n\nNORDALLC\nNUMERO ORDRE ALLCAF\n\n\n\nRSAVERS\nRSA VERSABLE\n0. Pas de RSA\nC. RSA droit commun\nE. RSA expérimental\nJ. RSA jeune\nL. RSA droit local\nS. RSA droit commun suspendu\nT. RSA droit local suspendu\nU. RSA jeune suspendu\n\n\nRSAMAJI\nRSA MAJORATION PARENT ISOLE VERSABLE\n0. Non concerné\n1. Droit versable\n2. Droit suspendu\n\n\nMTRSAVER\nMONTANT RSA VERSABLE\nMontant total versable pour le RSA, parties socle et activité, pour le mois de référence. Montant restitué après application des éventuelles sanctions subsidiarité et/ou réductions PCD.\n\n\nRSSITFAM\nSITUATION FAMILLE RSA VERSABLE\n0. Sans signification ou inconnue\n1. Isolé homme\n2. Isolé femme\n3. Couple\n\n\nRSENAUTC\nNB ENFANTS AUTRES PERSONNES À CHARGE RSA VERSABLE\nNombre d’enfants et d’autres personnes à charge au sens du RSA. Significatif si RSA droit commun versable.\n\n\nRSOCCLOG\nOCCUPATION LOGEMENT RSA VERSABLE\nModalités\n\n\nRESTRRSA\nMT RESSOURCES BRUTES TRIMESTRIELLES RSA FOYER\nMontant de l’ensemble des revenus trimestriels des personnes du foyer présentes et à charge, pour le trimestre civil précédant le mois statistique traité, de la déclaration trimestrielle pour le RSA, sans les centimes.\n\n\nTRIMRSA\nTRIMESTRIALITE DROIT RSA\nTrimestrialité du droit RSA par rapport au premier mois du trimestre de référence. Si l’allocataire a à la fois un droit RSA et un droit PPA, la trimestrialité est identique pour les deux prestations.\n\n\nPPAVERS\nPPA VERSABLE\n0. Pas de Prime d’Activité\n1. Prime d’Activité non majorée 18-25 ans\n2. Prime d’Activité non majorée 25 ans et +\n3. Prime d’Activité majorée\n4. Prime d’Activité non majorée moins de 18 ans\n\n\nMTPPAVER\nMONTANT PPA VERSABLE\nMontant du droit réel valorisé à la Prime d’Activité, versable sur le mois statistique de référence.\n\n\nPPASITFA\nSITUATION FAMILIALE PPA VERSABLE\n0. Sans signification ou inconnue\n1. Isolé homme\n2. Isolé femme\n3. Couple\n\n\nPANBENAU\nNB ENFANTS AUTRES PERSONNES À CHARGE PPA VERSABLE\nNombre d’enfants et autres personnes à charge (hors conjoint) au sens de la Prime d’Activité, au dernier mois du trimestre de référence. Significatif si Prime d’Activité versable ou suspendue\n\n\nTRIMPPA\nTRIMESTRIALITE DROIT PPA\n0. Pas de Prime d’Activité\n1. premier mois du trimestre de droit jan/avr/jul/oct\n2. premier mois du trimestre de droit fev/mai/aou/nov\n3. premier mois du trimestre de droit mar/jun/sep/dec\n\n\nAAHVERS\nAAH VERSABLE\n0. Pas d’allocation handicapé adulte\n1. AAH pour handicapé ne travaillant pas en milieu protégé\n2. AAH pour handicapé travaillant en ESAT\n3. AAH pour handicapé travaillant autre qu’en ESAT\n\n\nCOMPLAAH\nCOMPLEMENT AAH VERSABLE\n0. Prestation non versable\n1. Prestation versable\n2. Majoration pour vie autonome\n3. Complément de ressources\n\n\nMTCAAHVE\nMONTANT CAAH VERSABLE\nMontant du Complément de l’Allocation aux Adultes Handicapés versable.\n\n\nCINCAAH\nCATEGORIE INCAPACITE AAH\n0. Pas d’AAH\n1. Incapacité ≥ 80 %\n2. Incapacité entre 50 et 79 %\n3. Capacité inférieure à 50 %\n\n\nPENAAHVE\nPENSION AAH VERSABLE\n0. Pas de pension AAH versable\n1. Invalidité seule\n2. ASI (Allocation supplémentaire invalidité)\n3. Vieillesse seule\n4. ASPA (Allocation Solidarité Personnes Âgées)\n5. Réversion seule\n6. Réversion avec FNS avant 12/2012\n7. Rente AT\n8. Autre pension ou cumul de pension\n9. Majoration conjoint à charge\n\n\nAAHPERE\nPERIODICITE RESSOURCES AAH\n0. Non concerné\n1. Annuelle\n2. Trimestrielle\n\n\nMTAAHVER\nMONTANT AAH VERSABLE\nMontant de droit valorisé pour l’AAH pour le mois de référence. Renseigné si AAH versable"
+  },
+  {
+    "objectID": "CNAF/Menages/menages.html",
+    "href": "CNAF/Menages/menages.html",
+    "title": "Ménages",
+    "section": "",
+    "text": "Le fichier « Ménages » liste les ressources et les prestations sociales perçues par chaque foyer social d’un individu du champ MiDAS (y compris demandeurs d’emploi n’ayant jamais perçu de minima sociaux)."
+  },
+  {
+    "objectID": "CNAF/Menages/Dico_allstat_foyers/allstat_foyers_variables/actrespd.html",
+    "href": "CNAF/Menages/Dico_allstat_foyers/allstat_foyers_variables/actrespd.html",
+    "title": "ACTRESPD",
+    "section": "",
+    "text": "00. Radié (abandon en sept/03)\n000. Inconnu\n01. Activité normale (abandon en sept/03)\n02. Activité en milieu protégé avec AAH (abandon en sept/03)\n03. ETI : entrepreneur, travailleur indépendant (abandon en sept/03)\n04. Chômeurs pouvant ouvrir droit à abattement (abandon en sept/03)\n05. Handicapés pouvant ouvrir droit à abattement (abandon en sept/03)\n06. Autres cas pouvant ouvrir droit à abattement (abandon en sept/03)\n07. Chômeurs pouvant ouvrir droit à neutralisation (abandon en sept/03)\n08. Autres cas pouvant ouvrir droit à neutralisation (abandon en sept/03)\n09. Retraité (abandon en sept/03)\n10. Étudiant (abandon en sept/03)\n11. Inactif ou activité inconnue (abandon en sept/03)\nAAP. Activité en atelier protégé\nABA. Chômeur-alloc de base\nABS. Absent foyer\nADA. Chômeur aud ou pare abattement\nADN. Chômeur aud neutralisation\nAFA. Aide familial agricole\nAFC. Chômeur-alloc formation reclass\nAFD. Chômeur-alloc fin de droit\nAIN. Chômeur-alloc insertion\nAMA. Assistante maternelle agréée\nAMT. Mi-temps suite plein temps\nANI. Chôm. non indemnisé + activ.\nAPP. Apprenti\nASP. Chômeur-alloc spéciale\nASS. Chômeur-alloc solidarité spécifique\nCAC. Cessation activité pour enfant\nCAR. Délai de carence ASSEDIC\nCAT. Activité CAT\nCBS. CAT: absent du foyer\nCCV. Congé conventionnel\nCDA. Chômeur aud abat. + activité\nCDN. Chômeur aud neut. + activité\nCEA. CES maintien abattement\nCEN. CES maintien neutralisation\nCES. Contrat emploi solidarité\nCGP. Congé payé\nCHO. Chômeur sans justificatif\nCIA. Expl agricole en CES /DOM\nCIS. Contrat insert. + salarié/DOM\nCJT. Conjoint collaborateur d’ETI\nCLD. CAT: longue maladie\nCNI. Chômage non indemnisé\nCPL. Chômage partiel\nCSA. CES et salarié(e)\nCSS. Congé sans solde\nDNL. Sal. non rem. durée légale\nEBO. Étudiant boursier\nETI. Employeur travailleur indépendant\nETS. Étudiant salarié\nETU. Étudiant\nEXP. ETI régime agricole\nEXS. Contrat insertion/act /DOM\nFDA. Fonct. publique chôm. aud abat.\nFDN. Fonct. publique chôm. aud neut.\nGSA. Gérant salarié\nHAN. Infirme handicapé\nINP. Inapte\nINT. Travailleur intermittent\nINV. Pension invalidité\nMAL. Malade\nMAR. Marin pêcheur\nMAT. Congé maternité ou paternité congé mater./pater.\nMLD. Maladie longue durée\nMMC. Mal matern. et chômage abat.\nMMI. Mal maternité et chômage APL-neutralisation\nMOA. Mb org comm en activité\nMOC. Mb org comm ss activité\nPIL. Stagiaire prog insert locale\nPRE. Pré retraité\nRAC. Réduction activité (CAT)\nRAT. Rente AT\nRET. Retraité\nRMA. Titulaire contrat CIRMA/CAV\nRSA. Retraité militaire &lt; 60 ans\nSAB. Congé sabbatique\nSAC. Cessation activité bénéf AAH\nSAL. Salarié\nSAV. Sans activité motif CDAPH (ex-COTOREP)\nSFP. Stage form. professionnelle\nSIN. Activité inconnue\nSNA. Engagé volontaire armée\nSNR. Stage non rémunéré et RSA\nSSA. Sans activité\nSUR. Bénéf. rente de survivant AT\nTSA. Travailleur saisonnier\nVRP. Voyageur représentant placier"
+  },
+  {
+    "objectID": "CNAF/Menages/menages_cibles.html",
+    "href": "CNAF/Menages/menages_cibles.html",
+    "title": "Reproduction d’indicateurs cibles",
+    "section": "",
+    "text": "L’ensemble des indicateurs reproduits ci-dessous sont disponibles sur le site de l’ Open Data des Allocations familiales."
+  },
+  {
+    "objectID": "MMO/mmo.html",
+    "href": "MMO/mmo.html",
+    "title": "Données des Mouvements de Main d’Oeuvre",
+    "section": "",
+    "text": "La Dares fournit les données de Mouvements de Main-d’œuvre (MMO) tirées de la Déclaration sociale nominative (DSN). La DSN repose sur la transmission unique, mensuelle et dématérialisée des données issues de la paie et sur des signalements d’événements.\ntest modif"
+  },
+  {
+    "objectID": "MMO/mmo_dictionnaire.html",
+    "href": "MMO/mmo_dictionnaire.html",
+    "title": "Dictionnaire des données",
+    "section": "",
+    "text": "Variable\nLibellé\nDescription/Modalités\n\n\n\n\nIdSISMMO\nIdentifiant du salarié non signifiant\n\n\n\nDebutCTT\nDate de début du contrat"
+  },
+  {
+    "objectID": "Etudes/etudes_degressivite.html",
+    "href": "Etudes/etudes_degressivite.html",
+    "title": "Dégressivité",
+    "section": "",
+    "text": "Mise à disposition d’un programme commenté et des résultats de l’étude."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Documentation MiDAS",
+    "section": "",
+    "text": "La documentation de l’appariement MiDAS est évolutive et collaborative : elle vise à être progressivemen enrichir au fil de ses exploitations et par l’ensemble de ses utilisateurs. Pour toute question, vous pouvez contacter :\n\ncontact 1\ncontact 2\ncontact 3\ncontact 4"
+  },
+  {
+    "objectID": "Etudes/etudes_retour_emploi.html",
+    "href": "Etudes/etudes_retour_emploi.html",
+    "title": "Retour à l’emploi",
+    "section": "",
+    "text": "Présentation des différentes manières de calculer le retour à l’emploi, mise à disposition des programmes et des résultats."
+  },
+  {
+    "objectID": "Etudes/etudes.html",
+    "href": "Etudes/etudes.html",
+    "title": "Etudes sur MiDAS",
+    "section": "",
+    "text": "Plusieurs études ont été réalisées sur MiDAS :\n\nretour à l’emploi ;\nassurance chômage et minima sociaux ;\ndégressivité."
+  },
+  {
+    "objectID": "MMO/mmo_salaire.html",
+    "href": "MMO/mmo_salaire.html",
+    "title": "Le salaire de base dans les MMO",
+    "section": "",
+    "text": "Le salaire de base correspond à la rémunération brute habituelle du salarié, à l’exclusion des compléments de salaire qu’ils soient légaux, conventionnels ou attribués à l’initiative de l’employeur, et notamment la prime d’ancienneté, la prime de vacance, le 13e mois, les primes allouées à raison de la situation familiale, les avantages en espèces et en nature, les gratifications, les pourboires, les rémunérations des heures complémentaires ou supplémentaires. Son montant correspond généralement à celui de la première ligne du bulletin de paye d’un salarié."
+  },
+  {
+    "objectID": "CNAF/Menages/menages_activite.html",
+    "href": "CNAF/Menages/menages_activite.html",
+    "title": "Activité responsable du dossier",
+    "section": "",
+    "text": "ACTRESPD de Ménages CAF"
+  },
+  {
+    "objectID": "CNAF/Menages/Dico_allstat_foyers/allstat_foyers_variables/regrespd.html",
+    "href": "CNAF/Menages/Dico_allstat_foyers/allstat_foyers_variables/regrespd.html",
+    "title": "REGRESPD",
+    "section": "",
+    "text": "99. Inconnu\nAA. Artiste/auteur/compositeur\nAD. FP État/Militaire/Gendarme (non retraité)\nAG. Agricole\nAL. PF dues par adminis. sauf AL\nAM. Adminis. droit PF CAF (non retraité)\nCL. FP hospitalière /territoriale (non retraité)\nEF. EDF - GDF\nEN. Éducation Nationale\nFP. Fonction public hors Educ. Nat.\nFT. France Telecom\nGE. Général\nMC. Marin de commerce\nMI. Mines - régime minier\nMO. Mines - régime général\nNI. Navigation intérieure\nPM. Pêche PT. La Poste\nRE. Retraité étab. industriel État\nRL. FP hospitalière/territoriale (retraité)\nRP. Personnel RATP\nSN. SNCF\nTG. FP État/Militaire/Gendarme (retraité)\nTM. Transféré CMAF\nTR. Transféré RATP\nTS. Transféré SNCF"
+  },
+  {
+    "objectID": "CNAF/Menages/Dico_allstat_foyers/menages_dictionnaire.html",
+    "href": "CNAF/Menages/Dico_allstat_foyers/menages_dictionnaire.html",
+    "title": "Dictionnaire des données",
+    "section": "",
+    "text": "Variable\nLibellé\nDescription/Modalités\n\n\n\n\nNUMCAF\nNUMERO CAF\nCode caisse de la CAF sur 3 caractères (N° de département + N° ordre de la Caisse dans le département (rang))\n\n\nDTREFFRE\nDATE REFERENCE FRECAF\nDate de référence de la vue ALLSTAT : il s’agit du 1er du mois de référence du fichier\n\n\nNORDALLC\nNUMERO ORDRE ALLCAF\n\n\n\nCODEPOSD\nCODE POSTAL DOSSIER\nCD postal sens PTT DOSSIER du mois réf. ou immédiatement post. : Code sur 5 caractères dont les 2 premières positions sont le code département et les 3 dernières positions le numéro de commune attribué par les PTT, de l’adresse du DOSSIER.\n\n\nSITFAM\nSITUATION FAMILIALE\n0. Inconnue\n1. Célibataire\n2. Marié\n3. Vie maritale\n4. Veuf\n5. Divorcé\n6. Séparé\n7. PACS\n\n\nPRESCONJ\nPRESENCE CONJOINT\n0. Pas de conjoint - Service national ou absent du foyer\n2. Présence réelle du conjoint au foyer\n\n\nNECHALOG\nNOMBRE D’ENFANTS DANS LE LOGEMENT\nNombre d’ENFANT à charge au sens logement présents pour le mois de référence.\n\n\nNBENLEFA\nNOMBRE D’ENFANTS LEGISLATION FAMILIALE\nNombre d’enfant à charge au sens de la législation familiale (enfants ouvrants droit à au moins une prestation du mois de naissance aux 25 ans).\n\n\nNBENFCHA\nNOMBRE D’ENFANTS À CHARGE AU SENS PF\nNombre d’enfants à charge au sens de la législation des prestations familiales (du mois qui suit la naissance au mois précédent les 20 ans) pour le mois de référence statistique\n\n\nSEXE\nSEXE RESPONSABLE DOSSIER\n1. Masculin\n2. Féminin\n\n\nREGRESPD\nREGIME RESPONSABLE DOSSIER\nModalités\n\n\nNATIFAM\nNATIONALITE FAMILLE\n0. Nationalité inconnue\n1. Français\n2. étranger CEE\n3. étranger hors CEE\n\n\nDTNAIRES\nDATE DE NAISSANCE RESPONSABLE DOSSIER\nDate de naissance du responsable du dossier\n\n\nACTRESPD\nACTIVITE RESPONSABLE DOSSIER\nModalités\n\n\nREGCONJ\nREGIME CONJOINT\nIdem que REGRESPD\n\n\nNATICONJ\nNATIONALITE CONJOINT\n0. Nationalité inconnue\n1. Français\n2. étranger CEE\n3. étranger hors CEE\n\n\nDTNAICON\nDATE NAISSANCE CONJOINT\n\n\n\nACTCONJ\nACTIVITE CONJOINT\nIdem que ACTRESPD\n\n\nSEXECONJ\nSEXE CONJOINT\n1. Monsieur\n2. Madame\n\n\nAFVERS\nAF VERSABLE\nCD droit aux allocations familiales versables (y compris Mayotte). 0. Pas d’AF versable 1. AF versable 1 enfant dans les DOM sans forfait 2. AF versable à partir de 2 enfants, sans forfait 3. AF versable avec forfait 4. Forfait seulement (sans AF) 5. AF versable 1 enfant dans les DOM avec forfait 6. AF versable avec enfant suspendu (jusqu’en 09/2013).\n\n\nMTAFVERS\nMONTANT AF VERSABLE\nMontant des Allocations Familiales versables.\n\n\nCFVERS\nCF VERSABLE\nCode droit au complément familial versable, taux plein non majoré, montant différentiel ou taux plein majoré. Significatif si CF versable. 0. Prestation non versable 1. CF versable non majoré 2. CF versable avec enfant suspendu (jusqu’en 09/13) 3. CF versable avec montant différentiel 4. CF versable majoré\n\n\nMTCFVERS\nMONTANT CF VERSABLE\nMontant du Complément Familial versable.\n\n\nALFVERS\nALF VERSABLE\nCode droit Allocation Logement Familiale versable. Significatif si ALF versable. 0. Pas d’ALF versable 1. ALF versable - montant &gt; minimum de versement 2. ALF calculée - montant &lt; minimum de versement\n\n\nALSVERS\nALS VERSABLE\nCode droit Allocation Logement Sociale versable. Significatif si ALS versable. 0. Pas d’ALS versable 1. ALS versable - montant &gt; minimum de versement 2. ALS calculée - montant &lt; minimum de versement\n\n\nAPLVERS\nAPL VERSABLE\nCode droit Allocation Personnalisée au Logement versable. Significatif si APL versable. 0. Pas d’APL versable 1. APL versable - montant &gt; minimum de versement 2. APL calculée - montant &lt; minimum de versement\n\n\nMTAIDELO\nMONTANT AIDE LOGEMENT\nMontant du droit valorisé de l’aide au logement (APL/ALF/ALS), calculé avant abattement RDS, sur le mois de référence statistique. Significatif si ALF, ALS, APL versable.\n\n\nRSOVERS\nRSO VERSABLE\nCode droit Revenu de Solidarité (RSO) au titre du mois de référence. Significatif si RSO versable, pour les DOM uniquement. 0. Prestation non versable 1. Prestation versable\n\n\nMTRSOVER\nMONTANT RSO VERSABLE\nMT Revenu de Solidarité (RSO) versable. Significatif si RSO versable, pour les DOM uniquement.\n\n\nPAJEVERS\nPAJE VERSABLE\nIndicateur statistique précisant si la prestation PAJE est versable : prime naissance ou d’adoption, allocation de base ou complément d’activité sur le mois M de référence, ou complément mode de garde (AM, garde à domicile, association) sur le mois. 0. Pas de PAJE versable 1. PAJE versable\n\n\nMTBPAJEV\nMONTANT BASE PAJE VERSABLE\nMontant de l’allocation de base de la Prestation d’Accueil du Jeune Enfant, versable.\n\n\nMTPAJCAV\nMONTANT PAJE COMPLEMENT ACTIVITE VERSABLE\nMontant des compléments d’activité (CLCA, COLCA, PREPARE) de la Prestation d’Accueil du Jeune Enfant, versables.\n\n\nMTPAJPRV\nMONTANT PAJE PRIMES VERSABLE\nMontant des primes (naissance et adoption) de la Prestation d’Accueil du Jeune Enfant (pour la prime naissance sur un des 6 derniers mois, pour la prime d’adoption, sur le mois de référence).\n\n\nPAJPCAMM\nMONTANT PRISE EN CHARGE CMG ASSISTANTE MATERNELLE VERSABLE\nMontant de la prise en charge partielle de la rémunération CMG versable (complément mode de garde) de l’assistante maternelle, pour le mois de référence.\n\n\nPAJPCDOM\nMONTANT PRISE EN CHARGE CMG DOMICILE VERSABLE\nMontant de la prise en charge partielle de la rémunération CMG versable (complément mode de garde) en garde à domicile, pour le mois de référence.\n\n\nPAJPCSTM\nMONTANT PRISE EN CHARGE CMG STRUCTURE VERSABLE\nMontant de la prise en charge partielle de la rémunération CMG versable (complément mode de garde) en structure, pour le mois de référence.\n\n\nMTREVBRU\nMONTANT REVENU BRUT FOYER\nMontant des revenus bruts, de l’année de référence des ressources, des personne vivant au foyer (pensions alimentaires versées déduites), sans les centimes. Prise en compte des revenus des enfants et autres personnes, si considérés à charge pour une aide au logement. Il s’agit en fait des traitements et salaires nets annuels, des indemnités journalières maladie, des allocations de chômage, des préretraites, des pensions, retraites et rentes imposables, des rentes survies, des pensions alimentaires reçues, des revenus des professions non salariées, des autres revenus des professions non salariées, des autres revenus imposables : rentes viagères à titre onéreux, revenus des capitaux et des valeurs mobilières. NB = Les pensions alimentaires versées seront déduites.\n\n\nMTREVACT\nMONTANT REVENU ACTIVITE ANNUEL REFERENCE FOYER\nMontant des revenus d’activité, de l’année de référence des ressources (année civile située 2 ans avant le mois d’observation), des personnes vivant au foyer, sans les centimes. Prise en compte des revenus des enfants et autres personnes, si considérés à charge pour une aide au logement. Il s’agit des traitements, salaires nets annuels et IJ de Sécurité sociale, sans les décimales.\n\n\nMTCHOFOY\nMONTANT INDEMNITES CHOMAGE ANNUEL REFERENCE FOYER\nMontant des indemnités chômage, de l’année de référence des ressources (année civile située 2 ans avant le mois d’observation), des personnes vivant au foyer, sans les centimes. Prise en compte des indemnités chômage des enfants et autres personnes, si considérés à charge pour une aide au logement.\n\n\nMTPENFOY\nMONTANT PENSIONS RENTES ANNUEL REFERENCE FOYER\nMontant des pensions (alimentaires, retraites …) et rentes de l’année de référence des ressources (année civile située 2 ans avant le mois d’observation), des personnes vivant au foyer, sans les centimes. Prise en compte des préretraites, des pensions, retraites et rentes imposables, des rentes survies, des pensions alimentaires reçues, des rentes viagères à titre onéreux perçues par l’allocataire, son conjoint éventuel, et ses enfants et autres personnes à charge au sens du logement, sans les décimales.\n\n\nMTPENINV\nMONTANT PENSION INVALIDITE ANNUELLE REFERENCE FOYER\nMontant des pensions d’invalidité du foyer pour l’année de référence des ressources (année civile située 2 ans avant le mois d’observation), correspondant au cumul des pensions d’invalidité de toutes les personnes vivant au foyer : l’allocataire, son conjoint éventuel, et ses enfants et autres personnes à charge au sens du logement, sans les décimales.\n\n\nMTIJSSFO\nMONTANT IJ SECURITE SOCIALE ANNUEL REFERENCE FOYER\nMontant des indemnités journalières de Sécurité sociale (maternité, paternité, AT, MP) de l’année de référence des ressources (année civile située 2 ans avant le mois d’observation), des personnes vivant au foyer, sans les centimes. Prise en compte des IJ de toutes pers considérées à charge pour une aide au logement, sans les décimales. En fait, est pris en compte uniquement la fraction non imposable des IJ AT-MP (nature 012) car pour les ressources annuelles, toutes les IJ sont assimilées à des salaires et injectées en 001 (salaires).\n\n\nMTRANSAF\nMONTANT REVENU ACTIVITE NON SALARIE ANNUEL FOYER\nMontant des revenus d’activité non salariée de l’allocataire et de son conjoint éventuel, et des enfants et autres personnes à charge au sens du logement, perçues pour l’année de référence des ressources (année civile située 2 ans avant le mois d’observation), sans les décimales.\n\n\nMTALIMFO\nMONTANT PENSIONS ALIMENTAIRES RECUES ANNUEL REFERENCE\nMontant des pensions alimentaires de l’année de référence des ressources (année civile située 2 ans avant le mois d’observation), des personnes vivant au foyer, sans les centimes. Prise en compte des pensions et rentes des enfants et autres personnes, si considérés à charge pour une aide au logement\n\n\nMTALIMVE\nMONTANT PENSIONS ALIMENTAIRES VERSEES ANNUEL REFERENCE\nMontant des pensions alimentaires versées par les personnes vivant au foyer, pour l’année de référence des ressources (année civile située 2 ans avant le mois d’observation), sans les centimes. Prise en compte des pensions des enfants et autres personnes, si considérés à charge pour une aide au logement.\n\n\nMTREAPAT\nMONTANT REVENU PATRIMOINE ANNUEL REFERENCE FOYER\nMT des revenus du patrimoine, de l’année de référence des ressources (année civile située 2 ans avant le mois d’observation), des personnes vivant au foyer, sans les centimes. Prise en compte des revenus des enfants et autres personnes, si considérés à charge pour une aide au logement. Il s’agit en fait des revenus fonciers (montant net) et autres revenus (RCVM, PV, actions).\n\n\nMTPALIFT\nMONTANT RESSOURCES BRUTES TRIM PENSIONS ALIM FOYER\nMontant des pensions alimentaires reçues pour l’ensemble des personnes du foyer pour le trimestre de référence.\n\n\nMTIJSSFT\nMONTANT RESSOURCES BRUTES TRIM IJ SECURITE SOCIAL FOYER\nMontant des Indemnités Journalières de Sécurité sociale de l’ensemble des personnes du foyer pour le trimestre de référence. IJ prises en compte : 011. Indem. maladie/maternité/pater. 012. Accident travail/maladie prof. 013. Indemnités maternité-paternité-adoption 014. Autres IJSS (maladie, AT, MP)\n\n\nMTFONPAT\nMONTANT TRIM REVENUS FONCIERS ET PATRIMOINE FOYER\nMontant des revenus fonciers et du patrimoine pour l’ensemble des personnes du foyer pour le trimestre de référence.\n\n\nMTACFOY1\nMONTANT REVENU ACTIVITE FOYER PREMIER MOIS DTR\nMontant des revenus d’activité perçus par l’ensemble des personnes du foyer pour le premier mois du trimestre de référence (RSA, Prime d’Activité ou AAH).\n\n\nMTACFOY2\nMONTANT REVENU ACTIVITE FOYER DEUXIEME MOIS DTR\nMontant des revenus d’activité perçus par l’ensemble des personnes du foyer pour le deuxième mois du trimestre de référence (RSA, Prime d’Activité ou AAH).\n\n\nMTACFOY3\nMONTANT REVENU ACTIVITE FOYER TROISIEME MOIS DTR\nMontant des revenus d’activité perçus par l’ensemble des personnes du foyer pour le troisième mois du trimestre de référence (RSA, Prime d’Activité ou AAH).\n\n\nMTCHFOY1\nMONTANT IND CHOMAGE FOYER PREMIER MOIS DTR\nMontant des indemnités chômage perçues par l’ensemble des personnes du foyer pour le premier mois du trimestre de référence (RSA, Prime d’Activité ou AAH).\n\n\nMTCHFOY2\nMONTANT IND CHOMAGE FOYER DEUXIEME MOIS DTR\nMontant des indemnités chômage perçues par l’ensemble des personnes du foyer pour le deuxième mois du trimestre de référence (RSA, Prime d’Activité ou AAH).\n\n\nMTCHFOY3\nMONTANT IND CHOMAGE FOYER TROISIEME MOIS DTR\nMontant des indemnités chômage perçues par l’ensemble des personnes du foyer pour le troisième mois du trimestre de référence (RSA, Prime d’Activité ou AAH).\n\n\nMTOTFOY1\nMONTANT REVENU TOTAL FOYER PREMIER MOIS DTR\nMontant de l’ensemble des revenus perçus par l’ensemble des personnes du foyer pour le premier mois du trimestre de référence (RSA, Prime d’Activité ou AAH).\n\n\nMTOTFOY2\nMONTANT REVENU TOTAL FOYER DEUXIEME MOIS DTR\nMontant de l’ensemble des revenus perçus par l’ensemble des personnes du foyer pour le deuxième mois du trimestre de référence (RSA, Prime d’Activité ou AAH).\n\n\nMTOTFOY3\nMONTANT REVENU TOTAL FOYER TROISIEME MOIS DTR\nMontant de l’ensemble des revenus perçus par l’ensemble des personnes du foyer pour le troisième mois du trimestre de référence (RSA, Prime d’Activité ou AAH).\n\n\nTPPOPRUC\nTOP POPULATION REFERENCE RUC\nTop indiquant si l’allocataire fait partie de la population de référence prise en compte pour le calcul du RUC (revenu par unité de consommation). Hors champ = revenu non fourni ou mal connu (≥65 ans, étudiants, doubles AAH). 0. Hors population de référence calcul du RUC 1. Dans population de référence calcul du RUC\n\n\nNBUC\nNOMBRE UNITE CONSOMMATION\nNombre d’unité de consommation. Il n’est pas calculé (=0) pour les allocataires dont le revenu n’est pas fourni ou mal connu (autres régimes, 65 ans et plus, étudiants, doubles AAH).\n\n\nRUC\nREVENU PAR UNITE DE CONSOMMATION\nMontant des revenus par unité de consommation. Il n’est pas calculé (= 99999,99) pour les allocataires dont le revenu n’est pas fourni ou mal connu (autres régimes, 65 ans et plus, étudiants, doubles AAH) et handicapés en maison d’accueil spécialisé."
+  },
+  {
+    "objectID": "CNAF/Prestations/prestations_cibles.html",
+    "href": "CNAF/Prestations/prestations_cibles.html",
+    "title": "Reproduction d’indicateurs cibles",
+    "section": "",
+    "text": "L’ensemble des indicateurs reproduits ci-dessous sont disponibles sur le site de l’ Open Data des Allocations familiales."
+  },
+  {
+    "objectID": "CNAF/Prestations/prestations_cibles.html#nombre-de-foyers-allocataires-du-rsa",
+    "href": "CNAF/Prestations/prestations_cibles.html#nombre-de-foyers-allocataires-du-rsa",
+    "title": "Reproduction d’indicateurs cibles",
+    "section": "Nombre de foyers allocataires du RSA",
+    "text": "Nombre de foyers allocataires du RSA\n\n#Utilisation de la table Prestations\n\nnb_rsa &lt;- prestations %&gt;%\n  group_by(DTREFFRE) %&gt;%\n  summarise(BRSA_menage = n_distinct(id_menage))"
+  },
+  {
+    "objectID": "CNAF/Prestations/Dico_allstat_minima/allstat_minima_variables/rsocclog.html",
+    "href": "CNAF/Prestations/Dico_allstat_minima/allstat_minima_variables/rsocclog.html",
+    "title": "RSOCCLOG",
+    "section": "",
+    "text": "000. Pas de droit ou code inconnu\nACC. Propriétaire avec charges de remboursement\nBAL. Forfait logement à appliquer\nHCG. Hébergement collectif à titre gratuit\nHCO. Hébergement collectif à titre onéreux\nHGP. Hébergement à titre gratuit par des particuliers\nHOP. Hébergement onéreux par des particuliers\nHOT. Hôtel\nLOC. Locataire ou sous locataire\nOLI. Occupation logement inconnue\nPRO. Propriétaire sans charges de remboursement\nSRG. Sans résid. stable avec forfait logement\nSRO. Sans résid. stable sans forfait logement"
+  },
+  {
+    "objectID": "CNAF/cnaf.html",
+    "href": "CNAF/cnaf.html",
+    "title": "Données de la Caisse Nationale des Allocations Familiales",
+    "section": "",
+    "text": "Les données Cnaf sont présentes au sein d’Allstat-FR6, le fichier des allocataires Caf, qui permet le suivi statistique mensuel des droits aux prestations versées par les Caf (le droit au titre du mois M étant apprécié entre le 5 et le 10 du mois M+6).\nPour chaque mois de chaque année depuis 2017, trois types de tables issues des données Cnaf sont disponibles :\n\nun fichier Prestations ;\nun fichier Ménages ;\nune table de passage pour apparier ces informations."
+  },
+  {
+    "objectID": "Presentation/présentation.html",
+    "href": "Presentation/présentation.html",
+    "title": "Présentation générale",
+    "section": "",
+    "text": "MiDAS est un appariement de données créé pour pouvoir chiffrer de manière précise les effets de la réforme de l’Assurance-chômage initiée en 2019 et d’étudier le retour et l’insertion dans l’emploi des demandeurs d’emploi et bénéficiaires de minima sociaux. La première vague est disponible depuis janvier 2023."
+  },
+  {
+    "objectID": "Outils/outils_spark.html",
+    "href": "Outils/outils_spark.html",
+    "title": "Spark",
+    "section": "",
+    "text": "Renvoi vers la documentation spark\nConseils de configuration\nExemples de codes"
+  },
+  {
+    "objectID": "Outils/outils.html",
+    "href": "Outils/outils.html",
+    "title": "Outils",
+    "section": "",
+    "text": "Quelques outils :\n\nparquet\nduckdb\noptimisation des programmes"
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
@@ -42,13 +280,6 @@
     "text": "La table DE\n\n\n\n\n\n\n\n\n\nVariables\nLibellé\nModalités\n Commentaires\n\n\n\n\nAge\nAge du demandeur au 31/12 de l’année d’inscription de la demande associée\n\nEn année\n\n\nALE\nNuméro de l’Agence Locale pour l’Emploi d’inscription du demandeur\nNuméro de l’ALE (unité locale de Pôle emploi). Les deux premiers caractères donnent le département\n\n\n\nANCIEN\nAncienneté dans la demande\nEn mois révolu au dernier jour du mois de fermeture de la demande. Si la demande est en cours il s’agit de l’ancienneté au dernier jour du fichier.\n\n\n\nAPI\nAllocation parent isolé\n0. Non bénéficiaires de l’API\n1. Bénéficiaire de l’API (saisie manuelle)\n2. Bénéficiaire de l’API (information CNASEA)\n3. Demande API en cours d’instruction\nRemplacé en 2009 par le RSA\n\n\nAXETRAV\nAxe de travail\nP. Projet\nR. Recherche\nA. À approfondir\nE. Recherche d’emploi\nF. Freins périphériques à l’emploi\nM. Mobilité p rofessionnelle\n\n\n\nCATREGR\nCatégorie opérationnelle du demandeur relative à la dernière situation connue\n1. Personnes immédiatement disponibles et à la recherche d’un emploi sous CDI à temps plein\n2. Personnes immédiatement disponibles et à la recherche d’un emploi sous CDI à temps partiel\n3. Personnes immédiatement disponibles et à la recherche d’un emploi à durée limitée (CDD, mission d’intérim, vacation…)\n4. Personnes à la recherche d’un emploi mais non immédiatement disponibles (en formation, en arrêt maladie, en congé maternité, en CRP…)\n5. Personnes pourvues d’un emploi, à la recherche d’un autre emploi donc non immédiatement disponibles. Figurent ici les personnes en contrat emploi so lidarité (CES, CIE ou autres contrat aidés…).\n\n\n\nCEMPLOI\nComposante emploi du demandeur d’emploi\nCE1. DE positionné sur un métier en t ension/porteur\nCE2. DE non positionné sur un métier en t ension/porteur\n\n\n\nCONTRAT\nType de contrat recherché par le demandeur (dernière valeur connue sur la demande)\n1. Contrat à durée indéterminée\n2. Contrat à durée déterminée ou temporaire\n3. Contrat saisonnier\n\n\n\nCUCS\nDemandeurs résidant en zone CUCS (Contrat Urbain de Cohésion Sociale)\n\nA pris fin en 2014\n\n\nDATANN\nDate d’annulation de la demande\nLa demande est en cours à la date statistique du fichier.\n\nDate exclusive\n\nsi DATA NN=01/02/2010, le dernier jour d’inscription sur cette demande est le 31/01/2010.\n\n\n\n\n\nDATINS\nDate d’effet d’inscription de la demande\nL’inscription commence ce jour\n\n\n\nDATNAIS\nDate de naissance (année et mois)\nMois de naissance (le jour exact n’est pas renseigné, il est fixé conve ntionnellement à 15)\n\n\n\nDATSINS\nDate de saisie d’inscription de la demande\n\n\n\n\nDEPCOM\nCommune de résidence du demandeur\nEn principe, c’est le Code Officiel Géographique. Toutefois, il peut y avoir des valeurs non-conformes. Les deux premiers caractères donnent de département\n\n\n\nDIPLOME\nDiplôme obtenu par le demandeur lors de son inscription\nD. Diplômé\nN. Non diplômé\n\n\n\nEXPER\nExpérience dans le ROME demandé.\nNombre expérience. Arrondi à l’appréciation du conseiller\nIl existe des cas où le nombre d’année d’expérience est supérieur à l’âge du demandeur d’emploi\n\n\nEXPEUNIT\nUnité durée expérience dans le le ROME\n\n\n\n\nMOBDIST\nMobilité du DE\nMobilité du DE vis-à-vis de l’emploi, en minutes, heures, kilomètres ou FE selon la valeur de la variable MOBUNIT. Il faut l’utiliser avec la variable MOBUNIT pour lui donner un sens.\n\n\n\nMOBUNIT\nUnité de la mobilité du demandeur vis-à-vis de l’emploi\n00. Non renseignée\nFE. France Entière\nH. Heure\nKM. Kilomètres\nMN. Minutes\nMT. Mobilité totale\n\n\n\nMOTANN\nMotif d’annulation de la demande\n’ ’. Non renseigné : la demande est en cours.\n01. Reprise d’emploi, hors contrat aidés et création d’entreprise\n02. Entrée en stage de formation\n03. Maladie, maternité, accident travail\n04. Dispense recherche d’emploi\n05. Retraite\n06. Changement d’ALE avec changement d’Assedic\n07. Service Militaire\n08. Autre arrêt de recherche\n09. Absence au contrôle\n10. Radiation administrative pour non présentation suite à une convocation\n11. Autres radiation a dministratives : refus d’emploi, de formation, fausse déclaration, manque d’actes positifs de recherche\n12. Autre cas\n13. Absence de mise à jour du dossier\n15. Reprise d’emploi en contrat aidé\n16. Reprise d’emploi : création d’entreprise\n17. Refus d ’actualisation du profil\n18. Refus d’une offre raisonnable d’emploi\nXX. Non renseigné (codes non intégrés)\n\n\n\nMOTANN_a\nMotif d’annulation de la demande détaillé\n**. Demande annulée par le fh : aede ne transmet plus de dossier pour ce demandeur (voir description table de)\n00. Non précisé\n01. Refus de signature parp pac\n02. Non présentation a convocation CRP CTP\n03. Non pres. A action reclassement CRP\n04. Refus d’une offre emploi CRP CTP\n05. Refus action reclassement CRP\n06. Abandon action reclassement crp\n07. Decl. Inexacte ou attest. Mensongere crp\n08. Avis defav. Sur motif abs a 1er entretien\n09. Non présent à la convocation suite à l’absence au 1er entretien\n10. Entrée en apr\n11. Reprise empl par propres moyen\n12. Reprise empl par propres moyen\n13. Reprise empl par propres moyen\n14. Reprise empl par propres moyen\n15. Reprise empl par propres moyen\n16. Création d’entreprise\n17. Fin de convention de coopération\n18. Entrée en CIE\n19. Entrée en contrat d’accomp. Dans l’emploi\n20. Entrée en cev (emploi ville)\n21. Reprise empl par l’agence\n22. Reprise empl par l’agence\n23. Reprise empl par l’agence\n24. Reprise empl par l’agence\n25. Reprise empl par l’agence\n26. Entrée en CES\n28. Reprise empl pour conv. Coopération\n29. Entrée en RMA\n30. Entrée en contrat d’avenir\n31. Entrée en stage par ANPE\n32. Entrée en stage par prop.moyen\n33. Fin de CRP\n34. Entrée en AFR\n35. Non confirmation de l’inscription Assedic\n36. Absence du lieu de résidence &gt; 35 jours\n37. Fin de CTP\n38. Abandon volontaire (sortie anticipée) du CTP\n39. Entrée en congé parental\n40. Arrêt involontaire de stage (cat = 4)\n41. Fin de stage ou mesure (cat = 4)\n42. Abandon de stage ou mesure (cat = 4)\n43. Fin contrat temporaire ou cdd (cat = 5)\n44. Service militaire\n45. Maladie, maternité, accident travail\n46. Changement d’ale\n47. Titre de séjour non valide\n48. Retraite\n49. Autres cas\n50. Non présentation suite à convocation au 1er entretien\n51. Refus d’emploi : suspension 1 mois\n52. Refus d’emploi : suspension 2 mois\n53. Refus d’emploi : suspension 3 mois\n54. Refus d’emploi : suspension 4 mois\n55. Refus d’emploi : suspension 5 mois\n56. Refus d’emploi : suspension 6 mois\n57. Annulation suite saisine ddtefp\n58. Refus de 2 offres raisonnables d’emploi\n59. Fin de CSP\n60. Non présentation à une convocation pnae\n61. Refus de formation : suspension 1 mois\n62. Refus de formation : suspension 2 mois\n63. Refus de formation : suspension 3 mois\n64. Refus de formation : suspension 4 mois\n65. Refus de formation : suspension 5 mois\n66. Refus de formation : suspension 6 mois\n70. Déclaration inexacte : suspension 12 mois\n71. Autres cas d’arrêt de recherche d’emploi\n72. Dispense recherche d’emploi\n73. Décès\n74. Fausse déclaration : suspension 6 mois\n75. Fausse déclaration : suspension 7 mois\n76. Fausse déclaration : suspension 8 mois\n77. Fausse déclaration : suspension 9 mois\n78. Fausse déclaration : suspension 10 mois\n79. Fausse déclaration : suspension 11 mois\n80. Obtention du statut de réfugié\n81. Insuffisance de recherche d’emploi : suspension 1 mois\n82. Insuffisance de recherche d’emploi : suspension 2 mois\n83. Insuffisance de recherche d’emploi : suspension 3 mois\n84. Insuffisance de recherche d’emploi : suspension 4 mois\n85. Insuffisance de recherche d’emploi : suspension 5 mois\n86. Insuffisance de recherche d’emploi : suspension 6 mois\n90. Absence au contrôle\n91. Non réponse à convocation : suspension 1 mois\n92. Non réponse à convocation : suspension 2 mois\n93. Non réponse à convocation : suspension 3 mois\n94. Non réponse à convocation : suspension 4 mois\n95. Date de péremption atteinte (cat = 4 ou 5)\n96. Non réponse à convocation : suspension 5 mois\n97. Non réponse à convocation : suspension 6 mois\n98. DSM illisible\n5x. Refus d’emploi : suspension 15 jours\n6x. Refus de formation : suspension 15 jours\n8x. Insuffisance de recherche d’emploi : suspension 15 jours\nA2. Déclaration inexacte d’activité brève : suspension 2 mois\nA3. Déclaration inexacte d’activité brève : suspension 3 mois\nA4. Déclaration inexacte d’activité brève : suspension 4 mois\nA5. Déclaration inexacte d’activité brève : suspension 5 mois\nA6. Déclaration inexacte d’activité brève : suspension 6 mois\nA7. Déclaration inexacte d’activité brève : suspension 7 mois\nA9. Déclaration inexacte d’activité brève : suspension 9 mois\nAC. Déclaration inexacte d’activité brève : suspension 12 mois\nB1. Refus d’un contrat d’ apprentissage: suspension 1 mois\nB2. Refus d’un contrat d’ apprentissage: suspension 2 mois\nBX. Refus d’un contrat d’ apprentissage: suspension 15 jours\nC1. Refus action insertion suspension : 1 mois\nC2. Refus action insertion suspension : 2 mois\nC3. Refus action insertion suspension : 3 mois\nC4. Refus action insertion suspension : 4 mois\nC6. Refus action insertion suspension : 6 mois\nCA. CDI (CUI)\nCB. CDD d’au moins 6 mois (CUI)\nCC. Contrat travail temporaire d’au moins 6 mois (CUI)\nCD. Abandon CRP CTP CSP\nCE. Bascule CRP vers CTP\nCF. Entrée en CUI-CIE\nCG. Entrée en CUI-CIE\nCH. Reprise d’emploi incompatible avec le dispositif (CSP)\nCI. Entrée en emploi d’avenir marchand\nCJ. Entrée en emploi d’avenir non marchand\nCK. Entrée en emploi d’avenir professeur\nCX. Refus action insertion : suspension 15 jours\nD1. Refus contrat aidé : suspension 1 mois\nD2. Refus contrat aidé : suspension 2 mois\nD6. Refus contrat aidé : suspension 6 mois\nDX. Refus contrat aidé : suspension 15 jours\nE2. Refus visite médicale : suspension 2 mois\nE4. Refus visite médicale : suspension 4 mois\nG2. Refus d’élaboration PPAE : suspension 2 mois\nH2. Refus d’une offre raisonnable d’emploi : suspension 2 mois\nI1. Refus d’une action d’aide à la recherche d’emploi : suspension 1 mois\nI2. Refus d’une action d’aide à la recherche d’emploi : suspension 2 mois\nI3. Refus d’une action d’aide à la recherche d’emploi : suspension 3 mois\nI4. Refus d’une action d’aide à la recherche d’emploi : suspension 4 mois\nI5. Refus d’une action d’aide à la recherche d’emploi : suspension 5 mois\nIX. Refus d’une action d’aide à la recherche d’emploi : suspension 15 jours\nJ2. Refus d ’actu alisation PPAE\n: suspension 2 mois\nKX. Refus contrat profes sionnalisation : suspension 15 jours\nL2. Refus contrat profes sionnalisation : suspension 15 jours\n\n\n\nMOTINS\nMotif d’inscription de la demande agrégé\n0. Sans objet (catégorie 5)\n1. Licenciement économique\n2. Autre licenciement\n3. Démission\n4. Fin de contrat\n5. Fin de mission d’intérim\n6. Première entrée sur le marché du travail\n7. Reprise d’activité après une interruption &gt; 6 mois\n8. Autres cas\n9. Fin de convention de conversion\nA. Entrée en CRP\nB. Fin de CRP\nC. Rupture CNE initiative employeur\nD. Rupture CNE initiative salarié\nE. Sortie de stage\nF. Fin d’activité non salariée\nG. Fin de maladie, de maternité\nH. Entrée en CTP\nI. Rupture c onventionnelle du CDI\nJ. Entrée CTP (suite CRP)\nK. Entrée en CSP\nX. Non renseigné\n\nLicenciement économique PAP anticipé\n\n\n\n\nMOTINS_A\nMotif d’inscription de la demande détaillé\n00. Sans objet (catégorie 5)\n11. Licenciement économique\n12. Autre licenciement\n13. Démission\n14. Fin de contrat\n15. Fin de mission d’intérim\n16. Fin convention conversion\n17. Licenciement économique PAP anticipé\n18. Fin de contrat emploi jeune\n19. Autres cas\n20. Entrée en CRP\n21. Première entrée marché du travail\n\nReprise activité après\n\ninterruption &gt; 6 mois\n23. Benef. Acti. Conv. Du 3 fev. 9\n24. Primo arrivant\n25. Fin de CRP\n26. Rupture c onventionnelle initiative employé\n27. Rupture c onventionnelle initiative salarié\n28. Sortie de stage\n29. Fin d’activité non salariée\n30. Fin de maladie, maternité\n31. Entrée en CTP\n32. Rupture c onventionnelle du CDI\n33. Entrée CTP (suite CRP)\n34. Entrée en CSP\n35. Retour en France\n36. Fin de détention\n37. Fin de période d’essai\n38. Fin de service civique\n39. Recherche d’un autre emploi\n\n\n\nNATION\nNationalité du demandeur d’emploi\n1. Français\n2. Chypriotes (partie grecque)\n3. Maltais\n4. Helvètes\n5. Autrichiens\n6. Finlandais\n7. Suédois\n8. Norvégiens\n9. Islandais\n10. Li echtensteinois\n11. Allemand\n12. Belges\n13. Hollandais\n14. Italiens\n15. Luxembourgeois\n16. Britanniques\n17. Danois\n18. Irlandais\n19. Grecs\n21. Espagnols\n22. Portugais\n24. Yougoslaves\n25. Polonais\n26. Turcs\n27. Croates\n23. EEE (européens espace économique)\n29. Autres européens\n31. Algériens\n32. Marocains\n33. Tunisiens\n42. Camerounais\n43. Sénégalais\n44. Ivoiriens\n49. Autres africains\n51. Vietnamiens laotiens cambodgiens\n59. Autres asiatiques\n69. Américains du Nord\n79. Américains du Sud\n89. Océaniens\n90. Hongrois\n91. Lituaniens\n92. Estoniens\n93. Lettons\n94. Tchèques\n95. Slovaques\n96. Slovènes\n97. Bulgares\n98. Roumains\n99. Inconnue\n\n\n\nNBAR78\nNombre de mois d’activité réduite &lt;= 78H\n\n\n\n\nNBAR79\nNombre de mois d’activité réduite &gt; 78H\n\n\n\n\nNDEM\nNuméro de la demande\nNuméroté de la plus récente à la plus ancienne (la demande n°1 est la demande la plus récente à la date statistique du FHS)\n\n\n\nNIVFOR\nNiveau de formation atteint par le demandeur\n000. Inconnu\nAFS. Aucune formation scolaire\nC12. Classes 2e et 1e (études générales)\nC3a. Bepc-classe 3e achevée\nCFG. Classes 6e 5e 4e\nCp4. Certificat études primaires. CPP-CPA\nNv1. Bac+5 et +\nNv2. Bac +3 et +4\nNv3. Bac +2\nNv4. Bac\nNv5. Cap / BEP\n\n\n\nNUMCDV\nRéférence contrat de ville\n\n\n\n\nNUMCUCS\nNuméro de la CUCS\n\n\n\n\nNUMQPV\nRéférence QPV\n\n\n\n\nNUMZUS\nNuméro de la ZUS\n\n\n\n\nOBLIGEM1\nObligation d’emploi du demandeur d’emploi 1\n0. Sans obligation d’emploi\n1. Orphelin de guerre\n2. Veuf (ve) de guerre ou conjoint de militaire invalide\n3. Pensionné de guerre\n4. Travailleur handicapé catégorie A\n5. Travailleur handicapé catégorie B\n6. Travailleur handicapé catégorie C\n7. En instance de décision CDA (Commission des droits et de l’autonomie)\n8. Pension d’invalidité s.s. Ou autre\n9. Rente accident du travail ou maladie p rofessionnelle &gt;= 10%\nC. RGTH – CRP\nE. RGTH – ESAT\nH. Alloc adulte handicapé (manuel)\nI. Carte d’invalidité\nM. RGTH – marché du travail\nR. Alloc adulte handicapé (auto)\n\n\n\nOBLIGEM2\nObligation d’emploi du demandeur d’emploi 2\nIdem OBLIGEM1\n\n\n\nOBLIGEM3\nObligation d’emploi du demandeur d’emploi 3 (AAH)\n0. Sans obligation d’emploi\nH. Allocation adulte handicapé\nR. Allocation adulte handicapé\n\n\n\nOBLIGEMC\nObligation d’emploi du demandeur d’emploi calculée\nIdem OBLIGEM1\n\n\n\nPROJENTR\nProjet d’entreprise\nE. Projet envisagé\nV. Projet validé\n\n\n\nQPV\nIndicateur résidence QPV\n\n\n\n\nQUALIF\nQualification du demandeur\n0. Non précisé\n1. Manœuvres\n2. Ouvriers spécialisés\n3. Ouvriers qualifiés (OP1-OP2)\n4. Ouvriers qualifiés (OP3-OHQ)\n5. Employés non qualifiés\n6. Employés qualifiés\n7. Technicien s-dessinateurs\n8. Agents de maîtrise\n9. Cadres\n\n\n\nREGION\nRégion\n01. Guadeloupe\n02. Martinique\n03. Guyane\n04. Réunion\n06. Mayotte\n11. Île-de-France\n24. Centre-Val de Loire\n27. Bourgogne -Franche-Comté\n28. Normandie\n32. Nord-Pas-de-C alais-Picardie\n44. A lsac e-Champagne-Ar denne-Lorraine\n52. Pays de la Loire\n53. Bretagne\n75. Aqu itai ne-Limousin-Po itou-Charentes\n76. La ngue doc-Roussillon -Midi-Pyrénées\n84. Auverg ne-Rhône-Alpes\n93. Prove nce-Alpes-Côte d’Azur\n94. Corse\n\n\n\nRMA\nÉligibilité au revenu minimum d’activité\n1. Valeur de redressement (non référencée)\n2. Non bénéficiaire\n3. Valeur de redressement (vide)\n\n\n\nRMI\nCode RMI du mois précédent le mois stat ou code RSA du mois stat\n1. RMI\n2. Non bénéficiaire\n3. Valeur de redressement (vide)\n4. RSA nouveau droit\n5. RSA ancien RMI/API\n\n\n\nROME\nCode ROME du métier recherché\n\n\n\n\nROMEAPL\nCode appellation du ROME\nL’appellation du ROME est sur 3 positions et est associée à un code ROME pour avoir le libellé correspondant au métier. L’appellation du ROME seul n’a aucune signification.\n\n\n\nROMEASS\nRome Assedic recherché\n\nVariable inutilisable\n\n\nROMEVAL\nCode validation du ROME\n1. Réserve ou alerte sur conduite à tenir\n2. Maîtrise des CTB emploi/métier\n3. Maitrise CTB e mploi/métier + évaluation\n\n\n\nRSQSTAT\nRisque statistique du demandeur d’emploi\nRS1. Risque faible de chômage de longue durée\nRS2. Risque modéré de chômage de longue durée\nRS3. Risque fort de chômage de longue durée\n\n\n\nSALMT\nMontant du salaire brut demandé par le DE\n\nRisques de valeurs extrêmes liées vra isemblablement à une erreur d’unité\n\n\nSALUNIT\nSalaire horaire, mensuel ou annuel du DE\n0. Non renseigné\nA. Annuel\nC. Cachet\nH. Horaire\nM. Mensuel\n\n\n\nSEXE\nSexe du demandeur d’emploi\n1. Homme\n2. Femme\n\n\n\nSITMAT\nSituation de famille du demandeur d’emploi\nC. Célibataire\nD. Divorcé ou séparé\nM. Marié ou vie maritale\nV. Veuf\n\n\n\nSITPAR\nSituation particulière au regard de l’emploi agrégée\n0. Sans Objet (catégorie 123678)\n1. AFR\n2. CES\n3. Autres\n4. CAE\n5. CAV\n6. CEN\n7. CIE\n8. CRP\n9. Autres formations\nA. CTP\nB. APR\n\n\n\nX. Non renseigné\n\n\n\nSITPAR_A\n\nADR. AIDE DIFFER. AU RECLASSEMENT\nAIF. ACTION INSERTION ET FORMATION\nAPR. ACTION PREPARATOIRE AU RECRUT.\nASE. AIDE SPEC. COMP. RETOUR EMPLOI\nASI. DEMANDEUR D’ASILE\nAUT. AUTRES FORMATION\nCAD. CONTRAT D’ADAPTATION\nCAE. CONTRAT D’ ACCOMPAGNEMENT DANS L’EMPLOI\nCAV. CONTRAT D’AVENIR\nCEN. CREATION D’ENTREPRISE\nCES. CONTRAT EMP LOI-SOLIDARITE\nCIE. CONTRAT INITIATIVE EMPLOI\nCOR. CONTRAT D’ORIENTATION\nCPP. CONTRAT D ’APPRENTISSAGE\nCQU. CONTRAT DE QUALIFICATION\nCRE. CONTRAT DE RETOUR À L’EMPLOI\nCRP. CONVENTION DE RECLASSEMENT PERSONNALISE\nCSP. CONTRAT DE SECURISATION PROFESSIONNEL\nCTP. CONTRAT DE TRANSITION P ROFESSIONNELLE\nCUM. CUI-CIE\nCUN. CUI-CAE\nDIV. DIVERS\nEAM. EMPLOI D’AVENIR MARCHAND\nEAN. EMPLOI D’AVENIR NON MARCHAND\nEAP. EMPLOI D’AVENIR PROFESSEUR\nEPA. PERS. AVEC EMPL. TEMPS PARTIEL\nEPL. PERS. AVEC EMPL. TEMPS PLEIN\nFCA. STAGE F.N.E : CADRE\nFFI. STAGE F.N.E : FEMMES ISOLEES\nPMJ. PERSONNE SOUS MAIN DE JUSTICE\nRMA. EN RMA\nSAE. STAGE ACCES A L’EMPLOI\nSAN. SANS OBJET\nSJE. STAGE JEUNES : 16 - 25 ANS\nSRP. STAGE REINSERTION PROFES.\n\n\n\nSTRSUIVP\nCode de la structure principale de suivi\n\nLa Structure Principale est une Agence ou une Équipe p rofessionnelle (sectorielle ou géographique). La notion de bassin est prise en compte. Le référent principal, pour le suivi mensuel, est un agent de cette structure.\n\n\nTEMPS\nTemps de travail de l’emploi recherché\n1. Temps complet\n2. Temps partiel\n\n\n\nZRR\nIndicateur de résidence en Zone de revitalisation rurale (ZRR)\n\n\n\n\nZUS\nDemandeur en zone urbaine sensible"
   },
   {
-    "objectID": "Pole_Emploi/FHS/FHS_annulation.html",
-    "href": "Pole_Emploi/FHS/FHS_annulation.html",
-    "title": "Motif d’annulation",
-    "section": "",
-    "text": "MOTANN_a DE FHS"
-  },
-  {
     "objectID": "Pole_Emploi/FHS/FHS_cibles.html",
     "href": "Pole_Emploi/FHS/FHS_cibles.html",
     "title": "Reproduction d’indicateurs cibles",
@@ -61,174 +292,6 @@
     "title": "Reproduction d’indicateurs cibles",
     "section": "",
     "text": "Pour calculer cet indicateur, les variables Date d’effet d’inscription de la demande (DATINS), Date d’annulation de la demande (DATANN) et Catégorie opérationnelle du demandeur d’emploi relative à la dernière situation connue (CATREGR) sont utilisées. Il faut noter que les modalités 1, 2 et 3 de CATREGR ne correspondent pas respectivement aux catégories d’inscription A, B et C statistiques, mais au type de contrat recherché. Néanmoins, l’ensemble des personnes pour lesquelles CATREGR vaut 1, 2 ou 3 est équivalent à l’ensemble des demandeurs d’emploi inscrits en catégorie A, B ou C, car ce sont les demandeurs d’emploi tenus à des actes positifs de recherche d’emploi, quelle que soit la durée d’activité réduite exercée au cours du mois.\nRemarque : la chaîne de caractère fournie à la fonction as.Date doit être de la forme “AAAA-MM-JJ”.\n\n#Chargement du package dplyr \nlibrary(dplyr)\n\n#Définition de la date de fin du mois dont on veut les inscrits en fin de mois\nmois &lt;- as.Date(\"2021-12-31\")\n\n#Utilisation de la table DE\ninscrits &lt;- DE %&gt;%\n  filter(DATINS &lt;= mois & DATANN &gt;= mois & CATREGR %in% c(\"1\", \"2\", \"3\")) %&gt;%\n  distinct(id_midas)"
-  },
-  {
-    "objectID": "Outils/outils_parquet.html",
-    "href": "Outils/outils_parquet.html",
-    "title": "Parquet et duckdb",
-    "section": "",
-    "text": "Renvoi vers la documentation parquet\nExemples de codes\nMettre à disposition les schémas de données pour un import instantanné avec open_dataset :\n\nschema_PJC &lt;- schema(\"KDDPJ\" = date32(), \"id_midas\" = string())\n\nPJC &lt;- open_dataset(\"PJC.parquet\", schema = schema_PJC)"
-  },
-  {
-    "objectID": "Outils/outils_spark.html",
-    "href": "Outils/outils_spark.html",
-    "title": "Spark",
-    "section": "",
-    "text": "Renvoi vers la documentation spark\nConseils de configuration\nExemples de codes"
-  },
-  {
-    "objectID": "Etudes/etudes_retour_emploi.html",
-    "href": "Etudes/etudes_retour_emploi.html",
-    "title": "Retour à l’emploi",
-    "section": "",
-    "text": "Présentation des différentes manières de calculer le retour à l’emploi, mise à disposition des programmes et des résultats."
-  },
-  {
-    "objectID": "Etudes/etudes_degressivite.html",
-    "href": "Etudes/etudes_degressivite.html",
-    "title": "Dégressivité",
-    "section": "",
-    "text": "Mise à disposition d’un programme commenté et des résultats de l’étude."
-  },
-  {
-    "objectID": "CNAF/Menages/menages_cibles.html",
-    "href": "CNAF/Menages/menages_cibles.html",
-    "title": "Reproduction d’indicateurs cibles",
-    "section": "",
-    "text": "L’ensemble des indicateurs reproduits ci-dessous sont disponibles sur le site de l’ Open Data des Allocations familiales."
-  },
-  {
-    "objectID": "CNAF/Menages/menages_activite.html",
-    "href": "CNAF/Menages/menages_activite.html",
-    "title": "Activité responsable du dossier",
-    "section": "",
-    "text": "ACTRESPD de Ménages CAF"
-  },
-  {
-    "objectID": "CNAF/Prestations/prestations.html",
-    "href": "CNAF/Prestations/prestations.html",
-    "title": "Prestations",
-    "section": "",
-    "text": "Le fichier « Prestations » qui liste les montants perçus par les individus sur le champ des foyers sociaux bénéficiaires du Revenu de solidarité active (RSA), de la prime d’activité (PA) et de l’Allocation aux adultes handicapés (AAH)."
-  },
-  {
-    "objectID": "CNAF/Prestations/prestations_dictionnaire.html",
-    "href": "CNAF/Prestations/prestations_dictionnaire.html",
-    "title": "Dictionnaires des données",
-    "section": "",
-    "text": "Variable\nLibellé\nDescription/Modalités\n\n\n\n\nDTREFFRE\nDate Référence Frecaf\nDate de référence de la vue ALLSTAT : il s’agit du 1er mois de référence du fichier\n\n\nRSAVERS\nRsa versable\n0 - pas de RSA"
-  },
-  {
-    "objectID": "MMO/mmo_salaire.html",
-    "href": "MMO/mmo_salaire.html",
-    "title": "Le salaire de base dans les MMO",
-    "section": "",
-    "text": "Le salaire de base correspond à la rémunération brute habituelle du salarié, à l’exclusion des compléments de salaire qu’ils soient légaux, conventionnels ou attribués à l’initiative de l’employeur, et notamment la prime d’ancienneté, la prime de vacance, le 13e mois, les primes allouées à raison de la situation familiale, les avantages en espèces et en nature, les gratifications, les pourboires, les rémunérations des heures complémentaires ou supplémentaires. Son montant correspond généralement à celui de la première ligne du bulletin de paye d’un salarié."
-  },
-  {
-    "objectID": "MMO/mmo.html",
-    "href": "MMO/mmo.html",
-    "title": "Données des Mouvements de Main d’Oeuvre",
-    "section": "",
-    "text": "La Dares fournit les données de Mouvements de Main-d’œuvre (MMO) tirées de la Déclaration sociale nominative (DSN). La DSN repose sur la transmission unique, mensuelle et dématérialisée des données issues de la paie et sur des signalements d’événements.\ntest modif"
-  },
-  {
-    "objectID": "Presentation/présentation.html",
-    "href": "Presentation/présentation.html",
-    "title": "Présentation générale",
-    "section": "",
-    "text": "MiDAS est un appariement de données créé pour pouvoir chiffrer de manière précise les effets de la réforme de l’Assurance-chômage initiée en 2019 et d’étudier le retour et l’insertion dans l’emploi des demandeurs d’emploi et bénéficiaires de minima sociaux. La première vague est disponible depuis janvier 2023."
-  },
-  {
-    "objectID": "Presentation/presentation2.html",
-    "href": "Presentation/presentation2.html",
-    "title": "Champ de l’appariement et temporalité des données",
-    "section": "",
-    "text": "Le tableau ci-dessous présente le champ et la temporalité des données MiDAS :\n\n\n\n\n\n\n\nFHS\nToute personne inscrite à Pôle emploi au moins un jour depuis le 1er janvier 2017 avec son historique d’inscription remontant à 10 ans (juin 2012) pour la France entière.\n\n\n\n\nFNA\nDemandeurs d’emploi indemnisables au moins 1 jour depuis le 1er janvier 2017. Pour ces individus, MiDAS contient tout l’historique de l’indemnisation depuis 1993, des périodes d’affiliation et de l’activité réduite."
-  },
-  {
-    "objectID": "Presentation/presentation1.html",
-    "href": "Presentation/presentation1.html",
-    "title": "Qu’est-ce que MiDAS ?",
-    "section": "",
-    "text": "MiDAS (Minima Sociaux, Droits d’Assurance-chômage, parcours Salariés) est un appariement de données administratives mené par la Dares (département Suivi et indemnisation des demandeurs d’emploi (D-Side)), en collaboration avec la Cnaf et Pôle emploi.\nMiDAS regroupe ainsi les données :\n\nDe suivi des demandeurs d’emploi par le Fichier historique statistique (FHS) et d’indemnisation dans le Fichier national des allocataires (FNA) de Pôle Emploi ;\nDu Fichier Allstat-FR6 de la Cnaf sur les prestations sociales ;\nSur les contrats de travail reconstituées par la Dares dans les Mouvements de main-d’œuvre (MMO) à partir de la Déclaration sociale nominative (DSN).\n\n\n\n\nGraphique 1 : Schéma du champ MiDAS"
-  },
-  {
-    "objectID": "MMO/mmo_dictionnaire.html",
-    "href": "MMO/mmo_dictionnaire.html",
-    "title": "Dictionnaire des données",
-    "section": "",
-    "text": "Variable\nLibellé\nDescription/Modalités\n\n\n\n\nIdSISMMO\nIdentifiant du salarié non signifiant\n\n\n\nDebutCTT\nDate de début du contrat"
-  },
-  {
-    "objectID": "CNAF/cnaf.html",
-    "href": "CNAF/cnaf.html",
-    "title": "Données de la Caisse Nationale des Allocations Familiales",
-    "section": "",
-    "text": "Les données Cnaf sont présentes au sein d’Allstat-FR6, le fichier des allocataires Caf, qui permet le suivi statistique mensuel des droits aux prestations versées par les Caf (le droit au titre du mois M étant apprécié entre le 5 et le 10 du mois M+6).\nPour chaque mois de chaque année depuis 2017, trois types de tables issues des données Cnaf sont disponibles :\n\nun fichier Prestations ;\nun fichier Ménages ;\nune table de passage pour apparier ces informations."
-  },
-  {
-    "objectID": "CNAF/Prestations/prestations_cibles.html",
-    "href": "CNAF/Prestations/prestations_cibles.html",
-    "title": "Reproduction d’indicateurs cibles",
-    "section": "",
-    "text": "L’ensemble des indicateurs reproduits ci-dessous sont disponibles sur le site de l’ Open Data des Allocations familiales."
-  },
-  {
-    "objectID": "CNAF/Prestations/prestations_cibles.html#nombre-de-foyers-allocataires-du-rsa",
-    "href": "CNAF/Prestations/prestations_cibles.html#nombre-de-foyers-allocataires-du-rsa",
-    "title": "Reproduction d’indicateurs cibles",
-    "section": "Nombre de foyers allocataires du RSA",
-    "text": "Nombre de foyers allocataires du RSA\n\n#Utilisation de la table Prestations\n\nnb_rsa &lt;- prestations %&gt;%\n  group_by(DTREFFRE) %&gt;%\n  summarise(BRSA_menage = n_distinct(id_menage))"
-  },
-  {
-    "objectID": "CNAF/Menages/menages_dictionnaire.html",
-    "href": "CNAF/Menages/menages_dictionnaire.html",
-    "title": "Dictionnaire des données",
-    "section": "",
-    "text": "Variable\nLibellé\nDescription/Modalités\n\n\n\n\nDTREFFRE\nDate Référence Frecaf\nDate de référence de la vue ALLSTAT : il s’agit du 1er mois de référence du fichier\n\n\nRSAVERS\nRsa versable\n0 - pas de RSA"
-  },
-  {
-    "objectID": "CNAF/Menages/menages.html",
-    "href": "CNAF/Menages/menages.html",
-    "title": "Ménages",
-    "section": "",
-    "text": "Le fichier « Ménages » liste les ressources et les prestations sociales perçues par chaque foyer social d’un individu du champ MiDAS (y compris demandeurs d’emploi n’ayant jamais perçu de minima sociaux)."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Documentation MiDAS",
-    "section": "",
-    "text": "La documentation de l’appariement MiDAS est évolutive et collaborative : elle vise à être progressivemen enrichir au fil de ses exploitations et par l’ensemble de ses utilisateurs. Pour toute question, vous pouvez contacter :\n\ncontact 1\ncontact 2\ncontact 3\ncontact 4"
-  },
-  {
-    "objectID": "Etudes/etudes.html",
-    "href": "Etudes/etudes.html",
-    "title": "Etudes sur MiDAS",
-    "section": "",
-    "text": "Plusieurs études ont été réalisées sur MiDAS :\n\nretour à l’emploi ;\nassurance chômage et minima sociaux ;\ndégressivité."
-  },
-  {
-    "objectID": "Outils/outils_benchmark.html",
-    "href": "Outils/outils_benchmark.html",
-    "title": "Benchmark",
-    "section": "",
-    "text": "Présentation des solutions les plus rapides et les moins coûteuses sur des opérations usuelles"
-  },
-  {
-    "objectID": "Outils/outils.html",
-    "href": "Outils/outils.html",
-    "title": "Outils",
-    "section": "",
-    "text": "Quelques outils :\n\nparquet\nduckdb\noptimisation des programmes"
-  },
-  {
-    "objectID": "Pole_Emploi/pole_emploi.html",
-    "href": "Pole_Emploi/pole_emploi.html",
-    "title": "Données de Pôle Emploi",
-    "section": "",
-    "text": "Les données de Pôle Emploi donnent des informations :\n\nsur les inscrits à Pôle Emploi dans le Fichier Historique Statistique (FHS) ;\nsur les indemnisables à Pôle Emploi dans le Fichier National des Allocataires (FNA)."
   },
   {
     "objectID": "Pole_Emploi/FHS/FHS.html",
@@ -250,47 +313,5 @@
     "title": "Présentation du fichier Historique Statistique (FHS)",
     "section": "Champ des données",
     "text": "Champ des données"
-  },
-  {
-    "objectID": "Pole_Emploi/FHS/FHS_action.html",
-    "href": "Pole_Emploi/FHS/FHS_action.html",
-    "title": "Action conseillée",
-    "section": "",
-    "text": "CODACT de E3 du FHS"
-  },
-  {
-    "objectID": "Pole_Emploi/FNA/FNA_alloc.html",
-    "href": "Pole_Emploi/FNA/FNA_alloc.html",
-    "title": "Codes allocation FNA",
-    "section": "",
-    "text": "Modalités des variables KCAAJ de ODD et KCALF de PJC + indem de D2 FHS :\n\n\n\n\n\n\n\n\n\nCode allocation\nAllocation associée KCALF/KCAAJ\nAllocation agrégée alloc\nRégime d’indemnisation regime\n\n\n\n\nEA\nATI - Allocation des Travailleurs Indépendants\nATI\nAC - Assurance chômage\n\n\nFL\nARE2021 - Allocation de retour à l’emploi 2021\nARE\nAC - Assurance chômage\n\n\n56\nASS2004 - Allocation de Solidarité Spécifique\nASS\nEtat"
-  },
-  {
-    "objectID": "Pole_Emploi/FNA/FNA_passe_pro.html",
-    "href": "Pole_Emploi/FNA/FNA_passe_pro.html",
-    "title": "Nature de liquidation du passé professionnel",
-    "section": "",
-    "text": "Variable KCNPL de PAF"
-  },
-  {
-    "objectID": "Pole_Emploi/FNA/FNA.html",
-    "href": "Pole_Emploi/FNA/FNA.html",
-    "title": "Le Fichier National des Allocataires (FNA)",
-    "section": "",
-    "text": "Le Fichier National des Allocataires suit les trajectoires d’indemnisation des demandeurs d’emploi allocataires de l’Assurance-chômage. Il contient notamment toutes les informations nécessaires pour calculer cette indemnisation : période d’affiliation, salaire journalier de référence, durée d’indemnisation potentielle…"
-  },
-  {
-    "objectID": "Pole_Emploi/FNA/FNA_dictionnaire.html",
-    "href": "Pole_Emploi/FNA/FNA_dictionnaire.html",
-    "title": "Dictionnaire des données",
-    "section": "",
-    "text": "Le FNA contient plusieurs tables :"
-  },
-  {
-    "objectID": "Pole_Emploi/FNA/FNA_dictionnaire.html#la-table-odd",
-    "href": "Pole_Emploi/FNA/FNA_dictionnaire.html#la-table-odd",
-    "title": "Dictionnaire des données",
-    "section": "La table ODD",
-    "text": "La table ODD\n\n\n\n\n\n\n\n\n\nVariable\nLibellé\nDescription\nModalités\n\n\n\n\nKROD\nIdentifiant de l’ouverture de droit\nRéférence de l’ouverture de droit portant le fait générateur.\n\n\n\n\nLa documentation détaillée de la variable Code allocation à l’ouverture de droit KCAAJ est disponible ici."
   }
 ]

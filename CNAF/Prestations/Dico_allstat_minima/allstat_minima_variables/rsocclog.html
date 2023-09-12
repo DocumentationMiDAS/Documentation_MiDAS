@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Documentation MiDAS - Parquet et duckdb</title>
+<title>Documentation MiDAS - RSOCCLOG</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,59 +20,25 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<script src="../../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -105,7 +71,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../../../index.html">
     <span class="navbar-title">Documentation MiDAS</span>
     </a>
   </div>
@@ -116,31 +82,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../Presentation/présentation.html" rel="" target="">
+    <a class="nav-link" href="../../../../Presentation/présentation.html" rel="" target="">
  <span class="menu-text">MiDAS</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../Pole_Emploi/pole_emploi.html" rel="" target="">
+    <a class="nav-link" href="../../../../Pole_Emploi/pole_emploi.html" rel="" target="">
  <span class="menu-text">Données Pôle Emploi</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../CNAF/cnaf.html" rel="" target="">
+    <a class="nav-link active" href="../../../../CNAF/cnaf.html" rel="" target="" aria-current="page">
  <span class="menu-text">Données CNAF</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../MMO/mmo.html" rel="" target="">
+    <a class="nav-link" href="../../../../MMO/mmo.html" rel="" target="">
  <span class="menu-text">Données MMO</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../Etudes/etudes.html" rel="" target="">
+    <a class="nav-link" href="../../../../Etudes/etudes.html" rel="" target="">
  <span class="menu-text">Etudes</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../Outils/outils.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="../../../../Outils/outils.html" rel="" target="">
  <span class="menu-text">Outils</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../about.html" rel="" target="">
+    <a class="nav-link" href="../../../../about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -154,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Outils/outils_parquet.html">Parquet et duckdb</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../CNAF/Prestations/prestations.html">Prestations</a></li><li class="breadcrumb-item"><a href="../../../../CNAF/Prestations/Dico_allstat_minima/prestations_dictionnaire.html">Dictionnaire</a></li><li class="breadcrumb-item"><a href="../../../../CNAF/Prestations/Dico_allstat_minima/allstat_minima_variables/rsocclog.html">RSOCCLOG</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -166,30 +132,127 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Présentation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Outils/outils.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Outils</span></a>
+  <a href="../../../../CNAF/cnaf.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Données de la Caisse Nationale des Allocations Familiales</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Prestations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Outils/outils_parquet.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Parquet et duckdb</span></a>
+  <a href="../../../../CNAF/Prestations/prestations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prestations</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Dictionnaire</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Outils/outils_spark.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Spark</span></a>
+  <a href="../../../../CNAF/Prestations/Dico_allstat_minima/prestations_dictionnaire.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Dictionnaires des variables</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Outils/outils_benchmark.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Benchmark</span></a>
+  <a href="../../../../CNAF/Prestations/Dico_allstat_minima/allstat_minima_variables/rsocclog.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">RSOCCLOG</span></a>
   </div>
 </li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../CNAF/Prestations/prestations_cibles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reproduction d’indicateurs cibles</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Ménages</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../CNAF/Menages/menages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ménages</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+ <span class="menu-text">Dictionnaire</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../CNAF/Menages/Dico_allstat_foyers/menages_dictionnaire.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Dictionnaire des données</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../CNAF/Menages/Dico_allstat_foyers/allstat_foyers_variables/actrespd.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ACTRESPD</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../CNAF/Menages/Dico_allstat_foyers/allstat_foyers_variables/regrespd.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">REGRESPD</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../CNAF/Menages/menages_cibles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reproduction d’indicateurs cibles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../CNAF/Menages/menages_activite.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Activité responsable du dossier</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -203,7 +266,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Parquet et duckdb</h1>
+<h1 class="title">RSOCCLOG</h1>
 </div>
 
 
@@ -218,14 +281,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>Renvoi vers la documentation parquet</p>
-<p>Exemples de codes</p>
-<p>Mettre à disposition les schémas de données pour un import instantanné avec open_dataset :</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>schema_PJC <span class="ot">&lt;-</span> <span class="fu">schema</span>(<span class="st">"KDDPJ"</span> <span class="ot">=</span> <span class="fu">date32</span>(), <span class="st">"id_midas"</span> <span class="ot">=</span> <span class="fu">string</span>())</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>PJC <span class="ot">&lt;-</span> <span class="fu">open_dataset</span>(<span class="st">"PJC.parquet"</span>, <span class="at">schema =</span> schema_PJC)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<p><strong>000</strong>. Pas de droit ou code inconnu</p>
+<p><strong>ACC</strong>. Propriétaire avec charges de remboursement</p>
+<p><strong>BAL</strong>. Forfait logement à appliquer</p>
+<p><strong>HCG</strong>. Hébergement collectif à titre gratuit</p>
+<p><strong>HCO</strong>. Hébergement collectif à titre onéreux</p>
+<p><strong>HGP</strong>. Hébergement à titre gratuit par des particuliers</p>
+<p><strong>HOP</strong>. Hébergement onéreux par des particuliers</p>
+<p><strong>HOT</strong>. Hôtel</p>
+<p><strong>LOC</strong>. Locataire ou sous locataire</p>
+<p><strong>OLI</strong>. Occupation logement inconnue</p>
+<p><strong>PRO</strong>. Propriétaire sans charges de remboursement</p>
+<p><strong>SRG</strong>. Sans résid. stable avec forfait logement</p>
+<p><strong>SRO</strong>. Sans résid. stable sans forfait logement</p>
 
 
 
