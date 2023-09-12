@@ -1,5 +1,0 @@
----
-title: "Motif d'annulation"
----
-
-MOTANN_a DE FHS

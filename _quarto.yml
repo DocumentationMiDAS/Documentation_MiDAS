@@ -8,10 +8,12 @@ website:
     left:
       - text: "MiDAS"
         href : Presentation/présentation.qmd
-      - text : "Données Pôle Emploi"
-        href : Pole_Emploi/pole_emploi.qmd
-      - text : "Allstat"
-        href : CNAF/cnaf.qmd
+      - text : "FHS"
+        href : FHS/FHS_presentation.qmd
+      - text : "FNA"
+        href : FNA/FNA_presentation.qmd
+      - text : "Allstat-FR6"
+        href : Allstat_FR6/Allstat_FR6.qmd
       - text : "MMO"
         href : MMO/mmo.qmd
       - text : "Etudes"
@@ -30,55 +32,147 @@ website:
         - href: Presentation/presentation2.qmd
         
         
-    - title : "Données Pôle Emploi"
+    - title : "FHS"
       style: "docked"
       background: light
       contents:
         - section: "Présentation"
           contents: 
-            - Pole_Emploi/pole_emploi.qmd
-        - section: "FHS"
+            - FHS/FHS_presentation.qmd
+        - section: "DE"
           contents: 
-            - href: Pole_Emploi/FHS/FHS.qmd
-            - href: Pole_Emploi/FHS/FHS_dictionnaire.qmd
-            - href: Pole_Emploi/FHS/FHS_cibles.qmd
-            - href: Pole_Emploi/FHS/FHS_action.qmd
-            - href: Pole_Emploi/FHS/FHS_annulation.qmd
-        - section: "FNA"
+            - href: FHS/DE/DE_presentation.qmd
+            - section: "Dictionnaire"
+              contents: 
+              - href: FHS/DE/Dico_FHS_DE/DE_dictionnaire.qmd
+              - href: FHS/DE/Dico_FHS_DE/FHS_DE_variables/MOTANN.qmd
+              - href: FHS/DE/Dico_FHS_DE/FHS_DE_variables/MOTANN_a.qmd
+              - href: FHS/DE/Dico_FHS_DE/FHS_DE_variables/MOTINS.qmd
+              - href: FHS/DE/Dico_FHS_DE/FHS_DE_variables/MOTINS_a.qmd
+              - href: FHS/DE/Dico_FHS_DE/FHS_DE_variables/NATION.qmd
+              - href: FHS/DE/Dico_FHS_DE/FHS_DE_variables/OBLIGEM.qmd
+              - href: FHS/DE/Dico_FHS_DE/FHS_DE_variables/SITPAR.qmd
+              - href: FHS/DE/Dico_FHS_DE/FHS_DE_variables/SITPAR_a.qmd
+        - section: "D2"
           contents: 
-            - href: Pole_Emploi/FNA/FNA.qmd
-            - href: Pole_Emploi/FNA/FNA_dictionnaire.qmd
-            - href: Pole_Emploi/FNA/FNA_cibles.qmd
-            - href: Pole_Emploi/FNA/FNA_alloc.qmd
-            - href: Pole_Emploi/FNA/FNA_motifs_fin.qmd
-            - href: Pole_Emploi/FNA/FNA_metier.qmd
-            - href: Pole_Emploi/FNA/FNA_passe_pro.qmd
+            - href: FHS/D2/D2_presentation.qmd
+            - section: "Dictionnaire"
+              contents: 
+              - href: FHS/D2/Dico_FHS_D2/D2_dictionnaire.qmd
+              - href: FHS/D2/Dico_FHS_D2/FHS_D2_variables/INDEM.qmd
+        - section: "P2"
+          contents: 
+            - href: FHS/P2/P2_presentation.qmd
+            - section: "Dictionnaire"
+              contents: 
+              - href: FHS/P2/Dico_FHS_P2/P2_dictionnaire.qmd
+              - href: FHS/P2/Dico_FHS_P2/FHS_P2_variables/CATFIN.qmd
+              - href: FHS/P2/Dico_FHS_P2/FHS_P2_variables/FORMACOD.qmd
+              - href: FHS/P2/Dico_FHS_P2/FHS_P2_variables/ORGCAT.qmd
+        - section: "E3"
+          contents: 
+            - href: FHS/E3/E3_presentation.qmd
+            - section: "Dictionnaire"
+              contents: 
+              - href: FHS/E3/Dico_FHS_E3/E3_dictionnaire.qmd
+              - href: FHS/E3/Dico_FHS_E3/FHS_E3_variables/CODACT.qmd
+        - section: "E3_Cons"
+          contents: 
+            - href: FHS/E3_Cons/E3_Cons_presentation.qmd
+        - section: "Parcours"
+          contents: 
+            - href: FHS/Parcours/Parcours_presentation.qmd
+        - section: "Cibles"
+          contents: 
+            - href: FHS/Cibles/FHS_cibles.qmd
             
-    - title: "Allstat"
+    - title : "FNA"
+      style: "docked"
+      background: light
+      contents:
+        - section: "Présentation"
+          contents: 
+            - FNA/FNA_presentation.qmd
+        - section: "PJC"
+          contents: 
+            - href: FNA/PJC/PJC_presentation.qmd
+            - section: "Dictionnaire"
+              contents: 
+              - href: FNA/PJC/Dico_FNA_PJC/PJC_dictionnaire.qmd
+              - href: FNA/PJC/Dico_FNA_PJC/FNA_PJC_variables/KCALF.qmd
+              - href: FNA/PJC/Dico_FNA_PJC/FNA_PJC_variables/KCMNI.qmd
+        - section: "ODD"
+          contents: 
+            - href: FNA/ODD/ODD_presentation.qmd
+            - section: "Dictionnaire"
+              contents: 
+              - href: FNA/ODD/Dico_FNA_ODD/ODD_dictionnaire.qmd
+              - href: FNA/ODD/Dico_FNA_ODD/FNA_ODD_variables/KCAAJ.qmd
+              - href: FNA/ODD/Dico_FNA_ODD/FNA_ODD_variables/KCRD.qmd
+              - href: FNA/ODD/Dico_FNA_ODD/FNA_ODD_variables/KNFILD.qmd
+        - section: "DAL"
+          contents: 
+            - href: FNA/DAL/DAL_presentation.qmd
+            - section: "Dictionnaire"
+              contents: 
+              - href: FNA/DAL/Dico_FNA_DAL/DAL_dictionnaire.qmd
+              - href: FNA/DAL/Dico_FNA_DAL/FNA_DAL_variables/KCDAL.qmd
+              - href: FNA/DAL/Dico_FNA_DAL/FNA_DAL_variables/KCNDDA.qmd
+        - section: "PAF"
+          contents: 
+            - href: FNA/PAF/PAF_presentation.qmd
+            - section: "Dictionnaire"
+              contents: 
+              - href: FNA/PAF/Dico_FNA_PAF/PAF_dictionnaire.qmd
+              - href: FNA/PAF/Dico_FNA_PAF/FNA_PAF_variables/KCNPL.qmd
+        - section: "CDT"
+          contents: 
+            - href: FNA/CDT/CDT_presentation.qmd
+            - section: "Dictionnaire"
+              contents: 
+              - href: FNA/CDT/Dico_FNA_CDT/CDT_dictionnaire.qmd
+              - href: FNA/CDT/Dico_FNA_CDT/FNA_CDT_variables/KCMCA.qmd
+              - href: FNA/CDT/Dico_FNA_CDT/FNA_CDT_variables/KCMET.qmd
+        - section: "PAR"
+          contents: 
+            - href: FNA/PAR/PAR_presentation.qmd
+            - section: "Dictionnaire"
+              contents: 
+              - href: FNA/PAR/Dico_FNA_PAR/PAR_dictionnaire.qmd
+        - section: "IND"
+          contents: 
+            - href: FNA/IND/IND_presentation.qmd
+        - section: "Cibles"
+          contents: 
+            - href: FNA/Cibles/FNA_cibles.qmd
+  
+
+            
+    - title: "Allstat-FR6"
       style: "docked"
       background: light
       contents: 
         - section : "Présentation"
           contents: 
-            - CNAF/cnaf.qmd
+            - Allstat_FR6/cnaf.qmd
         - section: "Prestations"
           contents: 
-            - href: CNAF/Prestations/prestations.qmd
+            - href: Allstat_FR6/Prestations/prestations.qmd
             - section: "Dictionnaire"
               contents: 
-              - href: CNAF/Prestations/Dico_allstat_minima/prestations_dictionnaire.qmd
-              - href: CNAF/Prestations/Dico_allstat_minima/allstat_minima_variables/rsocclog.qmd
-            - href: CNAF/Prestations/prestations_cibles.qmd
+              - href: Allstat_FR6/Prestations/Dico_allstat_minima/prestations_dictionnaire.qmd
+              - href: Allstat_FR6/Prestations/Dico_allstat_minima/allstat_minima_variables/rsocclog.qmd
+            - href: Allstat_FR6/Prestations/prestations_cibles.qmd
         - section: "Ménages"
           contents:
-            - href: CNAF/Menages/menages.qmd
+            - href: Allstat_FR6/Menages/menages.qmd
             - section: "Dictionnaire"
               contents:
-              - href: CNAF/Menages/Dico_allstat_foyers/menages_dictionnaire.qmd
-              - href: CNAF/Menages/Dico_allstat_foyers/allstat_foyers_variables/actrespd.qmd
-              - href: CNAF/Menages/Dico_allstat_foyers/allstat_foyers_variables/regrespd.qmd
-            - href: CNAF/Menages/menages_cibles.qmd
-            - href: CNAF/Menages/menages_activite.qmd
+              - href: Allstat_FR6/Menages/Dico_allstat_foyers/menages_dictionnaire.qmd
+              - href: Allstat_FR6/Menages/Dico_allstat_foyers/allstat_foyers_variables/actrespd.qmd
+              - href: Allstat_FR6/Menages/Dico_allstat_foyers/allstat_foyers_variables/regrespd.qmd
+            - href: Allstat_FR6/Menages/menages_cibles.qmd
+            - href: Allstat_FR6/Menages/menages_activite.qmd
 
     - title : "MMO"
       style: "docked"

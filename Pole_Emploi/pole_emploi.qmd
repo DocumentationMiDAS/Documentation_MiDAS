@@ -1,9 +1,0 @@
----
-title: "Données de Pôle Emploi"
----
-
-Les données de Pôle Emploi donnent des informations :
-
--   sur les inscrits à Pôle Emploi dans le Fichier Historique Statistique (FHS) ;
-
--   sur les indemnisables à Pôle Emploi dans le Fichier National des Allocataires (FNA).
