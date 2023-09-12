@@ -10,10 +10,10 @@ website:
         href : Presentation/présentation.qmd
       - text : "Données Pôle Emploi"
         href : Pole_Emploi/pole_emploi.qmd
-      - text : "Données CNAF"
-        href: CNAF/cnaf.qmd
-      - text: "Données MMO"
-        href: MMO/mmo.qmd
+      - text : "Allstat"
+        href : CNAF/cnaf.qmd
+      - text : "MMO"
+        href : MMO/mmo.qmd
       - text : "Etudes"
         href : Etudes/etudes.qmd
       - text : "Outils"
