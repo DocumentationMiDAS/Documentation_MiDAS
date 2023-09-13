@@ -1,3 +1,3 @@
 ---
-title: "La table CDT du FNA"
+title: "Dictionnaire des variables"
 ---

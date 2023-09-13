@@ -1,5 +1,0 @@
----
-title: "Prestations"
----
-
-Le fichier « Prestations » qui liste les montants perçus par les individus sur le champ des foyers sociaux bénéficiaires du Revenu de solidarité active (RSA), de la prime d’activité (PA) et de l’Allocation aux adultes handicapés (AAH).

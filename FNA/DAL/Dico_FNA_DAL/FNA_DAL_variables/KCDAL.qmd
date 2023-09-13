@@ -1,3 +1,3 @@
 ---
-title: "Modalités de la variable KCDAL du FNA"
+title: "KCDAL"
 ---

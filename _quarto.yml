@@ -13,7 +13,7 @@ website:
       - text : "FNA"
         href : FNA/FNA_presentation.qmd
       - text : "Allstat-FR6"
-        href : Allstat_FR6/Allstat_FR6.qmd
+        href : Allstat_FR6/Allstat_FR6_presentation.qmd
       - text : "MMO"
         href : MMO/mmo.qmd
       - text : "Etudes"
@@ -53,6 +53,13 @@ website:
               - href: FHS/DE/Dico_FHS_DE/FHS_DE_variables/OBLIGEM.qmd
               - href: FHS/DE/Dico_FHS_DE/FHS_DE_variables/SITPAR.qmd
               - href: FHS/DE/Dico_FHS_DE/FHS_DE_variables/SITPAR_a.qmd
+              - href: FHS/DE/Dico_FHS_DE/FHS_DE_variables/REGION.qmd
+        - section: "E0"
+          contents: 
+            - href: FHS/E0/E0_presentation.qmd
+            - section: "Dictionnaire"
+              contents: 
+              - href: FHS/E0/Dico_FHS_E0/E0_dictionnaire.qmd
         - section: "D2"
           contents: 
             - href: FHS/D2/D2_presentation.qmd
@@ -79,12 +86,16 @@ website:
         - section: "E3_Cons"
           contents: 
             - href: FHS/E3_Cons/E3_Cons_presentation.qmd
+            - section: "Dictionnaire"
+              contents: 
+              - href: FHS/E3/Dico_FHS_E3/E3_dictionnaire.qmd
         - section: "Parcours"
           contents: 
             - href: FHS/Parcours/Parcours_presentation.qmd
         - section: "Cibles"
           contents: 
             - href: FHS/Cibles/FHS_cibles.qmd
+        
             
     - title : "FNA"
       style: "docked"
@@ -154,33 +165,43 @@ website:
       contents: 
         - section : "Présentation"
           contents: 
-            - Allstat_FR6/cnaf.qmd
+            - Allstat_FR6/Allstat_FR6_presentation.qmd
         - section: "Prestations"
           contents: 
-            - href: Allstat_FR6/Prestations/prestations.qmd
+            - href: Allstat_FR6/Prestations/prestations_presentation.qmd
             - section: "Dictionnaire"
               contents: 
               - href: Allstat_FR6/Prestations/Dico_allstat_minima/prestations_dictionnaire.qmd
               - href: Allstat_FR6/Prestations/Dico_allstat_minima/allstat_minima_variables/rsocclog.qmd
-            - href: Allstat_FR6/Prestations/prestations_cibles.qmd
         - section: "Ménages"
           contents:
-            - href: Allstat_FR6/Menages/menages.qmd
+            - href: Allstat_FR6/Menages/menages_presentation.qmd
             - section: "Dictionnaire"
               contents:
               - href: Allstat_FR6/Menages/Dico_allstat_foyers/menages_dictionnaire.qmd
               - href: Allstat_FR6/Menages/Dico_allstat_foyers/allstat_foyers_variables/actrespd.qmd
               - href: Allstat_FR6/Menages/Dico_allstat_foyers/allstat_foyers_variables/regrespd.qmd
-            - href: Allstat_FR6/Menages/menages_cibles.qmd
-            - href: Allstat_FR6/Menages/menages_activite.qmd
+        - section: "Cibles"
+          contents: 
+            - href: Allstat_FR6/Cibles/Allstat_FR6_cibles.qmd
 
     - title : "MMO"
       style: "docked"
       background: light
       contents: 
-          - href: MMO/mmo.qmd
-          - href: MMO/mmo_dictionnaire.qmd
-          - href: MMO/mmo_salaire.qmd
+      - section : "Présentation"
+        contents: 
+          - MMO/mmo_presentation.qmd
+      - section: "Dictionnaire"
+        contents: 
+          - href: MMO/Dico_mmo/mmo_dictionnaire.qmd
+          - href: MMO/Dico_mmo/mmo_variables/MotifRecours.qmd
+          - href: MMO/Dico_mmo/mmo_variables/MotifRupture.qmd
+          - href: MMO/Dico_mmo/mmo_variables/Nature.qmd
+          - href: MMO/Dico_mmo/mmo_variables/SalaireBase.qmd
+      - section: "Cibles"
+        contents: 
+          - href: MMO/Cibles/mmo_cibles.qmd
 
     - title : "Etudes"
       style: "docked"

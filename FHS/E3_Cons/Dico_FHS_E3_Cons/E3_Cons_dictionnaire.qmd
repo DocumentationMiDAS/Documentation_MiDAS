@@ -1,3 +1,16 @@
 ---
-title: "La table E3_Cons du FHS"
+title: "Présentation de la table"
 ---
+
+Ces variables sont identiques à celles de la table E3. Se référer au [dictionnaire de la table E3](FHS/E3/Dico_FHS_E3/E3_dictionnaire.qmd).
+
+| Variables | Libellé                       |
+|-----------|-------------------------------|
+| BNI       |                               |
+| CODACT    | CODE ACTION                   |
+| CODPAR    | Code partenaire               |
+| DATMAJAC  | DATE DE MISE A JOUR DU STATUT |
+| DATPRECO  | DATE DE PRECONISATION         |
+| DATSTAT   | MOIS STATISTIQUE              |
+| FORMACOD  | BESOIN DE FORMATION           |
+| NUMALE    | UNITE ALE DE L'ACTION         |

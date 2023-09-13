@@ -1,3 +1,36 @@
 ---
-title: "La table DE du FHS"
+title: "Présentation de la table DE"
 ---
+
+## Les demandes d'emploi
+
+La table DE contient l'ensemble des demandes d'emploi des individus du champ de MiDAS. Une ligne de la table DE correspond à une période d'inscription à Pôle Emploi.
+
+Un individu peut avoir plusieurs demandes d'emploi. Une demande a une date de début (variable DATINS) et une date de fin (variable DATANN). La date de début est inclusive (l'inscription commence le jour indiqué) tandis que la date d'annulation est exclusive (le dernier jour d'inscription est le jour avant celui indiqué). Si le demandeur d'emploi est encore inscrit à la date de fin des données du FHS, cette variable est manquante. La table DE contient également le motif de l'inscription à Pôle Emploi, et le motif d'annulation lorsque le demandeur d'emploi se désinscrit.
+
+## Les catégories d'inscription
+
+Un demandeur d'emploi inscrit à Pôle Emploi peut être en catégories A, B, C, D ou E :
+
+-   En **catégorie A, B et C**, il est tenu de rechercher un emploi, la différence entre ces catégories est le nombre d'heures d'activité réduite, disponible dans la table E0 du FHS.
+
+-   En **catégorie D**, il n'est pas tenu de rechercher un emploi, en raison du suivi d'une formation, d'un congé maladie...
+
+-   En **catégorie E**, il est en emploi et non tenu d'en rechercher un. 
+
+
+
+::: {.callout-caution}
+Dans la table DE, la variable CATREGR permet de distinguer les catégories A, B et C (modalités 1, 2, 3) de la catégorie D (modalité 4) et de la catégorie E (modalité 5). Cependant, les modalités 1, 2 et 3 ne correspondent **pas** respectivement aux catégories A, B et C, elles distinguent le type de contrat recherché (CDI, CDD, temps complet, partiel). Il faut nécessairement utiliser la table E0 pour distinguer ces trois catégories.
+:::
+
+Il n'y a donc pas de nouvelle demande d'inscription pour les passages entre les catégories A, B et C. Lorsqu'un demandeur d'emploi passe d'une catégorie A, B ou C à la catégorie D ou E, une nouvelle ligne est automatiquement créée dans la table DE, même si le demandeur d'emploi reste inscrit en continu. 
+ 
+## Le profil des demandeurs d'emploi
+
+La table DE contient également les informations sociodémographiques des demandeurs d'emploi : sexe, date de naissance, qualification, commune de résidence... 
+
+
+## Les déménagements
+
+Lorsqu'un demandeur d'emploi déménage, une nouvelle demande d'emploi apparaît, rattachée à sa nouvelle agence Pôle Emploi de référence. Le rattachement à une agence Pôle Emploi est fondé sur un critère géographique. 

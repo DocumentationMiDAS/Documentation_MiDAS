@@ -1,3 +1,9 @@
 ---
-title: "La table E0 du FHS"
+title: "Dictionnaire des variables"
 ---
+
+| <br>Variables | <br>Libellé                                                                           | <br>Commentaires                                                                                                                                |
+|---------------|---------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| <br>MOIS      | <br>Mois d'effet de l'activité réduite                                                | <br>                                                                                                                                            |
+| <br>NBHEUR    | <br>Nombre d'heures d'activité réduite exercées au <br>cours du mois (variable MOIS). | <br>                                                                                                                                            |
+| <br>NDEM      | <br>Identifiant de la demande d'emploi                                                | <br>Numéroté de la plus récente <br>à la plus ancienne (la<br> demande n°1 est la demande la <br>plus récente à la date <br>statistique du FHS) |

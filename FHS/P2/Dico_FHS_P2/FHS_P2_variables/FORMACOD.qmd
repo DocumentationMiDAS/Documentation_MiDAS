@@ -1,3 +1,165 @@
 ---
-title: "Modalités de la variable FORMACOD du FHS"
+title: "FORMACOD"
 ---
+
+**100.** Formation générale
+
+**110.** Mathématique
+
+**114.** Physique
+
+**115.** Chimie
+
+**120.** Sciences naturelles
+
+**122.** Sciences de la terre
+
+**125.** Environnement aménagement
+
+**130.** Science politique
+
+**131.** Économie
+
+**132.** Droit
+
+**133.** Droit fiscal
+
+**142.** Sciences humaines
+
+**144.** Psychologie
+
+**150.** Développement personnel
+
+**152.** Langues
+
+**154.** Sport
+
+**200.** Formation agricole ou Industrielle
+
+**210.** Agriculture
+
+**212.** Production végétale
+
+**213.** Pêche aquaculture
+
+**215.** Agroalimentaire
+
+**216.** Textile
+
+**217.** Habillement
+
+**218.** Cuir peau
+
+**220.** Travaux publics
+
+**222.** BTP conception organisation
+
+**223.** Bâtiment gros œuvre
+
+**224.** Bâtiment second œuvre
+
+**226.** Génie climatique
+
+**228.** Matériau produit chimique
+
+**230.** Travail matériau
+
+**235.** Mécanique théorique
+
+**236.** Mécanique construction réparation
+
+**240.** Électrotechnique
+
+**241.** Énergie
+
+**242.** Télécommunications
+
+**243.** Électronique
+
+**244.** Automatisme informatique industrielle
+
+**300.** Fonction entreprise
+
+**310.** Informatique
+
+**313.** Qualité
+
+**315.** Gestion production
+
+**317.** Manutention
+
+**318.** Transport
+
+**320.** Direction entreprise
+
+**325.** Comptabilité
+
+**330.** Ressources humaines
+
+**340.** Gestion commerciale
+
+**342.** Commerce international
+
+**345.** Commercialisation
+
+**350.** Secrétariat bureautique
+
+**400.** Secteur tertiaire
+
+**410.** Banque assurance
+
+**420.** Services divers
+
+**426.** Tourisme
+
+**427.** Hôtellerie restauration
+
+**428.** Prévention sécurité
+
+**430.** Médecine
+
+**434.** Santé secteur sanitaire
+
+**440.** Action sociale
+
+**445.** Ingénierie formation pédagogie
+
+**450.** Art
+
+**455.** Artisanat art
+
+**460.** Industrie graphique imprimerie
+
+**461.** Audiovisuel
+
+**464.** Information communication
+
+**700.** Langages informatiques
+
+**710.** Logiciels gestion de fichier
+
+**720.** Logiciels traitement de texte
+
+**730.** Logiciels tableur
+
+**740.** Logiciels intégrés
+
+**750.** Logiciels graphiques P.A.O./ P.R.E.A.O.
+
+**755.** Logiciels création/gestion page web
+
+**760.** Logiciels gestion réseau
+
+**765.** Logiciels gestion messagerie
+
+**770.** Logiciels D.A.O./C.A.O.
+
+**775.** Logiciels C.F.A.O.
+
+**780.** Logiciels gestion de projet
+
+**785.** Logiciels navigation internet
+
+**790.** Logiciels comptables
+
+**000.** Indéterminé

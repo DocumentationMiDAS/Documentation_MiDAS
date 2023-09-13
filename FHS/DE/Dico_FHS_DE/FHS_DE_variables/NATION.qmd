@@ -1,3 +1,101 @@
 ---
-title: "Modalités de la variable NATION du FHS"
+title: "NATION"
 ---
+
+**1.** Français
+
+**2.** Chypriotes (partie grecque)
+
+**3.** Maltais
+
+**4.** Helvètes
+
+**5.** Autrichiens
+
+**6.** Finlandais
+
+**7.** Suédois
+
+**8.** Norvégiens
+
+**9.** Islandais
+
+**10.** Liechtensteinois
+
+**11.** Allemand
+
+**12.** Belges
+
+**13.** Hollandais
+
+**14.** Italiens
+
+**15.** Luxembourgeois
+
+**16.** Britanniques
+
+**17.** Danois
+
+**18.** Irlandais
+
+**19.** Grecs
+
+**21.** Espagnols
+
+**22.** Portugais
+
+**24.** Yougoslaves
+
+**25.** Polonais
+
+**26.** Turcs
+
+**27.** Croates
+
+**23.** EEE (européens espace économique)
+
+**29.** Autres européens
+
+**31.** Algériens
+
+**32.** Marocains
+
+**33.** Tunisiens
+
+**42.** Camerounais
+
+**43.** Sénégalais
+
+**44.** Ivoiriens
+
+**49.** Autres africains
+
+**51.** Vietnamiens laotiens cambodgiens
+
+**59.** Autres asiatiques
+
+**69.** Américains du Nord
+
+**79.** Américains du Sud
+
+**89.** Océaniens
+
+**90.** Hongrois
+
+**91.** Lituaniens
+
+**92.** Estoniens
+
+**93.** Lettons
+
+**94.** Tchèques
+
+**95.** Slovaques
+
+**96.** Slovènes
+
+**97.** Bulgares
+
+**98.** Roumains
+
+**99.** Inconnue

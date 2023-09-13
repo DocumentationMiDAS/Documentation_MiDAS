@@ -1,3 +1,41 @@
 ---
-title: "Modalités de la variable MOTANN du FHS"
+title: "MOTANN"
 ---
+
+**Non renseigné :** la demande est en cours.
+
+**01.** Reprise d'emploi, hors contrat aidés et création d'entreprise
+
+**02.** Entrée en stage de formation
+
+**03.** Maladie, maternité, accident travail
+
+**04.** Dispense recherche d'emploi
+
+**05.** Retraite
+
+**06.** Changement d'ALE avec changement d'Assedic
+
+**07.** Service Militaire
+
+**08.** Autre arrêt de recherche
+
+**09.** Absence au contrôle
+
+**10.** Radiation administrative pour non présentation suite à une convocation
+
+**11.** Autres radiation administratives : refus d'emploi, de formation, fausse déclaration, manque d'actes positifs de recherche
+
+**12.** Autre cas
+
+**13.** Absence de mise à jour du dossier
+
+**15.** Reprise d'emploi en contrat aidé
+
+**16.** Reprise d'emploi : création d'entreprise
+
+**17.** Refus d'actualisation du profil
+
+**18.** Refus d'une offre raisonnable d'emploi
+
+**XX.** Non renseigné (codes non intégrés)

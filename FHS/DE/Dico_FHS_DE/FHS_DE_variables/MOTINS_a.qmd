@@ -1,3 +1,63 @@
 ---
-title: "Modalités de la variable MOTINS_a du FHS"
+title: "MOTINS_a"
 ---
+
+**00.** Sans objet (catégorie 5)
+
+**11.** Licenciement économique
+
+**12.** Autre licenciement
+
+**13.** Démission
+
+**14.** Fin de contrat
+
+**15.** Fin de mission d'intérim
+
+**16.** Fin convention conversion
+
+**17.** Licenciement économique PAP anticipé
+
+**18.** Fin de contrat emploi jeune
+
+**19.** Autres cas
+
+**20.** Entrée en CRP
+
+**21.** Première entrée marché du travail
+
+**22.** Reprise activité après interruption \> 6 mois
+
+**23.** Benef. Acti. Conv. Du 3 fev. 9
+
+**24.** Primo arrivant
+
+**25.** Fin de CRP
+
+**26.** Rupture conventionnelle initiative employé
+
+**27.** Rupture conventionnelle initiative salarié
+
+**28.** Sortie de stage
+
+**29.** Fin d'activité non salariée
+
+**30.** Fin de maladie, maternité
+
+**31.** Entrée en CTP
+
+**32.** Rupture conventionnelle du CDI
+
+**33.** Entrée CTP (suite CRP)
+
+**34.** Entrée en CSP
+
+**35.** Retour en France
+
+**36.** Fin de détention
+
+**37.** Fin de période d'essai
+
+**38.** Fin de service civique
+
+**39.** Recherche d'un autre emploi

@@ -1,5 +1,0 @@
----
-title: "Ménages"
----
-
-Le fichier « Ménages » liste les ressources et les prestations sociales perçues par chaque foyer social d’un individu du champ MiDAS (y compris demandeurs d’emploi n’ayant jamais perçu de minima sociaux).

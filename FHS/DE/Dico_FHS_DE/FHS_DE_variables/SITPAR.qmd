@@ -1,3 +1,31 @@
 ---
-title: "Modalités de la variable SITPAR du FHS"
+title: "SITPAR"
 ---
+
+**0.** Sans Objet (catégorie 123678)
+
+**1.** AFR
+
+**2.** CES
+
+**3.** Autres
+
+**4.** CAE
+
+**5.** CAV
+
+**6.** CEN
+
+**7.** CIE
+
+**8.** CRP
+
+**9.** Autres formations
+
+**A.** CTP
+
+**B.** APR
+
+**C.**
+
+**X.** Non renseigné

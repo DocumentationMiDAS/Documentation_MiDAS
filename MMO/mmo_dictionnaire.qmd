@@ -1,9 +1,0 @@
----
-title: "Dictionnaire des données"
----
-
-
-| Variable | Libellé | Description/Modalités |
-|---|---|---|
-| IdSISMMO | Identifiant du salarié non signifiant |  |
-| DebutCTT | Date de début du contrat |  |

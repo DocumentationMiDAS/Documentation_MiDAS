@@ -1,3 +1,25 @@
 ---
-title: "La table D2 du FHS"
+title: "Présentation de la table"
 ---
+
+## L'indemnisabilité des demandeurs d'emploi
+
+La table D2 donne les informations sur l'indemnisabilité des demandeurs d'emploi aux allocations chômage. Le fait d'être indemnisable à une allocation chômage ne veut pas dire être indemnisé : un demandeur d'emploi peut être indemnisation sur une période, mais ne pas percevoir d'allocation, par exemple lorsque les revenus tirés de son activité réduite dépasse le plafond. La table D2 ne permet pas de distinguer entre les personnes indemnisables et les personnes indemnisées.
+
+## Définition d'une période indemnisable
+
+Une ligne est de la table est une période indemnisable, elle est identifiée par l'id_midas et la variable ndem, ainsi que par les dates de début et de fin de la période indemnisable (jourdv et jourfv). Ces dates sont inclusives.
+
+Les informations sur l'indemnisabilité mettent plus de temps à remonter, la table D2 s'arrête donc un trimestre plus tôt que les autres tables du FHS. Par exemple, dans le FHS du quatrième trimestre 2021, la variable jourfv n'est jamais au-delà du 30 septembre 2021.
+
+De plus, 9 mois avant la fin des informations de la table D2, toutes les lignes se terminent et une nouvelle apparaît automatiquement avec les mêmes informations autres que les dates, même si la période indemnisable est ininterompue : la variable D2STATUT (label STATUT DE L'ENREGISTREMENT) prend deux valeurs C (consolidé) et P (provisoire). Par exemple, dans le FHS du quatrième trimestre 2021, une période en cours au 31 décembre 2020 a une ligne C avec jourfv=2020-12-31 et il y a une autre ligne P pour le même individu avec jourdv=2021-01-01.
+
+En cas de changement d'une des variables régime d'indemnisation (REGIND), filière d'indemnisation (filindem), type de population (typpope) ou régime particulier (REGIME), une nouvelle ligne est créée. Il est donc très compliqué d'associer différentes périodes de la table D2 à un droit à une allocation chômage de manière certaine.
+
+## Calcul du nombre d'indemnisables à une date
+
+Il est facile de donner le nombre d'indemnisables à une date donnée à partir de la table D2. Le type d'allocation est donné par la variable de code allocation indemnisable (indem). La variable ODDMAX donne la durée théorique d'indemnisation du droit de la période concernée. S'il n'y a pas de durée théorique (par exemple pour l'ASS), cette variable vaut 9998.
+
+::: callout-warning
+Il n'est pas recommandé d'utiliser cette table car les informations qu'elle contient sur l'indemnisabilité sont moins fiables que celles du **FNA**, présent dans MiDAS.
+:::

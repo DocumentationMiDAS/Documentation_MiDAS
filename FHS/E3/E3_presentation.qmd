@@ -1,3 +1,7 @@
 ---
-title: "La table E3 du FHS"
+title: "Présentation de la table"
 ---
+
+## Prestations proposées par Pôle Emploi
+
+Cette table, comme E3_Cons, donne les prestations pour les demandeurs d’emploi. C’est la variable code action (CODACT) qui donne la nature de ces prestations. Cette table est issue du FHS Services, donne des informations sur les services de Pôle Emploi.

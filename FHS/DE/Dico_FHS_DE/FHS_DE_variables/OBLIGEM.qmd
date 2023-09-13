@@ -1,3 +1,35 @@
 ---
-title: "Modalités de la variable OBLIGEM du FHS"
+title: "OBLIGEM"
 ---
+
+**0.** Sans obligation d'emploi
+
+**1.** Orphelin de guerre
+
+**2.** Veuf (ve) de guerre ou conjoint de militaire invalide
+
+**3.** Pensionne de guerre
+
+**4.** Travailleur handicape catégorie a
+
+**5.** Travailleur handicape catégorie b
+
+**6.** Travailleur handicape catégorie c
+
+**7.** En instance de décision CDA (Commission des droits et de l'autonomie)
+
+**8.** Pension d'invalidité s.s. Ou autre
+
+**9.** Rente accident du travail ou maladie professionnelle \>= 10%
+
+**C.** RGTH -- CRP
+
+**E.** RGTH -- ESAT
+
+**H.** Alloc adulte handicape (manuel)
+
+**I.** Carte d'invalidité
+
+**M.** RGTH -- marché du travail
+
+**R.** Alloc adulte handicape (auto)
