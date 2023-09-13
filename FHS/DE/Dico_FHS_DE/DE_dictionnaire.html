@@ -490,14 +490,7 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#la-table-de" id="toc-la-table-de" class="nav-link active" data-scroll-target="#la-table-de">La table DE</a></li>
-  <li><a href="#la-table-d2" id="toc-la-table-d2" class="nav-link" data-scroll-target="#la-table-d2">La table D2</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -519,1648 +512,362 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Le FHS contient plusieurs tables :</p>
-<ul>
-<li><p>la table DE ;</p></li>
-<li><p>la table D2 ;</p></li>
-<li><p>la table P2 ;</p></li>
-<li><p>la table E3 ;</p></li>
-<li><p>la table E3cons ;</p></li>
-<li><p>la table E0.</p></li>
-</ul>
-<section id="la-table-de" class="level2">
-<h2 class="anchored" data-anchor-id="la-table-de">La table DE</h2>
 <table class="table">
-<colgroup>
-<col style="width: 19%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-</colgroup>
 <thead>
 <tr class="header">
-<th><ul>
-<li>*Va</li>
-</ul>
-<p>riables**</p></th>
-<th><strong>Libellé</strong></th>
-<th><ul>
-<li>*Mo</li>
-</ul>
-<p>dalités**</p></th>
-<th><strong>C o m mentaires</strong></th>
+<th><br>Variables</th>
+<th><br>Libellé</th>
+<th><br>Modalités</th>
+<th><b r="">Commentaires</b></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Age</td>
-<td>Age du demandeur au 31/12 de l’année d ’ inscription de la demande associée</td>
-<td></td>
-<td>En année</td>
-</tr>
-<tr class="even">
-<td>ALE</td>
-<td>Numéro de l’Agence Locale pour l’Emploi d ’ inscription du demandeur</td>
-<td>Numéro de l’ALE (unité locale de Pôle emploi). Les deux premiers caractères donnent le département</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>ANCIEN</td>
-<td>Ancienneté dans la demande</td>
-<td>En mois révolu au dernier jour du mois de fermeture de la demande. Si la demande est en cours il s’agit de l ’ancienneté au dernier jour du fichier.</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>API</td>
-<td>Allocation parent isolé</td>
-<td><p>0. Non b é néficiaires de l’API</p>
-<p>1. B énéficiaire de l’API (saisie manuelle)</p>
-<p>2. B énéficiaire de l’API ( information CNASEA)</p>
-<p>3. Demande API en cours d ’ instruction</p></td>
-<td>Remplacé en 2009 par le RSA</td>
-</tr>
-<tr class="odd">
-<td>AXETRAV</td>
-<td>Axe de travail</td>
-<td><p>P. Projet</p>
-<ol start="18" type="A">
-<li>Recherche</li>
-</ol>
-<p>A. À approfondir</p>
-<ol start="5" type="A">
-<li>Recherche d’emploi</li>
-</ol>
-<p>F. Freins p é riphériques à l’emploi</p>
-<p>M. Mobilité p r o f essionnelle</p></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>CATREGR</td>
-<td>Catégorie o p é rationnelle du demandeur relative à la dernière situation connue</td>
-<td><p>1. Personnes i m médiatement disponibles et à la recherche d’un emploi sous CDI à temps plein</p>
-<p>2. Personnes i m médiatement disponibles et à la recherche d’un emploi sous CDI à temps partiel</p>
-<p>3. Personnes i m médiatement disponibles et à la recherche d’un emploi à durée limitée (CDD, mission d’intérim, v acation…)</p>
-<p>4. Personnes à la recherche d’un emploi mais non i m médiatement disponibles (en formation, en arrêt maladie, en congé maternité, en CRP…)</p>
-<p>5. Personnes pourvues d’un emploi, à la recherche d’un autre emploi donc non i m médiatement d isponibles. Figurent ici les personnes en contrat emploi so l i d arité&nbsp;(CES, CIE ou autres contrat aidés…).</p></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>CEMPLOI</td>
-<td>Composante emploi du demandeur d’emploi</td>
-<td><p>CE1. DE positionné sur un métier en t e n s ion/porteur</p>
-<p>CE2. DE non positionné sur un métier en t e n s ion/porteur</p></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>CONTRAT</td>
-<td>Type de contrat recherché par le demandeur (dernière valeur connue sur la demande)</td>
-<td><p>1. Contrat à durée i ndéterminée</p>
-<p>2. Contrat à durée déterminée ou temporaire</p>
-<p>3. Contrat saisonnier</p></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>CUCS</td>
-<td>Demandeurs résidant en zone CUCS (Contrat Urbain de Cohésion Sociale)</td>
-<td></td>
-<td>A pris fin en 2014</td>
-</tr>
-<tr class="even">
-<td>DATANN</td>
-<td>Date d ’annulation de la demande</td>
-<td><p>La demande est en cours à la date statistique du fichier.</p>
-<dl>
-<dt>D ate exclusive</dt>
-<dd>
-<p># si DATA N N</p>
-</dd>
-</dl>
-<p>01/02/2010, le dernier jour</p>
-<p>d ’ inscription sur cette demande est le</p>
-<p>31/01/2010.</p></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>DATINS</td>
-<td>Date d’effet d ’ inscription de la demande</td>
-<td>L ’ inscription commence ce jour</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>DATNAIS</td>
-<td>Date de naissance (année et mois)</td>
-<td>Mois de naissance (le jour exact n’est pas renseigné, il est fixé conve n t i onnellement à 15)</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>DATSINS</td>
-<td>Date de saisie d ’ inscription de la demande</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>DEPCOM</td>
-<td>Commune de résidence du demandeur</td>
-<td>En principe, c’est le Code Officiel G é ographique. Toutefois, il peut y avoir des valeurs n o n -conformes. Les deux premiers caractères donnent de département</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>DIPLOME</td>
-<td>Diplôme obtenu par le demandeur lors de son inscription</td>
-<td><p>D. Diplômé</p>
-<p>N. Non diplômé</p></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>EXPER</td>
-<td>Expérience dans le ROME demandé.</td>
-<td>Nombre expérience. Arrondi à l ’ a ppréciation du conseiller</td>
-<td>Il existe des cas où le nombre d’année d ’expérience est supérieur à l’âge du demandeur d’emploi</td>
-</tr>
-<tr class="odd">
-<td>EXPEUNIT</td>
-<td>Unité durée expérience dans le le ROME</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>MOBDIST</td>
-<td>Mobilité du DE</td>
-<td>Mobilité du DE vis-à-vis de l’emploi, en minutes, heures, kilomètres ou FE selon la valeur de la variable MOBUNIT. Il faut l’utiliser avec la variable MOBUNIT pour lui donner un sens.</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>MOBUNIT</td>
-<td>Unité de la mobilité du demandeur vis-à-vis de l’emploi</td>
-<td><p>00. Non renseignée</p>
-<p>FE. France Entière</p>
-<p>H. Heure</p>
-<p>KM. Kilomètres</p>
-<p>MN. Minutes</p>
-<p>MT. Mobilité totale</p></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>MOTANN</td>
-<td>Motif d ’annulation de la demande</td>
-<td><p>’ ’. Non renseigné : la demande est en cours.</p>
-<p>01. Reprise d’emploi, hors contrat aidés et création d ’entreprise</p>
-<p>02. Entrée en stage de formation</p>
-<p>03. Maladie, maternité, accident travail</p>
-<p>04. Dispense recherche d’emploi</p>
-<p>05. Retraite</p>
-<p>06. Changement d’ALE avec changement d’Assedic</p>
-<p>07. Service Militaire</p>
-<p>08. Autre arrêt de recherche</p>
-<p>09. Absence au contrôle</p>
-<p>10. Radiation a d m inistrative pour non p résentation suite à une convocation</p>
-<p>11. Autres radiation a d m i nistratives : refus d’emploi, de formation, fausse d éclaration, manque d’actes positifs de recherche</p>
-<p>12. Autre cas</p>
-<p>13. Absence de mise à jour du dossier</p>
-<p>15. Reprise d’emploi en contrat aidé</p>
-<p>16. Reprise d’emploi : création d ’entreprise</p>
-<p>17. Refus d ’ a c tualisation du profil</p>
-<p>18. Refus d’une offre raisonnable d’emploi</p>
-<p>XX. Non renseigné (codes non intégrés)</p></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>MOTANN_a</td>
-<td>Motif d ’annulation de la demande détaillé</td>
-<td><p>**. Demande annulée par le fh&nbsp;: aede ne transmet plus de dossier pour ce demandeur (voir description table de)</p>
-<p>00. Non précisé</p>
-<p>01. Refus de signature parp pac</p>
-<p>02. Non p résentation a convocation CRP CTP</p>
-<p>03. Non pres. A action r eclassement CRP</p>
-<p>04. Refus d’une offre emploi CRP CTP</p>
-<p>05. Refus action r eclassement CRP</p>
-<p>06. Abandon action r eclassement crp</p>
-<p>07. Decl. Inexacte ou attest. Mensongere crp</p>
-<p>08. Avis defav. Sur motif abs a 1er entretien</p>
-<p>09. Non présent à la convocation suite à l’absence au 1<sup>er</sup> entretien</p>
-<p>10. Entrée en apr</p>
-<p>11. Reprise empl par propres moyen</p>
-<p>12. Reprise empl par propres moyen</p>
-<p>13. Reprise empl par propres moyen</p>
-<p>14. Reprise empl par propres moyen</p>
-<p>15. Reprise empl par propres moyen</p>
-<p>16. Création d ’entreprise</p>
-<p>17. Fin de convention de coopération</p>
-<p>18. Entrée en CIE</p>
-<p>19. Entrée en contrat d’accomp. Dans l’emploi</p>
-<p>20. Entrée en cev (emploi ville)</p>
-<p>21. Reprise empl par l’agence</p>
-<p>22. Reprise empl par l’agence</p>
-<p>23. Reprise empl par l’agence</p>
-<p>24. Reprise empl par l’agence</p>
-<p>25. Reprise empl par l’agence</p>
-<p>26. Entrée en CES</p>
-<p>28. Reprise empl pour conv. Coopération</p>
-<p>29. Entrée en RMA</p>
-<p>30. Entrée en contrat d’avenir</p>
-<p>31. Entrée en stage par ANPE</p>
-<p>32. Entrée en stage par prop.moyen</p>
-<p>33. Fin de CRP</p>
-<p>34. Entrée en AFR</p>
-<p>35. Non c onfirmation de l ’ inscription Assedic</p>
-<p>36. Absence du lieu de résidence &gt; 35 jours</p>
-<p>37. Fin de CTP</p>
-<p>38. Abandon volontaire (sortie anticipée) du CTP</p>
-<p>39. Entrée en congé parental</p>
-<p>40. Arrêt i nvolontaire de stage (cat = 4)</p>
-<p>41. Fin de stage ou mesure (cat = 4)</p>
-<p>42. Abandon de stage ou mesure (cat = 4)</p>
-<p>43. Fin contrat temporaire ou cdd (cat = 5)</p>
-<p>44. Service militaire</p>
-<p>45. Maladie, maternité, accident travail</p>
-<p>46. Changement d’ale</p>
-<p>47. Titre de séjour non valide</p>
-<p>48. Retraite</p>
-<p>49. Autres cas</p>
-<p>50. Non p résentation suite à convocation au 1er entretien</p>
-<p>51. Refus d’emploi : suspension 1 mois</p>
-<p>52. Refus d’emploi : suspension 2 mois</p>
-<p>53. Refus d’emploi : suspension 3 mois</p>
-<p>54. Refus d’emploi : suspension 4 mois</p>
-<p>55. Refus d’emploi : suspension 5 mois</p>
-<p>56. Refus d’emploi : suspension 6 mois</p>
-<p>57. Annulation suite saisine ddtefp</p>
-<p>58. Refus de 2 offres r aisonnables d’emploi</p>
-<p>59. Fin de CSP</p>
-<p>60. Non p résentation à une convocation pnae</p>
-<p>61. Refus de formation : suspension 1 mois</p>
-<p>62. Refus de formation : suspension 2 mois</p>
-<p>63. Refus de formation : suspension 3 mois</p>
-<p>64. Refus de formation : suspension 4 mois</p>
-<p>65. Refus de formation : suspension 5 mois</p>
-<p>66. Refus de formation : suspension 6 mois</p>
-<p>70. Déclaration inexacte : suspension 12 mois</p>
-<p>71. Autres cas d’arrêt de recherche d’emploi</p>
-<p>72. Dispense recherche d’emploi</p>
-<p>73. Décès</p>
-<p>74. Fausse déclaration : suspension 6 mois</p>
-<p>75. Fausse déclaration : suspension 7 mois</p>
-<p>76. Fausse déclaration : suspension 8 mois</p>
-<p>77. Fausse déclaration : suspension 9 mois</p>
-<p>78. Fausse déclaration : suspension 10 mois</p>
-<p>79. Fausse déclaration : suspension 11 mois</p>
-<p>80. Obtention du statut de réfugié</p>
-<p>81. I nsuffisance de recherche d’emploi : suspension 1 mois</p>
-<p>82. I nsuffisance de recherche d’emploi : suspension 2 mois</p>
-<p>83. I nsuffisance de recherche d’emploi : suspension 3 mois</p>
-<p>84. I nsuffisance de recherche d’emploi : suspension 4 mois</p>
-<p>85. I nsuffisance de recherche d’emploi : suspension 5 mois</p>
-<p>86. I nsuffisance de recherche d’emploi : suspension 6 mois</p>
-<p>90. Absence au contrôle</p>
-<p>91. Non réponse à convocation : suspension 1 mois</p>
-<p>92. Non réponse à convocation : suspension 2 mois</p>
-<p>93. Non réponse à convocation : suspension 3 mois</p>
-<p>94. Non réponse à convocation : suspension 4 mois</p>
-<p>95. Date de péremption atteinte (cat = 4 ou 5)</p>
-<p>96. Non réponse à convocation : suspension 5 mois</p>
-<p>97. Non réponse à convocation : suspension 6 mois</p>
-<p>98. DSM illisible</p>
-<p>5x. Refus d’emploi : suspension 15 jours</p>
-<p>6x. Refus de formation : suspension 15 jours</p>
-<p>8x. I nsuffisance de recherche d’emploi : suspension 15 jours</p>
-<p>A2. Déclaration inexacte d’activité brève : suspension 2 mois</p>
-<p>A3. Déclaration inexacte d’activité brève : suspension 3 mois</p>
-<p>A4. Déclaration inexacte d’activité brève : suspension 4 mois</p>
-<p>A5. Déclaration inexacte d’activité brève : suspension 5 mois</p>
-<p>A6. Déclaration inexacte d’activité brève : suspension 6 mois</p>
-<p>A7. Déclaration inexacte d’activité brève : suspension 7 mois</p>
-<p>A9. Déclaration inexacte d’activité brève : suspension 9 mois</p>
-<p>AC. Déclaration inexacte d’activité brève : suspension 12 mois</p>
-<p>B1. Refus d’un contrat d’ a p p rentissage: suspension 1 mois</p>
-<p>B2. Refus d’un contrat d’ a p p rentissage: suspension 2 mois</p>
-<p>BX. Refus d’un contrat d’ a p p rentissage: suspension 15 jours</p>
-<p>C1. Refus action insertion suspension : 1 mois</p>
-<p>C2. Refus action insertion suspension : 2 mois</p>
-<p>C3. Refus action insertion suspension : 3 mois</p>
-<p>C4. Refus action insertion suspension : 4 mois</p>
-<p>C6. Refus action insertion suspension : 6 mois</p>
-<p>CA. CDI (CUI)</p>
-<p>CB. CDD d’au moins 6 mois (CUI)</p>
-<p>CC. Contrat travail temporaire d’au moins 6 mois (CUI)</p>
-<p>CD. Abandon CRP CTP CSP</p>
-<p>CE. Bascule CRP vers CTP</p>
-<p>CF. Entrée en CUI-CIE</p>
-<p>CG. Entrée en CUI-CIE</p>
-<p>CH. Reprise d’emploi i ncompatible avec le dispositif (CSP)</p>
-<p>CI. Entrée en emploi d’avenir marchand</p>
-<p>CJ. Entrée en emploi d’avenir non marchand</p>
-<p>CK. Entrée en emploi d’avenir professeur</p>
-<p>CX. Refus action insertion : suspension 15 jours</p>
-<p>D1. Refus contrat aidé : suspension 1 mois</p>
-<p>D2. Refus contrat aidé : suspension 2 mois</p>
-<p>D6. Refus contrat aidé : suspension 6 mois</p>
-<p>DX. Refus contrat aidé : suspension 15 jours</p>
-<p>E2. Refus visite médicale : suspension 2 mois</p>
-<p>E4. Refus visite médicale : suspension 4 mois</p>
-<p>G2. Refus d ’ élaboration PPAE : suspension 2 mois</p>
-<p>H2. Refus d’une offre raisonnable d’emploi : suspension 2 mois</p>
-<p>I1. Refus d’une action d’aide à la recherche d’emploi : suspension 1 mois</p>
-<p>I2. Refus d’une action d’aide à la recherche d’emploi : suspension 2 mois</p>
-<p>I3. Refus d’une action d’aide à la recherche d’emploi : suspension 3 mois</p>
-<p>I4. Refus d’une action d’aide à la recherche d’emploi : suspension 4 mois</p>
-<p>I5. Refus d’une action d’aide à la recherche d’emploi : suspension 5 mois</p>
-<p>IX. Refus d’une action d’aide à la recherche d’emploi : suspension 15 jours</p>
-<p>J2. Refus d ’actu alisation PPAE</p>
-<p>: suspension 2 mois</p>
-<p>KX. Refus contrat profes s i o nnalisation : suspension 15 jours</p>
-<p>L2. Refus contrat profes s i o nnalisation : suspension 15 jours</p></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>MOTINS</td>
-<td>Motif d ’ inscription de la demande agrégé</td>
-<td><p>0. Sans objet (catégorie 5)</p>
-<p>1. L icenciement économique</p>
-<p>2. Autre l icenciement</p>
-<p>3. Démission</p>
-<p>4. Fin de contrat</p>
-<p>5. Fin de mission d’intérim</p>
-<p>6. Première entrée sur le marché du travail</p>
-<p>7. Reprise d’activité après une i nterruption &gt; 6 mois</p>
-<p>8. Autres cas</p>
-<p>9. Fin de convention de conversion</p>
-<p>A. Entrée en CRP</p>
-<p>B. Fin de CRP</p>
-<p>C. Rupture CNE initiative employeur</p>
-<p>D. Rupture CNE initiative salarié</p>
-<p>E. Sortie de stage</p>
-<p>F. Fin d’activité non salariée</p>
-<p>G. Fin de maladie, de maternité</p>
-<p>H. Entrée en CTP</p>
-<p>I. Rupture c o n v entionnelle du CDI</p>
-<p>J. Entrée CTP (suite CRP)</p>
-<p>K. Entrée en CSP</p>
-<p>X. Non renseigné</p>
-<ol start="26" type="A">
-<li>L</li>
-</ol>
-<p>icenciement</p>
-<p>économique PAP</p>
-<p>anticipé</p></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>MOTINS_A</td>
-<td>Motif d ’ inscription de la demande détaillé</td>
-<td><p>00. Sans objet (catégorie 5)</p>
-<p>11. L icenciement économique</p>
-<p>12. Autre l icenciement</p>
-<p>13. Démission</p>
-<p>14. Fin de contrat</p>
-<p>15. Fin de mission d’intérim</p>
-<p>16. Fin convention conversion</p>
-<p>17. L icenciement économique PAP anticipé</p>
-<p>18. Fin de contrat emploi jeune</p>
-<p>19. Autres cas</p>
-<p>20. Entrée en CRP</p>
-<p>21. Première entrée marché du travail</p>
-<ol start="22" type="1">
-<li>Reprise</li>
-</ol>
-<p>activité après</p>
-<p>i nterruption &gt; 6 mois</p>
-<p>23. Benef. Acti. Conv. Du 3 fev. 9</p>
-<p>24. Primo arrivant</p>
-<p>25. Fin de CRP</p>
-<p>26. Rupture c o n v entionnelle initiative employé</p>
-<p>27. Rupture c o n v entionnelle initiative salarié</p>
-<p>28. Sortie de stage</p>
-<p>29. Fin d’activité non salariée</p>
-<p>30. Fin de maladie, maternité</p>
-<p>31. Entrée en CTP</p>
-<p>32. Rupture c o n v entionnelle du CDI</p>
-<p>33. Entrée CTP (suite CRP)</p>
-<p>34. Entrée en CSP</p>
-<p>35. Retour en France</p>
-<p>36. Fin de détention</p>
-<p>37. Fin de période d’essai</p>
-<p>38. Fin de service civique</p>
-<p>39. Recherche d’un autre emploi</p></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>NATION</td>
-<td>Nationalité du demandeur d’emploi</td>
-<td><p>1. Français</p>
-<p>2. Chypriotes (partie grecque)</p>
-<p>3. Maltais</p>
-<p>4. Helvètes</p>
-<p>5. Autrichiens</p>
-<p>6. Finlandais</p>
-<p>7. Suédois</p>
-<p>8. Norvégiens</p>
-<p>9. Islandais</p>
-<p>10. Li e c h tensteinois</p>
-<p>11. Allemand</p>
-<p>12. Belges</p>
-<p>13. Hollandais</p>
-<p>14. Italiens</p>
-<p>15. L u x embourgeois</p>
-<p>16. B ritanniques</p>
-<p>17. Danois</p>
-<p>18. Irlandais</p>
-<p>19. Grecs</p>
-<p>21. Espagnols</p>
-<p>22. Portugais</p>
-<p>24. Yougoslaves</p>
-<p>25. Polonais</p>
-<p>26. Turcs</p>
-<p>27. Croates</p>
-<p>23. EEE (européens espace économique)</p>
-<p>29. Autres européens</p>
-<p>31. Algériens</p>
-<p>32. Marocains</p>
-<p>33. Tunisiens</p>
-<p>42. Camerounais</p>
-<p>43. Sénégalais</p>
-<p>44. Ivoiriens</p>
-<p>49. Autres africains</p>
-<p>51. Vietnamiens laotiens cambodgiens</p>
-<p>59. Autres asiatiques</p>
-<p>69. Américains du Nord</p>
-<p>79. Américains du Sud</p>
-<p>89. Océaniens</p>
-<p>90. Hongrois</p>
-<p>91. Lituaniens</p>
-<p>92. Estoniens</p>
-<p>93. Lettons</p>
-<p>94. Tchèques</p>
-<p>95. Slovaques</p>
-<p>96. Slovènes</p>
-<p>97. Bulgares</p>
-<p>98. Roumains</p>
-<p>99. Inconnue</p></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>NBAR78</td>
-<td>Nombre de mois d’activité réduite &lt;= 78H</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>NBAR79</td>
-<td>Nombre de mois d’activité réduite &gt; 78H</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>NDEM</td>
-<td>Numéro de la demande</td>
-<td>Numéroté de la plus récente à la plus ancienne (la demande n°1 est la demande la plus récente à la date statistique du FHS)</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>NIVFOR</td>
-<td>Niveau de formation atteint par le demandeur</td>
-<td><p>000. Inconnu</p>
-<p>AFS. Aucune formation scolaire</p>
-<p>C12. Classes 2e et 1e (études générales)</p>
-<p>C3a. Bepc-classe 3e achevée</p>
-<p>CFG. Classes 6e 5e 4e</p>
-<p>Cp4. Certificat études primaires. CPP-CPA</p>
-<p>Nv1. Bac+5 et +</p>
-<p>Nv2. Bac +3 et +4</p>
-<p>Nv3. Bac +2</p>
-<p>Nv4. Bac</p>
-<p>Nv5. Cap / BEP</p></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>NUMCDV</td>
-<td>Référence contrat de ville</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>NUMCUCS</td>
-<td>Numéro de la CUCS</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>NUMQPV</td>
-<td>Référence QPV</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>NUMZUS</td>
-<td>Numéro de la ZUS</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>OBLIGEM1</td>
-<td>Obligation d’emploi du demandeur d’emploi 1</td>
-<td><p>0. Sans obligation d’emploi</p>
-<p>1. Orphelin de guerre</p>
-<p>2. Veuf (ve) de guerre ou conjoint de militaire invalide</p>
-<p>3. Pensionné de guerre</p>
-<p>4. Travailleur handicapé catégorie A</p>
-<p>5. Travailleur handicapé catégorie B</p>
-<p>6. Travailleur handicapé catégorie C</p>
-<p>7. En instance de décision CDA (Commission des droits et de l ’autonomie)</p>
-<p>8. Pension d ’invalidité s.s. Ou autre</p>
-<p>9. Rente accident du travail ou maladie p r o f essionnelle &gt;= 10%</p>
-<p>C. RGTH – CRP</p>
-<p>E. RGTH – ESAT</p>
-<p>H. Alloc adulte handicapé (manuel)</p>
-<p>I. Carte d ’invalidité</p>
-<p>M. RGTH – marché du travail</p>
-<p>R. Alloc adulte handicapé (auto)</p></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>OBLIGEM2</td>
-<td>Obligation d’emploi du demandeur d’emploi 2</td>
-<td>Idem OBLIGEM1</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>OBLIGEM3</td>
-<td>Obligation d’emploi du demandeur d’emploi 3 (AAH)</td>
-<td><p>0. Sans obligation d’emploi</p>
-<p>H . Allocation adulte</p>
-<pre><code>handicapé</code></pre>
-<p>I . Allocation adulte</p>
-<pre><code>handicapé</code></pre></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>OBLIGEMC</td>
-<td>Obligation d’emploi du demandeur d’emploi calculée</td>
-<td>Idem OBLIGEM1</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>PROJENTR</td>
-<td>Projet d ’entreprise</td>
-<td><p>E. Projet envisagé</p>
-<p>V. Projet validé</p></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>QPV</td>
-<td>Indicateur résidence QPV</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>QUALIF</td>
-<td>Q u alification du demandeur</td>
-<td><p>0. Non précisé</p>
-<p>1. Manœuvres</p>
-<p>2. Ouvriers spécialisés</p>
-<p>3. Ouvriers qualifiés (OP1-OP2)</p>
-<p>4. Ouvriers qualifiés (OP3-OHQ)</p>
-<p>5. Employés non qualifiés</p>
-<p>6. Employés qualifiés</p>
-<p>7. Technicien s - d essinateurs</p>
-<p>8. Agents de maîtrise</p>
-<p>9. Cadres</p></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>REGION</td>
-<td>Région</td>
-<td><p>01. Guadeloupe</p>
-<p>02. Martinique</p>
-<p>03. Guyane</p>
-<p>04. Réunion</p>
-<p>06. Mayotte</p>
-<p>11. Î l e-de-France</p>
-<p>24. Centre-Val de Loire</p>
-<p>27. Bourgogne - F r anche-Comté</p>
-<p>28. Normandie</p>
-<p>32. N o rd-Pas-de-C a l a is-Picardie</p>
-<p>44. A lsac e - C hampagne-Ar d e n ne-Lorraine</p>
-<p>52. Pays de la Loire</p>
-<p>53. Bretagne</p>
-<p>75. Aqu itai n e - Limousin-Po i t o u-Charentes</p>
-<p>76. La ngue d oc- R oussillon - M i di-Pyrénées</p>
-<p>84. Auverg n e - Rhône-Alpes</p>
-<p>93. Prove n c e -Alpes-Côte d’Azur</p>
-<p>94. Corse</p></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>RMA</td>
-<td>Éligibilité au revenu minimum d’activité</td>
-<td><p>1. Valeur de r edressement (non référencée)</p>
-<p>2. Non b énéficiaire</p>
-<p>3. Valeur de r edressement (vide)</p></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>RMI</td>
-<td>Code RMI du mois précédent le mois stat ou code RSA du mois stat</td>
-<td><p>1. RMI</p>
-<p>2. Non b énéficiaire</p>
-<p>3. Valeur de r edressement (vide)</p>
-<p>4. RSA nouveau droit</p>
-<p>5. RSA ancien RMI/API</p></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>ROME</td>
-<td>Code ROME du métier recherché</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>ROMEAPL</td>
-<td>Code appellation du ROME</td>
-<td>L ’ appellation du ROME est sur 3 positions et est associée à un code ROME pour avoir le libellé c o rrespondant au métier. L ’ appellation du ROME seul n’a aucune s i g nification.</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>ROMEASS</td>
-<td>Rome Assedic recherché</td>
-<td></td>
-<td>Variable i nutilisable</td>
-</tr>
-<tr class="even">
-<td>ROMEVAL</td>
-<td>Code validation du ROME</td>
-<td><p>1. Réserve ou alerte sur conduite à tenir</p>
-<p>2. Maîtrise des CTB e m ploi/métier</p>
-<p>3. Maitrise CTB e m p l oi/métier + évaluation</p></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>RSQSTAT</td>
-<td>Risque statistique du demandeur d’emploi</td>
-<td><p>RS1. Risque faible de chômage de longue durée</p>
-<p>RS2. Risque modéré de chômage de longue durée</p>
-<p>RS3. Risque fort de chômage de longue durée</p></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>SALMT</td>
-<td>Montant du salaire brut demandé par le DE</td>
-<td></td>
-<td>Risques de valeurs extrêmes liées vra i s e mblablement à une erreur d’unité</td>
-</tr>
-<tr class="odd">
-<td>SALUNIT</td>
-<td>Salaire horaire, mensuel ou annuel du DE</td>
-<td><p>0. Non renseigné</p>
-<p>A. Annuel</p>
-<p>C. Cachet</p>
-<p>H. Horaire</p>
-<p>M. Mensuel</p></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>SEXE</td>
-<td>Sexe du demandeur d’emploi</td>
-<td><p>1. Homme</p>
-<p>2. Femme</p></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>SITMAT</td>
-<td>Situation de famille du demandeur d’emploi</td>
-<td><p>C . Célibataire</p>
-<p>D. Divorcé ou séparé</p>
-<p>M. Marié ou vie maritale</p>
-<p>V. Veuf</p></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>SITPAR</td>
-<td>Situation p articulière au regard de l’emploi agrégée</td>
-<td><p>0. Sans Objet (catégorie 123678)</p>
-<p>1. AFR</p>
-<p>2. CES</p>
-<p>3. Autres</p>
-<p>4. CAE</p>
-<p>5. CAV</p>
-<p>6. CEN</p>
-<p>7. CIE</p>
-<p>8. CRP</p>
-<p>9. Autres formations</p>
-<p>A. CTP</p>
-<p>B. APR</p>
-<ol start="3" type="A">
-<li></li>
-</ol>
-<p>X. Non renseigné</p></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>SITPAR_A</td>
-<td></td>
-<td><p>ADR. AIDE DIFFER. AU R ECLASSEMENT</p>
-<p>AIF. ACTION INSERTION ET FORMATION</p>
-<p>APR. ACTION P REPARATOIRE AU RECRUT.</p>
-<p>ASE. AIDE SPEC. COMP. RETOUR EMPLOI</p>
-<p>ASI. DEMANDEUR D’ASILE</p>
-<p>AUT. AUTRES FORMATION</p>
-<p>CAD. CONTRAT D ’ADAPTATION</p>
-<p>CAE. CONTRAT D’ A C C OMPAGNEMENT DANS L’EMPLOI</p>
-<p>CAV. CONTRAT D’AVENIR</p>
-<p>CEN. CREATION D ’ENTREPRISE</p>
-<p>CES. CONTRAT EMP L O I -SOLIDARITE</p>
-<p>CIE. CONTRAT INITIATIVE EMPLOI</p>
-<p>COR. CONTRAT D ’ ORIENTATION</p>
-<p>CPP. CONTRAT D ’ A P PRENTISSAGE</p>
-<p>CQU. CONTRAT DE Q U ALIFICATION</p>
-<p>CRE. CONTRAT DE RETOUR À L’EMPLOI</p>
-<p>CRP. CONVENTION DE R ECLASSEMENT P ERSONNALISE</p>
-<p>CSP. CONTRAT DE S ECURISATION P R OFESSIONNEL</p>
-<p>CTP. CONTRAT DE TRANSITION P R O F ESSIONNELLE</p>
-<p>CUM. CUI-CIE</p>
-<p>CUN. CUI-CAE</p>
-<p>DIV. DIVERS</p>
-<p>EAM. EMPLOI D’AVENIR MARCHAND</p>
-<p>EAN. EMPLOI D’AVENIR NON MARCHAND</p>
-<p>EAP. EMPLOI D’AVENIR PROFESSEUR</p>
-<p>EPA. PERS. AVEC EMPL. TEMPS PARTIEL</p>
-<p>EPL. PERS. AVEC EMPL. TEMPS PLEIN</p>
-<p>FCA. STAGE F.N.E : CADRE</p>
-<p>FFI. STAGE F.N.E : FEMMES ISOLEES</p>
-<p>PMJ. PERSONNE SOUS MAIN DE JUSTICE</p>
-<p>RMA. EN RMA</p>
-<p>SAE. STAGE ACCES A L’EMPLOI</p>
-<p>SAN. SANS OBJET</p>
-<p>SJE. STAGE JEUNES : 16 - 25 ANS</p>
-<p>SRP. STAGE REINSERTION PROFES.</p></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>STRSUIVP</td>
-<td>Code de la structure principale de suivi</td>
-<td></td>
-<td>La Structure Principale est une Agence ou une Équipe p r o f essionnelle ( sectorielle ou g é o graphique). La notion de bassin est prise en compte. Le référent principal, pour le suivi mensuel, est un agent de cette structure.</td>
-</tr>
-<tr class="odd">
-<td>TEMPS</td>
-<td>Temps de travail de l’emploi recherché</td>
-<td><p>1. Temps complet</p>
-<p>2. Temps partiel</p></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>ZRR</td>
-<td>Indicateur de résidence en Zone de r e v italisation rurale (ZRR)</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>ZUS</td>
-<td>Demandeur en zone urbaine sensible</td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="la-table-d2" class="level2">
-<h2 class="anchored" data-anchor-id="la-table-d2">La table D2</h2>
-<table class="table">
-<colgroup>
-<col style="width: 16%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Variables</th>
-<th>Libellé</th>
-<th>Modalités</th>
-<th>Commentaires</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>D2STATUT</td>
-<td>Indicateur du niveau de consolidation de l’information portant sur l’i n demnisabilité du demandeur</td>
-<td><ol start="3" type="A">
-<li>Information consolidée à 12 mois</li>
-</ol></td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td><ol start="16" type="A">
-<li>Information consolidée à 3 mois, dite provisoire</li>
-</ol></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>FILINDEM</td>
-<td>Identifie les conditions d ’ indemnisation (durée, taux) en fonction des conditions d’affiliation (durée, convention et âge à la rupture du contrat de travail)</td>
-<td>1. 122j d ’ indemnisation 27A</td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td>2. 182j d ’ indemnisation 27B</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>3. 243j d ’ indemnisation 27C moins de 50 ans</td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td>4. 243j d ’ indemnisation 27C 50 ans et plus</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>5. 426j d ’ indemnisation 27D moins de 25 ans</td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td>6. 426j d ’ indemnisation 27D entre 25 et 50 ans</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>7. 426j d ’ indemnisation 27D 50 ans et plus</td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td>8. 821j d ’ indemnisation 27E entre 50 et 55 ans</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>9. 821j d ’ indemnisation 27E 55 ans et plus</td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td>99. Sans objet</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>A-F. Filière ARE 2003</td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td><ol start="7" type="A">
-<li></li>
-</ol></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td><ol start="8" type="A">
-<li></li>
-</ol></td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td><ol type="I">
-<li></li>
-</ol></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td><ol start="10" type="A">
-<li></li>
-</ol></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>INDEM</td>
-<td>Code de l’allocation du demandeur indemnisable</td>
-<td>15. AC-FNE</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>18. PRP</td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td>24. AI84</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>25. ASS84</td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td>26. ACO84</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>33. AFR-AB</td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td>34. AFR-FD</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>35. AFR-FF</td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td>39. RSP</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>40. AUD</td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td>41. AFFS</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>43. ACA</td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td>44. ASS97</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>45. ACCRE-ASS</td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td>47. ARE2001</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>48. AREF2001</td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td>49. ARE-AFFS</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>50. AFF</td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td>51. ASS-F</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>52. AER</td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td>54. ARE2003</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>55. AREF2003</td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td>56. ASS2004</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>57. AFSP</td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td>58. AFSP-F</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>59. AFT</td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td>60. AFT-F</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>61. ASR</td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td>62. ASR-ARE</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>63. AF</td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td>64. ARE2006</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>65. AREF2006</td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td>66. ADR06</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>67. ASCRE06</td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td>70. ATP</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>71. AT</td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td>72. AT-F</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>73. ATAG1</td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td>74. ATAG2</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>75. APS</td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td>77. AFD</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>78. AFDF</td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td>81. RFPE</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>82. ARE2009</td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td>83. AREF2009</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>84. ASR09</td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td>85. ASRARE09</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>86. ADR09</td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td>91. TP09ETA</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>92. AFDEF09</td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td>93. AER2009</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>95. AFDEF10</td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td>96. AEPE2010</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>99. RFF11</td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td>AC. ARE2011</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>AD. AREF2011</td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td>AE. ARE-CG</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>AF. AREF-CG</td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td>AG. ADR11</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>AI. ADR11-CG</td>
-<td></td>
+<td><br>AGE</td>
+<td><br>Age du demandeur au 31/12 <br>de l’année d’inscription de <br>la demande associée</td>
+<td><br></td>
+<td><br>En année</td>
 </tr>
 <tr class="even">
-<td></td>
-<td></td>
-<td>AK. ASP-ARE</td>
-<td></td>
+<td><br>ALE</td>
+<td><br>Numéro de l’Agence Locale <br>pour l’Emploi d’inscription <br>du demandeur</td>
+<td><br>Numéro de l’ALE (unité locale <br>de Pôle emploi). Les deux premiers <br>caractères donnent le département.</td>
+<td><br></td>
 </tr>
 <tr class="odd">
-<td></td>
-<td></td>
-<td>AL. ASP-AREF</td>
-<td></td>
+<td><br>ANCIEN</td>
+<td><br>Ancienneté dans la demande</td>
+<td><br>En mois révolu au dernier jour <br>du mois de fermeture de la <br>demande. Si la demande est en <br>cours il s’agit de l’ancienneté <br>au dernier jour du fichier.</td>
+<td><br></td>
 </tr>
 <tr class="even">
-<td></td>
-<td></td>
-<td>AM. ASPRAC1</td>
-<td></td>
+<td><br>API</td>
+<td><br>Allocation Parent Isolé</td>
+<td><br>0. Non bénéficiaires de l’API<br> <br>1. Bénéficiaire de l’API (saisie manuelle)<br> <br>2. Bénéficiaire de l’API (information CNASEA)<br> <br>3. Demande API en cours d’instruction</td>
+<td><br>Remplacé en 2009 par<br>le RSA</td>
 </tr>
 <tr class="odd">
-<td></td>
-<td></td>
-<td>AN. ASPRACF</td>
-<td></td>
+<td><br>AXETRAV</td>
+<td><br>Axe de travail</td>
+<td><br>P. Projet<br> <br>R. Recherche<br> <br>A. À a pprofondir<br> <br>E. Recherche d’emploi<br> <br>F. Freins périphériques à l’emploi<br> <br>M. Mobilité p rofessionnelle</td>
+<td><br></td>
 </tr>
 <tr class="even">
-<td></td>
-<td></td>
-<td>AQ. ASPRAC2</td>
-<td></td>
+<td><br>CATREGR</td>
+<td><br>Catégorie opérationnelle du <br>demandeur relative à la <br>dernière situation connue</td>
+<td><br>1. Personnes immédiatement disponibles <br>et à la recherche d’un emploi sous CDI à temps <br>plein<br> <br>2. Personnes immédiatement disponibles <br>et à la recherche d’un emploi sous CDI à temps<br> partiel<br> <br>3. Personnes immédiatement disponibles <br>et à la recherche d’un emploi à durée limitée <br>(CDD, mission d’intérim, va cation…)<br> <br>4. Personnes à la recherche d’un emploi mais <br>non immédiatement disponibles (en formation, <br>en arrêt maladie, en congé maternité, en CRP…)<br> <br>5. Personnes pourvues d’un emploi, à la <br>recherche d’un autre emploi donc non <br>immédiatement disponibles. Figurent ici <br>les personnes en contrat emploi solidarité <br>(CES, CIE ou autres contrat <br>aidés…).</td>
+<td><br></td>
 </tr>
 <tr class="odd">
-<td></td>
-<td></td>
-<td>AR. ASPRAC2F</td>
-<td></td>
+<td><br>CEMPLOI</td>
+<td><br>Composante emploi du demandeur <br>d’emploi</td>
+<td><br>CE1. DE positionné sur un métier en <br>tensi on/porteur<br> <br>CE2. DE non positionné sur un métier en <br>t ension/porteur</td>
+<td><br></td>
 </tr>
 <tr class="even">
-<td></td>
-<td></td>
-<td>AT. ATS11</td>
-<td></td>
+<td><br>CONTRAT</td>
+<td><br>Type de contrat recherché <br>par le demandeur (dernière <br>valeur connue sur la demande)</td>
+<td><br>1. Contrat à durée in déterminée<br> <br>2. Contrat à durée déterminée ou temporaire<br> <br>3. Contrat saisonnier</td>
+<td><br></td>
 </tr>
 <tr class="odd">
-<td></td>
-<td></td>
-<td>AY. RFF12</td>
-<td></td>
+<td><br>CUCS</td>
+<td><br>Demandeurs résidant en zone <br>CUCS (Contrat Urbain de Cohésion <br>Sociale)</td>
+<td><br></td>
+<td><br>A pris fin en 2014</td>
 </tr>
 <tr class="even">
-<td></td>
-<td></td>
-<td>BE. ATS13</td>
-<td></td>
+<td><br>DATANN</td>
+<td><br>Date d’annulation de la demande</td>
+<td><br>La demande est en cours à la date &lt; br&gt;statistique du fichier.<br> <br>Date exclusive : si DAT ANN=01/02/2010 , le <br>dernier jour d’inscription sur cette demande <br>est le 31/01/2010.</td>
+<td><br></td>
 </tr>
 <tr class="odd">
-<td></td>
-<td></td>
-<td>BG. RFF13</td>
-<td></td>
+<td><br>DATINS</td>
+<td><br>Date d’effet d’inscription <br>de la demande</td>
+<td><br>L’inscription commence ce jour</td>
+<td><br></td>
 </tr>
 <tr class="even">
-<td></td>
-<td></td>
-<td>BJ. RFF14</td>
-<td></td>
+<td><br>DATNAIS</td>
+<td><br>Date de naissance (année <br>et mois)</td>
+<td><br>Mois de naissance (le jour exact n’est pas<br> renseigné, il est fixé conve ntionnellement <br>à 15)</td>
+<td><br></td>
 </tr>
 <tr class="odd">
-<td></td>
-<td></td>
-<td>BK. ARE 2014</td>
-<td></td>
+<td><br>DATSINS</td>
+<td><br>Date de saisie d’inscription <br>de la demande</td>
+<td><br></td>
+<td><br></td>
 </tr>
 <tr class="even">
-<td></td>
-<td></td>
-<td>BM. ARE-CG</td>
-<td></td>
+<td><br>DEPCOM</td>
+<td><br>Commune de résidence <br>du demandeur</td>
+<td><br>En principe, c’est le Code Officiel <br>Géographique. Toutefois, il peut y avoir des <br>valeurs non-conformes. Les deux <br>premiers caractères donnent de département.</td>
+<td><br></td>
 </tr>
 <tr class="odd">
-<td></td>
-<td></td>
-<td>BN. AREF 2014</td>
-<td></td>
+<td><br>DIPLOME</td>
+<td><br>Diplôme obtenu par le <br>demandeur lors de son &lt; br&gt;inscription</td>
+<td><br>D. Diplômé<br> <br>N. Non Diplômé</td>
+<td><br></td>
 </tr>
 <tr class="even">
-<td></td>
-<td></td>
-<td>BO. AREF-CG 2014</td>
-<td></td>
+<td><br>EXPER</td>
+<td><br>Expérience dans le ROME <br>demandé.</td>
+<td><br>Nombre expérience. Arrondi à l’ap préciation<br> du conseiller</td>
+<td><br>Il existe des cas où <br>le nombre d’année <b r="">d’expérience est supérieur <br>à l’âge du demandeur <br>d’emploi.</b></td>
 </tr>
 <tr class="odd">
-<td></td>
-<td></td>
-<td>BP. ARE 2014 DIFF</td>
-<td></td>
+<td><br>EXPEUNIT</td>
+<td><br>Unité durée expérience dans <br>le ROME</td>
+<td><br></td>
+<td><br></td>
 </tr>
 <tr class="even">
-<td></td>
-<td></td>
-<td>BQ. AREF 2014 DIFF</td>
-<td></td>
+<td><br>MOBDIST</td>
+<td><br>Mobilité du DE</td>
+<td><br>Mobilité du DE vis-à-vis de l’emploi, en<br> minutes, heures, kilomètres ou FE selon la <br>valeur de la variable MOBUNIT. Il faut <br>l’utiliser avec la variable MOBUNIT pour <br>lui donner un sens.</td>
+<td><br></td>
 </tr>
 <tr class="odd">
-<td></td>
-<td></td>
-<td>BR. RFF 2015</td>
-<td></td>
+<td><br>MOBUNIT</td>
+<td><br>Unité de la mobilité <br>du demandeur vis-à-vis de <br>l’emploi</td>
+<td><br>00. Non renseignée<br> <br>FE. France Entière<br> <br>H. Heure<br> <br>KM. Kilomètres<br> <br>MN. Minutes<br> <br>MT. Mobilité totale</td>
+<td><br></td>
 </tr>
 <tr class="even">
-<td></td>
-<td></td>
-<td>BU. ASP15E2</td>
-<td></td>
+<td><br>MOTANN</td>
+<td><br>Motif d’annulation de <br>la demande</td>
+<td><br>Les modalités sont disponibles dans la <br><a href="../../../FHS/DE/Dico_FHS_DE/FHS_DE_variables/MOTANN.html">section dédiée</a>.</td>
+<td><br></td>
 </tr>
 <tr class="odd">
-<td></td>
-<td></td>
-<td>BW. ASP15R3</td>
-<td></td>
+<td><br>MOTANN_a</td>
+<td><br>Motif d’annulation de la <br>demande détaillé</td>
+<td><br>Les modalités sont disponibles dans la <br><a href="../../../FHS/DE/Dico_FHS_DE/FHS_DE_variables/MOTANN_a.html">section dédiée</a>.</td>
+<td><br></td>
 </tr>
 <tr class="even">
-<td></td>
-<td></td>
-<td>BY. ASP15R1</td>
-<td></td>
+<td><br>MOTINS</td>
+<td><br>Motif d’inscription de la <br>demande agrégé</td>
+<td><br>Les modalités sont disponibles dans la <br><a href="../../../FHS/DE/Dico_FHS_DE/FHS_DE_variables/MOTINS.html">section dédiée</a>.</td>
+<td><br></td>
 </tr>
 <tr class="odd">
-<td></td>
-<td></td>
-<td>BZ. ASP15R2F</td>
-<td></td>
+<td><br>MOTINS_A</td>
+<td><br>Motif d’inscription de la <br>demande détaillé</td>
+<td><br>Les modalités sont disponibles dans la <br><a href="../../../FHS/DE/Dico_FHS_DE/FHS_DE_variables/MOTINS_a.html">section dédiée</a>.</td>
+<td><br></td>
 </tr>
 <tr class="even">
-<td></td>
-<td></td>
-<td>CB. ASP15R3F</td>
-<td></td>
+<td><br>NATION</td>
+<td>&lt; br&gt;Nationalité du demandeur <br>d’emploi</td>
+<td><br> Les modalités sont disponibles dans la <br><a href="../../../FHS/DE/Dico_FHS_DE/FHS_DE_variables/NATION.html">section dédiée</a>.</td>
+<td><br></td>
 </tr>
 <tr class="odd">
-<td></td>
-<td></td>
-<td>CC. ASP15R1F</td>
-<td></td>
+<td><br>NBAR78</td>
+<td><br>Nombre de mois d’activité <br>réduite ≤ 78H</td>
+<td><br></td>
+<td><br></td>
 </tr>
 <tr class="even">
-<td></td>
-<td></td>
-<td>CI. RFF16</td>
-<td></td>
+<td><br>NBAR79</td>
+<td><br>Nombre de mois d’activité <br>réduite &gt; 78H</td>
+<td><br></td>
+<td><br></td>
 </tr>
 <tr class="odd">
-<td></td>
-<td></td>
-<td>CJ. AREM16</td>
-<td></td>
+<td><br>NDEM</td>
+<td><br>Numéro de la demande</td>
+<td><br>Numéroté de la plus récente à la plus <br>ancienne (la demande n°1 est la demande <br>la plus récente à la date statistique du <br>FHS)</td>
+<td><br></td>
 </tr>
 <tr class="even">
-<td></td>
-<td></td>
-<td>CK. ?</td>
-<td></td>
+<td><br>NIVFOR</td>
+<td><br>Niveau de formation atteint <br>par le demandeur</td>
+<td><br>000. Inconnu<br> <br>AFS. Aucune formation scolaire<br> <br>C12. Classes 2e et 1e (études générales)<br> <br>C3a. Bepc- classe 3e achevée<br> <br>CFG. Classes 6e 5e 4e<br> <br>Cp4. Certificat études primaires. CPP-CPA<br> <br>Nv1. Bac +5 et +<br> <br>Nv2. Bac +3 et +4<br> <br>Nv3. Bac +2<br> <br>Nv4. Bac <br> <br>Nv5. Cap / BEP</td>
+<td><br></td>
 </tr>
 <tr class="odd">
-<td></td>
-<td></td>
-<td>CL. AREMCG16</td>
-<td></td>
+<td><br>NUMCDV</td>
+<td><br>Référence contrat de ville</td>
+<td><br></td>
+<td><br></td>
 </tr>
 <tr class="even">
-<td></td>
-<td></td>
-<td>CM. ?</td>
-<td></td>
+<td><br>NUMCUCS</td>
+<td><br>Numéro de la CUCS</td>
+<td><br></td>
+<td><br></td>
 </tr>
 <tr class="odd">
-<td></td>
-<td></td>
-<td>CN. AREA816</td>
-<td></td>
+<td><br>NUMQPV</td>
+<td><br>Référence QPV</td>
+<td><br></td>
+<td><br></td>
 </tr>
 <tr class="even">
-<td></td>
-<td></td>
-<td>CO. AREFA816</td>
-<td></td>
+<td><br>NUMZUS</td>
+<td><br>Numéro de la ZUS</td>
+<td><br></td>
+<td><br></td>
 </tr>
 <tr class="odd">
-<td></td>
-<td></td>
-<td>CT. ARER16</td>
-<td></td>
+<td><br>OBLIGEM1</td>
+<td><br>Obligation d’emploi du <br>demandeur d’emploi 1</td>
+<td><br> Les modalités sont disponibles dans la <br><a href="../../../FHS/DE/Dico_FHS_DE/FHS_DE_variables/OBLIGEM.html">section dédiée</a>.</td>
+<td><br></td>
 </tr>
 <tr class="even">
+<td><br>OBLIGEM2</td>
+<td><br>Obligation d’emploi du <br>demandeur d’emploi 2</td>
 <td></td>
-<td></td>
-<td>CX. RFF17</td>
-<td></td>
+<td><br></td>
 </tr>
 <tr class="odd">
-<td></td>
-<td></td>
-<td>CY. AAP17</td>
-<td></td>
+<td><br>OBLIGEM3</td>
+<td><br>Obligation d’emploi du <br>demandeur d’emploi 3 (AAH)</td>
+<td><br>0. Sans obligation d’emploi<br> <br>H. Allocation adulte handicape<br> <br>R. Allocation adulte handicape</td>
+<td><br></td>
 </tr>
 <tr class="even">
-<td></td>
-<td></td>
-<td>CZ. AAP17R</td>
-<td></td>
+<td><br>OBLIGEMC</td>
+<td><br>Obligation d’emploi du <br>demandeur d’emploi calculée</td>
+<td><br>Idem OBLIGEM1 et OBLIGEM2</td>
+<td><br></td>
 </tr>
 <tr class="odd">
-<td></td>
-<td></td>
-<td>DM. ARE2017</td>
-<td></td>
+<td><br>PROJENTR</td>
+<td><br>Projet entreprise</td>
+<td><br>E. Projet envisagé<br> <br>V. Projet validé</td>
+<td><br></td>
 </tr>
 <tr class="even">
-<td></td>
-<td></td>
-<td>DO. ARE-CG17</td>
-<td></td>
+<td><br>QPV</td>
+<td><br>Indicateur résidence QPV</td>
+<td><br></td>
+<td><br></td>
 </tr>
 <tr class="odd">
-<td></td>
-<td></td>
-<td>DQ. AREFCG17</td>
-<td></td>
+<td><br>QUALIF</td>
+<td><br>Qualification du demandeur</td>
+<td><br>0. Non précisé<br> <br>1. Manœuvres<br> <br>2. Ouvriers s pécialisés<br> <br>3. Ouvriers qualifiés (OP1-OP2)<br> <br>4. Ouvriers qualifiés (OP3-OHQ)<br> <br>5. Employés non qualifiés<br> <br>6. Employés qualifiés<br> <br>7. Techniciens-de ssinateurs<br> <br>8. Agents de maîtrise<br> <br>9. Cadres</td>
+<td><br></td>
 </tr>
 <tr class="even">
-<td></td>
-<td></td>
-<td>DR. ARCE17</td>
-<td></td>
+<td><br>REGION</td>
+<td><br>Région</td>
+<td><br>Les modalités sont disponibles dans la <br><a href="../../../FHS/DE/Dico_FHS_DE/FHS_DE_variables/REGION.html">section dédiée</a>.</td>
+<td><br></td>
 </tr>
 <tr class="odd">
-<td></td>
-<td></td>
-<td>DT. ?</td>
-<td></td>
+<td><br>RMA</td>
+<td>&lt; br&gt;Éligibilité au revenu <br>minimum d’activité</td>
+<td><br>1. Valeur de redressement (non r éférencée)<br> <br>2. Non bé néficiaire<br> <br>3. Valeur de redressement (vide)</td>
+<td><br></td>
 </tr>
 <tr class="even">
-<td></td>
-<td></td>
-<td>DV. APS2017</td>
-<td></td>
+<td><br>RMI</td>
+<td><br>Code RMI du mois précédent <br>le mois stat ou code RSA du <br>mois stat</td>
+<td><br>1. RMI<br> <br>2. Non bé néficiaire<br> <br>3. Valeur de redressement (vide)<br> <br>4. RSA nouveau droit<br> <br>5. RSA ancien RMI/API</td>
+<td><br></td>
 </tr>
 <tr class="odd">
-<td></td>
-<td></td>
-<td>DW. AFD2017</td>
-<td></td>
+<td><br>ROME</td>
+<td><br>Code Rome du métier recherché</td>
+<td><br></td>
+<td><br></td>
 </tr>
 <tr class="even">
-<td></td>
-<td></td>
-<td>DY. ?</td>
-<td></td>
+<td><br>ROMEAPL</td>
+<td><br>Code appellation du ROME</td>
+<td><br>L’appellation du ROME est sur 3 <br>positions et est associée à un code <br>ROME pour avoir le libellé correspondant <br>au métier. L’appellation du ROME seul <br>n’a aucune signification.</td>
+<td><br></td>
 </tr>
 <tr class="odd">
-<td></td>
-<td></td>
-<td>EF. ?</td>
-<td></td>
+<td><br>ROMEASS</td>
+<td><br>ROME Assedic recherché</td>
+<td><br></td>
+<td><br>Variable inutilisable</td>
 </tr>
 <tr class="even">
-<td>JOURDV</td>
-<td>Jour de début de validité</td>
-<td></td>
-<td></td>
+<td><br>ROMEVAL</td>
+<td><br>Code validation du ROME</td>
+<td><br>1. Reserve ou alerte sur conduite à tenir<br> <br>2. Maitrise des CTB emp loi/métier<br> <br>3. Maitrise CTB e mploi/métier + évaluation</td>
+<td><br></td>
 </tr>
 <tr class="odd">
-<td>JOURFV</td>
-<td>Jour de fin de validité</td>
-<td></td>
-<td></td>
+<td><br>RSQSTAT</td>
+<td><br>Risque statistique du demandeur <br>d’emploi</td>
+<td><br>RS1. Risque faible de chômage de longue durée<br> <br>RS2. Risque modéré de chômage de longue durée<br> <br>RS3. Risque fort de chômage de longue durée</td>
+<td><br></td>
 </tr>
 <tr class="even">
-<td>NDEM</td>
-<td>Numéro de la demande</td>
-<td></td>
-<td>Numéroté de la plus récente à la plus ancienne (la demande n°1 est la demande la plus récente à la date statistique du FHS)</td>
+<td><br>SALMT</td>
+<td><br>Montant du salaire brut <br>demandé par le DE</td>
+<td><br></td>
+<td><br>Risques de valeurs <br>extrêmes liées <br>vra isemblablement <br>à une erreur d’unité</td>
 </tr>
 <tr class="odd">
-<td>ODDDMAX</td>
-<td>Durée maximale d ’ indemnisation</td>
+<td><br>SALUNIT</td>
+<td><br>Salaire horaire, mensuel ou <br>annuel du DE</td>
+<td><br>0. Non renseigné<br> <br>A. Annuel <br> <br>C. Cachet<br> <br>H. Horaire<br> <br>M. Mensuel</td>
 <td></td>
-<td></td>
 </tr>
 <tr class="even">
-<td>REGIME</td>
-<td>Régime particulier</td>
-<td>0. Indéterminé</td>
-<td></td>
+<td><br>SEXE</td>
+<td><br>Sexe du demandeur d’emploi</td>
+<td><br>1. Homme<br> <br>2. Femme</td>
+<td><br></td>
 </tr>
 <tr class="odd">
-<td></td>
-<td></td>
-<td>1. Régime général</td>
-<td></td>
+<td><br>SITMAT</td>
+<td><br>Situation de famille du <br>demandeur d’emploi</td>
+<td><br>C. C élibataire<br> <br>D. Divorcé ou séparé<br> <br>M. Marié ou vie maritale<br> <br>V. Veuf</td>
+<td><br></td>
 </tr>
 <tr class="even">
-<td></td>
-<td></td>
-<td>2. Intermittents du spectacle</td>
-<td></td>
+<td><br>SITPAR</td>
+<td><br>Situation particulière au <br>regard de l’emploi agrégée</td>
+<td><br>Les modalités sont disponibles dans la <br><a href="../../../FHS/DE/Dico_FHS_DE/FHS_DE_variables/SITPAR.html">section dédiée</a>.</td>
+<td><br></td>
 </tr>
 <tr class="odd">
-<td></td>
-<td></td>
-<td>3. Autres intermittents et intérimaires</td>
-<td></td>
+<td><br>SITPAR_A</td>
+<td><br>Situation particulière <br>au regard de l’emploi détaillée</td>
+<td><br>Les modalités sont disponibles dans la <br><a href="../../../FHS/DE/Dico_FHS_DE/FHS_DE_variables/SITPAR_a.html">section dédiée</a>.</td>
+<td><br></td>
 </tr>
 <tr class="even">
-<td></td>
-<td></td>
-<td>4. Autres régimes</td>
-<td></td>
+<td><br>STRSUIVP</td>
+<td><br>Code de la structure principale <br>de suivi</td>
+<td><br></td>
+<td><br>La Structure Principale <br>est une Agence ou une <br>Équipe p rofessionnelle <b r="">(sectorielle ou <br> géographique). La notion <br>de bassin est prise en <br>compte. Le référent <br>principal, pour le suivi <br>mensuel, est un agent de <br>cette structure.</b></td>
 </tr>
 <tr class="odd">
-<td>REGIND</td>
-<td>Régime d ’ indemnisation</td>
-<td></td>
-<td></td>
+<td><br>TEMPS</td>
+<td><br>Temps de travail de l’emploi <br>recherché</td>
+<td><br>1. Temps complet<br> <br>2. Temps partiel</td>
+<td><br></td>
 </tr>
 <tr class="even">
-<td>REGION</td>
-<td></td>
-<td></td>
-<td></td>
+<td><br>ZRR</td>
+<td><br>Indicateur de résidence en <br>Zone de revitalisation rurale (ZRR)</td>
+<td><br></td>
+<td><br></td>
 </tr>
 <tr class="odd">
-<td>TYPEPOP</td>
-<td>Type de population</td>
-<td>0. Non renseigné</td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td>1. Ancien emploi jeune</td>
-<td></td>
+<td><br>ZUS</td>
+<td><br>Demandeurs en zone urbaine <br>sensible</td>
+<td><br>AT. DEMENAGEMENT DU DE<br> <br>IN. IDENTIFICATION ZUS NON REALISEE<br> <br>NT. ETAT INITIAL, DE NON TRAITE<br> <br>NZ. DE NE RESIDANT PAS EN ZUS<br> <br>ZU. DE RESIDANT EN ZUS</td>
+<td><br></td>
 </tr>
 </tbody>
 </table>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
