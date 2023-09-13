@@ -15,11 +15,15 @@ website:
       - text : "Allstat-FR6"
         href : Allstat_FR6/Allstat_FR6_presentation.qmd
       - text : "MMO"
-        href : MMO/mmo.qmd
+        href : MMO/mmo_presentation.qmd
       - text : "Etudes"
         href : Etudes/etudes.qmd
       - text : "Outils"
         href : Outils/outils.qmd
+      - text : "NEW"
+        href : NEW/new_presentation.qmd
+      - text : "Codes"
+        href : Codes/codes_presentation.qmd
       - about.qmd
       
   sidebar: 
@@ -219,6 +223,20 @@ website:
           - href: Outils/outils_parquet.qmd
           - href: Outils/outils_spark.qmd
           - href: Outils/outils_benchmark.qmd
+    
+    - title: "NEW"
+      style: "docked"
+      background: light
+      contents: 
+        - section : "Présentation"
+          contents: 
+            - NEW/new_presentation.qmd
+        - section: "Nouvelles variables"
+          contents: 
+            - href: NEW/NEW_variables/variables_presentation.qmd
+        - section: "Nouvelles tables mensuelles"
+          contents: 
+            - href: NEW/NEW_tables/tables_presentation.qmd
             
 
 
