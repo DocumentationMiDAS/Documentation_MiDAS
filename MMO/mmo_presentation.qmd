@@ -1,29 +1,31 @@
 ---
-title: "Données des Mouvements de Main d'Oeuvre"
+title: "Les Mouvements de Main d'Oeuvre (MMO)"
 ---
 
-## Présentation des données
-
-La Dares fournit les données de Mouvements de Main-d'œuvre (MMO)[^1] tirées de la Déclaration sociale nominative (DSN). La DSN repose sur la transmission unique, mensuelle et dématérialisée des données issues de la paie et sur des signalements d'événements. Plus précisément, la DSN remplace depuis 2017 la déclaration annuelle de données sociales unifiée (DADS-U) dans la plupart des entreprises afin d'unifier les déclarations et démarches relatives à la gestion de la protection sociale des employés, autrefois adressées à une diversité d'acteurs (CPAM, Urssaf, AGIRC ARRCO, Organismes complémentaires, Pôle emploi, Centre des impôts, Caisses régimes spéciaux, etc.).
+**La Dares fournit les données de Mouvements de Main-d'œuvre (MMO)[^1] tirées de la Déclaration sociale nominative (DSN).** La DSN repose sur la transmission unique, mensuelle et dématérialisée des données issues de la paie et sur des signalements d'événements. Plus précisément, la DSN remplace depuis 2017 la déclaration annuelle de données sociales unifiée (DADS-U) dans la plupart des entreprises afin d'unifier les déclarations et démarches relatives à la gestion de la protection sociale des employés, autrefois adressées à une diversité d'acteurs (CPAM, Urssaf, AGIRC ARRCO, Organismes complémentaires, Pôle emploi, Centre des impôts, Caisses régimes spéciaux, etc.).
 
 [^1]: Cette partie est issue de la documentation ForCE, les données MMO transmises au CASD pour ces deux appariements étant identiques.
 
-Le champ des contrats couverts par la DSN est progressivement élargi :
+Les MMO correspondent aux données de la DSN, mises en forme et corrigées des erreurs de déclaration les plus fréquentes (l'ampleur des corrections apportées ayant vocation à augmenter au cours du temps, à mesure que le système informatique « Post-SISMMO » se développe).
 
-• Tous les salariés du privé (à l'exception de certains salariés agricoles, voir ci-dessous) sont couverts par la DSN depuis janvier 2017 (exhaustif depuis 2018) et figurent dans le fichier statistique transmis ;
+## Champ
 
-• L'intégration des salariés de la fonction publique en DSN a été prévue en trois vagues : 1er janvier 2020, 1er janvier 2021 et 1er janvier 2022. Plus précisément, une grande partie de la Fonction Publique Territoriale a été intégrée en 2021 alors qu'il y a encore peu de déclarations de la Fonction Publique Hospitalière et de la Fonction Publique d'État. L'intégration sera massive pour le reste de la fonction publique en 2022. En 2022, 67 000 Siret de l'ensemble de la fonction publique sur 70 000 (au moins 95 %) sont entrés en DSN. Le reste de la FP est attendu en janvier 2023, 2 500 établissements seraient concernés dont près de 1 000 établissements avec un effectif nul ;
+**Les MMO contiennent ensemble des contrats salariés depuis le 1er janvier 2017 pour les individus du champ MiDAS**. Le champ des contrats couverts par la DSN est progressivement élargi :
 
-• Une partie de l'emploi agricole n'est pas intégrée en DSN. Il s'agit des contrats déclarés à l'aide des « Titres emploi simplifié agricole » (Tesa), dispositif géré par la MSA (Mutualité Sociale Agricole : sécurité sociale des agriculteurs et des salariés agricoles) pour faciliter la déclaration des salariés en CDD et des travailleurs occasionnels des TPE rattachées au régime agricole ;
+-   Tous les salariés du privé (à l'exception de certains salariés agricoles, voir ci-dessous) sont couverts par la DSN depuis janvier 2017 (exhaustif depuis 2018) et figurent dans le fichier statistique transmis;
 
-• Pour les particuliers employeurs, pas de calendrier prévu pour leur entrée en DSN.
+-   L'intégration des salariés de la fonction publique en DSN a été prévue en trois vagues : 1er janvier 2020, 1er janvier 2021 et 1er janvier 2022. Plus précisément, une grande partie de la Fonction Publique Territoriale a été intégrée en 2021 alors qu'il y a encore peu de déclarations de la Fonction Publique Hospitalière et de la Fonction Publique d'État. L'intégration sera massive pour le reste de la fonction publique en 2022. En 2022, 67 000 Siret de l'ensemble de la fonction publique sur 70 000 (au moins 95 %) sont entrés en DSN. Le reste de la FP est attendu en janvier 2023, 2 500 établissements seraient concernés dont près de 1 000 établissements avec un effectif nul ;
 
-Les MMO correspondent donc aux données de la DSN, mises en forme et corrigées des erreurs de déclaration les plus fréquentes (l'ampleur des corrections apportées ayant vocation à augmenter au cours du temps, à mesure que le système informatique « Post-SISMMO » se développe). Plusieurs tables MMO sont transmises selon la période de référence considérée. L'unité statistique des tables est celle du contrat : chaque table contient une ligne pour tout contrat actif au moins un jour sur la période de référence. Plusieurs lignes peuvent correspondre à un même individu si celui-ci a eu plusieurs contrats sur la période de référence. Les contrats sont qualifiés selon leur modalité active au dernier jour de la période de référence.
+-   Une partie de l'emploi agricole n'est pas intégrée en DSN. Il s'agit des contrats déclarés à l'aide des « Titres emploi simplifié agricole » (Tesa), dispositif géré par la MSA (Mutualité Sociale Agricole : sécurité sociale des agriculteurs et des salariés agricoles) pour faciliter la déclaration des salariés en CDD et des travailleurs occasionnels des TPE rattachées au régime agricole ;
 
-Exemple : la table « 2017 » contient les contrats actifs au moins un jour sur l'année 2017, c'est-à-dire ayant une date de début antérieure au 1er janvier 2018 et une date de fin postérieure au 31 décembre 2016 ou manquante si le contrat est en cours. La PCS renseignée est la PCS du contrat au 31/12/2017. Un contrat actif sur plusieurs périodes de référence (par exemple 2017 et 2018) peut être identifié via l'identifiant SISMMO du contrat (L_contrat_sqn), qui est constant pour un appariement donné.
+-   Pour les particuliers employeurs, pas de calendrier prévu pour leur entrée en DSN.
 
-## Champ et temporalité des données
-
-L'ensemble des contrats salariés depuis le 1er janvier 2017 pour les individus du champ MiDAS. Les données sont représentatives de l'ensemble des établissements employeurs de [France métropolitaine]{.underline} sur le champ privé et public[^2] . Le champ recouvert par la DSN s'étant accru depuis 2017, l'exhaustivité des déclarations est meilleure en fin de période qu'en début de période. Les données portant sur les établissements de moins de 10 salariés sont également disponibles. Le champ de MiDAS comprendra de nouveaux publics à mesure qu'ils sont intégrés à la DSN. En revanche, MiDAS [n'intègre pas]{.underline} les indépendants.
+Les données sont représentatives de l'ensemble des établissements employeurs de [France métropolitaine]{.underline} sur le champ privé et public[^2] . Le champ recouvert par la DSN s'étant accru depuis 2017, l'exhaustivité des déclarations est meilleure en fin de période qu'en début de période. Les données portant sur les établissements de moins de 10 salariés sont également disponibles. Le champ de MiDAS comprendra de nouveaux publics à mesure qu'ils sont intégrés à la DSN. En revanche, MiDAS [n'intègre pas]{.underline} les indépendants.
 
 [^2]: En 2022, 95 % de la fonction publique est intégrée en DSN, le reste devant arriver en 2023.
+
+## Structure des tables
+
+Les MMO de MiDAS sont structurés en **tables annuelles**. Un contrat à cheval sur deux années sera inclus dans les deux tables correspondantes.
+
+L'unité statistique des tables est celle du contrat : chaque table contient une ligne pour tout contrat actif au moins un jour sur la période de référence. Plusieurs lignes peuvent correspondre à un même individu si celui-ci a eu plusieurs contrats sur la période de référence. Les contrats sont qualifiés selon leur modalité active au dernier jour de la période de référence. Par exemple, la table « 2017 » contient les contrats actifs au moins un jour sur l'année 2017, c'est-à-dire ayant une date de début antérieure au 1er janvier 2018 et une date de fin postérieure au 31 décembre 2016 ou manquante si le contrat est en cours. La PCS renseignée est la PCS du contrat au 31/12/2017. Un contrat actif sur plusieurs périodes de référence (par exemple 2017 et 2018) peut être identifié via l'identifiant SISMMO du contrat (L_contrat_sqn), qui est constant pour un appariement donné.

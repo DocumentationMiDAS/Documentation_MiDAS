@@ -1,18 +1,8 @@
 ---
-title: "Données de la Caisse Nationale des Allocations Familiales"
+title: "Allstat-Fr6"
 ---
 
-## Présentation des données
-
-Les données Cnaf sont présentes au sein d'Allstat-FR6, le fichier des allocataires Caf, qui permet le suivi statistique mensuel des droits aux prestations versées par les Caf (le droit au titre du mois M étant apprécié entre le 5 et le 10 du mois M+6). Les informations de la Cnaf (ressources et prestations versées) sont renseignées à l'échelle du « foyer allocataire » ou « foyer social », qui regroupe l'ensemble des membres du ménage dont les ressources permettent l'octroi de prestations sociales. Un « foyer social » n'a pas la même définition selon la prestation considérée, car la composition et les ressources du foyer prises en compte lui sont propres (Tableau 3).
-
-Pour chaque mois de chaque année depuis 2017, MiDAS contient trois types de tables :
-
-• Un fichier « Prestations » qui liste les montants perçus par les individus sur le champ des foyers sociaux bénéficiaires du Revenu de solidarité active (RSA), de la prime d'activité (PA) et de l'Allocation aux adultes handicapés (AAH) ;
-
-• Un fichier « Ménages » qui, pour chaque foyer social d'un individu du champ MiDAS (y compris demandeurs d'emploi n'ayant jamais perçu de minima sociaux) liste ses ressources et les prestations sociales qu'il perçoit ;
-
-• Une table de passage pour apparier ces informations sur les foyers sociaux avec l'ensemble des individus du champ MiDAS.
+Le fichier **Allstat-FR6** des allocataires de la **caisse des allocations familiales (Caf)** permet le **suivi statistique mensuel des droits aux prestations versées par les Caf** (le droit au titre du mois M étant apprécié entre le 5 et le 10 du mois M+6). Les informations de la Cnaf (ressources et prestations versées) sont renseignées à l'échelle du « foyer allocataire » ou « **foyer social** », qui regroupe l'ensemble des membres du ménage dont les ressources permettent l'octroi de prestations sociales. Un « foyer social » n'a pas la même définition selon la prestation considérée, car la composition et les ressources du foyer prises en compte lui sont propres.
 
 [**Tableau : Conditions d'attribution du RSA, de la PA et de l'AAH**]{.underline}
 
@@ -36,10 +26,20 @@ Pour chaque mois de chaque année depuis 2017, MiDAS contient trois types de tab
 
 [Source]{.underline} : [Drees](https://drees.solidarites-sante.gouv.fr/sites/default/files/2022-09/Minima22%20Fiche%209%20-%20L%E2%80%99assiette%20des%20ressources%20et%20la%20p%C3%A9riode%20de%20r%C3%A9f%C3%A9rence%20des%20prestations.pdf), *Minima Sociaux et Prestations Sociales*, 2022.
 
-## Champ et temporalité des données
+## Champ
 
-L'ensemble des foyers sociaux bénéficiaires du RSA, de la PA et de l'AAH depuis janvier 2017 (fichier « Prestations ») pour la France entière.
-
-Ainsi, tout adulte seul ou membre d'un couple constitutif d'un foyer social qui perçoit un droit au RSA ou à la PA est suivi dans MiDAS quel que soit son âge. À noter l'absence des enfants de 18 à 25 ans qui vivent chez leurs parents, même si ces derniers appartiennent au foyer social bénéficiaire du RSA ou de la PA. Enfin, pour l'AAH, si son versement est soumis aux conditions de ressources du ménage[^1], il s'agit d'une prestation individuelle et seul l'allocataire en est le bénéficiaire. Ainsi, son conjoint est conservé dans MiDAS s'il a été inscrit au moins une fois à Pôle emploi ou si le couple a bénéficié du RSA ou de la PA depuis 2017.
+MiDAS contient l'ensemble des adultes membres de foyers sociaux qui sont ou ont été **bénéficiaires du RSA, de la PA ou de l'AAH** **depuis janvier 2017** pour la France entière. À noter l'absence des enfants de 18 à 25 ans qui vivent chez leurs parents, même si ces derniers appartiennent au foyer social bénéficiaire du RSA ou de la PA. Enfin, pour l'AAH, si son versement est soumis aux conditions de ressources du ménage[^1], il s'agit d'une prestation individuelle et seul l'allocataire en est le bénéficiaire. Ainsi, son conjoint est conservé dans MiDAS s'il a été inscrit au moins une fois à Pôle emploi ou si le couple a bénéficié du RSA ou de la PA depuis 2017.
 
 [^1]: La « déconjugalisation » de l'AAH ayant été décidée par la loi n° 2022-1158 du 16 août 2022 portant mesures d'urgence pour la protection du pouvoir d'achat, les revenus du conjoint ne seront, en règle générale, plus pris en compte dans le calcul du droit à l'AAH au plus tard le 1er octobre 2023. Toutefois, une personne en couple déjà bénéficiaire de l'AAH au moment de l'entrée en vigueur de la déconjugalisation pourra décider de rester dans l'ancien système, c'est-à-dire avec prise en compte des revenus de son conjoint, jusqu'à expiration de ses droits, si la déconjugalisation ne lui est pas favorable ([Drees](https://drees.solidarites-sante.gouv.fr/sites/default/files/2022-09/Minima22%20Fiche%209%20-%20L%E2%80%99assiette%20des%20ressources%20et%20la%20p%C3%A9riode%20de%20r%C3%A9f%C3%A9rence%20des%20prestations.pdf), *Minima sociaux et prestations sociales*, p. 89).
+
+Par ailleurs, **pour l'ensemble du champ des bénéficiaires de minima sociaux et des demandeurs d'emploi**, MiDAS contient des informations sur les diverses prestations versées par la Caf (allocations logement et prestations familiales), la structure familiale de ces foyers sociaux ainsi que leurs ressources financière au moment de la demande de prestations.
+
+## Structure des tables
+
+Pour chaque mois de chaque année depuis 2017, MiDAS contient trois types de tables :
+
+• Un fichier « [**Prestations**](Prestations/prestations_presentation.qmd) » qui liste les montants perçus par les foyers sociaux bénéficiaires du Revenu de solidarité active (RSA), de la prime d'activité (PA) et de l'Allocation aux adultes handicapés (AAH). Une ligne correspond à un individu membre d'un foyer social ;
+
+• Un fichier « [**Ménages**](Menages/menages_presentation.qmd) » qui, pour chaque foyer social d'un individu du champ MiDAS (y compris demandeurs d'emploi n'ayant jamais perçu de minima sociaux) liste ses ressources et les prestations sociales qu'il perçoit. Une ligne correspond à un foyer social ;
+
+• Une **table de passage** pour apparier ces informations sur les foyers sociaux avec l'ensemble des individus du champ MiDAS. Une ligne correspond à un individu membre d'un foyer social.
