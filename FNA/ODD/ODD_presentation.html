@@ -488,6 +488,12 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<p>Le segment « Ouverture de droit » (ODD, LN1S) : cette table fournit les caractéristiques du droit ouvert. Une ligne correspond à un droit. On distingue plusieurs situations ;</p>
+<ul>
+<li><p>L’ouverture et la fin de droit : lorsque la demande allocation est acceptée, le demandeur d’emploi peut s’ouvrir un droit (KCNDDA = 01 dans la table DAL). Les paramètres de l’indemnisation associés au droit sont renseignés par les dates de PJC (KDDPJ et KDFPJ) ;</p></li>
+<li><p>La reprise de droit, qui n’entraîne pas de nouveau droit (pas de nouveau KROD, l’identifiant du droit)&nbsp;: elle peut être identifiée dans DAL (KCNDDA = 03) et dans PJC (KCOPP = 20) ;</p></li>
+<li><p>Le rechargement de droit (anciennement « réadmission »), entraîne un nouveau droit (une nouvelle ligne avec un nouveau KROD) : il peut être identifié dans DAL (KCDAL = 26 ; KCNDDA = 10), ODD (KCRRD) et dans PJC (KCOPP = 02).</p></li>
+</ul>
 
 
 

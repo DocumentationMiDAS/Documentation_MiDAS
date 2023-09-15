@@ -488,6 +488,96 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<table class="table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 22%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><br>Variables</th>
+<th><br>Libellé</th>
+<th><br>Description</th>
+<th><br>Modalités</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><br>ODDIDENT KROD3</td>
+<td><br>IDENTIFIANT DE L’ OUVERTURE DE DROIT</td>
+<td><br>Référence de l’OD portant le fait générateur.<br> Clef de jonction avec KROD (ODDIDENT) du segment DROIT ODD - segment LN1S</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><br>PJCDTDEB KDDPJ</td>
+<td><br>DATE DEBUT PJC</td>
+<td><br>C’est la date du premier jour de la période à justification constante, pendant laquelle les éléments de justification du CALCUL restent inchangés.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><br>PJCDTFIN KDFPJ</td>
+<td><br>DATE FIN PJC</td>
+<td><br>C’est la date du dernier jour de la période à justification constante, pendant laquelle les éléments de justification du CALCUL restent inchangés.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><br>PJCTYPE KCPJC</td>
+<td><br>CODE TYPE DE PJC</td>
+<td><br>Cette donnée permet de connaitre le type d’une Période à Justification Constante</td>
+<td><br>1. Période payée<br> 2. Période non payée consommée :<br> - exclusions temporaires DDTE<br> - PND périodes imputables<br> - dépassement ressources plafond<br> 3. Période non payée non consommée :<br> - Carence<br> - Différé<br> - Décalage<br> - Maladie<br> - Absence<br> - Périodes saisonnières<br> - PND périodes non imputables<br> - Suspensions non imputables<br> 4. PJC payées au titre des AIDES (associé aux périodes de versement de l’ADR06, ASCRE06 ou ARCE006)<br> X. VALEUR HORS TABLE</td>
+</tr>
+<tr class="odd">
+<td><br>PJCCOUV KCOPP</td>
+<td><br>CODE OUVERTURE PJC</td>
+<td><br>Motif d’ouverture de la PJC suite à une décision de liquidation. Ce code est renseigné pour les trois types de PJC (KCPJC = ‘1’, ‘2’ ou ‘3’). Toute modification de cette valeur induit une rupture sur les PJC.</td>
+<td><br>01. Admission en indemnisation<br> 02. Réadmission en indemnisation<br> 03. Admission au titre d’une aide<br> 10. Transfert de l’indemnisation<br> 20. Reprise de l’indemnisation après interruption du droit (sauf sur stage AFR ou RSP ou suite à stage AFR ou RSP)<br> 30. Point de départ dans l’application (migration)<br> 40. Révision du SJR/SJC suite à perte d’emploi conservé<br> 50. Ouverture poursuite indemnisation sur antécédent exécutable<br> 99. Sans objet (y compris pour une entrée AFR, ERF et RSP, et sur la reprise RAC/RSN qui suit le stage AFR ou RSP)<br> XX. Valeur hors table</td>
+</tr>
+<tr class="even">
+<td><br>PJCCFER KCFPP</td>
+<td><br>CODE FERMETURE PJC</td>
+<td><br>Code fermeture de la PJC pour motif fin de prise en charge. En cas de simultanéité d’apparition, la plus petite valeur sera privilégiée (cas de la fin d’ASC). Ce code est renseigné pour les trois types de PJC (KCPJC = ‘1’, ‘2’ ou ‘3’). Toute modification de cette valeur induit une rupture sur les PJC.</td>
+<td><br>10. Fin de droit réglementaire : <br>- Limite d’âge à 65 ans <br>- Durée maximale atteinte<br> - Nouveau droit sur même prise en charge (sauf ACA) <br>- Date limite d’indemnisation<br>12. Fin période AER <br> 15. Exclusion définitive DDTE ou Assédic (122 jours)<br> 16. Exclusion définitive DDTE (autre)<br> 20. radiation (reprise d’emploi, décès,…)<br> 30. Suspension Assédic (non réponse à enquête au 122e jour)<br> 40. Mise en attente de renseignements (ex: ressources RSN, déclaration DSM sauf attente de justificatif)<br> 99. Sans code fermeture (en cours d’indemnisation, exclusion temporaire,…)<br> XX. Valeur hors table</td>
+</tr>
+<tr class="odd">
+<td><br>PJCSJRV KQRSPP</td>
+<td><br>MONTANT SALAIRE JOURNALIER REVALORISE PLAFONNE</td>
+<td><br>Montant SJR revalorisé plafonné. Cette rubrique est renseignée pour les PJC consommables (KCPJC = ‘1’, ou ‘2’). Toute modification de cette valeur induit une rupture sur les PJC.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><br>PJCRD KNOPRP</td>
+<td><br>RANG DEGRESSIVITE PJC</td>
+<td><br>Indique le rang de dégressivité en cours sur la PJC. Ce code est renseigné pour les PJC payées (KCPJC = ‘1’). Toute modification de cette valeur induit une rupture sur les PJC.</td>
+<td><br>00. Pas de dégressivité<br> 01. Taux de dégressivité 1<br> 02. Taux de dégressivité 2<br> 03. Taux de dégressivité 3<br> 04. Taux de dégressivité 4<br> 05. Taux de dégressivité 5<br> 06. Taux de dégressivité 6<br> 07. Taux de dégressivité 7<br> 08. Taux de dégressivité 8<br> 09. Taux de dégressivité 9<br> 99. Non déterminé</td>
+</tr>
+<tr class="odd">
+<td><br>PJCCOEF KTDGAP</td>
+<td><br>COEFFICIENT DEGRESSIVITE PJC</td>
+<td><br>Il s’agit du coefficient de dégressivité appliqué lors du calcul d’un montant journalier dans la Nième période d’une durée dégressive en AUD. Le coefficient appliqué est égal au coefficient de la première, multiplié par lui-même autant de fois qu’il y a de périodes. Cette rubrique est renseignée pour les PJC payées (KCPJC = ‘1’).</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><br>PJCTAUX KQBPJP</td>
+<td><br>MONTANT JOURNALIER ALLOCATION</td>
+<td><br>Montant brut journalier de l’allocation. Cette rubrique est renseignée pour les PJC payées (KCPJC = ‘1’). Toute modification de cette valeur induit une rupture sur les PJC.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><br>PJCMITH KQJSTP</td>
+<td><br>MONTANT NET JOURNALIER VERSE ITH<br> (MONTANT JOUR. INDEM TRANS. HERB.)</td>
+<td><br>Montant net journalier versé au titre des ITH (Indemnités de Transport ou d’Hébergement. Ce code est renseigné pour les PJC payées de type ‘1’. Toute modification de cette valeur induit rupture sur les PJC.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><br>PJCTCAR KCPJCC</td>
+<td><br>CODE TYPE PJC CARENCE</td>
+<td><br>Cette rubrique définit le type de report. Toute modification de cette valeur induit une rupture sur les PJC. Ce code est renseigné pour les PJC de type ‘3’ et les différés en cours de droit.</td>
+<td><br>01. Carence Préavis Payé non effectué (non géré)<br> 02. CARENCE CONGES PAYES<br> 03. CARENCE indemnités supra légales de rupture (ISLR)<br> 04. DIFFERE D’INDEMNISATION<br> 10. CARENCE CONGES PAYES ANNEXE 4 (&lt;01/09/1992)<br> 20. CARENCE CONGES PAYES ANNEXE 8<br> 30. FRANCHISE ANNEXE 10 (non géré par AO)<br> 40. CARENCE DELIBERATION 15<br> 90. AUTRE TYPE DE CARENCE<br> 99. SANS OBJET<br> XX. VALEUR HORS TABLE</td>
+</tr>
+</tbody>
+</table>
 
 
 

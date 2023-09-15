@@ -248,6 +248,41 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 <p>Le salaire de base correspond à la rémunération brute habituelle du salarié, à l’exclusion des compléments de salaire qu’ils soient légaux, conventionnels ou attribués à l’initiative de l’employeur, et notamment la prime d’ancienneté, la prime de vacance, le 13e mois, les primes allouées à raison de la situation familiale, les avantages en espèces et en nature, les gratifications, les pourboires, les rémunérations des heures complémentaires ou supplémentaires. Son montant correspond généralement à celui de la première ligne du bulletin de paye d’un salarié.</p>
+<p><strong><em>Les données transmises font l’objet d’un premier retraitement mais restent fournies à titre provisoire. Elles sont assorties d’une note qualité permettant à l’utilisateur d’identifier les données sur lesquelles des doutes peuvent subsister sur la cohérence de la déclaration. La Dares est susceptible de réviser les données fournies lors des prochaines vagues.</em></strong></p>
+<p><strong>1. Choix du salaire de base transmis</strong></p>
+<p>Le salaire de base est transmis pour chaque contrat disponible dans MiDAS, avec une première déclaration en DSN postérieure à janvier 2017. Pour chaque année couverte et chaque contrat, un seul salaire de base est transmis. Il est calculé de la manière suivante :</p>
+<p>• Pour les contrats comprenant un mois calendaire complet qui n’est pas le mois du début du contrat ni le dernier mois du contrat : le salaire de base transmis correspond à la paye d’un mois calendaire complet. Parmi l’ensemble des périodes complètes de paye disponibles, le salaire de base choisi est celui du premier mois de paye parmi ceux qui ont la meilleure qualité (voir ci-après les indicateurs de qualité) ;</p>
+<p>• Pour les autres contrats (qui se terminent dans le mois ou avant la fin du mois suivant) : le salaire de base transmis est sommé sur l’ensemble de la période du contrat comprise dans l’année considérée. La variable qualité est égale à la moins bonne note attribuée sur la ou les périodes de paie. Exemple : si on doit sommer une période avec une note « nul ou négatif », avec une période avec une note « Ok », l’indicateur qualité sera « nul ou négatif ».</p>
+<p>En résumé, pour chaque année de présence du contrat dans la base MiDAS, l’utilisateur disposera d’un seul et unique salaire.</p>
+<p><strong>2. Trois variables</strong></p>
+<p>Finalement, pour exploiter les données sur le salaire, les trois variables suivantes sont transmises :</p>
+<p>• Salaire de base (salaire_base, dans la table) : montant en euros du salaire de base ;</p>
+<p>• Indicatrice de mois complet (salaire_base_mois_complet) : vaut 1 pour les contrats pour lesquels un salaire mensuel est fourni (i.e comprenant un mois calendaire complet qui n’est pas le mois du début du contrat ni le dernier mois du contrat) et 0 pour les autres contrats, dont le salaire de base correspond à la somme de tous les salaires de base du contrat. Dans le second cas, il peut être pertinent de mensualiser le salaire en utilisant les dates de début et de fin de contrat pour le comparer avec celui des contrats longs, selon l’optique choisie ;</p>
+<p>• Qualité du salaire de base (quali_salaire_base) : indicateur de qualité du salaire de base transmis dans le fichier. Cet indicateur est calculé pour chacune des périodes de paye disponibles. Les modalités de cette variable sont classées de la moins bonne qualité à la meilleure comme indiquées ci-dessous :</p>
+<p>o 1 – Nul : Salaire de base nul ou négatif ;</p>
+<p>o 2 – Rappels : tous les salaires versés l’ont été avec retard, ce qui peut laisser supposer qu’il s’agit seulement de rappels de salaire ;</p>
+<p>o 3 – Période : la période de paie déclarée par l’employeur est incohérente avec la période d’activité du contrat ;</p>
+<p>o 4 – Brut : le salaire de base est incohérent avec le salaire brut (au sens de la rémunération brute déplafonnée) ;</p>
+<p>o 6 – Incohérence : Incohérence entre le salaire et la durée du contrat ;</p>
+<p>o 7 – Ok : aucune des anomalies énoncées précédemment n’a été détectée.</p>
+<p>Ci-après le format qui peut être utilisé avec la variable Salaire de base :</p>
+<pre><code>PROC FORMAT ;
+
+VALUE $Quali_Salaire_Base
+
+"1" = "Nul"
+
+"2" = "Rappels"
+
+"3" = "Période"
+
+"4" = "Brut"
+
+"6" = "Incohérence"
+
+"7" = "OK" ;
+
+RUN ;</code></pre>
 
 
 

@@ -488,6 +488,174 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<table class="table">
+<colgroup>
+<col style="width: 1%">
+<col style="width: 8%">
+<col style="width: 47%">
+<col style="width: 42%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><br>Variables</th>
+<th><br>Libellé</th>
+<th><br>Description</th>
+<th><br>Modalités</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><br>ODDIDENT KROD</td>
+<td><br>IDENTIFIANT DE L’OUVERTURE DE DROIT</td>
+<td><br>Référence de l’OD portant le fait générateur. Il s’agit du droit courant, c’est à dire du droit ouvert.<br> Le droit ouvert peut ne pas être le droit consommé.<br> Clef de jonction avec KROD3 (ODDIDENT) du segment PERIODE JUSTIFICATION CONSTATNTE (PJC) - segment LN2P<br> Clef de jonction avec KROD1 (ODDIDENT) du segment DAL - segment LN1N</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><br>ODDNCTS KNCTS</td>
+<td><br>Numéro séquentiel des contrats de travail rattachés à une OD</td>
+<td><br>Clef de jonction avec KNCTE (CDTNUM) du segment CONTRAT DE TRAVAIL (CDT)<br> Clef de jonction avec les segments suivants : CDT/ODD</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><br>ODDRARET KROD2</td>
+<td><br>Référence de l’OD portant le fait générateur (référence de l’OD retenue en cas de reprise d’un droit précédent)</td>
+<td><br>Clef de jonction avec KROD1 (ODDIDENT) du segment DEMANDE D’ALLOCATION (DAL)<br> Clef de jonction avec KROD (ODIDENT) du segment RELIQUAT DROIT (RDD)<br> Clef de jonction avec les segments suivants : ODD</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><br>ODDREG KCRGC</td>
+<td><br>CODE REGIME OD</td>
+<td><br>Code Régime de l’ouverture de droit.</td>
+<td><br>1. RAC<br> 2. RSN<br> 3. PRERETRAITE<br> 4. ASC<br> 5. RSP<br> 6. FSP<br> X. Valeur hors table</td>
+</tr>
+<tr class="odd">
+<td><br>ODDDTFD KDFOD</td>
+<td><br>DATE THEORIQUE FIN DROIT</td>
+<td><br>Date théorique de fin de droit pour l’allocataire actualisée au dernier calcul tenant compte du reliquat de droit et bornée par la date de retraite. Cette date n’est renseignée que pour le droit en cours.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><br>ODDSJR KQCSJP</td>
+<td><br>MONTANT RETENU SJR</td>
+<td><br>Le montant du SJR retenu est le salaire journalier de référence plafonné et revalorisé. Il est égal au Salaire de référence divisé par le nombre de jours retenus pour la période de Référence.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><br>ODDDMAX KPJDXP</td>
+<td><br>DUREE MAXIMALE INDEMNISATION DROIT</td>
+<td><br>Durée maximale d’indemnisation du droit. Cette durée est exprimée en jours. Elle permet le suivi et l’analyse des droits en réadmission.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><br>ODDTPAR KCTPP</td>
+<td><br>COEFFICIENT REDUCTION TEMPS PARTIEL</td>
+<td><br>Cette rubrique décrit le coefficient réducteur calculé en fonction de l’horaire de travail pratiqué par l’individu.<br> Il servira à réduire la partie fixe. Selon le régime applicable, ce coefficient sera calculé de la façon suivante :<br> Del 27 du régime général : ce coefficient est égal au rapport des heures de travail correspondant à l’horaire de l’individu pendant la période servant au calcul du salaire de référence sur l’horaire légal ou horaire de la convention ou de l’accord collectif correspondant à la même période.<br> Art 25 de l’Annexe 12 ce coefficient est égal au rapport du nombre d’heures de travail effectué pendant les 12 derniers mois sur 1815.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><br>ODDDDFE KDDDFE</td>
+<td><br>DATE DE DEBUT DE DIFFERE A8A10</td>
+<td><br>Il s’agit de la date de début du différé des A8 et A10</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><br>ODDDDPRA KDDRA</td>
+<td><br>DATE DE DEBUT DE LA PRA</td>
+<td><br>Il s’agit de la date de début de la PRA (Période de Référence Affiliation)</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><br>ODDDFLAG KCRRD</td>
+<td><br>INDICATEUR DE READMISSION OU NOUVEAUX TYPES D’ ODD</td>
+<td><br>Flag de réadmission, calculé à partir des règles de réadmission de la Convention 2006. Cette rubrique permet le suivi et l’analyse des droits en réadmission.</td>
+<td><br>0. Pas de nouvelle réadmission<br> 1. Réadmission de l’ancien droit (capital et montant)<br> 2. Droit courant retenu (capital et montant)<br> 3. Réadmission avec capital de l’OD courante et montant du droit précédent<br> 4. Réadmission avec capital de l’OD précédente et montant du droit courant<br> 5. OD suite à Rechargement avec condition minimale (AC 2014)<br> 6. OD suite à perte d’une activité conservée (AC 2014)<br> 7. OD suite à Rechargement de droit commun pour les apprentis (Avenants AC 2014)<br> 8. OD suite à Rechargement de droit commun hors apprentis (Avenants AC 2014 droit d’option élargi)</td>
+</tr>
+<tr class="even">
+<td><br>ODDDTDPR KDDPRC</td>
+<td><br>DATE DEBUT PERIODE DE REFERENCE</td>
+<td><br>Cette rubrique précise la date de début de la PRC (Période de référence calcul).</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><br>ODDDTFPR KDJRSJ</td>
+<td><br>DATE FIN PERIODE DE REFERENCE</td>
+<td><br>C’est le dernier jour de la PRC (Période de Référence Calcul) ayant servi à la détermination du Salaire de Référence. Cette date sert de base pour les revalorisations du SJR.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><br>ODDDTMNT KDMAI</td>
+<td><br>DATE DE MAINTIEN JUSQU’EN RETRAITE</td>
+<td><br>Date d’enregistrement du maintien jusqu’à la retraite.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><br>ODDDTPJI KDPOD</td>
+<td><br>DATE 1ER JOUR INDEMNISE DANS LE DROIT</td>
+<td><br>Date de début d’indemnisation de l’allocataire. C’est la date du premier jour indemnisé de l’ouverture de droit. Elle est recalculée à chaque remise en cause du droit.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><br>ODDDTPP KDPMA</td>
+<td><br>DATE DU 1ER PAIEMENT DANS LE DROIT</td>
+<td><br>Date du premier versement en Assurance Chômage. Cette date n’est pas modifiée par une remise en cause issue du calcul. Plus concrètement, c’est la valeur que prend KDPOD (1er jour indemnisé) pour la première fois (date comptable).</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><br>ODDMTDIF KQDIFP</td>
+<td><br>MONTANT INDEMNITES ICCP ISLR</td>
+<td><br>Il s’agit du montant des indemnités ICCP (Indemnités Compensatrices de Congés Payés) et ISLR (Indemnités Supra Légales Réglementaires) pour calcul du différé.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><br>ODDMTICP KQICPP</td>
+<td><br>MONTANT INDEMNITES ICCP</td>
+<td><br>Il s’agit du montant des indemnités ICCP pour calcul du différé</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><br>ODDMTISL KQISLP</td>
+<td><br>MONTANT INDEMNITES ISLR</td>
+<td><br>Il s’agit du montant des indemnités ISLR pour le calcul du différé</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><br>KCCT1</td>
+<td><br>IDENTIFIANT PERIODE FAIT GENERATEUR</td>
+<td><br>Identifiant du fait générateur, permettant la jonction avec KCCT du segment CDT</td>
+<td><br></td>
+</tr>
+<tr class="odd">
+<td><br>KCTRSP</td>
+<td><br>COEFFICIENT REDUCTEUR SJR</td>
+<td><br></td>
+<td><br></td>
+</tr>
+<tr class="even">
+<td><br>KNJCPP</td>
+<td><br>NOMBRE DE JOURS FRANCHISE CONGES</td>
+<td><br></td>
+<td><br></td>
+</tr>
+<tr class="odd">
+<td><br>KDRPRA</td>
+<td><br>DATE DU 1ER JOUR DU 1ER CONTRAT PRA</td>
+<td><br></td>
+<td><br></td>
+</tr>
+<tr class="even">
+<td><br>KPMODP</td>
+<td><br>DUREE MAXIMALE DE L’NDEMNISATION A L’OUVERRTUE DU DROIT</td>
+<td><br></td>
+<td><br></td>
+</tr>
+<tr class="odd">
+<td><br>KQSPRP</td>
+<td><br>SOMME DES SALAIRES RETENUE DANS LA PRA</td>
+<td><br></td>
+<td><br></td>
+</tr>
+</tbody>
+</table>
 
 
 

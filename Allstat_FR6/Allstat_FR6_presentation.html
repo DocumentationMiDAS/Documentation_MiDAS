@@ -271,7 +271,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#présentation-des-données" id="toc-présentation-des-données" class="nav-link active" data-scroll-target="#présentation-des-données">Présentation des données</a></li>
+  <li><a href="#champ-et-temporalité-des-données" id="toc-champ-et-temporalité-des-données" class="nav-link" data-scroll-target="#champ-et-temporalité-des-données">Champ et temporalité des données</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -293,17 +300,81 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Les données Cnaf sont présentes au sein d’Allstat-FR6, le fichier des allocataires Caf, qui permet le suivi statistique mensuel des droits aux prestations versées par les Caf (le droit au titre du mois M étant apprécié entre le 5 et le 10 du mois M+6).</p>
-<p>Pour chaque mois de chaque année depuis 2017, trois types de tables issues des données Cnaf sont disponibles :</p>
-<ul>
-<li><p>un fichier <strong>Prestations</strong> ;</p></li>
-<li><p>un fichier <strong>Ménages</strong> ;</p></li>
-<li><p>une table de passage pour apparier ces informations.</p></li>
-</ul>
+<section id="présentation-des-données" class="level2">
+<h2 class="anchored" data-anchor-id="présentation-des-données">Présentation des données</h2>
+<p>Les données Cnaf sont présentes au sein d’Allstat-FR6, le fichier des allocataires Caf, qui permet le suivi statistique mensuel des droits aux prestations versées par les Caf (le droit au titre du mois M étant apprécié entre le 5 et le 10 du mois M+6). Les informations de la Cnaf (ressources et prestations versées) sont renseignées à l’échelle du « foyer allocataire » ou « foyer social », qui regroupe l’ensemble des membres du ménage dont les ressources permettent l’octroi de prestations sociales. Un « foyer social » n’a pas la même définition selon la prestation considérée, car la composition et les ressources du foyer prises en compte lui sont propres (Tableau 3).</p>
+<p>Pour chaque mois de chaque année depuis 2017, MiDAS contient trois types de tables :</p>
+<p>• Un fichier « Prestations » qui liste les montants perçus par les individus sur le champ des foyers sociaux bénéficiaires du Revenu de solidarité active (RSA), de la prime d’activité (PA) et de l’Allocation aux adultes handicapés (AAH) ;</p>
+<p>• Un fichier « Ménages » qui, pour chaque foyer social d’un individu du champ MiDAS (y compris demandeurs d’emploi n’ayant jamais perçu de minima sociaux) liste ses ressources et les prestations sociales qu’il perçoit ;</p>
+<p>• Une table de passage pour apparier ces informations sur les foyers sociaux avec l’ensemble des individus du champ MiDAS.</p>
+<p><u><strong>Tableau : Conditions d’attribution du RSA, de la PA et de l’AAH</strong></u></p>
+<table class="table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 34%">
+<col style="width: 31%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><br></th>
+<th><br>RSA</th>
+<th><br>Prime d’activité</th>
+<th><br>AAH</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><br>Autres prestations sociales prises en compte dans l’assiette des ressources</td>
+<td><br>Aucune</td>
+<td><br>Aucune</td>
+<td><br>RSA, prime d’activité</td>
+</tr>
+<tr class="even">
+<td><br>Ressources du conjoint (époux, concubin, partenaire de PACS) prises en compte</td>
+<td><br>Oui</td>
+<td><br>Oui</td>
+<td><br>Oui (jusqu’à mise en œuvre de la déconjugalisation en octobre 2023).</td>
+</tr>
+<tr class="odd">
+<td><br>Ressources des enfants et autres personnes à charge</td>
+<td><br>Les personnes de moins de 25 ans si elles ne perçoivent pas de prestations sociales (sauf la prime d’activité) ou si leur <br> <br>présence ne diminue pas le montant dû</td>
+<td><br>Les personnes de moins de 25 ans qui ne perçoivent pas ou n’ont pas perçu au cours de l’année civile la prime d’activité en tant qu’allocataire ou conjoint</td>
+<td><br>Non</td>
+</tr>
+<tr class="even">
+<td><br>Période de référence d’appréciation des ressources</td>
+<td><br>3 derniers mois</td>
+<td><br>3 derniers mois</td>
+<td><p><br>- Pour les personnes travaillant en milieu ordinaire : 3 derniers mois</p>
+<p><br>- AAH pour les personnes sans emploi ou travaillant en milieu protégé : année n-2</p></td>
+</tr>
+<tr class="odd">
+<td><br> Durée du droit / réexamen des ressources</td>
+<td><br>Trimestrielle</td>
+<td><br>Trimestrielle</td>
+<td><p><br>- Pour les personnes travaillant en milieu ordinaire : trimestrielle</p>
+<p><br> - AAH pour les personnes sans emploi ou travaillant en milieu protégé : annuelle</p></td>
+</tr>
+</tbody>
+</table>
+<p><u>Source</u> : <a href="https://drees.solidarites-sante.gouv.fr/sites/default/files/2022-09/Minima22%20Fiche%209%20-%20L%E2%80%99assiette%20des%20ressources%20et%20la%20p%C3%A9riode%20de%20r%C3%A9f%C3%A9rence%20des%20prestations.pdf">Drees</a>, <em>Minima Sociaux et Prestations Sociales</em>, 2022.</p>
+</section>
+<section id="champ-et-temporalité-des-données" class="level2">
+<h2 class="anchored" data-anchor-id="champ-et-temporalité-des-données">Champ et temporalité des données</h2>
+<p>L’ensemble des foyers sociaux bénéficiaires du RSA, de la PA et de l’AAH depuis janvier 2017 (fichier « Prestations ») pour la France entière.</p>
+<p>Ainsi, tout adulte seul ou membre d’un couple constitutif d’un foyer social qui perçoit un droit au RSA ou à la PA est suivi dans MiDAS quel que soit son âge. À noter l’absence des enfants de 18 à 25 ans qui vivent chez leurs parents, même si ces derniers appartiennent au foyer social bénéficiaire du RSA ou de la PA. Enfin, pour l’AAH, si son versement est soumis aux conditions de ressources du ménage<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, il s’agit d’une prestation individuelle et seul l’allocataire en est le bénéficiaire. Ainsi, son conjoint est conservé dans MiDAS s’il a été inscrit au moins une fois à Pôle emploi ou si le couple a bénéficié du RSA ou de la PA depuis 2017.</p>
 
 
+</section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>La « déconjugalisation » de l’AAH ayant été décidée par la loi n° 2022-1158 du 16 août 2022 portant mesures d’urgence pour la protection du pouvoir d’achat, les revenus du conjoint ne seront, en règle générale, plus pris en compte dans le calcul du droit à l’AAH au plus tard le 1er octobre 2023. Toutefois, une personne en couple déjà bénéficiaire de l’AAH au moment de l’entrée en vigueur de la déconjugalisation pourra décider de rester dans l’ancien système, c’est-à-dire avec prise en compte des revenus de son conjoint, jusqu’à expiration de ses droits, si la déconjugalisation ne lui est pas favorable (<a href="https://drees.solidarites-sante.gouv.fr/sites/default/files/2022-09/Minima22%20Fiche%209%20-%20L%E2%80%99assiette%20des%20ressources%20et%20la%20p%C3%A9riode%20de%20r%C3%A9f%C3%A9rence%20des%20prestations.pdf">Drees</a>, <em>Minima sociaux et prestations sociales</em>, p.&nbsp;89).<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
