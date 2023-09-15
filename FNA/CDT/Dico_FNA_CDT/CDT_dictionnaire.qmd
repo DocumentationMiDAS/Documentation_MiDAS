@@ -1,3 +1,13 @@
 ---
 title: "Dictionnaire des variables"
 ---
+
+| <br>Variables       | <br>Libellé                            | <br>Description                                                                                                                                                                                            | <br>Modalités                               |
+|--------------|--------------|-------------------------------|--------------|
+| <br>CDTIDAFF KCPAF1 | <br>IDENTIFIANT PERIODE AFFILIATION CT | <br>C'est l'identifiant de la période d'affiliation.<br> <br>Clef de jonction avec KCPAF (PAFIDAFF) du segment PÉRIODE D'AFFILIATION (PAF)                                                                 | <br>                                        |
+| <br>CDTIDENT KCCT   | <br>IDENTIFIANT DU CONTRAT DE TRAVAIL  | <br>C'est l'identifiant de l'objet contrat de travail.<br> <br>Clef de jonction avec KCCT1 (ODDID1) du segment DROIT ODD - segment LN1S<br> <br>Clef de jonction avec KCCT2 (ODDDID2) du segment DROIT ODD | <br>                                        |
+| <br>DALREF KCDA1    | <br>REFERENCE DE LA DAL SUR LE CT      | <br>Cette rubrique identifie une demande d'allocation.<br> Clef de jonction avec KCDA (DALREF) du segment DEMANDE D'ALLOCATION (DAL) - segment LN1N                                                        |                                             |
+| <br>CDTDTDEB KDDPE  | <br>DATE DE DEBUT CONTRAT DE TRAVAIL   | <br>Date du premier jour du contrat de travail.<br> Propriété présente dans les segments suivants : CDT/PAF                                                                                                |                                             |
+| <br>CDTDTFIN KDFPE  | <br>DATE DE FIN CONTRAT DE TRAVAIL     | <br>Date du dernier jour du contrat de travail.<br> Propriété présente dans les segments suivants : CDT/PAF                                                                                                |                                             |
+| <br>CDTNAFR2 KCEP2  | <br>CODE NAF REVISION 2                | <br>Cette rubrique caractérise la nature de l'activité économique de l'employeur.<br> Cette nouvelle NAF a été mise en place début 2008 et remplace l'ancienne NAF 2003 qui était codée sur 4 positions.   | <br>[Codes NAF](https://www.codes-naf.com/) |
+| <br>CDTNUM KNCTE    | <br>NUMERO DU CONTRAT DE TRAVAIL       | <br>                                                                                                                                                                                                       | <br>                                        |

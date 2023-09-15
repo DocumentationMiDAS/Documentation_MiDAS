@@ -2,8 +2,11 @@
 title: "KCAAJ"
 ---
 
+Code allocation FNA déterminé à l'origine de l'ouverture de droits.
+
+
 | <br>Code allocation FNA | <br>Allocation      | <br>Libellé de l'allocation                                                                                                        | <br>Type d'allocation | <br>Régime d'indemnisation                                         | <br>Statut des allocataires |
-|-------------------------|---------------------|------------------------------------------------------------------------------------------------------------------------------------|-----------------------|--------------------------------------------------------------------|-----------------------------|
+|----------|----------|-----------------------|----------|----------|----------|
 | <br> 0C                 | <br>ACFNE           | <br>Allocation Conventionnelle du FNE                                                                                              | <br>ASFNE             | <br>Régime Préretraite État                                        | <br>Préretraité             |
 | <br> 0E                 | <br>FNE             | <br>FNE ancienne formule                                                                                                           | <br>ASFNE             | <br>Régime Préretraite État                                        | <br>Préretraité             |
 | <br> 0S                 | <br>ASE             | <br>Allocation de Secours Exceptionnelle                                                                                           | <br>ASE               | <br>Régime de Solidarité                                           | <br>Chômeur indemnisé       |

@@ -2,4 +2,8 @@
 title: "Présentation de la table"
 ---
 
-Le fichier « Ménages » liste les ressources et les prestations sociales perçues par chaque foyer social d'un individu du champ MiDAS (y compris demandeurs d'emploi n'ayant jamais perçu de minima sociaux).
+Le fichier « Ménages » fournit des informations sur les prestations versées par la Caf à l'ensemble des foyers sociaux dont au moins un membre (responsable de dossier ou conjoint) appartient au champ de MiDAS. Il permet notamment de caractériser la vie conjugale de deux individus MiDAS lorsqu'ils perçoivent des prestations de la Caf (par exemple, deux personnes qui ont été inscrites à Pôle Emploi, ou encore un demandeur d'emploi et un bénéficiaire de l'AAH).
+
+Ce fichier mensuel contient des informations complémentaires sur la composition du ménage, les caractéristiques du responsable de dossier et de son éventuel conjoint, les prestations qu'il perçoit et les ressources dont il dispose. Ainsi, si MiDAS ne permet pas de suivre les enfants d'un foyer allocataire, une variable portant sur la composition familiale permet de repérer leur présence.
+
+[**Remarque**]{.underline} : pour les vagues 1 et 2 de MiDAS, il n'est actuellement pas possible d'identifier qui est le responsable de dossier et qui est le conjoint au sein des couples présents dans les données Cnaf. Il est prévu de résoudre ce problème pour la vague 3.

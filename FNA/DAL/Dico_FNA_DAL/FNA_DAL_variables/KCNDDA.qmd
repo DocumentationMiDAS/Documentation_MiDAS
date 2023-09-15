@@ -1,3 +1,34 @@
 ---
 title: "KCNDDA"
 ---
+
+Nature de la décision liée à la DAL
+
+
+**01**. Ouverture de droits
+
+**02**. Autres admissions
+
+**03**. Reprise
+
+**04**. Rejet
+
+**05**. Sans objet
+
+**06**. Double emploi
+
+**07**. Classement sans suite
+
+**08**. Ouverture de droit sur transfert
+
+**XX**. Valeur hors table
+
+**09**. Poursuite de l'indemnisation après interruption de l'indemnisation durant 3 mois consécutifs
+
+**10**. Ouverture de droit suite à "Rechargement" (AC 2014)
+
+**11**. Ouverture de droite suite à "Perte d'une Activité Conservée" (AC 2014)
+
+**12**. Ouverture de droit suite à "Exercice du Droit d'Option" (AC 2014)
+
+**13**. Ouverture de droit suite à "Exercice du Droit d'Option" autre qu'apprentis (Avenants AC 2014)

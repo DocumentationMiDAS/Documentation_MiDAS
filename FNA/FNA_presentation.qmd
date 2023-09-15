@@ -2,4 +2,12 @@
 title: "Le Fichier National des Allocataires (FNA)"
 ---
 
+## Présentation des données
+
 Le Fichier National des Allocataires suit les trajectoires d'indemnisation des demandeurs d'emploi allocataires de l'Assurance-chômage. Il contient notamment toutes les informations nécessaires pour calculer cette indemnisation : période d'affiliation, salaire journalier de référence, durée d'indemnisation potentielle...
+
+Le FNA est une base de données relationnelle constituée de « segments ». Elle est construite de manière à pouvoir intégrer de nouvelles informations (nouvelle Convention Assurance-chômage, dispositifs de Pôle emploi...) soit par la création de nouveaux segments, soit par l'ajout de nouvelles données ou modalités. Depuis 1997, le FNA s'étend à l'ensemble des individus inscrits comme demandeurs d'emploi et intègre des informations variées ne concernant pas seulement l'indemnisation : il contient l'historique exhaustif au regard de leurs situations de chômage, de l'ensemble des individus qui ont eu une prise en charge à partir de décembre 1992 et qui n'étaient pas radiés avant le 31 décembre 1992. Les données présentes dans le FNA sont historisées afin de permettre des travaux statistiques utilisant le facteur temps (analyse de comportement, étude des évolutions, simulation...). Le FNA conserve à la fois l'historique de l'individu et l'historique de l'Assurance-chômage.
+
+## Champ et temporalité des données
+
+Demandeurs d'emploi indemnisables au moins 1 jour depuis le 1er janvier 2017. Pour ces individus, MiDAS contient tout l'historique de l'indemnisation depuis 1993, des périodes d'affiliation et de l'activité réduite.

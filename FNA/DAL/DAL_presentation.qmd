@@ -1,3 +1,5 @@
 ---
 title: "Présentation de la table"
 ---
+
+Segment « Demande d’allocation » (DAL, LN1N) : table qui renseigne sur les demandes d’allocation (type de demande, nombre de jours de différés, demandes rejetées) rattachées aux droits ouverts. Cette table contient toutes les demandes, y compris celles qui n’ont pas débouché sur une ouverture de droit.

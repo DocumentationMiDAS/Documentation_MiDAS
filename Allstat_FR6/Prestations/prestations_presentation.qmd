@@ -2,4 +2,14 @@
 title: "Présentation de la table"
 ---
 
-Le fichier « Prestations » qui liste les montants perçus par les individus sur le champ des foyers sociaux bénéficiaires du Revenu de solidarité active (RSA), de la prime d'activité (PA) et de l'Allocation aux adultes handicapés (AAH).
+Le « foyer social » pris en compte par la Caf pour l'attribution de l'AAH comprend la personne handicapée et son conjoint. Un foyer social RSA ou PA rassemble le ou la responsable de dossier (la personne identifiée comme étant « le contact » de la CAF), son (sa) conjoint(e) et ses enfants à charge de moins de 25 ans.
+
+Le fichier « Prestations » contient les foyers bénéficiaires du RSA, de la PA ou de l'AAH un mois donné, y compris ceux qui ne sont pas inscrits à Pôle emploi. Au sein des foyers sociaux bénéficiaires RSA et de la PA, ce fichier assure le suivi (attribution d'un identifiant ID_MIDAS) du responsable de dossier et de son éventuel conjoint, mais pas de leurs enfants de moins de 25 ans. MiDAS suit également les personnes handicapées qui perçoivent l'Allocation aux adultes handicapés (AAH), mais pas leur conjoint (sauf si ce dernier a été inscrit à Pôle emploi). Le « foyer social » est identifié par la jonction du département Caf (NUMCAF) et de l'identifiant du ménage (NORDALLC). Le fichier « Prestations » contient les variables qui permettent de caractériser les droits à ces 3 minima sociaux ainsi que les montant versés.
+
+Les données sont extraites des fichiers de référence avec un recul de six mois par rapport au mois de droit (FR6) et sont structurées en tables mensuelles. Au total, sur une année, le fichier « Prestations » regroupe 12 sous-tables, chacune représentant une information mensuelle sur les droits des individus. En matière de champ, précisons enfin que :
+
+• Les bénéficiaires du RSA en-dessous du seuil de versement sont inclus ;
+
+• Les bénéficiaires du complément AAH[^1] qui ne bénéficient pas de l'AAH sont exclus.
+
+[^1]: Le complément de ressources AAH (CAAH) est une prestation forfaitaire qui s'ajoute à l'AAH pour constituer la « garantie de ressources ». Supprimée depuis décembre 2019, elle sera versée aux anciens bénéficiaires pendant 10 ans sous conditions d'éligibilité (avoir un logement indépendant, un taux d'incapacité d'au moins 80 %...). Son montant est fixé à 179,31 €.

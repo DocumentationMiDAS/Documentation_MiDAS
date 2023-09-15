@@ -2,8 +2,11 @@
 title: "KCALF"
 ---
 
+Code allocation de la Période à Justification Constante. Ce code est renseigné pour les deux types de PJC (KCPJC = '1', '2'). Toute modification de cette valeur induit une rupture sur les PJC.
+
+
 | <br>Code allocation FNA | <br>Allocation      | <br>Libellé de l'allocation                                                                                                        | <br>Type d'allocation | <br>Régime d'indemnisation                                         | <br>Statut des allocataires |
-|-------------------------|---------------------|------------------------------------------------------------------------------------------------------------------------------------|-----------------------|--------------------------------------------------------------------|-----------------------------|
+|----------|----------|-----------------------|----------|----------|----------|
 | <br> 0C                 | <br>ACFNE           | <br>Allocation Conventionnelle du FNE                                                                                              | <br>ASFNE             | <br>Régime Préretraite État                                        | <br>Préretraité             |
 | <br> 0E                 | <br>FNE             | <br>FNE ancienne formule                                                                                                           | <br>ASFNE             | <br>Régime Préretraite État                                        | <br>Préretraité             |
 | <br> 0S                 | <br>ASE             | <br>Allocation de Secours Exceptionnelle                                                                                           | <br>ASE               | <br>Régime de Solidarité                                           | <br>Chômeur indemnisé       |

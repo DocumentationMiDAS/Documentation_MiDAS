@@ -1,3 +1,81 @@
 ---
 title: "KCRD"
 ---
+
+Identifie le type d'annexe de l'ouverture de droit si l'individu ne relève pas du Régime Général.
+
+**0**. Cas général
+
+**11**. VRP et travailleurs assimilés à cette catégorie A 1 - 1
+
+**12**. Journalistes et Personnels assimilés A 1 - 2D n° 23
+
+**13**. Personnel navigant de l'aviation civile A 1 - 3
+
+**14**. Assistantes maternelles dont les services sont utilisés par des personnes morales de A 1 - 4 droit privé
+
+**15**. Bûcherons-tâcherons A 1 - 5
+
+**16**. Démarcheurs, vérificateurs, négociateurs, chefs de service et plus généralement les agents rémunérés à la commission visés par la Convention Collective du 9/07/1988 étendue par arrêté du 24/02/1989. A 1 - 6
+
+**17**. Salariés navigants de la marine de commerce des entreprises de transports maritimes ou des entreprises de travaux maritimes ou des autres entreprises possédant, pour effectuer ces transports ou ces travaux, une flotte privée. A 2 Chap.A
+
+**18**. Marins pêcheurs liés à un armateur, pour servir à bord d'un navire, rémunérés au SMG ou à la part et ayant navigué sur un bateau de plus de 25 m ou de 50 tonneaux ou plus A 2 Chap. B
+
+**19**. Ouvriers dockers A 3
+
+**20**. Travailleurs Intermittents A 4
+
+**21**. Travailleurs Intérimaires des entreprises de travail temporaire A 4
+
+**22**. Travailleurs à domicile A 5
+
+**23**. Concierges A 6
+
+**24**. Personnels Handicapés des ateliers protégés A 7
+
+**25**. Ouvriers et techniciens de la production cinématographique et de l'audiovisuel A 8
+
+**26**. Artistes du spectacle et techniciens des entreprises du spectacle A 10
+
+**27**. Employés de maison, assistantes maternelles au service de particuliers, employés au pair A 11
+
+**28**. Anciens titulaires d'un contrat de travail à durée déterminée ayant obtenu une prise en charge des dépenses afférentes au titre d'un congé individuel de formation
+
+**29**. Salariés qui, au regard de la législation de Sécurité Sociale, cotisent sur une base forfaitaire A 13
+
+**30**. Soudeurs de pipe-lines et catégories assimilées D 15
+
+**31**. Détenus libérés à l'issue d'une période minimale de détention Art L 351-9 du CT
+
+**32**. Certaines catégories de personnes en attente de réinsertion ou en instance de reclassement Art L 351-9 du CT
+
+**33**. Rapatriés, apatrides, ressortissants étrangers titulaires de la carte de réfugié résidant régulièrement en France et ressortissants étrangers ayant demandé l'asile en France Art R 351-10 du CT
+
+**34**. Expatriés non couverts par le RAC et justifiant d'une durée de travail de 182 jours au cours des 12 mois précédant leur FCT Art R 351-10 du CT
+
+**35**. Salariés victimes d'AT ou de maladies professionnelles Art R 351-10 du CT
+
+**36**. Marins pêcheurs embarqués sur des bateaux remplissant certaines conditions, ouvriers du CT dockers occasionnels, artistes non salariés Art L 351-13
+
+**37**. Salariés détachés, expatriés, frontaliers et assimilés A 9
+
+**38**. Salariés licenciés en cours de congé individuel de formation A 14
+
+**39**. Convention "sidérurgie" (garantie de ressources)
+
+**40**. Ressortissants étrangers admis au séjour au titre de L 316-1 (victimes de la traite des êtres humains)
+
+**41**. Entrée et Séjour Étrangers et Droit Asile au titre de L.811-1
+
+**42**. Entrée et Séjour Étrangers et Droit Asile au titre de L.712-1
+
+**43**. Ressortissants étrangers admis au séjour au titre de L 316-1 (victimes de la traite des êtres humains)
+
+**44**. Entrée et Séjour Étrangers et Droit Asile au titre de L.811-1
+
+**45**. Entrée et Séjour Étrangers et Droit Asile au titre de L.712-1
+
+**99**. Non concerné
+
+**XX**. Valeur hors table

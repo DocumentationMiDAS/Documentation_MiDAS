@@ -1,3 +1,170 @@
 ---
 title: "KCMET"
 ---
+
+Métier exercé par l'individu lors de son contrat de travail.
+
+
+**00**. Métiers qualifiés de l'agriculture (sauf ingénieurs agricoles)
+
+**01**. Ingénieurs et techniciens spécialistes de l'agriculture et des industries agricoles et alimentaires
+
+**02**. Ingénieurs et cadres techniques supérieurs spécialistes de l'application des sciences mathématiques, de l'organisation, de la gestion, de l'informatique, de sciences économiques et humaines
+
+**03**. Autres ingénieurs et cadres techniques
+
+**04**. Techniciens surveillants opérateurs sur installations lourdes et d'usines
+
+**05**. Techniciens des essais, contrôles et laboratoires
+
+**06**. Techniciens de l'organisation du travail et de la gestion de la production
+
+**07**. Agents de maîtrise (production et manutention)
+
+**08**. Dessinateurs projeteurs, dessinateurs d'études
+
+**09**. Dessinateurs d'exécution
+
+**10**. Ouvriers qualifiés de l'extraction (mines et carrières) et du travail des pierres
+
+**11**. Ouvriers qualifiés de la maçonnerie et des travaux connexes
+
+**12**. Ouvriers qualifiés de la couverture, de la plomberie, de la fumisterie, ou des installations sanitaires
+
+**13**. Ouvriers qualifiés de la peinture et de la décoration
+
+**14**. Ouvriers qualifiés de la production et première transformation des métaux
+
+**15**. Ouvriers qualifiés de la forge, de la soudure, de la serrurerie, de la chaudronnerie et de la charpente en fer
+
+**16**. Ouvriers qualifiés de la mécanique : mécanique générale, mécanique de précision, entretien et réglage de machines
+
+**17**. Ouvriers qualifiés de la mécanique : ouvriers sur machine outils
+
+**18**. Monteurs électriciens (production, distribution, bâtiment, entretien)
+
+**19**. Ouvriers qualifiés de l'électromécanique
+
+**20**. Ouvriers qualifiés de l'électronique et de la radioélectricité
+
+**21**. Ouvriers qualifiés du verre et de la céramique
+
+**22**. Ouvriers qualifiés de la photographie et de l'impression
+
+**23**. Ouvriers qualifiés de la production et du travail du papier et du carton
+
+**24**. Ouvriers qualifiés de la chimie
+
+**25**. Ouvriers qualifiés de l'alimentation
+
+**26**. Ouvriers qualifiés des textiles
+
+**27**. Ouvriers qualifiés du travail des étoffes
+
+**28**. Ouvriers qualifiés du travail des cuirs et peaux
+
+**29**. Ouvriers qualifiés du travail du bois et des métiers connexes
+
+**30**. Ouvriers conducteurs de fours ou chauffeurs (de chaudières) qualifiés
+
+**31**. Ouvriers spécialisés et manœuvres
+
+**32**. Personnel qualifié du magasinage et de la manutention
+
+**33**. Conducteurs d'engins de travaux publics et d'appareils de levage
+
+**34**. Conducteurs de véhicules des transports terrestres
+
+**35**. Cadres administratifs supérieurs
+
+**36**. Secrétaires, sténodactylographes, dactylographes
+
+**37**. Comptables et caissiers
+
+**38**. Agents de maîtrise des services administratifs
+
+**39**. Analystes, programmeurs
+
+**40**. Opérateurs sur ordinateur, mécanographes, calculateurs, opérateurs de saisie
+
+**41**. Cadres supérieurs et techniques du commerce et des services commerciaux
+
+**42**. Agents techniques du commerce et des services commerciaux, VRP
+
+**43**. Employés de commerce qualifiés
+
+**44**. Cadres techniques de la banque, des opérations financières et des assurances
+
+**45**. Personnel qualifié de la banque, des opérations financières et assurances
+
+**46**. Cadres techniques et techniciens de la publicité
+
+**47**. Employés qualifiés de la publicité
+
+**48**. Spécialistes de l'information et des relations publiques
+
+**49**. Personnel de l'enseignement supérieur et chercheurs (recherche fondamentale)
+
+**50**. Personnel de l'enseignement secondaire (général ou technique)
+
+**51**. Emplois des activités littéraires
+
+**52**. Artistes, artisans et ouvriers professionnels des arts plastiques et appliqués
+
+**53**. Professionnels des activités artistiques
+
+**54**. Médecins, dentistes, pharmaciens, vétérinaires
+
+**55**. Professionnels des activités paramédicales, sages-femmes
+
+**56**. Auxiliaires médicaux diplômés, autorisés ou spécialisés
+
+**57**. Cadre de l'hôtellerie
+
+**58**. Personnel qualifié de l'hôtellerie
+
+**59**. Professionnels des services sociaux et des activités culturelles
+
+**60**. Employés de bureau non qualifiés
+
+**61**. Professionnels du sport
+
+**62**. Métiers qualifiés du forestage
+
+**63**. Métiers qualifiés de la pêche
+
+**64**. Autres personnels de l'agriculture, des forêts ou de la pêche
+
+**65**. Ouvriers qualifiés de la transformation des matières plastiques
+
+**66**. Personnel qualifié chargé des opérations administratives, du contentieux ou des facturations
+
+**67**. Enseignants et moniteurs de la formation professionnelle
+
+**68**. Instituteurs
+
+**69**. Métiers des activités juridiques
+
+**70**. Employés de commerce non qualifiés
+
+**71**. Personnel non qualifié des services de santé ou des services sociaux
+
+**72**. Personnel des services d'accueil, de gardiennage ou de sécurité
+
+**73**. Personnel non qualifié chargé des tâches de nettoyage ou des travaux domestiques
+
+**74**. Personnel non qualifié de l'hôtellerie
+
+**75**. Métiers de soins corporels
+
+**76**. Permanents des institutions politiques, syndicales ou religieuses
+
+**77**. Métiers de la navigation aérienne
+
+**78**. Métiers de la navigation maritime ou fluviale (sauf pêche)
+
+**79**. Assistante maternelle
+
+**98**. Métiers indéterminés
+
+**XX**. Valeur hors table

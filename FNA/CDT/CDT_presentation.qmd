@@ -1,3 +1,5 @@
 ---
 title: "Présentation de la table"
 ---
+
+Le segment « Contrat de travail » (CDT, LN4E) indique la nature du dernier contrat de travail avant l’ouverture du droit (fait générateur) et son motif de fin. 

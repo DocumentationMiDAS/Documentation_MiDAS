@@ -1,3 +1,107 @@
 ---
 title: "Motif Rupture"
 ---
+
+Motif de la rupture du contrat
+
+**011**. Licenciement suite à liquidation judiciaire ou à redressement judiciaire
+
+**012**. Licenciement suite à fermeture définitive de l'établissement
+
+**014**. Licenciement pour motif économique
+
+**015**. Licenciement pour fin de chantier ou d'opération
+
+**020**. Licenciement pour autre motif
+
+**025**. Autre fin de contrat pour motif économique
+
+**026**. Rupture pour motif économique dans le cadre d'un contrat de sécurisation professionnelle CSP
+
+**031**. Fin de contrat à durée déterminée ou fin d'accueil occasionnel
+
+**032**. Fin de mission d'intérim
+
+**033**. Rupture anticipée d'un CDD ou d'un contrat de mission en cas d'inaptitude physique constatée par le médecin du travail
+
+**034**. Fin de période d'essai à l'initiative de l'employeur
+
+**035**. Fin de période d'essai à l'initiative du salarié
+
+**036**. Rupture anticipée d'un CDD, d'un contrat de professionnalisation, d'un contrat d'apprentissage ou d'un contrat de mission à l'initiative de l'employeur
+
+**037**. Rupture anticipée d'un CDD, d'un contrat de professionnalisation, d'un contrat d'apprentissage ou d'un contrat de mission à l'initiative du salarié
+
+**038**. Mise à la retraite par l'employeur
+
+**039**. Départ à la retraite à l'initiative du salarié
+
+**043**. Rupture conventionnelle
+
+**058**. Prise d'acte de la rupture de contrat de travail
+
+**059**. Démission
+
+**065**. Décès de l'employeur ou internement / conduit à un licenciement autre motif
+
+**066**. Décès du salarié
+
+**070**. \[FP\] Révocation suite à abandon de poste
+
+**071**. \[FP\] Révocation suite à sanction pénale
+
+**081**. Fin de contrat d'apprentissage
+
+**082**. Résiliation judiciaire du contrat de travail
+
+**083**. Rupture de contrat de travail ou d'un contrat de mission pour force majeure ou fait du prince
+
+**084**. Rupture d'un commun accord du CDD, d'un contrat de professionnalisation, du contrat d'apprentissage ou d'un contrat de mission
+
+**085**. Fin de mandat
+
+**086**. Licenciement convention CATS
+
+**087**. Licenciement pour faute grave
+
+**088**. Licenciement pour faute lourde
+
+**089**. Licenciement pour force majeure
+
+**091**. Licenciement pour inaptitude physique d'origine non professionnelle
+
+**092**. Licenciement pour inaptitude physique d'origine professionnelle
+
+**093**. Licenciement suite à décision d'une autorité administrative
+
+**094**. Rupture anticipée du contrat de travail pour arrêt de tournage
+
+**095**. Rupture anticipée du contrat de travail ou d'un contrat de mission pour faute grave
+
+**096**. Rupture anticipée du contrat de travail ou d'un contrat de mission pour faute lourde
+
+**097**. Rupture anticipée d'un contrat de travail ou d'un contrat de mission suite à fermeture de l'établissement
+
+**098**. Retrait d'enfant
+
+**099**. Annulation
+
+**100**. Mutation au sein du même groupe ou extérieure au groupe pour les secteurs d'activité autorisés (gardiennage, ménage, restauration, etc.) sans rupture du contrat
+
+**110**. Rupture conventionnelle collective
+
+**111**. Rupture amiable dans le cadre d'un congé de mobilité
+
+**112**. Rupture dans le cadre d'un accord de performance collective
+
+**113**. Licenciement pour motif spécifique (Article L. 2254-2 du Code du Travail)
+
+**114**. Rupture d'un commun accord pour entrée en PAP
+
+**115**. Licenciement au titre des articles 18 et 19 de la loi n° 2017-1339 du 15 septembre 2017
+
+**116**. Fin de ligne de service
+
+**998**. Transfert du contrat de travail sans rupture du contrat vers un autre établissement pas rentré dans la DSN
+
+**999**. Fin de relation avec l'employeur (autres que contrat de travail, convention ou mandat)

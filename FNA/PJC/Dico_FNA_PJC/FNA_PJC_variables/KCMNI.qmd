@@ -1,3 +1,59 @@
 ---
 title: "KCMNI"
 ---
+
+Il s'agit du motif de non-paiement d'une PJC de type carence/différé ou autre. Il y a une hiérarchie entre les différentes valeurs la plus petite est à privilégier. Ce code est renseigné pour les PJC de type '2' et '3'. Toute modification de cette valeur induit une rupture sur les PJC
+
+**00**. Carence, franchise ou différé
+
+**01**. Différés en cours de droit
+
+**10**. Exclusion temporaire DDTE sans imputation (122j)
+
+**11**. Exclusion temporaire DDTE avec imputation (122j)
+
+**12**. Exclusion temporaire DDTE sans imputation (autre)
+
+**13**. Exclusion temporaire DDTE avec imputation (autre)
+
+**20**. Suspension pour double indemnisation sans imputation
+
+**21**. Suspension pour double indemnisation avec imputation
+
+**40**. Période non indemnisée pour attente de justificatifs (A.R.)
+
+**41**. Période non indemnisée pour dépassement du seuil de rémunération de l'A.R.
+
+**42**. Période non indemnisée pour dépassement du seuil horaire de l'A.R.
+
+**43**. Décalage de paiement pour A.R.
+
+**44**. Décision négative de la DDTE sur prolongation du cumul (A.R.) - Décret 98-1070 du 27/11/1998
+
+**45**. Attente de décision de la DDTE pour prolongation du cumul (A.R.) - Décret 98-1070 du 27/11/1998
+
+**46**. Contrat Aidé
+
+**47**. Suspension du CSP pour reprise d'activité
+
+**50**. Période saisonnière
+
+**57**. En attente de régularisation ANS (abattement de 30 %)
+
+**58**. Attente régularisation mensuelle
+
+**59**. Paiement activité non salariée mensuelle prévisionnelle
+
+**60**. Prise en charge par la Sécurité Sociale
+
+**70**. Sanction pour activité non déclarée
+
+**80**. Dépassement du plafond de ressources (RSN)
+
+**90**. Période non indemnisée pour autre motif
+
+**95**. Période non indemnisée pour motif inconnu
+
+**99**. Sans objet
+
+**XX**. Valeur hors table

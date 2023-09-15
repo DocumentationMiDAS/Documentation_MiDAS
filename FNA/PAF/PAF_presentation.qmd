@@ -1,3 +1,5 @@
 ---
 title: "Présentation de la table"
 ---
+
+Segment « Période d'affiliation » (PAF, LN2L) : pour un droit, cette table contient l'ensemble des évènements (contrats de travail, périodes de formations, arrêts maladie...) connus d'un individu, indiqués par une date de début (KDDPE) et une date de fin (KDFPE). Si ces variables sont identiques à celles présentes dans CDT, elles ne renvoient pas nécessairement à un contrat car le « champ » de PAF est plus large que celui de CDT. L'ensemble des contrats ayant permis l'ouverture de droit peuvent être repérés grâce à KCFPL et sont généralement exprimés en heures alors que les arrêts maladie sont exprimés en jours (KCAFF).

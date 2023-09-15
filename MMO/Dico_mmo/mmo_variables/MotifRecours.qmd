@@ -1,3 +1,35 @@
 ---
 title: "Motif Recours"
 ---
+
+Motif de recours au dernier jour de la période de référence
+
+**01**. Remplacement d'un salarié
+
+**02**. Accroissement temporaire de l'activité de l'entreprise
+
+**03**. Emplois à caractère saisonnier
+
+**04**. Contrat vendanges
+
+**05**. Contrat d'usage
+
+**06**. Contrat à durée déterminée à objet défini
+
+**07**. Remplacement d'un chef d'entreprise (« artisanale, industrielle ou commerciale, d'une personne exerçant une profession libérale, de son conjoint participant effectivement à l'activité de l'entreprise à titre professionnel et habituel ou d'un associé non salarié d'une société civile professionnelle, d'une société civile de moyens ou d'une société d'exercice libéral »)
+
+**08**. Remplacement du chef d'une exploitation agricole (« ou d'une entreprise mentionnée aux 1° à 4° de l'article L. 722-1 du code rural et de la pêche maritime, d'un aide familial, d'un associé d'exploitation, ou de leur conjoint mentionné à l'article L. 722-10 du même code dès lors qu'il participe effectivement à l'activité de l'exploitation agricole ou de l'entreprise »)
+
+**09**. Recrutement de personnes sans emploi rencontrant des difficultés sociales et professionnelles particulières
+
+**10**. Complément de formation professionnelle au salarié
+
+**11**. Formation professionnelle au salarié par la voie de l'apprentissage, en vue de l'obtention d'une qualification professionnelle sanctionnée par un diplôme ou un titre à finalité professionnelle enregistré au répertoire national des certifications professionnelles
+
+**12**. Remplacement d'un salarié passé provisoirement à temps partiel
+
+**13**. Attente de la suppression définitive du poste du salarié ayant quitté définitivement l'entreprise
+
+**14**. Contrat de voyage
+
+**15**. Recrutement d'un intérimaire en sa qualité de BOETH

@@ -1,3 +1,66 @@
 ---
 title: "KCDAL"
 ---
+
+Type de la demande d'allocation
+
+
+**01**. DA RAC
+
+**02**. DA RAC DETENUS LIBERES
+
+**03**. DA RAC SIMPLIFIE
+
+**04**. DA PRERETRAITE
+
+**05**. DA AFR
+
+**06**. DA RSP
+
+**07**. DA SOLIDARITE ASS
+
+**08**. DA SOLIDARITE AI
+
+**09**. DA ACO
+
+**10**. DA ARPE
+
+**11**. DA ACA
+
+**12**. DA ASA / AER
+
+**13**. DA AER Automatique
+
+**14**. DA RAC Intermittent A8 /A10
+
+**15**. DA FSP (Fonds Spécifique Provisoire)
+
+**16**. DA ASR (Allocation Spécifique de Reclassement)
+
+**17**. DA AF (suite à CNE)
+
+**18**. DA CTP (Contrat de Transition Professionnel)
+
+**19**. DA ATA
+
+**20**. DA AEPE suite REJET ASS
+
+**21**. DA RFPE
+
+**22**. DA AEPE suite REJET RAC
+
+**23**. DA PLAN REBOND suite REJET ASS
+
+**24**. DA CSP
+
+**25**. DA ATS (Allocation Transitoire de Solidarité)
+
+**26**. Demande de rechargement de doit (AC 2014)
+
+**27**. Demande d'allocation suite à perte d'une activité conservée (AC 2014) (14si4)
+
+**28**. Demande d'allocation dans le cadre du droit d'option de l'Annexe XI (AC 2014)
+
+**29**. Demande d'allocation suite à interruption de l'indemnisation durant 3 mois consécutifs (AC 2014)
+
+**30**. Demande d'allocation PTS (prime transitoire de solidarité)
