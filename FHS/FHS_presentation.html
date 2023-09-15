@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Documentation MiDAS - Présentation du fichier Historique Statistique (FHS)</title>
+<title>Documentation MiDAS - Le Fichier Historique Statistique (FHS)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -133,7 +133,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../FHS/FHS_presentation.html">Présentation</a></li><li class="breadcrumb-item"><a href="../FHS/FHS_presentation.html">Présentation du fichier Historique Statistique (FHS)</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../FHS/FHS_presentation.html">Présentation</a></li><li class="breadcrumb-item"><a href="../FHS/FHS_presentation.html">Le Fichier Historique Statistique (FHS)</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -157,7 +157,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../FHS/FHS_presentation.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Présentation du fichier Historique Statistique (FHS)</span></a>
+ <span class="menu-text">Le Fichier Historique Statistique (FHS)</span></a>
   </div>
 </li>
       </ul>
@@ -494,8 +494,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#présentation-des-données" id="toc-présentation-des-données" class="nav-link active" data-scroll-target="#présentation-des-données">Présentation des données</a></li>
-  <li><a href="#champ-des-données" id="toc-champ-des-données" class="nav-link" data-scroll-target="#champ-des-données">Champ des données</a></li>
+  <li><a href="#champ" id="toc-champ" class="nav-link active" data-scroll-target="#champ">Champ</a></li>
+  <li><a href="#structure-des-tables" id="toc-structure-des-tables" class="nav-link" data-scroll-target="#structure-des-tables">Structure des tables</a></li>
   </ul>
 </nav>
     </div>
@@ -504,7 +504,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Présentation du fichier Historique Statistique (FHS)</h1>
+<h1 class="title">Le Fichier Historique Statistique (FHS)</h1>
 </div>
 
 
@@ -519,21 +519,22 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="présentation-des-données" class="level2">
-<h2 class="anchored" data-anchor-id="présentation-des-données">Présentation des données</h2>
-<p>Chaque trimestre, Pôle emploi produit le Fichier Historique Statistique des demandeurs d’emploi inscrits à Pôle emploi. Ce fichier enregistre, pour les 10 dernières années, tous les événements successifs concernant les personnes qui ont été inscrites sur les listes de Pôle emploi sur cette période, qu’elles soient ou non inscrites à la date d’extraction du fichier.</p>
-<p>Les données du FHS permettent d’analyser la trajectoire d’inscription des demandeurs d’emploi et d’éclairer notamment la question de la récurrence d’inscription sur les listes, d’ancienneté dans la catégorie A, ou les transitions entre les différentes catégories de demandeurs d’emploi. Dans le cadre de MiDAS, les tables suivantes sont disponibles :</p>
-<ul>
-<li><p>La table <a href="DE/DE_presentation.html">DE</a> (Demandes d’emploi) : cette table contient des informations sur les caractéristiques des demandeurs d’emploi inscrits à Pôle Emploi (sexe, date de naissance, qualification, commune de résidence…) et des demandes (dates et motif d’inscription, catégorie d’inscription, type d’emploi recherché, date et motif d’annulation…) ;</p></li>
-<li><p>La table <a href="../FHS/D2/D2_presentation.html">D2</a> (Indemnisabilité) : code allocation et durée d’indemnisabilité maximale pour les droits calculés (pas forcément payés). Bien qu’elle permette de repérer le nombre d’indemnisables, il faut lui préférer les tables ODD et PJC du FNA pour ce qui est lié à l’indemnisabilité ;</p></li>
-<li><p>La table <a href="../FHS/P2/P2_presentation.html">P2</a> (Formations) – provenant à l’origine de la base FHS-services − qui contient des informations sur les formations suivies, majoritairement pour les demandeurs indemnisés par Pôle Emploi ;</p></li>
-<li><p>Les tables <a href="../FHS/E3/E3_presentation.html">E3</a> et <a href="../FHS/E3_Cons/E3_Cons_presentation.html">E3-Cons</a> (actions) – provenant à l’origine de la base FHS-services − qui permettent d’identifier les dispositifs et prestations dont a bénéficié le demandeur d’emploi, ainsi que leur statut ;</p></li>
-<li><p>La table <a href="../FHS/E0/E0_presentation.html">E0</a> : cette table permet de connaître les périodes (année et mois) d’activité réduite exercées par les demandeurs d’emploi (inscrits en catégories B et C).</p></li>
-</ul>
+<p><strong>Chaque trimestre</strong>, <strong>Pôle emploi</strong> produit le <strong>Fichier Historique Statistique des demandeurs d’emploi inscrits à Pôle emploi</strong>. Ce fichier enregistre, <strong>pour les 10 années antérieures</strong>, tous les événements successifs concernant les personnes qui ont été inscrites sur les listes de Pôle emploi sur cette période, qu’elles soient ou non inscrites à la date d’extraction du fichier.</p>
+<p>Les données du FHS permettent d’analyser la trajectoire d’inscription des demandeurs d’emploi et d’éclairer notamment la question de la récurrence d’inscription sur les listes, d’ancienneté dans la catégorie A, ou les transitions entre les différentes catégories de demandeurs d’emploi.</p>
+<section id="champ" class="level2">
+<h2 class="anchored" data-anchor-id="champ">Champ</h2>
+<p>Toute personne inscrite à Pôle emploi au moins un jour depuis le 1er janvier 2017 avec son historique d’inscription remontant sur les 10 années qui précèdent pour la France entière.</p>
 </section>
-<section id="champ-des-données" class="level2">
-<h2 class="anchored" data-anchor-id="champ-des-données">Champ des données</h2>
-<p>Toute personne inscrite à Pôle emploi au moins un jour depuis le 1er janvier 2017 avec son historique d’inscription remontant à 10 ans (juin 2012) pour la France entière.</p>
+<section id="structure-des-tables" class="level2">
+<h2 class="anchored" data-anchor-id="structure-des-tables">Structure des tables</h2>
+<p>Dans le cadre de MiDAS, les tables suivantes sont disponibles :</p>
+<ul>
+<li><p>La <strong>table <a href="DE/DE_presentation.html">DE</a> (Demandes d’emploi)</strong> : cette table contient des informations sur les caractéristiques des demandeurs d’emploi inscrits à Pôle Emploi (sexe, date de naissance, qualification, commune de résidence…) et des demandes (dates et motif d’inscription, catégorie d’inscription, type d’emploi recherché, date et motif d’annulation…) ;</p></li>
+<li><p>La <strong>table <a href="../FHS/E0/E0_presentation.html">E0</a></strong> <strong>(activité réduite)</strong> : cette table permet de connaître les périodes (année et mois) d’activité réduite exercées par les demandeurs d’emploi (inscrits en catégories B et C).</p></li>
+<li><p>La <strong>table <a href="../FHS/D2/D2_presentation.html">D2</a> (Indemnisabilité)</strong> : code allocation et durée d’indemnisabilité maximale pour les droits calculés (pas forcément payés). Bien qu’elle permette de repérer le nombre d’indemnisables, il faut lui préférer les tables ODD et PJC du FNA pour ce qui est lié à l’indemnisabilité ;</p></li>
+<li><p>La <strong>table <a href="../FHS/P2/P2_presentation.html">P2</a> (Formations)</strong> – provenant à l’origine de la base FHS-services − qui contient des informations sur les formations suivies, majoritairement pour les demandeurs indemnisés par Pôle Emploi ;</p></li>
+<li><p>Les <strong>tables <a href="../FHS/E3/E3_presentation.html">E3</a> et <a href="../FHS/E3_Cons/E3_Cons_presentation.html">E3-Cons</a> (actions)</strong> – provenant à l’origine de la base FHS-services − qui permettent d’identifier les dispositifs et prestations dont a bénéficié le demandeur d’emploi, ainsi que leur statut ;</p></li>
+</ul>
 
 
 </section>

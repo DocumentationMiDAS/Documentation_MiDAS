@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Documentation MiDAS - Données de la Caisse Nationale des Allocations Familiales</title>
+<title>Documentation MiDAS - Allstat-Fr6</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -133,7 +133,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Allstat_FR6/Allstat_FR6_presentation.html">Présentation</a></li><li class="breadcrumb-item"><a href="../Allstat_FR6/Allstat_FR6_presentation.html">Données de la Caisse Nationale des Allocations Familiales</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Allstat_FR6/Allstat_FR6_presentation.html">Présentation</a></li><li class="breadcrumb-item"><a href="../Allstat_FR6/Allstat_FR6_presentation.html">Allstat-Fr6</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -157,7 +157,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Allstat_FR6/Allstat_FR6_presentation.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Données de la Caisse Nationale des Allocations Familiales</span></a>
+ <span class="menu-text">Allstat-Fr6</span></a>
   </div>
 </li>
       </ul>
@@ -275,8 +275,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#présentation-des-données" id="toc-présentation-des-données" class="nav-link active" data-scroll-target="#présentation-des-données">Présentation des données</a></li>
-  <li><a href="#champ-et-temporalité-des-données" id="toc-champ-et-temporalité-des-données" class="nav-link" data-scroll-target="#champ-et-temporalité-des-données">Champ et temporalité des données</a></li>
+  <li><a href="#champ" id="toc-champ" class="nav-link active" data-scroll-target="#champ">Champ</a></li>
+  <li><a href="#structure-des-tables" id="toc-structure-des-tables" class="nav-link" data-scroll-target="#structure-des-tables">Structure des tables</a></li>
   </ul>
 </nav>
     </div>
@@ -285,7 +285,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Données de la Caisse Nationale des Allocations Familiales</h1>
+<h1 class="title">Allstat-Fr6</h1>
 </div>
 
 
@@ -300,13 +300,7 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="présentation-des-données" class="level2">
-<h2 class="anchored" data-anchor-id="présentation-des-données">Présentation des données</h2>
-<p>Les données Cnaf sont présentes au sein d’Allstat-FR6, le fichier des allocataires Caf, qui permet le suivi statistique mensuel des droits aux prestations versées par les Caf (le droit au titre du mois M étant apprécié entre le 5 et le 10 du mois M+6). Les informations de la Cnaf (ressources et prestations versées) sont renseignées à l’échelle du « foyer allocataire » ou « foyer social », qui regroupe l’ensemble des membres du ménage dont les ressources permettent l’octroi de prestations sociales. Un « foyer social » n’a pas la même définition selon la prestation considérée, car la composition et les ressources du foyer prises en compte lui sont propres (Tableau 3).</p>
-<p>Pour chaque mois de chaque année depuis 2017, MiDAS contient trois types de tables :</p>
-<p>• Un fichier « Prestations » qui liste les montants perçus par les individus sur le champ des foyers sociaux bénéficiaires du Revenu de solidarité active (RSA), de la prime d’activité (PA) et de l’Allocation aux adultes handicapés (AAH) ;</p>
-<p>• Un fichier « Ménages » qui, pour chaque foyer social d’un individu du champ MiDAS (y compris demandeurs d’emploi n’ayant jamais perçu de minima sociaux) liste ses ressources et les prestations sociales qu’il perçoit ;</p>
-<p>• Une table de passage pour apparier ces informations sur les foyers sociaux avec l’ensemble des individus du champ MiDAS.</p>
+<p>Le fichier <strong>Allstat-FR6</strong> des allocataires de la <strong>caisse des allocations familiales (Caf)</strong> permet le <strong>suivi statistique mensuel des droits aux prestations versées par les Caf</strong> (le droit au titre du mois M étant apprécié entre le 5 et le 10 du mois M+6). Les informations de la Cnaf (ressources et prestations versées) sont renseignées à l’échelle du « foyer allocataire » ou « <strong>foyer social</strong> », qui regroupe l’ensemble des membres du ménage dont les ressources permettent l’octroi de prestations sociales. Un « foyer social » n’a pas la même définition selon la prestation considérée, car la composition et les ressources du foyer prises en compte lui sont propres.</p>
 <p><u><strong>Tableau : Conditions d’attribution du RSA, de la PA et de l’AAH</strong></u></p>
 <table class="table">
 <colgroup>
@@ -359,11 +353,17 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 <p><u>Source</u> : <a href="https://drees.solidarites-sante.gouv.fr/sites/default/files/2022-09/Minima22%20Fiche%209%20-%20L%E2%80%99assiette%20des%20ressources%20et%20la%20p%C3%A9riode%20de%20r%C3%A9f%C3%A9rence%20des%20prestations.pdf">Drees</a>, <em>Minima Sociaux et Prestations Sociales</em>, 2022.</p>
+<section id="champ" class="level2">
+<h2 class="anchored" data-anchor-id="champ">Champ</h2>
+<p>MiDAS contient l’ensemble des adultes membres de foyers sociaux qui sont ou ont été <strong>bénéficiaires du RSA, de la PA ou de l’AAH</strong> <strong>depuis janvier 2017</strong> pour la France entière. À noter l’absence des enfants de 18 à 25 ans qui vivent chez leurs parents, même si ces derniers appartiennent au foyer social bénéficiaire du RSA ou de la PA. Enfin, pour l’AAH, si son versement est soumis aux conditions de ressources du ménage<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, il s’agit d’une prestation individuelle et seul l’allocataire en est le bénéficiaire. Ainsi, son conjoint est conservé dans MiDAS s’il a été inscrit au moins une fois à Pôle emploi ou si le couple a bénéficié du RSA ou de la PA depuis 2017.</p>
+<p>Par ailleurs, <strong>pour l’ensemble du champ des bénéficiaires de minima sociaux et des demandeurs d’emploi</strong>, MiDAS contient des informations sur les diverses prestations versées par la Caf (allocations logement et prestations familiales), la structure familiale de ces foyers sociaux ainsi que leurs ressources financière au moment de la demande de prestations.</p>
 </section>
-<section id="champ-et-temporalité-des-données" class="level2">
-<h2 class="anchored" data-anchor-id="champ-et-temporalité-des-données">Champ et temporalité des données</h2>
-<p>L’ensemble des foyers sociaux bénéficiaires du RSA, de la PA et de l’AAH depuis janvier 2017 (fichier « Prestations ») pour la France entière.</p>
-<p>Ainsi, tout adulte seul ou membre d’un couple constitutif d’un foyer social qui perçoit un droit au RSA ou à la PA est suivi dans MiDAS quel que soit son âge. À noter l’absence des enfants de 18 à 25 ans qui vivent chez leurs parents, même si ces derniers appartiennent au foyer social bénéficiaire du RSA ou de la PA. Enfin, pour l’AAH, si son versement est soumis aux conditions de ressources du ménage<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, il s’agit d’une prestation individuelle et seul l’allocataire en est le bénéficiaire. Ainsi, son conjoint est conservé dans MiDAS s’il a été inscrit au moins une fois à Pôle emploi ou si le couple a bénéficié du RSA ou de la PA depuis 2017.</p>
+<section id="structure-des-tables" class="level2">
+<h2 class="anchored" data-anchor-id="structure-des-tables">Structure des tables</h2>
+<p>Pour chaque mois de chaque année depuis 2017, MiDAS contient trois types de tables :</p>
+<p>• Un fichier « <a href="../Allstat_FR6/Prestations/prestations_presentation.html"><strong>Prestations</strong></a> » qui liste les montants perçus par les foyers sociaux bénéficiaires du Revenu de solidarité active (RSA), de la prime d’activité (PA) et de l’Allocation aux adultes handicapés (AAH). Une ligne correspond à un individu membre d’un foyer social ;</p>
+<p>• Un fichier « <a href="../Allstat_FR6/Menages/menages_presentation.html"><strong>Ménages</strong></a> » qui, pour chaque foyer social d’un individu du champ MiDAS (y compris demandeurs d’emploi n’ayant jamais perçu de minima sociaux) liste ses ressources et les prestations sociales qu’il perçoit. Une ligne correspond à un foyer social ;</p>
+<p>• Une <strong>table de passage</strong> pour apparier ces informations sur les foyers sociaux avec l’ensemble des individus du champ MiDAS. Une ligne correspond à un individu membre d’un foyer social.</p>
 
 
 </section>
