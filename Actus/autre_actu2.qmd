@@ -1,0 +1,7 @@
+---
+title: "Autre actualité bis"
+date: today
+author: un_contributeur
+---
+
+Un autre exemple.

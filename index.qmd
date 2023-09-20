@@ -1,13 +1,157 @@
 ---
-title: "Documentation MiDAS"
+toc: false
+sidebar: false
+title-block-style: none
+css: homepage.css
+listing:
+  contents: 
+    - "Actus/*.qmd"
+  type: grid
+  sort: "date"
 ---
 
-La documentation de l'appariement MiDAS est évolutive et collaborative : elle vise à être progressivemen enrichir au fil de ses exploitations et par l'ensemble de ses utilisateurs. Pour toute question, vous pouvez contacter :
+::: {#banner_1 .column-screen}
+::: {.grid .column-page}
+::: {.g-col-md-8}
+::: h1
+Le projet MiDAS
+:::
 
--   contact 1
 
--   contact 2
+```{=html}
+<a class="github-button" href="https://github.com/DocumentationMiDAS/Documentation_MiDAS" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star this website on Github">Star this website on Github</a><script async defer src="https://buttons.github.io/buttons.js"></script>
+```
+<br>
 
--   contact 3
+Ce site constitue la documentation de l'appariement MiDAS, créé pour évaluer les effets de la réforme 2019-2021 du système d'Assurance Chômage.
 
--   contact 4
+L'ensemble des codes sources du site est stocké sur [Github](https://github.com/DocumentationMiDAS/Documentation_MiDAS) <a href="https://github.com/DocumentationMiDAS/Documentation_MiDAS" class="github"><i class="fab fa-github"></i></a>
+
+<br>
+
+::: h3
+Les objectifs de la documentation MiDAS :
+:::
+<br>
+
+::: {.grid}
+
+::: {.g-col-4}
+![](images/GitHub-Mark.png){width=100 fig-align="center"}
+[Collaborative]{.rose}
+:::
+
+::: {.g-col-4}
+![](images/loupe.png){width=99 fig-align="center"}
+[Transparente]{.rose}
+:::
+
+::: {.g-col-3}
+
+![](images/logo_web.png){width=103 fig-align="center"}
+[Accessible]{.rose}
+:::
+
+:::
+
+
+<br>
+
+<br>
+:::
+
+::: {.g-col-6 .g-col-md-4}
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+![](images/logo_dares.png){width="500" fig-align="center"}
+:::
+:::
+:::
+
+::: {#banner_2 .column-screen}
+::: {.grid .column-page}
+::: {.g-col-6 .g-col-md-4 .g-col-8}
+::: h1
+Minima sociaux
+:::
+
+<br>
+
+Les données de la Caisse Nationale des Allocations Familiales portant sur les [bénéficiares de minima sociaux]{.rose} : Revenu de Solidarité Active (RSA), Prime d'Activité (PA) et Allocation pour Adulte Handicapé (AAH).
+
+<br>
+
+<br>
+:::
+
+::: {.g-col-6 .g-col-md-5 .g-col-8}
+::: h1
+Droits d'Assurance Chômage
+:::
+
+Les données de Pôle Emploi sur l'**inscription** et l'**indemnisation** des [demandeurs d'emploi]{.rose}. <br>
+:::
+
+::: {.g-col-6 .g-col-md-3 .g-col-8}
+::: h1
+Parcours Salariés
+:::
+
+Les données de la Dares issues de l'exploitation des Déclarations Sociales Nominatives (DSN) sur les [contrats salariés]{.rose} pour les personnes inscrites à Pôle Emploi et/ou bénéficiant de minima sociaux. <br>
+:::
+:::
+:::
+
+::: column-screen
+::: {.grid .column-page}
+::: g-col-4
+
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+![](images/trajectoires_statistiques.jpg){width="300" fig-align="center"}
+:::
+
+::: g-col-8
+::: h1
+MiDAS, des données au coeur de l'actualité
+:::
+
+
+⌚ Evaluer les réformes du système d'assurance chômage avec des données mises à jour régulièrement
+
+🔎 Etudier les trajectoires des individus entre l'emploi, l'assurance chômage et les minima sociaux
+
+💬 Eclairer le débat public sur les interactions entre minima sociaux et assurance chômage
+
+📊 Mesurer le retour à l'emploi des populations ciblées par les politiques du marché du travail
+
+<br>
+
+:::
+:::
+:::
+
+::: {#banner_2 .column-screen}
+::: h1
+[Les dernières actus de MiDAS]{.headline} :
+<br>
+
+<br>
+
+:::
+:::
+
+<br>

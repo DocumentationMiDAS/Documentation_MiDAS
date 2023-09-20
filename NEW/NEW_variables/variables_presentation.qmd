@@ -1,3 +1,7 @@
 ---
 title: "Présentation des nouvelles variables"
+date: today
+author: Léonie
 ---
+
+Nouvelles variables !

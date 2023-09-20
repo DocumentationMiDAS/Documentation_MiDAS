@@ -1,6 +1,7 @@
 project:
   type: website
 
+
 website:
   title: "Documentation MiDAS"
   navbar:
@@ -242,7 +243,7 @@ website:
 
 format:
   html:
-    theme: cosmo
+    theme: pulse
     css: styles.css
     toc: true
 

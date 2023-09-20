@@ -91,7 +91,6 @@ rsconnect/
 *.asp
 *.cer
 *.csr
-*.css
 *.htm
 *.js
 *.jsp
@@ -123,8 +122,6 @@ rsconnect/
 *.RDataTmp
 
 ###Images###
-*.png
-*.jpg
 *.rar
 *.zip
 *.raw

@@ -1,0 +1,5 @@
+---
+title: "Autre actualité"
+date: today
+author: random_author
+---

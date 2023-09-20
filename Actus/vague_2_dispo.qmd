@@ -1,0 +1,7 @@
+---
+title: "La vague 2 de MiDAS est disponible"
+date: "05/05/2023"
+author: Dares-DSIDE
+---
+
+Les données de la vague 2 de MiDAS sont disponibles sous CASD.
