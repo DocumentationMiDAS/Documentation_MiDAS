@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Documentation MiDAS - Qu’est-ce que MiDAS ?</title>
+<title>Documentation MiDAS - Champ de l’appariement</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -132,7 +132,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Presentation/presentation1.html">Qu’est-ce que MiDAS ?</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Presentation/presentation1.html">Champ de l’appariement</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -153,13 +153,13 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Presentation/presentation1.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Qu’est-ce que MiDAS ?</span></a>
+ <span class="menu-text">Champ de l’appariement</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Presentation/presentation2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Champ de l’appariement et temporalité des données</span></a>
+ <span class="menu-text">Calendrier des vagues</span></a>
   </div>
 </li>
     </ul>
@@ -168,14 +168,20 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#champ-détaillé-de-chaque-source" id="toc-champ-détaillé-de-chaque-source" class="nav-link active" data-scroll-target="#champ-détaillé-de-chaque-source">Champ détaillé de chaque source</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Qu’est-ce que MiDAS ?</h1>
+<h1 class="title">Champ de l’appariement</h1>
 </div>
 
 
@@ -190,21 +196,53 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>MiDAS (<strong>Mi</strong>nima Sociaux, <strong>D</strong>roits d’<strong>A</strong>ssurance-chômage, parcours <strong>S</strong>alariés) est un appariement de données administratives mené par la Dares (département Suivi et indemnisation des demandeurs d’emploi (D-Side)), en collaboration avec la Cnaf et Pôle emploi.</p>
-<p>MiDAS regroupe ainsi les données :</p>
+<p>Le champ est le suivant selon les bases de données :</p>
 <ul>
-<li><p>De suivi des demandeurs d’emploi par le <strong>Fichier historique statistique (FHS)</strong> et d’indemnisation dans le <strong>Fichier national des allocataires (FNA)</strong> de Pôle Emploi&nbsp;;</p></li>
-<li><p>Du <strong>Fichier Allstat-FR6</strong> de la Cnaf sur les prestations sociales&nbsp;;</p></li>
-<li><p>Sur les contrats de travail reconstituées par la Dares dans les <strong>Mouvements de main-d’œuvre (MMO)</strong> à partir de la Déclaration sociale nominative (DSN).</p></li>
+<li><p>Du côté des <strong>données de Pôle emploi</strong>, MiDAS comprend l’ensemble des demandeurs d’emploi (DE) inscrits à Pôle emploi au moins un jour depuis 2017, dont les indemnisés à l’Assurance-chômage (AC) ;</p></li>
+<li><p>Du côté des <strong>données de la Cnaf</strong>, MiDAS comprend l’ensemble des foyers sociaux bénéficiaires au moins un mois depuis 2017 du Revenu de solidarité active (RSA), de la prime d’activité (PA) et les personnes handicapées bénéficiaires de l’Allocation aux adultes handicapés (AAH) ;</p></li>
+<li><p>Du côté des <strong>données de la Dares,</strong> MiDAS contient, parmi les MMO, tous les contrats salariés en cours ou terminés après le 1er janvier 2017 pour les individus du champ. Le champ de MiDAS (graphique 1) comprend ainsi les demandeurs d’emploi inscrits à Pôle emploi (fichier FHS) dont les indemnisés (fichier FNA), auxquels sont appariés les bénéficiaires des minima sociaux . Les données MMO sont appariées à ce champ.</p></li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="schema_champ.png" class="img-fluid figure-img"></p>
+<p><img src="../images/champ_appariement.png" class="img-fluid figure-img"></p>
 <figcaption class="figure-caption">Graphique 1 : Schéma du champ MiDAS</figcaption>
 </figure>
 </div>
+<section id="champ-détaillé-de-chaque-source" class="level2">
+<h2 class="anchored" data-anchor-id="champ-détaillé-de-chaque-source">Champ détaillé de chaque source</h2>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Source</th>
+<th>Champ des données</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>FHS</td>
+<td>Toute personne inscrite à Pôle emploi au moins un jour depuis le 1er janvier 2017 avec son historique d’inscription remontant à 10 ans (juin 2012) pour la France entière.</td>
+</tr>
+<tr class="even">
+<td>FNA</td>
+<td>Demandeurs d’emploi indemnisables au moins 1 jour depuis le 1er janvier 2017. Pour ces individus, MiDAS contient tout l’historique de l’indemnisation depuis 1993, des périodes d’affiliation et de l’activité réduite.</td>
+</tr>
+<tr class="odd">
+<td>Allstat-FR6</td>
+<td>L’ensemble des foyers sociaux bénéficiaires du RSA, de la PA et de l’AAH depuis janvier 2017 (fichier « Prestations ») pour la France entière. Ainsi, tout adulte seul ou membre d’un couple constitutif d’un foyer social qui perçoit un droit au RSA ou à la PA est suivi dans MiDAS quel que soit son âge. À noter l’absence des enfants de 18 à 25 ans qui vivent chez leurs parents, même si ces derniers appartiennent au foyer social bénéficiaire du RSA ou de la PA. Enfin, pour l’AAH, si son versement est soumis aux conditions de ressources du ménage , il s’agit d’une prestation individuelle et seul l’allocataire en est le bénéficiaire. Ainsi, son conjoint est conservé dans MiDAS s’il a été inscrit au moins une fois à Pôle emploi ou si le couple a bénéficié du RSA ou de la PA depuis 2017.</td>
+</tr>
+<tr class="even">
+<td>MMO</td>
+<td>L’ensemble des contrats salariés depuis le 1er janvier 2017 pour les individus du champ MiDAS. Les données sont représentatives de l’ensemble des établissements employeurs de France métropolitaine sur le champ privé et public. Le champ recouvert par la DSN s’étant accru depuis 2017, l’exhaustivité des déclarations est meilleure en fin de période qu’en début de période. Les données portant sur les établissements de moins de 10 salariés sont également disponibles. Le champ de MiDAS comprendra de nouveaux publics à mesure qu’ils sont intégrés à la DSN. En revanche, MiDAS n’intègre pas les indépendants.</td>
+</tr>
+</tbody>
+</table>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

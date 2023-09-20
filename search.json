@@ -1,5 +1,19 @@
 [
   {
+    "objectID": "Actus/vague_2_dispo.html",
+    "href": "Actus/vague_2_dispo.html",
+    "title": "La vague 2 de MiDAS est disponible",
+    "section": "",
+    "text": "Les données de la vague 2 de MiDAS sont disponibles sous CASD."
+  },
+  {
+    "objectID": "Actus/ajout_cibles.html",
+    "href": "Actus/ajout_cibles.html",
+    "title": "Ajout des programmes cibles",
+    "section": "",
+    "text": "Les programmes des cibles Dares ont été ajoutés sur le site documentaire."
+  },
+  {
     "objectID": "FHS/P2/P2_presentation.html",
     "href": "FHS/P2/P2_presentation.html",
     "title": "Présentation de la table",
@@ -179,14 +193,21 @@
     "href": "Presentation/présentation.html",
     "title": "Présentation générale",
     "section": "",
-    "text": "MiDAS est un appariement de données créé pour pouvoir chiffrer de manière précise les effets de la réforme de l’Assurance-chômage initiée en 2019 et d’étudier le retour et l’insertion dans l’emploi des demandeurs d’emploi et bénéficiaires de minima sociaux. La première vague est disponible depuis janvier 2023."
+    "text": "MiDAS (Minima Sociaux, Droits d’Assurance-chômage, parcours Salariés) est un appariement de données administratives mené par la Dares (département Suivi et indemnisation des demandeurs d’emploi (D-Side)), en collaboration avec la Cnaf et Pôle emploi. Cet appariement porte sur le champ exhaustif des demandeurs d’emploi qui ont été inscrits à Pôle Emploi au moins une fois depuis le 1er janvier 2017 complété par l’ensemble des foyers bénéficiaires de minima sociaux (RSA, PA, AAH) depuis cette même date.\nCet appariement permet de reconstituer les trajectoires professionnelles des allocataires de l’Assurance-chômage et des minima sociaux, afin notamment de pouvoir chiffrer de manière précise les effets de la réforme de l’Assurance-chômage initiée en 2019 et d’étudier le retour et l’insertion dans l’emploi des demandeurs d’emploi et bénéficiaires de minima sociaux.\nLa première vague est disponible depuis janvier 2023.\nMiDAS regroupe ainsi les données :\n\nDe suivi des demandeurs d’emploi par le Fichier historique statistique (FHS) et d’indemnisation dans le Fichier national des allocataires (FNA) de Pôle Emploi ;\nDu Fichier Allstat-FR6 de la Cnaf sur les prestations sociales ;\nSur les contrats de travail reconstituées par la Dares dans les Mouvements de main-d’œuvre (MMO) à partir de la Déclaration sociale nominative (DSN)."
   },
   {
     "objectID": "Presentation/presentation1.html",
     "href": "Presentation/presentation1.html",
-    "title": "Qu’est-ce que MiDAS ?",
+    "title": "Champ de l’appariement",
     "section": "",
-    "text": "MiDAS (Minima Sociaux, Droits d’Assurance-chômage, parcours Salariés) est un appariement de données administratives mené par la Dares (département Suivi et indemnisation des demandeurs d’emploi (D-Side)), en collaboration avec la Cnaf et Pôle emploi.\nMiDAS regroupe ainsi les données :\n\nDe suivi des demandeurs d’emploi par le Fichier historique statistique (FHS) et d’indemnisation dans le Fichier national des allocataires (FNA) de Pôle Emploi ;\nDu Fichier Allstat-FR6 de la Cnaf sur les prestations sociales ;\nSur les contrats de travail reconstituées par la Dares dans les Mouvements de main-d’œuvre (MMO) à partir de la Déclaration sociale nominative (DSN).\n\n\n\n\nGraphique 1 : Schéma du champ MiDAS"
+    "text": "Le champ est le suivant selon les bases de données :"
+  },
+  {
+    "objectID": "Presentation/presentation1.html#champ-détaillé-de-chaque-source",
+    "href": "Presentation/presentation1.html#champ-détaillé-de-chaque-source",
+    "title": "Champ de l’appariement",
+    "section": "Champ détaillé de chaque source",
+    "text": "Champ détaillé de chaque source\n\n\n\n\n\n\n\nSource\nChamp des données\n\n\n\n\nFHS\nToute personne inscrite à Pôle emploi au moins un jour depuis le 1er janvier 2017 avec son historique d’inscription remontant à 10 ans (juin 2012) pour la France entière.\n\n\nFNA\nDemandeurs d’emploi indemnisables au moins 1 jour depuis le 1er janvier 2017. Pour ces individus, MiDAS contient tout l’historique de l’indemnisation depuis 1993, des périodes d’affiliation et de l’activité réduite.\n\n\nAllstat-FR6\nL’ensemble des foyers sociaux bénéficiaires du RSA, de la PA et de l’AAH depuis janvier 2017 (fichier « Prestations ») pour la France entière. Ainsi, tout adulte seul ou membre d’un couple constitutif d’un foyer social qui perçoit un droit au RSA ou à la PA est suivi dans MiDAS quel que soit son âge. À noter l’absence des enfants de 18 à 25 ans qui vivent chez leurs parents, même si ces derniers appartiennent au foyer social bénéficiaire du RSA ou de la PA. Enfin, pour l’AAH, si son versement est soumis aux conditions de ressources du ménage , il s’agit d’une prestation individuelle et seul l’allocataire en est le bénéficiaire. Ainsi, son conjoint est conservé dans MiDAS s’il a été inscrit au moins une fois à Pôle emploi ou si le couple a bénéficié du RSA ou de la PA depuis 2017.\n\n\nMMO\nL’ensemble des contrats salariés depuis le 1er janvier 2017 pour les individus du champ MiDAS. Les données sont représentatives de l’ensemble des établissements employeurs de France métropolitaine sur le champ privé et public. Le champ recouvert par la DSN s’étant accru depuis 2017, l’exhaustivité des déclarations est meilleure en fin de période qu’en début de période. Les données portant sur les établissements de moins de 10 salariés sont également disponibles. Le champ de MiDAS comprendra de nouveaux publics à mesure qu’ils sont intégrés à la DSN. En revanche, MiDAS n’intègre pas les indépendants."
   },
   {
     "objectID": "Allstat_FR6/Allstat_FR6_presentation.html",
@@ -291,7 +312,21 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About this site\nLien vers le dépôt Git où le site est hébergé\nComment contribuer au site"
+    "text": "La Documentation de la base de données MiDAS est évolutive : elle vise à être progressivement enrichie au fil de ses exploitations. Ce document en constitue une première version, mise à jour en septembre 2023. Afin de l’améliorer, nous sommes preneurs de toutes vos remarques ou suggestions de compléments. Pour cela, vous pouvez contacter les responsables du site à l’adresse midas@travail.gouv.fr.\nComment contribuer au site ?\n\n\n\nSource des illustrations libres de droit :\n\npexels\npixabay\ngithub.com"
+  },
+  {
+    "objectID": "about.html#responsabilité-sur-les-contenus",
+    "href": "about.html#responsabilité-sur-les-contenus",
+    "title": "About",
+    "section": "",
+    "text": "La Documentation de la base de données MiDAS est évolutive : elle vise à être progressivement enrichie au fil de ses exploitations. Ce document en constitue une première version, mise à jour en septembre 2023. Afin de l’améliorer, nous sommes preneurs de toutes vos remarques ou suggestions de compléments. Pour cela, vous pouvez contacter les responsables du site à l’adresse midas@travail.gouv.fr.\nComment contribuer au site ?"
+  },
+  {
+    "objectID": "about.html#illustrations-du-site",
+    "href": "about.html#illustrations-du-site",
+    "title": "About",
+    "section": "",
+    "text": "Source des illustrations libres de droit :\n\npexels\npixabay\ngithub.com"
   },
   {
     "objectID": "FNA/ODD/Dico_FNA_ODD/FNA_ODD_variables/KCAAJ.html",
@@ -389,7 +424,7 @@
     "href": "index.html",
     "title": "Documentation MiDAS",
     "section": "",
-    "text": "La documentation de l’appariement MiDAS est évolutive et collaborative : elle vise à être progressivemen enrichir au fil de ses exploitations et par l’ensemble de ses utilisateurs. Pour toute question, vous pouvez contacter :\n\ncontact 1\ncontact 2\ncontact 3\ncontact 4"
+    "text": "Le projet MiDAS\n\nStar this website on Github\n\nCe site constitue la documentation de l’appariement MiDAS, créé pour évaluer les effets de la réforme 2019-2021 du système d’Assurance Chômage.\nL’ensemble des codes sources du site est stocké sur Github \n\n\nLes objectifs de la documentation MiDAS :\n\n\n\n\n Collaborative\n\n\n Transparente\n\n\n Accessible\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMinima sociaux\n\n\nLes données de la Caisse Nationale des Allocations Familiales portant sur les bénéficiares de minima sociaux : Revenu de Solidarité Active (RSA), Prime d’Activité (PA) et Allocation pour Adulte Handicapé (AAH).\n\n\n\n\n\nDroits d’Assurance Chômage\n\nLes données de Pôle Emploi sur l’inscription et l’indemnisation des demandeurs d’emploi. \n\n\n\nParcours Salariés\n\nLes données de la Dares issues de l’exploitation des Déclarations Sociales Nominatives (DSN) sur les contrats salariés pour les personnes inscrites à Pôle Emploi et/ou bénéficiant de minima sociaux. \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMiDAS, des données au coeur de l’actualité\n\n⌚ Evaluer les réformes du système d’assurance chômage avec des données mises à jour régulièrement\n🔎 Etudier les trajectoires des individus entre l’emploi, l’assurance chômage et les minima sociaux\n💬 Eclairer le débat public sur les interactions entre minima sociaux et assurance chômage\n📊 Mesurer le retour à l’emploi des populations ciblées par les politiques du marché du travail\n\n\n\n\n\n\nLes dernières actus de MiDAS : \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLa vague 2 de MiDAS est disponible\n\n\n\n\n\n\nDares-DSIDE\n\n\nMay 5, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nAutre actualité\n\n\n\n\n\n\nrandom_author\n\n\nSep 20, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nAutre actualité bis\n\n\n\n\n\n\nun_contributeur\n\n\nSep 20, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nAjout des programmes cibles\n\n\n\n\n\n\nDares-DSIDE\n\n\nAug 9, 2024\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "Outils/outils_benchmark.html",
@@ -583,9 +618,23 @@
   {
     "objectID": "Presentation/presentation2.html",
     "href": "Presentation/presentation2.html",
-    "title": "Champ de l’appariement et temporalité des données",
+    "title": "Calendrier des vagues",
     "section": "",
-    "text": "Le tableau ci-dessous présente le champ et la temporalité des données MiDAS :\n\n\n\n\n\n\n\nFHS\nToute personne inscrite à Pôle emploi au moins un jour depuis le 1er janvier 2017 avec son historique d’inscription remontant à 10 ans (juin 2012) pour la France entière.\n\n\n\n\nFNA\nDemandeurs d’emploi indemnisables au moins 1 jour depuis le 1er janvier 2017. Pour ces individus, MiDAS contient tout l’historique de l’indemnisation depuis 1993, des périodes d’affiliation et de l’activité réduite."
+    "text": "L’appariement est réalisé par le CASD sur le NIR haché. Le CASD met les données à disposition et conserve une table de passage, contenant uniquement les identifiants non signifiants des bases de données utilisées pour l’appariement, à savoir l’IDX-Région, l’ID_FR6, l’ID_MMO et l’ID_MiDAS. Le calendrier est détaillé dans le tableau 1 ci-dessous :\n\n\n\n\n\n\n\n\n\nVagues\nCouverture des données depuis 2017 assurée jusqu’au\n\nMise à disposition au CASD (dates indicatives)\n\n\n\n\nVague 1\nFHS-FNA-MMO : 30 juin 2022\nCnaf : 31 décembre 2021\nNovembre 2022\n\n\nVague 2\nFHS-FNA-MMO : 31 décembre 2022\nCnaf : 30 juin 2022\nMars 2023\n\n\nVague 3\nFHS-FNA-MMO : 30 juin 2023\nCnaf : 31 décembre 2022\nSeptembre 2023\n\n\nVague 4\nFHS-FNA-MMO : 31 décembre 2023\nCnaf : 30 juin 2023\nMars 2024\n\n\nVague 5\nFHS-FNA-MMO : 30 juin 2024\nCnaf : 31 décembre 2023\nSeptembre 2024\n\n\nVague 6\nFHS-FNA-MMO : 30 juin 2025\nCnaf : 31 décembre 2024\nSeptembre 2025\n\n\nVague 7\nFHS-FNA-MMO : 30 juin 2026\nCnaf : 31 décembre 2025\nSeptembre 2026\n\n\nVague 8\n31 décembre 2026\n31 décembre 2026\nSeptembre 2027"
+  },
+  {
+    "objectID": "NEW/NEW_tables/tables_presentation.html",
+    "href": "NEW/NEW_tables/tables_presentation.html",
+    "title": "Tables mensuelles",
+    "section": "",
+    "text": "Nouvelles tables mensuelles"
+  },
+  {
+    "objectID": "NEW/NEW_variables/variables_presentation.html",
+    "href": "NEW/NEW_variables/variables_presentation.html",
+    "title": "Présentation des nouvelles variables",
+    "section": "",
+    "text": "Nouvelles variables !"
   },
   {
     "objectID": "Etudes/etudes_retour_emploi.html",
@@ -726,5 +775,12 @@
     "title": "Dictionnaire des variables",
     "section": "",
     "text": "Variables\nLibellé\nModalités\n\n\n\n\nBNI\nIdentifiant unique du demandeur\nLe code BNI est l’identifiant national du demandeur. Dans la région d’arrivée, dans la mesure où le demandeur a bien été reconnu, son code BNI d’origine lui est réaffecté. Le code BNI permet ainsi d’identifier le demandeur dans toutes les bases régionales.\n\n\nCOUTGLO\nCoût global de la formation\n\n\n\nCOUTSTA\nCoût stagiaire de la formation\n\n\n\nDATSTAT\nMois statistique\n\n\n\nDECAFFD\nDécision AFFD (Allocation de Fin de Formation Dérogatoire)\nO. Oui N. Non\n\n\nFORTYPE1\nType de formation PARE (Plan d’aide au retour à l’emploi)\nC. Conventionnée P. Homologuée prioritaire H. Homologuée par défaut N. Non homologuée A. Convention AFPE X. Non renseigné\n\n\nNUMAIS\nNuméro d’Attestation d’inscription *en stage (AIS)\n\n\n\nOBJFORM\nOBJECTIF DE LA FORMATION (qualification, perfectionnement…)\n\n\n\nP2DATDEB\nDate de début\n\n\n\nP2DATFIN\nDate de fin\n\n\n\nP2NBHEUR\nNombre d’heures total\n\n\n\nP2NIVFOR\nNiveau de la formation\n0. Inconnu ou non renseigné 1. Supérieur à BAC+2 2. De niveau BAC+2 à BAC+2 3. De niveau BAC, BP, BM à BAC 4. De CAP, BEP à 1ère achevé 5. De premier cycle professionnel, BEPC 3ème achevé 6. De sans formation, primaire à 4ème achevé\n\n\nPERENTRE\nPériode passée en entreprise lors de la formation\nO. Le demandeur a effectué a travaillé en entreprise N. Le demandeur n’a pas travaillé en entreprise\n\n\nPERETRAN\nPériode passé à l’étranger lors de la formation\nO. Le demandeur a effectué un séjour à l’étranger N. Le demandeur n’a pas effectué de séjour à l’étranger\n\n\nREGION\n\n\n\n\nSIRET\nSIRET DE L’ORGANISME REALISANT LA PRESTATION\n\n\n\nTYPVALID\nTYPE DE VALIDATION\n0. NON PREVU 1. DIPL. TECHN. EDUC. NATIONALE 2. DIPL. TECHN. TRAVAIL 3. DIPL. TECHN. AGRICULTURE 4. DIPL. TECHN. JEUNES. ET SPORTS 5. DIPL. TECHN. AUTRES 6. TITRE OU DIPLOME HOMOLOGUE 7. QUALIF. RECONNUE CONV. COLLECT 8. QUALIF. RECONNUE COMM. PARIT. 9. TITRE OU DIPL. EN ELABORATION"
+  },
+  {
+    "objectID": "Actus/autre_actu2.html",
+    "href": "Actus/autre_actu2.html",
+    "title": "Autre actualité bis",
+    "section": "",
+    "text": "Un autre exemple."
   }
 ]

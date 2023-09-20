@@ -30,6 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -59,12 +61,44 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="homepage.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -132,40 +166,214 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    </div>
+    
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Documentation MiDAS</h1>
+
+
+<div id="banner_1" class="column-screen page-columns page-full">
+<div class="grid column-page">
+<div class="g-col-md-8">
+<div class="h1">
+<p>Le projet MiDAS</p>
 </div>
+<a class="github-button" href="https://github.com/DocumentationMiDAS/Documentation_MiDAS" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star this website on Github">Star this website on Github</a><script async="" defer="" src="https://buttons.github.io/buttons.js"></script>
+<p><br></p>
+<p>Ce site constitue la documentation de l’appariement MiDAS, créé pour évaluer les effets de la réforme 2019-2021 du système d’Assurance Chômage.</p>
+<p>L’ensemble des codes sources du site est stocké sur <a href="https://github.com/DocumentationMiDAS/Documentation_MiDAS">Github</a> <a href="https://github.com/DocumentationMiDAS/Documentation_MiDAS" class="github"><i class="fab fa-github"></i></a></p>
+<p><br></p>
+<div class="h3">
+<p>Les objectifs de la documentation MiDAS :</p>
+</div>
+<p><br></p>
+<div class="grid">
+<div class="g-col-4">
+<p><img src="images/GitHub-Mark.png" class="img-fluid" data-fig-align="center" width="100"> <span class="rose">Collaborative</span></p>
+</div>
+<div class="g-col-4">
+<p><img src="images/loupe.png" class="img-fluid" data-fig-align="center" width="99"> <span class="rose">Transparente</span></p>
+</div>
+<div class="g-col-3">
+<p><img src="images/logo_web.png" class="img-fluid" data-fig-align="center" width="103"> <span class="rose">Accessible</span></p>
+</div>
+</div>
+<p><br></p>
+<p><br></p>
+</div>
+<div class="g-col-6 g-col-md-4">
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/logo_dares.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="banner_2" class="column-screen page-columns page-full">
+<div class="grid column-page">
+<div class="g-col-6 g-col-md-4 g-col-8">
+<div class="h1">
+<p>Minima sociaux</p>
+</div>
+<p><br></p>
+<p>Les données de la Caisse Nationale des Allocations Familiales portant sur les <span class="rose">bénéficiares de minima sociaux</span> : Revenu de Solidarité Active (RSA), Prime d’Activité (PA) et Allocation pour Adulte Handicapé (AAH).</p>
+<p><br></p>
+<p><br></p>
+</div>
+<div class="g-col-6 g-col-md-5 g-col-8">
+<div class="h1">
+<p>Droits d’Assurance Chômage</p>
+</div>
+<p>Les données de Pôle Emploi sur l’<strong>inscription</strong> et l’<strong>indemnisation</strong> des <span class="rose">demandeurs d’emploi</span>. <br></p>
+</div>
+<div class="g-col-6 g-col-md-3 g-col-8">
+<div class="h1">
+<p>Parcours Salariés</p>
+</div>
+<p>Les données de la Dares issues de l’exploitation des Déclarations Sociales Nominatives (DSN) sur les <span class="rose">contrats salariés</span> pour les personnes inscrites à Pôle Emploi et/ou bénéficiant de minima sociaux. <br></p>
+</div>
+</div>
+</div>
+<div class="column-screen page-columns page-full">
+<div class="grid column-page">
+<div class="g-col-4">
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/trajectoires_statistiques.jpg" class="img-fluid figure-img" width="300"></p>
+</figure>
+</div>
+</div>
+<div class="g-col-8">
+<div class="h1">
+<p>MiDAS, des données au coeur de l’actualité</p>
+</div>
+<p>⌚ Evaluer les réformes du système d’assurance chômage avec des données mises à jour régulièrement</p>
+<p>🔎 Etudier les trajectoires des individus entre l’emploi, l’assurance chômage et les minima sociaux</p>
+<p>💬 Eclairer le débat public sur les interactions entre minima sociaux et assurance chômage</p>
+<p>📊 Mesurer le retour à l’emploi des populations ciblées par les politiques du marché du travail</p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="banner_2" class="column-screen">
+<div class="h1">
+<p><span class="headline">Les dernières actus de MiDAS</span> : <br></p>
+<p><br></p>
+</div>
+</div>
+<p><br></p>
 
 
 
-<div class="quarto-title-meta">
 
-    
-  
-    
-  </div>
-  
+<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-listing-date-sort="1683244800000" data-listing-file-modified-sort="1695216899358" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
+<a href="./Actus/vague_2_dispo.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+La vague 2 de MiDAS est disponible
+</h5>
+<div class="card-text listing-description">
+Les données de la vague 2 de MiDAS sont disponibles sous CASD.
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Dares-DSIDE
+</div>
+<div class="listing-date">
+May 5, 2023
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="1" data-listing-date-sort="1695168000000" data-listing-file-modified-sort="1695216899358" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
+<a href="./Actus/autre_actu1.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Autre actualité
+</h5>
+<div class="card-text listing-description">
 
-</header>
-
-<p>La documentation de l’appariement MiDAS est évolutive et collaborative : elle vise à être progressivemen enrichir au fil de ses exploitations et par l’ensemble de ses utilisateurs. Pour toute question, vous pouvez contacter :</p>
-<ul>
-<li><p>contact 1</p></li>
-<li><p>contact 2</p></li>
-<li><p>contact 3</p></li>
-<li><p>contact 4</p></li>
-</ul>
-
-
-
-</main> <!-- /main -->
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+random_author
+</div>
+<div class="listing-date">
+Sep 20, 2023
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="2" data-listing-date-sort="1695168000000" data-listing-file-modified-sort="1695216899358" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
+<a href="./Actus/autre_actu2.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Autre actualité bis
+</h5>
+<div class="card-text listing-description">
+Un autre exemple.
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+un_contributeur
+</div>
+<div class="listing-date">
+Sep 20, 2023
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="3" data-listing-date-sort="1723161600000" data-listing-file-modified-sort="1695216899358" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
+<a href="./Actus/ajout_cibles.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Ajout des programmes cibles
+</h5>
+<div class="card-text listing-description">
+Les programmes des cibles Dares ont été ajoutés sur le site documentaire.
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Dares-DSIDE
+</div>
+<div class="listing-date">
+Aug 9, 2024
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
