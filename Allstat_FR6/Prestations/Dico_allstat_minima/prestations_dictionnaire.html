@@ -103,16 +103,8 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">MMO</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../Etudes/etudes.html" rel="" target="">
- <span class="menu-text">Etudes</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../Outils/outils.html" rel="" target="">
- <span class="menu-text">Outils</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../NEW/new_presentation.html" rel="" target="">
- <span class="menu-text">NEW</span></a>
+    <a class="nav-link" href="../../../Fiches/Fiches_presentation.html" rel="" target="">
+ <span class="menu-text">Fiches</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../../Codes/codes_presentation.html" rel="" target="">
@@ -294,25 +286,29 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 <table class="table">
-<thead>
-<tr class="header">
-<th>Variable</th>
-<th>Libellé</th>
-<th>Description/Modalités</th>
-</tr>
-</thead>
 <tbody>
 <tr class="odd">
-<td>NUMCAF</td>
-<td>NUMERO CAF</td>
-<td>Code caisse de la CAF sur 3 caractères (N° de département + N° ordre de la Caisse dans le département (rang))</td>
+<td><h1 id="variable">Variable</h1>
+<p>NUMCAF</p></td>
+<td><h1 id="libellé">Libellé</h1>
+<p>NUMERO CAF</p></td>
+<td><h1 id="descriptionmodalités">Description/Modalités</h1>
+<p>Code caisse de la CAF sur 3 caractères (N° de département + N° ordre de la Caisse dans le département (rang))</p></td>
+<td></td>
 </tr>
 <tr class="even">
-<td>NORDALLC</td>
-<td>NUMERO ORDRE ALLCAF</td>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr class="odd">
+<td>NORDALLC</td>
+<td>NUMERO ORDRE ALLCAF</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
 <td>RSAVERS</td>
 <td>RSA VERSABLE</td>
 <td><p>0. Pas de RSA</p>
@@ -323,48 +319,56 @@ ul.task-list li input[type="checkbox"] {
 <p>S. RSA droit commun suspendu</p>
 <p>T. RSA droit local suspendu</p>
 <p>U. RSA jeune suspendu</p></td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>RSAMAJI</td>
 <td>RSA MAJORATION PARENT ISOLE VERSABLE</td>
 <td><p>0. Non concerné</p>
 <p>1. Droit versable</p>
 <p>2. Droit suspendu</p></td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>MTRSAVER</td>
 <td>MONTANT RSA VERSABLE</td>
 <td>Montant total versable pour le RSA, parties socle et activité, pour le mois de référence. Montant restitué après application des éventuelles sanctions subsidiarité et/ou réductions PCD.</td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>RSSITFAM</td>
 <td>SITUATION FAMILLE RSA VERSABLE</td>
 <td><p>0. Sans signification ou inconnue</p>
 <p>1. Isolé homme</p>
 <p>2. Isolé femme</p>
 <p>3. Couple</p></td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>RSENAUTC</td>
 <td>NB ENFANTS AUTRES PERSONNES À CHARGE RSA VERSABLE</td>
 <td>Nombre d’enfants et d’autres personnes à charge au sens du RSA. Significatif si RSA droit commun versable.</td>
-</tr>
-<tr class="even">
-<td>RSOCCLOG</td>
-<td>OCCUPATION LOGEMENT RSA VERSABLE</td>
-<td><a href="../Dico_allstat_minima/allstat_minima_variables/rsocclog.html">Modalités</a></td>
+<td></td>
 </tr>
 <tr class="odd">
+<td>RSOCCLOG</td>
+<td>OCCUPATION LOGEMENT RSA VERSABLE</td>
+<td>Les modalités sont disponibles dans la <a href="allstat_minima_variables/rsocclog.html">section dédiée</a></td>
+<td></td>
+</tr>
+<tr class="even">
 <td>RESTRRSA</td>
 <td>MT RESSOURCES BRUTES TRIMESTRIELLES RSA FOYER</td>
 <td>Montant de l’ensemble des revenus trimestriels des personnes du foyer présentes et à charge, pour le trimestre civil précédant le mois statistique traité, de la déclaration trimestrielle pour le RSA, sans les centimes.</td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>TRIMRSA</td>
 <td>TRIMESTRIALITE DROIT RSA</td>
 <td>Trimestrialité du droit RSA par rapport au premier mois du trimestre de référence. Si l’allocataire a à la fois un droit RSA et un droit PPA, la trimestrialité est identique pour les deux prestations.</td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>PPAVERS</td>
 <td>PPA VERSABLE</td>
 <td><p>0. Pas de Prime d’Activité</p>
@@ -372,63 +376,72 @@ ul.task-list li input[type="checkbox"] {
 <p>2. Prime d’Activité non majorée 25 ans et +</p>
 <p>3. Prime d’Activité majorée</p>
 <p>4. Prime d’Activité non majorée moins de 18 ans</p></td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>MTPPAVER</td>
 <td>MONTANT PPA VERSABLE</td>
 <td>Montant du droit réel valorisé à la Prime d’Activité, versable sur le mois statistique de référence.</td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>PPASITFA</td>
 <td>SITUATION FAMILIALE PPA VERSABLE</td>
 <td><p>0. Sans signification ou inconnue</p>
 <p>1. Isolé homme</p>
 <p>2. Isolé femme</p>
 <p>3. Couple</p></td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>PANBENAU</td>
 <td>NB ENFANTS AUTRES PERSONNES À CHARGE PPA VERSABLE</td>
 <td>Nombre d’enfants et autres personnes à charge (hors conjoint) au sens de la Prime d’Activité, au dernier mois du trimestre de référence. Significatif si Prime d’Activité versable ou suspendue</td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>TRIMPPA</td>
 <td>TRIMESTRIALITE DROIT PPA</td>
 <td><p>0. Pas de Prime d’Activité</p>
 <p>1. premier mois du trimestre de droit jan/avr/jul/oct</p>
 <p>2. premier mois du trimestre de droit fev/mai/aou/nov</p>
 <p>3. premier mois du trimestre de droit mar/jun/sep/dec</p></td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>AAHVERS</td>
 <td>AAH VERSABLE</td>
 <td><p>0. Pas d’allocation handicapé adulte</p>
 <p>1. AAH pour handicapé ne travaillant pas en milieu protégé</p>
 <p>2. AAH pour handicapé travaillant en ESAT</p>
 <p>3. AAH pour handicapé travaillant autre qu’en ESAT</p></td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>COMPLAAH</td>
 <td>COMPLEMENT AAH VERSABLE</td>
 <td><p>0. Prestation non versable</p>
 <p>1. Prestation versable</p>
 <p>2. Majoration pour vie autonome</p>
 <p>3. Complément de ressources</p></td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>MTCAAHVE</td>
 <td>MONTANT CAAH VERSABLE</td>
 <td>Montant du Complément de l’Allocation aux Adultes Handicapés versable.</td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>CINCAAH</td>
 <td>CATEGORIE INCAPACITE AAH</td>
 <td><p>0. Pas d’AAH</p>
 <p>1. Incapacité ≥ 80 %</p>
 <p>2. Incapacité entre 50 et 79 %</p>
 <p>3. Capacité inférieure à 50 %</p></td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>PENAAHVE</td>
 <td>PENSION AAH VERSABLE</td>
 <td><p>0. Pas de pension AAH versable</p>
@@ -441,18 +454,21 @@ ul.task-list li input[type="checkbox"] {
 <p>7. Rente AT</p>
 <p>8. Autre pension ou cumul de pension</p>
 <p>9. Majoration conjoint à charge</p></td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>AAHPERE</td>
 <td>PERIODICITE RESSOURCES AAH</td>
 <td><p>0. Non concerné</p>
 <p>1. Annuelle</p>
 <p>2. Trimestrielle</p></td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>MTAAHVER</td>
 <td>MONTANT AAH VERSABLE</td>
 <td>Montant de droit valorisé pour l’AAH pour le mois de référence. Renseigné si AAH versable</td>
+<td></td>
 </tr>
 </tbody>
 </table>

@@ -103,16 +103,8 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">MMO</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../Etudes/etudes.html" rel="" target="">
- <span class="menu-text">Etudes</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../Outils/outils.html" rel="" target="">
- <span class="menu-text">Outils</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../NEW/new_presentation.html" rel="" target="">
- <span class="menu-text">NEW</span></a>
+    <a class="nav-link" href="../../../Fiches/Fiches_presentation.html" rel="" target="">
+ <span class="menu-text">Fiches</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../../Codes/codes_presentation.html" rel="" target="">
@@ -294,35 +286,41 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 <table class="table">
-<thead>
-<tr class="header">
-<th>Variable</th>
-<th>Libellé</th>
-<th>Description/Modalités</th>
-</tr>
-</thead>
 <tbody>
 <tr class="odd">
-<td>NUMCAF</td>
-<td>NUMERO CAF</td>
-<td>Code caisse de la CAF sur 3 caractères (N° de département + N° ordre de la Caisse dans le département (rang))</td>
-</tr>
-<tr class="even">
-<td>DTREFFRE</td>
-<td>DATE REFERENCE FRECAF</td>
-<td>Date de référence de la vue ALLSTAT : il s’agit du 1er du mois de référence du fichier</td>
-</tr>
-<tr class="odd">
-<td>NORDALLC</td>
-<td>NUMERO ORDRE ALLCAF</td>
+<td><h1 id="variable">Variable</h1>
+<p>NUMCAF</p></td>
+<td><h1 id="libellé">Libellé</h1>
+<p>NUMERO CAF</p></td>
+<td><h1 id="descriptionmodalités">Description/Modalités</h1>
+<p>Code caisse de la CAF sur 3 caractères (N° de département + N° ordre de la Caisse dans le département (rang))</p></td>
 <td></td>
 </tr>
 <tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>DTREFFRE</td>
+<td>DATE REFERENCE FRECAF</td>
+<td>Date de référence de la vue ALLSTAT : il s’agit du 1er du mois de référence du fichier</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>NORDALLC</td>
+<td>NUMERO ORDRE ALLCAF</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
 <td>CODEPOSD</td>
 <td>CODE POSTAL DOSSIER</td>
 <td>CD postal sens PTT DOSSIER du mois réf. ou immédiatement post. : Code sur 5 caractères dont les 2 premières positions sont le code département et les 3 dernières positions le numéro de commune attribué par les PTT, de l’adresse du DOSSIER.</td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>SITFAM</td>
 <td>SITUATION FAMILIALE</td>
 <td><p>0. Inconnue</p>
@@ -333,87 +331,102 @@ ul.task-list li input[type="checkbox"] {
 <p>5. Divorcé</p>
 <p>6. Séparé</p>
 <p>7. PACS</p></td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>PRESCONJ</td>
 <td>PRESENCE CONJOINT</td>
 <td><p>0. Pas de conjoint - Service national ou absent du foyer</p>
 <p>2. Présence réelle du conjoint au foyer</p></td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>NECHALOG</td>
 <td>NOMBRE D’ENFANTS DANS LE LOGEMENT</td>
 <td>Nombre d’ENFANT à charge au sens logement présents pour le mois de référence.</td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>NBENLEFA</td>
 <td>NOMBRE D’ENFANTS LEGISLATION FAMILIALE</td>
 <td>Nombre d’enfant à charge au sens de la législation familiale (enfants ouvrants droit à au moins une prestation du mois de naissance aux 25 ans).</td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>NBENFCHA</td>
 <td>NOMBRE D’ENFANTS À CHARGE AU SENS PF</td>
 <td>Nombre d’enfants à charge au sens de la législation des prestations familiales (du mois qui suit la naissance au mois précédent les 20 ans) pour le mois de référence statistique</td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>SEXE</td>
 <td>SEXE RESPONSABLE DOSSIER</td>
 <td><p>1. Masculin</p>
 <p>2. Féminin</p></td>
-</tr>
-<tr class="odd">
-<td>REGRESPD</td>
-<td>REGIME RESPONSABLE DOSSIER</td>
-<td><a href="../Dico_allstat_foyers/allstat_foyers_variables/actrespd.html">Modalités</a></td>
+<td></td>
 </tr>
 <tr class="even">
+<td>REGRESPD</td>
+<td>REGIME RESPONSABLE DOSSIER</td>
+<td>Les modalités sont disponibles dans la <a href="allstat_foyers_variables/actrespd.html">section dédiée</a></td>
+<td></td>
+</tr>
+<tr class="odd">
 <td>NATIFAM</td>
 <td>NATIONALITE FAMILLE</td>
 <td><p>0. Nationalité inconnue</p>
 <p>1. Français</p>
 <p>2. étranger CEE</p>
 <p>3. étranger hors CEE</p></td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>DTNAIRES</td>
 <td>DATE DE NAISSANCE RESPONSABLE DOSSIER</td>
 <td>Date de naissance du responsable du dossier</td>
-</tr>
-<tr class="even">
-<td>ACTRESPD</td>
-<td>ACTIVITE RESPONSABLE DOSSIER</td>
-<td><a href="../Dico_allstat_foyers/allstat_foyers_variables/regrespd.html">Modalités</a></td>
+<td></td>
 </tr>
 <tr class="odd">
+<td>ACTRESPD</td>
+<td>ACTIVITE RESPONSABLE DOSSIER</td>
+<td>Les modalités sont disponibles dans la <a href="allstat_foyers_variables/regrespd.html">section dédiée</a></td>
+<td></td>
+</tr>
+<tr class="even">
 <td>REGCONJ</td>
 <td>REGIME CONJOINT</td>
 <td>Idem que REGRESPD</td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>NATICONJ</td>
 <td>NATIONALITE CONJOINT</td>
 <td><p>0. Nationalité inconnue</p>
 <p>1. Français</p>
 <p>2. étranger CEE</p>
 <p>3. étranger hors CEE</p></td>
-</tr>
-<tr class="odd">
-<td>DTNAICON</td>
-<td>DATE NAISSANCE CONJOINT</td>
 <td></td>
 </tr>
 <tr class="even">
+<td>DTNAICON</td>
+<td>DATE NAISSANCE CONJOINT</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
 <td>ACTCONJ</td>
 <td>ACTIVITE CONJOINT</td>
 <td>Idem que ACTRESPD</td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>SEXECONJ</td>
 <td>SEXE CONJOINT</td>
 <td><p>1. Monsieur</p>
 <p>2. Madame</p></td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>AFVERS</td>
 <td>AF VERSABLE</td>
 <td><p>CD droit aux allocations familiales versables (y compris Mayotte).</p>
@@ -424,13 +437,15 @@ ul.task-list li input[type="checkbox"] {
 <p>4. Forfait seulement (sans AF)</p>
 <p>5. AF versable 1 enfant dans les DOM avec forfait</p>
 <p>6. AF versable avec enfant suspendu (jusqu’en 09/2013).</p></td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>MTAFVERS</td>
 <td>MONTANT AF VERSABLE</td>
 <td>Montant des Allocations Familiales versables.</td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>CFVERS</td>
 <td>CF VERSABLE</td>
 <td><p>Code droit au complément familial versable, taux plein non majoré, montant différentiel ou taux plein majoré. Significatif si CF versable.</p>
@@ -439,216 +454,256 @@ ul.task-list li input[type="checkbox"] {
 <p>2. CF versable avec enfant suspendu (jusqu’en 09/13)</p>
 <p>3. CF versable avec montant différentiel</p>
 <p>4. CF versable majoré</p></td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>MTCFVERS</td>
 <td>MONTANT CF VERSABLE</td>
 <td>Montant du Complément Familial versable.</td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>ALFVERS</td>
 <td>ALF VERSABLE</td>
 <td><p>Code droit Allocation Logement Familiale versable. Significatif si ALF versable.</p>
 <p>0. Pas d’ALF versable</p>
 <p>1. ALF versable - montant &gt; minimum de versement</p>
 <p>2. ALF calculée - montant &lt; minimum de versement</p></td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>ALSVERS</td>
 <td>ALS VERSABLE</td>
 <td><p>Code droit Allocation Logement Sociale versable. Significatif si ALS versable.</p>
 <p>0. Pas d’ALS versable</p>
 <p>1. ALS versable - montant &gt; minimum de versement</p>
 <p>2. ALS calculée - montant &lt; minimum de versement</p></td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>APLVERS</td>
 <td>APL VERSABLE</td>
 <td><p>Code droit Allocation Personnalisée au Logement versable. Significatif si APL versable.</p>
 <p>0. Pas d’APL versable</p>
 <p>1. APL versable - montant &gt; minimum de versement</p>
 <p>2. APL calculée - montant &lt; minimum de versement</p></td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>MTAIDELO</td>
 <td>MONTANT AIDE LOGEMENT</td>
 <td>Montant du droit valorisé de l’aide au logement (APL/ALF/ALS), calculé avant abattement RDS, sur le mois de référence statistique. Significatif si ALF, ALS, APL versable.</td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>RSOVERS</td>
 <td>RSO VERSABLE</td>
 <td><p>Code droit Revenu de Solidarité (RSO) au titre du mois de référence. Significatif si RSO versable, pour les DOM uniquement.</p>
 <p>0. Prestation non versable</p>
 <p>1. Prestation versable</p></td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>MTRSOVER</td>
 <td>MONTANT RSO VERSABLE</td>
 <td>MT Revenu de Solidarité (RSO) versable. Significatif si RSO versable, pour les DOM uniquement.</td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>PAJEVERS</td>
 <td>PAJE VERSABLE</td>
 <td><p>Indicateur statistique précisant si la prestation PAJE est versable : prime naissance ou d’adoption, allocation de base ou complément d’activité sur le mois M de référence, ou complément mode de garde (AM, garde à domicile, association) sur le mois.</p>
 <p>0. Pas de PAJE versable</p>
 <p>1. PAJE versable</p></td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>MTBPAJEV</td>
 <td>MONTANT BASE PAJE VERSABLE</td>
 <td>Montant de l’allocation de base de la Prestation d’Accueil du Jeune Enfant, versable.</td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>MTPAJCAV</td>
 <td>MONTANT PAJE COMPLEMENT ACTIVITE VERSABLE</td>
 <td>Montant des compléments d’activité (CLCA, COLCA, PREPARE) de la Prestation d’Accueil du Jeune Enfant, versables.</td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>MTPAJPRV</td>
 <td>MONTANT PAJE PRIMES VERSABLE</td>
 <td>Montant des primes (naissance et adoption) de la Prestation d’Accueil du Jeune Enfant (pour la prime naissance sur un des 6 derniers mois, pour la prime d’adoption, sur le mois de référence).</td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>PAJPCAMM</td>
 <td>MONTANT PRISE EN CHARGE CMG ASSISTANTE MATERNELLE VERSABLE</td>
 <td>Montant de la prise en charge partielle de la rémunération CMG versable (complément mode de garde) de l’assistante maternelle, pour le mois de référence.</td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>PAJPCDOM</td>
 <td>MONTANT PRISE EN CHARGE CMG DOMICILE VERSABLE</td>
 <td>Montant de la prise en charge partielle de la rémunération CMG versable (complément mode de garde) en garde à domicile, pour le mois de référence.</td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>PAJPCSTM</td>
 <td>MONTANT PRISE EN CHARGE CMG STRUCTURE VERSABLE</td>
 <td>Montant de la prise en charge partielle de la rémunération CMG versable (complément mode de garde) en structure, pour le mois de référence.</td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>MTREVBRU</td>
 <td>MONTANT REVENU BRUT FOYER</td>
 <td>Montant des revenus bruts, de l’année de référence des ressources, des personne vivant au foyer (pensions alimentaires versées déduites), sans les centimes. Prise en compte des revenus des enfants et autres personnes, si considérés à charge pour une aide au logement. Il s’agit en fait des traitements et salaires nets annuels, des indemnités journalières maladie, des allocations de chômage, des préretraites, des pensions, retraites et rentes imposables, des rentes survies, des pensions alimentaires reçues, des revenus des professions non salariées, des autres revenus des professions non salariées, des autres revenus imposables : rentes viagères à titre onéreux, revenus des capitaux et des valeurs mobilières. NB = Les pensions alimentaires versées seront déduites.</td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>MTREVACT</td>
 <td>MONTANT REVENU ACTIVITE ANNUEL REFERENCE FOYER</td>
 <td>Montant des revenus d’activité, de l’année de référence des ressources (année civile située 2 ans avant le mois d’observation), des personnes vivant au foyer, sans les centimes. Prise en compte des revenus des enfants et autres personnes, si considérés à charge pour une aide au logement. Il s’agit des traitements, salaires nets annuels et IJ de Sécurité sociale, sans les décimales.</td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>MTCHOFOY</td>
 <td>MONTANT INDEMNITES CHOMAGE ANNUEL REFERENCE FOYER</td>
 <td>Montant des indemnités chômage, de l’année de référence des ressources (année civile située 2 ans avant le mois d’observation), des personnes vivant au foyer, sans les centimes. Prise en compte des indemnités chômage des enfants et autres personnes, si considérés à charge pour une aide au logement.</td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>MTPENFOY</td>
 <td>MONTANT PENSIONS RENTES ANNUEL REFERENCE FOYER</td>
 <td>Montant des pensions (alimentaires, retraites …) et rentes de l’année de référence des ressources (année civile située 2 ans avant le mois d’observation), des personnes vivant au foyer, sans les centimes. Prise en compte des préretraites, des pensions, retraites et rentes imposables, des rentes survies, des pensions alimentaires reçues, des rentes viagères à titre onéreux perçues par l’allocataire, son conjoint éventuel, et ses enfants et autres personnes à charge au sens du logement, sans les décimales.</td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>MTPENINV</td>
 <td>MONTANT PENSION INVALIDITE ANNUELLE REFERENCE FOYER</td>
 <td>Montant des pensions d’invalidité du foyer pour l’année de référence des ressources (année civile située 2 ans avant le mois d’observation), correspondant au cumul des pensions d’invalidité de toutes les personnes vivant au foyer : l’allocataire, son conjoint éventuel, et ses enfants et autres personnes à charge au sens du logement, sans les décimales.</td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>MTIJSSFO</td>
 <td>MONTANT IJ SECURITE SOCIALE ANNUEL REFERENCE FOYER</td>
 <td>Montant des indemnités journalières de Sécurité sociale (maternité, paternité, AT, MP) de l’année de référence des ressources (année civile située 2 ans avant le mois d’observation), des personnes vivant au foyer, sans les centimes. Prise en compte des IJ de toutes pers considérées à charge pour une aide au logement, sans les décimales. En fait, est pris en compte uniquement la fraction non imposable des IJ AT-MP (nature 012) car pour les ressources annuelles, toutes les IJ sont assimilées à des salaires et injectées en 001 (salaires).</td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>MTRANSAF</td>
 <td>MONTANT REVENU ACTIVITE NON SALARIE ANNUEL FOYER</td>
 <td>Montant des revenus d’activité non salariée de l’allocataire et de son conjoint éventuel, et des enfants et autres personnes à charge au sens du logement, perçues pour l’année de référence des ressources (année civile située 2 ans avant le mois d’observation), sans les décimales.</td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>MTALIMFO</td>
 <td>MONTANT PENSIONS ALIMENTAIRES RECUES ANNUEL REFERENCE</td>
 <td>Montant des pensions alimentaires de l’année de référence des ressources (année civile située 2 ans avant le mois d’observation), des personnes vivant au foyer, sans les centimes. Prise en compte des pensions et rentes des enfants et autres personnes, si considérés à charge pour une aide au logement</td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>MTALIMVE</td>
 <td>MONTANT PENSIONS ALIMENTAIRES VERSEES ANNUEL REFERENCE</td>
 <td>Montant des pensions alimentaires versées par les personnes vivant au foyer, pour l’année de référence des ressources (année civile située 2 ans avant le mois d’observation), sans les centimes. Prise en compte des pensions des enfants et autres personnes, si considérés à charge pour une aide au logement.</td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>MTREAPAT</td>
 <td>MONTANT REVENU PATRIMOINE ANNUEL REFERENCE FOYER</td>
 <td>MT des revenus du patrimoine, de l’année de référence des ressources (année civile située 2 ans avant le mois d’observation), des personnes vivant au foyer, sans les centimes. Prise en compte des revenus des enfants et autres personnes, si considérés à charge pour une aide au logement. Il s’agit en fait des revenus fonciers (montant net) et autres revenus (RCVM, PV, actions).</td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>MTPALIFT</td>
 <td>MONTANT RESSOURCES BRUTES TRIM PENSIONS ALIM FOYER</td>
 <td>Montant des pensions alimentaires reçues pour l’ensemble des personnes du foyer pour le trimestre de référence.</td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>MTIJSSFT</td>
 <td>MONTANT RESSOURCES BRUTES TRIM IJ SECURITE SOCIAL FOYER</td>
 <td>Montant des Indemnités Journalières de Sécurité sociale de l’ensemble des personnes du foyer pour le trimestre de référence. IJ prises en compte : 011. Indem. maladie/maternité/pater. 012. Accident travail/maladie prof. 013. Indemnités maternité-paternité-adoption 014. Autres IJSS (maladie, AT, MP)</td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>MTFONPAT</td>
 <td>MONTANT TRIM REVENUS FONCIERS ET PATRIMOINE FOYER</td>
 <td>Montant des revenus fonciers et du patrimoine pour l’ensemble des personnes du foyer pour le trimestre de référence.</td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>MTACFOY1</td>
 <td>MONTANT REVENU ACTIVITE FOYER PREMIER MOIS DTR</td>
 <td>Montant des revenus d’activité perçus par l’ensemble des personnes du foyer pour le premier mois du trimestre de référence (RSA, Prime d’Activité ou AAH).</td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>MTACFOY2</td>
 <td>MONTANT REVENU ACTIVITE FOYER DEUXIEME MOIS DTR</td>
 <td>Montant des revenus d’activité perçus par l’ensemble des personnes du foyer pour le deuxième mois du trimestre de référence (RSA, Prime d’Activité ou AAH).</td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>MTACFOY3</td>
 <td>MONTANT REVENU ACTIVITE FOYER TROISIEME MOIS DTR</td>
 <td>Montant des revenus d’activité perçus par l’ensemble des personnes du foyer pour le troisième mois du trimestre de référence (RSA, Prime d’Activité ou AAH).</td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>MTCHFOY1</td>
 <td>MONTANT IND CHOMAGE FOYER PREMIER MOIS DTR</td>
 <td>Montant des indemnités chômage perçues par l’ensemble des personnes du foyer pour le premier mois du trimestre de référence (RSA, Prime d’Activité ou AAH).</td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>MTCHFOY2</td>
 <td>MONTANT IND CHOMAGE FOYER DEUXIEME MOIS DTR</td>
 <td>Montant des indemnités chômage perçues par l’ensemble des personnes du foyer pour le deuxième mois du trimestre de référence (RSA, Prime d’Activité ou AAH).</td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>MTCHFOY3</td>
 <td>MONTANT IND CHOMAGE FOYER TROISIEME MOIS DTR</td>
 <td>Montant des indemnités chômage perçues par l’ensemble des personnes du foyer pour le troisième mois du trimestre de référence (RSA, Prime d’Activité ou AAH).</td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>MTOTFOY1</td>
 <td>MONTANT REVENU TOTAL FOYER PREMIER MOIS DTR</td>
 <td>Montant de l’ensemble des revenus perçus par l’ensemble des personnes du foyer pour le premier mois du trimestre de référence (RSA, Prime d’Activité ou AAH).</td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>MTOTFOY2</td>
 <td>MONTANT REVENU TOTAL FOYER DEUXIEME MOIS DTR</td>
 <td>Montant de l’ensemble des revenus perçus par l’ensemble des personnes du foyer pour le deuxième mois du trimestre de référence (RSA, Prime d’Activité ou AAH).</td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>MTOTFOY3</td>
 <td>MONTANT REVENU TOTAL FOYER TROISIEME MOIS DTR</td>
 <td>Montant de l’ensemble des revenus perçus par l’ensemble des personnes du foyer pour le troisième mois du trimestre de référence (RSA, Prime d’Activité ou AAH).</td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>TPPOPRUC</td>
 <td>TOP POPULATION REFERENCE RUC</td>
 <td><p>Top indiquant si l’allocataire fait partie de la population de référence prise en compte pour le calcul du RUC (revenu par unité de consommation). Hors champ = revenu non fourni ou mal connu (≥65 ans, étudiants, doubles AAH).</p>
 <p>0. Hors population de référence calcul du RUC</p>
 <p>1. Dans population de référence calcul du RUC</p></td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>NBUC</td>
 <td>NOMBRE UNITE CONSOMMATION</td>
 <td>Nombre d’unité de consommation. Il n’est pas calculé (=0) pour les allocataires dont le revenu n’est pas fourni ou mal connu (autres régimes, 65 ans et plus, étudiants, doubles AAH).</td>
+<td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>RUC</td>
 <td>REVENU PAR UNITE DE CONSOMMATION</td>
 <td>Montant des revenus par unité de consommation. Il n’est pas calculé (= 99999,99) pour les allocataires dont le revenu n’est pas fourni ou mal connu (autres régimes, 65 ans et plus, étudiants, doubles AAH) et handicapés en maison d’accueil spécialisé.</td>
+<td></td>
 </tr>
 </tbody>
 </table>

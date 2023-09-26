@@ -103,16 +103,8 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">MMO</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../Etudes/etudes.html" rel="" target="">
- <span class="menu-text">Etudes</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../Outils/outils.html" rel="" target="">
- <span class="menu-text">Outils</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../NEW/new_presentation.html" rel="" target="">
- <span class="menu-text">NEW</span></a>
+    <a class="nav-link" href="../../../Fiches/Fiches_presentation.html" rel="" target="">
+ <span class="menu-text">Fiches</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../../Codes/codes_presentation.html" rel="" target="">
@@ -489,12 +481,6 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 <table class="table">
-<colgroup>
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 22%">
-<col style="width: 36%">
-</colgroup>
 <thead>
 <tr class="header">
 <th><br>Variables</th>
@@ -508,6 +494,18 @@ ul.task-list li input[type="checkbox"] {
 <td><br>ODDIDENT KROD3</td>
 <td><br>IDENTIFIANT DE L’ OUVERTURE DE DROIT</td>
 <td><br>Référence de l’OD portant le fait générateur.<br> Clef de jonction avec KROD (ODDIDENT) du segment DROIT ODD - segment LN1S</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><br>KCALF</td>
+<td><br>Code allocation de la Période à Justification Constante. Ce code est renseigné pour les deux types de PJC (KCPJC = ‘1’, ‘2’). Toute modification de cette valeur induit une rupture sur les PJC</td>
+<td><br>Les modalités sont disponibles dans la <a href="../../../FNA/PJC/Dico_FNA_PJC/FNA_PJC_variables/KCALF.html">section dédiée</a>.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><br>KCMNI</td>
+<td><br>Il s’agit du motif de non paiement d’une PJC de type carence/différé ou autre. Il y a une hiérarchie entre les différentes valeurs la plus petite est à privilégier. Ce code est renseigné pour les PJC de type ‘2’ et ‘3’. Toute modification de cette valeur induit une rupture sur les PJC.</td>
+<td><br>Les modalités sont disponibles dans la <a href="../../../FNA/PJC/Dico_FNA_PJC/FNA_PJC_variables/KCMNI.html">section dédiée</a>.</td>
 <td></td>
 </tr>
 <tr class="even">
@@ -526,7 +524,11 @@ ul.task-list li input[type="checkbox"] {
 <td><br>PJCTYPE KCPJC</td>
 <td><br>CODE TYPE DE PJC</td>
 <td><br>Cette donnée permet de connaitre le type d’une Période à Justification Constante</td>
-<td><br>1. Période payée<br> 2. Période non payée consommée :<br> - exclusions temporaires DDTE<br> - PND périodes imputables<br> - dépassement ressources plafond<br> 3. Période non payée non consommée :<br> - Carence<br> - Différé<br> - Décalage<br> - Maladie<br> - Absence<br> - Périodes saisonnières<br> - PND périodes non imputables<br> - Suspensions non imputables<br> 4. PJC payées au titre des AIDES (associé aux périodes de versement de l’ADR06, ASCRE06 ou ARCE006)<br> X. VALEUR HORS TABLE</td>
+<td><p>1. Période payée</p>
+<p>2. Période non payée consommée (exclusions temporaires DDTE, PND périodes imputables, dépassement ressources plafond)</p>
+<p>3. Période non payée non consommée (Carence, Différé, Décalage, Maladie, Absence, Périodes saisonnières, PND périodes non imputables, Suspensions non imputables)</p>
+<p>4. PJC payées au titre des AIDES (associé aux périodes de versement de l’ADR06, ASCRE06 ou ARCE006)</p>
+<p>X. VALEUR HORS TABLE</p></td>
 </tr>
 <tr class="odd">
 <td><br>PJCCOUV KCOPP</td>
