@@ -12,36 +12,36 @@ Le **Fichier National des Allocataires de Pôle Emploi** suit les **trajectoires
 
 Dans le cadre de MiDAS, les données sélectionnées sont issues de 7 segments du FNA :
 
--   Le segment **« [Individu](IND/IND_presentation.qmd) » (IND, LN4A)** : table centrale qui fait la jonction avec les autres tables, au niveau de l\'individu ;
+-   Le segment **« [Individu](IND/IND_presentation.qmd) » (IND, LN4A)** : table centrale qui fait la jonction avec les autres tables, au niveau de l'individu ;
 
--   Le segment **« [Contrat de travail](CDT/CDT_presentation.qmd) » (CDT, LN4E)** indique la nature du dernier contrat de travail avant l\'ouverture du droit (fait générateur) et son motif de fin;
+-   Le segment **« [Contrat de travail](CDT/CDT_presentation.qmd) » (CDT, LN4E)** indique la nature du dernier contrat de travail avant l'ouverture du droit (fait générateur) et son motif de fin;
 
--   Le segment **« [Période d\'affiliation](PAF/PAF_presentation.qmd) » (PAF, LN2L)** : pour un droit, cette table contient l\'ensemble des évènements (contrats de travail, périodes de formations, arrêts maladie...) connus d\'un individu, indiqués par une date de début (KDDPE) et une date de fin (KDFPE). Si ces variables sont identiques à celles présentes dans CDT, elles ne renvoient pas nécessairement à un contrat car le « champ » de PAF est plus large que celui de CDT. L\'ensemble des contrats ayant permis l\'ouverture de droit peuvent être repérés grâce à KCFPL et sont exprimés en heures alors que les arrêts maladie sont exprimés en jours (KCAFF) ;
+-   Le segment **« [Période d'affiliation](PAF/PAF_presentation.qmd) » (PAF, LN2L)** : pour un droit, cette table contient l'ensemble des évènements (contrats de travail, périodes de formations, arrêts maladie...) connus d'un individu, indiqués par une date de début (KDDPE) et une date de fin (KDFPE). Si ces variables sont identiques à celles présentes dans CDT, elles ne renvoient pas nécessairement à un contrat car le « champ » de PAF est plus large que celui de CDT. L'ensemble des contrats ayant permis l'ouverture de droit peuvent être repérés grâce à KCFPL et sont exprimés en heures alors que les arrêts maladie sont exprimés en jours (KCAFF) ;
 
--   Le segment **« [Demande d\'allocation](DAL/DAL_presentation.qmd) » (DAL, LN1N)** : table qui renseigne sur les demandes d\'allocation (type de demande, nombre de jours de différés, demandes rejetées) rattachées aux droits ouverts. Cette table contient toutes les demandes, y compris celles qui n\'ont pas débouché sur une ouverture de droit ;
+-   Le segment **« [Demande d'allocation](DAL/DAL_presentation.qmd) » (DAL, LN1N)** : table qui renseigne sur les demandes d'allocation (type de demande, nombre de jours de différés, demandes rejetées) rattachées aux droits ouverts. Cette table contient toutes les demandes, y compris celles qui n'ont pas débouché sur une ouverture de droit ;
 
 -   Le segment **« [Ouverture de droit](ODD/ODD_presentation.qmd) » (ODD, LN1S)** : cette table fournit les caractéristiques du droit ouvert. Une ligne correspond à un droit. On distingue plusieurs situations :
 
-    -   *L\'ouverture et la fin de droit* : lorsque la demande allocation est acceptée, le demandeur d\'emploi peut s\'ouvrir un droit (KCNDDA = 01 dans la table DAL). Les paramètres de l\'indemnisation associés au droit sont renseignés par les dates de PJC (KDDPJ et KDFPJ);
+    -   *L'ouverture et la fin de droit* : lorsque la demande allocation est acceptée, le demandeur d'emploi peut s'ouvrir un droit (KCNDDA = 01 dans la table DAL). Les paramètres de l'indemnisation associés au droit sont renseignés par les dates de PJC (KDDPJ et KDFPJ);
 
-    -   La *reprise de droit*, qui n\'entraîne pas de nouveau droit (pas de nouveau KROD, l\'identifiant du droit) : elle peut être identifiée dans DAL (KCNDDA = 03) et dans PJC (KCOPP = 20) ;
+    -   La *reprise de droit*, qui n'entraîne pas de nouveau droit (pas de nouveau KROD, l'identifiant du droit) : elle peut être identifiée dans DAL (KCNDDA = 03) et dans PJC (KCOPP = 20) ;
 
     -   Le *rechargement de droit* (anciennement « réadmission »), entraîne un nouveau droit (une nouvelle ligne avec un nouveau KROD) : il peut être identifié dans DAL (KCDAL = 26 ; KCNDDA = 10), ODD (KCRRD) et dans PJC (KCOPP = 02).
 
--   Le segment **« [Période à justification constante](PJC/PJC_presentation.qmd) » (PJC, LN2P)** contient de nombreuses informations permettant de calculer le nombre d\'indemnisables et d\'indemnisés un mois donné (date de début et de fin de PJC, PJC payée ou non, motif d\'ouverture et de fermeture de la PJC, allocation, SJR et montant d\'allocation). Pour chaque droit, cette table contient une ligne par PJC, qui est la plus petite unité de temps qui découpe un droit. Le passage d\'une PJC à une autre est dû au changement de type de PJC (KCPJC) : si la PJC n\'est pas payée, on connaît le motif de son non paiement (KCMNI). Si celle-ci n\'est ni payée ni consommé (KCPJC = 3), c\'est qu\'elle est reportée, en raison principalement d\'un délai de carence ou d\'un différé (KCPJCC);
+-   Le segment **« [Période à justification constante](PJC/PJC_presentation.qmd) » (PJC, LN2P)** contient de nombreuses informations permettant de calculer le nombre d'indemnisables et d'indemnisés un mois donné (date de début et de fin de PJC, PJC payée ou non, motif d'ouverture et de fermeture de la PJC, allocation, SJR et montant d'allocation). Pour chaque droit, cette table contient une ligne par PJC, qui est la plus petite unité de temps qui découpe un droit. Le passage d'une PJC à une autre est dû au changement de type de PJC (KCPJC) : si la PJC n'est pas payée, on connaît le motif de son non paiement (KCMNI). Si celle-ci n'est ni payée ni consommé (KCPJC = 3), c'est qu'elle est reportée, en raison principalement d'un délai de carence ou d'un différé (KCPJCC);
 
--   Le segment **« [Période d\'activité réduite](PAR/PAR_presentation.qmd) » (PAR, LN2K)** renseigne sur l\'activité réduite (nombre d\'heures, salaire brut et périodes).
+-   Le segment **« [Période d'activité réduite](PAR/PAR_presentation.qmd) » (PAR, LN2K)** renseigne sur l'activité réduite (nombre d'heures, salaire brut et périodes).
 
 ## Le parcours de l'indemnisation à Pôle Emploi
 
-Un nouveau demandeur d\'emploi, au moment de son inscription, apparaît dans la table DE du FHS. Ensuite, pour pouvoir être indemnisé :
+Un nouveau demandeur d'emploi, au moment de son inscription, apparaît dans la table DE du FHS. Ensuite, pour pouvoir être indemnisé :
 
--   Le demandeur d\'emploi (DE) effectue une demande d\'allocation (table DAL) qui peut être acceptée ou rejetée ;
+-   Le demandeur d'emploi (DE) effectue une demande d'allocation (table DAL) qui peut être acceptée ou rejetée ;
 
--   La DAL est acceptée si le DE a suffisamment travaillé : la table CDT (contrat de travail) renseigne sur le dernier contrat du demandeur d\'emploi ayant permis l\'ouverture de droit. En complément, la table PAF (période d\'affiliation) renseigne sur l\'ensemble des évènements connus par le DE, ce qui inclut les contrats de travail (information à mettre en regard avec les MMO) mais aussi les périodes de formation et d\'arrêt de travail;
+-   La DAL est acceptée si le DE a suffisamment travaillé : la table CDT (contrat de travail) renseigne sur le dernier contrat du demandeur d'emploi ayant permis l'ouverture de droit. En complément, la table PAF (période d'affiliation) renseigne sur l'ensemble des évènements connus par le DE, ce qui inclut les contrats de travail (information à mettre en regard avec les MMO) mais aussi les périodes de formation et d'arrêt de travail;
 
--   Une fois la DAL acceptée, le DE peut s\'ouvrir un droit à l\'Assurance chômage, dont les caractéristiques sont présentes au sein de la table ODD (ouverture de droit);
+-   Une fois la DAL acceptée, le DE peut s'ouvrir un droit à l'Assurance chômage, dont les caractéristiques sont présentes au sein de la table ODD (ouverture de droit);
 
--   Pour chaque droit ouvert, est associée une ou plusieurs périodes à justification constante (PJC) pendant lesquelles les paramètres de l\'indemnisation restent inchangés.
+-   Pour chaque droit ouvert, est associée une ou plusieurs périodes à justification constante (PJC) pendant lesquelles les paramètres de l'indemnisation restent inchangés.
 
-L\'activité réduite : l\'information sur les allocataires de l\'Assurance chômage qui travaillent (c\'est-à-dire inscrits en catégories B et C à Pôle emploi) est renseignée dans le FHS (table E0) et dans le FNA (table PAR). La différence entre ces deux tables tient à la présence, au sein de la table PAR, de la variable KQBARP qui renseigne sur le salaire brut perçu dans le cadre d\'une activité réduite exercée par le demandeur d\'emploi.
+L'activité réduite : l'information sur les allocataires de l'Assurance chômage qui travaillent (c'est-à-dire inscrits en catégories B et C à Pôle emploi) est renseignée dans le FHS (table E0) et dans le FNA (table PAR). La différence entre ces deux tables tient à la présence, au sein de la table PAR, de la variable KQBARP qui renseigne sur le salaire brut perçu dans le cadre d'une activité réduite exercée par le demandeur d'emploi.

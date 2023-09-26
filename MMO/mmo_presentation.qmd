@@ -2,9 +2,9 @@
 title: "Les Mouvements de Main d'Oeuvre (MMO)"
 ---
 
-**La Dares fournit les données de Mouvements de Main-d'œuvre (MMO)[^1] tirées de la Déclaration sociale nominative (DSN).** La DSN repose sur la transmission unique, mensuelle et dématérialisée des données issues de la paie et sur des signalements d'événements. Plus précisément, la DSN remplace depuis 2017 la déclaration annuelle de données sociales unifiée (DADS-U) dans la plupart des entreprises afin d'unifier les déclarations et démarches relatives à la gestion de la protection sociale des employés, autrefois adressées à une diversité d'acteurs (CPAM, Urssaf, AGIRC ARRCO, Organismes complémentaires, Pôle emploi, Centre des impôts, Caisses régimes spéciaux, etc.).
+**La Dares fournit les données de Mouvements de Main-d'œuvre (MMO)**[^1] tirées de la Déclaration sociale nominative (DSN). La DSN repose sur la transmission unique, mensuelle et dématérialisée des données issues de la paie et sur des signalements d'événements. Plus précisément, la DSN remplace depuis 2017 la déclaration annuelle de données sociales unifiée (DADS-U) dans la plupart des entreprises afin d'unifier les déclarations et démarches relatives à la gestion de la protection sociale des employés, autrefois adressées à une diversité d'acteurs (CPAM, Urssaf, AGIRC ARRCO, Organismes complémentaires, Pôle emploi, Centre des impôts, Caisses régimes spéciaux, etc.).
 
-[^1]: Cette partie est issue de la documentation ForCE, les données MMO transmises au CASD pour ces deux appariements étant identiques.
+[^1]: **Cette partie est issue de la documentation ForCE, les données MMO transmises au CASD pour ces deux appariements étant identiques.**
 
 Les MMO correspondent aux données de la DSN, mises en forme et corrigées des erreurs de déclaration les plus fréquentes (l'ampleur des corrections apportées ayant vocation à augmenter au cours du temps, à mesure que le système informatique « Post-SISMMO » se développe).
 

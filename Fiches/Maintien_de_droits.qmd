@@ -1,0 +1,25 @@
+---
+title: "Maintien de droits"
+---
+
+## Définition
+
+Cette définition est tirée du site Internet de l'[Unédic](https://www.unedic.org/indemnisation/fiches-thematiques/allocation-daide-au-retour-lemploi-are).
+
+Les demandeurs d'emploi indemnisés à l'âge de 62 ans peuvent voir leurs droits prolongés jusqu'à la liquidation de leur retraite, à certaines conditions. Mais jamais au-delà de 65 ou 67 ans, âge où une retraite à taux plein leur est attribuée d'office. Ces conditions sont les suivantes :
+
+-   être âgé d'au moins 62 ans ;
+
+-   être indemnisé depuis au moins un an ;
+
+-   ne pas pouvoir prétendre à une retraite à taux plein ;
+
+-   avoir été affilié pendant 12 ans à l'assurance chômage, autrement dit 12 ans de travail salarié ayant donné lieu au versement des contributions d'assurance chômage ;
+
+-   pouvoir justifier d'une période d'emploi d'une année continue ou 2 années discontinues durant les 5 dernières années de travail ;
+
+-   disposer d'au moins d'au moins 100 trimestres validés par l'assurance vieillesse.
+
+Le demandeur d'emploi percevra l'ARE jusqu'à ce qu'il justifie du nombre de trimestres exigé pour une retraite à taux plein ou qu'il en bénéficie d'office à 65 ou 67 ans, selon son année de naissance. La reprise d'une activité professionnelle n'implique pas toujours la cessation du versement de l'ARE.
+
+## Dans les données

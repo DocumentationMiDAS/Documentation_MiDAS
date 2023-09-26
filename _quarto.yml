@@ -17,12 +17,14 @@ website:
         href : Allstat_FR6/Allstat_FR6_presentation.qmd
       - text : "MMO"
         href : MMO/mmo_presentation.qmd
-      - text : "Etudes"
-        href : Etudes/etudes.qmd
-      - text : "Outils"
-        href : Outils/outils.qmd
-      - text : "NEW"
-        href : NEW/new_presentation.qmd
+      - text : "Fiches"
+        href : Fiches/Fiches_presentation.qmd
+      # - text : "Etudes"
+      #   href : Etudes/etudes.qmd
+      # - text : "Outils"
+      #   href : Outils/outils.qmd
+      # - text : "NEW"
+      #   href : NEW/new_presentation.qmd
       - text : "Codes"
         href : Codes/codes_presentation.qmd
       - about.qmd
@@ -207,6 +209,13 @@ website:
       - section: "Cibles"
         contents: 
           - href: MMO/Cibles/mmo_cibles.qmd
+          
+    - title : "Fiches"
+      style: "docked"
+      background: light
+      contents:
+          - href: Fiches/Fiches_presentation.qmd
+          - href: Fiches/Maintien_de_droits.qmd
 
     - title : "Etudes"
       style: "docked"
