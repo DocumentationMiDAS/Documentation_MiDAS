@@ -481,49 +481,49 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 <table class="table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 16%">
+<col style="width: 19%">
+<col style="width: 31%">
+<col style="width: 16%">
+</colgroup>
 <thead>
 <tr class="header">
-<th><br>Variables</th>
-<th><br>Libellé</th>
-<th><br>Description</th>
+<th style="text-align: center;"><br>Nom Oracle (SAS)</th>
+<th style="text-align: center;"><br>Nom segment</th>
+<th style="text-align: center;"><br>Libellé</th>
+<th style="text-align: center;"><br>Description</th>
 <th><br>Modalités/commentaires</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><br>DALREF KCDA</td>
-<td><br>REFERENCE DE LA DEMANDE D’ALLOCATION</td>
-<td><br>Cette rubrique identifie une demande d’allocation.<br> Clef de jonction avec KCDA1 (DALREF1) du segment CONTRAT DE TRAVAIL (CDT) - segment LN4E</td>
+<td style="text-align: center;"><br>KCDA</td>
+<td style="text-align: center;"><br>DALREF</td>
+<td style="text-align: center;"><br>REFERENCE DE LA DEMANDE D’ALLOCATION</td>
+<td style="text-align: center;"><br>Cette rubrique identifie une demande d’allocation.<br> Clef de jonction avec KCDA1 (DALREF1) du segment CONTRAT DE TRAVAIL (CDT) - segment LN4E</td>
 <td></td>
 </tr>
 <tr class="even">
-<td><br>PECIDENT KCPEC1</td>
-<td><br>IDENTIFIANT PRISE EN CHARGE SUR DAL</td>
-<td><br>Identifiant de la prise en charge de l’individu. C’est la référence de la prise en charge associée à la demande d’allocation.<br> Clef de jonction avec KCPEC (PECIDENT) du segment PRISE EN CHARGE (PEC) - segment LN2R</td>
+<td style="text-align: center;"><br>KCPEC1</td>
+<td style="text-align: center;"><br>PECIDENT</td>
+<td style="text-align: center;"><br>IDENTIFIANT PRISE EN CHARGE SUR DAL</td>
+<td style="text-align: center;"><br>Identifiant de la prise en charge de l’individu. C’est la référence de la prise en charge associée à la demande d’allocation.<br> Clef de jonction avec KCPEC (PECIDENT) du segment PRISE EN CHARGE (PEC) - segment LN2R</td>
 <td><br>Le segment PEC (Prise en charge) n’est pas inclus dans MiDAS</td>
 </tr>
 <tr class="odd">
-<td><br>ODDIDENT KROD1</td>
-<td><br>IDENTIFIANT OUVERTURE DROIT / DAL</td>
-<td><br>Référence de l’OD portant le fait générateur.<br> Clef de jonction avec KROD2 (ODDDRARET) du segment DROIT OD (OD)</td>
+<td style="text-align: center;"><br>KPJSUP</td>
+<td style="text-align: center;"><br>DALNBJDI</td>
+<td style="text-align: center;"><br>NOMBRE DE JOURS DE DIFFERE</td>
+<td style="text-align: center;"><br>Nombre de jours de suspension, de carence ou de formation</td>
 <td></td>
 </tr>
 <tr class="even">
-<td><br>KCDAL</td>
-<td><br>TYPE DE DEMANDE D’ALLOCATION</td>
-<td><br>C’est le type d’imprimé de demande d’allocation.</td>
-<td>Les modalités sont disponibles dans la <a href="../../../FNA/DAL/Dico_FNA_DAL/FNA_DAL_variables/KCDAL.html">section dédiée</a>.</td>
-</tr>
-<tr class="odd">
-<td><br>KCNDDA</td>
-<td><br>NATURE DE LA DECISION</td>
-<td><br>Nature de la décision liée à la DAL</td>
-<td>Les modalités sont disponibles dans la <a href="../../../FNA/DAL/Dico_FNA_DAL/FNA_DAL_variables/KCNDDA.html">section dédiée</a>.</td>
-</tr>
-<tr class="even">
-<td><br>DALNBJDI KPJSUP</td>
-<td><br>NOMBRE DE JOURS DE DIFFERE</td>
-<td><br>Nombre de jours de suspension, de carence ou de formation</td>
+<td style="text-align: center;"><br>KROD1</td>
+<td style="text-align: center;"><br>ODDIDENT</td>
+<td style="text-align: center;"><br>IDENTIFIANT OUVERTURE DROIT / DAL</td>
+<td style="text-align: center;"><br>Référence de l’OD portant le fait générateur.<br> Clef de jonction avec KROD2 (ODDDRARET) du segment DROIT OD (OD)</td>
 <td></td>
 </tr>
 </tbody>

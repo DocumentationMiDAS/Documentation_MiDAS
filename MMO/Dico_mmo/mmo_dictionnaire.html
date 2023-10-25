@@ -242,126 +242,158 @@ ul.task-list li input[type="checkbox"] {
 <table class="table">
 <thead>
 <tr class="header">
-<th><br>Variable (identifiant rubrique DSN)</th>
-<th><br>Description</th>
-<th><br>Modalités</th>
+<th style="text-align: center;"><br>Variable (identifiant rubrique DSN)</th>
+<th style="text-align: center;"><br>Description</th>
+<th style="text-align: center;"><br>Modalités</th>
+<th style="text-align: center;"><br>Commentaires</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><br>IDSISMMO</td>
-<td><br>Identifiant du salarié, non signifiant</td>
-<td><br></td>
+<td style="text-align: center;"><br>annee_naissance</td>
+<td style="text-align: center;"><br>Année de naissance</td>
+<td style="text-align: center;"><br></td>
+<td style="text-align: center;"><br></td>
 </tr>
 <tr class="even">
-<td><br>CP</td>
-<td><br>Code postal de résidence de l’individu lors de la dernière déclaration reçue pour l’individu</td>
-<td><br></td>
+<td style="text-align: center;"><br>Code_Regime_Maladie (S21.G00.40.018)</td>
+<td style="text-align: center;"><br>Identifiant du régime de base d’assurance maladie auquel est affilié le salarié</td>
+<td style="text-align: center;"><br>134. Régime spécial de la SNCF<br> <br>135. Régime spécial de la RATP<br> <br>136. Établissement des invalides de la marine (ENIM)<br> <br>137. Mineurs ou assimilés (CANSSM)<br> <br>138. Militaires de carrière (CNMSS)<br> <br>140. Clercs et employés de notaires (CRPCEN)<br> <br>141. Chambre de commerce et d’industrie de Paris<br> <br>144. Assemblée Nationale<br> <br>145. Sénat<br> <br>146. Port autonome de Bordeaux<br> <br>147. Régime spécial des industries électriques et gazières (CAMIEG)<br> <br>149. Régimes des cultes (CAVIMAC)<br> <br>200. Régime général (CNAM)<br> <br>300. Régime agricole (MSA)<br> <br>400. Régime spécial Banque de France<br> <br>900. Autre régime (réservé Polynésie Française, Nouvelle Calédonie)<br> <br>909. Travailleur étranger non assujetti à un régime de base risque maladie en France<br> <br>999. Sans régime obligatoire</td>
+<td style="text-align: center;"><br></td>
 </tr>
 <tr class="odd">
-<td><br>annee_naissance</td>
-<td><br>Année de naissance</td>
-<td><br></td>
+<td style="text-align: center;"><br>CATJURI_ID</td>
+<td style="text-align: center;"><br>Catégorie juridique de l’établissement<br> <br>d’affection (la dernière valeur connue)</td>
+<td style="text-align: center;"><br><a href="https://www.insee.fr/fr/information/2028129">Catégories juridiques</a></td>
+<td style="text-align: center;"><br></td>
 </tr>
 <tr class="even">
-<td><br>mois_naissance</td>
-<td><br>Mois de naissance</td>
-<td><br></td>
+<td style="text-align: center;"><br>CP</td>
+<td style="text-align: center;"><br>Code postal de résidence lors de la dernière déclaration reçue pour l’individu</td>
+<td style="text-align: center;"><br></td>
+<td style="text-align: center;"><br></td>
 </tr>
 <tr class="odd">
-<td><br>DebutCTT</td>
-<td><br>Date de début du contrat</td>
-<td><br></td>
+<td style="text-align: center;"><br>CP_Pref</td>
+<td style="text-align: center;"><br>Code postal de résidence de l’individu connu lors du dernier jour de la période de référence</td>
+<td style="text-align: center;"><br></td>
+<td style="text-align: center;"><br>Par exemple, dans la table 2021, c’est le code postal connu au 31 décembre 2021.</td>
 </tr>
 <tr class="even">
-<td><br>DerDSN</td>
-<td><br>Dernière déclaration en DSN</td>
-<td><br></td>
+<td style="text-align: center;"><br>DebutCTT</td>
+<td style="text-align: center;"><br>Date de début du contrat</td>
+<td style="text-align: center;"><br></td>
+<td style="text-align: center;"><br></td>
 </tr>
 <tr class="odd">
-<td><br>DispPolitiquePublique (S21.G00.40.008)</td>
-<td><br>Dispositif de politique publique au dernier jour de la période de référence</td>
-<td><br>21. CUI - Contrat Initiative Emploi<br> <br>41. CUI - Contrat d’Accompagnement dans l’Emploi<br> <br>42. CUI - Contrat d’accès à l’emploi - DOM<br> <br>50. Emploi d’avenir secteur marchand<br> <br>51. Emploi d’avenir secteur non marchand<br> <br>61. Contrat de Professionnalisation<br> <br>64. Contrat d’apprentissage entreprises artisanales ou de moins de 11 salariés (loi du 3 janvier 1979)<br> <br>65. Contrat d’apprentissage entreprises non inscrites au répertoire des métiers d’au moins 11 salariés (loi de 1987)<br> <br>66. Convention industrielle de formation par la recherche en entreprise (CIFRE)<br> <br>70. Contrat à durée déterminée pour les séniors<br> <br>71. Contrat à durée déterminée d’insertion<br> <br>80. Contrat de génération<br> <br>81. Contrat d’apprentissage secteur public (Loi de 1992)<br> <br>92. Stage de la formation professionnelle<br> <br>93. Période de mise en situation en milieu professionnel<br> <br>94. Contrat adulte relais<br> <br>99. Non concerné</td>
+<td style="text-align: center;"><br>DerDSN</td>
+<td style="text-align: center;"><br>Dernière déclaration en DSN</td>
+<td style="text-align: center;"><br></td>
+<td style="text-align: center;"><br></td>
 </tr>
 <tr class="even">
-<td><br>FinCTT (S21.G00.62.001)</td>
-<td><br>Date de fin du contrat</td>
-<td><br></td>
+<td style="text-align: center;"><br>DispPolitiquePublique (S21.G00.40.008)</td>
+<td style="text-align: center;"><br>Dispositif de politique publique au dernier jour de la période de référence</td>
+<td style="text-align: center;"><br>21. CUI - Contrat Initiative Emploi<br> <br>41. CUI - Contrat d’Accompagnement dans l’Emploi<br> <br>42. CUI - Contrat d’accès à l’emploi - DOM<br> <br>50. Emploi d’avenir secteur marchand<br> <br>51. Emploi d’avenir secteur non marchand<br> <br>61. Contrat de Professionnalisation<br> <br>64. Contrat d’apprentissage entreprises artisanales ou de moins de 11 salariés (loi du 3 janvier 1979)<br> <br>65. Contrat d’apprentissage entreprises non inscrites au répertoire des métiers d’au moins 11 salariés (loi de 1987)<br> <br>66. Convention industrielle de formation par la recherche en entreprise (CIFRE)<br> <br>70. Contrat à durée déterminée pour les séniors<br> <br>71. Contrat à durée déterminée d’insertion<br> <br>80. Contrat de génération<br> <br>81. Contrat d’apprentissage secteur public (Loi de 1992)<br> <br>92. Stage de la formation professionnelle<br> <br>93. Période de mise en situation en milieu professionnel<br> <br>94. Contrat adulte relais<br> <br>99. Non concerné</td>
+<td style="text-align: center;"><br>Pour certains stagiaires de la formation qui bénéficient d’une rémunération de formation, une déclaration est ouverte alors qu’elle ne correspond pas à un stage effectué en entreprise. Ils sont identifiables via la modalité « 92 ‐ Stage de la formation professionnelle », pour les organismes publics (variable Secteur_PUBLIC = 1).</td>
 </tr>
 <tr class="odd">
-<td><br>H_etab_sqn</td>
-<td><br>Identifiant SISMMO de l’établissement</td>
-<td><br></td>
+<td style="text-align: center;"><br>Emploi_bit_annee_mois</td>
+<td style="text-align: center;"><br>Indicatrice qui renseigne si l’emploi occupé est un emploi au sens du BIT</td>
+<td style="text-align: center;"><br>. Non concerné : le contrat n’est pas actif sur le mois M de l’année A<br> <br>0. Au mois M de l’année A, pas en emploi au sens du BIT <br> <br>1. Au mois M de l’année A, en emploi au sens du BIT</td>
+<td style="text-align: center;"><p><br>Les contrats pour lesquels la variable prend la modalité 0 pour un mois donné sont les suivants<br></p>
+<ul>
+<li><p>Contrat avec une rémunération brute déplafonnée manquante et contrat avec une rémunération nulle, sans arrêt de travail (arrêt maladie, paternité), sans suspension (invalidité, congés pour enfant malade, congé parental) ;<br></p></li>
+<li><p>Les stagiaires (nature 29) de rémunération mensuelle &lt; 1/3 du SMIC ;<br></p></li>
+<li><p>Certains stagiaires de la formation professionnelle du public : ceux de nature 90 et de dispositif politique publique 92, et déclaré par une région ou l’Agence de services et de paiement (ASP) ;<br></p></li>
+<li><p>Les mandataires sociaux (nature 80) avec une rémunération nulle (pour les contrats avec arrêt de travail ou en suspension ;<br></p></li>
+<li><p>Les vendeurs à domicile indépendants (VDI, nature 90) et rémunération nulle (pour les contrats avec arrêt de travail ou en suspension) ;<br></p></li>
+<li><p>Les élus et prisonniers (nature 81 et 53) de rémunération mensuelle &lt; 1/3 SMIC.</p></li>
+</ul></td>
 </tr>
 <tr class="even">
-<td><br>Heures</td>
-<td><br>Somme des heures travaillées au titre de l’année en cours (à venir)</td>
-<td><br></td>
+<td style="text-align: center;"><br>FinCTT (S21.G00.62.001)</td>
+<td style="text-align: center;"><br>Date de fin du contrat</td>
+<td style="text-align: center;"><br></td>
+<td style="text-align: center;"><br>Il existe des valeurs manquantes lorsque le contrat de travail est encore en cours ou bien lorsque la date de fin n’a pas été déclarée.<br> En pratique, il y a donc des contrats qui ont pris fin mais pour lesquels une déclaration peut subsister <br>On décompte environ 6 % de contrats ouverts dans SISMMO qui se chevauchent avec une période de demande d’emploi de catégorie A (DEFM A).<br>Pour les CDD dont la durée est supérieure à la limite autorisée, on peut supposer que soit la nature est erronée (erreur de déclaration d’origine, ou oubli de conversion de CDD en CDI), soit la durée est erronée (du fait d’une erreur sur la date de début, ou du fait d’un rappel de salaire après la fin du<br>contrat mal déclaré), ou soit qu’il s’agit effectivement d’un CDD d’une durée illégale.</td>
 </tr>
 <tr class="odd">
-<td><br>Individu_DSN</td>
-<td><br>Correspond à l’identifiant pour chaque individu dans DSN</td>
-<td><br></td>
+<td style="text-align: center;"><br>H_Etab_SQN</td>
+<td style="text-align: center;"><br>Identifiant de l’établissement</td>
+<td style="text-align: center;"><br></td>
+<td style="text-align: center;"><br></td>
 </tr>
 <tr class="even">
-<td><br>L_contrat_sqn</td>
-<td><br>Identifiant SISMMO du contrat</td>
-<td><br></td>
+<td style="text-align: center;"><br>H_Individu_SQN</td>
+<td style="text-align: center;"><br>Identifiant de l’individu</td>
+<td style="text-align: center;"><br></td>
+<td style="text-align: center;"><br>Identifie l’individu dans les données MMO. Équivalent de l’ID_MiDAS.</td>
 </tr>
 <tr class="odd">
-<td><br>Localité</td>
-<td><br>Commune de résidence de l’individu lors de la dernière déclaration reçue pour l’individu</td>
-<td><br></td>
+<td style="text-align: center;"><br>H_Salarie_SQN</td>
+<td style="text-align: center;"><br>Identifiant du salarié</td>
+<td style="text-align: center;"><br></td>
+<td style="text-align: center;"><br>Identifie l’individu dans un Siret. Alors que l’individu a un seul « H_Individus_SQN », il peut avoir plusieurs « H_Salarie_SQN » s’il est dans plusieurs établissements différents.</td>
 </tr>
 <tr class="even">
-<td><br>MotifRecours (S21.G00.40.021)</td>
-<td><br>Motif de recours au dernier jour de la période de référence</td>
-<td><br>Les modalités sont disponibles dans la <a href="../../MMO/Dico_mmo/mmo_variables/MotifRecours.html">section dédiée</a>.</td>
+<td style="text-align: center;"><br>L_contrat_sqn</td>
+<td style="text-align: center;"><br>Identifiant du contrat</td>
+<td style="text-align: center;"><br></td>
+<td style="text-align: center;"><br></td>
 </tr>
 <tr class="odd">
-<td><br>MotifRupture (S21.G00.62.002)</td>
-<td><br>Motif de la rupture du contrat</td>
-<td><br>Les modalités sont disponibles dans la <a href="../../MMO/Dico_mmo/mmo_variables/MotifRupture.html">section dédiée</a>.</td>
+<td style="text-align: center;"><br>Localite</td>
+<td style="text-align: center;"><br>Commune de résidence de l’individu lors de la dernière déclaration reçue pour l’individu</td>
+<td style="text-align: center;"><br></td>
+<td style="text-align: center;"><br></td>
 </tr>
 <tr class="even">
-<td><br>Nature (S21.G00.40.007)</td>
-<td><br>Nature du contrat au dernier jour de la période de référence</td>
-<td><br>Les modalités sont disponibles dans la <a href="../../MMO/Dico_mmo/mmo_variables/Nature.html">section dédiée</a>.</td>
+<td style="text-align: center;"><br>Localite_Pref</td>
+<td style="text-align: center;"><br>Commune de résidence de l’individu lors de la dernière déclaration connue lors du dernier jours de la période de référence</td>
+<td style="text-align: center;"><br></td>
+<td style="text-align: center;"><br>Par exemple, dans la table 2021, c’est la commune de résidence connue au 31 décembre 2021.</td>
 </tr>
 <tr class="odd">
-<td><br>SalaireBase</td>
-<td><br>Salaire de base du salarié</td>
-<td><br>Cette variable est décrite dans la <a href="../../MMO/Dico_mmo/mmo_variables/MotifRecours.html">note dédiée</a>.</td>
+<td style="text-align: center;"><br>ModeExercice (S21.G00.40.014)</td>
+<td style="text-align: center;"><br>Valeur exprimant le fait que le salarié travaille à temps plein ou partiel</td>
+<td style="text-align: center;"><br>10. Temps plein<br> <br>20. Temps partiel<br> <br>30. Temps alterné - personnel navigant de l’aéronautique civile<br> <br>40. CPA 2004<br> <br>41. Temps partiel de droit<br> <br>42. Temps partiel de droit pour enfant<br> <br>99. Salarié non concerné</td>
+<td style="text-align: center;"><br>La valeur « 42 » est applicable pour les agents de la fonction publique, de la SNCF et les salariés des IEG.<br> <br>Les valeurs « 40 » et « 41 » ne sont applicables qu’aux agents de la fonction publique et de la SNCF.<br> <br>La modalité « 40 – CPA 2004 » correspond à la Cessation Progressive d’activité, un dispositif mis en place à partir de 2004 suite à la réforme des retraites de 2003.</td>
 </tr>
 <tr class="even">
-<td><br>PcsEse (S21.G00.40.004)</td>
-<td><br>PCS ESE au dernier jour de la période de référence</td>
-<td><br></td>
+<td style="text-align: center;"><br>mois_naissance</td>
+<td style="text-align: center;"><br>Mois de naissance</td>
+<td style="text-align: center;"><br></td>
+<td style="text-align: center;"><br></td>
 </tr>
 <tr class="odd">
-<td><br>PreDSN</td>
-<td><br>Première déclaration en DSN</td>
-<td><br></td>
+<td style="text-align: center;"><br>PcsEse (S21.G00.40.004)</td>
+<td style="text-align: center;"><br>PCS-ESE au dernier jour de la période de référence</td>
+<td style="text-align: center;"><br><a href="https://www.insee.fr/fr/information/2497958">PCS-ESE</a></td>
+<td style="text-align: center;"><br></td>
 </tr>
 <tr class="even">
-<td><br>Salaire_brut</td>
-<td><br>Somme des salaires bruts reçus au titre de l’année en cours (à venir)</td>
-<td><br></td>
+<td style="text-align: center;"><br>PreDSN</td>
+<td style="text-align: center;"><br>Première déclaration en DSN</td>
+<td style="text-align: center;"><br></td>
+<td style="text-align: center;"><br></td>
 </tr>
 <tr class="odd">
-<td><br>Salaire_nets</td>
-<td><br>Somme des salaires nets reçus au titre de l’année en cours (à venir)</td>
-<td><br></td>
+<td style="text-align: center;"><br>Secteur_PUBLIC</td>
+<td style="text-align: center;"><br>Indicatrice du secteur public</td>
+<td style="text-align: center;"><br>0. Secteur privé<br> <br>1. Secteur public</td>
+<td style="text-align: center;"><br>Variable construite à partir de la catégorique juridique de l’établissement d’affectation (CATJURI_ID) et du siren</td>
 </tr>
 <tr class="even">
-<td><br>Siret_AF</td>
-<td><br>Siret de l’établissement d’affectation</td>
-<td><br></td>
+<td style="text-align: center;"><br>Siret_AF</td>
+<td style="text-align: center;"><br>Siret de l’établissement d’affectation</td>
+<td style="text-align: center;"><br></td>
+<td style="text-align: center;"><br></td>
 </tr>
 <tr class="odd">
-<td><br>Siret_UT</td>
-<td><br>Siret de l’établissement utilisateur dans le cas des contrats intérimaires</td>
-<td><br></td>
+<td style="text-align: center;"><br>Siret_UT</td>
+<td style="text-align: center;"><br>Siret de l’établissement utilisateur dans le cas des contrats intérimaires</td>
+<td style="text-align: center;"><br></td>
+<td style="text-align: center;"><br></td>
 </tr>
 </tbody>
 </table>

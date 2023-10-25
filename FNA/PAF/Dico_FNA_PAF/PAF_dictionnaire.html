@@ -482,65 +482,66 @@ ul.task-list li input[type="checkbox"] {
 
 <table class="table">
 <colgroup>
-<col style="width: 17%">
-<col style="width: 17%">
-<col style="width: 17%">
-<col style="width: 47%">
+<col style="width: 12%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 16%">
+<col style="width: 43%">
 </colgroup>
 <thead>
 <tr class="header">
-<th><br>Variables</th>
-<th><br>Libellé</th>
-<th><br>Description</th>
-<th><br>Modalités</th>
+<th style="text-align: center;"><br>Nom Oracle (SAS)</th>
+<th style="text-align: center;"><br>Nom Segment</th>
+<th style="text-align: center;"><br>Libellé</th>
+<th style="text-align: center;"><br>Description</th>
+<th style="text-align: center;"><br>Modalités</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><br>PAFIDAFF KCPAF</td>
-<td><br>IDENTIFIANT PERIODE AFFILIATION</td>
-<td><br>C’est l’identifiant de la période d’affiliation.<br> Clef de jonction avec KCPAF1 (CDTIDAFF) du segment CONTRAT TRAVAIL (CDT) - segment LN4E</td>
-<td></td>
+<td style="text-align: center;"><br>KCAFF</td>
+<td style="text-align: center;"><br>PAFDAFFI</td>
+<td style="text-align: center;"><br>CODES UNITE AFFILIATION RETENUES</td>
+<td style="text-align: center;"><br>Cette rubrique définit l’unité d’appréciation de l’affiliation.<br> Propriété présente dans les segments suivants : DAL/PAF</td>
+<td style="text-align: center;"><br>A. Année<br> M. Mois<br> J. Jours<br> H. Heures<br> E. Jours d’Embarquement<br> V. Vacations (2 vacations = 1 Jour = 5.6h.)<br> C. Cachet (et cachets groupés pour SIGMA) 1 cachet isolé =12 heures<br> G. Cachet groupé (1 cachet groupé = 8 heures)<br> 8. Nombre d’heures d’affiliation calculée pour l’Annexe 5 et 12 à partir des salaires<br> 9. Nombre d’heures d’affiliation calculée pour l’Annexe 5 à partir des heures travaillées saisies au niveau des rémunérations<br> Z. Non concerné<br> X. Valeur hors table</td>
 </tr>
 <tr class="even">
-<td><br>PAFDAFFI KCAFF</td>
-<td><br>CODES UNITE AFFILIATION RETENUES</td>
-<td><br>Cette rubrique définit l’unité d’appréciation de l’affiliation.<br> Propriété présente dans les segments suivants : DAL/PAF</td>
-<td><br>A. Année<br> M. Mois<br> J. Jours<br> H. Heures<br> E. Jours d’Embarquement<br> V. Vacations (2 vacations = 1 Jour = 5.6h.)<br> C. Cachet (et cachets groupés pour SIGMA) 1 cachet isolé =12 heures<br> G. Cachet groupé (1 cachet groupé = 8 heures)<br> 8. Nombre d’heures d’affiliation calculée pour l’Annexe 5 et 12 à partir des salaires<br> 9. Nombre d’heures d’affiliation calculée pour l’Annexe 5 à partir des heures travaillées saisies au niveau des rémunérations<br> Z. Non concerné<br> X. Valeur hors table</td>
+<td style="text-align: center;"><br>KCFPL</td>
+<td style="text-align: center;"><br>PAFALIQ</td>
+<td style="text-align: center;"><br>FAMILLE PERIODE LIQUIDATION PASSE PROFESSIONNEL</td>
+<td style="text-align: center;"><br>Il s’agit du code famille d’une période du passé professionnel.</td>
+<td style="text-align: center;"><br>01. Activité salariée relevant du champ d’application RAC<br> 02. Activité salariée hors champ d’application RAC mais avec système d’indemnisation similaire (secteur public)<br> 03. Activité non salariée exclue de tout RAC (artisan, agriculteur, commerçant,…)<br> 04. Période d’incapacité physique (maladie, maternité,…)<br> 05. Période de formation<br> 06. Période d’indemnisation hors Pôle emploi de traitement (suite à transfert)<br> 07. Activité salariée hors champ d’application RAC (secteur public auto-assurance)<br> 00. Autres activités</td>
 </tr>
 <tr class="odd">
-<td><br>PAFUAFFI KPAFFQ</td>
-<td><br>NOMBRES D’UNITES D’AFFILIATION</td>
-<td><br>Nombre unités de la période d’affiliation ouvrant le droit.</td>
-<td></td>
+<td style="text-align: center;"><br>KCPAF</td>
+<td style="text-align: center;"><br>PAFIDAFF</td>
+<td style="text-align: center;"><br>IDENTIFIANT PERIODE AFFILIATION</td>
+<td style="text-align: center;"><br>C’est l’identifiant de la période d’affiliation.<br> Clef de jonction avec KCPAF1 (CDTIDAFF) du segment CONTRAT TRAVAIL (CDT) - segment LN4E</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
-<td><br>PAFDTDEB KDDPE</td>
-<td><br>DATE DEBUT PERIODE D’AFFILIATION</td>
-<td><br>Date du premier jour de la période d’affiliation.</td>
-<td><br>Ces variables ont un champ plus large que celles situées dans la table CDT, puisqu’elles incluent l’ensemble des périodes d’affiliation, dont les contrats de travail, les formations et les arrêts de travail.</td>
+<td style="text-align: center;"><br>KDDPE</td>
+<td style="text-align: center;"><br>PAFDTDEB</td>
+<td style="text-align: center;"><br>DATE DEBUT PERIODE D’AFFILIATION</td>
+<td style="text-align: center;"><br>Date du premier jour de la période d’affiliation.</td>
+<td style="text-align: center;"><br>Ces variables ont un champ plus large que celles situées dans la table CDT, puisqu’elles incluent l’ensemble des périodes d’affiliation, dont les contrats de travail, les formations et les arrêts de travail.</td>
 </tr>
 <tr class="odd">
-<td><br>PAFDTFIN KDFPE</td>
-<td><br>DATE FIN PERIODE D’AFFILIATION</td>
-<td><br>Date du dernier jour de la période d’affiliation.</td>
-<td></td>
+<td style="text-align: center;"><br>KDFPE</td>
+<td style="text-align: center;"><br>PAFDTFIN</td>
+<td style="text-align: center;"><br>DATE FIN PERIODE D’AFFILIATION</td>
+<td style="text-align: center;"><br>Date du dernier jour de la période d’affiliation.</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
-<td><br>PAFALIQ KCFPL</td>
-<td><br>FAMILLE PERIODE LIQUIDATION PASSE PROFESSIONNEL</td>
-<td><br>Il s’agit du code famille d’une période du passé professionnel.</td>
-<td><br>01. Activité salariée relevant du champ d’application RAC<br> 02. Activité salariée hors champ d’application RAC mais avec système d’indemnisation similaire (secteur public)<br> 03. Activité non salariée exclue de tout RAC (artisan, agriculteur, commerçant,…)<br> 04. Période d’incapacité physique (maladie, maternité,…)<br> 05. Période de formation<br> 06. Période d’indemnisation hors Pôle emploi de traitement (suite à transfert)<br> 07. Activité salariée hors champ d’application RAC (secteur public auto-assurance)<br> 00. Autres activités</td>
-</tr>
-<tr class="odd">
-<td><br>KCNPL</td>
-<td><br>NATURE PERIODE LIQUIDATION DU PASSE PROFESSIONNEL</td>
-<td><br>Cette rubrique définit la nature d’une période du passé professionnel. Pour Athéna Est, cette rubrique est disponible pour les Annexes 2 et 8. Pour les Annexes, la nature de période se décompose en :</td>
-<td></td>
+<td style="text-align: center;"><br>KPAFFQ</td>
+<td style="text-align: center;"><br>PAFUAFFI</td>
+<td style="text-align: center;"><br>NOMBRES D’UNITES D’AFFILIATION</td>
+<td style="text-align: center;"><br>Nombre unités de la période d’affiliation ouvrant le droit.</td>
+<td style="text-align: center;"></td>
 </tr>
 </tbody>
 </table>
-<p>“A” Valeur constante “X” Numéro de l’Annexe “99” Code numérique sur 2 positions qui correspond à la qualification de l’individu au niveau de l’annexe | Les modalités sont disponibles dans la <a href="../../../FNA/PAF/Dico_FNA_PAF/FNA_PAF_variables/KCNPL.html">section dédiée</a>. |</p>
 
 
 
