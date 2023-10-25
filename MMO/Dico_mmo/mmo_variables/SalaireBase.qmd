@@ -57,3 +57,5 @@ Ci-après le format qui peut être utilisé avec la variable Salaire de base :
     "7" = "OK" ;
 
     RUN ;
+
+![![](images/image-2077962576.png)](images/image-238033907.png)

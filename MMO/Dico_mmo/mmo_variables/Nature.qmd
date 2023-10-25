@@ -2,8 +2,9 @@
 title: "Nature"
 ---
 
-Nature du contrat au dernier jour de la période de référence
+Nature du contrat au dernier jour de la période de référence.
 
+Cette variable est tributaire de la déclaration et soumise à peu de contrôles opérationnels. Malgré les corrections apportées, des erreurs de déclaration peuvent subsister. Compte tenu de l'intégration progressive des salariés de la fonction publique en DSN, les données relatives aux modalités « 09 » et « 10 » sont quasi‐exhaustives depuis mars 2022. Avant cette date, l'exhaustivité peut uniquement être assurée pour les contrats qui sont encore actifs en mars 2022.
 
 **01**. Contrat de travail à durée indéterminée de droit privé
 
@@ -19,21 +20,21 @@ Nature du contrat au dernier jour de la période de référence
 
 **10**. Contrat de travail à durée déterminée de droit public
 
-**20**. [FP] Détachement d’un agent d’une Fonction Publique donnant lieu à pension (ECP)
+**20**. \[FP\] Détachement d'un agent d'une Fonction Publique donnant lieu à pension (ECP)
 
-**21**. [FP] Détachement d’un agent d’une Fonction Publique ne donnant pas lieu à pension (ENCP)
+**21**. \[FP\] Détachement d'un agent d'une Fonction Publique ne donnant pas lieu à pension (ENCP)
 
 **29**. Convention de stage (hors formation professionnelle)
 
-**32**. Contrat d’appui au projet d’entreprise
+**32**. Contrat d'appui au projet d'entreprise
 
-**50**. Nomination dans la fonction publique (par arrêté, par décision…)
+**50**. Nomination dans la fonction publique (par arrêté, par décision...)
 
-**51**. Contrat de mission d’un collaborateur occasionnel du service public (COSP) ou assimilé
+**51**. Contrat de mission d'un collaborateur occasionnel du service public (COSP) ou assimilé
 
-**52**. [FP] Cumul d’activité à titre accessoire
+**52**. \[FP\] Cumul d'activité à titre accessoire
 
-**53**. Contrat d’engagement détenu
+**53**. Contrat d'engagement détenu
 
 **60**. Contrat d'engagement éducatif
 
