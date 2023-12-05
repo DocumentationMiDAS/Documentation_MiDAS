@@ -14,7 +14,7 @@ Dans le cadre de MiDAS, les données sélectionnées sont issues de 7 segments d
 
 -   Le segment **« [Individu](IND/IND_presentation.qmd) » (IND, LN4A)** : table centrale qui fait la jonction avec les autres tables, au niveau de l'individu ;
 
--   Le segment **« [Contrat de travail](CDT/CDT_presentation.qmd) » (CDT, LN4E)** indique la nature du dernier contrat de travail avant l'ouverture du droit (fait générateur) et son motif de fin;
+-   Le segment **« [Contrat de travail](CDT/CDT_presentation.qmd) » (CDT, LN4E)** indique la nature du dernier contrat de travail avant l'ouverture du droit (fait générateur) et son motif de fin ;
 
 -   Le segment **« [Période d'affiliation](PAF/PAF_presentation.qmd) » (PAF, LN2L)** : pour un droit, cette table contient l'ensemble des évènements (contrats de travail, périodes de formations, arrêts maladie...) connus d'un individu, indiqués par une date de début (KDDPE) et une date de fin (KDFPE). Si ces variables sont identiques à celles présentes dans CDT, elles ne renvoient pas nécessairement à un contrat car le « champ » de PAF est plus large que celui de CDT. L'ensemble des contrats ayant permis l'ouverture de droit peuvent être repérés grâce à KCFPL et sont exprimés en heures alors que les arrêts maladie sont exprimés en jours (KCAFF) ;
 
@@ -28,7 +28,7 @@ Dans le cadre de MiDAS, les données sélectionnées sont issues de 7 segments d
 
     -   Le *rechargement de droit* (anciennement « réadmission »), entraîne un nouveau droit (une nouvelle ligne avec un nouveau KROD) : il peut être identifié dans DAL (KCDAL = 26 ; KCNDDA = 10), ODD (KCRRD) et dans PJC (KCOPP = 02).
 
--   Le segment **« [Période à justification constante](PJC/PJC_presentation.qmd) » (PJC, LN2P)** contient de nombreuses informations permettant de calculer le nombre d'indemnisables et d'indemnisés un mois donné (date de début et de fin de PJC, PJC payée ou non, motif d'ouverture et de fermeture de la PJC, allocation, SJR et montant d'allocation). Pour chaque droit, cette table contient une ligne par PJC, qui est la plus petite unité de temps qui découpe un droit. Le passage d'une PJC à une autre est dû au changement de type de PJC (KCPJC) : si la PJC n'est pas payée, on connaît le motif de son non paiement (KCMNI). Si celle-ci n'est ni payée ni consommé (KCPJC = 3), c'est qu'elle est reportée, en raison principalement d'un délai de carence ou d'un différé (KCPJCC);
+-   Le segment **« [Période à justification constante](PJC/PJC_presentation.qmd) » (PJC, LN2P)** contient de nombreuses informations permettant de calculer le nombre d'indemnisables et d'indemnisés un mois donné (date de début et de fin de PJC, PJC payée ou non, motif d'ouverture et de fermeture de la PJC, allocation, SJR et montant d'allocation). Pour chaque droit, cette table contient une ligne par PJC, qui est la plus petite unité de temps qui découpe un droit. Le passage d'une PJC à une autre est dû au changement de type de PJC (KCPJC) : si la PJC n'est pas payée, on connaît le motif de son non paiement (KCMNI). Si celle-ci n'est ni payée ni consommé (KCPJC = 3), c'est qu'elle est reportée, en raison principalement de l'exercice d'une activité réduite ;
 
 -   Le segment **« [Période d'activité réduite](PAR/PAR_presentation.qmd) » (PAR, LN2K)** renseigne sur l'activité réduite (nombre d'heures, salaire brut et périodes).
 

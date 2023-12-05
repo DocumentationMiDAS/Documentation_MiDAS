@@ -4,6 +4,8 @@ title: "Motif Rupture"
 
 Motif de la rupture du contrat
 
+**000**. Motif inconnu
+
 **011**. Licenciement suite à liquidation judiciaire ou à redressement judiciaire
 
 **012**. Licenciement suite à fermeture définitive de l'établissement
