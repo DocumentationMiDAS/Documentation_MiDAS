@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Documentation MiDAS - Maintien de droits</title>
+<title>Documentation MiDAS - Allocations agrégées et régimes d’indemnisation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -124,7 +124,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Fiches/Maintien_de_droits.html">Maintien de droits</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Fiches/Allocations_regimes.html">Allocations agrégées et régimes d’indemnisation</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -144,13 +144,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Fiches/Maintien_de_droits.html" class="sidebar-item-text sidebar-link active">
+  <a href="../Fiches/Maintien_de_droits.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Maintien de droits</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Fiches/Allocations_regimes.html" class="sidebar-item-text sidebar-link">
+  <a href="../Fiches/Allocations_regimes.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Allocations agrégées et régimes d’indemnisation</span></a>
   </div>
 </li>
@@ -164,8 +164,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#définition" id="toc-définition" class="nav-link active" data-scroll-target="#définition">Définition</a></li>
-  <li><a href="#dans-les-données" id="toc-dans-les-données" class="nav-link" data-scroll-target="#dans-les-données">Dans les données</a></li>
+  <li><a href="#régime-dassurance-chômage" id="toc-régime-dassurance-chômage" class="nav-link active" data-scroll-target="#régime-dassurance-chômage">Régime d’Assurance-Chômage</a></li>
+  <li><a href="#régime-etat" id="toc-régime-etat" class="nav-link" data-scroll-target="#régime-etat">Régime Etat</a></li>
+  <li><a href="#régime-pôle-emploi" id="toc-régime-pôle-emploi" class="nav-link" data-scroll-target="#régime-pôle-emploi">Régime Pôle Emploi</a></li>
   </ul>
 </nav>
     </div>
@@ -174,7 +175,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Maintien de droits</h1>
+<h1 class="title">Allocations agrégées et régimes d’indemnisation</h1>
 </div>
 
 
@@ -189,22 +190,416 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="définition" class="level2">
-<h2 class="anchored" data-anchor-id="définition">Définition</h2>
-<p>Cette définition est tirée du site Internet de l’<a href="https://www.unedic.org/indemnisation/fiches-thematiques/allocation-daide-au-retour-lemploi-are">Unédic</a>.</p>
-<p>Les demandeurs d’emploi indemnisés à l’âge de 62 ans peuvent voir leurs droits prolongés jusqu’à la liquidation de leur retraite, à certaines conditions. Mais jamais au-delà de 65 ou 67 ans, âge où une retraite à taux plein leur est attribuée d’office. Ces conditions sont les suivantes :</p>
-<ul>
-<li><p>être âgé d’au moins 62 ans ;</p></li>
-<li><p>être indemnisé depuis au moins un an ;</p></li>
-<li><p>ne pas pouvoir prétendre à une retraite à taux plein ;</p></li>
-<li><p>avoir été affilié pendant 12 ans à l’assurance chômage, autrement dit 12 ans de travail salarié ayant donné lieu au versement des contributions d’assurance chômage ;</p></li>
-<li><p>pouvoir justifier d’une période d’emploi d’une année continue ou 2 années discontinues durant les 5 dernières années de travail ;</p></li>
-<li><p>disposer d’au moins d’au moins 100 trimestres validés par l’assurance vieillesse.</p></li>
-</ul>
-<p>Le demandeur d’emploi percevra l’ARE jusqu’à ce qu’il justifie du nombre de trimestres exigé pour une retraite à taux plein ou qu’il en bénéficie d’office à 65 ou 67 ans, selon son année de naissance. La reprise d’une activité professionnelle n’implique pas toujours la cessation du versement de l’ARE.</p>
+<p>Date de mise à jour : octobre 2022</p>
+<p>Les codes allocations disponibles et classés dans cette documentation sont les derniers disponibles. L’ajout de nouveaux dispositifs d’indemnisation et la modification des conventions d’Assurance Chômage peut entraîner l’apparition dans les données de nouveaux codes allocation, qui seront mis en ligne dès que possible.</p>
+<section id="régime-dassurance-chômage" class="level2">
+<h2 class="anchored" data-anchor-id="régime-dassurance-chômage">Régime d’Assurance-Chômage</h2>
+<table class="table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 22%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Groupe allocation</th>
+<th style="text-align: center;">N°</th>
+<th style="text-align: center;">Nom allocation</th>
+<th>Codes allocations FNA (KCALF)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">ARE</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">Allocation d’aide au retour à l’emploi (ARE)<strong>[1]</strong></td>
+<td>01,21,22,27,40,43,47,54,64,67, 82,AC,BB,BK,CJ,DM,EF,EW,FL</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">Allocation d’aide au retour à l’emploi intermittent (ARE-I)</td>
+<td>CN</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">Allocation d’aide au retour à l’emploi différé (ARED)</td>
+<td>BP,CQ</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">AREF</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">Allocation d’aide au retour à l’emploi formation (AREF)<strong>[2]</strong></td>
+<td>33,34,35,48,49,55,65,83,AD,BC, BN,CK,DQ,EL,EX,FO</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">Allocation d’aide au retour à l’emploi formation intermittent (AREF-I)</td>
+<td>CO</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">Allocation d’aide au retour à l’emploi formation différé (AREF-D)</td>
+<td>BQ,CR</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">ARER</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">Allocation d’aide au retour à l’emploi de rattrapage (ARER)</td>
+<td>FM</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">Allocation d’aide au retour à l’emploi de rattrapage intermittent (ARER-I)</td>
+<td>CT,DT,EN</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">Allocation d’aide au retour à l’emploi de rattrapage formation intermittent (ARER-FI)</td>
+<td>CU,DU,EO</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">Allocation d’aide au retour à l’emploi formation de rattrapage (AREFR)</td>
+<td>FP</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">ATI</td>
+<td style="text-align: center;">11</td>
+<td style="text-align: center;">Allocation des travailleurs indépendants (ATI)</td>
+<td>EA,GI</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">Allocation des travailleurs indépendants formation (ATIF)</td>
+<td>EB,GJ</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">ADM</td>
+<td style="text-align: center;">13</td>
+<td style="text-align: center;">Allocation des démissionnaires (ADM)</td>
+<td>EC</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">14</td>
+<td style="text-align: center;">Allocation des démissionnaires formation (ADM-F)</td>
+<td>EP</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">ASP</td>
+<td style="text-align: center;">15</td>
+<td style="text-align: center;">Allocation de sécurisation professionnelle (ASP)</td>
+<td>AM,AO,AQ,BU,BV,BW,BX,BY,FR,FS, FT,FU,FV,FW,FX</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">16</td>
+<td style="text-align: center;">Allocation de sécurisation professionnelle formation (ASP-F)</td>
+<td>AN,AP,AR,BZ,CA,CB,CC,GC,GD,GE, GF,GG,GH</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">17</td>
+<td style="text-align: center;">Allocation de sécurisation professionnelle ARE (ASP-ARE), dont formation</td>
+<td>AK,AL,GK,GL</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">18</td>
+<td style="text-align: center;">Indemnité différentielle de reclassement CSP (IDR-CSP)</td>
+<td>AS,CD</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">19</td>
+<td style="text-align: center;">Allocation spécifique de reclassement (ASR), dont formation</td>
+<td>61,84</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">Allocation spécifique de reclassement ARE (ASR-ARE), dont formation</td>
+<td>62,85</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">ATP</td>
+<td style="text-align: center;">21</td>
+<td style="text-align: center;">Allocation de transition professionnelle (ATP)</td>
+<td>70,88,91</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">ADR</td>
+<td style="text-align: center;">22</td>
+<td style="text-align: center;">Aide différentielle de reclassement (ADR)</td>
+<td>66,86,AG</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">ARCE</td>
+<td style="text-align: center;">23</td>
+<td style="text-align: center;">Aide à la reprise ou à la création d’entreprise (ARCE)</td>
+<td>68,87,AH,AZ,ED,EH</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">24</td>
+<td style="text-align: center;">Aide à la reprise ou à la création d’entreprise intermittent (ARCE-I)</td>
+<td>CP</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">DC</td>
+<td style="text-align: center;">25</td>
+<td style="text-align: center;">Allocation décès (DC)</td>
+<td>AW,BL,CS,CV,DN,EG</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">AFPS</td>
+<td style="text-align: center;">26</td>
+<td style="text-align: center;">Allocation du fonds spécifique provisoire (AFPS), dont formation</td>
+<td>57,58,59,60</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">AFD-RAC</td>
+<td style="text-align: center;">27</td>
+<td style="text-align: center;">Allocation de fin de droit (AFD-RAC)</td>
+<td>23,28,31,32</td>
+</tr>
+</tbody>
+</table>
+<p><strong>[1]</strong> Inclut l’AUD (Allocation unique dégressive) et l’ACA (Allocation chômeur âgé).</p>
+<p><strong>[2]</strong> Inclut l’AFR (Allocation de formation reclassement).</p>
 </section>
-<section id="dans-les-données" class="level2">
-<h2 class="anchored" data-anchor-id="dans-les-données">Dans les données</h2>
+<section id="régime-etat" class="level2">
+<h2 class="anchored" data-anchor-id="régime-etat">Régime Etat</h2>
+<table class="table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 22%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Groupe allocation</th>
+<th style="text-align: center;">N°</th>
+<th style="text-align: center;">Nom allocation</th>
+<th>Codes allocations FNA (KCALF)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">ASS</td>
+<td style="text-align: center;">28</td>
+<td style="text-align: center;">Allocation de solidarité spécifique (ASS)</td>
+<td>25,30,44,56,BD</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">29</td>
+<td style="text-align: center;">Allocation de solidarité spécifique formation (ASS-F)</td>
+<td>51</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">ATA</td>
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">Allocation d’insertion (AI)</td>
+<td>24</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">31</td>
+<td style="text-align: center;">Allocation temporaire d’attente (ATA)</td>
+<td>73,74,90</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">ATS</td>
+<td style="text-align: center;">32</td>
+<td style="text-align: center;">Allocation équivalent retraite (AER)</td>
+<td>52,53,93,94,97,98</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">33</td>
+<td style="text-align: center;">Allocation transitoire de solidarité (ATS)</td>
+<td>AT,AV,BE,BF,BS,BT</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">AF</td>
+<td style="text-align: center;">34</td>
+<td style="text-align: center;">Allocation forfaitaire (AF)</td>
+<td>4,63</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">AFPS</td>
+<td style="text-align: center;">35</td>
+<td style="text-align: center;">Allocation de professionnalisation et de solidarité (APS)</td>
+<td>71,75,DV</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">36</td>
+<td style="text-align: center;">Allocation du Fonds de professionnalisation et de solidarité formation (APS-F)</td>
+<td>72,76,DX</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">37</td>
+<td style="text-align: center;">Allocation de fin de droits (AFD)</td>
+<td>77,DW</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">38</td>
+<td style="text-align: center;">Allocation de fin de droits formation (AFD-F)</td>
+<td>78,DY</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">AEPE</td>
+<td style="text-align: center;">39</td>
+<td style="text-align: center;">Allocation exceptionnelle de retour à l’emploi (AEPE)</td>
+<td>96</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">RFF</td>
+<td style="text-align: center;">40</td>
+<td style="text-align: center;">Rémunération de fin de formation (RFF)[1]</td>
+<td>99,AY,BG,BJ,BR,CI,CX,DZ,EE</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">RSP</td>
+<td style="text-align: center;">41</td>
+<td style="text-align: center;">Rémunération des stagiaires du régime public (RSP)</td>
+<td>39</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">AFDEF</td>
+<td style="text-align: center;">42</td>
+<td style="text-align: center;">Allocation en faveur des demandeurs d’emploi en formation (AFDEF)</td>
+<td>92,95</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">ASC</td>
+<td style="text-align: center;">43</td>
+<td style="text-align: center;">Allocation spécifique de conversion (ASC)</td>
+<td>29</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">AFF</td>
+<td style="text-align: center;">44</td>
+<td style="text-align: center;">Allocation de fin de formation (AFF)</td>
+<td>41,5</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">ACCRE-ASS</td>
+<td style="text-align: center;">45</td>
+<td style="text-align: center;">Aide aux chômeurs créateurs d’entreprise (ACCRE-ASS)</td>
+<td>45</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="régime-pôle-emploi" class="level2">
+<h2 class="anchored" data-anchor-id="régime-pôle-emploi">Régime Pôle Emploi</h2>
+<table class="table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 22%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Groupe allocation</th>
+<th style="text-align: center;">N°</th>
+<th style="text-align: center;">Nom allocation</th>
+<th>Codes allocations FNA (KCALF)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">ARE-CG</td>
+<td style="text-align: center;">46</td>
+<td style="text-align: center;">Allocation d’aide au retour à l’emploi convention de gestion (ARE-CG)</td>
+<td>AE,BH,BM,CL,DO,EI,EY,FN</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">47</td>
+<td style="text-align: center;">Allocation d’aide au retour à l’emploi formation convention de gestion (AREF-CG)</td>
+<td>AF,BI,BO,CM,DR,EM,EZ,FQ</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">RFPE</td>
+<td style="text-align: center;">48</td>
+<td style="text-align: center;">Rémunération formation Pôle emploi (RFPE)</td>
+<td>81</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">RFF</td>
+<td style="text-align: center;">49</td>
+<td style="text-align: center;">Rémunération de fin de formation (RFF)<strong>[3]</strong></td>
+<td>EQ,ER,FH</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">ASFNE</td>
+<td style="text-align: center;">50</td>
+<td style="text-align: center;">Pré-retraite (ASFNE<strong>[4]</strong>)</td>
+<td>0C,0E,15</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">PRP</td>
+<td style="text-align: center;">51</td>
+<td style="text-align: center;">Pré-retraite progressive (PRP)</td>
+<td>11,17,18</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">ACO</td>
+<td style="text-align: center;">52</td>
+<td style="text-align: center;">Allocation complémentaire (ACO)</td>
+<td>26</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">ARPE</td>
+<td style="text-align: center;">53</td>
+<td style="text-align: center;">Allocation de remplacement pour l’emploi (ARPE)</td>
+<td>42</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">AAP</td>
+<td style="text-align: center;">54</td>
+<td style="text-align: center;">Allocation d’accompagnement personnalisé (AAP)</td>
+<td>CY,CZ,DA,DB,DC,DD,DE,DF,DG,DH,DI, DJ,DK,DL</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">ADR-CG</td>
+<td style="text-align: center;">55</td>
+<td style="text-align: center;">Aide différentielle de reclassement convention de gestion (ADR-CG)</td>
+<td>AI</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">ARCE-CG</td>
+<td style="text-align: center;">56</td>
+<td style="text-align: center;">Aide à la reprise ou à la création d’entreprise convention de gestion (ARCE-CG)</td>
+<td>AJ,BA,DS,EK</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">DC-CG</td>
+<td style="text-align: center;">57</td>
+<td style="text-align: center;">Allocation décès convention de gestion (DC-CG)</td>
+<td>DP,EJ</td>
+</tr>
+</tbody>
+</table>
+<p><strong>[3]</strong> Appartient au régime État jusqu’en 2019 et au régime Pôle emploi à partir de 2020.</p>
+<p><strong>[4]</strong> Allocation conventionnelle du Fond national de l’emploi.</p>
 
 
 </section>
