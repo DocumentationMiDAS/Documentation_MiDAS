@@ -216,6 +216,7 @@ website:
       contents:
           - href: Fiches/Fiches_presentation.qmd
           - href: Fiches/Maintien_de_droits.qmd
+          - href: Fiches/Allocations_regimes.qmd
 
     - title : "Etudes"
       style: "docked"
