@@ -1,1 +1,1 @@
-Sitemap: https://github.com/DocumentationMiDAS/Documentation_MiDAS/sitemap.xml
+Sitemap: https://DocumentationMiDAS.github.io/Documentation_MiDAS/sitemap.xml

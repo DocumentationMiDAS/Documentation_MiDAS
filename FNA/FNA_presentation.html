@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.551">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -45,7 +45,13 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -54,6 +60,7 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -66,12 +73,11 @@ ul.task-list li input[type="checkbox"] {
 
 <body class="nav-sidebar docked nav-fixed">
 
-
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Documentation MiDAS</span>
     </a>
@@ -83,58 +89,58 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../Presentation/présentation.html" rel="" target="">
- <span class="menu-text">MiDAS</span></a>
+    <a class="nav-link" href="../Presentation/présentation.html"> 
+<span class="menu-text">MiDAS</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../FHS/FHS_presentation.html" rel="" target="">
- <span class="menu-text">FHS</span></a>
+    <a class="nav-link" href="../FHS/FHS_presentation.html"> 
+<span class="menu-text">FHS</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../FNA/FNA_presentation.html" rel="" target="" aria-current="page">
- <span class="menu-text">FNA</span></a>
+    <a class="nav-link active" href="../FNA/FNA_presentation.html" aria-current="page"> 
+<span class="menu-text">FNA</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../Allstat_FR6/Allstat_FR6_presentation.html" rel="" target="">
- <span class="menu-text">Allstat-FR6</span></a>
+    <a class="nav-link" href="../Allstat_FR6/Allstat_FR6_presentation.html"> 
+<span class="menu-text">Allstat-FR6</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../MMO/mmo_presentation.html" rel="" target="">
- <span class="menu-text">MMO</span></a>
+    <a class="nav-link" href="../MMO/mmo_presentation.html"> 
+<span class="menu-text">MMO</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../Fiches/Fiches_presentation.html" rel="" target="">
- <span class="menu-text">Fiches</span></a>
+    <a class="nav-link" href="../Fiches/Fiches_presentation.html"> 
+<span class="menu-text">Fiches</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../Codes/codes_presentation.html" rel="" target="">
- <span class="menu-text">Codes</span></a>
+    <a class="nav-link" href="../Codes/codes_presentation.html"> 
+<span class="menu-text">Codes</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../about.html" rel="" target="">
- <span class="menu-text">About</span></a>
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools ms-auto">
-</div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../FNA/FNA_presentation.html">Présentation</a></li><li class="breadcrumb-item"><a href="../FNA/FNA_presentation.html">Le Fichier National des Allocataires (FNA)</a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../FNA/FNA_presentation.html">Présentation</a></li><li class="breadcrumb-item"><a href="../FNA/FNA_presentation.html">Le Fichier National des Allocataires (FNA)</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
     </div>
   </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
@@ -186,12 +192,6 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../FNA/PJC/Dico_FNA_PJC/FNA_PJC_variables/KCALF.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">KCALF</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../FNA/PJC/Dico_FNA_PJC/FNA_PJC_variables/KCMNI.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">KCMNI</span></a>
   </div>
@@ -228,12 +228,6 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="../FNA/ODD/Dico_FNA_ODD/ODD_dictionnaire.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Dictionnaire des variables</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../FNA/ODD/Dico_FNA_ODD/FNA_ODD_variables/KCAAJ.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">KCAAJ</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -455,7 +449,7 @@ ul.task-list li input[type="checkbox"] {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -464,14 +458,14 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#champ" id="toc-champ" class="nav-link active" data-scroll-target="#champ">Champ</a></li>
   <li><a href="#structure-des-tables" id="toc-structure-des-tables" class="nav-link" data-scroll-target="#structure-des-tables">Structure des tables</a></li>
-  <li><a href="#le-parcours-de-lindemnisation-à-pôle-emploi" id="toc-le-parcours-de-lindemnisation-à-pôle-emploi" class="nav-link" data-scroll-target="#le-parcours-de-lindemnisation-à-pôle-emploi">Le parcours de l’indemnisation à Pôle Emploi</a></li>
+  <li><a href="#le-parcours-de-lindemnisation-à-france-travail" id="toc-le-parcours-de-lindemnisation-à-france-travail" class="nav-link" data-scroll-target="#le-parcours-de-lindemnisation-à-france-travail">Le “parcours de l’indemnisation” à France Travail</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../FNA/FNA_presentation.html">Présentation</a></li><li class="breadcrumb-item"><a href="../FNA/FNA_presentation.html">Le Fichier National des Allocataires (FNA)</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Le Fichier National des Allocataires (FNA)</h1>
 </div>
@@ -486,12 +480,14 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
+
 </header>
 
-<p>Le <strong>Fichier National des Allocataires de Pôle Emploi</strong> suit les <strong>trajectoires d’indemnisation</strong> des demandeurs d’emploi allocataires de l’Assurance-chômage. Il contient notamment toutes les informations nécessaires pour calculer cette indemnisation&nbsp;: période d’affiliation, salaire journalier de référence, durée d’indemnisation potentielle…</p>
+
+<p>Le <strong>Fichier National des Allocataires de France Travail</strong> suit les <strong>trajectoires d’indemnisation</strong> des demandeurs d’emploi allocataires de l’Assurance-chômage. Il contient notamment toutes les informations nécessaires pour calculer cette indemnisation&nbsp;: période d’affiliation, salaire journalier de référence, durée d’indemnisation potentielle…</p>
 <section id="champ" class="level2">
 <h2 class="anchored" data-anchor-id="champ">Champ</h2>
-<p><strong>Demandeurs d’emploi</strong> <strong>indemnisables au moins 1 jour depuis le 1er janvier 2017</strong>. Pour ces individus, MiDAS contient <strong>tout l’historique de leur indemnisation</strong> depuis 1993, ainsi que leur périodes d’affiliation et d’activité réduite.</p>
+<p><strong>Demandeurs d’emploi</strong> <strong>indemnisables au moins 1 jour depuis le 1er janvier 2017</strong>. Pour ces individus, MiDAS contient <strong>tout l’historique de leur indemnisation</strong> depuis 1993, ainsi que leurs périodes d’affiliation et d’activité réduite.</p>
 </section>
 <section id="structure-des-tables" class="level2">
 <h2 class="anchored" data-anchor-id="structure-des-tables">Structure des tables</h2>
@@ -511,16 +507,20 @@ ul.task-list li input[type="checkbox"] {
 <li><p>Le segment <strong>« <a href="../FNA/PAR/PAR_presentation.html">Période d’activité réduite</a> » (PAR, LN2K)</strong> renseigne sur l’activité réduite (nombre d’heures, salaire brut et périodes).</p></li>
 </ul>
 </section>
-<section id="le-parcours-de-lindemnisation-à-pôle-emploi" class="level2">
-<h2 class="anchored" data-anchor-id="le-parcours-de-lindemnisation-à-pôle-emploi">Le parcours de l’indemnisation à Pôle Emploi</h2>
+<section id="le-parcours-de-lindemnisation-à-france-travail" class="level2">
+<h2 class="anchored" data-anchor-id="le-parcours-de-lindemnisation-à-france-travail">Le “parcours de l’indemnisation” à France Travail</h2>
 <p>Un nouveau demandeur d’emploi, au moment de son inscription, apparaît dans la table DE du FHS. Ensuite, pour pouvoir être indemnisé :</p>
 <ul>
 <li><p>Le demandeur d’emploi (DE) effectue une demande d’allocation (table DAL) qui peut être acceptée ou rejetée ;</p></li>
-<li><p>La DAL est acceptée si le DE a suffisamment travaillé : la table CDT (contrat de travail) renseigne sur le dernier contrat du demandeur d’emploi ayant permis l’ouverture de droit. En complément, la table PAF (période d’affiliation) renseigne sur l’ensemble des évènements connus par le DE, ce qui inclut les contrats de travail (information à mettre en regard avec les MMO) mais aussi les périodes de formation et d’arrêt de travail;</p></li>
-<li><p>Une fois la DAL acceptée, le DE peut s’ouvrir un droit à l’Assurance chômage, dont les caractéristiques sont présentes au sein de la table ODD (ouverture de droit);</p></li>
+<li><p>La DAL est acceptée si le DE a suffisamment travaillé : la table CDT (contrat de travail) renseigne sur le dernier contrat du demandeur d’emploi ayant permis l’ouverture de droit. En complément, la table PAF (période d’affiliation) renseigne sur l’ensemble des évènements connus par le DE, ce qui inclut les contrats de travail (information à mettre en regard avec les MMO) mais aussi les périodes de formation et d’arrêt de travail ;</p></li>
+<li><p>Une fois la DAL acceptée, le DE peut s’ouvrir un droit à l’Assurance-chômage, dont les caractéristiques sont présentes au sein de la table ODD (ouverture de droit) ;</p></li>
 <li><p>Pour chaque droit ouvert, est associée une ou plusieurs périodes à justification constante (PJC) pendant lesquelles les paramètres de l’indemnisation restent inchangés.</p></li>
 </ul>
-<p>L’activité réduite&nbsp;: l’information sur les allocataires de l’Assurance chômage qui travaillent (c’est-à-dire inscrits en catégories B et C à Pôle emploi) est renseignée dans le FHS (table E0) et dans le FNA (table PAR). La différence entre ces deux tables tient à la présence, au sein de la table PAR, de la variable KQBARP qui renseigne sur le salaire brut perçu dans le cadre d’une activité réduite exercée par le demandeur d’emploi.</p>
+<p>L’activité réduite&nbsp;: l’information sur les allocataires de l’Assurance-chômage qui travaillent (c’est-à-dire inscrits en catégories B et C à France Travail) est renseignée dans le FHS (table E0) et dans le FNA (table PAR). Deux différences sont à noter entre ces deux tables :</p>
+<ul>
+<li><p>Seule la table PAR renseigne sur le salaire brut perçu dans le cadre d’une activité réduite exercée par le demandeur d’emploi (variable KQBARP) ;</p></li>
+<li><p>La table E0 ne contient que les heures d’activité réduite des personnes inscrites en catégories A, B ou C.</p></li>
+</ul>
 
 
 </section>
@@ -605,10 +605,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/DocumentationMiDAS\.github\.io\/Documentation_MiDAS\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -618,8 +635,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -631,7 +657,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -675,6 +824,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -700,6 +850,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -760,6 +936,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 
