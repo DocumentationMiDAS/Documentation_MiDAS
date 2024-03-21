@@ -3,7 +3,7 @@ title: "Présentation générale"
 css: homepage.css
 ---
 
-MiDAS (**Mi**nima Sociaux, **D**roits d'**A**ssurance-chômage, parcours **S**alariés) est un appariement de données administratives mené par la **Dares** (département Suivi et indemnisation des demandeurs d'emploi (D-Side)), en collaboration avec la Cnaf et Pôle emploi. Cet appariement porte sur le c**hamp exhaustif des demandeurs d'emploi qui ont été inscrits à Pôle Emploi au moins une fois depuis le 1er janvier 2017** complété par l'**ensemble des foyers bénéficiaires de minima sociaux (RSA, PA, AAH)** depuis cette même date.
+MiDAS (**Mi**nima Sociaux, **D**roits d'**A**ssurance-chômage, parcours **S**alariés) est un appariement de données administratives mené par la **Dares** (département Suivi et indemnisation des demandeurs d'emploi (D-Side)), en collaboration avec la Cnaf et France Travail. Cet appariement porte sur le **champ exhaustif des demandeurs d'emploi qui ont été inscrits à France Travail au moins une fois depuis le 1er janvier 2017** complété par l'**ensemble des foyers bénéficiaires de minima sociaux (RSA, PA, AAH)** depuis cette même date.
 
 Cet appariement permet de reconstituer les **trajectoires professionnelles** des allocataires de l'Assurance-chômage et des minima sociaux, afin notamment de pouvoir chiffrer de manière précise les **effets de la réforme de l'Assurance-chômage initiée en 2019** et d'étudier le retour et l'insertion dans l'emploi des demandeurs d'emploi et bénéficiaires de minima sociaux.
 
@@ -11,10 +11,10 @@ La première vague est disponible depuis janvier 2023.
 
 MiDAS regroupe ainsi les données :
 
--   De suivi des demandeurs d'emploi par le Fichier historique statistique (FHS) et d'indemnisation dans le Fichier national des allocataires (FNA) de **Pôle Emploi** ;
+-   De suivi des demandeurs d'emploi par le Fichier historique statistique (FHS) et d'indemnisation dans le Fichier national des allocataires (FNA) de **France Travail** ;
 
 -   Du Fichier Allstat-FR6 de la **Cnaf** sur les prestations sociales ;
 
 -   Sur les contrats de travail reconstituées par la **Dares** dans les Mouvements de main-d'œuvre (MMO) à partir de la Déclaration sociale nominative (**DSN**).
 
-![](../images/schéma_relationnel.png){width=100%}
+![](../images/sch%C3%A9ma_relationnel.png){width="100%"}

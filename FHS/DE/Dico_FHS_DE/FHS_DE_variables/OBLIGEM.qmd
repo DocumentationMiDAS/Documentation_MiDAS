@@ -10,11 +10,11 @@ title: "OBLIGEM"
 
 **3.** Pensionne de guerre
 
-**4.** Travailleur handicape catégorie a
+**4.** Travailleur handicapé catégorie A
 
-**5.** Travailleur handicape catégorie b
+**5.** Travailleur handicapé catégorie B
 
-**6.** Travailleur handicape catégorie c
+**6.** Travailleur handicapé catégorie C
 
 **7.** En instance de décision CDA (Commission des droits et de l'autonomie)
 
@@ -26,10 +26,10 @@ title: "OBLIGEM"
 
 **E.** RGTH -- ESAT
 
-**H.** Alloc adulte handicape (manuel)
+**H.** Allocation adulte handicapé (manuel)
 
 **I.** Carte d'invalidité
 
 **M.** RGTH -- marché du travail
 
-**R.** Alloc adulte handicape (auto)
+**R.** Allocation adulte handicapé (auto)

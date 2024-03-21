@@ -4,277 +4,146 @@ title: "KCMCA"
 
 Motif de fin de contrat de travail
 
-
-**10**. LIC. SUITE À LIQUID. JUDIC.
-
-**100**. DEP. VOL. NON LEGITIME EXAMEN IPR 122E J / 4 MOIS
-
-**101**. DEP. VOL. POUR SUIVRE SES PARENTS
-
-**102**. DEP. VOL. POUR SUIVRE SON CONJOINT
-
-**103**. DEP. VOL. POUR MARIAGE / PACS
-
-**104**. DEP. VOL. POUR NOUV. EMPLOI OU FORM. SUITE CT AIDE
-
-**105**. DEP. VOL. PRESENCE RELIQUAT JUSQ. DEPART RETRAITE
-
-**106**. DEP. VOL. POUR NON-PAIEMENT DES SALAIRES
-
-**107**. DEP. VOL. POUR ACTE DELICTUEUX
-
-**108**. DEP. VOL. POUR EMPLOI CDI AVEC FIN PER. ESSAI EMP.
-
-**109**. DEP. VOL. SUITE À UN CONTRAT COUPLE
-
-**11**. LIC. SUITE À REDRESSEMENT JUDIC.
-
-**110**. DEP. VOL. ARRET PERIODIQUE OU CLAU.CONSC. VER. IDM
-
-**111**. DEP. VOL. POUR EFFECTUER MISSIONS DE VOLONTARIAT
-
-**112**. DEP. VOL. POUR CREATION D'ENTREPRISE
-
-**113**. DEP. VOL. POUR VIOLENCE CONJUGALE
-
-**114**. DEP. VOL. FIN PER.ESS.SAL.\<91J SUITE LIC./FIN CDD
-
-**115**. DEP. VOL. MOTIF INCONNU
-
-**116**. POUR SUIVRE SON MANDATAIRE/CURATEUR/TUTEUR
-
-**12**. LIC. SUITE A FERMETURE DEFINITIVE.
-
-**121**. FIN PER ESS INI SAL. POUR SUIVRE SES PARENTS
-
-**122**. FIN PER ESS INI SAL. POUR SUIVRE SON CONJOINT
-
-**123**. FIN PER ESS INI SAL. POUR MARIAGE / PACS
-
-**124**. FIN PER ESS INI SAL. NVL EMP OU FRM STE CT AIDE
-
-**125**. FIN PER ESS INI SAL. EN PRESENCE RLQ JSQ DEP RETR.
-
-**126**. FIN PER ESS INI SAL. POUR NON-PAIEMENT SALAIRES
-
-**127**. FIN PER ESS INI SAL. POUR ACTE DELICTUEUX
-
-**128**. FIN PER ESS INI SAL. PRD EMP CDI FIN PER ESS EMP
-
-**129**. FIN PER ESS INI SAL. SUITE A UN CONTRAT COUPLE
-
-**13**. LIC. SUITE A DECENTRALISATION.
-
-**130**. FIN PER ESS INI SAL. ARR PER OU CLAUSE CSC VRS IDM
-
-**131**. FIN PER ESS INI SAL. POUR EFF. MISSION VOLONTARIAT
-
-**132**. FIN PER ESS INI SAL. POUR CREATION D'ENTREPRISE
-
-**133**. FIN PER ESS INI SAL. POUR VIOLENCE CONJUGALE
-
-**134**. FIN PER ESS INI SAL. FIN P.ESS.SAL.\<91J LIC./F CDD
-
-**135**. FIN PER ESS INI SAL. MOTIF INCONNU
-
-**14**. LIC. POUR MOTIF ECONOMIQUE
-
-**141**. R.ANT CDD/CT APP INI SAL POUR SUIVRE SES PARENTS
-
-**142**. R.ANT CDD/CT APP INI SAL POUR SUIVRE SON CONJOINT
-
-**143**. R.ANT CDD/CT APP INI SAL POUR MARIAGE / PACS
-
-**144**. R.ANT CDD/CT APP INI SAL NVL EMP OU FRM ST CT AIDE
-
-**145**. R.ANT CDD/CT APP INI SAL EN PRES RLQ JSQ DEP RETR.
-
-**146**. R.ANT CDD/CT APP INI SAL POUR NON-PMT SALAIRES
-
-**147**. R.ANT CDD/CT APP INI SAL POUR ACTE DELICTUEUX
-
-**148**. R.ANT CDD/CT APP INI SAL PRD EMP CDI F.PER ESS EMP
-
-**149**. R.ANT CDD/CT APP INI SAL SUITE A UN CONTRAT COUPLE
-
-**15**. LIC. POUR FIN DE CHANTIER
-
-**150**. R.ANT CDD/CT APP INI SAL ARR PER/CLS CSC VRS IDM
-
-**151**. R.ANT CDD/CT APP INI SAL POUR EFF. MISSIONS VOLONT
-
-**152**. R.ANT CDD/CT APP INI SAL POUR CREATION ENTREPRISE
-
-**153**. R.ANT CDD/CT APP INI SAL POUR VIOLENCE CONJUGALE
-
-**154**. R.ANT CDD/CT APP INI SAL FIN P.ESS.SAL.\<91J LIC./F
-
-**155**. R.ANT CDD/CT APP INI SAL AVEC MOTIF INCONNU
-
-**16**. LIC. POUR CONGE DE CONVERSION
-
-**161**. RUP DE CNE INI SAL POUR SUIVRE SES PARENTS
-
-**162**. RUP DE CNE INI SAL POUR SUIVRE SON CONJOINT
-
-**163**. RUP DE CNE INI SAL POUR MARIAGE / PACS
-
-**164**. RUP DE CNE INI SAL POUR NVL EMP OU FRM ST CT AIDE
-
-**165**. RUP DE CNE INI SAL EN PRES RLQ JSQ DEP RETRAITE
-
-**166**. RUP DE CNE INI SAL POUR NON-PAIEMENT DES SALAIRES
-
-**167**. RUP DE CNE INI SAL POUR ACTE DELICTUEUX
-
-**168**. RUP DE CNE INI SAL PRD EMP CDI FIN PER ESS EMP
-
-**169**. RUP DE CNE INI SAL SUITE À UN CONTRAT COUPLE
-
-**17**. LIC. POUR NON REINT. APRES CONGE PAR.
-
-**170**. RUP DE CNE INI SAL ARR PER OU CLAUSE CSC VRS IDM
-
-**171**. RUP DE CNE INI SAL POUR EFF. MISSIONS DE VOLONT.
-
-**172**. RUP DE CNE INI SAL POUR CREATION ENTREPRISE
-
-**173**. RUP DE CNE INI SAL POUR VIOLENCE CONJUGALE
-
-**174**. RUP DE CNE INI SAL FIN P.ESS.SAL.\<91J LIC./F
-
-**175**. RUP DE CNE INI SAL AVEC MOTIF INCONNU
-
-**18**. LIC. POUR FAUTE GRAVE
-
-**19**. LIC. POUR FAUTE LOURDE
-
-**20**. LIC. POUR CAS DE FORCE MAJEURE
-
-**21**. LIC. POUR INAPTITUDE PHYSIQUE ORIGINE NON PROF.
-
-**22**. LIC. D'UN SALARIE DE PLUS DE 55 ANS REFUS FNE
-
-**23**. RUPTURE COMMUN ACCORD POUR ENTREE EN CSP-CRP-CTP
-
-**24**. ADHESION VOLONTAIRE EN CSP
-
-**25**. AUTRE RUPTURE POUR MOTIF ECONOMIQUE
-
-**26**. RUPTURE COMMUN ACCORD POUR ENTREE EN CRP
-
-**27**. RUPTURE COMMUN ACCORD POUR ENTREE EN CTP
-
-**28**. RUPTURE POUR FIN CAE CONCLUE AVEC EMPLOY PUBLIC
-
-**29**. LIC. POUR MOTIF AUTRE QU'ECONOMIQUE
-
-**30**. FIN DE CONTRAT SUITE A ADHESION FNE
-
-**31**. PASSAGE À MI-TEMPS PRERETRAITE PROGRESSIVE
-
-**32**. PASSAGE À MI-TEMPS CONV. PRERETRAITE MITEMPS
-
-**33**. FIN DE CONTRAT SUITE A ADHESION CONVERSION
-
-**34**. FIN DE CONTRAT POUR PRISE EN CHARGE ARPE
-
-**35**. RUPT. ANTI. CDD INAPT. PHYSIQUE
-
-**36**. RUPTURE ANTICIPEE POUR FAUTE GRAVE
-
-**37**. RUPTURE ANTICIPEE POUR FAUTE LOURDE
-
-**38**. LIC. CONV. CATS CESSATION ACTIVITE TRAV. SALARIES
-
-**39**. RUPT. ANTI. FERMETURE DEFINITIVE ETABLISSEMENT
-
-**40**. FIN DE CONTRAT A DUREE DETERMINEE
-
-**41**. FIN DE MISSION DE TRAVAIL TEMPORAIRE (INTERIM)
-
-**42**. FIN DE PER. ESSAI INIT. EMPLOYEUR
-
-**43**. FIN DE PER. ESSAI INIT. SALARIE
-
-**44**. RUPT. ANTI. CDD OU CT APPRENTISSAGE FAIT EMPLOYEUR
-
-**45**. RUPT. ANTI. CDD OU CT APPRENTISSAGE FAIT SALARIE
-
-**46**. DEPART RETRAITE INIT. EMPLOYEUR
-
-**47**. DEPART RETRAITE INIT. SALARIE
-
-**48**. MISE A PIED TEMP. SANS LIC. SUITE REDUC. ACTIV.
-
-**49**. FIN DE MANDAT
-
-**50**. LIC. INAPTITUDE PHYSIQUE ORIGINE PROFESSIONNELLE
-
-**51**. RUPTURE POUR FIN DE SERVICE NATIONAL
-
-**52**. RUPTURE INIT. SALARIE MOT. ECO. (L 321-1)
-
-**54**. RUPTURE POUR FIN CAV CONCLUE AVEC EMPLOY PUBLIC
-
-**57**. LICENCIEMENT SUITE DECISION AUTORITE ADMIN.
-
-**58**. RUPTURE ANTICIPEE POUR ARRET DE TOURNAGE
-
-**60**. DEP. VOL. NON LEGITIME ADM 122E JOUR (DEL 3 § 1)
-
-**61**. ABANDON DE STAGE (DEL 3 § 2)
-
-**62**. DEP. VOL. MINEUR POUR SUIVRE PARENTS (DEL 10 §1 A)
-
-**63**. DEP. VOL. POUR SUIVRE SON CONJOINT (DEL 10 §1 B)
-
-**64**. DEP. VOL. POUR MARIAGE/PACS 2 MOIS (DEL 10 §1 C)
-
-**65**. DEP. VOL. CES (DEL 10 § 2)
-
-**66**. DEP. VOL. NON PAIEMENT DES SALAIRES (DEL 10 BIS §1)
-
-**67**. DEP. VOL. ACTES DELICTUEUX (DEL 10 BIS §2)
-
-**68**. DEP. VOL. PER. ESSAI \<91J SUITE LIC(DEL 10 BIS §3)
-
-**69**. DEP. VOL. SUIVI REPRISE D'ACTIVITE (DEL 10 BIS §4)
-
-**70**. DEP. VOL. 'CONTRAT DE COUPLE' (DEL 10 BIS §5)
-
-**71**. DEP. VOL. CLAUSE CONSCIENCE JOURN. (DEL 10 BIS §6)
-
-**72**. DEMISSION MANDATAIRE
-
-**77**. DEP. VOL. (DEL. 3 §1.2)
-
-**78**. DEP. VOL. (DEL. 10 §2)
-
-**79**. DEP. VOL. AUTRES MOTIFS
-
-**80**. LIC. CONVENTION SIDERURGIE
-
-**81**. FIN DE CONTRAT D'APPRENTISSAGE
-
-**82**. RESILIATION JUDICIAIRE DU CONTRAT
-
-**83**. RUPTURE POUR FORCE MAJEURE OU FAIT DU PRINCE
-
-**84**. RUPTURE CDD OU APPRENTISSAGE COMMUN ACCORD
-
-**85**. LIC. ARE CONVERSION
-
-**86**. RUP. CT NVL. EMBAUCHE INIT. EMP. 2 PREM. ANNEES
-
-**87**. RUP. CT NVL. EMBAUCHE INIT. SAL. 2 PREM. ANNEES
-
-**88**. RUP. CONV. CONTRAT DE TRAVAIL (LOI 25 JUIN 2008)
-
-**90**. MOTIF INCONNU / INDETERMINE
-
-**91**. LICENCIEMENT DANS LE CADRE DU PAP
-
-**999**. MOTIF INCONNU / INDETERMINE
-
-**XX**. VALEUR HORS TABLE
+10. Licenciement suite à liquidation judiciaire
+11. Licenciement suite à redressement judiciaire
+12. Licenciement suite à fermeture définitive de l'établissement
+13. Licenciement suite à décentralisation
+14. Licenciement pour autre cause économique
+15. Licenciement pour fin de chantier
+16. Licenciement pour congé de conversion
+17. Licenciement pour non-réintégration après congé parental
+18. Licenciement pour faute grave
+19. Licenciement pour faute lourde
+20. Licenciement pour cas de force majeure
+21. Licenciement pour inaptitude physique
+22. Licenciement d'un salarié de plus de 55 ans ayant refusé d'adhérer à une convention FNE
+23. Rupture d'un commun accord pour une entrée en CSP-CRP-CTP
+24. Adhésion volontaire en CSP
+25. Autre rupture motif économique
+26. Rupture d'un commun accord pour motif économique dans le cadre d'une CRP
+27. Rupture d'un commun accord pour motif économique d'un CTP (Contrat de transition professionnelle)
+28. Rupture pour fin de Contrat Aidé conclu avec un employeur public
+29. Licenciement pour motif autre qu'économique
+30. Fin de contrat suite à adhésion à une convention FNE
+31. Passage à mi-temps avec une convention de préretraite progressive
+32. Passage à mi-temps avec une convention de préretraite mi-temps
+33. Fin de contrat suite à adhésion à une convention de conversion
+34. Fin de contrat pour prise en charge ARPE
+35. Rupture anticipée d'un CDD pour inaptitude professionnelle constatée par le médecin du travail
+36. Fin de contrat à durée déterminée 41.Fin de mission de travail temporaire (intérim)
+37. Fin de période d'essai à l'initiative de l'employeur
+38. Fin de période d'essai à l'initiative du salarié
+39. Rupture anticipée d'un CDD du fait de l'employeur
+40. Rupture anticipée d'un CDD du fait du salarié
+41. Départ à la retraite à l'initiative de l'employeur
+42. Départ à la retraite à l'initiative du salarié
+43. Mise à pied temporaire sans licenciement par suite de réduction d'activité
+44. Fin de mandat
+45. Rupture pour fin de service national
+46. Rupture à l'initiative du salarié pour motif économique (L 321-1)
+47. Rupture de contrat d'avenir (CAV)
+48. Licenciement suite à une décision de l'autorité administrative
+49. Rupture anticipée pour arrêt de tournage
+50. Départ volontaire non légitimé avec admission au 122e jour (dél. 3 § 1)
+51. Abandon de stage (dél. 3 § 2)
+52. Départ volontaire d'un mineur pour suivre ses ascendants (dél. 10 §1 a)
+53. Départ volontaire pour suivre son conjoint (dél. 10 §1 b)
+54. Départ volontaire pour mariage dans les 2 mois (dél. 10 §1 c)
+55. Départ volontaire d'un CES (dél. 10 §2)
+56. Départ volontaire pour non-paiement des salaires (dél. 10 bis §1)
+57. Départ volontaire pour actes délictueux (dél. 10 bis §2)
+58. Départ volontaire après période d'essai faisant suite à un licenciement (dél. 10 bis §3)
+59. Départ volontaire suivi d'une reprise d'activité de moins de 91 jours (dél. 10 bis §4)
+60. Départ volontaire « contrat de couple » (dél. 10 bis §5)
+61. Départ volontaire « clause de conscience des journalistes » (dél. 10 bis §6)
+62. Démission mandataire
+63. Départ volontaire (dél. 3)
+64. Départ volontaire (dél. 10)
+65. Départ volontaire (autres motifs)
+66. Licenciement Convention Sidérurgie
+67. Fin de contrat d'apprentissage
+68. Résiliation judiciaire du contrat
+69. Rupture pour force majeure ou fait du prince
+70. Rupture CDD ou apprentissage commun accord
+71. Licenciement ARE Conversion
+72. Rupture d'un CNE (Contrat de Nouvelle Embauche) à l'initiative de l'employeur dans les 2 premières années du contrat
+73. Rupture d'un CNE (Contrat de Nouvelle Embauche) à l'initiative du salarié dans les 2 premières années du contrat
+74. Rupture conventionnelle (Loi du 25 juillet 2008)
+75. Motif inconnu / indéterminé
+76. Licenciement dans le cadre du PAP
+77. Rupture conventionnelle collective
+78. Rupture à l'amiable pour congé de mobilité
+79. Rupture dans le cadre d'un accord de performance collective
+80. Licenciement du collaborateur parlementaire
+
+```{=html}
+<!-- -->
+```
+XX. Valeur hors table
+
+```{=html}
+<!-- -->
+```
+100. DEP. VOL. NON LEGITIME EXAMEN IPR 122E J / 4 MOIS
+101. Départ volontaire pour suivre ses parents
+102. Départ volontaire pour suivre son conjoint
+103. Départ volontaire pour mariage / PACS
+104. Départ volontaire pour nouvel emploi ou formation suite à un contrat aidé
+105. Départ volontaire en présence de reliquat jusqu'à départ en retraite
+106. Départ volontaire pour non-paiement des salaires
+107. Départ volontaire pour acte délictueux
+108. Départ volontaire pour emploi en CDI avec fin de période d'essai
+109. Départ volontaire suite à un contrat couple
+110. DEP. VOL. ARRET PERIODIQUE OU CLAU.CONSC. VER. IDM
+111. Départ volontaire pour effectuer des missions de volontariat
+112. Départ volontaire pour création d'entreprise
+113. Départ volontaire pour violence conjugale
+114. DEP. VOL. FIN PER. ESS. SAL. \<91J SUITE LIC./FIN CDD
+115. Départ volontaire pour motif inconnu
+116. Licenciement pour suivre son mandataire/curateur/tuteur
+117. Fin de période d'essai à l'initiative du salarié pour suivre ses parents
+118. Fin de période d'essai à l'initiative du salarié pour suivre son conjoint
+119. Fin de période d'essai à l'initiative du salarié pour mariage / PACS
+120. Fin de période d'essai à l'initiative du salarié pour nouvel emploi ou formation suite à un contrat aidé
+121. Fin de période d'essai à l'initiative du salarié en présence de reliquat jusqu'à départ en retraite
+122. Fin de période d'essai à l'initiative du salarié pour non-paiement des salaires
+123. Fin de période d'essai à l'initiative du salarié pour acte délictueux
+124. FIN PER ESS INI SAL. PRD EMP CDI FIN PER ESS EMP
+125. Fin de période d'essai à l'initiative du salarié suite à un contrat couple
+126. FIN PER ESS INI SAL. ARR PER OU CLAUSE CSC VRS IDM
+127. Fin de période d'essai à l'initiative du salarié pour effectuer des missions de volontariat
+128. Fin de période d'essai à l'initiative du salarié pour création d'entreprise
+129. Fin de période d'essai à l'initiative du salarié pour violence conjugale
+130. FIN PER ESS INI SAL. FIN P.ESS.SAL. \< 91J LIC./F CDD
+131. Fin de période d'essai à l'initiative du salarié pour motif inconnu
+132. Rupture anticipée à l'initiative du salarié pour suivre ses parents
+133. Rupture anticipée à l'initiative du salarié pour suivre son conjoint
+134. Rupture anticipée à l'initiative du salarié pour mariage / PACS
+135. Rupture anticipée à l'initiative du salarié pour nouvel emploi ou formation suite à un contrat aidé
+136. Rupture anticipée à l'initiative du salarié en présence de reliquat jusqu'en départ de retraite
+137. Rupture anticipée à l'initiative du salarié pour non-paiement des salaires
+138. Rupture anticipée à l'initiative du salarié pour acte délictueux
+139. R.ANT CDD/CT APP INI SAL PRD EMP CDI F.PER ESS EMP
+140. Rupture anticipée à l'initiative du salarié suite à un contrat couple
+141. R.ANT CDD/CT APP INI SAL ARR PER/CLS CSC VRS IDM
+142. Rupture anticipée à l'initiative du salarié pour effectuer des missions de volontariat
+143. Rupture anticipée à l'initiative du salarié pour création d'entreprise
+144. Rupture anticipée à l'initiative du salarié pour violence conjugale
+145. R.ANT CDD/CT APP INI SAL FIN P.ESS.SAL. \< 91J LIC./F
+146. Rupture anticipée à l'initiative du salarié pour motif inconnu
+147. Rupture conventionnelle à l'initiative du salarié pour suivre ses parents
+148. Rupture conventionnelle à l'initiative du salarié pour suivre son conjoint
+149. Rupture conventionnelle à l'initiative du salarié pour mariage / PACS
+150. Rupture conventionnelle à l'initiative du salarié pour nouvel emploi ou formation suite à un contrat aidé
+151. Rupture conventionnelle à l'initiative du salarié en présence de reliquat jusqu'à départ en retraite
+152. Rupture conventionnelle à l'initiative du salarié pour non-paiement des salaires
+153. Rupture conventionnelle à l'initiative du salarié pour acte délictueux
+154. RUP DE CNE INI SAL PRD EMP CDI FIN PER ESS EMP
+155. Rupture conventionnelle à l'initiative du salarié suite à un contrat couple
+156. RUP DE CNE INI SAL ARR PER OU CLAUSE CSC VRS IDM
+157. Rupture conventionnelle à l'initiative du salarié pour effectuer des missions de volontariat
+158. Rupture conventionnelle à l'initiative du salarié pour création d'entreprise
+159. Rupture conventionnelle à l'initiative du salarié pour violence conjugale
+160. RUP DE CNE INI SAL FIN P.ESS.SAL. \< 91J LIC./F
+161. Rupture conventionnelle à l'initiative du salarié pour motif inconnu
+162. Motif inconnu / indéterminé

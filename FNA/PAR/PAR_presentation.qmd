@@ -2,4 +2,4 @@
 title: "Présentation de la table"
 ---
 
-Le segment « Période d’activité réduite » (PAR, LN2K) renseigne sur l'activité réduite (nombre d’heures, salaire brut et périodes).
+Le segment « Période d'activité réduite » (PAR, LN2K) renseigne sur l'activité réduite (nombre d'heures, salaire brut et périodes).

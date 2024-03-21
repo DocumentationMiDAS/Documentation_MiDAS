@@ -10,9 +10,9 @@ Le salaire de base correspond à la rémunération brute habituelle du salarié,
 
 Le salaire de base est transmis pour chaque contrat disponible dans MiDAS, avec une première déclaration en DSN postérieure à janvier 2017. Pour chaque année couverte et chaque contrat, un seul salaire de base est transmis. Il est calculé de la manière suivante :
 
-• Pour les contrats comprenant un mois calendaire complet qui n'est pas le mois du début du contrat ni le dernier mois du contrat : le salaire de base transmis correspond à la paye d'un mois calendaire complet. Parmi l'ensemble des périodes complètes de paye disponibles, le salaire de base choisi est celui du premier mois de paye parmi ceux qui ont la meilleure qualité (voir ci-après les indicateurs de qualité) ;
+-   Pour les contrats comprenant un mois calendaire complet qui n'est pas le mois du début du contrat ni le dernier mois du contrat : le salaire de base transmis correspond à la paye d'un mois calendaire complet. Parmi l'ensemble des périodes complètes de paye disponibles, le salaire de base choisi est celui du premier mois de paye parmi ceux qui ont la meilleure qualité (voir ci-après les indicateurs de qualité) ;
 
-• Pour les autres contrats (qui se terminent dans le mois ou avant la fin du mois suivant) : le salaire de base transmis est sommé sur l'ensemble de la période du contrat comprise dans l'année considérée. La variable qualité est égale à la moins bonne note attribuée sur la ou les périodes de paie. Exemple : si on doit sommer une période avec une note « nul ou négatif », avec une période avec une note « Ok », l'indicateur qualité sera « nul ou négatif ».
+-   Pour les autres contrats (qui se terminent dans le mois ou avant la fin du mois suivant) : le salaire de base transmis est sommé sur l'ensemble de la période du contrat comprise dans l'année considérée. La variable qualité est égale à la moins bonne note attribuée sur la ou les périodes de paie. Exemple : si on doit sommer une période avec une note « nul ou négatif », avec une période avec une note « Ok », l'indicateur qualité sera « nul ou négatif ».
 
 En résumé, pour chaque année de présence du contrat dans la base MiDAS, l'utilisateur disposera d'un seul et unique salaire.
 
@@ -20,11 +20,11 @@ En résumé, pour chaque année de présence du contrat dans la base MiDAS, l'ut
 
 Finalement, pour exploiter les données sur le salaire, les trois variables suivantes sont transmises :
 
-• Salaire de base (salaire_base, dans la table) : montant en euros du salaire de base ;
+-   Salaire de base (salaire_base, dans la table) : montant en euros du salaire de base ;
 
-• Indicatrice de mois complet (salaire_base_mois_complet) : vaut 1 pour les contrats pour lesquels un salaire mensuel est fourni (i.e comprenant un mois calendaire complet qui n'est pas le mois du début du contrat ni le dernier mois du contrat) et 0 pour les autres contrats, dont le salaire de base correspond à la somme de tous les salaires de base du contrat. Dans le second cas, il peut être pertinent de mensualiser le salaire en utilisant les dates de début et de fin de contrat pour le comparer avec celui des contrats longs, selon l'optique choisie ;
+-   Indicatrice de mois complet (salaire_base_mois_complet) : vaut 1 pour les contrats pour lesquels un salaire mensuel est fourni (i.e comprenant un mois calendaire complet qui n'est pas le mois du début du contrat ni le dernier mois du contrat) et 0 pour les autres contrats, dont le salaire de base correspond à la somme de tous les salaires de base du contrat. Dans le second cas, il peut être pertinent de mensualiser le salaire en utilisant les dates de début et de fin de contrat pour le comparer avec celui des contrats longs, selon l'optique choisie ;
 
-• Qualité du salaire de base (quali_salaire_base) : indicateur de qualité du salaire de base transmis dans le fichier. Cet indicateur est calculé pour chacune des périodes de paye disponibles. Les modalités de cette variable sont classées de la moins bonne qualité à la meilleure comme indiquées ci-dessous :
+-   Qualité du salaire de base (quali_salaire_base) : indicateur de qualité du salaire de base transmis dans le fichier. Cet indicateur est calculé pour chacune des périodes de paye disponibles. Les modalités de cette variable sont classées de la moins bonne qualité à la meilleure comme indiquées ci-dessous :
 
 o 1 -- Nul : Salaire de base nul ou négatif ;
 

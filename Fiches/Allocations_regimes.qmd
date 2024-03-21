@@ -2,41 +2,47 @@
 title: "Allocations agrégées et régimes d'indemnisation"
 ---
 
-Date de mise à jour : octobre 2022
+Date de mise à jour : septembre 2023
 
-Les codes allocations disponibles et classés dans cette documentation sont les derniers disponibles. L'ajout de nouveaux dispositifs d'indemnisation et la modification des conventions d'Assurance Chômage peut entraîner l'apparition dans les données de nouveaux codes allocation, qui seront mis en ligne dès que possible.
+Les codes allocations disponibles et classés dans cette documentation sont les derniers disponibles. L'ajout de nouveaux dispositifs d'indemnisation et la modification des conventions d'Assurance-chômage peut entraîner l'apparition dans les données de nouveaux codes allocation, qui seront mis en ligne dès que possible.
 
 ## Régime d'Assurance-Chômage
 
-| Groupe allocation | N°  |                                    Nom allocation                                     | Codes allocations FNA (KCALF)                             |
-|:-----------------:|:-----------------:|:-----------------:|-----------------|
-|        ARE        |  1  |                 Allocation d'aide au retour à l'emploi (ARE)**\[1\]**                 | 01,21,22,27,40,43,47,54,64,67, 82,AC,BB,BK,CJ,DM,EF,EW,FL |
-|                   |  2  |              Allocation d'aide au retour à l'emploi intermittent (ARE-I)              | CN                                                        |
-|                   |  3  |                 Allocation d'aide au retour à l'emploi différé (ARED)                 | BP,CQ                                                     |
-|       AREF        |  4  |           Allocation d'aide au retour à l'emploi formation (AREF)**\[2\]**            | 33,34,35,48,49,55,65,83,AD,BC, BN,CK,DQ,EL,EX,FO          |
-|                   |  5  |        Allocation d'aide au retour à l'emploi formation intermittent (AREF-I)         | CO                                                        |
-|                   |  6  |           Allocation d'aide au retour à l'emploi formation différé (AREF-D)           | BQ,CR                                                     |
-|       ARER        |  7  |              Allocation d'aide au retour à l'emploi de rattrapage (ARER)              | FM                                                        |
-|                   |  8  |      Allocation d'aide au retour à l'emploi de rattrapage intermittent (ARER-I)       | CT,DT,EN                                                  |
-|                   |  9  | Allocation d'aide au retour à l'emploi de rattrapage formation intermittent (ARER-FI) | CU,DU,EO                                                  |
-|                   | 10  |        Allocation d'aide au retour à l'emploi formation de rattrapage (AREFR)         | FP                                                        |
-|        ATI        | 11  |                    Allocation des travailleurs indépendants (ATI)                     | EA,GI                                                     |
-|                   | 12  |               Allocation des travailleurs indépendants formation (ATIF)               | EB,GJ                                                     |
-|        ADM        | 13  |                         Allocation des démissionnaires (ADM)                          | EC                                                        |
-|                   | 14  |                   Allocation des démissionnaires formation (ADM-F)                    | EP                                                        |
-|        ASP        | 15  |                   Allocation de sécurisation professionnelle (ASP)                    | AM,AO,AQ,BU,BV,BW,BX,BY,FR,FS, FT,FU,FV,FW,FX             |
-|                   | 16  |             Allocation de sécurisation professionnelle formation (ASP-F)              | AN,AP,AR,BZ,CA,CB,CC,GC,GD,GE, GF,GG,GH                   |
-|                   | 17  |       Allocation de sécurisation professionnelle ARE (ASP-ARE), dont formation        | AK,AL,GK,GL                                               |
-|                   | 18  |                Indemnité différentielle de reclassement CSP (IDR-CSP)                 | AS,CD                                                     |
-|                   | 19  |              Allocation spécifique de reclassement (ASR), dont formation              | 61,84                                                     |
-|                   | 20  |          Allocation spécifique de reclassement ARE (ASR-ARE), dont formation          | 62,85                                                     |
-|        ATP        | 21  |                    Allocation de transition professionnelle (ATP)                     | 70,88,91                                                  |
-|        ADR        | 22  |                       Aide différentielle de reclassement (ADR)                       | 66,86,AG                                                  |
-|       ARCE        | 23  |                Aide à la reprise ou à la création d'entreprise (ARCE)                 | 68,87,AH,AZ,ED,EH                                         |
-|                   | 24  |         Aide à la reprise ou à la création d'entreprise intermittent (ARCE-I)         | CP                                                        |
-|        DC         | 25  |                                 Allocation décès (DC)                                 | AW,BL,CS,CV,DN,EG                                         |
-|       AFPS        | 26  |           Allocation du fonds spécifique provisoire (AFPS), dont formation            | 57,58,59,60                                               |
-|      AFD-RAC      | 27  |                         Allocation de fin de droit (AFD-RAC)                          | 23,28,31,32                                               |
+| Groupe allocation | N°  |                                    Nom allocation                                     | Codes allocations FNA                                        |
+|:----------------:|:----------------:|:----------------:|------------------|
+|        ARE        |  1  |                 Allocation d'aide au retour à l'emploi (ARE)**\[1\]**                 | 01,21,22,27,40,43,47,54,64,67, 82,AC,BB,BK,CJ,DM,EF,EW,FL,GV |
+|                   |  2  |              Allocation d'aide au retour à l'emploi intermittent (ARE-I)              | CN                                                           |
+|                   |  3  |                 Allocation d'aide au retour à l'emploi différé (ARED)                 | BP,CQ                                                        |
+|       AREF        |  4  |           Allocation d'aide au retour à l'emploi formation (AREF)**\[2\]**            | 33,34,35,48,49,55,65,83,AD,BC, BN,CK,DQ,EL,EX,FO,GZ          |
+|                   |  5  |        Allocation d'aide au retour à l'emploi formation intermittent (AREF-I)         | CO                                                           |
+|                   |  6  |           Allocation d'aide au retour à l'emploi formation différé (AREF-D)           | BQ,CR                                                        |
+|       ARER        |  7  |              Allocation d'aide au retour à l'emploi de rattrapage (ARER)              | FM                                                           |
+|                   |  8  |      Allocation d'aide au retour à l'emploi de rattrapage intermittent (ARER-I)       | CT,DT,EN                                                     |
+|                   |  9  | Allocation d'aide au retour à l'emploi de rattrapage formation intermittent (ARER-FI) | CU,DU,EO                                                     |
+|                   | 10  |        Allocation d'aide au retour à l'emploi formation de rattrapage (AREFR)         | FP                                                           |
+|        ATI        | 11  |                    Allocation des travailleurs indépendants (ATI)                     | EA,GI                                                        |
+|                   | 12  |               Allocation des travailleurs indépendants formation (ATIF)               | EB,GJ                                                        |
+|        ADM        | 13  |                         Allocation des démissionnaires (ADM)                          | EC,GS,HD                                                     |
+|                   | 14  |                   Allocation des démissionnaires formation (ADM-F)                    | EP,GT,HE                                                     |
+|        ASP        | 15  |                   Allocation de sécurisation professionnelle (ASP)                    | AM,AO,AQ,BU,BV,BW,BX,BY,FR,FS, FT,FU,FV,FW,FX                |
+|                   | 16  |             Allocation de sécurisation professionnelle formation (ASP-F)              | AN,AP,AR,BZ,CA,CB,CC,GC,GD,GE, GF,GG,GH                      |
+|                   | 17  |               Allocation de sécurisation professionnelle ARE (ASP-ARE)                | AK,GK                                                        |
+|                   | 18  |              Allocation de sécurisation professionnelle AREF (ASP-AREF)               | AL,GL                                                        |
+|                   | 19  |                Indemnité différentielle de reclassement CSP (IDR-CSP)                 | AS,CD                                                        |
+|                   | 20  |                      Allocation spécifique de reclassement (ASR)                      | 61                                                           |
+|                   | 21  |                Allocation spécifique de reclassement formation (ASRF)                 | 84                                                           |
+|                   | 22  |                  Allocation spécifique de reclassement ARE (ASR-ARE)                  | 62                                                           |
+|                   | 23  |                 Allocation spécifique de reclassement AREF (ASR-AREF)                 | 85                                                           |
+|        ATP        | 24  |                    Allocation de transition professionnelle (ATP)                     | 70,88,91                                                     |
+|        ADR        | 25  |                       Aide différentielle de reclassement (ADR)                       | 66,86,AG                                                     |
+|       ARCE        | 26  |                Aide à la reprise ou à la création d'entreprise (ARCE)                 | 68,87,AH,AZ,ED,EH,GX                                         |
+|                   | 27  |         Aide à la reprise ou à la création d'entreprise intermittent (ARCE-I)         | CP                                                           |
+|        DC         | 28  |                                 Allocation décès (DC)                                 | AW,BL,CS,CV,DN,EG,GW                                         |
+|       AFPS        | 29  |                   Allocation du fonds spécifique provisoire (AFPS)                    | 57                                                           |
+|       AFPSF       | 30  |              Allocation du fonds spécifique provisoire formation (AFPSF)              | 58                                                           |
+|        AFT        | 31  |                         Allocation du fonds transitoire (AFT)                         | 59                                                           |
+|       AFTF        | 32  |                   Allocation du fonds transitoire formation (AFTF)                    | 60                                                           |
+|      AFD-RAC      | 33  |                         Allocation de fin de droit (AFD-RAC)                          | 23,28,31,32                                                  |
 
 **\[1\]** Inclut l'AUD (Allocation unique dégressive) et l'ACA (Allocation chômeur âgé).
 
@@ -44,44 +50,44 @@ Les codes allocations disponibles et classés dans cette documentation sont les 
 
 ## Régime Etat
 
-| Groupe allocation | N°  |                                 Nom allocation                                 | Codes allocations FNA (KCALF) |
-|:-----------------:|:-----------------:|:-----------------:|-----------------|
-|        ASS        | 28  |                   Allocation de solidarité spécifique (ASS)                    | 25,30,44,56,BD                |
-|                   | 29  |             Allocation de solidarité spécifique formation (ASS-F)              | 51                            |
-|        ATA        | 30  |                          Allocation d'insertion (AI)                           | 24                            |
-|                   | 31  |                     Allocation temporaire d'attente (ATA)                      | 73,74,90                      |
-|        ATS        | 32  |                      Allocation équivalent retraite (AER)                      | 52,53,93,94,97,98             |
-|                   | 33  |                   Allocation transitoire de solidarité (ATS)                   | AT,AV,BE,BF,BS,BT             |
-|        AF         | 34  |                          Allocation forfaitaire (AF)                           | 4,63                          |
-|       AFPS        | 35  |           Allocation de professionnalisation et de solidarité (APS)            | 71,75,DV                      |
-|                   | 36  | Allocation du Fonds de professionnalisation et de solidarité formation (APS-F) | 72,76,DX                      |
-|                   | 37  |                       Allocation de fin de droits (AFD)                        | 77,DW                         |
-|                   | 38  |                 Allocation de fin de droits formation (AFD-F)                  | 78,DY                         |
-|       AEPE        | 39  |             Allocation exceptionnelle de retour à l'emploi (AEPE)              | 96                            |
-|        RFF        | 40  |                  Rémunération de fin de formation (RFF)\[1\]                   | 99,AY,BG,BJ,BR,CI,CX,DZ,EE    |
-|        RSP        | 41  |               Rémunération des stagiaires du régime public (RSP)               | 39                            |
-|       AFDEF       | 42  |       Allocation en faveur des demandeurs d'emploi en formation (AFDEF)        | 92,95                         |
-|        ASC        | 43  |                   Allocation spécifique de conversion (ASC)                    | 29                            |
-|        AFF        | 44  |                      Allocation de fin de formation (AFF)                      | 41,5                          |
-|     ACCRE-ASS     | 45  |              Aide aux chômeurs créateurs d'entreprise (ACCRE-ASS)              | 45                            |
+| Groupe allocation | N°  |                                 Nom allocation                                 | Codes allocations FNA      |
+|:----------------:|:----------------:|:----------------:|------------------|
+|        ASS        | 34  |                   Allocation de solidarité spécifique (ASS)                    | 25,30,44,56,BD             |
+|                   | 35  |             Allocation de solidarité spécifique formation (ASS-F)              | 51                         |
+|        ATA        | 36  |                          Allocation d'insertion (AI)                           | 24                         |
+|                   | 37  |                     Allocation temporaire d'attente (ATA)                      | 73,74,90                   |
+|        ATS        | 38  |                      Allocation équivalent retraite (AER)                      | 52,53,93,94,97,98          |
+|                   | 39  |                   Allocation transitoire de solidarité (ATS)                   | AT,AV,BE,BF,BS,BT          |
+|        AF         | 40  |                          Allocation forfaitaire (AF)                           | 4,63                       |
+|       AFPS        | 41  |           Allocation de professionnalisation et de solidarité (APS)            | 71,75,DV                   |
+|                   | 42  | Allocation du Fonds de professionnalisation et de solidarité formation (APS-F) | 72,76,DX                   |
+|                   | 43  |                       Allocation de fin de droits (AFD)                        | 77,DW                      |
+|                   | 44  |                 Allocation de fin de droits formation (AFD-F)                  | 78,DY                      |
+|       AEPE        | 45  |             Allocation exceptionnelle de retour à l'emploi (AEPE)              | 96                         |
+|        RFF        | 46  |                  Rémunération de fin de formation (RFF)\[1\]                   | 99,AY,BG,BJ,BR,CI,CX,DZ,EE |
+|        RSP        | 47  |               Rémunération des stagiaires du régime public (RSP)               | 39                         |
+|       AFDEF       | 48  |       Allocation en faveur des demandeurs d'emploi en formation (AFDEF)        | 92,95                      |
+|        ASC        | 49  |                   Allocation spécifique de conversion (ASC)                    | 29                         |
+|        AFF        | 50  |                      Allocation de fin de formation (AFF)                      | 41,50                      |
+|     ACCRE-ASS     | 51  |              Aide aux chômeurs créateurs d'entreprise (ACCRE-ASS)              | 45                         |
 
-## Régime Pôle Emploi
+## Régime France Travail
 
-| Groupe allocation | N°  |                                  Nom allocation                                  | Codes allocations FNA (KCALF)              |
-|:-----------------:|:-----------------:|:-----------------:|-----------------|
-|      ARE-CG       | 46  |      Allocation d'aide au retour à l'emploi convention de gestion (ARE-CG)       | AE,BH,BM,CL,DO,EI,EY,FN                    |
-|                   | 47  | Allocation d'aide au retour à l'emploi formation convention de gestion (AREF-CG) | AF,BI,BO,CM,DR,EM,EZ,FQ                    |
-|       RFPE        | 48  |                    Rémunération formation Pôle emploi (RFPE)                     | 81                                         |
-|        RFF        | 49  |                 Rémunération de fin de formation (RFF)**\[3\]**                  | EQ,ER,FH                                   |
-|       ASFNE       | 50  |                          Pré-retraite (ASFNE**\[4\]**)                           | 0C,0E,15                                   |
-|        PRP        | 51  |                          Pré-retraite progressive (PRP)                          | 11,17,18                                   |
-|        ACO        | 52  |                         Allocation complémentaire (ACO)                          | 26                                         |
-|       ARPE        | 53  |                 Allocation de remplacement pour l'emploi (ARPE)                  | 42                                         |
-|        AAP        | 54  |                  Allocation d'accompagnement personnalisé (AAP)                  | CY,CZ,DA,DB,DC,DD,DE,DF,DG,DH,DI, DJ,DK,DL |
-|      ADR-CG       | 55  |        Aide différentielle de reclassement convention de gestion (ADR-CG)        | AI                                         |
-|      ARCE-CG      | 56  | Aide à la reprise ou à la création d'entreprise convention de gestion (ARCE-CG)  | AJ,BA,DS,EK                                |
-|       DC-CG       | 57  |                  Allocation décès convention de gestion (DC-CG)                  | DP,EJ                                      |
+| Groupe allocation | N°  |                                  Nom allocation                                  | Codes allocations FNA                      |
+|:----------------:|:----------------:|:----------------:|------------------|
+|      ARE-CG       | 52  |      Allocation d'aide au retour à l'emploi convention de gestion (ARE-CG)       | AE,BH,BM,CL,DO,EI,EY,FN,GY                 |
+|                   | 53  | Allocation d'aide au retour à l'emploi formation convention de gestion (AREF-CG) | AF,BI,BO,CM,DR,EM,EZ,FQ,HA                 |
+|       RFPE        | 54  |                    Rémunération formation Pôle emploi (RFPE)                     | 81                                         |
+|        RFF        | 55  |                 Rémunération de fin de formation (RFF)**\[3\]**                  | EQ,ER,FH,GU                                |
+|       ASFNE       | 56  |                          Pré-retraite (ASFNE**\[4\]**)                           | 0C,0E,15                                   |
+|        PRP        | 57  |                          Pré-retraite progressive (PRP)                          | 11,17,18                                   |
+|        ACO        | 58  |                         Allocation complémentaire (ACO)                          | 26                                         |
+|       ARPE        | 59  |                 Allocation de remplacement pour l'emploi (ARPE)                  | 42                                         |
+|        AAP        | 60  |                  Allocation d'accompagnement personnalisé (AAP)                  | CY,CZ,DA,DB,DC,DD,DE,DF,DG,DH,DI, DJ,DK,DL |
+|      ADR-CG       | 61  |        Aide différentielle de reclassement convention de gestion (ADR-CG)        | AI                                         |
+|      ARCE-CG      | 62  | Aide à la reprise ou à la création d'entreprise convention de gestion (ARCE-CG)  | AJ,BA,DS,EK,HC                             |
+|       DC-CG       | 63  |                  Allocation décès convention de gestion (DC-CG)                  | DP,EJ,HB                                   |
 
-**\[3\]** Appartient au régime État jusqu'en 2019 et au régime Pôle emploi à partir de 2020.
+**\[3\]** Appartient au régime État jusqu'en 2019 et au régime France Travail à partir de 2020.
 
-**\[4\]** Allocation conventionnelle du Fond national de l'emploi.
+**\[4\]** Allocation conventionnelle du Fonds national de l'emploi.

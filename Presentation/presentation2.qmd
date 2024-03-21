@@ -2,16 +2,15 @@
 title: "Calendrier des vagues"
 ---
 
-L’appariement est réalisé par le CASD sur le NIR haché. Le CASD met les données à disposition et conserve une table de passage, contenant uniquement les identifiants non signifiants des bases de données utilisées pour l’appariement, à savoir l’IDX-Région, l’ID_FR6, l’ID_MMO et l’ID_MiDAS.
-Le calendrier est détaillé dans le tableau 1 ci-dessous :
+L'appariement est réalisé par le CASD sur le NIR haché. Le CASD met les données à disposition et conserve une table de passage, contenant uniquement les identifiants non signifiants des bases de données utilisées pour l'appariement, à savoir l'IDX-Région, l'ID_FR6, l'ID_MMO et l'ID_MiDAS. Le calendrier est détaillé dans le tableau ci-dessous :
 
-| Vagues | Couverture des données depuis 2017 assurée jusqu’au |   | Mise à disposition au CASD  (dates indicatives) |
-|---|---|---|---|
-| Vague 1 | FHS-FNA-MMO : 30 juin 2022 | Cnaf : 31 décembre 2021 | Novembre 2022 |
-| Vague 2 | FHS-FNA-MMO : 31 décembre 2022 | Cnaf : 30 juin 2022 | Mars 2023 |
-| Vague 3 | FHS-FNA-MMO : 30 juin 2023 | Cnaf : 31 décembre 2022 | Septembre 2023 |
-| Vague 4 | FHS-FNA-MMO : 31 décembre 2023 | Cnaf : 30 juin 2023 | Mars 2024 |
-| Vague 5 | FHS-FNA-MMO : 30 juin 2024 | Cnaf : 31 décembre 2023 | Septembre 2024 |
-| Vague 6 | FHS-FNA-MMO : 30 juin 2025 | Cnaf : 31 décembre 2024 | Septembre 2025 |
-| Vague 7 | FHS-FNA-MMO : 30 juin 2026 | Cnaf : 31 décembre 2025 | Septembre 2026 |
-| Vague 8 | 31 décembre 2026 | 31 décembre 2026 | Septembre 2027 |  
+| Vagues  | Couverture des données depuis 2017 assurée jusqu'au |                         | Mise à disposition au CASD (dates indicatives) |
+|------------------|------------------|------------------|------------------|
+| Vague 1 | FHS-FNA-MMO : 30 juin 2022                          | Cnaf : 31 décembre 2021 | Novembre 2022                                  |
+| Vague 2 | FHS-FNA-MMO : 31 décembre 2022                      | Cnaf : 30 juin 2022     | Mars 2023                                      |
+| Vague 3 | FHS-FNA-MMO : 30 juin 2023                          | Cnaf : 31 décembre 2022 | Septembre 2023                                 |
+| Vague 4 | FHS-FNA-MMO : 31 décembre 2023                      | Cnaf : 30 juin 2023     | Mars 2024                                      |
+| Vague 5 | FHS-FNA-MMO : 30 juin 2024                          | Cnaf : 31 décembre 2023 | Septembre 2024                                 |
+| Vague 6 | FHS-FNA-MMO : 30 juin 2025                          | Cnaf : 31 décembre 2024 | Septembre 2025                                 |
+| Vague 7 | FHS-FNA-MMO : 30 juin 2026                          | Cnaf : 31 décembre 2025 | Septembre 2026                                 |
+| Vague 8 | 31 décembre 2026                                    | 31 décembre 2026        | Septembre 2027                                 |

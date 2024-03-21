@@ -2,11 +2,11 @@
 title: "Le Fichier National des Allocataires (FNA)"
 ---
 
-Le **Fichier National des Allocataires de Pôle Emploi** suit les **trajectoires d'indemnisation** des demandeurs d'emploi allocataires de l'Assurance-chômage. Il contient notamment toutes les informations nécessaires pour calculer cette indemnisation : période d'affiliation, salaire journalier de référence, durée d'indemnisation potentielle...
+Le **Fichier National des Allocataires de France Travail** suit les **trajectoires d'indemnisation** des demandeurs d'emploi allocataires de l'Assurance-chômage. Il contient notamment toutes les informations nécessaires pour calculer cette indemnisation : période d'affiliation, salaire journalier de référence, durée d'indemnisation potentielle...
 
 ## Champ
 
-**Demandeurs d'emploi** **indemnisables au moins 1 jour depuis le 1er janvier 2017**. Pour ces individus, MiDAS contient **tout l'historique de leur indemnisation** depuis 1993, ainsi que leur périodes d'affiliation et d'activité réduite.
+**Demandeurs d'emploi** **indemnisables au moins 1 jour depuis le 1er janvier 2017**. Pour ces individus, MiDAS contient **tout l'historique de leur indemnisation** depuis 1993, ainsi que leurs périodes d'affiliation et d'activité réduite.
 
 ## Structure des tables
 
@@ -32,16 +32,20 @@ Dans le cadre de MiDAS, les données sélectionnées sont issues de 7 segments d
 
 -   Le segment **« [Période d'activité réduite](PAR/PAR_presentation.qmd) » (PAR, LN2K)** renseigne sur l'activité réduite (nombre d'heures, salaire brut et périodes).
 
-## Le parcours de l'indemnisation à Pôle Emploi
+## Le "parcours de l'indemnisation" à France Travail
 
 Un nouveau demandeur d'emploi, au moment de son inscription, apparaît dans la table DE du FHS. Ensuite, pour pouvoir être indemnisé :
 
 -   Le demandeur d'emploi (DE) effectue une demande d'allocation (table DAL) qui peut être acceptée ou rejetée ;
 
--   La DAL est acceptée si le DE a suffisamment travaillé : la table CDT (contrat de travail) renseigne sur le dernier contrat du demandeur d'emploi ayant permis l'ouverture de droit. En complément, la table PAF (période d'affiliation) renseigne sur l'ensemble des évènements connus par le DE, ce qui inclut les contrats de travail (information à mettre en regard avec les MMO) mais aussi les périodes de formation et d'arrêt de travail;
+-   La DAL est acceptée si le DE a suffisamment travaillé : la table CDT (contrat de travail) renseigne sur le dernier contrat du demandeur d'emploi ayant permis l'ouverture de droit. En complément, la table PAF (période d'affiliation) renseigne sur l'ensemble des évènements connus par le DE, ce qui inclut les contrats de travail (information à mettre en regard avec les MMO) mais aussi les périodes de formation et d'arrêt de travail ;
 
--   Une fois la DAL acceptée, le DE peut s'ouvrir un droit à l'Assurance chômage, dont les caractéristiques sont présentes au sein de la table ODD (ouverture de droit);
+-   Une fois la DAL acceptée, le DE peut s'ouvrir un droit à l'Assurance-chômage, dont les caractéristiques sont présentes au sein de la table ODD (ouverture de droit) ;
 
 -   Pour chaque droit ouvert, est associée une ou plusieurs périodes à justification constante (PJC) pendant lesquelles les paramètres de l'indemnisation restent inchangés.
 
-L'activité réduite : l'information sur les allocataires de l'Assurance chômage qui travaillent (c'est-à-dire inscrits en catégories B et C à Pôle emploi) est renseignée dans le FHS (table E0) et dans le FNA (table PAR). La différence entre ces deux tables tient à la présence, au sein de la table PAR, de la variable KQBARP qui renseigne sur le salaire brut perçu dans le cadre d'une activité réduite exercée par le demandeur d'emploi.
+L'activité réduite : l'information sur les allocataires de l'Assurance-chômage qui travaillent (c'est-à-dire inscrits en catégories B et C à France Travail) est renseignée dans le FHS (table E0) et dans le FNA (table PAR). Deux différences sont à noter entre ces deux tables :
+
+-   Seule la table PAR renseigne sur le salaire brut perçu dans le cadre d'une activité réduite exercée par le demandeur d'emploi (variable KQBARP) ;
+
+-   La table E0 ne contient que les heures d'activité réduite des personnes inscrites en catégories A, B ou C.

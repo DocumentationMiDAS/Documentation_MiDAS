@@ -2,6 +2,6 @@
 title: "Présentation de la table"
 ---
 
-## Prestations proposées par Pôle Emploi
+## Prestations proposées par France Travail
 
-Cette table, comme E3, donne les prestations pour les demandeurs d’emploi. C’est la variable code action (CODACT) qui donne la nature de ces prestations. Cette table est issue du FHS Services, donne des informations sur les services de Pôle Emploi.
+Cette table, comme E3, donne les prestations pour les demandeurs d'emploi. C'est la variable code action (CODACT) qui donne la nature de ces prestations. Cette table, issue du FHS-Services, donne des informations sur les services de France Travail.

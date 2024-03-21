@@ -2,284 +2,389 @@
 title: "MOTANN_a"
 ---
 
-**Non renseigné :** Demande annulée par le FH : aede ne transmet plus de dossier pour ce demandeur (voir description table DE)
+**Non renseigné :** Demande annulée par le FH : plus de dossier transmis pour ce demandeur
 
-**00.** Non précisé
+**Légende**
 
-**01.** Refus de signature parp pac
+-   CIE : Contrat initiative emploi
 
-**02.** Non présentation a convocation CRP CTP
+-   CRP : Convention de reclassement personnalisé
 
-**03.** Non pres. A action reclassement CRP
+-   CTP : Contrat de transition professionnelle
 
-**04.** Refus d'une offre emploi CRP CTP
+-   CUI : Contrat unique d\'insertion
 
-**05.** Refus action reclassement CRP
+-   DSM : Déclaration de situation mensuelle
 
-**06.** Abandon action reclassement CRP
+-   PPAE : Projet personnalisé d\'accès à l\'emploi
 
-**07.** Decl. Inexacte ou attest. Mensongere CRP
+\*\*. Demande annulée par le FH
 
-**08.** Avis defav. Sur motif abs a 1er entretien
+00\. Non précisé
 
-**09.** Non présent à la convocation suite à l'absence au 1er entretien
+01\. Refus de signature PARP PAC
 
-**10.** Entrée en apr
+02\. Non présentation a convocation CRP CTP
 
-**11.** Reprise empl par propres moyen
+03\. Non présentation à une action de reclassement CRP
 
-**12.** Reprise empl par propres moyen
+04\. Refus d\'une offre emploi CRP CTP
 
-**13.** Reprise empl par propres moyen
+05\. Refus d\'action reclassement CRP
 
-**14.** Reprise empl par propres moyen
+06\. Abandon action reclassement CRP
 
-**15.** Reprise empl par propres moyen
+07\. Déclaration inexacte ou attestation mensongère CRP
 
-**16.** Création d'entreprise
+08\. Avis défavorable pour absence au 1^er^ entretien
 
-**17.** Fin de convention de coopération
+09\. Non présent à la convocation suite à l\'absence au 1^er^
+entretien
 
-**18.** Entrée en CIE
+10\. Entrée en APR
 
-**19.** Entrée en contrat d'accomp. Dans l'emploi
+11\. Reprise d\'emploi par propres moyen
 
-**20.** Entrée en cev (emploi ville)
+12\. Reprise d\'emploi par propres moyen
 
-**21.** Reprise empl par l'agence
+13\. Reprise d\'emploi par propres moyen
 
-**22.** Reprise empl par l'agence
+14\. Reprise d\'emploi par propres moyen
 
-**23.** Reprise empl par l'agence
+15\. Reprise d\'emploi par propres moyen
 
-**24.** Reprise empl par l'agence
+16\. Création d'entreprise
 
-**25.** Reprise empl par l'agence
+17\. Fin de convention de coopération
 
-**26.** Entrée en CES
+18\. Entrée en CIE
 
-**28.** Reprise empl pour conv. Coopération
+19\. Entrée en contrat d'accompagnement dans l'emploi
 
-**29.** Entrée en RMA
+20\. Entrée en CEV (Contrat Emploi Ville)
 
-**30.** Entrée en contrat d'avenir
+21\. Reprise d\'emploi par l'agence
 
-**31.** Entrée en stage par ANPE
+22\. Reprise d\'emploi par l'agence
 
-**32.** Entrée en stage par prop.moyen
+23\. Reprise d\'emploi par l'agence
 
-**33.** Fin de CRP
+24\. Reprise d\'emploi par l'agence
 
-**34.** Entrée en AFR
+25\. Reprise d\'emploi par l'agence
 
-**35.** Non confirmation de l'inscription Assedic
+26\. Entrée en CES (Contrat emploi-solidarité)
 
-**36.** Absence du lieu de résidence \> 35 jours
+27\. Reprise d\'emploi sur DSM
 
-**37.** Fin de CTP
+28\. Reprise d\'emploi pour convention coopération
 
-**38.** Abandon volontaire (sortie anticipée) du CTP
+29\. Entrée en RMA (Revenu minimum d\'activité)
 
-**39.** Entrée en congé parental
+30\. Entrée en contrat d'avenir
 
-**40.** Arrêt involontaire de stage (cat = 4)
+31\. Entrée en stage par ANPE
 
-**41.** Fin de stage ou mesure (cat = 4)
+32\. Entrée en stage par propres moyens
 
-**42.** Abandon de stage ou mesure (cat = 4)
+33\. Fin de CRP
 
-**43.** Fin contrat temporaire ou cdd (cat = 5)
+34\. Entrée en AFR
 
-**44.** Service militaire
+35\. Non confirmation de l'inscription Assedic
 
-**45.** Maladie, maternité, accident travail
+36\. Absence du lieu de résidence \> 35 jours
 
-**46.** Changement d'ale
+37\. Fin de CTP
 
-**47.** Titre de séjour non valide
+38\. Abandon volontaire (sortie anticipée) du CTP
 
-**48.** Retraite
+39\. Entrée en congé parental
 
-**49.** Autres cas
+40\. Arrêt involontaire de stage (cat = 4)
 
-**50.** Non présentation suite à convocation au 1er entretien
+41\. Fin de stage ou mesure (cat = 4)
 
-**51.** Refus d'emploi : suspension 1 mois
+42\. Abandon de stage ou mesure (cat = 4)
 
-**52.** Refus d'emploi : suspension 2 mois
+43\. Fin contrat temporaire ou CDD (cat = 5)
 
-**53.** Refus d'emploi : suspension 3 mois
+44\. Service militaire
 
-**54.** Refus d'emploi : suspension 4 mois
+45\. Maladie, maternité, accident travail
 
-**55.** Refus d'emploi : suspension 5 mois
+46\. Changement d'ale
 
-**56.** Refus d'emploi : suspension 6 mois
+47\. Titre de séjour non valide
 
-**57.** Annulation suite saisine ddtefp
+48\. Retraite
 
-**58.** Refus de 2 offres raisonnables d'emploi
+49\. Autres cas
 
-**59.** Fin de CSP
+50\. Non présentation suite à convocation au 1^er^
+entretien
 
-**60.** Non présentation à une convocation pnae
+51\. Refus d'emploi : suspension 1 mois
 
-**61.** Refus de formation : suspension 1 mois
+52\. Refus d'emploi : suspension 2 mois
 
-**62.** Refus de formation : suspension 2 mois
+53\. Refus d'emploi : suspension 3 mois
 
-**63.** Refus de formation : suspension 3 mois
+54\. Refus d'emploi : suspension 4 mois
 
-**64.** Refus de formation : suspension 4 mois
+55\. Refus d'emploi : suspension 5 mois
 
-**65.** Refus de formation : suspension 5 mois
+56\. Refus d'emploi : suspension 6 mois
 
-**66.** Refus de formation : suspension 6 mois
+5X. Refus d\'emploi : suspension 15 jours
 
-**70.** Déclaration inexacte : suspension 12 mois
+57\. Annulation suite à la saisine de la DDTEFP (Direction
+départementale du travail, de l'emploi et de la formation professionnelle) 
 
-**71.** Autres cas d'arrêt de recherche d'emploi
+58\. Refus de 2 offres raisonnables d'emploi
 
-**72.** Dispense recherche d'emploi
+59\. Fin de CSP
 
-**73.** Décès
+60\. Non présentation à une convocation PNAE (Plan national d\'action
+pour l\'emploi)
 
-**74.** Fausse déclaration : suspension 6 mois
+61\. Refus de formation : suspension 1 mois
 
-**75.** Fausse déclaration : suspension 7 mois
+62\. Refus de formation : suspension 2 mois
 
-**76.** Fausse déclaration : suspension 8 mois
+63\. Refus de formation : suspension 3 mois
 
-**77.** Fausse déclaration : suspension 9 mois
+64\. Refus de formation : suspension 4 mois
 
-**78.** Fausse déclaration : suspension 10 mois
+65\. Refus de formation : suspension 5 mois
 
-**79.** Fausse déclaration : suspension 11 mois
+66\. Refus de formation : suspension 6 mois
 
-**80.** Obtention du statut de réfugié
+6X. Refus de formation : suspension 15 jours
 
-**81.** Insuffisance de recherche d'emploi : suspension 1 mois
+70\. Déclaration inexacte : suspension 12 mois
 
-**82.** Insuffisance de recherche d'emploi : suspension 2 mois
+71\. Autres cas d'arrêt de recherche d'emploi
 
-**83.** Insuffisance de recherche d'emploi : suspension 3 mois
+72\. Dispense recherche d'emploi
 
-**84.** Insuffisance de recherche d'emploi : suspension 4 mois
+73\. Décès
 
-**85.** Insuffisance de recherche d'emploi : suspension 5 mois
+74\. Fausse déclaration : suspension 6 mois
 
-**86.** Insuffisance de recherche d'emploi : suspension 6 mois
+75\. Fausse déclaration : suspension 7 mois
 
-**90.** Absence au contrôle
+76\. Fausse déclaration : suspension 8 mois
 
-**91.** Non réponse à convocation : suspension 1 mois
+77\. Fausse déclaration : suspension 9 mois
 
-**92.** Non réponse à convocation : suspension 2 mois
+78\. Fausse déclaration : suspension 10 mois
 
-**93.** Non réponse à convocation : suspension 3 mois
+79\. Fausse déclaration : suspension 11 mois
 
-**94.** Non réponse à convocation : suspension 4 mois
+80\. Obtention du statut de réfugié
 
-**95.** Date de péremption atteinte (cat = 4 ou 5)
+81\. Insuffisance de recherche d'emploi : suspension 1 mois
 
-**96.** Non réponse à convocation : suspension 5 mois
+82\. Insuffisance de recherche d'emploi : suspension 2 mois
 
-**97.** Non réponse à convocation : suspension 6 mois
+83\. Insuffisance de recherche d'emploi : suspension 3 mois
 
-**98.** DSM illisible
+84\. Insuffisance de recherche d'emploi : suspension 4 mois
 
-**5x.** Refus d'emploi : suspension 15 jours
+85\. Insuffisance de recherche d'emploi : suspension 5 mois
 
-**6x.**Refus de formation : suspension 15 jours
+86\. Insuffisance de recherche d'emploi : suspension 6 mois
 
-**8x.** Insuffisance de recherche d'emploi : suspension 15 jours
+8X. Insuffisance de recherche d'emploi : suspension 15 jours
 
-**A2.** Déclaration inexacte d'activité brève : suspension 2 mois
+90\. Absence au contrôle
 
-**A3.** Déclaration inexacte d'activité brève : suspension 3 mois
+91\. Non réponse à convocation : suspension 1 mois
 
-**A4.** Déclaration inexacte d'activité brève : suspension 4 mois
+92\. Non réponse à convocation : suspension 2 mois
 
-**A5.** Déclaration inexacte d'activité brève : suspension 5 mois
+93\. Non réponse à convocation : suspension 3 mois
 
-**A6.** Déclaration inexacte d'activité brève : suspension 6 mois
+94\. Non réponse à convocation : suspension 4 mois
 
-**A7.** Déclaration inexacte d'activité brève : suspension 7 mois
+95\. Date de péremption atteinte (cat = 4 ou 5)
 
-**A9.** Déclaration inexacte d'activité brève : suspension 9 mois
+96\. Non réponse à convocation : suspension 5 mois
 
-**AC.** Déclaration inexacte d'activité brève : suspension 12 mois
+97\. Non réponse à convocation : suspension 6 mois
 
-**B1.** Refus d'un contrat d'apprentissage: suspension 1 mois
+98\. DSM illisible
 
-**B2.** Refus d'un contrat d'apprentissage: suspension 2 mois
+A2. Déclaration inexacte d'activité brève : suspension 2 mois
 
-**BX.** Refus d'un contrat d'apprentissage: suspension 15 jours
+A3. Déclaration inexacte d'activité brève : suspension 3 mois
 
-**C1.** Refus action insertion suspension : 1 mois
+A4. Déclaration inexacte d'activité brève : suspension 4 mois
 
-**C2.** Refus action insertion suspension : 2 mois
+A5. Déclaration inexacte d'activité brève : suspension 5 mois
 
-**C3.** Refus action insertion suspension : 3 mois
+A6. Déclaration inexacte d'activité brève : suspension 6 mois
 
-**C4.** Refus action insertion suspension : 4 mois
+A7. Déclaration inexacte d'activité brève : suspension 7 mois
 
-**C6.** Refus action insertion suspension : 6 mois
+A9. Déclaration inexacte d'activité brève : suspension 9 mois
 
-**CA.** CDI (CUI)
+AA. Déclaration inexacte d'activité brève : suspension 10 mois
 
-**CB.** Cdd d'au moins 6 mois (CUI)
+AB. Déclaration inexacte d'activité brève : suspension 11 mois
 
-**CC.** Contrat travail temporaire d'au moins 6 mois (CUI)
+AC. Déclaration inexacte d'activité brève : suspension 12 mois
 
-**CD.** Abandon CRP CTP CSP
+B1. Refus d'un contrat d'apprentissage: suspension 1 mois
 
-**CE**. Bascule CRP vers CTP
+B2. Refus d'un contrat d'apprentissage: suspension 2 mois
 
-**CF.** Entrée en CUI-CIE
+B3. Refus d'un contrat d'apprentissage: suspension 3 mois
 
-**CG.** Entrée en CUI-CIE
+B4. Refus d'un contrat d'apprentissage: suspension 4 mois
 
-**CH.** Reprise d'emploi incompatible avec le dispositif (CSP)
+B5. Refus d'un contrat d'apprentissage: suspension 5 mois
 
-**CI.** Entrée en emploi d'avenir marchand
+B6. Refus d'un contrat d'apprentissage: suspension 6 mois
 
-**CJ.** Entrée en emploi d'avenir non marchand
+BX. Refus d'un contrat d'apprentissage: suspension 15 jours
 
-**CK.** Entrée en emploi d'avenir professeur
+C1. Refus action insertion suspension : 1 mois
 
-**CX.** Refus action insertion : suspension 15 jours
+C2. Refus action insertion suspension : 2 mois
 
-**D1.** Refus contrat aidé : suspension 1 mois
+C3. Refus action insertion suspension : 3 mois
 
-**D2.** Refus contrat aidé : suspension 2 mois
+C4. Refus action insertion suspension : 4 mois
 
-**D6.** Refus contrat aidé : suspension 6 mois
+C5. Refus action insertion suspension : 5 mois
 
-**DX.** Refus contrat aidé : suspension 15 jours
+C6. Refus action insertion suspension : 6 mois
 
-**E2.** Refus visite médicale : suspension 2 mois
+CA. CDI (CUI)
 
-**E4.** Refus visite médicale : suspension 4 mois
+CB. CDD d'au moins 6 mois (CUI)
 
-**G2.** Refus d'élaboration PPAE : suspension 2 mois
+CC\. Contrat travail temporaire d'au moins 6 mois (CUI)
 
-**H2.** Refus d'une offre raisonnable d'emploi : suspension 2 mois
+CD\. Abandon CRP CTP CSP
 
-**I1.** Refus d'une action d'aide à la recherche d'emploi : suspension 1 mois
+CE. Bascule CRP vers CTP
 
-**I2.** Refus d'une action d'aide à la recherche d'emploi : suspension 2 mois
+CF. Entrée en CUI-CIE
 
-**I3.** Refus d'une action d'aide à la recherche d'emploi : suspension 3 mois
+CG. Entrée en CUI-CIE
 
-**I4.** Refus d'une action d'aide à la recherche d'emploi : suspension 4 mois
+CH. Reprise d'emploi incompatible avec le dispositif (CSP)
 
-**I5.** Refus d'une action d'aide à la recherche d'emploi : suspension 5 mois
+CI\. Entrée en emploi d'avenir marchand
 
-**IX.** Refus d'une action d'aide à la recherche d'emploi : suspension 15 jours
+CJ. Entrée en emploi d'avenir non marchand
 
-**J2.** Refus d'actualisation PPAE : suspension 2 mois
+CK. Entrée en emploi d'avenir professeur
 
-**KX.** Refus contrat professionnalisation : suspension 15 jours
+CX\. Refus action insertion : suspension 15 jours
 
-**L2.** Refus contrat professionnalisation : suspension 15 jours
+D1. Refus contrat aidé : suspension 1 mois
+
+D2. Refus contrat aidé : suspension 2 mois
+
+D3. Refus contrat aidé : suspension 3 mois
+
+D4. Refus contrat aidé : suspension 4 mois
+
+D5. Refus contrat aidé : suspension 5 mois
+
+D6. Refus contrat aidé : suspension 6 mois
+
+DX\. Refus contrat aidé : suspension 15 jours
+
+E2. Refus visite médicale : suspension 2 mois
+
+E3. Refus visite médicale : suspension 3 mois
+
+E4. Refus visite médicale : suspension 4 mois
+
+E5. Refus visite médicale : suspension 5 mois
+
+E6. Refus visite médicale : suspension 6 mois
+
+G2. Refus d\'actualisation du profil : suspension 2 mois
+
+G3. Refus d\'actualisation du profil : suspension 3 mois
+
+G4. Refus d\'actualisation du profil : suspension 4 mois
+
+G5. Refus d\'actualisation du profil : suspension 5 mois
+
+G6. Refus d\'actualisation du profil : suspension 6 mois
+
+H2. Refus d'une offre raisonnable d'emploi : suspension 2 mois
+
+H3. Refus d'une offre raisonnable d'emploi : suspension 3 mois
+
+H4. Refus d'une offre raisonnable d'emploi : suspension 4 mois
+
+H5. Refus d'une offre raisonnable d'emploi : suspension 5 mois
+
+H6. Refus d'une offre raisonnable d'emploi : suspension 6 mois
+
+I1. Refus d'une action d'aide à la recherche d'emploi : suspension
+1 mois
+
+I2. Refus d'une action d'aide à la recherche d'emploi : suspension
+2 mois
+
+I3. Refus d'une action d'aide à la recherche d'emploi : suspension
+3 mois
+
+I4. Refus d'une action d'aide à la recherche d'emploi : suspension
+4 mois
+
+I5. Refus d'une action d'aide à la recherche d'emploi : suspension
+5 mois
+
+I6. Refus d'une action d'aide à la recherche d'emploi : suspension
+6 mois
+
+IX\. Refus d'une action d'aide à la recherche d'emploi : suspension
+15 jours
+
+J2. Refus d'actualisation PPAE : suspension 2 mois
+
+J3. Refus d'actualisation PPAE : suspension 3 mois
+
+J4. Refus d'actualisation PPAE : suspension 4 mois
+
+J5. Refus d'actualisation PPAE : suspension 5 mois
+
+J6. Refus d'actualisation PPAE : suspension 6 mois
+
+KX. Refus contrat de professionnalisation : suspension 15 jours
+
+K1. Refus contrat de professionnalisation : suspension 1 mois
+
+K2. Refus contrat de professionnalisation : suspension 2 mois
+
+K3. Refus contrat de professionnalisation : suspension 3 mois
+
+K4. Refus contrat de professionnalisation : suspension 4 mois
+
+K5. Refus contrat de professionnalisation : suspension 5 mois
+
+K6. Refus contrat de professionnalisation : suspension 6 mois
+
+LX\. Abandon de formation : suspension 15 jours
+
+L1. Abandon de formation : suspension 1 mois
+
+L2. Abandon de formation : suspension 2 mois
+
+L3. Abandon de formation : suspension 3 mois
+
+L4. Abandon de formation : suspension 4 mois
+
+L5. Abandon de formation : suspension 5 mois
+
+L6. Abandon de formation : suspension 6 mois

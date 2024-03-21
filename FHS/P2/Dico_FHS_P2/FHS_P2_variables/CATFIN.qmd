@@ -2,39 +2,76 @@
 title: "CATFIN"
 ---
 
-**00.** INCONNUE
+00. Inconnue
 
-**01.** ST. FORM. CONVENTION CONVERS.
+01\. Stage dans le
+cadre d\'une convention de conversion
 
-**02.** FINANCEMENT ASSEDIC
+02\. Financement France
+Travail
 
-**11.** ETAT AU TITRE FFPPS
+05\. Organismes
+paritaires collecteurs agréés au titre du CIF
 
-**12.** SUBVENTION AUX CENTRES GERES
+07\. Réussite concours
+sanitaire et social
 
-**13.** AUTRES STAGES AGREES PAR ETAT
+08\. Préparatoire
+futurs artisans
 
-**21.** AFPA
+09\. Complément
+financement DIF
 
-**31.** FNE CONVENTIONS DE -DDTE
+10\. OPCA - Entreprise
+de construction
 
-**32.** FNE CONVENTIONS ANPE
+11\. État (Ministère
+chargé de l\'emploi)
 
-**41.** REGION
+12\. Subvention aux
+centres gérés
 
-**51.** AU TITRE CREDITS PROPRES MINIS
+13\. Autres stages
+agréés par l\'État
 
-**61.** F.A.S.
+14\. OPCA -  Assurance formation des salariés des PME
 
-**62.** AGEFIPH
+15\. OPCA - Industries
+alimentaires
 
-**71.** COLLECT. TERRIT. AUT. QUE REG.
+16\. Région -- CSP
 
-**81.** CENTRES SUBVENT. TITRE FORMAT.
+17\. OPCA -- FORCO
+Activité de commerce
 
-**91.** ETS DEPENSES PRIS. CHARG. ETAT
+21\. AFPA
 
-**92.** ETABLISSEMENTS UNIVERSITAIRES
+31\. FNE CONVENTIONS DE
+-DDTE
 
-**98.** SANS FINANCEMENT
+32\. FNE CONVENTIONS
+ANPE
+
+41\. REGION
+
+51\. AU TITRE CREDITS
+PROPRES MINIS
+
+61\. F.A.S.
+
+62\. AGEFIPH
+
+71\. COLLECT. TERRIT. AUT. QUE REG.
+
+81\. CENTRES SUBVENT.
+TITRE FORMAT.
+
+91\. ETS DEPENSES PRIS.
+CHARG. ETAT
+
+92\. ETABLISSEMENTS
+UNIVERSITAIRES
+
+98\. SANS FINANCEMENT
+
 

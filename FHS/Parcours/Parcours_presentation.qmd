@@ -1,3 +1,5 @@
 ---
 title: "La table Parcours du FHS"
 ---
+
+Cette table renseigne sur les types d'accompagnement auxquels les demandeurs d'emploi sont assignés en fonction de leur proximité avec le marché du travail (accompagnement "suivi", "guidé", renforcé" et "global"). Elle inclut notamment les dates de début et de fin de parcours et les motifs de changement de parcours.
