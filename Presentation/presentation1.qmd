@@ -10,7 +10,7 @@ Le champ est le suivant selon les bases de données :
 
 -   Du côté des **données de la Dares,** MiDAS contient, parmi les MMO, tous les contrats salariés en cours ou terminés après le 1er janvier 2017 pour les individus du champ.
 
-Le champ de MiDAS comprend ainsi les demandeurs d'emploi inscrits à France Travail(fichier FHS) dont les et indemnisables et indemnisés (fichier FNA), auxquels sont appariés les bénéficiaires des minima sociaux. Les données MMO sont appariées à ce champ.
+Le champ de MiDAS comprend ainsi les demandeurs d'emploi inscrits à France Travail (fichier FHS) dont les indemnisables et indemnisés (fichier FNA), auxquels sont appariés les bénéficiaires des minima sociaux. Les données MMO sont appariées à ce champ.
 
 ![](images/image-1626740207.png)
 

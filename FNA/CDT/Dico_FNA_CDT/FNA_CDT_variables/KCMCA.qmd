@@ -4,146 +4,284 @@ title: "KCMCA"
 
 Motif de fin de contrat de travail
 
-10. Licenciement suite à liquidation judiciaire
-11. Licenciement suite à redressement judiciaire
-12. Licenciement suite à fermeture définitive de l'établissement
-13. Licenciement suite à décentralisation
-14. Licenciement pour autre cause économique
-15. Licenciement pour fin de chantier
-16. Licenciement pour congé de conversion
-17. Licenciement pour non-réintégration après congé parental
-18. Licenciement pour faute grave
-19. Licenciement pour faute lourde
-20. Licenciement pour cas de force majeure
-21. Licenciement pour inaptitude physique
-22. Licenciement d'un salarié de plus de 55 ans ayant refusé d'adhérer à une convention FNE
+10\. Licenciement suite à liquidation judiciaire
+
+11\. Licenciement suite à redressement judiciaire
+
+12\. Licenciement suite à fermeture définitive de l'établissement
+
+13\. Licenciement suite à décentralisation
+
+14\. Licenciement pour autre cause économique
+
+15\. Licenciement pour fin de chantier
+
+16\. Licenciement pour congé de conversion
+
+17\. Licenciement pour non-réintégration après congé parental
+
+18\. Licenciement pour faute grave
+
+19\. Licenciement pour faute lourde
+
+20\. Licenciement pour cas de force majeur
+
+21\. Licenciement pour inaptitude physique
+
+22\. Licenciement d'un salarié de plus de 55 ans ayant refusé d'adhérer à une convention FN
+
 23. Rupture d'un commun accord pour une entrée en CSP-CRP-CTP
-24. Adhésion volontaire en CSP
-25. Autre rupture motif économique
-26. Rupture d'un commun accord pour motif économique dans le cadre d'une CRP
-27. Rupture d'un commun accord pour motif économique d'un CTP (Contrat de transition professionnelle)
-28. Rupture pour fin de Contrat Aidé conclu avec un employeur public
-29. Licenciement pour motif autre qu'économique
-30. Fin de contrat suite à adhésion à une convention FNE
-31. Passage à mi-temps avec une convention de préretraite progressive
-32. Passage à mi-temps avec une convention de préretraite mi-temps
-33. Fin de contrat suite à adhésion à une convention de conversion
-34. Fin de contrat pour prise en charge ARPE
+
+24\. Adhésion volontaire en CSP
+
+25\. Autre rupture motif économique
+
+26\. Rupture d'un commun accord pour motif économique dans le cadre d'une CRP
+
+27\. Rupture d'un commun accord pour motif économique d'un CTP (Contrat de transition professionnelle)
+
+28\. Rupture pour fin de Contrat Aidé conclu avec un employeur public
+
+29\. Licenciement pour motif autre qu'économique
+
+30\. Fin de contrat suite à adhésion à une convention FNE
+
+31\. Passage à mi-temps avec une convention de préretraite progressive
+
+32\. Passage à mi-temps avec une convention de préretraite mi-temps
+
+33\. Fin de contrat suite à adhésion à une convention de conversion
+
+34\. Fin de contrat pour prise en charge ARPE
+
 35. Rupture anticipée d'un CDD pour inaptitude professionnelle constatée par le médecin du travail
-36. Fin de contrat à durée déterminée 41.Fin de mission de travail temporaire (intérim)
-37. Fin de période d'essai à l'initiative de l'employeur
-38. Fin de période d'essai à l'initiative du salarié
-39. Rupture anticipée d'un CDD du fait de l'employeur
-40. Rupture anticipée d'un CDD du fait du salarié
-41. Départ à la retraite à l'initiative de l'employeur
-42. Départ à la retraite à l'initiative du salarié
-43. Mise à pied temporaire sans licenciement par suite de réduction d'activité
-44. Fin de mandat
-45. Rupture pour fin de service national
-46. Rupture à l'initiative du salarié pour motif économique (L 321-1)
-47. Rupture de contrat d'avenir (CAV)
-48. Licenciement suite à une décision de l'autorité administrative
-49. Rupture anticipée pour arrêt de tournage
-50. Départ volontaire non légitimé avec admission au 122e jour (dél. 3 § 1)
-51. Abandon de stage (dél. 3 § 2)
-52. Départ volontaire d'un mineur pour suivre ses ascendants (dél. 10 §1 a)
-53. Départ volontaire pour suivre son conjoint (dél. 10 §1 b)
-54. Départ volontaire pour mariage dans les 2 mois (dél. 10 §1 c)
-55. Départ volontaire d'un CES (dél. 10 §2)
-56. Départ volontaire pour non-paiement des salaires (dél. 10 bis §1)
-57. Départ volontaire pour actes délictueux (dél. 10 bis §2)
-58. Départ volontaire après période d'essai faisant suite à un licenciement (dél. 10 bis §3)
-59. Départ volontaire suivi d'une reprise d'activité de moins de 91 jours (dél. 10 bis §4)
-60. Départ volontaire « contrat de couple » (dél. 10 bis §5)
-61. Départ volontaire « clause de conscience des journalistes » (dél. 10 bis §6)
-62. Démission mandataire
-63. Départ volontaire (dél. 3)
-64. Départ volontaire (dél. 10)
-65. Départ volontaire (autres motifs)
-66. Licenciement Convention Sidérurgie
-67. Fin de contrat d'apprentissage
-68. Résiliation judiciaire du contrat
-69. Rupture pour force majeure ou fait du prince
-70. Rupture CDD ou apprentissage commun accord
-71. Licenciement ARE Conversion
-72. Rupture d'un CNE (Contrat de Nouvelle Embauche) à l'initiative de l'employeur dans les 2 premières années du contrat
-73. Rupture d'un CNE (Contrat de Nouvelle Embauche) à l'initiative du salarié dans les 2 premières années du contrat
-74. Rupture conventionnelle (Loi du 25 juillet 2008)
-75. Motif inconnu / indéterminé
-76. Licenciement dans le cadre du PAP
-77. Rupture conventionnelle collective
-78. Rupture à l'amiable pour congé de mobilité
-79. Rupture dans le cadre d'un accord de performance collective
-80. Licenciement du collaborateur parlementaire
 
-```{=html}
-<!-- -->
-```
-XX. Valeur hors table
+36. Rupture anticipée pour faute grave
 
-```{=html}
-<!-- -->
-```
-100. DEP. VOL. NON LEGITIME EXAMEN IPR 122E J / 4 MOIS
-101. Départ volontaire pour suivre ses parents
-102. Départ volontaire pour suivre son conjoint
-103. Départ volontaire pour mariage / PACS
-104. Départ volontaire pour nouvel emploi ou formation suite à un contrat aidé
-105. Départ volontaire en présence de reliquat jusqu'à départ en retraite
-106. Départ volontaire pour non-paiement des salaires
-107. Départ volontaire pour acte délictueux
-108. Départ volontaire pour emploi en CDI avec fin de période d'essai
-109. Départ volontaire suite à un contrat couple
-110. DEP. VOL. ARRET PERIODIQUE OU CLAU.CONSC. VER. IDM
-111. Départ volontaire pour effectuer des missions de volontariat
-112. Départ volontaire pour création d'entreprise
-113. Départ volontaire pour violence conjugale
-114. DEP. VOL. FIN PER. ESS. SAL. \<91J SUITE LIC./FIN CDD
+37\. Rupture anticipée pour faute lourde
+
+38\. Rupture conventionnelle pour cessation d'activité des travailleurs salariés
+
+39. Rupture anticipée pour fermeture définitive de l'établissement
+
+40. Fin de contrat à durée déterminée
+
+41\. Fin de mission de travail temporaire (intérim)
+
+42\. Fin de période d'essai à l'initiative de l'employeur
+
+43\. Fin de période d'essai à l'initiative du salarié
+
+44\. Rupture anticipée d'un CDD du fait de l'employeur
+
+45\. Rupture anticipée d'un CDD du fait du salarié
+
+46\. Départ à la retraite à l'initiative de l'employeur
+
+47\. Départ à la retraite à l'initiative du salarié
+
+48\. Mise à pied temporaire sans licenciement par suite de réduction d'activité
+
+49\. Fin de mandat
+
+50\. Licenciement pour inaptitude physique d'origine professionnelle
+
+51\. Rupture pour fin de service national
+
+52\. Rupture à l'initiative du salarié pour motif économique (L 321-1)
+
+54\. Rupture de contrat d'avenir (CAV)
+
+57\. Licenciement suite à une décision de l'autorité administrative
+
+58\. Rupture anticipée pour arrêt de tournage
+
+60\. Départ volontaire non légitimé avec admission au 122^e^ jour (dél. 3 § 1)
+
+61\. Abandon de stage (dél. 3 § 2)
+
+62\. Départ volontaire d'un mineur pour suivre ses ascendants (dél. 10 §1 a)
+
+63. Départ volontaire pour suivre son conjoint (dél. 10 §1 b)
+
+64\. Départ volontaire pour mariage dans les 2 mois (dél. 10 §1 c)
+
+65. Départ volontaire d'un CES (dél. 10 §2)
+
+66\. Départ volontaire pour non-paiement des salaires (dél. 10 bis §1)
+
+67\. Départ volontaire pour actes délictueux (dél. 10 bis §2)
+
+68\. Départ volontaire après période d'essai \< 91 jours faisant suite à un licenciement (dél. 10 bis §3)
+
+69\. Départ volontaire suivi d'une reprise d'activité de moins de 91 jours (dél. 10 bis §4)
+
+70\. Départ volontaire « contrat de couple » (dél. 10 bis §5)
+
+71\. Départ volontaire « clause de conscience des journalistes » (dél. 10 bis §6)
+
+72. Démission mandataire
+
+77\. Départ volontaire (dél. 3)
+
+78\. Départ volontaire (dél. 10)
+
+79\. Départ volontaire (autres motifs)
+
+80. Licenciement Convention Sidérurgie
+
+81\. Fin de contrat d'apprentissage
+
+82. Résiliation judiciaire du contrat
+
+83\. Rupture pour force majeure ou fait du prince
+
+84\. Rupture CDD ou apprentissage commun accord
+
+85\. Licenciement ARE Conversion
+
+86\. Rupture d'un CNE (Contrat de Nouvelle Embauche) à l'initiative de l'employeur dans les 2 premières années du contrat
+
+87\. Rupture d'un CNE (Contrat de Nouvelle Embauche) à l'initiative du salarié dans les 2 premières années du contrat
+
+88\. Rupture conventionnelle (Loi du 25 juillet 2008)
+
+90\. Motif inconnu / indéterminé
+
+91\. Licenciement dans le cadre du PAP
+
+92\. Rupture conventionnelle collective
+
+93\. Rupture à l'amiable pour congé de mobilité
+
+94\. Rupture dans le cadre d'un accord de performance collective
+
+95\. Licenciement du collaborateur parlementaire
+
+XX\. Valeur hors table
+
+100\. Départ volontaire non légitimé par l'examen des Instances paritaires régionales (IPR) au 122^e^ jour (4 mois)
+
+101\. Départ volontaire pour suivre ses parents
+
+102\. Départ volontaire pour suivre son conjoint
+
+103\. Départ volontaire pour mariage / PACS
+
+104\. Départ volontaire pour nouvel emploi ou formation suite à un contrat aidé
+
+105\. Départ volontaire en présence de reliquat jusqu'à départ en retraite
+
+106\. Départ volontaire pour non-paiement des salaires
+
+107\. Départ volontaire pour acte délictueux
+
+108\. Départ volontaire pour emploi en CDI avec fin de période d'essai
+
+109\. Départ volontaire suite à un contrat couple
+
+110. Départ volontaire pour arrêt périodique ou clause de conscience avec versement d'indemnités de licenciement
+
+111\. Départ volontaire pour effectuer des missions de volontariat
+
+112\. Départ volontaire pour création d'entreprise
+
+113\. Départ volontaire pour violence conjugale  
+
+114\. Départ volontaire après une fin de période d'essai \< 91 jours faisant suite à un licenciement ou à une fin de CDD
+
 115. Départ volontaire pour motif inconnu
-116. Licenciement pour suivre son mandataire/curateur/tuteur
-117. Fin de période d'essai à l'initiative du salarié pour suivre ses parents
-118. Fin de période d'essai à l'initiative du salarié pour suivre son conjoint
-119. Fin de période d'essai à l'initiative du salarié pour mariage / PACS
-120. Fin de période d'essai à l'initiative du salarié pour nouvel emploi ou formation suite à un contrat aidé
-121. Fin de période d'essai à l'initiative du salarié en présence de reliquat jusqu'à départ en retraite
-122. Fin de période d'essai à l'initiative du salarié pour non-paiement des salaires
-123. Fin de période d'essai à l'initiative du salarié pour acte délictueux
-124. FIN PER ESS INI SAL. PRD EMP CDI FIN PER ESS EMP
-125. Fin de période d'essai à l'initiative du salarié suite à un contrat couple
-126. FIN PER ESS INI SAL. ARR PER OU CLAUSE CSC VRS IDM
-127. Fin de période d'essai à l'initiative du salarié pour effectuer des missions de volontariat
-128. Fin de période d'essai à l'initiative du salarié pour création d'entreprise
-129. Fin de période d'essai à l'initiative du salarié pour violence conjugale
-130. FIN PER ESS INI SAL. FIN P.ESS.SAL. \< 91J LIC./F CDD
-131. Fin de période d'essai à l'initiative du salarié pour motif inconnu
-132. Rupture anticipée à l'initiative du salarié pour suivre ses parents
-133. Rupture anticipée à l'initiative du salarié pour suivre son conjoint
-134. Rupture anticipée à l'initiative du salarié pour mariage / PACS
-135. Rupture anticipée à l'initiative du salarié pour nouvel emploi ou formation suite à un contrat aidé
-136. Rupture anticipée à l'initiative du salarié en présence de reliquat jusqu'en départ de retraite
-137. Rupture anticipée à l'initiative du salarié pour non-paiement des salaires
-138. Rupture anticipée à l'initiative du salarié pour acte délictueux
-139. R.ANT CDD/CT APP INI SAL PRD EMP CDI F.PER ESS EMP
-140. Rupture anticipée à l'initiative du salarié suite à un contrat couple
-141. R.ANT CDD/CT APP INI SAL ARR PER/CLS CSC VRS IDM
-142. Rupture anticipée à l'initiative du salarié pour effectuer des missions de volontariat
-143. Rupture anticipée à l'initiative du salarié pour création d'entreprise
-144. Rupture anticipée à l'initiative du salarié pour violence conjugale
-145. R.ANT CDD/CT APP INI SAL FIN P.ESS.SAL. \< 91J LIC./F
-146. Rupture anticipée à l'initiative du salarié pour motif inconnu
-147. Rupture conventionnelle à l'initiative du salarié pour suivre ses parents
-148. Rupture conventionnelle à l'initiative du salarié pour suivre son conjoint
-149. Rupture conventionnelle à l'initiative du salarié pour mariage / PACS
-150. Rupture conventionnelle à l'initiative du salarié pour nouvel emploi ou formation suite à un contrat aidé
-151. Rupture conventionnelle à l'initiative du salarié en présence de reliquat jusqu'à départ en retraite
-152. Rupture conventionnelle à l'initiative du salarié pour non-paiement des salaires
-153. Rupture conventionnelle à l'initiative du salarié pour acte délictueux
-154. RUP DE CNE INI SAL PRD EMP CDI FIN PER ESS EMP
-155. Rupture conventionnelle à l'initiative du salarié suite à un contrat couple
-156. RUP DE CNE INI SAL ARR PER OU CLAUSE CSC VRS IDM
-157. Rupture conventionnelle à l'initiative du salarié pour effectuer des missions de volontariat
-158. Rupture conventionnelle à l'initiative du salarié pour création d'entreprise
-159. Rupture conventionnelle à l'initiative du salarié pour violence conjugale
-160. RUP DE CNE INI SAL FIN P.ESS.SAL. \< 91J LIC./F
-161. Rupture conventionnelle à l'initiative du salarié pour motif inconnu
-162. Motif inconnu / indéterminé
+
+116\. Licenciement pour suivre son mandataire/curateur/tuteur
+
+121. Fin de période d'essai à l'initiative du salarié pour suivre ses parents
+
+122\. Fin de période d'essai à l'initiative du salarié pour suivre son conjoint
+
+123\. Fin de période d'essai à l'initiative du salarié pour mariage / PACS
+
+124\. Fin de période d'essai à l'initiative du salarié pour nouvel emploi ou formation suite à un contrat aidé
+
+125\. Fin de période d'essai à l'initiative du salarié en présence de reliquat jusqu'à départ en retraite
+
+126\. Fin de période d'essai à l'initiative du salarié pour non-paiement des salaires
+
+127. Fin de période d'essai à l'initiative du salarié pour acte délictueux 
+
+128\. Fin de période d'essai à l'initiative du salarié pour emploi en CDI
+
+129\. Fin de période d'essai à l'initiative du salarié suite à un contrat couple
+
+130\. Fin de période d'essai à l'initiative du salarié pour arrêt périodique ou clause de conscience avec versement d'indemnités de licenciement
+
+131\. Fin de période d'essai à l'initiative du salarié pour effectuer des missions de volontariat
+
+132\. Fin de période d'essai à l'initiative du salarié pour création d'entreprise
+
+133. Fin de période d'essai à l'initiative du salarié pour violence conjugale
+
+134\. Fin de période d'essai à l'initiative du salarié pour une période d'essai \< 91 jours suite à un licenciement ou une fin de CDD
+
+135\. Fin de période d'essai à l'initiative du salarié pour motif inconnu
+
+141\. Rupture anticipée à l'initiative du salarié pour suivre ses parents
+
+142\. Rupture anticipée à l'initiative du salarié pour suivre son conjoint
+
+143\. Rupture anticipée à l'initiative du salarié pour mariage / PACS
+
+144\. Rupture anticipée à l'initiative du salarié pour nouvel emploi ou formation suite à un contrat aidé
+
+145\. Rupture anticipée à l'initiative du salarié en présence de reliquat jusqu'en départ de retraite
+
+146\. Rupture anticipée à l'initiative du salarié pour non-paiement des salaires
+
+147\. Rupture anticipée à l'initiative du salarié pour acte délictueux
+
+148. Rupture anticipée à l'initiative du salarié après une période d'essai pour un emploi en CDI
+
+149\. Rupture anticipée à l'initiative du salarié suite à un contrat couple
+
+150\. Rupture anticipée à l'initiative du salarié pour arrêt périodique ou clause de conscience avec versement d'indemnités de licenciement
+
+151\. Rupture anticipée à l'initiative du salarié pour effectuer des missions de volontariat
+
+152\. Rupture anticipée à l'initiative du salarié pour création d'entreprise
+
+153\. Rupture anticipée à l'initiative du salarié pour violence conjugale
+
+154\. Rupture anticipée à l'initiative du salarié pour une fin de période d'essai \< 91 jours suite à un licenciement ou une fin de CDD
+
+155\. Rupture anticipée à l'initiative du salarié pour motif inconnu
+
+161\. Rupture conventionnelle à l'initiative du salarié pour suivre ses parents
+
+162\. Rupture conventionnelle à l'initiative du salarié pour suivre son conjoint
+
+163\. Rupture conventionnelle à l'initiative du salarié pour mariage / PACS
+
+164\. Rupture conventionnelle à l'initiative du salarié pour nouvel emploi ou formation suite à un contrat aidé
+
+165\. Rupture conventionnelle à l'initiative du salarié en présence de reliquat jusqu'à départ en retraite
+
+166\. Rupture conventionnelle à l'initiative du salarié pour non-paiement des salaires
+
+167\. Rupture conventionnelle à l'initiative du salarié pour acte délictueux
+
+168\. Rupture conventionnelle à l'initiative du salarié pour un emploi en CDI après une fin de période d'essai
+
+169\. Rupture conventionnelle à l'initiative du salarié suite à un contrat couple
+
+170\. Rupture conventionnelle à l'initiative du salarié pour arrêt périodique ou clause de conscience avec versement d'indemnités de licenciement
+
+171\. Rupture conventionnelle à l'initiative du salarié pour effectuer des missions de volontariat
+
+172\. Rupture conventionnelle à l'initiative du salarié pour création d'entreprise
+
+173\. Rupture conventionnelle à l'initiative du salarié pour violence conjugale
+
+174\. Rupture conventionnelle à l'initiative du salarié pour fin de période d'essai \< 91 jours suite à un licenciement ou une fin de CDD
+
+175\. Rupture conventionnelle à l'initiative du salarié pour motif inconnu
+
+999\. Motif inconnu / indéterminé

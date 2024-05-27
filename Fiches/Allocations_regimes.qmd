@@ -12,18 +12,18 @@ Les codes allocations disponibles et classés dans cette documentation sont les 
 |:----------------:|:----------------:|:----------------:|------------------|
 |        ARE        |  1  |                 Allocation d'aide au retour à l'emploi (ARE)**\[1\]**                 | 01,21,22,27,40,43,47,54,64,67, 82,AC,BB,BK,CJ,DM,EF,EW,FL,GV |
 |                   |  2  |              Allocation d'aide au retour à l'emploi intermittent (ARE-I)              | CN                                                           |
-|                   |  3  |                 Allocation d'aide au retour à l'emploi différé (ARED)                 | BP,CQ                                                        |
+|                   |  3  |                 Allocation d'aide au retour à l'emploi différé (ARED)                 | BP,CQ,HD                                                     |
 |       AREF        |  4  |           Allocation d'aide au retour à l'emploi formation (AREF)**\[2\]**            | 33,34,35,48,49,55,65,83,AD,BC, BN,CK,DQ,EL,EX,FO,GZ          |
 |                   |  5  |        Allocation d'aide au retour à l'emploi formation intermittent (AREF-I)         | CO                                                           |
-|                   |  6  |           Allocation d'aide au retour à l'emploi formation différé (AREF-D)           | BQ,CR                                                        |
+|                   |  6  |           Allocation d'aide au retour à l'emploi formation différé (AREF-D)           | BQ,CR,HE                                                     |
 |       ARER        |  7  |              Allocation d'aide au retour à l'emploi de rattrapage (ARER)              | FM                                                           |
 |                   |  8  |      Allocation d'aide au retour à l'emploi de rattrapage intermittent (ARER-I)       | CT,DT,EN                                                     |
 |                   |  9  | Allocation d'aide au retour à l'emploi de rattrapage formation intermittent (ARER-FI) | CU,DU,EO                                                     |
 |                   | 10  |        Allocation d'aide au retour à l'emploi formation de rattrapage (AREFR)         | FP                                                           |
 |        ATI        | 11  |                    Allocation des travailleurs indépendants (ATI)                     | EA,GI                                                        |
 |                   | 12  |               Allocation des travailleurs indépendants formation (ATIF)               | EB,GJ                                                        |
-|        ADM        | 13  |                         Allocation des démissionnaires (ADM)                          | EC,GS,HD                                                     |
-|                   | 14  |                   Allocation des démissionnaires formation (ADM-F)                    | EP,GT,HE                                                     |
+|        ADM        | 13  |                         Allocation des démissionnaires (ADM)                          | EC,GS                                                        |
+|                   | 14  |                   Allocation des démissionnaires formation (ADM-F)                    | EP,GT                                                        |
 |        ASP        | 15  |                   Allocation de sécurisation professionnelle (ASP)                    | AM,AO,AQ,BU,BV,BW,BX,BY,FR,FS, FT,FU,FV,FW,FX                |
 |                   | 16  |             Allocation de sécurisation professionnelle formation (ASP-F)              | AN,AP,AR,BZ,CA,CB,CC,GC,GD,GE, GF,GG,GH                      |
 |                   | 17  |               Allocation de sécurisation professionnelle ARE (ASP-ARE)                | AK,GK                                                        |

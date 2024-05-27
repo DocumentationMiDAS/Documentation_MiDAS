@@ -32,7 +32,7 @@ MiDAS contient l'ensemble des adultes membres de foyers sociaux qui sont ou ont 
 
 [^1]: La « déconjugalisation » de l'AAH ayant été décidée par la loi n° 2022-1158 du 16 août 2022 portant mesures d'urgence pour la protection du pouvoir d'achat, les revenus du conjoint ne seront, en règle générale, plus pris en compte dans le calcul du droit à l'AAH au plus tard le 1er octobre 2023. Toutefois, une personne en couple déjà bénéficiaire de l'AAH au moment de l'entrée en vigueur de la déconjugalisation pourra décider de rester dans l'ancien système, c'est-à-dire avec prise en compte des revenus de son conjoint, jusqu'à expiration de ses droits, si la déconjugalisation ne lui est pas favorable ([Drees](https://drees.solidarites-sante.gouv.fr/sites/default/files/2022-09/Minima22%20Fiche%209%20-%20L%E2%80%99assiette%20des%20ressources%20et%20la%20p%C3%A9riode%20de%20r%C3%A9f%C3%A9rence%20des%20prestations.pdf), *Minima sociaux et prestations sociales*, p. 89).
 
-Par ailleurs, **pour l'ensemble du champ des bénéficiaires de minima sociaux et des demandeurs d'emploi**, MiDAS contient des informations sur les diverses prestations versées par la Caf (allocations logement et prestations familiales), la structure familiale de ces foyers sociaux ainsi que leurs ressources financière au moment de la demande de prestations.
+Par ailleurs, **pour l'ensemble du champ des bénéficiaires de minima sociaux et des demandeurs d'emploi**, MiDAS contient des informations sur les diverses prestations versées par la Caf (allocations logement et prestations familiales), la structure familiale de ces foyers sociaux ainsi que leurs ressources financières au moment de la demande de prestations.
 
 ## Structure des tables
 
