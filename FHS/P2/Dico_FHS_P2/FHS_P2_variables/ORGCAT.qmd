@@ -2,6 +2,8 @@
 title: "ORGCAT"
 ---
 
+Catégorie de l'organisme de formation
+
 **11.** AFPA
 
 **12.** ASFO

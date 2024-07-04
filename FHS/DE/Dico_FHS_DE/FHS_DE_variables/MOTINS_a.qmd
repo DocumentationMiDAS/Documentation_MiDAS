@@ -2,6 +2,8 @@
 title: "MOTINS_a"
 ---
 
+Motif d\'inscription de la demande détaillé
+
 **00.** Sans objet (catégorie 5)
 
 **11.** Licenciement économique

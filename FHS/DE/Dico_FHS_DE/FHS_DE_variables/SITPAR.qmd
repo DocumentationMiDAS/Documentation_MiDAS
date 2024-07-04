@@ -2,6 +2,8 @@
 title: "SITPAR"
 ---
 
+Situation particulière au regard de l'emploi
+
 **0.** Sans Objet (catégorie 123678)
 
 **1.** AFR

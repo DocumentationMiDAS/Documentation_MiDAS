@@ -2,76 +2,148 @@
 title: "CATFIN"
 ---
 
-00. Inconnue
+Catégorie de financement de la formation
 
-01\. Stage dans le
-cadre d\'une convention de conversion
+00\. Inconnue
 
-02\. Financement France
-Travail
+01\. Stage dans le cadre d\'une convention de conversion
 
-05\. Organismes
-paritaires collecteurs agréés au titre du CIF
+02\. Financement France Travail
 
-07\. Réussite concours
-sanitaire et social
+05\. Organismes paritaires collecteurs agréés au titre du CIF
 
-08\. Préparatoire
-futurs artisans
+06\. AIF-FT Formation non couverte achats France Travail
 
-09\. Complément
-financement DIF
+07\. AIF-FT Réussite concours sanitaire et social
 
-10\. OPCA - Entreprise
-de construction
+08\. AIF-FT Préparatoire futurs artisans
 
-11\. État (Ministère
-chargé de l\'emploi)
+09\. AIF-FT Complément financement DIF
 
-12\. Subvention aux
-centres gérés
+10\. OPCA - Entreprise de construction
 
-13\. Autres stages
-agréés par l\'État
+11\. État (Ministère chargé de l\'emploi)
 
-14\. OPCA -  Assurance formation des salariés des PME
+12\. Subvention aux centres gérés
 
-15\. OPCA - Industries
-alimentaires
+13\. Autres stages agréés par l\'État
+
+14\. OPCA-AGEFOS-PME Assurance formation des salariés des PME
+
+15\. OPCA-OPCALIM Industries alimentaires
 
 16\. Région -- CSP
 
-17\. OPCA -- FORCO
-Activité de commerce
+17\. OPCA-FORCO Activité de commerce
 
-21\. AFPA
+18\. OPCA-OPCALIA Formation professionnelle continue
 
-31\. FNE CONVENTIONS DE
--DDTE
+19\. OPCA-OPCAIM Industries métallurgiques
 
-32\. FNE CONVENTIONS
-ANPE
+20\. OPCA-DEFI industrie
+
+21\. AFPA (Commande publique État)
+
+22\. POE collective
+
+23\. AIF-FT Sécurisation hors CRP/CTP/CSP
+
+24\. AIF-FT-OPCA Formation des salariés des PME
+
+25\. AIF-FT-OPCA Industries alimentaires
+
+26\. AIF-FT-OPCA Entreprise de construction
+
+27\. AIF-FT-OPCA Activité de commerce et de distribution
+
+28\. AIF-FT-OPCA Formation professionnelle continue
+
+29\. AIF-FT-OPCA Industries métallurgiques
+
+30\. AIF-FT-OPCA Industrie
+
+31\. FNE CONVENTIONS DE DDTE
+
+32\. FNE CONVENTIONS ANPE
+
+33\. Compte personnel de formation
 
 41\. REGION
 
-51\. AU TITRE CREDITS
-PROPRES MINIS
+43\. FONGECIF
 
-61\. F.A.S.
+44\. OPCA-FAFIEC Ingénierie informatique conseil
+
+45\. OPCA-FAFIH Industrie hôtelière restauration
+
+46\. OPCA Transports routiers et activités auxiliaires
+
+47\. OPCA-PL Professions libérales
+
+48\. OPCA-FAFTT Entreprises de travail temporaire et intérim
+
+51\. Autres ministères
+
+53\. AIF-FT FONGECIF
+
+54\. AIF-FT OPCA-FAFIEC Ingénierie informatique conseil
+
+55\. AIF-FT OPCA-FAFIH Industrie hôtelière restauration
+
+56\. AIF-FT OPCA Transports routiers et activités auxiliaires
+
+57\. AIF-FT OPCA-ACTALIANS Professions libérales
+
+58\. AIF-FT OPCA-FAFTT Travail temporaire
+
+61\. FASLID
 
 62\. AGEFIPH
 
-71\. COLLECT. TERRIT. AUT. QUE REG.
+63\. AIF-FT VAE
 
-81\. CENTRES SUBVENT.
-TITRE FORMAT.
+64\. AIF-FT Formation de projet individuel
 
-91\. ETS DEPENSES PRIS.
-CHARG. ETAT
+71\. Autres collectivités territoriales
 
-92\. ETABLISSEMENTS
-UNIVERSITAIRES
+72\. OPCA-AFDAS Culture, communication, médias, loisirs
 
-98\. SANS FINANCEMENT
+73\. OPCA-ANFA-AUTO Services de l\'automobile
+
+74\. OPCA-FAFSEA Agriculture et activités annexes
+
+75\. OPCA-INTEGROS Commerce de gros et international
+
+76\. OPCA-OPCABAIA Banque assurance assistance
+
+77\. OPCA-OPCA3+ Ameublement, matériaux de construction
+
+78\. OPCA-UNIFAF Sanitaire, social, médico-social privé
+
+79\. OPCA Uniformation économie habitat protection social
+
+81\. Centres subventionnels au titre de la formation
+
+82\. AIF-FT OPCA-AFDAS Culture, communication, médias, loisirs
+
+83\. AIF-FT OPCA-ANFA-AUTO Services de l\'automobile
+
+84\. AIF-FT OPCA-FAFSEA Agriculture et activités annexes
+
+85\. AIF-FT OPCA-INTERGROS Commerce de gros et international
+
+86\. AIF-FT OPCA-OPCABAIA Banque assurance assistance
+
+87\. AIF-FT OPCA-OPCA3+ Ameublement, matériaux de construction
+
+88\. AIF-FT OPCA-UNIFAF Sanitaire, social, médico-social privé
+
+89\. AIF-FT OPCA Uniformation économie habitat protection social
+
+91\. Établissements dépenses de fonctionnement budget de l\'État hors universités
+
+92\. Établissements universitaires
+
+98\. Financement par le bénéficiaire
 
 

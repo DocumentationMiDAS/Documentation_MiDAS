@@ -2,72 +2,103 @@
 title: "SITPAR_a"
 ---
 
-**ADR.** AIDE DIFFER. AU RECLASSEMENT
+Situation particulière au regard de l\'emploi détaillée
 
-**AIF.** ACTION INSERTION ET FORMATION
 
-**APR.** ACTION PREPARATOIRE AU RECRUT.
+ADR. Aide différentielle au reclassement
 
-**ASE.** AIDE SPEC. COMP. RETOUR EMPLOI
+AIF. Action d\'insertion et de formation
 
-**ASI.** DEMANDEUR D'ASILE
+APR. Action préalable au recrutement
 
-**AUT.** AUTRES FORMATION
+ASE. Aide spécifique complémentaire retour à l\'emploi
 
-**CAD.** CONTRAT D'ADAPTATION
+ASI. Demandeur d\'asile
 
-**CAE.** CONTRAT D'ACCOMPAGNEMENT DANS L'EMPLOI
+AUT. Autres formations
 
-**CAV.** CONTRAT D'AVENIR
+CAD. Contrat d\'adaptation
 
-**CEN.** CREATION D'ENTREPRISE
+CAE. Contrat d\'accompagnement dans l\'emploi
 
-**CES.** CONTRAT EMPLOI-SOLIDARITE
+CAV. Contrat d\'avenir
 
-**CIE.** CONTRAT INITIATIVE EMPLOI
+CEN. Création d\'entreprise
 
-**COR.** CONTRAT D'ORIENTATION
+CES. Contrat emploi-solidarité
 
-**CPP.** CONTRAT D'APPRENTISSAGE
+CIE. Contrat initiative emploi
 
-**CQU.** CONTRAT DE QUALIFICATION
+CLO. Contrat local d\'orientation
 
-**CRE.** CONTRAT DE RETOUR À L'EMPLOI
+COR. Contrat d\'orientation
 
-**CRP.** CONVENTION DE RECLASSEMENT PERSONNALISE
+CPP. Contrat d\'apprentissage
 
-**CSP.** CONTRAT DE SECURISATION PROFESSIONNEL
+CQU. Contrat de qualification
 
-**CTP.** CONTRAT DE TRANSITION PROFESSIONNELLE
+CRE. Contrat de retour à l\'emploi
 
-**CUM.** CUI-CIE
+CRP. Convention de reclassement personnalisé
 
-**CUN.** CUI-CAE
+CSP. Contrat de sécurisation professionnelle
 
-**DIV.** DIVERS
+CTP. Contrat de transition professionnelle
 
-**EAM.** EMPLOI D'AVENIR MARCHAND
+CUM. Contrat unique d\'insertion marchand
 
-**EAN.** EMPLOI D'AVENIR NON MARCHAND
+CUN. Contrat unique d\'insertion non marchand
 
-**EAP.** EMPLOI D'AVENIR PROFESSEUR
+DDI. Individu en CDI et en cours d\'agrément IAE 
 
-**EPA.** PERS. AVEC EMPL. TEMPS PARTIEL
+DIV\. Divers
 
-**EPL.** PERS. AVEC EMPL. TEMPS PLEIN
+EAM. Contrat d\'emploi avenir marchand
 
-**FCA.** STAGE F.N.E : CADRE
+EAN. Contrat d\'emploi avenir non marchand
 
-**FFI.** STAGE F.N.E : FEMMES ISOLEES
+EAP. Contrat d\'emploi avenir professeur
 
-**PMJ.** PERSONNE SOUS MAIN DE JUSTICE
+EPA. Personne pourvue d\'un emploi à temps partiel
 
-**RMA.** EN RMA
+EPL. Personne pourvue d\'un emploi à temps plein
 
-**SAE.** STAGE ACCES A L'EMPLOI
+FCA. Stage FNE : cadres
 
-**SAN.** SANS OBJET
+FFI. Stage FNA : femmes isolées
 
-**SJE.** STAGE JEUNES : 16 - 25 ANS
+IAE. Insertion par l\'activité économique
 
-**SRP.** STAGE REINSERTION PROFES.
+MAN. Stage de mise à niveau
+
+MOD. Stage modulaire
+
+MUE. Maintien de l\'indemnisation en Union Européenne
+
+ND1. Individu non demandeur d\'emploi
+
+PAP. Parcours d\'accompagnement personnalisé
+
+PEF. Préavis effectué
+
+PLI. Programme local d\'insertion des femmes
+
+PMJ. Personne sous main de justice
+
+PNE. Préavis non effectué
+
+PRE. En préavis
+
+RMA. Contrat RMA
+
+SAE. Stage d\'accès à l\'emploi
+
+SAN. Sans objet
+
+SCI. Service civique
+
+SJE. Stages jeunes : 16-25 ans
+
+SRP. Stage de reclassement professionnel
+
+

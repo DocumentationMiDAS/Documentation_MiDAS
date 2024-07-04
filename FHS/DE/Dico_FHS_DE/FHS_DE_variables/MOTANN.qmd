@@ -2,6 +2,8 @@
 title: "MOTANN"
 ---
 
+Motif d\'annulation de la demande
+
 **Non renseigné :** la demande est en cours.
 
 **01.** Reprise d'emploi, hors contrat aidés et création d'entreprise
