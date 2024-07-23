@@ -2,7 +2,7 @@
 title: "MOTANN"
 ---
 
-Motif d\'annulation de la demande
+Motif d'annulation de la demande
 
 **Non renseigné :** la demande est en cours.
 
