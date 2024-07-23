@@ -27,6 +27,30 @@
     ]
   },
   {
+    "objectID": "Allstat_FR6/Cibles/Allstat_FR6_cibles.html",
+    "href": "Allstat_FR6/Cibles/Allstat_FR6_cibles.html",
+    "title": "Reproduction d’indicateurs cibles",
+    "section": "",
+    "text": "Cette fiche propose un code permettant de reproduire les indicateurs publiés par la Cnaf sur les allocataires du RSA pour un mois donné : nombre de foyers sociaux, nombre d’adultes (responsable du dossier et éventuel conjoint), et nombre d’éventuels enfants et autres personnes à charge. Plusieurs sous-catégories de bénéficiaires du RSA sont également reproduites, en fonction de l’âge, de la situation familiale et du département de résidence.\nPour calculer ces indicateurs, les tables ménages, minimas sociaux et top_conj sont utilisées.\nRemarque : la chaîne de caractère fournie à la fonction as.Date doit être de la forme “AAAA-MM-JJ”.\nLe code proposé ci-dessous utilise sparklyr et dplyr.\n\n# définition du répertoire\ndir_spark &lt;- paste0(\"file:///C:/Users/Public/Documents/MiDAS_parquet/Vague 4\")\n\n# création d'un calendrier avec les dates de début et de fin de mois\ncalendrier &lt;- data.frame(debut_mois = seq.Date(as.Date(\"2010/01/01\"),\n                                              as.Date(\"2030/01/01\"),\n                                              by = \"+1 months\")) %&gt;%\n  mutate(fin_mois = (debut_mois + months(1)) -1,\n         mois = paste0(substr(debut_mois,1,4),substr(debut_mois,6,7)))\n\n# mois d'intérêt\nmois &lt;- \"2023-06-01\"\nmois_cnaf &lt;- paste0(substr(ymd(as.Date(mois)),6,7), substr(ymd(as.Date(mois)),3,4))\nmois_m &lt;- paste0(substr(mois,1,4),substr(mois,6,7))\nfin_mois_m = pull(calendrier %&gt;% filter(mois == mois_m) %&gt;% select(fin_mois))\ndebut_mois_m = pull(calendrier %&gt;% filter(mois == mois_m) %&gt;% select(debut_mois))\n\n\n\n### A. Indicateurs RSA ------------\n\n\n# Table Ménage\ntable_menage &lt;- spark_read_parquet(sc, paste0(dir_spark,\"/Allstat/menage/cnaf_menage_\", mois_cnaf, \".parquet\"), \n                                   memory = FALSE) %&gt;%\n  dplyr::mutate(id_menage = paste0(NORDALLC,NUMCAF)) %&gt;% # création d'un identifiant ménage\n  window_order(id_menage) %&gt;%\n  group_by(id_menage) %&gt;%\n  filter(row_number() == 1) %&gt;% # Dédoublonne\n  ungroup()\n\n\n# Table minimas sociaux\ntable_ms_rsa &lt;- spark_read_parquet(sc, paste0(dir_spark, \n                                          \"/Allstat/minsoc/cnaf_minsoc_\", mois_cnaf, \".parquet\"), memory=FALSE) %&gt;%\n  dplyr::filter(RSAVERS %in% c(\"RSA droit commun\", \"RSA droit local\",\n                               \"RSA jeune\", \"RSA expérimental\", \"C\", \"L\", \"J\", \"E\")) %&gt;%\n  dplyr::mutate(id_menage = paste0(NORDALLC,NUMCAF)) %&gt;% # création d'un identifiant ménage\n  window_order(id_midas) %&gt;%\n  group_by(id_midas) %&gt;%\n  filter(row_number() == 1) %&gt;% # Dédoublonne\n  ungroup()\n\n\n# left_join des tables prestations et ménage\nms_rsa &lt;- table_ms_rsa %&gt;%\n  left_join(table_menage, by=\"id_menage\", suffix=c(\"_ms\",\"_men\")) %&gt;%\n  #left_join(table_topconj, by=c(\"id_midas\"=\"id_midas\", \"id_menage\"=\"id_menage\")) %&gt;% # dans la vague 4, la variable TOPCONJ est présente directement dans la table ménage. Pour les autres vagues, il faut exécuter ce left_join.\n  collect() %&gt;%\n  dplyr::mutate(\n    # situation familiale :\n    COUPLE = ifelse(RSSITFAM %in% c(\"Couple\", \"3\"), 1,0),\n    ISOLE_FEMME = ifelse(RSSITFAM %in% c(\"Isolé femme\", \"2\"), 1,0),\n    ISOLE_HOMME = ifelse(RSSITFAM %in% c(\"Isolé homme\", \"1\") ,1,0),\n    SIT_FAM_INCONNUE = ifelse(RSSITFAM %in% c(\"Sans signification ou inconnue\", \"0\"),1,0),\n    # age à la fin du mois d'intérêt :\n    AGE = ifelse(TOP_CONJ == 1, # rajouter l'âge du conjoint\n                 trunc(time_length(interval(as.Date(DTNAICON), fin_mois_m), \"years\")),\n                 trunc(time_length(interval(as.Date(DTNAIRES), fin_mois_m), \"years\"))),\n    AGE_25 = ifelse(AGE &lt; 25, 1,0),\n    AGE_25_34 = ifelse(AGE &gt;= 25 & AGE &lt; 35, 1,0),\n    AGE_35_44 = ifelse(AGE &gt;= 35 & AGE &lt; 45, 1,0),\n    AGE_45_54 = ifelse(AGE &gt;= 45 & AGE &lt; 55, 1,0),\n    AGE_55 = ifelse(AGE &gt;= 55, 1,0),\n    AGE_inconnu = ifelse(is.na(AGE),1,0),\n    # nombre d'enfants et autres personnes à charge :\n    RSENAUTC = as.numeric(RSENAUTC),\n    ENFCHAR_0 = ifelse(RSENAUTC == 0,1,0),\n    ENFCHAR_1 = ifelse(RSENAUTC == 1,1,0),\n    ENFCHAR_2 = ifelse(RSENAUTC == 2,1,0),\n    ENFCHAR_3plus = ifelse(RSENAUTC &gt;= 3,1,0),\n    # département  :\n    departement = if_else(nchar(CODEPOSD) == 4, # retraiter les départements 1 à 9 en leur rajoutant 0 (01 à 09)\n                          paste0(\"0\",substr(CODEPOSD, 1, 1)),\n                          substr(CODEPOSD, 1 ,2)),\n    dep_numcaf = substr(NUMCAF_ms,1,2),\n    outremer = ifelse(dep_numcaf %in% c(\"97\", \"98\"), 1, 0) # département d'outre-mer\n  ) %&gt;%\n  dplyr::mutate(\n    metropole = ifelse(outremer == 0, 1, 0), # résident en France métropolitaine\n    isole_senf = ifelse(COUPLE == 0 & RSENAUTC == 0, 1, 0), # personne seule sans enfant\n    parent_isole = ifelse(COUPLE == 0 & RSENAUTC &gt; 0, 1, 0), # personne seule avec enfant\n    couple_senf = ifelse(COUPLE == 1 & RSENAUTC == 0, 1, 0), # couple sans enfant\n    couple_enf = ifelse(COUPLE == 1 & RSENAUTC &gt; 0, 1, 0), # couple avec enfant\n    homme_seul = ifelse(ISOLE_HOMME == 1 & RSENAUTC == 0, 1, 0), # homme seul sans enfant\n    femme_seule = ifelse(ISOLE_FEMME == 1 & RSENAUTC == 0, 1, 0),  # femme seule sans enfant \n    rsa_maji = ifelse(RSAMAJI == \"1\", 1, 0), # RSA majoré parent isolé\n    sans_rsa_maji = ifelse(RSAMAJI %in% c(\"0\", \"2\"), 1, 0), # pas de RSA majoré\n    rsa_jeunes = ifelse(RSAVERS_ms %in% c(\"RSA jeune\", \"J\"), 1, 0), # RSA jeunes\n    cumul_rsa_ppa = ifelse(PPAVERS != \"0\", 1, 0) # cumul RSA et prime d'activité\n  )\n\n\n\n# nombre de foyers bénéficiaires du RSA\nnb_foyers_rsa &lt;- ms_rsa %&gt;%\n  group_by(id_menage) %&gt;%\n  summarise(nb_menage = n())\n\n\n# nombre de bénéficiaires du RSA (responsables de dossier + conjoints)\nverif_externe_rsa &lt;- ms_rsa %&gt;%\n  dplyr::mutate(TOP_CONJ = as.numeric(TOP_CONJ)) %&gt;%\n  summarise(\n    nb_rsa = n(), # nb de bénéficiaires du RSA : responsables dossiers + conjoints\n    nb_conjoints = sum(TOP_CONJ, na.rm=TRUE), # nb conjoints\n  ) %&gt;%\n  dplyr::mutate(\n    nb_rspd = nb_rsa - nb_conjoints, # nb de responsables de dossier\n  )\n\n\n# catégories d'allocataires du RSA : selon l'âge, la situation familiale, le département de résidence\n# A partir de là toutes les statistiques sont calculées au niveau individuel, sur les responsables dossiers uniquement (TOP_CONJ == 0) afin de reproduire les indicateurs publiés par la Cnaf\nverif_externe_rsa_rspd &lt;- ms_rsa %&gt;%\n  dplyr::filter(TOP_CONJ == 0) %&gt;% # ne garder que les responsables de dossier\n  summarise(\n    nb_enfcha = sum(RSENAUTC, na.rm=TRUE), # nb enfants ou autres personnes à charge\n    nb_metropole = sum(metropole, na.rm=TRUE), # nb de résidents metropole\n    nb_outremer = sum(outremer, na.rm=TRUE), # nb de résidents DROM\n    nb_hommes_seuls = sum(homme_seul, na.rm=TRUE), # nb hommes seuls sans enfants\n    nb_femmes_seules = sum(femme_seule, na.rm=TRUE), # nb femmes seules sans enfants\n    nb_parent_isole = sum(parent_isole, na.rm=TRUE), # nb personnes seules avec enfants\n    nb_couple_senf = sum(couple_senf, na.rm=TRUE), # nb couples sans enfants \n    nb_couple_enf = sum(couple_enf, na.rm=TRUE), # nb couples avec enfants \n    nb_25 = sum(AGE_25, na.rm=TRUE),\n    nb_25_34 = sum(AGE_25_34, na.rm=TRUE),\n    nb_35_44 = sum(AGE_35_44, na.rm=TRUE),\n    nb_45_54 = sum(AGE_45_54, na.rm=TRUE),\n    nb_55 = sum(AGE_55, na.rm=TRUE),\n    nb_sans_rsamaji = sum(sans_rsa_maji, na.rm=TRUE), #sans majoration pour parent isole\n    nb_rsamaji = sum(rsa_maji, na.rm=TRUE), # avec majoration pour parent isole\n    nb_rsa_jeunes = sum(rsa_jeunes, na.rm=TRUE), # RSA jeune\n    nb_cumul_rsa_ppa = sum(cumul_rsa_ppa, na.rm=TRUE) # cumul RSA et prime activité\n  )",
+    "crumbs": [
+      "Allstat-FR6",
+      "Cibles",
+      "Reproduction d'indicateurs cibles"
+    ]
+  },
+  {
+    "objectID": "Allstat_FR6/Cibles/Allstat_FR6_cibles.html#allocataires-du-rsa-pour-un-mois-donné-nombre-de-foyers-dadultes-bénéficiaires-et-dautres-personnes-à-charge",
+    "href": "Allstat_FR6/Cibles/Allstat_FR6_cibles.html#allocataires-du-rsa-pour-un-mois-donné-nombre-de-foyers-dadultes-bénéficiaires-et-dautres-personnes-à-charge",
+    "title": "Reproduction d’indicateurs cibles",
+    "section": "",
+    "text": "Cette fiche propose un code permettant de reproduire les indicateurs publiés par la Cnaf sur les allocataires du RSA pour un mois donné : nombre de foyers sociaux, nombre d’adultes (responsable du dossier et éventuel conjoint), et nombre d’éventuels enfants et autres personnes à charge. Plusieurs sous-catégories de bénéficiaires du RSA sont également reproduites, en fonction de l’âge, de la situation familiale et du département de résidence.\nPour calculer ces indicateurs, les tables ménages, minimas sociaux et top_conj sont utilisées.\nRemarque : la chaîne de caractère fournie à la fonction as.Date doit être de la forme “AAAA-MM-JJ”.\nLe code proposé ci-dessous utilise sparklyr et dplyr.\n\n# définition du répertoire\ndir_spark &lt;- paste0(\"file:///C:/Users/Public/Documents/MiDAS_parquet/Vague 4\")\n\n# création d'un calendrier avec les dates de début et de fin de mois\ncalendrier &lt;- data.frame(debut_mois = seq.Date(as.Date(\"2010/01/01\"),\n                                              as.Date(\"2030/01/01\"),\n                                              by = \"+1 months\")) %&gt;%\n  mutate(fin_mois = (debut_mois + months(1)) -1,\n         mois = paste0(substr(debut_mois,1,4),substr(debut_mois,6,7)))\n\n# mois d'intérêt\nmois &lt;- \"2023-06-01\"\nmois_cnaf &lt;- paste0(substr(ymd(as.Date(mois)),6,7), substr(ymd(as.Date(mois)),3,4))\nmois_m &lt;- paste0(substr(mois,1,4),substr(mois,6,7))\nfin_mois_m = pull(calendrier %&gt;% filter(mois == mois_m) %&gt;% select(fin_mois))\ndebut_mois_m = pull(calendrier %&gt;% filter(mois == mois_m) %&gt;% select(debut_mois))\n\n\n\n### A. Indicateurs RSA ------------\n\n\n# Table Ménage\ntable_menage &lt;- spark_read_parquet(sc, paste0(dir_spark,\"/Allstat/menage/cnaf_menage_\", mois_cnaf, \".parquet\"), \n                                   memory = FALSE) %&gt;%\n  dplyr::mutate(id_menage = paste0(NORDALLC,NUMCAF)) %&gt;% # création d'un identifiant ménage\n  window_order(id_menage) %&gt;%\n  group_by(id_menage) %&gt;%\n  filter(row_number() == 1) %&gt;% # Dédoublonne\n  ungroup()\n\n\n# Table minimas sociaux\ntable_ms_rsa &lt;- spark_read_parquet(sc, paste0(dir_spark, \n                                          \"/Allstat/minsoc/cnaf_minsoc_\", mois_cnaf, \".parquet\"), memory=FALSE) %&gt;%\n  dplyr::filter(RSAVERS %in% c(\"RSA droit commun\", \"RSA droit local\",\n                               \"RSA jeune\", \"RSA expérimental\", \"C\", \"L\", \"J\", \"E\")) %&gt;%\n  dplyr::mutate(id_menage = paste0(NORDALLC,NUMCAF)) %&gt;% # création d'un identifiant ménage\n  window_order(id_midas) %&gt;%\n  group_by(id_midas) %&gt;%\n  filter(row_number() == 1) %&gt;% # Dédoublonne\n  ungroup()\n\n\n# left_join des tables prestations et ménage\nms_rsa &lt;- table_ms_rsa %&gt;%\n  left_join(table_menage, by=\"id_menage\", suffix=c(\"_ms\",\"_men\")) %&gt;%\n  #left_join(table_topconj, by=c(\"id_midas\"=\"id_midas\", \"id_menage\"=\"id_menage\")) %&gt;% # dans la vague 4, la variable TOPCONJ est présente directement dans la table ménage. Pour les autres vagues, il faut exécuter ce left_join.\n  collect() %&gt;%\n  dplyr::mutate(\n    # situation familiale :\n    COUPLE = ifelse(RSSITFAM %in% c(\"Couple\", \"3\"), 1,0),\n    ISOLE_FEMME = ifelse(RSSITFAM %in% c(\"Isolé femme\", \"2\"), 1,0),\n    ISOLE_HOMME = ifelse(RSSITFAM %in% c(\"Isolé homme\", \"1\") ,1,0),\n    SIT_FAM_INCONNUE = ifelse(RSSITFAM %in% c(\"Sans signification ou inconnue\", \"0\"),1,0),\n    # age à la fin du mois d'intérêt :\n    AGE = ifelse(TOP_CONJ == 1, # rajouter l'âge du conjoint\n                 trunc(time_length(interval(as.Date(DTNAICON), fin_mois_m), \"years\")),\n                 trunc(time_length(interval(as.Date(DTNAIRES), fin_mois_m), \"years\"))),\n    AGE_25 = ifelse(AGE &lt; 25, 1,0),\n    AGE_25_34 = ifelse(AGE &gt;= 25 & AGE &lt; 35, 1,0),\n    AGE_35_44 = ifelse(AGE &gt;= 35 & AGE &lt; 45, 1,0),\n    AGE_45_54 = ifelse(AGE &gt;= 45 & AGE &lt; 55, 1,0),\n    AGE_55 = ifelse(AGE &gt;= 55, 1,0),\n    AGE_inconnu = ifelse(is.na(AGE),1,0),\n    # nombre d'enfants et autres personnes à charge :\n    RSENAUTC = as.numeric(RSENAUTC),\n    ENFCHAR_0 = ifelse(RSENAUTC == 0,1,0),\n    ENFCHAR_1 = ifelse(RSENAUTC == 1,1,0),\n    ENFCHAR_2 = ifelse(RSENAUTC == 2,1,0),\n    ENFCHAR_3plus = ifelse(RSENAUTC &gt;= 3,1,0),\n    # département  :\n    departement = if_else(nchar(CODEPOSD) == 4, # retraiter les départements 1 à 9 en leur rajoutant 0 (01 à 09)\n                          paste0(\"0\",substr(CODEPOSD, 1, 1)),\n                          substr(CODEPOSD, 1 ,2)),\n    dep_numcaf = substr(NUMCAF_ms,1,2),\n    outremer = ifelse(dep_numcaf %in% c(\"97\", \"98\"), 1, 0) # département d'outre-mer\n  ) %&gt;%\n  dplyr::mutate(\n    metropole = ifelse(outremer == 0, 1, 0), # résident en France métropolitaine\n    isole_senf = ifelse(COUPLE == 0 & RSENAUTC == 0, 1, 0), # personne seule sans enfant\n    parent_isole = ifelse(COUPLE == 0 & RSENAUTC &gt; 0, 1, 0), # personne seule avec enfant\n    couple_senf = ifelse(COUPLE == 1 & RSENAUTC == 0, 1, 0), # couple sans enfant\n    couple_enf = ifelse(COUPLE == 1 & RSENAUTC &gt; 0, 1, 0), # couple avec enfant\n    homme_seul = ifelse(ISOLE_HOMME == 1 & RSENAUTC == 0, 1, 0), # homme seul sans enfant\n    femme_seule = ifelse(ISOLE_FEMME == 1 & RSENAUTC == 0, 1, 0),  # femme seule sans enfant \n    rsa_maji = ifelse(RSAMAJI == \"1\", 1, 0), # RSA majoré parent isolé\n    sans_rsa_maji = ifelse(RSAMAJI %in% c(\"0\", \"2\"), 1, 0), # pas de RSA majoré\n    rsa_jeunes = ifelse(RSAVERS_ms %in% c(\"RSA jeune\", \"J\"), 1, 0), # RSA jeunes\n    cumul_rsa_ppa = ifelse(PPAVERS != \"0\", 1, 0) # cumul RSA et prime d'activité\n  )\n\n\n\n# nombre de foyers bénéficiaires du RSA\nnb_foyers_rsa &lt;- ms_rsa %&gt;%\n  group_by(id_menage) %&gt;%\n  summarise(nb_menage = n())\n\n\n# nombre de bénéficiaires du RSA (responsables de dossier + conjoints)\nverif_externe_rsa &lt;- ms_rsa %&gt;%\n  dplyr::mutate(TOP_CONJ = as.numeric(TOP_CONJ)) %&gt;%\n  summarise(\n    nb_rsa = n(), # nb de bénéficiaires du RSA : responsables dossiers + conjoints\n    nb_conjoints = sum(TOP_CONJ, na.rm=TRUE), # nb conjoints\n  ) %&gt;%\n  dplyr::mutate(\n    nb_rspd = nb_rsa - nb_conjoints, # nb de responsables de dossier\n  )\n\n\n# catégories d'allocataires du RSA : selon l'âge, la situation familiale, le département de résidence\n# A partir de là toutes les statistiques sont calculées au niveau individuel, sur les responsables dossiers uniquement (TOP_CONJ == 0) afin de reproduire les indicateurs publiés par la Cnaf\nverif_externe_rsa_rspd &lt;- ms_rsa %&gt;%\n  dplyr::filter(TOP_CONJ == 0) %&gt;% # ne garder que les responsables de dossier\n  summarise(\n    nb_enfcha = sum(RSENAUTC, na.rm=TRUE), # nb enfants ou autres personnes à charge\n    nb_metropole = sum(metropole, na.rm=TRUE), # nb de résidents metropole\n    nb_outremer = sum(outremer, na.rm=TRUE), # nb de résidents DROM\n    nb_hommes_seuls = sum(homme_seul, na.rm=TRUE), # nb hommes seuls sans enfants\n    nb_femmes_seules = sum(femme_seule, na.rm=TRUE), # nb femmes seules sans enfants\n    nb_parent_isole = sum(parent_isole, na.rm=TRUE), # nb personnes seules avec enfants\n    nb_couple_senf = sum(couple_senf, na.rm=TRUE), # nb couples sans enfants \n    nb_couple_enf = sum(couple_enf, na.rm=TRUE), # nb couples avec enfants \n    nb_25 = sum(AGE_25, na.rm=TRUE),\n    nb_25_34 = sum(AGE_25_34, na.rm=TRUE),\n    nb_35_44 = sum(AGE_35_44, na.rm=TRUE),\n    nb_45_54 = sum(AGE_45_54, na.rm=TRUE),\n    nb_55 = sum(AGE_55, na.rm=TRUE),\n    nb_sans_rsamaji = sum(sans_rsa_maji, na.rm=TRUE), #sans majoration pour parent isole\n    nb_rsamaji = sum(rsa_maji, na.rm=TRUE), # avec majoration pour parent isole\n    nb_rsa_jeunes = sum(rsa_jeunes, na.rm=TRUE), # RSA jeune\n    nb_cumul_rsa_ppa = sum(cumul_rsa_ppa, na.rm=TRUE) # cumul RSA et prime activité\n  )",
+    "crumbs": [
+      "Allstat-FR6",
+      "Cibles",
+      "Reproduction d'indicateurs cibles"
+    ]
+  },
+  {
     "objectID": "Allstat_FR6/Prestations/Dico_allstat_minima/allstat_minima_variables/rsocclog.html",
     "href": "Allstat_FR6/Prestations/Dico_allstat_minima/allstat_minima_variables/rsocclog.html",
     "title": "RSOCCLOG",
@@ -410,206 +434,306 @@
     ]
   },
   {
-    "objectID": "Fiches/brsa.html",
-    "href": "Fiches/brsa.html",
-    "title": "brsa",
+    "objectID": "Fiches/Fiches_presentation.html",
+    "href": "Fiches/Fiches_presentation.html",
+    "title": "Fiches thématiques",
     "section": "",
-    "text": "A modifier\n\nTEST",
+    "text": "Cette section regroupe des fiches sur divers sujets pour lesquels MiDAS peut servir de source de référence.",
     "crumbs": [
       "Fiches",
-      "brsa"
+      "Fiches thématiques"
     ]
   },
   {
-    "objectID": "Fiches/Maintien_de_droits.html",
-    "href": "Fiches/Maintien_de_droits.html",
-    "title": "Maintien de droits",
+    "objectID": "FHS/FHS_presentation.html",
+    "href": "FHS/FHS_presentation.html",
+    "title": "Le Fichier Historique Statistique (FHS)",
     "section": "",
-    "text": "Cette définition est tirée du site Internet de l’Unédic.\nLes demandeurs d’emploi indemnisés à l’âge de 62 ans peuvent voir leurs droits prolongés jusqu’à la liquidation de leur retraite, à certaines conditions. Mais jamais au-delà de 65 ou 67 ans, âge où une retraite à taux plein leur est attribuée d’office. Ces conditions sont les suivantes :\n\nêtre âgé d’au moins 62 ans ;\nêtre indemnisé depuis au moins un an ;\nne pas pouvoir prétendre à une retraite à taux plein ;\navoir été affilié pendant 12 ans à l’assurance chômage, autrement dit 12 ans de travail salarié ayant donné lieu au versement des contributions d’assurance chômage ;\npouvoir justifier d’une période d’emploi d’une année continue ou 2 années discontinues durant les 5 dernières années de travail ;\ndisposer d’au moins d’au moins 100 trimestres validés par l’assurance vieillesse.\n\nLe demandeur d’emploi percevra l’ARE jusqu’à ce qu’il justifie du nombre de trimestres exigé pour une retraite à taux plein ou qu’il en bénéficie d’office à 65 ou 67 ans, selon son année de naissance. La reprise d’une activité professionnelle n’implique pas toujours la cessation du versement de l’ARE.",
+    "text": "Chaque trimestre, France Travail produit le Fichier Historique Statistique des demandeurs d’emploi inscrits à France Travail. Ce fichier enregistre, pour les 10 années antérieures, tous les évènements successifs concernant les personnes qui ont été inscrites sur les listes de France Travail sur cette période, qu’elles soient ou non inscrites à la date d’extraction du fichier.\nLes données du FHS permettent d’analyser la trajectoire d’inscription des demandeurs d’emploi et d’éclairer notamment la question de la récurrence d’inscription sur les listes, d’ancienneté dans la catégorie A, ou les transitions entre les différentes catégories de demandeurs d’emploi.",
     "crumbs": [
-      "Fiches",
-      "Maintien de droits"
+      "FHS",
+      "Présentation",
+      "Le Fichier Historique Statistique (FHS)"
     ]
   },
   {
-    "objectID": "Fiches/Maintien_de_droits.html#définition",
-    "href": "Fiches/Maintien_de_droits.html#définition",
-    "title": "Maintien de droits",
-    "section": "",
-    "text": "Cette définition est tirée du site Internet de l’Unédic.\nLes demandeurs d’emploi indemnisés à l’âge de 62 ans peuvent voir leurs droits prolongés jusqu’à la liquidation de leur retraite, à certaines conditions. Mais jamais au-delà de 65 ou 67 ans, âge où une retraite à taux plein leur est attribuée d’office. Ces conditions sont les suivantes :\n\nêtre âgé d’au moins 62 ans ;\nêtre indemnisé depuis au moins un an ;\nne pas pouvoir prétendre à une retraite à taux plein ;\navoir été affilié pendant 12 ans à l’assurance chômage, autrement dit 12 ans de travail salarié ayant donné lieu au versement des contributions d’assurance chômage ;\npouvoir justifier d’une période d’emploi d’une année continue ou 2 années discontinues durant les 5 dernières années de travail ;\ndisposer d’au moins d’au moins 100 trimestres validés par l’assurance vieillesse.\n\nLe demandeur d’emploi percevra l’ARE jusqu’à ce qu’il justifie du nombre de trimestres exigé pour une retraite à taux plein ou qu’il en bénéficie d’office à 65 ou 67 ans, selon son année de naissance. La reprise d’une activité professionnelle n’implique pas toujours la cessation du versement de l’ARE.",
+    "objectID": "FHS/FHS_presentation.html#champ",
+    "href": "FHS/FHS_presentation.html#champ",
+    "title": "Le Fichier Historique Statistique (FHS)",
+    "section": "Champ",
+    "text": "Champ\nToute personne inscrite à France Travail au moins un jour depuis le 1er janvier 2017 avec son historique d’inscription remontant sur les 10 années qui précèdent pour la France entière.",
     "crumbs": [
-      "Fiches",
-      "Maintien de droits"
+      "FHS",
+      "Présentation",
+      "Le Fichier Historique Statistique (FHS)"
     ]
   },
   {
-    "objectID": "Fiches/Maintien_de_droits.html#dans-les-données",
-    "href": "Fiches/Maintien_de_droits.html#dans-les-données",
-    "title": "Maintien de droits",
-    "section": "Dans les données",
-    "text": "Dans les données",
+    "objectID": "FHS/FHS_presentation.html#structure-des-tables",
+    "href": "FHS/FHS_presentation.html#structure-des-tables",
+    "title": "Le Fichier Historique Statistique (FHS)",
+    "section": "Structure des tables",
+    "text": "Structure des tables\nDans le cadre de MiDAS, les tables suivantes sont disponibles :\n\nLa table DE (Demandes d’emploi) : cette table contient des informations sur les caractéristiques des demandeurs d’emploi inscrits à France Travail (sexe, date de naissance, qualification, commune de résidence…) et des demandes (dates et motif d’inscription, catégorie d’inscription, type d’emploi recherché, date et motif d’annulation…) ;\nLa table E0 (activité réduite) : cette table permet de connaître les périodes (année et mois) d’activité réduite exercées par les demandeurs d’emploi (inscrits en catégories B et C).\nLa table D2 (Indemnisabilité) : code allocation et durée d’indemnisabilité maximale pour les droits calculés (pas forcément payés). Bien qu’elle permette de repérer le nombre d’indemnisables, il faut lui préférer les tables ODD et PJC du FNA pour ce qui est lié à l’indemnisabilité ;\nLa table P2 (Formations) – provenant à l’origine de la base FHS-services − qui contient des informations sur les formations suivies, majoritairement pour les demandeurs indemnisés par France Travail ;\nLes tables E3 et E3-Cons (actions) – provenant à l’origine de la base FHS-services − qui permettent d’identifier les dispositifs et prestations dont a bénéficié le demandeur d’emploi, ainsi que leur statut ;\nLa table PARCOURS renseigne sur les types d’accompagnement auxquels les demandeurs d’emploi sont assignés en fonction de leur proximité avec le marché du travail (accompagnement “suivi”, “guidé”, renforcé” et “global”).",
     "crumbs": [
-      "Fiches",
-      "Maintien de droits"
+      "FHS",
+      "Présentation",
+      "Le Fichier Historique Statistique (FHS)"
     ]
   },
   {
-    "objectID": "FHS/P2/Dico_FHS_P2/FHS_P2_variables/CATFIN.html",
-    "href": "FHS/P2/Dico_FHS_P2/FHS_P2_variables/CATFIN.html",
-    "title": "CATFIN",
+    "objectID": "FHS/P2/Dico_FHS_P2/FHS_P2_variables/FORMACOD.html",
+    "href": "FHS/P2/Dico_FHS_P2/FHS_P2_variables/FORMACOD.html",
+    "title": "FORMACOD",
     "section": "",
-    "text": "Catégorie de financement de la formation\n00. Inconnue\n01. Stage dans le cadre d'une convention de conversion\n02. Financement France Travail\n05. Organismes paritaires collecteurs agréés au titre du CIF\n06. AIF-FT Formation non couverte achats France Travail\n07. AIF-FT Réussite concours sanitaire et social\n08. AIF-FT Préparatoire futurs artisans\n09. AIF-FT Complément financement DIF\n10. OPCA - Entreprise de construction\n11. État (Ministère chargé de l'emploi)\n12. Subvention aux centres gérés\n13. Autres stages agréés par l'État\n14. OPCA-AGEFOS-PME Assurance formation des salariés des PME\n15. OPCA-OPCALIM Industries alimentaires\n16. Région – CSP\n17. OPCA-FORCO Activité de commerce\n18. OPCA-OPCALIA Formation professionnelle continue\n19. OPCA-OPCAIM Industries métallurgiques\n20. OPCA-DEFI industrie\n21. AFPA (Commande publique État)\n22. POE collective\n23. AIF-FT Sécurisation hors CRP/CTP/CSP\n24. AIF-FT-OPCA Formation des salariés des PME\n25. AIF-FT-OPCA Industries alimentaires\n26. AIF-FT-OPCA Entreprise de construction\n27. AIF-FT-OPCA Activité de commerce et de distribution\n28. AIF-FT-OPCA Formation professionnelle continue\n29. AIF-FT-OPCA Industries métallurgiques\n30. AIF-FT-OPCA Industrie\n31. FNE CONVENTIONS DE DDTE\n32. FNE CONVENTIONS ANPE\n33. Compte personnel de formation\n41. REGION\n43. FONGECIF\n44. OPCA-FAFIEC Ingénierie informatique conseil\n45. OPCA-FAFIH Industrie hôtelière restauration\n46. OPCA Transports routiers et activités auxiliaires\n47. OPCA-PL Professions libérales\n48. OPCA-FAFTT Entreprises de travail temporaire et intérim\n51. Autres ministères\n53. AIF-FT FONGECIF\n54. AIF-FT OPCA-FAFIEC Ingénierie informatique conseil\n55. AIF-FT OPCA-FAFIH Industrie hôtelière restauration\n56. AIF-FT OPCA Transports routiers et activités auxiliaires\n57. AIF-FT OPCA-ACTALIANS Professions libérales\n58. AIF-FT OPCA-FAFTT Travail temporaire\n61. FASLID\n62. AGEFIPH\n63. AIF-FT VAE\n64. AIF-FT Formation de projet individuel\n71. Autres collectivités territoriales\n72. OPCA-AFDAS Culture, communication, médias, loisirs\n73. OPCA-ANFA-AUTO Services de l'automobile\n74. OPCA-FAFSEA Agriculture et activités annexes\n75. OPCA-INTEGROS Commerce de gros et international\n76. OPCA-OPCABAIA Banque assurance assistance\n77. OPCA-OPCA3+ Ameublement, matériaux de construction\n78. OPCA-UNIFAF Sanitaire, social, médico-social privé\n79. OPCA Uniformation économie habitat protection social\n81. Centres subventionnels au titre de la formation\n82. AIF-FT OPCA-AFDAS Culture, communication, médias, loisirs\n83. AIF-FT OPCA-ANFA-AUTO Services de l'automobile\n84. AIF-FT OPCA-FAFSEA Agriculture et activités annexes\n85. AIF-FT OPCA-INTERGROS Commerce de gros et international\n86. AIF-FT OPCA-OPCABAIA Banque assurance assistance\n87. AIF-FT OPCA-OPCA3+ Ameublement, matériaux de construction\n88. AIF-FT OPCA-UNIFAF Sanitaire, social, médico-social privé\n89. AIF-FT OPCA Uniformation économie habitat protection social\n91. Établissements dépenses de fonctionnement budget de l'État hors universités\n92. Établissements universitaires\n98. Financement par le bénéficiaire",
+    "text": "Besoin en formation (FORMACODE) - domaine\n100. Formation générale\n110. Mathématique\n114. Physique\n115. Chimie\n120. Sciences naturelles\n122. Sciences de la terre\n125. Environnement aménagement\n130. Science politique\n131. Économie\n132. Droit\n133. Droit fiscal\n142. Sciences humaines\n144. Psychologie\n150. Développement personnel\n152. Langues\n154. Sport\n200. Formation agricole ou Industrielle\n210. Agriculture\n212. Production végétale\n213. Pêche aquaculture\n215. Agroalimentaire\n216. Textile\n217. Habillement\n218. Cuir peau\n220. Travaux publics\n222. BTP conception organisation\n223. Bâtiment gros œuvre\n224. Bâtiment second œuvre\n226. Génie climatique\n228. Matériau produit chimique\n230. Travail matériau\n235. Mécanique théorique\n236. Mécanique construction réparation\n240. Électrotechnique\n241. Énergie\n242. Télécommunications\n243. Électronique\n244. Automatisme informatique industrielle\n300. Fonction entreprise\n310. Informatique\n313. Qualité\n315. Gestion production\n317. Manutention\n318. Transport\n320. Direction entreprise\n325. Comptabilité\n330. Ressources humaines\n340. Gestion commerciale\n342. Commerce international\n345. Commercialisation\n350. Secrétariat bureautique\n400. Secteur tertiaire\n410. Banque assurance\n420. Services divers\n426. Tourisme\n427. Hôtellerie restauration\n428. Prévention sécurité\n430. Médecine\n434. Santé secteur sanitaire\n440. Action sociale\n445. Ingénierie formation pédagogie\n450. Art\n455. Artisanat art\n460. Industrie graphique imprimerie\n461. Audiovisuel\n464. Information communication\n700. Langages informatiques\n710. Logiciels gestion de fichier\n720. Logiciels traitement de texte\n730. Logiciels tableur\n740. Logiciels intégrés\n750. Logiciels graphiques P.A.O./ P.R.E.A.O.\n755. Logiciels création/gestion page web\n760. Logiciels gestion réseau\n765. Logiciels gestion messagerie\n770. Logiciels D.A.O./C.A.O.\n775. Logiciels C.F.A.O.\n780. Logiciels gestion de projet\n785. Logiciels navigation internet\n790. Logiciels comptables\n000. Indéterminé",
     "crumbs": [
       "FHS",
       "P2",
       "Dictionnaire",
-      "CATFIN"
+      "FORMACOD"
     ]
   },
   {
-    "objectID": "FHS/P2/Dico_FHS_P2/FHS_P2_variables/ORGCAT.html",
-    "href": "FHS/P2/Dico_FHS_P2/FHS_P2_variables/ORGCAT.html",
-    "title": "ORGCAT",
-    "section": "",
-    "text": "Catégorie de l’organisme de formation\n11. AFPA\n12. ASFO\n13. AUTRES ASSOC. LOI 1901 OU 1908\n14. DIVERS TYPES DE SOCIETES\n15. AUTRES STATUTS DE DROIT PRIVE\n21. ETS SECONDAIRES (LYCEES LEP.)\n22. ETS SUPERIEURS\n23. CNAM (PARIS INST. CENT. REG.)\n24. AUTRES ETS RELEVANT EDUC. NAT.\n25. ETS RELEVANT AUTRES MINISTERES\n26. CCI ORGANIS. DROIT PRIVE\n27. CHAMB. AGRIC. CHAM. METIERS\n28. CENTRES FORM. COLLECT. PUBLI.\n29. AUTRES ORGANISMES DROIT PUBLIC\n31. CENTRE DE FORMAT.EN ENTREPRISE\n99. AUTRES CAS\nXX. VALEUR HORS TABLE",
-    "crumbs": [
-      "FHS",
-      "P2",
-      "Dictionnaire",
-      "ORGCAT"
-    ]
-  },
-  {
-    "objectID": "FHS/P2/P2_presentation.html",
-    "href": "FHS/P2/P2_presentation.html",
-    "title": "Présentation de la table",
-    "section": "",
-    "text": "Cette table, issue du FHS-Services, donne des informations sur les services de France Travail.\nElle donne les formations suivies par les demandeurs d’emploi, majoritairement pour les demandeurs d’emploi indemnisés.\nUne comparaison entre les données de cette table et celles de BREST, contenue dans Force, donnait beaucoup moins d’entrées en formation avec P2. Cela a confirmé la faiblesse des données du FH-services.\n\n\n\n\n\n\nNote\n\n\n\nFORCE (Formation, chômage, emploi) est un dispositif lancé en 2020 par la Dares qui vise à apparier plusieurs bases de données : les MMO (mouvement de main d’œuvre), le FHS, BREST (les formations), et I-milo (les missions locales).",
-    "crumbs": [
-      "FHS",
-      "P2",
-      "Présentation de la table"
-    ]
-  },
-  {
-    "objectID": "FHS/P2/P2_presentation.html#formations-suivies-par-les-demandeurs-demploi",
-    "href": "FHS/P2/P2_presentation.html#formations-suivies-par-les-demandeurs-demploi",
-    "title": "Présentation de la table",
-    "section": "",
-    "text": "Cette table, issue du FHS-Services, donne des informations sur les services de France Travail.\nElle donne les formations suivies par les demandeurs d’emploi, majoritairement pour les demandeurs d’emploi indemnisés.\nUne comparaison entre les données de cette table et celles de BREST, contenue dans Force, donnait beaucoup moins d’entrées en formation avec P2. Cela a confirmé la faiblesse des données du FH-services.\n\n\n\n\n\n\nNote\n\n\n\nFORCE (Formation, chômage, emploi) est un dispositif lancé en 2020 par la Dares qui vise à apparier plusieurs bases de données : les MMO (mouvement de main d’œuvre), le FHS, BREST (les formations), et I-milo (les missions locales).",
-    "crumbs": [
-      "FHS",
-      "P2",
-      "Présentation de la table"
-    ]
-  },
-  {
-    "objectID": "FHS/E3/Dico_FHS_E3/FHS_E3_variables/CODACT.html",
-    "href": "FHS/E3/Dico_FHS_E3/FHS_E3_variables/CODACT.html",
-    "title": "CODACT",
-    "section": "",
-    "text": "Code action conseillée et/ou réalisée\nAAC. AUTRE ACTION CAP EMPLOI\nAAD. EXPE LYON VALENCE ST ETIENNE\nAAM. AUTRE ACTION MISSION LOCALE\nAAO. AUTRE ACTION OFFRE\nAAP. AUTRE ACTION PROJET\nAAR. AUTRE ACTION RECHERCHE\nABA. BILAN AFPA MI CARRIERE (BAMC)\nABP. EXPE AVIGNON MARSEILLE\nACA. ENVOI APEC\nACE. ENVOI CAP EMPLOI\nACI. ACCOMPAGNEMENT INTENSIF\nACR. ACCOMPAGNEMENT RENFORCE\nACS. ACCOMPAGNEMENT CADRES SENIORS\nADM. PARCOURS 2\nADR. PARCOURS 3\nADS. PARCOURS 1\nAIG. PRESTATION ACCOMPAGNEMENT SPEC\nAIP. INDISPONIBILITE PARTIELLE\nAIT. INDISPONIBILITE TOTALE\nAML. ENVOI MISSIONS LOCALES\nAOR. M.E.R. SUR AUTRE ORGANISME\nARC. ACCOMPAGNEMENT REPRENEUR CREAT\nATD. EXPE TOULON CAGNES SOFIA\nA00. ATELIER\nA01. CV\nA02. ENTRETIEN EMBAUCHE\nA03. CIBLER\nA04. RELATION\nA05. REPONDRE P.A\nA06. CANDIDATURE\nA07. SAVOIR FAIRE\nA08. UTILISER P.A\nA09. ORGANISER\nA10. TELEPHONE\nA11. LOOK\nA12. ESSAI\nA13. TEST\nA14. RECHERCHE D’EMPLOI PAR INTERNE\nA15. TRAVAIL A L’ETRANGER\nA16. S’ORGANISER POUR TRAVAIL A L’E\nA17. PREPARER VALIDATION ACQUIS DE\nA18. DECOUVRIR LE MARCHE DU TRAVAIL\nA19. TROUVER DES OFFRES\nA20. FAIRE LE POINT\nA21. FORMATION\nA22. ATOUTS\nA23. INFORMATION\nA24. VERIFIER\nA25. PLAN\nA26. CREATION\nA27. MON CV-PUBLIC SPECIFIQUE\nA28. JE TROUVE UNE OFFRE\nA29. ORGANISER DEPLACEMENTS / MARCHE DU TRAVAIL\nA30. TRAVAILLER AU ROYAUME-UNI\nA31. TRAVAILLER EN ALLEMAGNE\nA32. TRAVAILLER EN ESPAGNE\nA33. TRAVAILLER AU CANADA\nA34. TRAVAILLER EN ITALIE\nA40. SIMULER UN ENTRETIENT D’EMBAUCHE\nA41. DECIDER DE SE FORMER\nBCA. BILAN DE COMPETENCES APPROFOND\nCAD. ATOUT CADRE\nCEN. CREATION OU REPRISE D’ENTREPRI\nCIB. CIBLE EMPLOI\nCIV. CONTRAT D’INSERTION DANS LA VI\nCVE. ACCOMPAGNEMENT CAP ENTREPRISE\nC30. SENSIB CREA ENTREPR\nC91. SPEC REGION C1\nC92. SPEC REGION C2\nC93. SPEC REGION C3\nDAP. DIAGNOSTIC APPROFONDI\nDPO. DIAGNOSTIC DE POSITIONNEMENT\nECA. Évaluation des Compétences et Capa Prof AFPA\nECE. EMT CAP VERS L’ENTREPRISE\nEFA. MER SUR FORMATION AFPA\nEFO. MISE EN RELATION FORMATION\nEJZ. EMT RENFORCEE JEUNES ZUS\nENE. ENTRETIEN D’EVALUATION\nENI. ENTRETIEN D’INFORMATION\nENO. ENTRETIEN D’ORIENTATION\nEUR. ACTION FINANCEE PAR EUR\nEPS. EVALUATION EN MILIEU DE TRAVAIL PLAN SENIOR\nE20. EPCRE\nE30. ENCP\nE31. ENCP 1\nE32. ENCP 2\nE33. ENCP 3\nE40. EMT STANDARD\nE41. EMT 1\nE42. EMT 2\nE43. EMT 3\nE50. ENAP STANDARD\nE51. ENAP 1\nE52. ENAP 2\nE53. ENAP 3\nE60. CAD”IDENT POTENTIEL”\nE70. BILAN PROJET ET METHODES RECHE\nE80. EVAL PREALABLE AU RECRUTEMENT\nE90. EVAL COMPETENCES ET CAPACITES\nE91. SPEC REGIONALE EV 1\nE92. SPEC REGIONALE EV 2\nE93. SPEC REGIONALE EV 3\nHAB. EVALUATION DES HABILETES PAR S\nI30. INFO COLL A THEME\nI40. INFO COLL PAP\nI50. INFO COLL PLAN 50000 JEUNES\nI91. SPEC REGION INF 1\nI92. SPEC REGION INF 2\nI93. SPEC REGION INF 3\nLEC. Licencié Economique OPP\nMEA. MISE RELATION OFFRE ACTIVITE\nMET. MISE RELATION CONTRAT TRAVAIL\nME0. M.E.R SUR CONTRAT INITIATIVE L\nME1. M.E.R CONTRAT TRAVAIL NORMAL\nME2. M.E.R CONTRAT D’APPRENTISSAGE\nME3. M.E.R APEJ\nME4. M.E.R CONTRAT ORIENTATION\nME5. M.E.R CONTRAT QUALIFICATION\nME6. M.E.R CONTRAT D’ADAPTATION\nME7. M.E.R CONTRAT POINT OPERATIONN\nME8. M.E.R SUR CAE DOM\nME9. M.E.R SUR CES HORS CADRE INSER\nMF2. M.E.R SUR CONTRAT INITIATIVE E\nMF3. M.E.R SUR CONVENTION DE COOPER\nMF4. M.E.R SUR EMPLOI VILLE\nMF5. M.E.R SUR CONTRAT EMPLOI JEUNE\nMF6. M.E.R SUR CEC HORS CADRE INSER\nMF7. M.E.R SUR CONTRAT DE QUALIF. A\nMI1. M.E.R SUR CONTRAT INSERTION EC\nMI2. M.E.R SUR CONTRAT G.E.I.Q\nMI3. M.E.R SUR CES/CEC INSERTION PA\nMOB. MOBILISATION VERS L’EMPLOI\nMOV. MOBILISATION VERS L’EMPLOI (nouveaux marchés 2010)\nNET. INITIATION À L’UTILISATION D’I\nOED. OBJECTIF EMPLOI DURABLE\nOEN. OBJECTIF ENTREPRISE\nOPL. OBJECTIF PLACEMENT\nOPS. Orientation Professionnelle Spécialisée (2010 04)\nOPU. OPERATEURS PRIVES UNEDIC\nOSA. OFFRE SPECIFIQUE RSA\nO20. ACCOMPAGNEMENT INDIV. OBJECTIF\nO21. ACCOMPAGNEMENT GROUPE OBJECTIF\nO30. SOA STANDARD\nO31. SOA 1\nO32. SOA 2\nO33. SOA 3\nO40. MOA STANDARD\nO41. MOA 1\nO42. MOA 2\nO43. MOA 3\nO50. DU DIPLOME A L’EMPLOI\nO51. DU DIPLOME A L’EMPLOI 1\nO52. DU DIPLOME A L’EMPLOI 2\nO53. DU DIPLOME A L’EMPLOI 3\nO60. BILAN DE COMPETENCES\nO61. CHEQ BIL COMP CADRES\nO91. SPEC REGION OR 1\nO92. SPEC REGION OR 2\nO93. SPEC REGION OR 3\nPAD. ACCOMPAGNEMENT EMPLOI\nPAS. PRESTATION D’APPUI SOCIAL\nPIJ. PROJET INITIATIVE JEUNE\nPPE. UN PROJET POUR UN EMPLOI\nPRC. PRESTATION CREATION ENTREPRISE GUADELOU\nPRE. PRESTATION D’EVALUATION\nPRI. PRESTATION D’INFORMATION\nPRO. PRESTATION D’ORIENTATION\nPRR. PRESTATION DE RECHERCHE EMPLOI\nP10. PROGRAMME ACCES EMPLOI JEUNES\nP20. PLAN LOCAL POUR INSERTION ET E\nP30. INSERTION PAR ACTIVITE ECONOMI\nP40. ACCOMPAGNEMENT DURANT CES\nP50. ACCOMPAGNEMENT INDIVIDUALISE\nRCE. OBJECTIF EMPLOI CAP VERS L’ENT\nR20. ACCOMPAGNEMENT INDIV. OBJECTIF\nR21. ACCOMPAGNEMENT GROUPE OBJECTIF\nR30. STRE STANDARD\nR31. STRE 1\nR32. STRE 2\nR33. STRE 3\nR40. ARE STANDARD\nR41. ARE 1\nR42. ARE 2\nR43. ARE 3\nR50. CRDE ACTIVE\nR51. CRDE ACTIVE 1\nR52. CRDE ACTIVE 2\nR53. CRDE ACTIVE 3\nR60. APE STANDARD\nR61. APE 1\nR62. APE 2\nR63. APE 3\nR70. MARKETING EMPLOI\nR71. MARKETING EMPLOI 1\nR72. MARKETING EMPLOI 2\nR73. MARKETING EMPLOI 3\nR80. CLUB DE CHERCHEURS\nR81. CLUB DE CHERCHEURS 1\nR82. CLUB DE CHERCHEURS 2\nR83. CLUB DE CHERCHEURS 3\nR90. RENFORCER ET ACCOMPAGNER RECHE\nR91. SPEC REGION RE 1\nR92. SPEC REGION RE 2\nR93. SPEC REGION RE 3\nSAI. ACCOMPAGNEMENT CHOMAGE SAISONNIER OPP\nSCO. SUIVI COTRAITANT\nSPN. SUIVI PARTENAIRE NON INFORMATISE\nSTR. STRATEGIE DE RECHERCHE EMPLOI\nS20. PARCOURS FORMATION AFPA (2010 04 : arrêt -&gt;OPS)\nTIC. ACCOMPAGNEMENT CADRES A DISTAN\nTRA. Trajectoire Emploi OPP\nT01. APPUI À LA DEMARCHE DE RECH. D\nT02. ENTRAINEMENT AUX ENTRETIENS (O\nT03. BILAN DE COMPETENCES (OPP)\nT04. DEFINITION DE PROJET (OPP)\nT05. PROPOSITION D’OFFRE D’EMPLOI (\nT06. FORMATION COURTE (5 JOURS OU M\nT07. FORMATION LONGUE (6 JOURS OU P\nT08. MISE EN SITUATION PROFESSIONNE\nT09. AUTRE (OPP)\nVAF. VAE MINISTERE TRAVAIL AFPA\nVAG. ACCOMPMT PARCOURS de VAE GUADELOUPE\nVAO. VAE AUTRE ORGANISME\nVOC. EVAL SUR PLATE-FORME DE VOCATI\nV01. ANCIEN VAE",
-    "crumbs": [
-      "FHS",
-      "E3",
-      "Dictionnaire",
-      "CODACT"
-    ]
-  },
-  {
-    "objectID": "FHS/E3/E3_presentation.html",
-    "href": "FHS/E3/E3_presentation.html",
-    "title": "Présentation de la table",
-    "section": "",
-    "text": "Cette table, comme E3_Cons, donne les prestations pour les demandeurs d’emploi. C’est la variable code action (CODACT) qui donne la nature de ces prestations. Cette table, issue du FHS-Services, donne des informations sur les services de France Travail.",
-    "crumbs": [
-      "FHS",
-      "E3",
-      "Présentation de la table"
-    ]
-  },
-  {
-    "objectID": "FHS/E3/E3_presentation.html#prestations-proposées-par-france-travail",
-    "href": "FHS/E3/E3_presentation.html#prestations-proposées-par-france-travail",
-    "title": "Présentation de la table",
-    "section": "",
-    "text": "Cette table, comme E3_Cons, donne les prestations pour les demandeurs d’emploi. C’est la variable code action (CODACT) qui donne la nature de ces prestations. Cette table, issue du FHS-Services, donne des informations sur les services de France Travail.",
-    "crumbs": [
-      "FHS",
-      "E3",
-      "Présentation de la table"
-    ]
-  },
-  {
-    "objectID": "FHS/E3_Cons/Dico_FHS_E3_Cons/E3_Cons_dictionnaire.html",
-    "href": "FHS/E3_Cons/Dico_FHS_E3_Cons/E3_Cons_dictionnaire.html",
-    "title": "Présentation de la table",
-    "section": "",
-    "text": "Ces variables sont identiques à celles de la table E3. Se référer au dictionnaire de la table E3.\n\n\n\nVariables\nLibellé\n\n\n\n\nBNI\n\n\n\nCODACT\nCODE ACTION\n\n\nCODPAR\nCode partenaire\n\n\nDATMAJAC\nDATE DE MISE A JOUR DU STATUT\n\n\nDATPRECO\nDATE DE PRECONISATION\n\n\nDATSTAT\nMOIS STATISTIQUE\n\n\nFORMACOD\nBESOIN DE FORMATION\n\n\nNUMALE\nUNITE ALE DE L’ACTION"
-  },
-  {
-    "objectID": "FHS/D2/Dico_FHS_D2/D2_dictionnaire.html",
-    "href": "FHS/D2/Dico_FHS_D2/D2_dictionnaire.html",
+    "objectID": "FHS/P2/Dico_FHS_P2/P2_dictionnaire.html",
+    "href": "FHS/P2/Dico_FHS_P2/P2_dictionnaire.html",
     "title": "Dictionnaire des variables",
     "section": "",
-    "text": "Variables\nLibellé\nModalités\nCommentaires\n\n\n\n\nD2STATUT\nIndicateur du niveau de consolidation de l’information portant sur l’indemnisabilité du demandeur\nC. Information consolidée à 12 mois P. Information consolidée à 3 mois, dite provisoire\n\n\n\nFILINDEM\nIdentifie les conditions d’indemnisation (durée, taux) en fonction des conditions d’affiliation (durée, convention et âge à la rupture du contrat de travail)\n1. 122j d’indemnisation 27A 2. 182j d’indemnisation 27B 3. 243j d’indemnisation 27C moins de 50 ans 4. 243j d’indemnisation 27C 50 ans et plus 5. 426j d’indemnisation 27D moins de 25 ans 6. 426j d’indemnisation 27D entre 25 et 50 ans 7. 426j d’indemnisation 27D 50 ans et plus 8. 821j d’indemnisation 27E entre 50 et 55 ans 9. 821j d’indemnisation 27E 55 ans et plus 99. Sans objet A-F. Filière ARE 2003 G. H. I. J.\n\n\n\nJOURDV\nJour de début de validité\n\n\n\n\nJOURFV\nJour de fin de validité\n\n\n\n\nNDEM\nNuméro de la demande\n\nNuméroté de la plus récente à la plus ancienne (la demande n°1 est la demande la plus récente à la date statistique du FHS)\n\n\nODDDMAX\nDurée maximale d’indemnisation\n\n\n\n\nREGIME\nRégime particulier\n0. Indéterminé 1. Régime général 2. Intermittents du spectacle 3. Autres intermittents et intérimaires 4. Autres régimes\n\n\n\nREGIND\nRégime d’indemnisation\n\n\n\n\nREGION\n\n\n\n\n\nTYPEPOP\nType de population\n0. Non renseigné 1. Ancien emploi jeune\n\n\n\nindem\n Code de l’allocation du demandeur d’emploi indemnisable\nLes modalités sont disponibles dans la section détaillée.",
+    "text": "Variables\nLibellé\nModalités\n\n\n\n\nBNI\nIdentifiant unique du demandeur\nLe code BNI est l’identifiant national du demandeur. Dans la région d’arrivée, dans la mesure où le demandeur a bien été reconnu, son code BNI d’origine lui est réaffecté. Le code BNI permet ainsi d’identifier le demandeur dans toutes les bases régionales.\n\n\nCATFIN\nCatégorie de financement de la formation\nLes modalités sont disponibles dans la section dédiée.\n\n\nCOUTGLO\nCoût global de la formation\n\n\n\nCOUTSTA\nCoût stagiaire de la formation\n\n\n\nDATSTAT\nMois statistique\n\n\n\nDECAFFD\nDécision AFFD (Allocation de Fin de Formation Dérogatoire)\nO. Oui N. Non\n\n\nFORMACOD\nBesoin en formation - domaine\nLes modalités sont disponibles dans la section dédiée.\n\n\nFORTYPE1\nType de formation PARE (Plan d’aide au retour à l’emploi)\nC. Conventionnée P. Homologuée prioritaire H. Homologuée par défaut N. Non homologuée A. Convention AFPE X. Non renseigné\n\n\nNUMAIS\nNuméro d’Attestation d’inscription *en stage (AIS)\n\n\n\nOBJFORM\nOBJECTIF DE LA FORMATION (qualification, perfectionnement…)\n0. Non concerné\n1. Qualification\n2. Perfectionnement\n3. Élargissement des compétences\n4. Création d'entreprise\n5. Remise à niveau\n6. Mobilisation sur un projet\n7. Préqualification\n9. Non précisé\nA. Certification\nB. Professionnalisation\nC. Préparation à la qualification\nD. Remise à niveau, maîtrise des savoirs\nE. Mobilisation, aide à l'élaboration de projet\nF. PERFECTIONNEMENT, ELARGISS. CO\nG. Création d'entreprise\nX. Non précisé\nZ. Non concerné\n\n\nORGCAT\nCatégorie de l’organisme de formation\nLes modalités sont disponibles dans la section dédiée.\n\n\nP2DATDEB\nDate de début\n\n\n\nP2DATFIN\nDate de fin\n\n\n\nP2NBHEUR\nNombre d’heures total\n\n\n\nP2NIVFOR\nNiveau de la formation\n0. Inconnu ou non renseigné 1. Supérieur à BAC+2 2. De niveau BAC+2 à BAC+2 3. De niveau BAC, BP, BM à BAC 4. De CAP, BEP à 1ère achevé 5. De premier cycle professionnel, BEPC 3ème achevé 6. De sans formation, primaire à 4ème achevé\n\n\nPERENTRE\nPériode passée en entreprise lors de la formation\nO. Le demandeur a effectué a travaillé en entreprise N. Le demandeur n’a pas travaillé en entreprise\n\n\nPERETRAN\nPériode passé à l’étranger lors de la formation\nO. Le demandeur a effectué un séjour à l’étranger N. Le demandeur n’a pas effectué de séjour à l’étranger\n\n\nREGION\n\n\n\n\nSIRET\nSIRET DE L’ORGANISME REALISANT LA PRESTATION\n\n\n\nTYPVALID\nTYPE DE VALIDATION\n0. NON PREVU 1. DIPL. TECHN. EDUC. NATIONALE 2. DIPL. TECHN. TRAVAIL 3. DIPL. TECHN. AGRICULTURE 4. DIPL. TECHN. JEUNES. ET SPORTS 5. DIPL. TECHN. AUTRES 6. TITRE OU DIPLOME HOMOLOGUE 7. QUALIF. RECONNUE CONV. COLLECT 8. QUALIF. RECONNUE COMM. PARIT. 9. TITRE OU DIPL. EN ELABORATION",
     "crumbs": [
       "FHS",
-      "D2",
+      "P2",
       "Dictionnaire",
       "Dictionnaire des variables"
     ]
   },
   {
-    "objectID": "FHS/DE/Dico_FHS_DE/FHS_DE_variables/MOTANN.html",
-    "href": "FHS/DE/Dico_FHS_DE/FHS_DE_variables/MOTANN.html",
-    "title": "MOTANN",
+    "objectID": "FHS/Cibles/FHS_cibles.html",
+    "href": "FHS/Cibles/FHS_cibles.html",
+    "title": "Reproduction d’indicateurs cibles",
     "section": "",
-    "text": "Motif d’annulation de la demande\nNon renseigné : la demande est en cours.\n01. Reprise d’emploi, hors contrat aidés et création d’entreprise\n02. Entrée en stage de formation\n03. Maladie, maternité, accident travail\n04. Dispense recherche d’emploi\n05. Retraite\n06. Changement d’ALE avec changement d’Assedic\n07. Service Militaire\n08. Autre arrêt de recherche\n09. Absence au contrôle\n10. Radiation administrative pour non présentation suite à une convocation\n11. Autres radiation administratives : refus d’emploi, de formation, fausse déclaration, manque d’actes positifs de recherche\n12. Autre cas\n13. Absence de mise à jour du dossier\n15. Reprise d’emploi en contrat aidé\n16. Reprise d’emploi : création d’entreprise\n17. Refus d’actualisation du profil\n18. Refus d’une offre raisonnable d’emploi\nXX. Non renseigné (codes non intégrés)",
+    "text": "Pour calculer cet indicateur, les variables Date d’effet d’inscription de la demande (DATINS), Date d’annulation de la demande (DATANN) et Catégorie opérationnelle du demandeur d’emploi relative à la dernière situation connue (CATREGR) sont utilisées. Il faut noter que les modalités 1, 2 et 3 de CATREGR ne correspondent pas respectivement aux catégories d’inscription A, B et C statistiques, mais au type de contrat recherché. Néanmoins, l’ensemble des personnes pour lesquelles CATREGR vaut 1, 2 ou 3 est équivalent à l’ensemble des demandeurs d’emploi inscrits en catégorie A, B ou C, car ce sont les demandeurs d’emploi tenus à des actes positifs de recherche d’emploi, quelle que soit la durée d’activité réduite exercée au cours du mois.\nRemarque : la chaîne de caractère fournie à la fonction as.Date doit être de la forme “AAAA-MM-JJ”.\n\n#Chargement du package dplyr \nlibrary(dplyr)\n\n#Définition de la date de fin du mois dont on veut les inscrits en fin de mois\nmois &lt;- as.Date(\"2021-12-31\")\n\n#Utilisation de la table DE\ninscrits &lt;- DE %&gt;%\n  filter(DATINS &lt;= mois & DATANN &gt;= mois & CATREGR %in% c(\"1\", \"2\", \"3\")) %&gt;%\n  distinct(id_midas)",
     "crumbs": [
       "FHS",
-      "DE",
-      "Dictionnaire",
-      "MOTANN"
+      "Cibles",
+      "Reproduction d'indicateurs cibles"
     ]
   },
   {
-    "objectID": "FHS/DE/Dico_FHS_DE/FHS_DE_variables/SITPAR_a.html",
-    "href": "FHS/DE/Dico_FHS_DE/FHS_DE_variables/SITPAR_a.html",
-    "title": "SITPAR_a",
+    "objectID": "FHS/Cibles/FHS_cibles.html#nombre-dinscrits-en-catégories-a-b-c-en-fin-de-mois-pour-un-mois-donné",
+    "href": "FHS/Cibles/FHS_cibles.html#nombre-dinscrits-en-catégories-a-b-c-en-fin-de-mois-pour-un-mois-donné",
+    "title": "Reproduction d’indicateurs cibles",
     "section": "",
-    "text": "Situation particulière au regard de l'emploi détaillée\nADR. Aide différentielle au reclassement\nAIF. Action d'insertion et de formation\nAPR. Action préalable au recrutement\nASE. Aide spécifique complémentaire retour à l'emploi\nASI. Demandeur d'asile\nAUT. Autres formations\nCAD. Contrat d'adaptation\nCAE. Contrat d'accompagnement dans l'emploi\nCAV. Contrat d'avenir\nCEN. Création d'entreprise\nCES. Contrat emploi-solidarité\nCIE. Contrat initiative emploi\nCLO. Contrat local d'orientation\nCOR. Contrat d'orientation\nCPP. Contrat d'apprentissage\nCQU. Contrat de qualification\nCRE. Contrat de retour à l'emploi\nCRP. Convention de reclassement personnalisé\nCSP. Contrat de sécurisation professionnelle\nCTP. Contrat de transition professionnelle\nCUM. Contrat unique d'insertion marchand\nCUN. Contrat unique d'insertion non marchand\nDDI. Individu en CDI et en cours d'agrément IAE \nDIV. Divers\nEAM. Contrat d'emploi avenir marchand\nEAN. Contrat d'emploi avenir non marchand\nEAP. Contrat d'emploi avenir professeur\nEPA. Personne pourvue d'un emploi à temps partiel\nEPL. Personne pourvue d'un emploi à temps plein\nFCA. Stage FNE : cadres\nFFI. Stage FNA : femmes isolées\nIAE. Insertion par l'activité économique\nMAN. Stage de mise à niveau\nMOD. Stage modulaire\nMUE. Maintien de l'indemnisation en Union Européenne\nND1. Individu non demandeur d'emploi\nPAP. Parcours d'accompagnement personnalisé\nPEF. Préavis effectué\nPLI. Programme local d'insertion des femmes\nPMJ. Personne sous main de justice\nPNE. Préavis non effectué\nPRE. En préavis\nRMA. Contrat RMA\nSAE. Stage d'accès à l'emploi\nSAN. Sans objet\nSCI. Service civique\nSJE. Stages jeunes : 16-25 ans\nSRP. Stage de reclassement professionnel",
+    "text": "Pour calculer cet indicateur, les variables Date d’effet d’inscription de la demande (DATINS), Date d’annulation de la demande (DATANN) et Catégorie opérationnelle du demandeur d’emploi relative à la dernière situation connue (CATREGR) sont utilisées. Il faut noter que les modalités 1, 2 et 3 de CATREGR ne correspondent pas respectivement aux catégories d’inscription A, B et C statistiques, mais au type de contrat recherché. Néanmoins, l’ensemble des personnes pour lesquelles CATREGR vaut 1, 2 ou 3 est équivalent à l’ensemble des demandeurs d’emploi inscrits en catégorie A, B ou C, car ce sont les demandeurs d’emploi tenus à des actes positifs de recherche d’emploi, quelle que soit la durée d’activité réduite exercée au cours du mois.\nRemarque : la chaîne de caractère fournie à la fonction as.Date doit être de la forme “AAAA-MM-JJ”.\n\n#Chargement du package dplyr \nlibrary(dplyr)\n\n#Définition de la date de fin du mois dont on veut les inscrits en fin de mois\nmois &lt;- as.Date(\"2021-12-31\")\n\n#Utilisation de la table DE\ninscrits &lt;- DE %&gt;%\n  filter(DATINS &lt;= mois & DATANN &gt;= mois & CATREGR %in% c(\"1\", \"2\", \"3\")) %&gt;%\n  distinct(id_midas)",
     "crumbs": [
       "FHS",
-      "DE",
-      "Dictionnaire",
-      "SITPAR_a"
+      "Cibles",
+      "Reproduction d'indicateurs cibles"
     ]
   },
   {
-    "objectID": "FHS/DE/Dico_FHS_DE/FHS_DE_variables/MOTANN_a.html",
-    "href": "FHS/DE/Dico_FHS_DE/FHS_DE_variables/MOTANN_a.html",
-    "title": "MOTANN_a",
+    "objectID": "FHS/E3/Dico_FHS_E3/E3_dictionnaire.html",
+    "href": "FHS/E3/Dico_FHS_E3/E3_dictionnaire.html",
+    "title": "Dictionnaire des variables",
     "section": "",
-    "text": "Motif d'annulation de la demande détaillé\nNon renseigné : Demande annulée par le FH : plus de dossier transmis pour ce demandeur\nLégende\n\nCIE : Contrat initiative emploi\nCRP : Convention de reclassement personnalisé\nCTP : Contrat de transition professionnelle\nCUI : Contrat unique d’insertion\nDSM : Déclaration de situation mensuelle\nPPAE : Projet personnalisé d’accès à l’emploi\n\n**. Demande annulée par le FH\n00. Non précisé\n01. Refus de signature PARP PAC\n02. Non présentation a convocation CRP CTP\n03. Non présentation à une action de reclassement CRP\n04. Refus d’une offre emploi CRP CTP\n05. Refus d’action reclassement CRP\n06. Abandon d’une action de reclassement CRP\n07. Déclaration inexacte ou attestation mensongère CRP\n08. Avis défavorable pour absence au 1er entretien\n09. Non présent à la convocation suite à l’absence au 1er entretien\n10. Entrée en APR\n11. Reprise d’emploi par ses propres moyens sur emploi durable à temps plein\n12. Reprise d’emploi par ses propres moyens sur emploi à temps partiel\n13. Reprise d’emploi par ses propres moyens sur emploi temporaire de moins de 3 mois\n14. Reprise d’emploi par ses propres moyens sur emploi temporaire de plus de 3 mois\n15. Reprise d’emploi par ses propres moyens sur emploi non précisé\n16. Création d’entreprise\n17. Fin de convention de coopération\n18. Entrée en CIE\n19. Entrée en contrat d’accompagnement dans l’emploi\n20. Entrée en CEV (Contrat Emploi Ville)\n21. Reprise d’emploi par l’agence sur emploi durable à temps plein\n22. Reprise d’emploi par l’agence sur emploi à temps partiel\n23. Reprise d’emploi par l’agence sur emploi temporaire de moins de 3 mois\n24. Reprise d’emploi par l’agence sur emploi temporaire de plus de 3 mois\n25. Reprise d’emploi par l’agence sur emploi non précisé\n26. Entrée en CES (Contrat emploi-solidarité)\n27. Reprise d’emploi sur DSM\n28. Reprise d’emploi pour convention de coopération\n29. Entrée en RMA (Revenu minimum d’activité)\n30. Entrée en contrat d’avenir\n31. Entrée en stage par ANPE\n32. Entrée en stage par ses propres moyens\n33. Fin de CRP\n34. Entrée en AFR / AREF\n35. Non confirmation de l’inscription suite à une inscription à France Travail\n36. Absence du lieu de résidence &gt; 35 jours\n37. Fin de CTP\n38. Abandon volontaire (sortie anticipée) du CTP\n39. Entrée en CLCA (Complément de libre choix d’activité)\n4A. Entrée en service civique\n4B. Fin de service civique\n40. Arrêt involontaire de stage (cat = 4)\n41. Fin de stage ou de mesure (cat = 4)\n42. Abandon de stage ou de mesure (cat = 4)\n43. Fin contrat temporaire ou CDD (cat = 5)\n44. Service militaire\n45. Maladie, maternité, accident du travail\n46. Changement d’ALE\n47. Titre de séjour non valide\n48. Retraite\n49. Autres cas\n50. Non présentation suite à convocation au 1er entretien\n5X. Refus d’emploi : suspension 15 jours\n51. Refus d’emploi : suspension 1 mois\n52. Refus d’emploi : suspension 2 mois\n53. Refus d’emploi : suspension 3 mois\n54. Refus d’emploi : suspension 4 mois\n55. Refus d’emploi : suspension 5 mois\n56. Refus d’emploi : suspension 6 mois\n57. Annulation suite à la saisine de la DDTEFP (Direction départementale du travail, de l’emploi et de la formation professionnelle) \n58. Refus de 2 offres raisonnables d’emploi\n59. Fin de CSP\n60. Non présentation à une convocation PNAE (Plan national d’action pour l’emploi)\n6X. Refus de formation : suspension 15 jours\n61. Refus de formation : suspension 1 mois\n62. Refus de formation : suspension 2 mois\n63. Refus de formation : suspension 3 mois\n64. Refus de formation : suspension 4 mois\n65. Refus de formation : suspension 5 mois\n66. Refus de formation : suspension 6 mois\n70. Déclaration inexacte : suspension 12 mois\n71. Autres cas d’arrêt de recherche d’emploi\n72. Dispense recherche d’emploi\n73. Décès\n74. Fausse déclaration : suspension 6 mois\n75. Fausse déclaration : suspension 7 mois\n76. Fausse déclaration : suspension 8 mois\n77. Fausse déclaration : suspension 9 mois\n78. Fausse déclaration : suspension 10 mois\n79. Fausse déclaration : suspension 11 mois\n80. Obtention du statut de réfugié\n8X. Insuffisance de recherche d’emploi : suspension 15 jours\n81. Insuffisance de recherche d’emploi : suspension 1 mois\n82. Insuffisance de recherche d’emploi : suspension 2 mois\n83. Insuffisance de recherche d’emploi : suspension 3 mois\n84. Insuffisance de recherche d’emploi : suspension 4 mois\n85. Insuffisance de recherche d’emploi : suspension 5 mois\n86. Insuffisance de recherche d’emploi : suspension 6 mois\n90. Absence au contrôle\n91. Non réponse à convocation : suspension 1 mois\n92. Non réponse à convocation : suspension 2 mois\n93. Non réponse à convocation : suspension 3 mois\n94. Non réponse à convocation : suspension 4 mois\n95. Date de péremption atteinte (cat = 4 ou 5)\n96. Non réponse à convocation : suspension 5 mois\n97. Non réponse à convocation : suspension 6 mois\n98. DSM irrecevable (non signée)\nA2. Déclaration inexacte d’activité brève : suspension 2 mois\nA3. Déclaration inexacte d’activité brève : suspension 3 mois\nA4. Déclaration inexacte d’activité brève : suspension 4 mois\nA5. Déclaration inexacte d’activité brève : suspension 5 mois\nA6. Déclaration inexacte d’activité brève : suspension 6 mois\nA7. Déclaration inexacte d’activité brève : suspension 7 mois\nA8. Déclaration inexacte d’activité brève : suspension 8 mois\nA9. Déclaration inexacte d’activité brève : suspension 9 mois\nAA. Déclaration inexacte d’activité brève : suspension 10 mois\nAB. Déclaration inexacte d’activité brève : suspension 11 mois\nAC. Déclaration inexacte d’activité brève : suspension 12 mois\nBX. Refus d’un contrat d’apprentissage ou de professionnalisation : suspension 15 jours\nB1. Refus d’un contrat d’apprentissage ou de professionnalisation : suspension 1 mois\nB2. Refus d’un contrat d’apprentissage ou de professionnalisation : suspension 2 mois\nB3. Refus d’un contrat d’apprentissage ou de professionnalisation : suspension 3 mois\nB4. Refus d’un contrat d’apprentissage ou de professionnalisation : suspension 4 mois\nB5. Refus d’un contrat d’apprentissage ou de professionnalisation : suspension 5 mois\nB6. Refus d’un contrat d’apprentissage ou de professionnalisation : suspension 6 mois\nC1. Refus action insertion : suspension 1 mois\nC2. Refus action insertion : suspension 2 mois\nC3. Refus action insertion : suspension 3 mois\nC4. Refus action insertion : suspension 4 mois\nC5. Refus action insertion : suspension 5 mois\nC6. Refus action insertion : suspension 6 mois\nCA. CDI (CUI)\nCB. CDD d’au moins 6 mois (CUI)\nCC. Contrat travail temporaire d’au moins 6 mois (CUI)\nCD. Abandon du dispositif CRP CTP CSP\nCE. Bascule CRP vers CTP\nCF. Entrée en CUI marchand\nCG. Entrée en CUI non marchand\nCH. Reprise d’emploi incompatible avec le dispositif (CSP)\nCI. Entrée en contrat emploi d’avenir marchand\nCJ. Entrée en contrat emploi d’avenir non marchand\nCK. Entrée en emploi d’avenir professeur\nCX. Refus action insertion : suspension 15 jours\nDX. Refus contrat aidé : suspension 15 jours\nD1. Refus contrat aidé : suspension 1 mois\nD2. Refus contrat aidé : suspension 2 mois\nD3. Refus contrat aidé : suspension 3 mois\nD4. Refus contrat aidé : suspension 4 mois\nD5. Refus contrat aidé : suspension 5 mois\nD6. Refus contrat aidé : suspension 6 mois\nE2. Refus visite médicale : suspension 2 mois\nE3. Refus visite médicale : suspension 3 mois\nE4. Refus visite médicale : suspension 4 mois\nE5. Refus visite médicale : suspension 5 mois\nE6. Refus visite médicale : suspension 6 mois\nG2. Refus d’élaboration ou d’actualisation du PPAE : suspension 2 mois\nG3. Refus d’élaboration ou d’actualisation du PPAE : suspension 3 mois\nG4. Refus d’élaboration ou d’actualisation du PPAE : suspension 4 mois\nG5. Refus d’élaboration ou d’actualisation du PPAE : suspension 5 mois\nG6. Refus d’élaboration ou d’actualisation du PPAE : suspension 6 mois\nH2. Refus de deux offres raisonnables d’emploi : suspension 2 mois\nH3. Refus de deux offres raisonnables d’emploi : suspension 3 mois\nH4. Refus de deux offres raisonnables d’emploi : suspension 4 mois\nH5. Refus de deux offres raisonnables d’emploi : suspension 5 mois\nH6. Refus de deux offres raisonnables d’emploi : suspension 6 mois\nIX. Refus d’une action d’aide à la recherche d’emploi : suspension 15 jours\nI1. Refus d’une action d’aide à la recherche d’emploi : suspension 1 mois\nI2. Refus d’une action d’aide à la recherche d’emploi : suspension 2 mois\nI3. Refus d’une action d’aide à la recherche d’emploi : suspension 3 mois\nI4. Refus d’une action d’aide à la recherche d’emploi : suspension 4 mois\nI5. Refus d’une action d’aide à la recherche d’emploi : suspension 5 mois\nI6. Refus d’une action d’aide à la recherche d’emploi : suspension 6 mois\nJ2. Refus d’actualisation PPAE : suspension 2 mois\nJ3. Refus d’actualisation PPAE : suspension 3 mois\nJ4. Refus d’actualisation PPAE : suspension 4 mois\nJ5. Refus d’actualisation PPAE : suspension 5 mois\nJ6. Refus d’actualisation PPAE : suspension 6 mois\nKX. Refus contrat de professionnalisation : suspension 15 jours\nK1. Refus contrat de professionnalisation : suspension 1 mois\nK2. Refus contrat de professionnalisation : suspension 2 mois\nK3. Refus contrat de professionnalisation : suspension 3 mois\nK4. Refus contrat de professionnalisation : suspension 4 mois\nK5. Refus contrat de professionnalisation : suspension 5 mois\nK6. Refus contrat de professionnalisation : suspension 6 mois\nLX. Abandon de formation : suspension 15 jours\nL1. Abandon de formation : suspension 1 mois\nL2. Abandon de formation : suspension 2 mois\nL3. Abandon de formation : suspension 3 mois\nL4. Abandon de formation : suspension 4 mois\nL5. Abandon de formation : suspension 5 mois\nL6. Abandon de formation : suspension 6 mois\nM0. Insuffisance de recherche d’emploi : suppression 1 mois\nM1. Insuffisance de recherche d’emploi : suppression 2 mois\nM2. Insuffisance de recherche d’emploi : suppression 4 mois\nM3. Non-respect du projet de reconversion professionnelle : suppression de 4 mois\nM4. Absence à rendez-vous : radiation 1 mois\nM5. Absence à rendez-vous : suppression 2 mois\nM6. Absence à rendez-vous : suppression 4 mois\nM7. Absence à une action de formation : suppression 1 mois\nM8. Absence à une action de formation : suppression 2 mois\nM9. Absence à une action de formation : suppression 4 mois\nMA. Abandon d’une action de formation : suppression 1 mois\nMB. Abandon d’une action de formation : suppression 2 mois\nMC. Abandon d’une action de formation : suppression 4 mois\nMD. Absence à visite médicale : suppression 1 mois\nME. Absence à visite médicale : suppression 2 mois\nMF. Absence à visite médicale : suppression 4 mois\nMG. Refus d’élaborer le PPAE : suppression 1 mois\nMH. Refus d’élaborer le PPAE : suppression 2 mois\nMI. Refus d’élaborer le PPAE : suppression 4 mois\nMJ. Refus d’actualiser le PPAE : suppression 1 mois\nMK. Refus d’actualiser le PPAE : suppression 2 mois\nML. Refus d’actualiser le PPAE : suppression 4 mois\nMM. Second refus d’une offre raisonnable d’emploi : suppression 1 mois\nMN. Second refus d’une offre raisonnable d’emploi : suppression 2 mois\nMO. Second refus d’une offre raisonnable d’emploi : suppression 4 mois\nMP. Refus action aide à la recherche d’une activité : suppression 1 mois \nMQ. Refus action aide à la recherche d’une activité : suppression 2 mois\nMR. Refus action aide à la recherche d’une activité : suppression 4 mois\nMS. Non présentation action aide à la recherche d’une activité : suppression 1 mois\nMT. Non présentation action aide à la recherche d’une activité : suppression 2 mois\nMU. Non présentation action aide à la recherche d’une activité : suppression 4 mois\nMV. Abandon action aide à la recherche d’une activité : suppression 1 mois\nMW. Abandon action aide à la recherche d’une activité : suppression 2 mois\nMX. Abandon action aide à la recherche d’une activité : suppression 4 mois\nMY. Refus d’une prestation d’accompagnement : suppression 1 mois\nMZ. Refus d’une prestation d’accompagnement : suppression 2 mois\nN0. Refus d’une prestation d’accompagnement : suppression 4 mois\nN1. Non présentation à une prestation d’accompagnement : suppression 1 mois\nN2. Non présentation à une prestation d’accompagnement : suppression 2 mois\nN3. Non présentation à une prestation d’accompagnement : suppression 4 mois\nN4. Fausse déclaration liée à l’inscription : radiation 6 mois suspension définitive\nN5. Fausse déclaration liée à l’inscription : radiation 7 mois suspension définitive\nN6. Fausse déclaration liée à l’inscription : radiation 8 mois suspension définitive\nN7. Fausse déclaration liée à l’inscription : radiation 9 mois suspension définitive\nN8. Fausse déclaration liée à l’inscription : radiation 10 mois suspension définitive\nN9. Fausse déclaration liée à l’inscription : radiation 11 mois suspension définitive\nNA. Fausse déclaration liée à l’inscription : radiation 12 mois suspension définitive\nNB. Fausse déclaration liée aux allocations : radiation 6 mois suspension définitive\nNC. Fausse déclaration liée aux allocations : radiation 7 mois suspension définitive\nND. Fausse déclaration liée aux allocations : radiation 8 mois suspension définitive\nNE. Fausse déclaration liée aux allocations : radiation 9 mois suspension définitive\nNF. Fausse déclaration liée aux allocations : radiation 10 mois suspension définitive\nNG. Fausse déclaration liée aux allocations : radiation 11 mois suspension définitive\nNH. Fausse déclaration liée aux allocations : radiation 12 mois suspension définitive\nNI. Action brève non déclarée : suspension temporaire 2 mois\nNJ. Action brève non déclarée : suspension temporaire 3 mois\nNK. Action brève non déclarée : suspension temporaire 4 mois\nNL. Action brève non déclarée : suspension temporaire 5 mois\nNM. Action brève non déclarée : suspension temporaire 6 mois\nNN. Action brève non déclarée : radiation 6 mois suspension définitive\nZZ. Changement d’agence intra base régionale",
+    "text": "Variables\nLibellé\nModalités / Commentaires\n\n\n\n\nBNI\nIdentifiant unique du demandeur\nLe code BNI est l’identifiant national du demandeur. Dans la région d’arrivée, dans la mesure où le demandeur a bien été reconnu, son code BNI d’origine lui est réaffecté. Le code BNI permet ainsi d’identifier le demandeur dans toutes les bases régionales.\n\n\nCODPAR\nCode partenaire pour une prestation\n\n\n\nCODSTATU\nCODE STATUT\nC. Conseillée E. Absence excusée H. N’adhère pas I. Inscription N. Abandon R. Réalisation S. Suppression\n\n\nDATDEB\nDate de début de la prestation\n\n\n\nDATINSAC\nDate d’inscription de l’action\n\n\n\nDATMAJAC\nDate de mise à jour du statut\n\n\n\nDATPRECO\nDate de préconisation\n\n\n\nDATSTAT\nMois statistique\n\n\n\nNUMAIS\nNuméro d’AIS (Attestation d’inscription au stage)\n\n\n\nNUMALE\nUNITE ALE DE L’ACTION\nAttention à ne pas confondre avec la variable ALE dans la table DE, qui correspond à l’ALE d’inscription du demandeur.\n\n\nNUMPRES\nNUMERO DE PRESTATION\nTrès peu renseignée\n\n\nCODACT\nCode action conseillée et/ou réalisée\nLes modalités de cette variable sont disponibles dans la section dédiée.",
     "crumbs": [
       "FHS",
-      "DE",
+      "E3",
       "Dictionnaire",
-      "MOTANN_a"
+      "Dictionnaire des variables"
     ]
   },
   {
-    "objectID": "FHS/DE/Dico_FHS_DE/FHS_DE_variables/NATION.html",
-    "href": "FHS/DE/Dico_FHS_DE/FHS_DE_variables/NATION.html",
-    "title": "NATION",
+    "objectID": "FHS/E3_Cons/E3_Cons_presentation.html",
+    "href": "FHS/E3_Cons/E3_Cons_presentation.html",
+    "title": "Présentation de la table",
     "section": "",
-    "text": "Nationalité du demandeur d’emploi\n1. Français\n2. Chypriotes (partie grecque)\n3. Maltais\n4. Helvètes\n5. Autrichiens\n6. Finlandais\n7. Suédois\n8. Norvégiens\n9. Islandais\n10. Liechtensteinois\n11. Allemand\n12. Belges\n13. Hollandais\n14. Italiens\n15. Luxembourgeois\n16. Britanniques\n17. Danois\n18. Irlandais\n19. Grecs\n21. Espagnols\n22. Portugais\n24. Yougoslaves\n25. Polonais\n26. Turcs\n27. Croates\n23. EEE (européens espace économique)\n29. Autres européens\n31. Algériens\n32. Marocains\n33. Tunisiens\n42. Camerounais\n43. Sénégalais\n44. Ivoiriens\n49. Autres africains\n51. Vietnamiens laotiens cambodgiens\n59. Autres asiatiques\n69. Américains du Nord\n79. Américains du Sud\n89. Océaniens\n90. Hongrois\n91. Lituaniens\n92. Estoniens\n93. Lettons\n94. Tchèques\n95. Slovaques\n96. Slovènes\n97. Bulgares\n98. Roumains\n99. Inconnue",
+    "text": "Cette table, comme E3, donne les prestations pour les demandeurs d’emploi. C’est la variable code action (CODACT) qui donne la nature de ces prestations. Cette table, issue du FHS-Services, donne des informations sur les services de France Travail.",
+    "crumbs": [
+      "FHS",
+      "E3_Cons",
+      "Présentation de la table"
+    ]
+  },
+  {
+    "objectID": "FHS/E3_Cons/E3_Cons_presentation.html#prestations-proposées-par-france-travail",
+    "href": "FHS/E3_Cons/E3_Cons_presentation.html#prestations-proposées-par-france-travail",
+    "title": "Présentation de la table",
+    "section": "",
+    "text": "Cette table, comme E3, donne les prestations pour les demandeurs d’emploi. C’est la variable code action (CODACT) qui donne la nature de ces prestations. Cette table, issue du FHS-Services, donne des informations sur les services de France Travail.",
+    "crumbs": [
+      "FHS",
+      "E3_Cons",
+      "Présentation de la table"
+    ]
+  },
+  {
+    "objectID": "FHS/D2/D2_presentation.html",
+    "href": "FHS/D2/D2_presentation.html",
+    "title": "Présentation de la table",
+    "section": "",
+    "text": "La table D2 donne les informations sur l’indemnisabilité des demandeurs d’emploi aux allocations chômage. Le fait d’être indemnisable à une allocation chômage ne veut pas dire être indemnisé : un demandeur d’emploi peut être indemnisé sur une période, mais ne pas percevoir d’allocation, par exemple lorsque les revenus tirés de son activité réduite dépassent le plafond. La table D2 ne permet pas de distinguer entre les personnes indemnisables et les personnes indemnisées.",
+    "crumbs": [
+      "FHS",
+      "D2",
+      "Présentation de la table"
+    ]
+  },
+  {
+    "objectID": "FHS/D2/D2_presentation.html#lindemnisabilité-des-demandeurs-demploi",
+    "href": "FHS/D2/D2_presentation.html#lindemnisabilité-des-demandeurs-demploi",
+    "title": "Présentation de la table",
+    "section": "",
+    "text": "La table D2 donne les informations sur l’indemnisabilité des demandeurs d’emploi aux allocations chômage. Le fait d’être indemnisable à une allocation chômage ne veut pas dire être indemnisé : un demandeur d’emploi peut être indemnisé sur une période, mais ne pas percevoir d’allocation, par exemple lorsque les revenus tirés de son activité réduite dépassent le plafond. La table D2 ne permet pas de distinguer entre les personnes indemnisables et les personnes indemnisées.",
+    "crumbs": [
+      "FHS",
+      "D2",
+      "Présentation de la table"
+    ]
+  },
+  {
+    "objectID": "FHS/D2/D2_presentation.html#définition-dune-période-indemnisable",
+    "href": "FHS/D2/D2_presentation.html#définition-dune-période-indemnisable",
+    "title": "Présentation de la table",
+    "section": "Définition d’une période indemnisable",
+    "text": "Définition d’une période indemnisable\nUne ligne de la table est une période indemnisable, elle est identifiée par l’ID_MiDAS et la variable NDEM, ainsi que par les dates de début et de fin de la période indemnisable (JOURDV et JOURFV). Ces dates sont inclusives.\nLes informations sur l’indemnisabilité mettent plus de temps à remonter, la table D2 s’arrête donc un trimestre plus tôt que les autres tables du FHS. Par exemple, dans le FHS du quatrième trimestre 2021, la variable JOURFV n’est jamais au-delà du 30 septembre 2021.\nDe plus, 9 mois avant la fin des informations de la table D2, toutes les lignes se terminent et une nouvelle apparaît automatiquement avec les mêmes informations autres que les dates, même si la période indemnisable est ininterompue : la variable D2STATUT (label STATUT DE L’ENREGISTREMENT) prend deux valeurs C (consolidé) et P (provisoire). Par exemple, dans le FHS du quatrième trimestre 2021, une période en cours au 31 décembre 2020 a une ligne C avec JOURDV = 2020-12-31 et il y a une autre ligne P pour le même individu avec JOURDV = 2021-01-01.\nEn cas de changement d’une des variables régime d’indemnisation (REGIND), filière d’indemnisation (filindem), type de population (typpope) ou régime particulier (REGIME), une nouvelle ligne est créée. Il est donc très compliqué d’associer différentes périodes de la table D2 à un droit et à une allocation chômage de manière certaine.",
+    "crumbs": [
+      "FHS",
+      "D2",
+      "Présentation de la table"
+    ]
+  },
+  {
+    "objectID": "FHS/D2/D2_presentation.html#calcul-du-nombre-dindemnisables-à-une-date",
+    "href": "FHS/D2/D2_presentation.html#calcul-du-nombre-dindemnisables-à-une-date",
+    "title": "Présentation de la table",
+    "section": "Calcul du nombre d’indemnisables à une date",
+    "text": "Calcul du nombre d’indemnisables à une date\nIl est facile de donner le nombre d’indemnisables à une date donnée à partir de la table D2. Le type d’allocation est donné par la variable de code allocation indemnisable (INDEM). La variable ODDMAX donne la durée théorique d’indemnisation du droit de la période concernée. S’il n’y a pas de durée théorique (par exemple pour l’ASS), cette variable vaut 9998.\n\n\n\n\n\n\nWarning\n\n\n\nIl n’est pas recommandé d’utiliser cette table car les informations qu’elle contient sur l’indemnisabilité sont moins fiables que celles du FNA, présent dans MiDAS.",
+    "crumbs": [
+      "FHS",
+      "D2",
+      "Présentation de la table"
+    ]
+  },
+  {
+    "objectID": "FHS/DE/Dico_FHS_DE/DE_dictionnaire.html",
+    "href": "FHS/DE/Dico_FHS_DE/DE_dictionnaire.html",
+    "title": "Dictionnaire des variables",
+    "section": "",
+    "text": "Variables\nLibellé\nModalités\nCommentaires\n\n\n\n\nAGE\nAge du demandeur au 31/12 de l’année d’inscription de la demande associée\n\nEn année\n\n\nALE\nNuméro de l’Agence Locale pour l’Emploi d’inscription du demandeur\nNuméro de l’ALE (unité locale de Pôle emploi). Les deux premiers caractères donnent le département.\n\n\n\nANCIEN\nAncienneté dans la demande\nEn mois révolu au dernier jour du mois de fermeture de la demande. Si la demande est en cours il s’agit de l’ancienneté au dernier jour du fichier.\n\n\n\nAPI\nAllocation Parent Isolé\n0. Non bénéficiaires de l’API 1. Bénéficiaire de l’API (saisie manuelle) 2. Bénéficiaire de l’API (information CNASEA) 3. Demande API en cours d’instruction\nRemplacé en 2009 par le RSA\n\n\nAXETRAV\nAxe de travail\nP. Projet R. Recherche A. À approfondir E. Recherche d’emploi F. Freins périphériques à l’emploi M. Mobilité professionnelle\n\n\n\nCATREGR\nCatégorie opérationnelle du demandeur relative à la dernière situation connue\n1. Personnes immédiatement disponibles et à la recherche d’un emploi sous CDI à temps plein 2. Personnes immédiatement disponibles et à la recherche d’un emploi sous CDI à temps partiel 3. Personnes immédiatement disponibles et à la recherche d’un emploi à durée limitée (CDD, mission d’intérim, vacation…) 4. Personnes à la recherche d’un emploi mais non immédiatement disponibles (en formation, en arrêt maladie, en congé maternité, en CRP…) 5. Personnes pourvues d’un emploi, à la recherche d’un autre emploi donc non immédiatement disponibles. Figurent ici les personnes en contrat emploi solidarité (CES, CIE ou autres contrat aidés…).\n\n\n\nCEMPLOI\nComposante emploi du demandeur d’emploi\nCE1. DE positionné sur un métier en tension/porteur CE2. DE non positionné sur un métier en tension/porteur\n\n\n\nCONTRAT\nType de contrat recherché par le demandeur (dernière valeur connue sur la demande)\n1. Contrat à durée indéterminée 2. Contrat à durée déterminée ou temporaire 3. Contrat saisonnier\n\n\n\nCUCS\nDemandeurs résidant en zone CUCS (Contrat Urbain de Cohésion Sociale)\n\nA pris fin en 2014\n\n\nDATANN\nDate d’annulation de la demande\nLa demande est en cours à la date statistique du fichier. Date exclusive : si DATANN=01/02/2010 , le dernier jour d’inscription sur cette demande est le 31/01/2010.\n\n\n\nDATINS\nDate d’effet d’inscription de la demande\nL’inscription commence ce jour\n\n\n\nDATNAIS\nDate de naissance (année et mois)\nMois de naissance (le jour exact n’est pas renseigné, il est fixé conventionnellement à 15)\n\n\n\nDATSINS\nDate de saisie d’inscription de la demande\n\n\n\n\nDEPCOM\nCommune de résidence du demandeur\nEn principe, c’est le Code Officiel Géographique. Toutefois, il peut y avoir des valeurs non-conformes. Les deux premiers caractères donnent de département.\n\n\n\nDIPLOME\nDiplôme obtenu par le demandeur lors de son inscription\nD. Diplômé N. Non Diplômé\n\n\n\nEXPER\nExpérience dans le ROME demandé.\nNombre expérience. Arrondi à l’appréciation du conseiller\nIl existe des cas où le nombre d’années d’expérience est supérieur à l’âge du demandeur d’emploi.\n\n\nEXPEUNIT\nUnité durée expérience dans le ROME\n\n\n\n\nMOBDIST\nMobilité du DE\nMobilité du DE vis-à-vis de l’emploi, en minutes, heures, kilomètres ou FE selon la valeur de la variable MOBUNIT. Il faut l’utiliser avec la variable MOBUNIT pour lui donner un sens.\n\n\n\nMOBUNIT\nUnité de la mobilité du demandeur vis-à-vis de l’emploi\n00. Non renseignée FE. France Entière H. Heure KM. Kilomètres MN. Minutes MT. Mobilité totale\n\n\n\n\n\n\n\n\n\nNBAR78\nNombre de mois d’activité réduite ≤ 78H\n\n\n\n\nNBAR79\nNombre de mois d’activité réduite &gt; 78H\n\n\n\n\nNDEM\nNuméro de la demande\nNuméroté de la plus récente à la plus ancienne (la demande n°1 est la demande la plus récente à la date statistique du FHS)\n\n\n\nNENF\nNombre d’enfants\n\n\n\n\nNIVFOR\nNiveau de formation atteint par le demandeur\n000. Inconnu AFS. Aucune formation scolaire C12. Classes 2e et 1e (études générales) C3A. BEPC- classe 3e achevée CFG. Classes 6e 5e 4e CP4. Certificat études primaires. CPP-CPA Nv1. Bac +5 et + Nv2. Bac +3 et +4 Nv3. Bac +2 Nv4. Bac  Nv5. CAP / BEP\n\n\n\nNUMCDV\nRéférence contrat de ville\n\n\n\n\nNUMCUCS\nNuméro de la CUCS\n\n\n\n\nNUMQPV\nRéférence QPV\n\n\n\n\nNUMZUS\nNuméro de la ZUS\n\n\n\n\nOBLIGEM1\nObligation d’emploi du demandeur d’emploi 1\n0. Sans obligation d’emploi 1. Orphelin de guerre 2. Veuf (ve) de guerre ou conjoint de militaire invalide 3. Pensionne de guerre 4. Travailleur handicapé catégorie A 5. Travailleur handicapé catégorie B 6. Travailleur handicapé catégorie C 7. En instance de décision CDA (Commission des droits et de l’autonomie) 8. Pension d’invalidité s.s. Ou autre 9. Rente accident du travail ou maladie professionnelle &gt;= 10% C. RGTH – CRP E. RGTH – ESAT H. Allocation adulte handicapé (manuel) I. Carte d’invalidité M. RGTH – marché du travail R. Allocation adulte handicapé (auto)\n\n\n\nOBLIGEM2\nObligation d’emploi du demandeur d’emploi 2\n\n\n\n\nOBLIGEM3\nObligation d’emploi du demandeur d’emploi 3 (AAH)\n0. Sans obligation d’emploi H. Allocation adulte handicapé R. Allocation adulte handicapé\n\n\n\nOBLIGEMC\nObligation d’emploi du demandeur d’emploi calculée\nIdem OBLIGEM1 et OBLIGEM2\n Les valeurs de OBLIGEM3 (H et R) ne sont retenues que si OBLIGEM1=OBLIGEM2=0 Entre ces 2 variables OBLIGEM1 et OBLIGEM2 :   Seules les valeurs supérieures à 0 sont retenues ; Plusieurs valeurs sont supposées incompatibles entre elles (comme 1, 2 et 3) ; La RQTH (Reconnaissance de la Qualité de Travailleur Handicapé) provient d’une seule source. Les valeurs « RQTH » (E, M, C) ne sont ainsi jamais en simultané sur OBLIGEM1 et 2. Elles l’emportent toujours sur les autres valeurs  En résumé : (E M C ) &gt; (4 5 6 7 8 9) &gt; (1 2 3) &gt; I &gt; 0\n\n\nPROJENTR\nProjet entreprise\nE. Projet envisagé V. Projet validé\n\n\n\nQPV\nIndicateur résidence QPV\n\n\n\n\nQUALIF\nQualification du demandeur\n0. Non précisé 1. Manœuvres 2. Ouvriers spécialisés 3. Ouvriers qualifiés (OP1-OP2) 4. Ouvriers qualifiés (OP3-OHQ) 5. Employés non qualifiés 6. Employés qualifiés 7. Techniciens-dessinateurs 8. Agents de maîtrise 9. Cadres\n\n\n\n\n\n\n\n\n\nRMA\nÉligibilité au revenu minimum d’activité\n1. Valeur de redressement (non référencée) 2. Non bénéficiaire 3. Valeur de redressement (vide)\n\n\n\nRMI\nCode RMI du mois précédent le mois stat ou code RSA du mois stat\n1. RMI 2. Non bénéficiaire 3. Valeur de redressement (vide) 4. RSA nouveau droit 5. RSA ancien RMI/API\n\n\n\nROME\nCode Rome du métier recherché\n\n\n\n\nROMEAPL\nCode appellation du ROME\nL’appellation du ROME est sur 3 positions et est associée à un code ROME pour avoir le libellé correspondant au métier. L’appellation du ROME seul n’a aucune signification.\n\n\n\nROMEASS\nROME Assedic recherché\n\nVariable inutilisable\n\n\nROMEVAL\nCode validation du ROME\n1. Reserve ou alerte sur conduite à tenir 2. Maitrise des CTB emploi/métier 3. Maitrise CTB emploi/métier + évaluation\n\n\n\nRSQSTAT\nRisque statistique du demandeur d’emploi\nRS1. Risque faible de chômage de longue durée RS2. Risque modéré de chômage de longue durée RS3. Risque fort de chômage de longue durée\n\n\n\nSALMT\nMontant du salaire brut demandé par le DE\n\nRisques de valeurs extrêmes liées vraisemblablement à une erreur d’unité\n\n\nSALUNIT\nSalaire horaire, mensuel ou annuel du DE\n0. Non renseigné A. Annuel  C. Cachet H. Horaire M. Mensuel\n\n\n\nSEXE\nSexe du demandeur d’emploi\n1. Homme 2. Femme\n\n\n\nSITMAT\nSituation de famille du demandeur d’emploi\nC. Célibataire D. Divorcé ou séparé M. Marié ou vie maritale V. Veuf\n\n\n\nSTRSUIVP\nCode de la structure principale de suivi\n\nLa Structure Principale est une Agence ou une Équipe professionnelle (sectorielle ou géographique). La notion de bassin est prise en compte. Le référent principal, pour le suivi mensuel, est un agent de cette structure.\n\n\nTEMPS\nTemps de travail de l’emploi recherché\n1. Temps complet 2. Temps partiel\n\n\n\nZRR\nIndicateur de résidence en Zone de revitalisation rurale (ZRR)\n\n\n\n\nZUS\nDemandeurs en zone urbaine sensible\nAT. DEMENAGEMENT DU DE IN. IDENTIFICATION ZUS NON REALISEE NT. ETAT INITIAL, DE NON TRAITE NZ. DE NE RESIDANT PAS EN ZUS ZU. DE RESIDANT EN ZUS",
     "crumbs": [
       "FHS",
       "DE",
       "Dictionnaire",
-      "NATION"
+      "Dictionnaire des variables"
+    ]
+  },
+  {
+    "objectID": "FHS/DE/Dico_FHS_DE/FHS_DE_variables/MOTINS.html",
+    "href": "FHS/DE/Dico_FHS_DE/FHS_DE_variables/MOTINS.html",
+    "title": "MOTINS",
+    "section": "",
+    "text": "Motif d'inscription de la demande détaillé\n0. Sans objet (catégorie 5)\n1. Licenciement économique\n2. Autre licenciement\n3. Démission\n4. Fin de contrat\n5. Fin de mission d’intérim\n6. Première entrée sur le marché du travail\n7. Reprise d’activité après une interruption &gt; 6 mois\n8. Autres cas\n9. Fin de convention de conversion\nA. Entrée en CRP\nB. Fin de CRP\nC. Rupture CNE initiative employeur\nD. Rupture CNE initiative salarié\nE. Sortie de stage\nF. Fin d’activité non salariée\nG. Fin de maladie, de maternité\nH. Entrée en CTP\nI. Rupture conventionnelle du CDI\nJ. Entrée CTP (suite CRP)\nK. Entrée en CSP\nX. Non renseigné\nZ. Licenciement économique PAP anticipé",
+    "crumbs": [
+      "FHS",
+      "DE",
+      "Dictionnaire",
+      "MOTINS"
+    ]
+  },
+  {
+    "objectID": "FHS/DE/Dico_FHS_DE/FHS_DE_variables/SITPAR.html",
+    "href": "FHS/DE/Dico_FHS_DE/FHS_DE_variables/SITPAR.html",
+    "title": "SITPAR",
+    "section": "",
+    "text": "Situation particulière au regard de l’emploi\n0. Sans Objet (catégorie 123678)\n1. AFR\n2. CES\n3. Autres\n4. CAE\n5. CAV\n6. CEN\n7. CIE\n8. CRP\n9. Autres formations\nA. CTP\nB. APR\nC.\nX. Non renseigné",
+    "crumbs": [
+      "FHS",
+      "DE",
+      "Dictionnaire",
+      "SITPAR"
+    ]
+  },
+  {
+    "objectID": "FHS/DE/Dico_FHS_DE/FHS_DE_variables/REGION.html",
+    "href": "FHS/DE/Dico_FHS_DE/FHS_DE_variables/REGION.html",
+    "title": "REGION",
+    "section": "",
+    "text": "01. Guadeloupe\n02. Martinique\n03. Guyane\n04. Réunion\n06. Mayotte\n11. Île-de-France\n24. Centre-Val de Loire\n27. Bourgogne-Franche-Comté\n28. Normandie\n32. Nord-Pas-de-Calais-Picardie\n44. Alsace-Champagne-Ardenne-Lorraine\n52. Pays de la Loire\n53. Bretagne\n75. Aquitaine-Limousin-Poitou-Charentes\n76. Languedoc-Roussillon-Midi-Pyrénées\n84. Auvergne-Rhône-Alpes\n93. Provence-Alpes-Côte d’Azur\n94. Corse",
+    "crumbs": [
+      "FHS",
+      "DE",
+      "Dictionnaire",
+      "REGION"
+    ]
+  },
+  {
+    "objectID": "FHS/DE/Dico_FHS_DE/FHS_DE_variables/MOTINS_a.html",
+    "href": "FHS/DE/Dico_FHS_DE/FHS_DE_variables/MOTINS_a.html",
+    "title": "MOTINS_a",
+    "section": "",
+    "text": "Motif d'inscription de la demande détaillé\n00. Sans objet (catégorie 5)\n11. Licenciement économique\n12. Autre licenciement\n13. Démission\n14. Fin de contrat\n15. Fin de mission d’intérim\n16. Fin convention conversion\n17. Licenciement économique PAP anticipé\n18. Fin de contrat emploi jeune\n19. Autres cas\n20. Entrée en CRP\n21. Première entrée marché du travail\n22. Reprise activité après interruption &gt; 6 mois\n23. Benef. Acti. Conv. Du 3 fev. 9\n24. Primo arrivant\n25. Fin de CRP\n26. Rupture conventionnelle initiative employé\n27. Rupture conventionnelle initiative salarié\n28. Sortie de stage\n29. Fin d’activité non salariée\n30. Fin de maladie, maternité\n31. Entrée en CTP\n32. Rupture conventionnelle du CDI\n33. Entrée CTP (suite CRP)\n34. Entrée en CSP\n35. Retour en France\n36. Fin de détention\n37. Fin de période d’essai\n38. Fin de service civique\n39. Recherche d’un autre emploi\n40. Entrée en service civique",
+    "crumbs": [
+      "FHS",
+      "DE",
+      "Dictionnaire",
+      "MOTINS_a"
+    ]
+  },
+  {
+    "objectID": "FHS/Parcours/Dico_FHS_Parcours/Parcours_dictionnaire.html",
+    "href": "FHS/Parcours/Dico_FHS_Parcours/Parcours_dictionnaire.html",
+    "title": "La table Parcours du FHS",
+    "section": "",
+    "text": "Variables\nLibellé\nModalités \nCommentaires\n\n\n\n\nMOTCHGT\nMotif du changement de parcours\n01. Fin de parcours 02. Situation personnelle du demandeur 03. Modification du projet (Emploi, Formation) 04. Accompagnement Recherche, Projet, Formation 05. Environnement Socio-économique 06. Erreur de saisie 08. Fin de parcours suite à une réinscription &gt; 6 mois 09. Population hors parcours 11. Migration vers APP 12. Migration vers ACC S0. Parcours avant octobre 2006\nSi non renseigné, c’est qu’il n’y a pas de changement de parcours.\n\n\nPARCOURS\nParcours du demandeur d’emploi\nACE. Recherche accélérée (2006-2009) ACC. Parcours Accompagnement (2009-2013) ACO. Recherche accompagnée (2006-2009) ACT. Recherche active (2006-2009) APP. Parcours appui (2009-2013) APR. À approfondir (2013) ENT. Créateur d’entreprise (2006-2013) GLO. Accompagnement global (2013 10) en lien avec les conseils généraux GUI. Accompagnement guidé (2013) MVE. Mobilisation vers l’emploi (2006-2013) REN. Accompagnement renforcé (2013) SUI. Suivi (2013)\nSeuls les parcours « suivi », « guidé », « renforcé » et « global » existent aujourd’hui ; les autres sont obsolètes.\n\n\nPREMPAR\nPremier parcours sur la demande pour le demandeur d’emploi\n0. Sur la demande, il s’agit du nième parcours du demandeur d’emploi (le parcours a alors commencé sur une autre demande) 1. Sur la demande, il s’agit du premier parcours du demandeur d’emploi\n\n\n\nNOUVPAR\nNouveau parcours pour un demandeur d’emploi\n0. Le parcours n’est pas nouveau au niveau de la demande (il est forcément nouveau sur une demande antérieure) 1. Le parcours est nouveau au niveau de la demande (et donc du demandeur)\n\n\n\nNDEM\nIdentifiant de la demande d’emploi\n\n\n\n\nJOURDV\nDate d’entrée dans le parcours\n\n\n\n\nJOURFV\nDate de sortie du parcours\n\n\n\n\nNPAR\nNuméro du parcours du demandeur d’emploi\nLe parcours 1 est le parcours connu le plus récent"
+  },
+  {
+    "objectID": "FHS/E0/E0_presentation.html",
+    "href": "FHS/E0/E0_presentation.html",
+    "title": "Présentation de la table",
+    "section": "",
+    "text": "La table E0 donne les informations sur l’activité réduite (les heures travaillées des demandeurs d’emploi). Une ligne est identifiée de manière unique par les variables ID_MIDAS, NDEM et le mois d’effet (MOIS). Si un demandeur d’emploi a travaillé entre 1 et 78 heures inclus, il est en catégorie B pour ce mois, si c’est strictement plus de 78 heures, il est en catégorie C. S’il n’a pas travaillé, il est en catégorie A. Appariée à la table DE, la table E0 permet de comptabiliser les demandeurs d’emploi ventilés par catégorie inscrits à une date donnée.",
+    "crumbs": [
+      "FHS",
+      "E0",
+      "Présentation de la table"
+    ]
+  },
+  {
+    "objectID": "FHS/E0/E0_presentation.html#catégorie-dinscription-du-demandeur-demploi",
+    "href": "FHS/E0/E0_presentation.html#catégorie-dinscription-du-demandeur-demploi",
+    "title": "Présentation de la table",
+    "section": "",
+    "text": "La table E0 donne les informations sur l’activité réduite (les heures travaillées des demandeurs d’emploi). Une ligne est identifiée de manière unique par les variables ID_MIDAS, NDEM et le mois d’effet (MOIS). Si un demandeur d’emploi a travaillé entre 1 et 78 heures inclus, il est en catégorie B pour ce mois, si c’est strictement plus de 78 heures, il est en catégorie C. S’il n’a pas travaillé, il est en catégorie A. Appariée à la table DE, la table E0 permet de comptabiliser les demandeurs d’emploi ventilés par catégorie inscrits à une date donnée.",
+    "crumbs": [
+      "FHS",
+      "E0",
+      "Présentation de la table"
+    ]
+  },
+  {
+    "objectID": "FHS/E0/Dico_FHS_E0/E0_dictionnaire.html",
+    "href": "FHS/E0/Dico_FHS_E0/E0_dictionnaire.html",
+    "title": "Dictionnaire des variables",
+    "section": "",
+    "text": "Variables\nLibellé\nCommentaires\n\n\n\n\nMOIS\nMois d’effet de l’activité réduite\n\n\n\nNBHEUR\nNombre d’heures d’activité réduite exercées au cours du mois (variable MOIS).\n\n\n\nNDEM\nIdentifiant de la demande d’emploi\nNuméroté de la plus récente à la plus ancienne (la demande n°1 est la demande la plus récente à la date statistique du FHS)",
+    "crumbs": [
+      "FHS",
+      "E0",
+      "Dictionnaire",
+      "Dictionnaire des variables"
+    ]
+  },
+  {
+    "objectID": "FHS/Parcours/Parcours_presentation.html",
+    "href": "FHS/Parcours/Parcours_presentation.html",
+    "title": "La table Parcours du FHS",
+    "section": "",
+    "text": "Cette table renseigne sur les types d’accompagnement auxquels les demandeurs d’emploi sont assignés en fonction de leur proximité avec le marché du travail (accompagnement “suivi”, “guidé”, renforcé” et “global”). Elle inclut notamment les dates de début et de fin de parcours et les motifs de changement de parcours.",
+    "crumbs": [
+      "FHS",
+      "Parcours",
+      "La table Parcours du FHS"
     ]
   },
   {
@@ -673,306 +797,195 @@
     ]
   },
   {
-    "objectID": "FHS/Parcours/Parcours_presentation.html",
-    "href": "FHS/Parcours/Parcours_presentation.html",
-    "title": "La table Parcours du FHS",
+    "objectID": "FHS/DE/Dico_FHS_DE/FHS_DE_variables/NATION.html",
+    "href": "FHS/DE/Dico_FHS_DE/FHS_DE_variables/NATION.html",
+    "title": "NATION",
     "section": "",
-    "text": "Cette table renseigne sur les types d’accompagnement auxquels les demandeurs d’emploi sont assignés en fonction de leur proximité avec le marché du travail (accompagnement “suivi”, “guidé”, renforcé” et “global”). Elle inclut notamment les dates de début et de fin de parcours et les motifs de changement de parcours.",
+    "text": "Nationalité du demandeur d’emploi\n1. Français\n2. Chypriotes (partie grecque)\n3. Maltais\n4. Helvètes\n5. Autrichiens\n6. Finlandais\n7. Suédois\n8. Norvégiens\n9. Islandais\n10. Liechtensteinois\n11. Allemand\n12. Belges\n13. Hollandais\n14. Italiens\n15. Luxembourgeois\n16. Britanniques\n17. Danois\n18. Irlandais\n19. Grecs\n21. Espagnols\n22. Portugais\n24. Yougoslaves\n25. Polonais\n26. Turcs\n27. Croates\n23. EEE (européens espace économique)\n29. Autres européens\n31. Algériens\n32. Marocains\n33. Tunisiens\n42. Camerounais\n43. Sénégalais\n44. Ivoiriens\n49. Autres africains\n51. Vietnamiens laotiens cambodgiens\n59. Autres asiatiques\n69. Américains du Nord\n79. Américains du Sud\n89. Océaniens\n90. Hongrois\n91. Lituaniens\n92. Estoniens\n93. Lettons\n94. Tchèques\n95. Slovaques\n96. Slovènes\n97. Bulgares\n98. Roumains\n99. Inconnue",
     "crumbs": [
       "FHS",
-      "Parcours",
-      "La table Parcours du FHS"
+      "DE",
+      "Dictionnaire",
+      "NATION"
     ]
   },
   {
-    "objectID": "FHS/E0/Dico_FHS_E0/E0_dictionnaire.html",
-    "href": "FHS/E0/Dico_FHS_E0/E0_dictionnaire.html",
-    "title": "Dictionnaire des variables",
+    "objectID": "FHS/DE/Dico_FHS_DE/FHS_DE_variables/MOTANN_a.html",
+    "href": "FHS/DE/Dico_FHS_DE/FHS_DE_variables/MOTANN_a.html",
+    "title": "MOTANN_a",
     "section": "",
-    "text": "Variables\nLibellé\nCommentaires\n\n\n\n\nMOIS\nMois d’effet de l’activité réduite\n\n\n\nNBHEUR\nNombre d’heures d’activité réduite exercées au cours du mois (variable MOIS).\n\n\n\nNDEM\nIdentifiant de la demande d’emploi\nNuméroté de la plus récente à la plus ancienne (la demande n°1 est la demande la plus récente à la date statistique du FHS)",
+    "text": "Motif d'annulation de la demande détaillé\nNon renseigné : Demande annulée par le FH : plus de dossier transmis pour ce demandeur\nLégende\n\nCIE : Contrat initiative emploi\nCRP : Convention de reclassement personnalisé\nCTP : Contrat de transition professionnelle\nCUI : Contrat unique d’insertion\nDSM : Déclaration de situation mensuelle\nPPAE : Projet personnalisé d’accès à l’emploi\n\n**. Demande annulée par le FH\n00. Non précisé\n01. Refus de signature PARP PAC\n02. Non présentation a convocation CRP CTP\n03. Non présentation à une action de reclassement CRP\n04. Refus d’une offre emploi CRP CTP\n05. Refus d’action reclassement CRP\n06. Abandon d’une action de reclassement CRP\n07. Déclaration inexacte ou attestation mensongère CRP\n08. Avis défavorable pour absence au 1er entretien\n09. Non présent à la convocation suite à l’absence au 1er entretien\n10. Entrée en APR\n11. Reprise d’emploi par ses propres moyens sur emploi durable à temps plein\n12. Reprise d’emploi par ses propres moyens sur emploi à temps partiel\n13. Reprise d’emploi par ses propres moyens sur emploi temporaire de moins de 3 mois\n14. Reprise d’emploi par ses propres moyens sur emploi temporaire de plus de 3 mois\n15. Reprise d’emploi par ses propres moyens sur emploi non précisé\n16. Création d’entreprise\n17. Fin de convention de coopération\n18. Entrée en CIE\n19. Entrée en contrat d’accompagnement dans l’emploi\n20. Entrée en CEV (Contrat Emploi Ville)\n21. Reprise d’emploi par l’agence sur emploi durable à temps plein\n22. Reprise d’emploi par l’agence sur emploi à temps partiel\n23. Reprise d’emploi par l’agence sur emploi temporaire de moins de 3 mois\n24. Reprise d’emploi par l’agence sur emploi temporaire de plus de 3 mois\n25. Reprise d’emploi par l’agence sur emploi non précisé\n26. Entrée en CES (Contrat emploi-solidarité)\n27. Reprise d’emploi sur DSM\n28. Reprise d’emploi pour convention de coopération\n29. Entrée en RMA (Revenu minimum d’activité)\n30. Entrée en contrat d’avenir\n31. Entrée en stage par ANPE\n32. Entrée en stage par ses propres moyens\n33. Fin de CRP\n34. Entrée en AFR / AREF\n35. Non confirmation de l’inscription suite à une inscription à France Travail\n36. Absence du lieu de résidence &gt; 35 jours\n37. Fin de CTP\n38. Abandon volontaire (sortie anticipée) du CTP\n39. Entrée en CLCA (Complément de libre choix d’activité)\n4A. Entrée en service civique\n4B. Fin de service civique\n40. Arrêt involontaire de stage (cat = 4)\n41. Fin de stage ou de mesure (cat = 4)\n42. Abandon de stage ou de mesure (cat = 4)\n43. Fin contrat temporaire ou CDD (cat = 5)\n44. Service militaire\n45. Maladie, maternité, accident du travail\n46. Changement d’ALE\n47. Titre de séjour non valide\n48. Retraite\n49. Autres cas\n50. Non présentation suite à convocation au 1er entretien\n5X. Refus d’emploi : suspension 15 jours\n51. Refus d’emploi : suspension 1 mois\n52. Refus d’emploi : suspension 2 mois\n53. Refus d’emploi : suspension 3 mois\n54. Refus d’emploi : suspension 4 mois\n55. Refus d’emploi : suspension 5 mois\n56. Refus d’emploi : suspension 6 mois\n57. Annulation suite à la saisine de la DDTEFP (Direction départementale du travail, de l’emploi et de la formation professionnelle) \n58. Refus de 2 offres raisonnables d’emploi\n59. Fin de CSP\n60. Non présentation à une convocation PNAE (Plan national d’action pour l’emploi)\n6X. Refus de formation : suspension 15 jours\n61. Refus de formation : suspension 1 mois\n62. Refus de formation : suspension 2 mois\n63. Refus de formation : suspension 3 mois\n64. Refus de formation : suspension 4 mois\n65. Refus de formation : suspension 5 mois\n66. Refus de formation : suspension 6 mois\n70. Déclaration inexacte : suspension 12 mois\n71. Autres cas d’arrêt de recherche d’emploi\n72. Dispense recherche d’emploi\n73. Décès\n74. Fausse déclaration : suspension 6 mois\n75. Fausse déclaration : suspension 7 mois\n76. Fausse déclaration : suspension 8 mois\n77. Fausse déclaration : suspension 9 mois\n78. Fausse déclaration : suspension 10 mois\n79. Fausse déclaration : suspension 11 mois\n80. Obtention du statut de réfugié\n8X. Insuffisance de recherche d’emploi : suspension 15 jours\n81. Insuffisance de recherche d’emploi : suspension 1 mois\n82. Insuffisance de recherche d’emploi : suspension 2 mois\n83. Insuffisance de recherche d’emploi : suspension 3 mois\n84. Insuffisance de recherche d’emploi : suspension 4 mois\n85. Insuffisance de recherche d’emploi : suspension 5 mois\n86. Insuffisance de recherche d’emploi : suspension 6 mois\n90. Absence au contrôle\n91. Non réponse à convocation : suspension 1 mois\n92. Non réponse à convocation : suspension 2 mois\n93. Non réponse à convocation : suspension 3 mois\n94. Non réponse à convocation : suspension 4 mois\n95. Date de péremption atteinte (cat = 4 ou 5)\n96. Non réponse à convocation : suspension 5 mois\n97. Non réponse à convocation : suspension 6 mois\n98. DSM irrecevable (non signée)\nA2. Déclaration inexacte d’activité brève : suspension 2 mois\nA3. Déclaration inexacte d’activité brève : suspension 3 mois\nA4. Déclaration inexacte d’activité brève : suspension 4 mois\nA5. Déclaration inexacte d’activité brève : suspension 5 mois\nA6. Déclaration inexacte d’activité brève : suspension 6 mois\nA7. Déclaration inexacte d’activité brève : suspension 7 mois\nA8. Déclaration inexacte d’activité brève : suspension 8 mois\nA9. Déclaration inexacte d’activité brève : suspension 9 mois\nAA. Déclaration inexacte d’activité brève : suspension 10 mois\nAB. Déclaration inexacte d’activité brève : suspension 11 mois\nAC. Déclaration inexacte d’activité brève : suspension 12 mois\nBX. Refus d’un contrat d’apprentissage ou de professionnalisation : suspension 15 jours\nB1. Refus d’un contrat d’apprentissage ou de professionnalisation : suspension 1 mois\nB2. Refus d’un contrat d’apprentissage ou de professionnalisation : suspension 2 mois\nB3. Refus d’un contrat d’apprentissage ou de professionnalisation : suspension 3 mois\nB4. Refus d’un contrat d’apprentissage ou de professionnalisation : suspension 4 mois\nB5. Refus d’un contrat d’apprentissage ou de professionnalisation : suspension 5 mois\nB6. Refus d’un contrat d’apprentissage ou de professionnalisation : suspension 6 mois\nC1. Refus action insertion : suspension 1 mois\nC2. Refus action insertion : suspension 2 mois\nC3. Refus action insertion : suspension 3 mois\nC4. Refus action insertion : suspension 4 mois\nC5. Refus action insertion : suspension 5 mois\nC6. Refus action insertion : suspension 6 mois\nCA. CDI (CUI)\nCB. CDD d’au moins 6 mois (CUI)\nCC. Contrat travail temporaire d’au moins 6 mois (CUI)\nCD. Abandon du dispositif CRP CTP CSP\nCE. Bascule CRP vers CTP\nCF. Entrée en CUI marchand\nCG. Entrée en CUI non marchand\nCH. Reprise d’emploi incompatible avec le dispositif (CSP)\nCI. Entrée en contrat emploi d’avenir marchand\nCJ. Entrée en contrat emploi d’avenir non marchand\nCK. Entrée en emploi d’avenir professeur\nCX. Refus action insertion : suspension 15 jours\nDX. Refus contrat aidé : suspension 15 jours\nD1. Refus contrat aidé : suspension 1 mois\nD2. Refus contrat aidé : suspension 2 mois\nD3. Refus contrat aidé : suspension 3 mois\nD4. Refus contrat aidé : suspension 4 mois\nD5. Refus contrat aidé : suspension 5 mois\nD6. Refus contrat aidé : suspension 6 mois\nE2. Refus visite médicale : suspension 2 mois\nE3. Refus visite médicale : suspension 3 mois\nE4. Refus visite médicale : suspension 4 mois\nE5. Refus visite médicale : suspension 5 mois\nE6. Refus visite médicale : suspension 6 mois\nG2. Refus d’élaboration ou d’actualisation du PPAE : suspension 2 mois\nG3. Refus d’élaboration ou d’actualisation du PPAE : suspension 3 mois\nG4. Refus d’élaboration ou d’actualisation du PPAE : suspension 4 mois\nG5. Refus d’élaboration ou d’actualisation du PPAE : suspension 5 mois\nG6. Refus d’élaboration ou d’actualisation du PPAE : suspension 6 mois\nH2. Refus de deux offres raisonnables d’emploi : suspension 2 mois\nH3. Refus de deux offres raisonnables d’emploi : suspension 3 mois\nH4. Refus de deux offres raisonnables d’emploi : suspension 4 mois\nH5. Refus de deux offres raisonnables d’emploi : suspension 5 mois\nH6. Refus de deux offres raisonnables d’emploi : suspension 6 mois\nIX. Refus d’une action d’aide à la recherche d’emploi : suspension 15 jours\nI1. Refus d’une action d’aide à la recherche d’emploi : suspension 1 mois\nI2. Refus d’une action d’aide à la recherche d’emploi : suspension 2 mois\nI3. Refus d’une action d’aide à la recherche d’emploi : suspension 3 mois\nI4. Refus d’une action d’aide à la recherche d’emploi : suspension 4 mois\nI5. Refus d’une action d’aide à la recherche d’emploi : suspension 5 mois\nI6. Refus d’une action d’aide à la recherche d’emploi : suspension 6 mois\nJ2. Refus d’actualisation PPAE : suspension 2 mois\nJ3. Refus d’actualisation PPAE : suspension 3 mois\nJ4. Refus d’actualisation PPAE : suspension 4 mois\nJ5. Refus d’actualisation PPAE : suspension 5 mois\nJ6. Refus d’actualisation PPAE : suspension 6 mois\nKX. Refus contrat de professionnalisation : suspension 15 jours\nK1. Refus contrat de professionnalisation : suspension 1 mois\nK2. Refus contrat de professionnalisation : suspension 2 mois\nK3. Refus contrat de professionnalisation : suspension 3 mois\nK4. Refus contrat de professionnalisation : suspension 4 mois\nK5. Refus contrat de professionnalisation : suspension 5 mois\nK6. Refus contrat de professionnalisation : suspension 6 mois\nLX. Abandon de formation : suspension 15 jours\nL1. Abandon de formation : suspension 1 mois\nL2. Abandon de formation : suspension 2 mois\nL3. Abandon de formation : suspension 3 mois\nL4. Abandon de formation : suspension 4 mois\nL5. Abandon de formation : suspension 5 mois\nL6. Abandon de formation : suspension 6 mois\nM0. Insuffisance de recherche d’emploi : suppression 1 mois\nM1. Insuffisance de recherche d’emploi : suppression 2 mois\nM2. Insuffisance de recherche d’emploi : suppression 4 mois\nM3. Non-respect du projet de reconversion professionnelle : suppression de 4 mois\nM4. Absence à rendez-vous : radiation 1 mois\nM5. Absence à rendez-vous : suppression 2 mois\nM6. Absence à rendez-vous : suppression 4 mois\nM7. Absence à une action de formation : suppression 1 mois\nM8. Absence à une action de formation : suppression 2 mois\nM9. Absence à une action de formation : suppression 4 mois\nMA. Abandon d’une action de formation : suppression 1 mois\nMB. Abandon d’une action de formation : suppression 2 mois\nMC. Abandon d’une action de formation : suppression 4 mois\nMD. Absence à visite médicale : suppression 1 mois\nME. Absence à visite médicale : suppression 2 mois\nMF. Absence à visite médicale : suppression 4 mois\nMG. Refus d’élaborer le PPAE : suppression 1 mois\nMH. Refus d’élaborer le PPAE : suppression 2 mois\nMI. Refus d’élaborer le PPAE : suppression 4 mois\nMJ. Refus d’actualiser le PPAE : suppression 1 mois\nMK. Refus d’actualiser le PPAE : suppression 2 mois\nML. Refus d’actualiser le PPAE : suppression 4 mois\nMM. Second refus d’une offre raisonnable d’emploi : suppression 1 mois\nMN. Second refus d’une offre raisonnable d’emploi : suppression 2 mois\nMO. Second refus d’une offre raisonnable d’emploi : suppression 4 mois\nMP. Refus action aide à la recherche d’une activité : suppression 1 mois \nMQ. Refus action aide à la recherche d’une activité : suppression 2 mois\nMR. Refus action aide à la recherche d’une activité : suppression 4 mois\nMS. Non présentation action aide à la recherche d’une activité : suppression 1 mois\nMT. Non présentation action aide à la recherche d’une activité : suppression 2 mois\nMU. Non présentation action aide à la recherche d’une activité : suppression 4 mois\nMV. Abandon action aide à la recherche d’une activité : suppression 1 mois\nMW. Abandon action aide à la recherche d’une activité : suppression 2 mois\nMX. Abandon action aide à la recherche d’une activité : suppression 4 mois\nMY. Refus d’une prestation d’accompagnement : suppression 1 mois\nMZ. Refus d’une prestation d’accompagnement : suppression 2 mois\nN0. Refus d’une prestation d’accompagnement : suppression 4 mois\nN1. Non présentation à une prestation d’accompagnement : suppression 1 mois\nN2. Non présentation à une prestation d’accompagnement : suppression 2 mois\nN3. Non présentation à une prestation d’accompagnement : suppression 4 mois\nN4. Fausse déclaration liée à l’inscription : radiation 6 mois suspension définitive\nN5. Fausse déclaration liée à l’inscription : radiation 7 mois suspension définitive\nN6. Fausse déclaration liée à l’inscription : radiation 8 mois suspension définitive\nN7. Fausse déclaration liée à l’inscription : radiation 9 mois suspension définitive\nN8. Fausse déclaration liée à l’inscription : radiation 10 mois suspension définitive\nN9. Fausse déclaration liée à l’inscription : radiation 11 mois suspension définitive\nNA. Fausse déclaration liée à l’inscription : radiation 12 mois suspension définitive\nNB. Fausse déclaration liée aux allocations : radiation 6 mois suspension définitive\nNC. Fausse déclaration liée aux allocations : radiation 7 mois suspension définitive\nND. Fausse déclaration liée aux allocations : radiation 8 mois suspension définitive\nNE. Fausse déclaration liée aux allocations : radiation 9 mois suspension définitive\nNF. Fausse déclaration liée aux allocations : radiation 10 mois suspension définitive\nNG. Fausse déclaration liée aux allocations : radiation 11 mois suspension définitive\nNH. Fausse déclaration liée aux allocations : radiation 12 mois suspension définitive\nNI. Action brève non déclarée : suspension temporaire 2 mois\nNJ. Action brève non déclarée : suspension temporaire 3 mois\nNK. Action brève non déclarée : suspension temporaire 4 mois\nNL. Action brève non déclarée : suspension temporaire 5 mois\nNM. Action brève non déclarée : suspension temporaire 6 mois\nNN. Action brève non déclarée : radiation 6 mois suspension définitive\nZZ. Changement d’agence intra base régionale",
     "crumbs": [
       "FHS",
-      "E0",
+      "DE",
+      "Dictionnaire",
+      "MOTANN_a"
+    ]
+  },
+  {
+    "objectID": "FHS/DE/Dico_FHS_DE/FHS_DE_variables/SITPAR_a.html",
+    "href": "FHS/DE/Dico_FHS_DE/FHS_DE_variables/SITPAR_a.html",
+    "title": "SITPAR_a",
+    "section": "",
+    "text": "Situation particulière au regard de l'emploi détaillée\nADR. Aide différentielle au reclassement\nAIF. Action d'insertion et de formation\nAPR. Action préalable au recrutement\nASE. Aide spécifique complémentaire retour à l'emploi\nASI. Demandeur d'asile\nAUT. Autres formations\nCAD. Contrat d'adaptation\nCAE. Contrat d'accompagnement dans l'emploi\nCAV. Contrat d'avenir\nCEN. Création d'entreprise\nCES. Contrat emploi-solidarité\nCIE. Contrat initiative emploi\nCLO. Contrat local d'orientation\nCOR. Contrat d'orientation\nCPP. Contrat d'apprentissage\nCQU. Contrat de qualification\nCRE. Contrat de retour à l'emploi\nCRP. Convention de reclassement personnalisé\nCSP. Contrat de sécurisation professionnelle\nCTP. Contrat de transition professionnelle\nCUM. Contrat unique d'insertion marchand\nCUN. Contrat unique d'insertion non marchand\nDDI. Individu en CDI et en cours d'agrément IAE \nDIV. Divers\nEAM. Contrat d'emploi avenir marchand\nEAN. Contrat d'emploi avenir non marchand\nEAP. Contrat d'emploi avenir professeur\nEPA. Personne pourvue d'un emploi à temps partiel\nEPL. Personne pourvue d'un emploi à temps plein\nFCA. Stage FNE : cadres\nFFI. Stage FNA : femmes isolées\nIAE. Insertion par l'activité économique\nMAN. Stage de mise à niveau\nMOD. Stage modulaire\nMUE. Maintien de l'indemnisation en Union Européenne\nND1. Individu non demandeur d'emploi\nPAP. Parcours d'accompagnement personnalisé\nPEF. Préavis effectué\nPLI. Programme local d'insertion des femmes\nPMJ. Personne sous main de justice\nPNE. Préavis non effectué\nPRE. En préavis\nRMA. Contrat RMA\nSAE. Stage d'accès à l'emploi\nSAN. Sans objet\nSCI. Service civique\nSJE. Stages jeunes : 16-25 ans\nSRP. Stage de reclassement professionnel",
+    "crumbs": [
+      "FHS",
+      "DE",
+      "Dictionnaire",
+      "SITPAR_a"
+    ]
+  },
+  {
+    "objectID": "FHS/DE/Dico_FHS_DE/FHS_DE_variables/MOTANN.html",
+    "href": "FHS/DE/Dico_FHS_DE/FHS_DE_variables/MOTANN.html",
+    "title": "MOTANN",
+    "section": "",
+    "text": "Motif d’annulation de la demande\nNon renseigné : la demande est en cours.\n01. Reprise d’emploi, hors contrat aidés et création d’entreprise\n02. Entrée en stage de formation\n03. Maladie, maternité, accident travail\n04. Dispense recherche d’emploi\n05. Retraite\n06. Changement d’ALE avec changement d’Assedic\n07. Service Militaire\n08. Autre arrêt de recherche\n09. Absence au contrôle\n10. Radiation administrative pour non présentation suite à une convocation\n11. Autres radiation administratives : refus d’emploi, de formation, fausse déclaration, manque d’actes positifs de recherche\n12. Autre cas\n13. Absence de mise à jour du dossier\n15. Reprise d’emploi en contrat aidé\n16. Reprise d’emploi : création d’entreprise\n17. Refus d’actualisation du profil\n18. Refus d’une offre raisonnable d’emploi\nXX. Non renseigné (codes non intégrés)",
+    "crumbs": [
+      "FHS",
+      "DE",
+      "Dictionnaire",
+      "MOTANN"
+    ]
+  },
+  {
+    "objectID": "FHS/D2/Dico_FHS_D2/D2_dictionnaire.html",
+    "href": "FHS/D2/Dico_FHS_D2/D2_dictionnaire.html",
+    "title": "Dictionnaire des variables",
+    "section": "",
+    "text": "Variables\nLibellé\nModalités\nCommentaires\n\n\n\n\nD2STATUT\nIndicateur du niveau de consolidation de l’information portant sur l’indemnisabilité du demandeur\nC. Information consolidée à 12 mois P. Information consolidée à 3 mois, dite provisoire\n\n\n\nFILINDEM\nIdentifie les conditions d’indemnisation (durée, taux) en fonction des conditions d’affiliation (durée, convention et âge à la rupture du contrat de travail)\n1. 122j d’indemnisation 27A 2. 182j d’indemnisation 27B 3. 243j d’indemnisation 27C moins de 50 ans 4. 243j d’indemnisation 27C 50 ans et plus 5. 426j d’indemnisation 27D moins de 25 ans 6. 426j d’indemnisation 27D entre 25 et 50 ans 7. 426j d’indemnisation 27D 50 ans et plus 8. 821j d’indemnisation 27E entre 50 et 55 ans 9. 821j d’indemnisation 27E 55 ans et plus 99. Sans objet A-F. Filière ARE 2003 G. H. I. J.\n\n\n\nJOURDV\nJour de début de validité\n\n\n\n\nJOURFV\nJour de fin de validité\n\n\n\n\nNDEM\nNuméro de la demande\n\nNuméroté de la plus récente à la plus ancienne (la demande n°1 est la demande la plus récente à la date statistique du FHS)\n\n\nODDDMAX\nDurée maximale d’indemnisation\n\n\n\n\nREGIME\nRégime particulier\n0. Indéterminé 1. Régime général 2. Intermittents du spectacle 3. Autres intermittents et intérimaires 4. Autres régimes\n\n\n\nREGIND\nRégime d’indemnisation\n\n\n\n\nREGION\n\n\n\n\n\nTYPEPOP\nType de population\n0. Non renseigné 1. Ancien emploi jeune\n\n\n\nindem\n Code de l’allocation du demandeur d’emploi indemnisable\nLes modalités sont disponibles dans la section détaillée.",
+    "crumbs": [
+      "FHS",
+      "D2",
       "Dictionnaire",
       "Dictionnaire des variables"
     ]
   },
   {
-    "objectID": "FHS/E0/E0_presentation.html",
-    "href": "FHS/E0/E0_presentation.html",
+    "objectID": "FHS/E3_Cons/Dico_FHS_E3_Cons/E3_Cons_dictionnaire.html",
+    "href": "FHS/E3_Cons/Dico_FHS_E3_Cons/E3_Cons_dictionnaire.html",
     "title": "Présentation de la table",
     "section": "",
-    "text": "La table E0 donne les informations sur l’activité réduite (les heures travaillées des demandeurs d’emploi). Une ligne est identifiée de manière unique par les variables ID_MIDAS, NDEM et le mois d’effet (MOIS). Si un demandeur d’emploi a travaillé entre 1 et 78 heures inclus, il est en catégorie B pour ce mois, si c’est strictement plus de 78 heures, il est en catégorie C. S’il n’a pas travaillé, il est en catégorie A. Appariée à la table DE, la table E0 permet de comptabiliser les demandeurs d’emploi ventilés par catégorie inscrits à une date donnée.",
+    "text": "Ces variables sont identiques à celles de la table E3. Se référer au dictionnaire de la table E3.\n\n\n\nVariables\nLibellé\n\n\n\n\nBNI\n\n\n\nCODACT\nCODE ACTION\n\n\nCODPAR\nCode partenaire\n\n\nDATMAJAC\nDATE DE MISE A JOUR DU STATUT\n\n\nDATPRECO\nDATE DE PRECONISATION\n\n\nDATSTAT\nMOIS STATISTIQUE\n\n\nFORMACOD\nBESOIN DE FORMATION\n\n\nNUMALE\nUNITE ALE DE L’ACTION"
+  },
+  {
+    "objectID": "FHS/E3/E3_presentation.html",
+    "href": "FHS/E3/E3_presentation.html",
+    "title": "Présentation de la table",
+    "section": "",
+    "text": "Cette table, comme E3_Cons, donne les prestations pour les demandeurs d’emploi. C’est la variable code action (CODACT) qui donne la nature de ces prestations. Cette table, issue du FHS-Services, donne des informations sur les services de France Travail.",
     "crumbs": [
       "FHS",
-      "E0",
+      "E3",
       "Présentation de la table"
     ]
   },
   {
-    "objectID": "FHS/E0/E0_presentation.html#catégorie-dinscription-du-demandeur-demploi",
-    "href": "FHS/E0/E0_presentation.html#catégorie-dinscription-du-demandeur-demploi",
+    "objectID": "FHS/E3/E3_presentation.html#prestations-proposées-par-france-travail",
+    "href": "FHS/E3/E3_presentation.html#prestations-proposées-par-france-travail",
     "title": "Présentation de la table",
     "section": "",
-    "text": "La table E0 donne les informations sur l’activité réduite (les heures travaillées des demandeurs d’emploi). Une ligne est identifiée de manière unique par les variables ID_MIDAS, NDEM et le mois d’effet (MOIS). Si un demandeur d’emploi a travaillé entre 1 et 78 heures inclus, il est en catégorie B pour ce mois, si c’est strictement plus de 78 heures, il est en catégorie C. S’il n’a pas travaillé, il est en catégorie A. Appariée à la table DE, la table E0 permet de comptabiliser les demandeurs d’emploi ventilés par catégorie inscrits à une date donnée.",
+    "text": "Cette table, comme E3_Cons, donne les prestations pour les demandeurs d’emploi. C’est la variable code action (CODACT) qui donne la nature de ces prestations. Cette table, issue du FHS-Services, donne des informations sur les services de France Travail.",
     "crumbs": [
       "FHS",
-      "E0",
+      "E3",
       "Présentation de la table"
     ]
   },
   {
-    "objectID": "FHS/Parcours/Dico_FHS_Parcours/Parcours_dictionnaire.html",
-    "href": "FHS/Parcours/Dico_FHS_Parcours/Parcours_dictionnaire.html",
-    "title": "La table Parcours du FHS",
+    "objectID": "FHS/E3/Dico_FHS_E3/FHS_E3_variables/CODACT.html",
+    "href": "FHS/E3/Dico_FHS_E3/FHS_E3_variables/CODACT.html",
+    "title": "CODACT",
     "section": "",
-    "text": "Variables\nLibellé\nModalités \nCommentaires\n\n\n\n\nMOTCHGT\nMotif du changement de parcours\n01. Fin de parcours 02. Situation personnelle du demandeur 03. Modification du projet (Emploi, Formation) 04. Accompagnement Recherche, Projet, Formation 05. Environnement Socio-économique 06. Erreur de saisie 08. Fin de parcours suite à une réinscription &gt; 6 mois 09. Population hors parcours 11. Migration vers APP 12. Migration vers ACC S0. Parcours avant octobre 2006\nSi non renseigné, c’est qu’il n’y a pas de changement de parcours.\n\n\nPARCOURS\nParcours du demandeur d’emploi\nACE. Recherche accélérée (2006-2009) ACC. Parcours Accompagnement (2009-2013) ACO. Recherche accompagnée (2006-2009) ACT. Recherche active (2006-2009) APP. Parcours appui (2009-2013) APR. À approfondir (2013) ENT. Créateur d’entreprise (2006-2013) GLO. Accompagnement global (2013 10) en lien avec les conseils généraux GUI. Accompagnement guidé (2013) MVE. Mobilisation vers l’emploi (2006-2013) REN. Accompagnement renforcé (2013) SUI. Suivi (2013)\nSeuls les parcours « suivi », « guidé », « renforcé » et « global » existent aujourd’hui ; les autres sont obsolètes.\n\n\nPREMPAR\nPremier parcours sur la demande pour le demandeur d’emploi\n0. Sur la demande, il s’agit du nième parcours du demandeur d’emploi (le parcours a alors commencé sur une autre demande) 1. Sur la demande, il s’agit du premier parcours du demandeur d’emploi\n\n\n\nNOUVPAR\nNouveau parcours pour un demandeur d’emploi\n0. Le parcours n’est pas nouveau au niveau de la demande (il est forcément nouveau sur une demande antérieure) 1. Le parcours est nouveau au niveau de la demande (et donc du demandeur)\n\n\n\nNDEM\nIdentifiant de la demande d’emploi\n\n\n\n\nJOURDV\nDate d’entrée dans le parcours\n\n\n\n\nJOURFV\nDate de sortie du parcours\n\n\n\n\nNPAR\nNuméro du parcours du demandeur d’emploi\nLe parcours 1 est le parcours connu le plus récent"
-  },
-  {
-    "objectID": "FHS/DE/Dico_FHS_DE/FHS_DE_variables/MOTINS_a.html",
-    "href": "FHS/DE/Dico_FHS_DE/FHS_DE_variables/MOTINS_a.html",
-    "title": "MOTINS_a",
-    "section": "",
-    "text": "Motif d'inscription de la demande détaillé\n00. Sans objet (catégorie 5)\n11. Licenciement économique\n12. Autre licenciement\n13. Démission\n14. Fin de contrat\n15. Fin de mission d’intérim\n16. Fin convention conversion\n17. Licenciement économique PAP anticipé\n18. Fin de contrat emploi jeune\n19. Autres cas\n20. Entrée en CRP\n21. Première entrée marché du travail\n22. Reprise activité après interruption &gt; 6 mois\n23. Benef. Acti. Conv. Du 3 fev. 9\n24. Primo arrivant\n25. Fin de CRP\n26. Rupture conventionnelle initiative employé\n27. Rupture conventionnelle initiative salarié\n28. Sortie de stage\n29. Fin d’activité non salariée\n30. Fin de maladie, maternité\n31. Entrée en CTP\n32. Rupture conventionnelle du CDI\n33. Entrée CTP (suite CRP)\n34. Entrée en CSP\n35. Retour en France\n36. Fin de détention\n37. Fin de période d’essai\n38. Fin de service civique\n39. Recherche d’un autre emploi\n40. Entrée en service civique",
-    "crumbs": [
-      "FHS",
-      "DE",
-      "Dictionnaire",
-      "MOTINS_a"
-    ]
-  },
-  {
-    "objectID": "FHS/DE/Dico_FHS_DE/FHS_DE_variables/REGION.html",
-    "href": "FHS/DE/Dico_FHS_DE/FHS_DE_variables/REGION.html",
-    "title": "REGION",
-    "section": "",
-    "text": "01. Guadeloupe\n02. Martinique\n03. Guyane\n04. Réunion\n06. Mayotte\n11. Île-de-France\n24. Centre-Val de Loire\n27. Bourgogne-Franche-Comté\n28. Normandie\n32. Nord-Pas-de-Calais-Picardie\n44. Alsace-Champagne-Ardenne-Lorraine\n52. Pays de la Loire\n53. Bretagne\n75. Aquitaine-Limousin-Poitou-Charentes\n76. Languedoc-Roussillon-Midi-Pyrénées\n84. Auvergne-Rhône-Alpes\n93. Provence-Alpes-Côte d’Azur\n94. Corse",
-    "crumbs": [
-      "FHS",
-      "DE",
-      "Dictionnaire",
-      "REGION"
-    ]
-  },
-  {
-    "objectID": "FHS/DE/Dico_FHS_DE/FHS_DE_variables/SITPAR.html",
-    "href": "FHS/DE/Dico_FHS_DE/FHS_DE_variables/SITPAR.html",
-    "title": "SITPAR",
-    "section": "",
-    "text": "Situation particulière au regard de l’emploi\n0. Sans Objet (catégorie 123678)\n1. AFR\n2. CES\n3. Autres\n4. CAE\n5. CAV\n6. CEN\n7. CIE\n8. CRP\n9. Autres formations\nA. CTP\nB. APR\nC.\nX. Non renseigné",
-    "crumbs": [
-      "FHS",
-      "DE",
-      "Dictionnaire",
-      "SITPAR"
-    ]
-  },
-  {
-    "objectID": "FHS/DE/Dico_FHS_DE/FHS_DE_variables/MOTINS.html",
-    "href": "FHS/DE/Dico_FHS_DE/FHS_DE_variables/MOTINS.html",
-    "title": "MOTINS",
-    "section": "",
-    "text": "Motif d'inscription de la demande détaillé\n0. Sans objet (catégorie 5)\n1. Licenciement économique\n2. Autre licenciement\n3. Démission\n4. Fin de contrat\n5. Fin de mission d’intérim\n6. Première entrée sur le marché du travail\n7. Reprise d’activité après une interruption &gt; 6 mois\n8. Autres cas\n9. Fin de convention de conversion\nA. Entrée en CRP\nB. Fin de CRP\nC. Rupture CNE initiative employeur\nD. Rupture CNE initiative salarié\nE. Sortie de stage\nF. Fin d’activité non salariée\nG. Fin de maladie, de maternité\nH. Entrée en CTP\nI. Rupture conventionnelle du CDI\nJ. Entrée CTP (suite CRP)\nK. Entrée en CSP\nX. Non renseigné\nZ. Licenciement économique PAP anticipé",
-    "crumbs": [
-      "FHS",
-      "DE",
-      "Dictionnaire",
-      "MOTINS"
-    ]
-  },
-  {
-    "objectID": "FHS/DE/Dico_FHS_DE/DE_dictionnaire.html",
-    "href": "FHS/DE/Dico_FHS_DE/DE_dictionnaire.html",
-    "title": "Dictionnaire des variables",
-    "section": "",
-    "text": "Variables\nLibellé\nModalités\nCommentaires\n\n\n\n\nAGE\nAge du demandeur au 31/12 de l’année d’inscription de la demande associée\n\nEn année\n\n\nALE\nNuméro de l’Agence Locale pour l’Emploi d’inscription du demandeur\nNuméro de l’ALE (unité locale de Pôle emploi). Les deux premiers caractères donnent le département.\n\n\n\nANCIEN\nAncienneté dans la demande\nEn mois révolu au dernier jour du mois de fermeture de la demande. Si la demande est en cours il s’agit de l’ancienneté au dernier jour du fichier.\n\n\n\nAPI\nAllocation Parent Isolé\n0. Non bénéficiaires de l’API 1. Bénéficiaire de l’API (saisie manuelle) 2. Bénéficiaire de l’API (information CNASEA) 3. Demande API en cours d’instruction\nRemplacé en 2009 par le RSA\n\n\nAXETRAV\nAxe de travail\nP. Projet R. Recherche A. À approfondir E. Recherche d’emploi F. Freins périphériques à l’emploi M. Mobilité professionnelle\n\n\n\nCATREGR\nCatégorie opérationnelle du demandeur relative à la dernière situation connue\n1. Personnes immédiatement disponibles et à la recherche d’un emploi sous CDI à temps plein 2. Personnes immédiatement disponibles et à la recherche d’un emploi sous CDI à temps partiel 3. Personnes immédiatement disponibles et à la recherche d’un emploi à durée limitée (CDD, mission d’intérim, vacation…) 4. Personnes à la recherche d’un emploi mais non immédiatement disponibles (en formation, en arrêt maladie, en congé maternité, en CRP…) 5. Personnes pourvues d’un emploi, à la recherche d’un autre emploi donc non immédiatement disponibles. Figurent ici les personnes en contrat emploi solidarité (CES, CIE ou autres contrat aidés…).\n\n\n\nCEMPLOI\nComposante emploi du demandeur d’emploi\nCE1. DE positionné sur un métier en tension/porteur CE2. DE non positionné sur un métier en tension/porteur\n\n\n\nCONTRAT\nType de contrat recherché par le demandeur (dernière valeur connue sur la demande)\n1. Contrat à durée indéterminée 2. Contrat à durée déterminée ou temporaire 3. Contrat saisonnier\n\n\n\nCUCS\nDemandeurs résidant en zone CUCS (Contrat Urbain de Cohésion Sociale)\n\nA pris fin en 2014\n\n\nDATANN\nDate d’annulation de la demande\nLa demande est en cours à la date statistique du fichier. Date exclusive : si DATANN=01/02/2010 , le dernier jour d’inscription sur cette demande est le 31/01/2010.\n\n\n\nDATINS\nDate d’effet d’inscription de la demande\nL’inscription commence ce jour\n\n\n\nDATNAIS\nDate de naissance (année et mois)\nMois de naissance (le jour exact n’est pas renseigné, il est fixé conventionnellement à 15)\n\n\n\nDATSINS\nDate de saisie d’inscription de la demande\n\n\n\n\nDEPCOM\nCommune de résidence du demandeur\nEn principe, c’est le Code Officiel Géographique. Toutefois, il peut y avoir des valeurs non-conformes. Les deux premiers caractères donnent de département.\n\n\n\nDIPLOME\nDiplôme obtenu par le demandeur lors de son inscription\nD. Diplômé N. Non Diplômé\n\n\n\nEXPER\nExpérience dans le ROME demandé.\nNombre expérience. Arrondi à l’appréciation du conseiller\nIl existe des cas où le nombre d’années d’expérience est supérieur à l’âge du demandeur d’emploi.\n\n\nEXPEUNIT\nUnité durée expérience dans le ROME\n\n\n\n\nMOBDIST\nMobilité du DE\nMobilité du DE vis-à-vis de l’emploi, en minutes, heures, kilomètres ou FE selon la valeur de la variable MOBUNIT. Il faut l’utiliser avec la variable MOBUNIT pour lui donner un sens.\n\n\n\nMOBUNIT\nUnité de la mobilité du demandeur vis-à-vis de l’emploi\n00. Non renseignée FE. France Entière H. Heure KM. Kilomètres MN. Minutes MT. Mobilité totale\n\n\n\n\n\n\n\n\n\nNBAR78\nNombre de mois d’activité réduite ≤ 78H\n\n\n\n\nNBAR79\nNombre de mois d’activité réduite &gt; 78H\n\n\n\n\nNDEM\nNuméro de la demande\nNuméroté de la plus récente à la plus ancienne (la demande n°1 est la demande la plus récente à la date statistique du FHS)\n\n\n\nNENF\nNombre d’enfants\n\n\n\n\nNIVFOR\nNiveau de formation atteint par le demandeur\n000. Inconnu AFS. Aucune formation scolaire C12. Classes 2e et 1e (études générales) C3A. BEPC- classe 3e achevée CFG. Classes 6e 5e 4e CP4. Certificat études primaires. CPP-CPA Nv1. Bac +5 et + Nv2. Bac +3 et +4 Nv3. Bac +2 Nv4. Bac  Nv5. CAP / BEP\n\n\n\nNUMCDV\nRéférence contrat de ville\n\n\n\n\nNUMCUCS\nNuméro de la CUCS\n\n\n\n\nNUMQPV\nRéférence QPV\n\n\n\n\nNUMZUS\nNuméro de la ZUS\n\n\n\n\nOBLIGEM1\nObligation d’emploi du demandeur d’emploi 1\n0. Sans obligation d’emploi 1. Orphelin de guerre 2. Veuf (ve) de guerre ou conjoint de militaire invalide 3. Pensionne de guerre 4. Travailleur handicapé catégorie A 5. Travailleur handicapé catégorie B 6. Travailleur handicapé catégorie C 7. En instance de décision CDA (Commission des droits et de l’autonomie) 8. Pension d’invalidité s.s. Ou autre 9. Rente accident du travail ou maladie professionnelle &gt;= 10% C. RGTH – CRP E. RGTH – ESAT H. Allocation adulte handicapé (manuel) I. Carte d’invalidité M. RGTH – marché du travail R. Allocation adulte handicapé (auto)\n\n\n\nOBLIGEM2\nObligation d’emploi du demandeur d’emploi 2\n\n\n\n\nOBLIGEM3\nObligation d’emploi du demandeur d’emploi 3 (AAH)\n0. Sans obligation d’emploi H. Allocation adulte handicapé R. Allocation adulte handicapé\n\n\n\nOBLIGEMC\nObligation d’emploi du demandeur d’emploi calculée\nIdem OBLIGEM1 et OBLIGEM2\n Les valeurs de OBLIGEM3 (H et R) ne sont retenues que si OBLIGEM1=OBLIGEM2=0 Entre ces 2 variables OBLIGEM1 et OBLIGEM2 :   Seules les valeurs supérieures à 0 sont retenues ; Plusieurs valeurs sont supposées incompatibles entre elles (comme 1, 2 et 3) ; La RQTH (Reconnaissance de la Qualité de Travailleur Handicapé) provient d’une seule source. Les valeurs « RQTH » (E, M, C) ne sont ainsi jamais en simultané sur OBLIGEM1 et 2. Elles l’emportent toujours sur les autres valeurs  En résumé : (E M C ) &gt; (4 5 6 7 8 9) &gt; (1 2 3) &gt; I &gt; 0\n\n\nPROJENTR\nProjet entreprise\nE. Projet envisagé V. Projet validé\n\n\n\nQPV\nIndicateur résidence QPV\n\n\n\n\nQUALIF\nQualification du demandeur\n0. Non précisé 1. Manœuvres 2. Ouvriers spécialisés 3. Ouvriers qualifiés (OP1-OP2) 4. Ouvriers qualifiés (OP3-OHQ) 5. Employés non qualifiés 6. Employés qualifiés 7. Techniciens-dessinateurs 8. Agents de maîtrise 9. Cadres\n\n\n\n\n\n\n\n\n\nRMA\nÉligibilité au revenu minimum d’activité\n1. Valeur de redressement (non référencée) 2. Non bénéficiaire 3. Valeur de redressement (vide)\n\n\n\nRMI\nCode RMI du mois précédent le mois stat ou code RSA du mois stat\n1. RMI 2. Non bénéficiaire 3. Valeur de redressement (vide) 4. RSA nouveau droit 5. RSA ancien RMI/API\n\n\n\nROME\nCode Rome du métier recherché\n\n\n\n\nROMEAPL\nCode appellation du ROME\nL’appellation du ROME est sur 3 positions et est associée à un code ROME pour avoir le libellé correspondant au métier. L’appellation du ROME seul n’a aucune signification.\n\n\n\nROMEASS\nROME Assedic recherché\n\nVariable inutilisable\n\n\nROMEVAL\nCode validation du ROME\n1. Reserve ou alerte sur conduite à tenir 2. Maitrise des CTB emploi/métier 3. Maitrise CTB emploi/métier + évaluation\n\n\n\nRSQSTAT\nRisque statistique du demandeur d’emploi\nRS1. Risque faible de chômage de longue durée RS2. Risque modéré de chômage de longue durée RS3. Risque fort de chômage de longue durée\n\n\n\nSALMT\nMontant du salaire brut demandé par le DE\n\nRisques de valeurs extrêmes liées vraisemblablement à une erreur d’unité\n\n\nSALUNIT\nSalaire horaire, mensuel ou annuel du DE\n0. Non renseigné A. Annuel  C. Cachet H. Horaire M. Mensuel\n\n\n\nSEXE\nSexe du demandeur d’emploi\n1. Homme 2. Femme\n\n\n\nSITMAT\nSituation de famille du demandeur d’emploi\nC. Célibataire D. Divorcé ou séparé M. Marié ou vie maritale V. Veuf\n\n\n\nSTRSUIVP\nCode de la structure principale de suivi\n\nLa Structure Principale est une Agence ou une Équipe professionnelle (sectorielle ou géographique). La notion de bassin est prise en compte. Le référent principal, pour le suivi mensuel, est un agent de cette structure.\n\n\nTEMPS\nTemps de travail de l’emploi recherché\n1. Temps complet 2. Temps partiel\n\n\n\nZRR\nIndicateur de résidence en Zone de revitalisation rurale (ZRR)\n\n\n\n\nZUS\nDemandeurs en zone urbaine sensible\nAT. DEMENAGEMENT DU DE IN. IDENTIFICATION ZUS NON REALISEE NT. ETAT INITIAL, DE NON TRAITE NZ. DE NE RESIDANT PAS EN ZUS ZU. DE RESIDANT EN ZUS",
-    "crumbs": [
-      "FHS",
-      "DE",
-      "Dictionnaire",
-      "Dictionnaire des variables"
-    ]
-  },
-  {
-    "objectID": "FHS/D2/D2_presentation.html",
-    "href": "FHS/D2/D2_presentation.html",
-    "title": "Présentation de la table",
-    "section": "",
-    "text": "La table D2 donne les informations sur l’indemnisabilité des demandeurs d’emploi aux allocations chômage. Le fait d’être indemnisable à une allocation chômage ne veut pas dire être indemnisé : un demandeur d’emploi peut être indemnisé sur une période, mais ne pas percevoir d’allocation, par exemple lorsque les revenus tirés de son activité réduite dépassent le plafond. La table D2 ne permet pas de distinguer entre les personnes indemnisables et les personnes indemnisées.",
-    "crumbs": [
-      "FHS",
-      "D2",
-      "Présentation de la table"
-    ]
-  },
-  {
-    "objectID": "FHS/D2/D2_presentation.html#lindemnisabilité-des-demandeurs-demploi",
-    "href": "FHS/D2/D2_presentation.html#lindemnisabilité-des-demandeurs-demploi",
-    "title": "Présentation de la table",
-    "section": "",
-    "text": "La table D2 donne les informations sur l’indemnisabilité des demandeurs d’emploi aux allocations chômage. Le fait d’être indemnisable à une allocation chômage ne veut pas dire être indemnisé : un demandeur d’emploi peut être indemnisé sur une période, mais ne pas percevoir d’allocation, par exemple lorsque les revenus tirés de son activité réduite dépassent le plafond. La table D2 ne permet pas de distinguer entre les personnes indemnisables et les personnes indemnisées.",
-    "crumbs": [
-      "FHS",
-      "D2",
-      "Présentation de la table"
-    ]
-  },
-  {
-    "objectID": "FHS/D2/D2_presentation.html#définition-dune-période-indemnisable",
-    "href": "FHS/D2/D2_presentation.html#définition-dune-période-indemnisable",
-    "title": "Présentation de la table",
-    "section": "Définition d’une période indemnisable",
-    "text": "Définition d’une période indemnisable\nUne ligne de la table est une période indemnisable, elle est identifiée par l’ID_MiDAS et la variable NDEM, ainsi que par les dates de début et de fin de la période indemnisable (JOURDV et JOURFV). Ces dates sont inclusives.\nLes informations sur l’indemnisabilité mettent plus de temps à remonter, la table D2 s’arrête donc un trimestre plus tôt que les autres tables du FHS. Par exemple, dans le FHS du quatrième trimestre 2021, la variable JOURFV n’est jamais au-delà du 30 septembre 2021.\nDe plus, 9 mois avant la fin des informations de la table D2, toutes les lignes se terminent et une nouvelle apparaît automatiquement avec les mêmes informations autres que les dates, même si la période indemnisable est ininterompue : la variable D2STATUT (label STATUT DE L’ENREGISTREMENT) prend deux valeurs C (consolidé) et P (provisoire). Par exemple, dans le FHS du quatrième trimestre 2021, une période en cours au 31 décembre 2020 a une ligne C avec JOURDV = 2020-12-31 et il y a une autre ligne P pour le même individu avec JOURDV = 2021-01-01.\nEn cas de changement d’une des variables régime d’indemnisation (REGIND), filière d’indemnisation (filindem), type de population (typpope) ou régime particulier (REGIME), une nouvelle ligne est créée. Il est donc très compliqué d’associer différentes périodes de la table D2 à un droit et à une allocation chômage de manière certaine.",
-    "crumbs": [
-      "FHS",
-      "D2",
-      "Présentation de la table"
-    ]
-  },
-  {
-    "objectID": "FHS/D2/D2_presentation.html#calcul-du-nombre-dindemnisables-à-une-date",
-    "href": "FHS/D2/D2_presentation.html#calcul-du-nombre-dindemnisables-à-une-date",
-    "title": "Présentation de la table",
-    "section": "Calcul du nombre d’indemnisables à une date",
-    "text": "Calcul du nombre d’indemnisables à une date\nIl est facile de donner le nombre d’indemnisables à une date donnée à partir de la table D2. Le type d’allocation est donné par la variable de code allocation indemnisable (INDEM). La variable ODDMAX donne la durée théorique d’indemnisation du droit de la période concernée. S’il n’y a pas de durée théorique (par exemple pour l’ASS), cette variable vaut 9998.\n\n\n\n\n\n\nWarning\n\n\n\nIl n’est pas recommandé d’utiliser cette table car les informations qu’elle contient sur l’indemnisabilité sont moins fiables que celles du FNA, présent dans MiDAS.",
-    "crumbs": [
-      "FHS",
-      "D2",
-      "Présentation de la table"
-    ]
-  },
-  {
-    "objectID": "FHS/E3_Cons/E3_Cons_presentation.html",
-    "href": "FHS/E3_Cons/E3_Cons_presentation.html",
-    "title": "Présentation de la table",
-    "section": "",
-    "text": "Cette table, comme E3, donne les prestations pour les demandeurs d’emploi. C’est la variable code action (CODACT) qui donne la nature de ces prestations. Cette table, issue du FHS-Services, donne des informations sur les services de France Travail.",
-    "crumbs": [
-      "FHS",
-      "E3_Cons",
-      "Présentation de la table"
-    ]
-  },
-  {
-    "objectID": "FHS/E3_Cons/E3_Cons_presentation.html#prestations-proposées-par-france-travail",
-    "href": "FHS/E3_Cons/E3_Cons_presentation.html#prestations-proposées-par-france-travail",
-    "title": "Présentation de la table",
-    "section": "",
-    "text": "Cette table, comme E3, donne les prestations pour les demandeurs d’emploi. C’est la variable code action (CODACT) qui donne la nature de ces prestations. Cette table, issue du FHS-Services, donne des informations sur les services de France Travail.",
-    "crumbs": [
-      "FHS",
-      "E3_Cons",
-      "Présentation de la table"
-    ]
-  },
-  {
-    "objectID": "FHS/E3/Dico_FHS_E3/E3_dictionnaire.html",
-    "href": "FHS/E3/Dico_FHS_E3/E3_dictionnaire.html",
-    "title": "Dictionnaire des variables",
-    "section": "",
-    "text": "Variables\nLibellé\nModalités / Commentaires\n\n\n\n\nBNI\nIdentifiant unique du demandeur\nLe code BNI est l’identifiant national du demandeur. Dans la région d’arrivée, dans la mesure où le demandeur a bien été reconnu, son code BNI d’origine lui est réaffecté. Le code BNI permet ainsi d’identifier le demandeur dans toutes les bases régionales.\n\n\nCODPAR\nCode partenaire pour une prestation\n\n\n\nCODSTATU\nCODE STATUT\nC. Conseillée E. Absence excusée H. N’adhère pas I. Inscription N. Abandon R. Réalisation S. Suppression\n\n\nDATDEB\nDate de début de la prestation\n\n\n\nDATINSAC\nDate d’inscription de l’action\n\n\n\nDATMAJAC\nDate de mise à jour du statut\n\n\n\nDATPRECO\nDate de préconisation\n\n\n\nDATSTAT\nMois statistique\n\n\n\nNUMAIS\nNuméro d’AIS (Attestation d’inscription au stage)\n\n\n\nNUMALE\nUNITE ALE DE L’ACTION\nAttention à ne pas confondre avec la variable ALE dans la table DE, qui correspond à l’ALE d’inscription du demandeur.\n\n\nNUMPRES\nNUMERO DE PRESTATION\nTrès peu renseignée\n\n\nCODACT\nCode action conseillée et/ou réalisée\nLes modalités de cette variable sont disponibles dans la section dédiée.",
+    "text": "Code action conseillée et/ou réalisée\nAAC. AUTRE ACTION CAP EMPLOI\nAAD. EXPE LYON VALENCE ST ETIENNE\nAAM. AUTRE ACTION MISSION LOCALE\nAAO. AUTRE ACTION OFFRE\nAAP. AUTRE ACTION PROJET\nAAR. AUTRE ACTION RECHERCHE\nABA. BILAN AFPA MI CARRIERE (BAMC)\nABP. EXPE AVIGNON MARSEILLE\nACA. ENVOI APEC\nACE. ENVOI CAP EMPLOI\nACI. ACCOMPAGNEMENT INTENSIF\nACR. ACCOMPAGNEMENT RENFORCE\nACS. ACCOMPAGNEMENT CADRES SENIORS\nADM. PARCOURS 2\nADR. PARCOURS 3\nADS. PARCOURS 1\nAIG. PRESTATION ACCOMPAGNEMENT SPEC\nAIP. INDISPONIBILITE PARTIELLE\nAIT. INDISPONIBILITE TOTALE\nAML. ENVOI MISSIONS LOCALES\nAOR. M.E.R. SUR AUTRE ORGANISME\nARC. ACCOMPAGNEMENT REPRENEUR CREAT\nATD. EXPE TOULON CAGNES SOFIA\nA00. ATELIER\nA01. CV\nA02. ENTRETIEN EMBAUCHE\nA03. CIBLER\nA04. RELATION\nA05. REPONDRE P.A\nA06. CANDIDATURE\nA07. SAVOIR FAIRE\nA08. UTILISER P.A\nA09. ORGANISER\nA10. TELEPHONE\nA11. LOOK\nA12. ESSAI\nA13. TEST\nA14. RECHERCHE D’EMPLOI PAR INTERNE\nA15. TRAVAIL A L’ETRANGER\nA16. S’ORGANISER POUR TRAVAIL A L’E\nA17. PREPARER VALIDATION ACQUIS DE\nA18. DECOUVRIR LE MARCHE DU TRAVAIL\nA19. TROUVER DES OFFRES\nA20. FAIRE LE POINT\nA21. FORMATION\nA22. ATOUTS\nA23. INFORMATION\nA24. VERIFIER\nA25. PLAN\nA26. CREATION\nA27. MON CV-PUBLIC SPECIFIQUE\nA28. JE TROUVE UNE OFFRE\nA29. ORGANISER DEPLACEMENTS / MARCHE DU TRAVAIL\nA30. TRAVAILLER AU ROYAUME-UNI\nA31. TRAVAILLER EN ALLEMAGNE\nA32. TRAVAILLER EN ESPAGNE\nA33. TRAVAILLER AU CANADA\nA34. TRAVAILLER EN ITALIE\nA40. SIMULER UN ENTRETIENT D’EMBAUCHE\nA41. DECIDER DE SE FORMER\nBCA. BILAN DE COMPETENCES APPROFOND\nCAD. ATOUT CADRE\nCEN. CREATION OU REPRISE D’ENTREPRI\nCIB. CIBLE EMPLOI\nCIV. CONTRAT D’INSERTION DANS LA VI\nCVE. ACCOMPAGNEMENT CAP ENTREPRISE\nC30. SENSIB CREA ENTREPR\nC91. SPEC REGION C1\nC92. SPEC REGION C2\nC93. SPEC REGION C3\nDAP. DIAGNOSTIC APPROFONDI\nDPO. DIAGNOSTIC DE POSITIONNEMENT\nECA. Évaluation des Compétences et Capa Prof AFPA\nECE. EMT CAP VERS L’ENTREPRISE\nEFA. MER SUR FORMATION AFPA\nEFO. MISE EN RELATION FORMATION\nEJZ. EMT RENFORCEE JEUNES ZUS\nENE. ENTRETIEN D’EVALUATION\nENI. ENTRETIEN D’INFORMATION\nENO. ENTRETIEN D’ORIENTATION\nEUR. ACTION FINANCEE PAR EUR\nEPS. EVALUATION EN MILIEU DE TRAVAIL PLAN SENIOR\nE20. EPCRE\nE30. ENCP\nE31. ENCP 1\nE32. ENCP 2\nE33. ENCP 3\nE40. EMT STANDARD\nE41. EMT 1\nE42. EMT 2\nE43. EMT 3\nE50. ENAP STANDARD\nE51. ENAP 1\nE52. ENAP 2\nE53. ENAP 3\nE60. CAD”IDENT POTENTIEL”\nE70. BILAN PROJET ET METHODES RECHE\nE80. EVAL PREALABLE AU RECRUTEMENT\nE90. EVAL COMPETENCES ET CAPACITES\nE91. SPEC REGIONALE EV 1\nE92. SPEC REGIONALE EV 2\nE93. SPEC REGIONALE EV 3\nHAB. EVALUATION DES HABILETES PAR S\nI30. INFO COLL A THEME\nI40. INFO COLL PAP\nI50. INFO COLL PLAN 50000 JEUNES\nI91. SPEC REGION INF 1\nI92. SPEC REGION INF 2\nI93. SPEC REGION INF 3\nLEC. Licencié Economique OPP\nMEA. MISE RELATION OFFRE ACTIVITE\nMET. MISE RELATION CONTRAT TRAVAIL\nME0. M.E.R SUR CONTRAT INITIATIVE L\nME1. M.E.R CONTRAT TRAVAIL NORMAL\nME2. M.E.R CONTRAT D’APPRENTISSAGE\nME3. M.E.R APEJ\nME4. M.E.R CONTRAT ORIENTATION\nME5. M.E.R CONTRAT QUALIFICATION\nME6. M.E.R CONTRAT D’ADAPTATION\nME7. M.E.R CONTRAT POINT OPERATIONN\nME8. M.E.R SUR CAE DOM\nME9. M.E.R SUR CES HORS CADRE INSER\nMF2. M.E.R SUR CONTRAT INITIATIVE E\nMF3. M.E.R SUR CONVENTION DE COOPER\nMF4. M.E.R SUR EMPLOI VILLE\nMF5. M.E.R SUR CONTRAT EMPLOI JEUNE\nMF6. M.E.R SUR CEC HORS CADRE INSER\nMF7. M.E.R SUR CONTRAT DE QUALIF. A\nMI1. M.E.R SUR CONTRAT INSERTION EC\nMI2. M.E.R SUR CONTRAT G.E.I.Q\nMI3. M.E.R SUR CES/CEC INSERTION PA\nMOB. MOBILISATION VERS L’EMPLOI\nMOV. MOBILISATION VERS L’EMPLOI (nouveaux marchés 2010)\nNET. INITIATION À L’UTILISATION D’I\nOED. OBJECTIF EMPLOI DURABLE\nOEN. OBJECTIF ENTREPRISE\nOPL. OBJECTIF PLACEMENT\nOPS. Orientation Professionnelle Spécialisée (2010 04)\nOPU. OPERATEURS PRIVES UNEDIC\nOSA. OFFRE SPECIFIQUE RSA\nO20. ACCOMPAGNEMENT INDIV. OBJECTIF\nO21. ACCOMPAGNEMENT GROUPE OBJECTIF\nO30. SOA STANDARD\nO31. SOA 1\nO32. SOA 2\nO33. SOA 3\nO40. MOA STANDARD\nO41. MOA 1\nO42. MOA 2\nO43. MOA 3\nO50. DU DIPLOME A L’EMPLOI\nO51. DU DIPLOME A L’EMPLOI 1\nO52. DU DIPLOME A L’EMPLOI 2\nO53. DU DIPLOME A L’EMPLOI 3\nO60. BILAN DE COMPETENCES\nO61. CHEQ BIL COMP CADRES\nO91. SPEC REGION OR 1\nO92. SPEC REGION OR 2\nO93. SPEC REGION OR 3\nPAD. ACCOMPAGNEMENT EMPLOI\nPAS. PRESTATION D’APPUI SOCIAL\nPIJ. PROJET INITIATIVE JEUNE\nPPE. UN PROJET POUR UN EMPLOI\nPRC. PRESTATION CREATION ENTREPRISE GUADELOU\nPRE. PRESTATION D’EVALUATION\nPRI. PRESTATION D’INFORMATION\nPRO. PRESTATION D’ORIENTATION\nPRR. PRESTATION DE RECHERCHE EMPLOI\nP10. PROGRAMME ACCES EMPLOI JEUNES\nP20. PLAN LOCAL POUR INSERTION ET E\nP30. INSERTION PAR ACTIVITE ECONOMI\nP40. ACCOMPAGNEMENT DURANT CES\nP50. ACCOMPAGNEMENT INDIVIDUALISE\nRCE. OBJECTIF EMPLOI CAP VERS L’ENT\nR20. ACCOMPAGNEMENT INDIV. OBJECTIF\nR21. ACCOMPAGNEMENT GROUPE OBJECTIF\nR30. STRE STANDARD\nR31. STRE 1\nR32. STRE 2\nR33. STRE 3\nR40. ARE STANDARD\nR41. ARE 1\nR42. ARE 2\nR43. ARE 3\nR50. CRDE ACTIVE\nR51. CRDE ACTIVE 1\nR52. CRDE ACTIVE 2\nR53. CRDE ACTIVE 3\nR60. APE STANDARD\nR61. APE 1\nR62. APE 2\nR63. APE 3\nR70. MARKETING EMPLOI\nR71. MARKETING EMPLOI 1\nR72. MARKETING EMPLOI 2\nR73. MARKETING EMPLOI 3\nR80. CLUB DE CHERCHEURS\nR81. CLUB DE CHERCHEURS 1\nR82. CLUB DE CHERCHEURS 2\nR83. CLUB DE CHERCHEURS 3\nR90. RENFORCER ET ACCOMPAGNER RECHE\nR91. SPEC REGION RE 1\nR92. SPEC REGION RE 2\nR93. SPEC REGION RE 3\nSAI. ACCOMPAGNEMENT CHOMAGE SAISONNIER OPP\nSCO. SUIVI COTRAITANT\nSPN. SUIVI PARTENAIRE NON INFORMATISE\nSTR. STRATEGIE DE RECHERCHE EMPLOI\nS20. PARCOURS FORMATION AFPA (2010 04 : arrêt -&gt;OPS)\nTIC. ACCOMPAGNEMENT CADRES A DISTAN\nTRA. Trajectoire Emploi OPP\nT01. APPUI À LA DEMARCHE DE RECH. D\nT02. ENTRAINEMENT AUX ENTRETIENS (O\nT03. BILAN DE COMPETENCES (OPP)\nT04. DEFINITION DE PROJET (OPP)\nT05. PROPOSITION D’OFFRE D’EMPLOI (\nT06. FORMATION COURTE (5 JOURS OU M\nT07. FORMATION LONGUE (6 JOURS OU P\nT08. MISE EN SITUATION PROFESSIONNE\nT09. AUTRE (OPP)\nVAF. VAE MINISTERE TRAVAIL AFPA\nVAG. ACCOMPMT PARCOURS de VAE GUADELOUPE\nVAO. VAE AUTRE ORGANISME\nVOC. EVAL SUR PLATE-FORME DE VOCATI\nV01. ANCIEN VAE",
     "crumbs": [
       "FHS",
       "E3",
       "Dictionnaire",
-      "Dictionnaire des variables"
+      "CODACT"
     ]
   },
   {
-    "objectID": "FHS/Cibles/FHS_cibles.html",
-    "href": "FHS/Cibles/FHS_cibles.html",
-    "title": "Reproduction d’indicateurs cibles",
+    "objectID": "FHS/P2/P2_presentation.html",
+    "href": "FHS/P2/P2_presentation.html",
+    "title": "Présentation de la table",
     "section": "",
-    "text": "Pour calculer cet indicateur, les variables Date d’effet d’inscription de la demande (DATINS), Date d’annulation de la demande (DATANN) et Catégorie opérationnelle du demandeur d’emploi relative à la dernière situation connue (CATREGR) sont utilisées. Il faut noter que les modalités 1, 2 et 3 de CATREGR ne correspondent pas respectivement aux catégories d’inscription A, B et C statistiques, mais au type de contrat recherché. Néanmoins, l’ensemble des personnes pour lesquelles CATREGR vaut 1, 2 ou 3 est équivalent à l’ensemble des demandeurs d’emploi inscrits en catégorie A, B ou C, car ce sont les demandeurs d’emploi tenus à des actes positifs de recherche d’emploi, quelle que soit la durée d’activité réduite exercée au cours du mois.\nRemarque : la chaîne de caractère fournie à la fonction as.Date doit être de la forme “AAAA-MM-JJ”.\n\n#Chargement du package dplyr \nlibrary(dplyr)\n\n#Définition de la date de fin du mois dont on veut les inscrits en fin de mois\nmois &lt;- as.Date(\"2021-12-31\")\n\n#Utilisation de la table DE\ninscrits &lt;- DE %&gt;%\n  filter(DATINS &lt;= mois & DATANN &gt;= mois & CATREGR %in% c(\"1\", \"2\", \"3\")) %&gt;%\n  distinct(id_midas)",
+    "text": "Cette table, issue du FHS-Services, donne des informations sur les services de France Travail.\nElle donne les formations suivies par les demandeurs d’emploi, majoritairement pour les demandeurs d’emploi indemnisés.\nUne comparaison entre les données de cette table et celles de BREST, contenue dans Force, donnait beaucoup moins d’entrées en formation avec P2. Cela a confirmé la faiblesse des données du FH-services.\n\n\n\n\n\n\nNote\n\n\n\nFORCE (Formation, chômage, emploi) est un dispositif lancé en 2020 par la Dares qui vise à apparier plusieurs bases de données : les MMO (mouvement de main d’œuvre), le FHS, BREST (les formations), et I-milo (les missions locales).",
     "crumbs": [
       "FHS",
-      "Cibles",
-      "Reproduction d'indicateurs cibles"
+      "P2",
+      "Présentation de la table"
     ]
   },
   {
-    "objectID": "FHS/Cibles/FHS_cibles.html#nombre-dinscrits-en-catégories-a-b-c-en-fin-de-mois-pour-un-mois-donné",
-    "href": "FHS/Cibles/FHS_cibles.html#nombre-dinscrits-en-catégories-a-b-c-en-fin-de-mois-pour-un-mois-donné",
-    "title": "Reproduction d’indicateurs cibles",
+    "objectID": "FHS/P2/P2_presentation.html#formations-suivies-par-les-demandeurs-demploi",
+    "href": "FHS/P2/P2_presentation.html#formations-suivies-par-les-demandeurs-demploi",
+    "title": "Présentation de la table",
     "section": "",
-    "text": "Pour calculer cet indicateur, les variables Date d’effet d’inscription de la demande (DATINS), Date d’annulation de la demande (DATANN) et Catégorie opérationnelle du demandeur d’emploi relative à la dernière situation connue (CATREGR) sont utilisées. Il faut noter que les modalités 1, 2 et 3 de CATREGR ne correspondent pas respectivement aux catégories d’inscription A, B et C statistiques, mais au type de contrat recherché. Néanmoins, l’ensemble des personnes pour lesquelles CATREGR vaut 1, 2 ou 3 est équivalent à l’ensemble des demandeurs d’emploi inscrits en catégorie A, B ou C, car ce sont les demandeurs d’emploi tenus à des actes positifs de recherche d’emploi, quelle que soit la durée d’activité réduite exercée au cours du mois.\nRemarque : la chaîne de caractère fournie à la fonction as.Date doit être de la forme “AAAA-MM-JJ”.\n\n#Chargement du package dplyr \nlibrary(dplyr)\n\n#Définition de la date de fin du mois dont on veut les inscrits en fin de mois\nmois &lt;- as.Date(\"2021-12-31\")\n\n#Utilisation de la table DE\ninscrits &lt;- DE %&gt;%\n  filter(DATINS &lt;= mois & DATANN &gt;= mois & CATREGR %in% c(\"1\", \"2\", \"3\")) %&gt;%\n  distinct(id_midas)",
+    "text": "Cette table, issue du FHS-Services, donne des informations sur les services de France Travail.\nElle donne les formations suivies par les demandeurs d’emploi, majoritairement pour les demandeurs d’emploi indemnisés.\nUne comparaison entre les données de cette table et celles de BREST, contenue dans Force, donnait beaucoup moins d’entrées en formation avec P2. Cela a confirmé la faiblesse des données du FH-services.\n\n\n\n\n\n\nNote\n\n\n\nFORCE (Formation, chômage, emploi) est un dispositif lancé en 2020 par la Dares qui vise à apparier plusieurs bases de données : les MMO (mouvement de main d’œuvre), le FHS, BREST (les formations), et I-milo (les missions locales).",
     "crumbs": [
       "FHS",
-      "Cibles",
-      "Reproduction d'indicateurs cibles"
+      "P2",
+      "Présentation de la table"
     ]
   },
   {
-    "objectID": "FHS/P2/Dico_FHS_P2/P2_dictionnaire.html",
-    "href": "FHS/P2/Dico_FHS_P2/P2_dictionnaire.html",
-    "title": "Dictionnaire des variables",
+    "objectID": "FHS/P2/Dico_FHS_P2/FHS_P2_variables/ORGCAT.html",
+    "href": "FHS/P2/Dico_FHS_P2/FHS_P2_variables/ORGCAT.html",
+    "title": "ORGCAT",
     "section": "",
-    "text": "Variables\nLibellé\nModalités\n\n\n\n\nBNI\nIdentifiant unique du demandeur\nLe code BNI est l’identifiant national du demandeur. Dans la région d’arrivée, dans la mesure où le demandeur a bien été reconnu, son code BNI d’origine lui est réaffecté. Le code BNI permet ainsi d’identifier le demandeur dans toutes les bases régionales.\n\n\nCATFIN\nCatégorie de financement de la formation\nLes modalités sont disponibles dans la section dédiée.\n\n\nCOUTGLO\nCoût global de la formation\n\n\n\nCOUTSTA\nCoût stagiaire de la formation\n\n\n\nDATSTAT\nMois statistique\n\n\n\nDECAFFD\nDécision AFFD (Allocation de Fin de Formation Dérogatoire)\nO. Oui N. Non\n\n\nFORMACOD\nBesoin en formation - domaine\nLes modalités sont disponibles dans la section dédiée.\n\n\nFORTYPE1\nType de formation PARE (Plan d’aide au retour à l’emploi)\nC. Conventionnée P. Homologuée prioritaire H. Homologuée par défaut N. Non homologuée A. Convention AFPE X. Non renseigné\n\n\nNUMAIS\nNuméro d’Attestation d’inscription *en stage (AIS)\n\n\n\nOBJFORM\nOBJECTIF DE LA FORMATION (qualification, perfectionnement…)\n0. Non concerné\n1. Qualification\n2. Perfectionnement\n3. Élargissement des compétences\n4. Création d'entreprise\n5. Remise à niveau\n6. Mobilisation sur un projet\n7. Préqualification\n9. Non précisé\nA. Certification\nB. Professionnalisation\nC. Préparation à la qualification\nD. Remise à niveau, maîtrise des savoirs\nE. Mobilisation, aide à l'élaboration de projet\nF. PERFECTIONNEMENT, ELARGISS. CO\nG. Création d'entreprise\nX. Non précisé\nZ. Non concerné\n\n\nORGCAT\nCatégorie de l’organisme de formation\nLes modalités sont disponibles dans la section dédiée.\n\n\nP2DATDEB\nDate de début\n\n\n\nP2DATFIN\nDate de fin\n\n\n\nP2NBHEUR\nNombre d’heures total\n\n\n\nP2NIVFOR\nNiveau de la formation\n0. Inconnu ou non renseigné 1. Supérieur à BAC+2 2. De niveau BAC+2 à BAC+2 3. De niveau BAC, BP, BM à BAC 4. De CAP, BEP à 1ère achevé 5. De premier cycle professionnel, BEPC 3ème achevé 6. De sans formation, primaire à 4ème achevé\n\n\nPERENTRE\nPériode passée en entreprise lors de la formation\nO. Le demandeur a effectué a travaillé en entreprise N. Le demandeur n’a pas travaillé en entreprise\n\n\nPERETRAN\nPériode passé à l’étranger lors de la formation\nO. Le demandeur a effectué un séjour à l’étranger N. Le demandeur n’a pas effectué de séjour à l’étranger\n\n\nREGION\n\n\n\n\nSIRET\nSIRET DE L’ORGANISME REALISANT LA PRESTATION\n\n\n\nTYPVALID\nTYPE DE VALIDATION\n0. NON PREVU 1. DIPL. TECHN. EDUC. NATIONALE 2. DIPL. TECHN. TRAVAIL 3. DIPL. TECHN. AGRICULTURE 4. DIPL. TECHN. JEUNES. ET SPORTS 5. DIPL. TECHN. AUTRES 6. TITRE OU DIPLOME HOMOLOGUE 7. QUALIF. RECONNUE CONV. COLLECT 8. QUALIF. RECONNUE COMM. PARIT. 9. TITRE OU DIPL. EN ELABORATION",
+    "text": "Catégorie de l’organisme de formation\n11. AFPA\n12. ASFO\n13. AUTRES ASSOC. LOI 1901 OU 1908\n14. DIVERS TYPES DE SOCIETES\n15. AUTRES STATUTS DE DROIT PRIVE\n21. ETS SECONDAIRES (LYCEES LEP.)\n22. ETS SUPERIEURS\n23. CNAM (PARIS INST. CENT. REG.)\n24. AUTRES ETS RELEVANT EDUC. NAT.\n25. ETS RELEVANT AUTRES MINISTERES\n26. CCI ORGANIS. DROIT PRIVE\n27. CHAMB. AGRIC. CHAM. METIERS\n28. CENTRES FORM. COLLECT. PUBLI.\n29. AUTRES ORGANISMES DROIT PUBLIC\n31. CENTRE DE FORMAT.EN ENTREPRISE\n99. AUTRES CAS\nXX. VALEUR HORS TABLE",
     "crumbs": [
       "FHS",
       "P2",
       "Dictionnaire",
-      "Dictionnaire des variables"
+      "ORGCAT"
     ]
   },
   {
-    "objectID": "FHS/P2/Dico_FHS_P2/FHS_P2_variables/FORMACOD.html",
-    "href": "FHS/P2/Dico_FHS_P2/FHS_P2_variables/FORMACOD.html",
-    "title": "FORMACOD",
+    "objectID": "FHS/P2/Dico_FHS_P2/FHS_P2_variables/CATFIN.html",
+    "href": "FHS/P2/Dico_FHS_P2/FHS_P2_variables/CATFIN.html",
+    "title": "CATFIN",
     "section": "",
-    "text": "Besoin en formation (FORMACODE) - domaine\n100. Formation générale\n110. Mathématique\n114. Physique\n115. Chimie\n120. Sciences naturelles\n122. Sciences de la terre\n125. Environnement aménagement\n130. Science politique\n131. Économie\n132. Droit\n133. Droit fiscal\n142. Sciences humaines\n144. Psychologie\n150. Développement personnel\n152. Langues\n154. Sport\n200. Formation agricole ou Industrielle\n210. Agriculture\n212. Production végétale\n213. Pêche aquaculture\n215. Agroalimentaire\n216. Textile\n217. Habillement\n218. Cuir peau\n220. Travaux publics\n222. BTP conception organisation\n223. Bâtiment gros œuvre\n224. Bâtiment second œuvre\n226. Génie climatique\n228. Matériau produit chimique\n230. Travail matériau\n235. Mécanique théorique\n236. Mécanique construction réparation\n240. Électrotechnique\n241. Énergie\n242. Télécommunications\n243. Électronique\n244. Automatisme informatique industrielle\n300. Fonction entreprise\n310. Informatique\n313. Qualité\n315. Gestion production\n317. Manutention\n318. Transport\n320. Direction entreprise\n325. Comptabilité\n330. Ressources humaines\n340. Gestion commerciale\n342. Commerce international\n345. Commercialisation\n350. Secrétariat bureautique\n400. Secteur tertiaire\n410. Banque assurance\n420. Services divers\n426. Tourisme\n427. Hôtellerie restauration\n428. Prévention sécurité\n430. Médecine\n434. Santé secteur sanitaire\n440. Action sociale\n445. Ingénierie formation pédagogie\n450. Art\n455. Artisanat art\n460. Industrie graphique imprimerie\n461. Audiovisuel\n464. Information communication\n700. Langages informatiques\n710. Logiciels gestion de fichier\n720. Logiciels traitement de texte\n730. Logiciels tableur\n740. Logiciels intégrés\n750. Logiciels graphiques P.A.O./ P.R.E.A.O.\n755. Logiciels création/gestion page web\n760. Logiciels gestion réseau\n765. Logiciels gestion messagerie\n770. Logiciels D.A.O./C.A.O.\n775. Logiciels C.F.A.O.\n780. Logiciels gestion de projet\n785. Logiciels navigation internet\n790. Logiciels comptables\n000. Indéterminé",
+    "text": "Catégorie de financement de la formation\n00. Inconnue\n01. Stage dans le cadre d'une convention de conversion\n02. Financement France Travail\n05. Organismes paritaires collecteurs agréés au titre du CIF\n06. AIF-FT Formation non couverte achats France Travail\n07. AIF-FT Réussite concours sanitaire et social\n08. AIF-FT Préparatoire futurs artisans\n09. AIF-FT Complément financement DIF\n10. OPCA - Entreprise de construction\n11. État (Ministère chargé de l'emploi)\n12. Subvention aux centres gérés\n13. Autres stages agréés par l'État\n14. OPCA-AGEFOS-PME Assurance formation des salariés des PME\n15. OPCA-OPCALIM Industries alimentaires\n16. Région – CSP\n17. OPCA-FORCO Activité de commerce\n18. OPCA-OPCALIA Formation professionnelle continue\n19. OPCA-OPCAIM Industries métallurgiques\n20. OPCA-DEFI industrie\n21. AFPA (Commande publique État)\n22. POE collective\n23. AIF-FT Sécurisation hors CRP/CTP/CSP\n24. AIF-FT-OPCA Formation des salariés des PME\n25. AIF-FT-OPCA Industries alimentaires\n26. AIF-FT-OPCA Entreprise de construction\n27. AIF-FT-OPCA Activité de commerce et de distribution\n28. AIF-FT-OPCA Formation professionnelle continue\n29. AIF-FT-OPCA Industries métallurgiques\n30. AIF-FT-OPCA Industrie\n31. FNE CONVENTIONS DE DDTE\n32. FNE CONVENTIONS ANPE\n33. Compte personnel de formation\n41. REGION\n43. FONGECIF\n44. OPCA-FAFIEC Ingénierie informatique conseil\n45. OPCA-FAFIH Industrie hôtelière restauration\n46. OPCA Transports routiers et activités auxiliaires\n47. OPCA-PL Professions libérales\n48. OPCA-FAFTT Entreprises de travail temporaire et intérim\n51. Autres ministères\n53. AIF-FT FONGECIF\n54. AIF-FT OPCA-FAFIEC Ingénierie informatique conseil\n55. AIF-FT OPCA-FAFIH Industrie hôtelière restauration\n56. AIF-FT OPCA Transports routiers et activités auxiliaires\n57. AIF-FT OPCA-ACTALIANS Professions libérales\n58. AIF-FT OPCA-FAFTT Travail temporaire\n61. FASLID\n62. AGEFIPH\n63. AIF-FT VAE\n64. AIF-FT Formation de projet individuel\n71. Autres collectivités territoriales\n72. OPCA-AFDAS Culture, communication, médias, loisirs\n73. OPCA-ANFA-AUTO Services de l'automobile\n74. OPCA-FAFSEA Agriculture et activités annexes\n75. OPCA-INTEGROS Commerce de gros et international\n76. OPCA-OPCABAIA Banque assurance assistance\n77. OPCA-OPCA3+ Ameublement, matériaux de construction\n78. OPCA-UNIFAF Sanitaire, social, médico-social privé\n79. OPCA Uniformation économie habitat protection social\n81. Centres subventionnels au titre de la formation\n82. AIF-FT OPCA-AFDAS Culture, communication, médias, loisirs\n83. AIF-FT OPCA-ANFA-AUTO Services de l'automobile\n84. AIF-FT OPCA-FAFSEA Agriculture et activités annexes\n85. AIF-FT OPCA-INTERGROS Commerce de gros et international\n86. AIF-FT OPCA-OPCABAIA Banque assurance assistance\n87. AIF-FT OPCA-OPCA3+ Ameublement, matériaux de construction\n88. AIF-FT OPCA-UNIFAF Sanitaire, social, médico-social privé\n89. AIF-FT OPCA Uniformation économie habitat protection social\n91. Établissements dépenses de fonctionnement budget de l'État hors universités\n92. Établissements universitaires\n98. Financement par le bénéficiaire",
     "crumbs": [
       "FHS",
       "P2",
       "Dictionnaire",
-      "FORMACOD"
+      "CATFIN"
     ]
   },
   {
-    "objectID": "FHS/FHS_presentation.html",
-    "href": "FHS/FHS_presentation.html",
-    "title": "Le Fichier Historique Statistique (FHS)",
+    "objectID": "Fiches/Maintien_de_droits.html",
+    "href": "Fiches/Maintien_de_droits.html",
+    "title": "Maintien de droits",
     "section": "",
-    "text": "Chaque trimestre, France Travail produit le Fichier Historique Statistique des demandeurs d’emploi inscrits à France Travail. Ce fichier enregistre, pour les 10 années antérieures, tous les évènements successifs concernant les personnes qui ont été inscrites sur les listes de France Travail sur cette période, qu’elles soient ou non inscrites à la date d’extraction du fichier.\nLes données du FHS permettent d’analyser la trajectoire d’inscription des demandeurs d’emploi et d’éclairer notamment la question de la récurrence d’inscription sur les listes, d’ancienneté dans la catégorie A, ou les transitions entre les différentes catégories de demandeurs d’emploi.",
-    "crumbs": [
-      "FHS",
-      "Présentation",
-      "Le Fichier Historique Statistique (FHS)"
-    ]
-  },
-  {
-    "objectID": "FHS/FHS_presentation.html#champ",
-    "href": "FHS/FHS_presentation.html#champ",
-    "title": "Le Fichier Historique Statistique (FHS)",
-    "section": "Champ",
-    "text": "Champ\nToute personne inscrite à France Travail au moins un jour depuis le 1er janvier 2017 avec son historique d’inscription remontant sur les 10 années qui précèdent pour la France entière.",
-    "crumbs": [
-      "FHS",
-      "Présentation",
-      "Le Fichier Historique Statistique (FHS)"
-    ]
-  },
-  {
-    "objectID": "FHS/FHS_presentation.html#structure-des-tables",
-    "href": "FHS/FHS_presentation.html#structure-des-tables",
-    "title": "Le Fichier Historique Statistique (FHS)",
-    "section": "Structure des tables",
-    "text": "Structure des tables\nDans le cadre de MiDAS, les tables suivantes sont disponibles :\n\nLa table DE (Demandes d’emploi) : cette table contient des informations sur les caractéristiques des demandeurs d’emploi inscrits à France Travail (sexe, date de naissance, qualification, commune de résidence…) et des demandes (dates et motif d’inscription, catégorie d’inscription, type d’emploi recherché, date et motif d’annulation…) ;\nLa table E0 (activité réduite) : cette table permet de connaître les périodes (année et mois) d’activité réduite exercées par les demandeurs d’emploi (inscrits en catégories B et C).\nLa table D2 (Indemnisabilité) : code allocation et durée d’indemnisabilité maximale pour les droits calculés (pas forcément payés). Bien qu’elle permette de repérer le nombre d’indemnisables, il faut lui préférer les tables ODD et PJC du FNA pour ce qui est lié à l’indemnisabilité ;\nLa table P2 (Formations) – provenant à l’origine de la base FHS-services − qui contient des informations sur les formations suivies, majoritairement pour les demandeurs indemnisés par France Travail ;\nLes tables E3 et E3-Cons (actions) – provenant à l’origine de la base FHS-services − qui permettent d’identifier les dispositifs et prestations dont a bénéficié le demandeur d’emploi, ainsi que leur statut ;\nLa table PARCOURS renseigne sur les types d’accompagnement auxquels les demandeurs d’emploi sont assignés en fonction de leur proximité avec le marché du travail (accompagnement “suivi”, “guidé”, renforcé” et “global”).",
-    "crumbs": [
-      "FHS",
-      "Présentation",
-      "Le Fichier Historique Statistique (FHS)"
-    ]
-  },
-  {
-    "objectID": "Fiches/Fiches_presentation.html",
-    "href": "Fiches/Fiches_presentation.html",
-    "title": "Fiches thématiques",
-    "section": "",
-    "text": "Cette section regroupe des fiches sur divers sujets pour lesquels MiDAS peut servir de source de référence.",
+    "text": "Cette définition est tirée du site Internet de l’Unédic.\nLes demandeurs d’emploi indemnisés à l’âge de 62 ans peuvent voir leurs droits prolongés jusqu’à la liquidation de leur retraite, à certaines conditions. Mais jamais au-delà de 65 ou 67 ans, âge où une retraite à taux plein leur est attribuée d’office. Ces conditions sont les suivantes :\n\nêtre âgé d’au moins 62 ans ;\nêtre indemnisé depuis au moins un an ;\nne pas pouvoir prétendre à une retraite à taux plein ;\navoir été affilié pendant 12 ans à l’assurance chômage, autrement dit 12 ans de travail salarié ayant donné lieu au versement des contributions d’assurance chômage ;\npouvoir justifier d’une période d’emploi d’une année continue ou 2 années discontinues durant les 5 dernières années de travail ;\ndisposer d’au moins d’au moins 100 trimestres validés par l’assurance vieillesse.\n\nLe demandeur d’emploi percevra l’ARE jusqu’à ce qu’il justifie du nombre de trimestres exigé pour une retraite à taux plein ou qu’il en bénéficie d’office à 65 ou 67 ans, selon son année de naissance. La reprise d’une activité professionnelle n’implique pas toujours la cessation du versement de l’ARE.",
     "crumbs": [
       "Fiches",
-      "Fiches thématiques"
+      "Maintien de droits"
+    ]
+  },
+  {
+    "objectID": "Fiches/Maintien_de_droits.html#définition",
+    "href": "Fiches/Maintien_de_droits.html#définition",
+    "title": "Maintien de droits",
+    "section": "",
+    "text": "Cette définition est tirée du site Internet de l’Unédic.\nLes demandeurs d’emploi indemnisés à l’âge de 62 ans peuvent voir leurs droits prolongés jusqu’à la liquidation de leur retraite, à certaines conditions. Mais jamais au-delà de 65 ou 67 ans, âge où une retraite à taux plein leur est attribuée d’office. Ces conditions sont les suivantes :\n\nêtre âgé d’au moins 62 ans ;\nêtre indemnisé depuis au moins un an ;\nne pas pouvoir prétendre à une retraite à taux plein ;\navoir été affilié pendant 12 ans à l’assurance chômage, autrement dit 12 ans de travail salarié ayant donné lieu au versement des contributions d’assurance chômage ;\npouvoir justifier d’une période d’emploi d’une année continue ou 2 années discontinues durant les 5 dernières années de travail ;\ndisposer d’au moins d’au moins 100 trimestres validés par l’assurance vieillesse.\n\nLe demandeur d’emploi percevra l’ARE jusqu’à ce qu’il justifie du nombre de trimestres exigé pour une retraite à taux plein ou qu’il en bénéficie d’office à 65 ou 67 ans, selon son année de naissance. La reprise d’une activité professionnelle n’implique pas toujours la cessation du versement de l’ARE.",
+    "crumbs": [
+      "Fiches",
+      "Maintien de droits"
+    ]
+  },
+  {
+    "objectID": "Fiches/Maintien_de_droits.html#dans-les-données",
+    "href": "Fiches/Maintien_de_droits.html#dans-les-données",
+    "title": "Maintien de droits",
+    "section": "Dans les données",
+    "text": "Dans les données",
+    "crumbs": [
+      "Fiches",
+      "Maintien de droits"
     ]
   },
   {
