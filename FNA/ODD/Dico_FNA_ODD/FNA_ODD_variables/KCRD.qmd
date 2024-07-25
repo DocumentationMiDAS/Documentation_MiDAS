@@ -18,57 +18,51 @@ Identifie le type d'annexe de l'ouverture de droit si l'individu ne relève pas 
 
 **16**. Démarcheurs, vérificateurs, négociateurs, chefs de service et plus généralement les agents rémunérés à la commission visés par la Convention Collective du 9/07/1988 étendue par arrêté du 24/02/1989. A1 - 6
 
-**17**. Salariés navigants de la marine de commerce des entreprises de transports maritimes ou des entreprises de travaux maritimes ou des autres entreprises possédant, pour effectuer ces transports ou ces travaux, une flotte privée. A2 Chap. A
+**20.** Salariés navigants de la marine de commerce des entreprises de transports maritimes ou des entreprises de travaux maritimes ou des autres entreprises possédant, pour effectuer ces transports ou ces travaux, une flotte privée. A2 Chap. A
 
-**18**. Marins pêcheurs liés à un armateur, pour servir à bord d'un navire, rémunérés au SMG ou à la part et ayant navigué sur un bateau de plus de 25 m ou de 50 tonneaux ou plus A 2 Chap. B
+**21.** Marins pêcheurs liés à un armateur, pour servir à bord d'un navire, rémunérés au SMG ou à la part et ayant navigué sur un bateau de plus de 25 m ou de 50 tonneaux ou plus A 2 Chap. B
 
-**19**. Ouvriers dockers A3
+**22.** Ouvriers dockers A3
 
-**20**. Travailleurs Intermittents A4
+**23**. Travailleurs Intermittents A4
 
-**21**. Travailleurs Intérimaires des entreprises de travail temporaire A4
+**24**. Travailleurs Intérimaires des entreprises de travail temporaire A4
 
-**22**. Travailleurs à domicile A5
+**25**. Travailleurs à domicile A5
 
-**23**. Concierges A6
+**26**. Concierges A6
 
-**24**. Personnels Handicapés des ateliers protégés A7
+**27**. Personnels Handicapés des ateliers protégés A7
 
-**25**. Ouvriers et techniciens de la production cinématographique et de l'audiovisuel A8
+**28**. Ouvriers et techniciens de la production cinématographique et de l'audiovisuel A8
 
-**26**. Artistes du spectacle et techniciens des entreprises du spectacle A10
+**29**. Artistes du spectacle et techniciens des entreprises du spectacle A10
 
-**27**. Employés de maison, assistantes maternelles au service de particuliers, employés au pair A11
+**30.** Employés de maison, assistantes maternelles au service de particuliers, employés au pair A11
 
-**28**. Anciens titulaires d'un contrat de travail à durée déterminée ayant obtenu une prise en charge des dépenses afférentes au titre d'un congé individuel de formation
+**31.** Anciens titulaires d'un contrat de travail à durée déterminée ayant obtenu une prise en charge des dépenses afférentes au titre d'un congé individuel de formation
 
-**29**. Salariés qui, au regard de la législation de Sécurité Sociale, cotisent sur une base forfaitaire A13
+**32.** Salariés qui, au regard de la législation de Sécurité Sociale, cotisent sur une base forfaitaire A13
 
-**30**. Soudeurs de pipe-lines et catégories assimilées D15
+**33**. Soudeurs de pipe-lines et catégories assimilées D15
 
-**31**. Détenus libérés à l'issue d'une période minimale de détention Art L 351-9 du CT
+**34**. Détenus libérés à l'issue d'une période minimale de détention Art L 351-9 du CT
 
-**32**. Certaines catégories de personnes en attente de réinsertion ou en instance de reclassement Art L 351-9 du CT
+**35**. Certaines catégories de personnes en attente de réinsertion ou en instance de reclassement Art L 351-9 du CT
 
-**33**. Rapatriés, apatrides, ressortissants étrangers titulaires de la carte de réfugié résidant régulièrement en France et ressortissants étrangers ayant demandé l'asile en France Art R 351-10 du CT
+**36**. Rapatriés, apatrides, ressortissants étrangers titulaires de la carte de réfugié résidant régulièrement en France et ressortissants étrangers ayant demandé l'asile en France Art R 351-10 du CT
 
-**34**. Expatriés non couverts par le RAC et justifiant d'une durée de travail de 182 jours au cours des 12 mois précédant leur FCT Art R 351-10 du CT
+**37**. Expatriés non couverts par le RAC et justifiant d'une durée de travail de 182 jours au cours des 12 mois précédant leur FCT Art R 351-10 du CT
 
-**35**. Salariés victimes d'AT ou de maladies professionnelles Art R 351-10 du CT
+**38**. Salariés victimes d'AT ou de maladies professionnelles Art R 351-10 du CT
 
-**36**. Marins pêcheurs embarqués sur des bateaux remplissant certaines conditions, ouvriers du CT dockers occasionnels, artistes non salariés Art L 351-13
+**39**. Marins pêcheurs embarqués sur des bateaux remplissant certaines conditions, ouvriers du CT dockers occasionnels, artistes non salariés Art L 351-13
 
-**37**. Salariés détachés, expatriés, frontaliers et assimilés A9
+**40.** Salariés détachés, expatriés, frontaliers et assimilés A9
 
-**38**. Salariés licenciés en cours de congé individuel de formation A14
+**41.** Salariés licenciés en cours de congé individuel de formation A14
 
-**39**. Convention "sidérurgie" (garantie de ressources)
-
-**40**. Ressortissants étrangers admis au séjour au titre de L 316-1 (victimes de la traite des êtres humains)
-
-**41**. Entrée et Séjour Étrangers et Droit Asile au titre de L.811-1
-
-**42**. Entrée et Séjour Étrangers et Droit Asile au titre de L.712-1
+**42.** Convention "sidérurgie" (garantie de ressources)
 
 **43**. Ressortissants étrangers admis au séjour au titre de L 316-1 (victimes de la traite des êtres humains)
 

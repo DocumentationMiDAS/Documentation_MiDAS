@@ -9,7 +9,7 @@ Les codes allocations disponibles et classés dans cette documentation sont les 
 ## Régime d'Assurance-Chômage
 
 | Groupe allocation | N°  |                                    Nom allocation                                     | Codes allocations FNA                                           |
-|:----------------:|:----------------:|:----------------:|------------------|
+|:-----------------:|:---:|:-------------------------------------------------------------------------------------:|-----------------------------------------------------------------|
 |        ARE        |  1  |                 Allocation d'aide au retour à l'emploi (ARE)**\[1\]**                 | 01,21,22,27,40,43,47,54,64,67, 82,AC,BB,BK,CJ,DM,EF,EW,FL,GV,HF |
 |                   |  2  |              Allocation d'aide au retour à l'emploi intermittent (ARE-I)              | CN                                                              |
 |                   |  3  |                 Allocation d'aide au retour à l'emploi différé (ARED)                 | BP,CQ,HD                                                        |
@@ -51,7 +51,7 @@ Les codes allocations disponibles et classés dans cette documentation sont les 
 ## Régime Etat
 
 | Groupe allocation | N°  |                                 Nom allocation                                 | Codes allocations FNA      |
-|:----------------:|:----------------:|:----------------:|------------------|
+|:-----------------:|:---:|:------------------------------------------------------------------------------:|----------------------------|
 |        ASS        | 34  |                   Allocation de solidarité spécifique (ASS)                    | 25,30,44,56,BD             |
 |                   | 35  |             Allocation de solidarité spécifique formation (ASS-F)              | 51                         |
 |        ATA        | 36  |                          Allocation d'insertion (AI)                           | 24                         |
@@ -74,7 +74,7 @@ Les codes allocations disponibles et classés dans cette documentation sont les 
 ## Régime France Travail
 
 | Groupe allocation | N°  |                                  Nom allocation                                  | Codes allocations FNA                      |
-|:----------------:|:----------------:|:----------------:|------------------|
+|:-----------------:|:---:|:--------------------------------------------------------------------------------:|--------------------------------------------|
 |      ARE-CG       | 52  |      Allocation d'aide au retour à l'emploi convention de gestion (ARE-CG)       | AE,BH,BM,CL,DO,EI,EY,FN,GY                 |
 |                   | 53  | Allocation d'aide au retour à l'emploi formation convention de gestion (AREF-CG) | AF,BI,BO,CM,DR,EM,EZ,FQ,HA                 |
 |       RFPE        | 54  |                    Rémunération formation Pôle emploi (RFPE)                     | 81                                         |
