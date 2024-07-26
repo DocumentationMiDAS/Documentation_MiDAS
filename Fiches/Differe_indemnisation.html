@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Allocations agrégées et régimes d’indemnisation – Documentation MiDAS</title>
+<title>Différé d’indemnisation – Documentation MiDAS</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -131,7 +165,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Fiches/Allocations_regimes.html">Allocations agrégées et régimes d’indemnisation</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Fiches/Differe_indemnisation.html">Différé d’indemnisation</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -157,7 +191,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Fiches/Allocations_regimes.html" class="sidebar-item-text sidebar-link active">
+  <a href="../Fiches/Allocations_regimes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Allocations agrégées et régimes d’indemnisation</span></a>
   </div>
 </li>
@@ -169,7 +203,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Fiches/Differe_indemnisation.html" class="sidebar-item-text sidebar-link">
+  <a href="../Fiches/Differe_indemnisation.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Différé d’indemnisation</span></a>
   </div>
 </li>
@@ -183,9 +217,17 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#régime-dassurance-chômage" id="toc-régime-dassurance-chômage" class="nav-link active" data-scroll-target="#régime-dassurance-chômage">Régime d’Assurance-Chômage</a></li>
-  <li><a href="#régime-etat" id="toc-régime-etat" class="nav-link" data-scroll-target="#régime-etat">Régime Etat</a></li>
-  <li><a href="#régime-france-travail" id="toc-régime-france-travail" class="nav-link" data-scroll-target="#régime-france-travail">Régime France Travail</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#lentrée-à-lassurance-chômage" id="toc-lentrée-à-lassurance-chômage" class="nav-link" data-scroll-target="#lentrée-à-lassurance-chômage">L’entrée à l’Assurance-chômage</a></li>
+  <li><a href="#les-différés-dindemnisation-à-louverture-de-droit" id="toc-les-différés-dindemnisation-à-louverture-de-droit" class="nav-link" data-scroll-target="#les-différés-dindemnisation-à-louverture-de-droit">Les différés d’indemnisation à l’ouverture de droit</a>
+  <ul class="collapse">
+  <li><a href="#le-différé-spécifique" id="toc-le-différé-spécifique" class="nav-link" data-scroll-target="#le-différé-spécifique">Le différé spécifique</a></li>
+  <li><a href="#le-différé-congés-payés" id="toc-le-différé-congés-payés" class="nav-link" data-scroll-target="#le-différé-congés-payés">Le différé congés payés</a></li>
+  <li><a href="#le-délai-dattente" id="toc-le-délai-dattente" class="nav-link" data-scroll-target="#le-délai-dattente">Le délai d’attente</a></li>
+  </ul></li>
+  <li><a href="#a-la-reprise-de-droit" id="toc-a-la-reprise-de-droit" class="nav-link" data-scroll-target="#a-la-reprise-de-droit">A la reprise de droit</a></li>
+  <li><a href="#lors-dun-rechargement" id="toc-lors-dun-rechargement" class="nav-link" data-scroll-target="#lors-dun-rechargement">Lors d’un rechargement</a></li>
+  <li><a href="#glossaire-de-lindemnisation" id="toc-glossaire-de-lindemnisation" class="nav-link" data-scroll-target="#glossaire-de-lindemnisation">Glossaire de l’indemnisation</a></li>
   </ul>
 </nav>
     </div>
@@ -194,7 +236,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Allocations agrégées et régimes d’indemnisation</h1>
+<h1 class="title">Différé d’indemnisation</h1>
 </div>
 
 
@@ -211,452 +253,98 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Date de mise à jour : décembre 2023</p>
-<p>Les codes allocations disponibles et classés dans cette documentation sont les derniers disponibles. L’ajout de nouveaux dispositifs d’indemnisation et la modification des conventions d’Assurance-chômage peut entraîner l’apparition dans les données de nouveaux codes allocation, qui seront mis en ligne dès que possible.</p>
-<section id="régime-dassurance-chômage" class="level2">
-<h2 class="anchored" data-anchor-id="régime-dassurance-chômage">Régime d’Assurance-Chômage</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 10%">
-<col style="width: 2%">
-<col style="width: 49%">
-<col style="width: 36%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;">Groupe allocation</th>
-<th style="text-align: center;">N°</th>
-<th style="text-align: center;">Nom allocation</th>
-<th>Codes allocations FNA</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">ARE</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">Allocation d’aide au retour à l’emploi (ARE)<strong>[1]</strong></td>
-<td>01,21,22,27,40,43,47,54,64,67, 82,AC,BB,BK,CJ,DM,EF,EW,FL,GV,HF</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"></td>
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">Allocation d’aide au retour à l’emploi intermittent (ARE-I)</td>
-<td>CN</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"></td>
-<td style="text-align: center;">3</td>
-<td style="text-align: center;">Allocation d’aide au retour à l’emploi différé (ARED)</td>
-<td>BP,CQ,HD</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">AREF</td>
-<td style="text-align: center;">4</td>
-<td style="text-align: center;">Allocation d’aide au retour à l’emploi formation (AREF)<strong>[2]</strong></td>
-<td>33,34,35,48,49,55,65,83,AD,BC, BN,CK,DQ,EL,EX,FO,GZ,HG</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"></td>
-<td style="text-align: center;">5</td>
-<td style="text-align: center;">Allocation d’aide au retour à l’emploi formation intermittent (AREF-I)</td>
-<td>CO</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"></td>
-<td style="text-align: center;">6</td>
-<td style="text-align: center;">Allocation d’aide au retour à l’emploi formation différé (AREF-D)</td>
-<td>BQ,CR,HE</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">ARER</td>
-<td style="text-align: center;">7</td>
-<td style="text-align: center;">Allocation d’aide au retour à l’emploi de rattrapage (ARER)</td>
-<td>FM</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"></td>
-<td style="text-align: center;">8</td>
-<td style="text-align: center;">Allocation d’aide au retour à l’emploi de rattrapage intermittent (ARER-I)</td>
-<td>CT,DT,EN</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"></td>
-<td style="text-align: center;">9</td>
-<td style="text-align: center;">Allocation d’aide au retour à l’emploi de rattrapage formation intermittent (ARER-FI)</td>
-<td>CU,DU,EO</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"></td>
-<td style="text-align: center;">10</td>
-<td style="text-align: center;">Allocation d’aide au retour à l’emploi formation de rattrapage (AREFR)</td>
-<td>FP</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">ATI</td>
-<td style="text-align: center;">11</td>
-<td style="text-align: center;">Allocation des travailleurs indépendants (ATI)</td>
-<td>EA,GI</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"></td>
-<td style="text-align: center;">12</td>
-<td style="text-align: center;">Allocation des travailleurs indépendants formation (ATIF)</td>
-<td>EB,GJ</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">ADM</td>
-<td style="text-align: center;">13</td>
-<td style="text-align: center;">Allocation des démissionnaires (ADM)</td>
-<td>EC,GS</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"></td>
-<td style="text-align: center;">14</td>
-<td style="text-align: center;">Allocation des démissionnaires formation (ADM-F)</td>
-<td>EP,GT</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">ASP</td>
-<td style="text-align: center;">15</td>
-<td style="text-align: center;">Allocation de sécurisation professionnelle (ASP)</td>
-<td>AM,AO,AQ,BU,BV,BW,BX,BY,FR,FS, FT,FU,FV,FW,FX</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"></td>
-<td style="text-align: center;">16</td>
-<td style="text-align: center;">Allocation de sécurisation professionnelle formation (ASP-F)</td>
-<td>AN,AP,AR,BZ,CA,CB,CC,GC,GD,GE, GF,GG,GH</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"></td>
-<td style="text-align: center;">17</td>
-<td style="text-align: center;">Allocation de sécurisation professionnelle ARE (ASP-ARE)</td>
-<td>AK,GK</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"></td>
-<td style="text-align: center;">18</td>
-<td style="text-align: center;">Allocation de sécurisation professionnelle AREF (ASP-AREF)</td>
-<td>AL,GL</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"></td>
-<td style="text-align: center;">19</td>
-<td style="text-align: center;">Indemnité différentielle de reclassement CSP (IDR-CSP)</td>
-<td>AS,CD</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"></td>
-<td style="text-align: center;">20</td>
-<td style="text-align: center;">Allocation spécifique de reclassement (ASR)</td>
-<td>61</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"></td>
-<td style="text-align: center;">21</td>
-<td style="text-align: center;">Allocation spécifique de reclassement formation (ASRF)</td>
-<td>84</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"></td>
-<td style="text-align: center;">22</td>
-<td style="text-align: center;">Allocation spécifique de reclassement ARE (ASR-ARE)</td>
-<td>62</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"></td>
-<td style="text-align: center;">23</td>
-<td style="text-align: center;">Allocation spécifique de reclassement AREF (ASR-AREF)</td>
-<td>85</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">ATP</td>
-<td style="text-align: center;">24</td>
-<td style="text-align: center;">Allocation de transition professionnelle (ATP)</td>
-<td>70,88,91</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">ADR</td>
-<td style="text-align: center;">25</td>
-<td style="text-align: center;">Aide différentielle de reclassement (ADR)</td>
-<td>66,86,AG</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">ARCE</td>
-<td style="text-align: center;">26</td>
-<td style="text-align: center;">Aide à la reprise ou à la création d’entreprise (ARCE)</td>
-<td>68,87,AH,AZ,ED,EH,GX</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"></td>
-<td style="text-align: center;">27</td>
-<td style="text-align: center;">Aide à la reprise ou à la création d’entreprise intermittent (ARCE-I)</td>
-<td>CP</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">DC</td>
-<td style="text-align: center;">28</td>
-<td style="text-align: center;">Allocation décès (DC)</td>
-<td>AW,BL,CS,CV,DN,EG,GW</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">AFPS</td>
-<td style="text-align: center;">29</td>
-<td style="text-align: center;">Allocation du fonds spécifique provisoire (AFPS)</td>
-<td>57</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">AFPSF</td>
-<td style="text-align: center;">30</td>
-<td style="text-align: center;">Allocation du fonds spécifique provisoire formation (AFPSF)</td>
-<td>58</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">AFT</td>
-<td style="text-align: center;">31</td>
-<td style="text-align: center;">Allocation du fonds transitoire (AFT)</td>
-<td>59</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">AFTF</td>
-<td style="text-align: center;">32</td>
-<td style="text-align: center;">Allocation du fonds transitoire formation (AFTF)</td>
-<td>60</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">AFD-RAC</td>
-<td style="text-align: center;">33</td>
-<td style="text-align: center;">Allocation de fin de droit (AFD-RAC)</td>
-<td>23,28,31,32</td>
-</tr>
-</tbody>
-</table>
-<p><strong>[1]</strong> Inclut l’AUD (Allocation unique dégressive) et l’ACA (Allocation chômeur âgé).</p>
-<p><strong>[2]</strong> Inclut l’AFR (Allocation de formation reclassement).</p>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>Cet article présente les différents concepts liés aux différés d’indemnisation en début de droit et une méthodologie pour mesure ces concepts dans les données du Fichier National des Allocataire (FNA) de MiDAS.</p>
 </section>
-<section id="régime-etat" class="level2">
-<h2 class="anchored" data-anchor-id="régime-etat">Régime Etat</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 14%">
-<col style="width: 3%">
-<col style="width: 60%">
-<col style="width: 21%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;">Groupe allocation</th>
-<th style="text-align: center;">N°</th>
-<th style="text-align: center;">Nom allocation</th>
-<th>Codes allocations FNA</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">ASS</td>
-<td style="text-align: center;">34</td>
-<td style="text-align: center;">Allocation de solidarité spécifique (ASS)</td>
-<td>25,30,44,56,BD</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"></td>
-<td style="text-align: center;">35</td>
-<td style="text-align: center;">Allocation de solidarité spécifique formation (ASS-F)</td>
-<td>51</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">ATA</td>
-<td style="text-align: center;">36</td>
-<td style="text-align: center;">Allocation d’insertion (AI)</td>
-<td>24</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"></td>
-<td style="text-align: center;">37</td>
-<td style="text-align: center;">Allocation temporaire d’attente (ATA)</td>
-<td>73,74,90</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">ATS</td>
-<td style="text-align: center;">38</td>
-<td style="text-align: center;">Allocation équivalent retraite (AER)</td>
-<td>52,53,93,94,97,98</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"></td>
-<td style="text-align: center;">39</td>
-<td style="text-align: center;">Allocation transitoire de solidarité (ATS)</td>
-<td>AT,AV,BE,BF,BS,BT</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">AF</td>
-<td style="text-align: center;">40</td>
-<td style="text-align: center;">Allocation forfaitaire (AF)</td>
-<td>4,63</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">AFPS</td>
-<td style="text-align: center;">41</td>
-<td style="text-align: center;">Allocation de professionnalisation et de solidarité (APS)</td>
-<td>71,75,DV</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"></td>
-<td style="text-align: center;">42</td>
-<td style="text-align: center;">Allocation du Fonds de professionnalisation et de solidarité formation (APS-F)</td>
-<td>72,76,DX</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"></td>
-<td style="text-align: center;">43</td>
-<td style="text-align: center;">Allocation de fin de droits (AFD)</td>
-<td>77,DW</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"></td>
-<td style="text-align: center;">44</td>
-<td style="text-align: center;">Allocation de fin de droits formation (AFD-F)</td>
-<td>78,DY</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">AEPE</td>
-<td style="text-align: center;">45</td>
-<td style="text-align: center;">Allocation exceptionnelle de retour à l’emploi (AEPE)</td>
-<td>96</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">RFF</td>
-<td style="text-align: center;">46</td>
-<td style="text-align: center;">Rémunération de fin de formation (RFF)[1]</td>
-<td>99,AY,BG,BJ,BR,CI,CX,DZ,EE</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">RSP</td>
-<td style="text-align: center;">47</td>
-<td style="text-align: center;">Rémunération des stagiaires du régime public (RSP)</td>
-<td>39</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">AFDEF</td>
-<td style="text-align: center;">48</td>
-<td style="text-align: center;">Allocation en faveur des demandeurs d’emploi en formation (AFDEF)</td>
-<td>92,95</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">ASC</td>
-<td style="text-align: center;">49</td>
-<td style="text-align: center;">Allocation spécifique de conversion (ASC)</td>
-<td>29</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">AFF</td>
-<td style="text-align: center;">50</td>
-<td style="text-align: center;">Allocation de fin de formation (AFF)</td>
-<td>41,50</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">ACCRE-ASS</td>
-<td style="text-align: center;">51</td>
-<td style="text-align: center;">Aide aux chômeurs créateurs d’entreprise (ACCRE-ASS)</td>
-<td>45</td>
-</tr>
-</tbody>
-</table>
+<section id="lentrée-à-lassurance-chômage" class="level1">
+<h1>L’entrée à l’Assurance-chômage</h1>
+<p>Lorsque la demande d’allocation d’un demandeur d’emploi est acceptée, elle donne lieu à l’ouverture de droit à l’Assurance-chômage. La date d’ouverture de droit n’est pas disponible directement dans les données du FNA et doit être calculée à l’aide de la table PJC. La date d’ouverture de droit correspond à la date de début de la première période à justification constante (PJC) de ce droit. Un droit est repéré par le couple identifiant <code>id_midas</code>, <code>KROD3</code> (pour la table PJC) ou <code>KROD1</code> (pour les tables ODD et DAL, ce sont les mêmes variables dans les trois tables).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ouverture_droit <span class="ot">&lt;-</span> PJC <span class="sc">%&gt;%</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id_midas, KROD3, KDDPJ) <span class="sc">%&gt;%</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id_midas, KROD3) <span class="sc">%&gt;%</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">date_ouv_droit =</span> <span class="fu">min</span>(KDDPJ)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>La date d’ouverture de droit est majoritairement différente de la date du premier jour indemnisé renseignée dans <code>KDPOD</code> de la table ODD, du fait de la période de différé d’indemnisation de début de droit.</p>
 </section>
-<section id="régime-france-travail" class="level2">
-<h2 class="anchored" data-anchor-id="régime-france-travail">Régime France Travail</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 12%">
-<col style="width: 3%">
-<col style="width: 54%">
-<col style="width: 29%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;">Groupe allocation</th>
-<th style="text-align: center;">N°</th>
-<th style="text-align: center;">Nom allocation</th>
-<th>Codes allocations FNA</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">ARE-CG</td>
-<td style="text-align: center;">52</td>
-<td style="text-align: center;">Allocation d’aide au retour à l’emploi convention de gestion (ARE-CG)</td>
-<td>AE,BH,BM,CL,DO,EI,EY,FN,GY</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"></td>
-<td style="text-align: center;">53</td>
-<td style="text-align: center;">Allocation d’aide au retour à l’emploi formation convention de gestion (AREF-CG)</td>
-<td>AF,BI,BO,CM,DR,EM,EZ,FQ,HA</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">RFPE</td>
-<td style="text-align: center;">54</td>
-<td style="text-align: center;">Rémunération formation Pôle emploi (RFPE)</td>
-<td>81</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">RFF</td>
-<td style="text-align: center;">55</td>
-<td style="text-align: center;">Rémunération de fin de formation (RFF)<strong>[3]</strong></td>
-<td>EQ,ER,FH,GU,HH</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">ASFNE</td>
-<td style="text-align: center;">56</td>
-<td style="text-align: center;">Pré-retraite (ASFNE<strong>[4]</strong>)</td>
-<td>0C,0E,15</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">PRP</td>
-<td style="text-align: center;">57</td>
-<td style="text-align: center;">Pré-retraite progressive (PRP)</td>
-<td>11,17,18</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">ACO</td>
-<td style="text-align: center;">58</td>
-<td style="text-align: center;">Allocation complémentaire (ACO)</td>
-<td>26</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">ARPE</td>
-<td style="text-align: center;">59</td>
-<td style="text-align: center;">Allocation de remplacement pour l’emploi (ARPE)</td>
-<td>42</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">AAP</td>
-<td style="text-align: center;">60</td>
-<td style="text-align: center;">Allocation d’accompagnement personnalisé (AAP)</td>
-<td>CY,CZ,DA,DB,DC,DD,DE,DF,DG,DH,DI, DJ,DK,DL</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">ADR-CG</td>
-<td style="text-align: center;">61</td>
-<td style="text-align: center;">Aide différentielle de reclassement convention de gestion (ADR-CG)</td>
-<td>AI</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">ARCE-CG</td>
-<td style="text-align: center;">62</td>
-<td style="text-align: center;">Aide à la reprise ou à la création d’entreprise convention de gestion (ARCE-CG)</td>
-<td>AJ,BA,DS,EK,HC</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">DC-CG</td>
-<td style="text-align: center;">63</td>
-<td style="text-align: center;">Allocation décès convention de gestion (DC-CG)</td>
-<td>DP,EJ,HB</td>
-</tr>
-</tbody>
-</table>
-<p><strong>[3]</strong> Appartient au régime État jusqu’en 2019 et au régime France Travail à partir de 2020.</p>
-<p><strong>[4]</strong> Allocation conventionnelle du Fonds national de l’emploi.</p>
+<section id="les-différés-dindemnisation-à-louverture-de-droit" class="level1">
+<h1>Les différés d’indemnisation à l’ouverture de droit</h1>
+<p>Dans la grande majorité des cas, le versement des allocations ne débute pas à compter de l’ouverture de droit du fait des différés d’indemnisation. Trois types de différés s’appliquent : le différé spécifique lié aux indemnités supralégales de rupture de contrat de travail (ISLR), le différé lié aux indemnités compensatrices de congés payés (ICCP) non pris avant la fin d’un contrat et le délai d’attente.</p>
+<section id="le-différé-spécifique" class="level2">
+<h2 class="anchored" data-anchor-id="le-différé-spécifique">Le différé spécifique</h2>
+<p>Le différé spécifique est le différé lié aux indemnités supra légales de rupture de contrat (ISLR). Il commence à compter de la fin de chaque contrat de travail à l’occasion de laquelle ont été versées des indemnités de rupture. La durée de ce différé correspond au montant des indemnités supra légales liées à la rupture du contrat de travail divisé par un seuil qui dépend du plafond annuel du régime d’assurance vieillesse de la sécurité sociale (95,8 en 2022 et 107,9 en 2024). Cette durée est plafonnée :</p>
+<ul>
+<li><p>à 75 jours (2,5 mois) calendaires en cas de rupture du contrat de travail pour motif économique</p></li>
+<li><p>à 150 jours (5 mois) pour les autres motifs de rupture.</p></li>
+</ul>
+<p>La durée de différé spécifique associée à un droit peut être recalculée à partir du montant des ISLR retenues pour le calcul de ce différé spécifique, renseigné dans la table ODD du FNA (<code>KQISLP</code>).</p>
+<p>Pour recalculer la durée du différé spécifique, il est nécessaire de connaître le motif de fin du contrat fait générateur de l’ouverture de droit disponible dans la table CDT du FNA (<code>KCMCA</code>). Les modalités de cette variable sont regroupées pour correspondre aux différents plafonds de différé spécifique.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>date_debut <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2022-01-01"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>date_fin <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2022-12-31"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>coeff_annee <span class="ot">&lt;-</span> <span class="fl">95.8</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>INSERER KCMCA CREATION PASSE PRO SUR CDT </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>date_ouvertures_droit <span class="ot">&lt;-</span> PJC <span class="sc">%&gt;%</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id_midas, KROD3, KDDPJ) <span class="sc">%&gt;%</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">KDDPJ =</span> <span class="fu">as.Date</span>(KDDPJ)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id_midas, KROD3) <span class="sc">%&gt;%</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">date_ouv_droit =</span> <span class="fu">min</span>(KDDPJ)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(date_ouv_droit <span class="sc">&lt;=</span> date_fin <span class="sc">&amp;</span> date_ouv_droit <span class="sc">&gt;=</span> date_debut) <span class="sc">%&gt;%</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">KROD1 =</span> KROD3) <span class="sc">%&gt;%</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(ODD, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"id_midas"</span>, <span class="st">"KROD1"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas, KROD1, date_ouv_droit, KQISLP)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>fait_generateur <span class="ot">&lt;-</span> DAL <span class="sc">%&gt;%</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">right_join</span>(date_ouvertures_droit, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"id_midas"</span>, <span class="st">"KROD1"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(KNCDDA <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> KCNDDA <span class="sc">==</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas, KROD1, KCDA, date_ouv_droit, KQISLP) <span class="sc">%&gt;%</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">KCDA1 =</span> KCDA) <span class="sc">%&gt;%</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(CDT, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"id_midas"</span>, <span class="st">"KCDA1"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas, KROD1, KDFPE, date_ouv_droit, KQISLP, passe_pro) <span class="sc">%&gt;%</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">KDFPE =</span> <span class="fu">as.Date</span>(KDFPE))</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>calcul_differe_specifique <span class="ot">&lt;-</span> fait_generateur <span class="sc">%&gt;%</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">duree_differe_specifique =</span> <span class="fu">case_when</span>(passe_pro <span class="sc">==</span> <span class="st">"licenciement_eco"</span> <span class="sc">~</span> <span class="fu">min</span>(KQISLP<span class="sc">/</span>coeff_annee, <span class="dv">75</span>)</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>                                              passe_pro <span class="sc">==</span> <span class="st">"licenciement_autres"</span> <span class="sc">~</span> <span class="fu">min</span>(KQISLP<span class="sc">/</span>coeff_annee, <span class="dv">150</span>),</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>                                              <span class="cn">TRUE</span> <span class="sc">~</span> <span class="fu">min</span>(KQISLP<span class="sc">/</span>coeff_annee, <span class="dv">150</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="le-différé-congés-payés" class="level2">
+<h2 class="anchored" data-anchor-id="le-différé-congés-payés">Le différé congés payés</h2>
+<p>Le différé lié aux ICCP prend en compte l’ensemble des ICCP liées aux fins de contrat des 182 jours précédant l’ouverture de droit. Ce différé commence à la fin du contrat de travail générant l’ouverture de droit à l’Assurance-chômage et ne peut pas excéder 30 jours.</p>
+<p>La durée de ce différé correspond aux ICCP divisées par le salaire journalier de référence (SJR) de l’allocataire.</p>
+<p>Elle peut être calculée à partir de la variable des ICCP retenues pour le calcul de ce différé (<code>KQICCP</code>) et du SJR à l’ouverture de droit (<code>KQCSJP</code>) de la table ODD du FNA.</p>
+</section>
+<section id="le-délai-dattente" class="level2">
+<h2 class="anchored" data-anchor-id="le-délai-dattente">Le délai d’attente</h2>
+</section>
+</section>
+<section id="a-la-reprise-de-droit" class="level1">
+<h1>A la reprise de droit</h1>
+</section>
+<section id="lors-dun-rechargement" class="level1">
+<h1>Lors d’un rechargement</h1>
+</section>
+<section id="glossaire-de-lindemnisation" class="level1">
+<h1>Glossaire de l’indemnisation</h1>
+<p>Ce glossaire est tiré du <a href="https://dares.travail-emploi.gouv.fr/publication/indemnisation-des-demandeurs-demploi-en-2022#:~:text=L'allocation%20journali%C3%A8re%20est%20calcul%C3%A9e,%C3%A0%20partir%20de%20juillet%202022.">bilan indemnisation 2022</a> publié par la Dares.</p>
+<ul>
+<li><p><strong>Entree à l’Assurance-chômage :</strong> une entrée à l’Assurance-chômage a lieu lorsqu’un demandeur d’emploi devient indemnisable, à la suite d’une perte d’emploi (ouverture de droit), ou d’une interruption (pour maladie par exemple) ou d’une ouverture de nouveaux droits.</p></li>
+<li><p><strong>Durée maximale d’indemnisation :</strong> la durée maximale d’indemnisation, ou durée du droit, correspond au nombre de jours d’indemnisation auquel donnent droit les périodes d’affiliation qui ont été liquidées.</p></li>
+<li><p><strong>Indemnisable à l’Assurance-chômage :</strong> une personne est dite “indemnisable” ou “couverte par une allocation” ou “a des droits ouverts à cette allocation”, si elle a déposé une demande d’allocation qui a été acceptée.</p></li>
+<li><p><strong>Indemnisable en fin de mois :</strong> indemnisable le dernier jour de ce mois.</p></li>
+<li><p><strong>Indemnisabilité continue :</strong> une personne est continûment indemnisable un mois donné lorsque qu’elle est indemnisable tous les jours de ce mois, même si elle a changé d’allocation au cours du mois.</p></li>
+<li><p><strong>Indemnisé :</strong> une personne est indemnisée par une allocation un mois donné si elle perçoit effectivement une allocation ce mois-ci. Dans certaines situations (activité réduite, différé ou délai d’attente, sanction), une personne peut être indemnisable un mois donné mais non indemnisée.</p></li>
+<li><p><strong>Période à Justification Constante (PJC) :</strong> c’est une période pendant laquelle le montant versé est constant. Elle est donc définie par une date de début, une date de fin et un montant fixe d’allocation journalière versée. Une période à justification constante peut correspondre à un montant d’allocation journalière de 0 : l’allocataire est dit indemnisable non indemnisé. Il est pris en charge par l’Assurance-chômage mais aucune allocation ne lui est versée pour plusieurs motifs : atteinte du plafond de cumul d’activité réduite, prise en charge temporaire par la Sécurité Sociale, période de différé d’indemnisation…</p></li>
+<li><p><strong>Durée consommée de droit :</strong> la durée consommée sur le droit est définie comme le cumul des jours déjà indemnisés au titre de ce droit à une date donnée. Elle ne peut être supérieure à la durée maximale d’indemnisation.</p></li>
+<li><p><strong>Sortie de l’Assurance-chômage :</strong> une sortie de l’Assurance-chômage correspond à une interruption d’un droit d’au moins un jour ou à une fin de droits. Lorsqu’une personne cesse de percevoir une allocation, mais que le droit reste ouvert (pratique d’une activité réduite par exemple), elle ne sort pas de l’Assurance-chômage.</p></li>
+</ul>
 
 
 </section>
