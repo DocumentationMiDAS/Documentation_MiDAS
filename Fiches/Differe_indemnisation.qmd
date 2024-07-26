@@ -1,0 +1,116 @@
+---
+title: "Différé d'indemnisation"
+---
+
+# Introduction
+
+Cet article présente les différents concepts liés aux différés d'indemnisation en début de droit et une méthodologie pour mesure ces concepts dans les données du Fichier National des Allocataire (FNA) de MiDAS.
+
+# L'entrée à l'Assurance-chômage
+
+Lorsque la demande d'allocation d'un demandeur d'emploi est acceptée, elle donne lieu à l'ouverture de droit à l'Assurance-chômage. La date d'ouverture de droit n'est pas disponible directement dans les données du FNA et doit être calculée à l'aide de la table PJC. La date d'ouverture de droit correspond à la date de début de la première période à justification constante (PJC) de ce droit. Un droit est repéré par le couple identifiant `id_midas`, `KROD3` (pour la table PJC) ou `KROD1` (pour les tables ODD et DAL, ce sont les mêmes variables dans les trois tables).
+
+```{r}
+#| eval: false
+#| echo: true
+
+ouverture_droit <- PJC %>%
+  select(id_midas, KROD3, KDDPJ) %>%
+  group_by(id_midas, KROD3) %>%
+  summarise(date_ouv_droit = min(KDDPJ)) %>%
+  ungroup()
+```
+
+La date d'ouverture de droit est majoritairement différente de la date du premier jour indemnisé renseignée dans `KDPOD` de la table ODD, du fait de la période de différé d'indemnisation de début de droit.
+
+# Les différés d'indemnisation à l'ouverture de droit
+
+Dans la grande majorité des cas, le versement des allocations ne débute pas à compter de l'ouverture de droit du fait des différés d'indemnisation. Trois types de différés s'appliquent : le différé spécifique lié aux indemnités supralégales de rupture de contrat de travail (ISLR), le différé lié aux indemnités compensatrices de congés payés (ICCP) non pris avant la fin d'un contrat et le délai d'attente.
+
+## Le différé spécifique
+
+Le différé spécifique est le différé lié aux indemnités supra légales de rupture de contrat (ISLR). Il commence à compter de la fin de chaque contrat de travail à l'occasion de laquelle ont été versées des indemnités de rupture. La durée de ce différé correspond au montant des indemnités supra légales liées à la rupture du contrat de travail divisé par un seuil qui dépend du plafond annuel du régime d'assurance vieillesse de la sécurité sociale (95,8 en 2022 et 107,9 en 2024). Cette durée est plafonnée :
+
+-   à 75 jours (2,5 mois) calendaires en cas de rupture du contrat de travail pour motif économique
+
+-   à 150 jours (5 mois) pour les autres motifs de rupture.
+
+La durée de différé spécifique associée à un droit peut être recalculée à partir du montant des ISLR retenues pour le calcul de ce différé spécifique, renseigné dans la table ODD du FNA (`KQISLP`).
+
+Pour recalculer la durée du différé spécifique, il est nécessaire de connaître le motif de fin du contrat fait générateur de l'ouverture de droit disponible dans la table CDT du FNA (`KCMCA`). Les modalités de cette variable sont regroupées pour correspondre aux différents plafonds de différé spécifique.
+
+```{r}
+#| eval: false
+#| echo: true
+
+date_debut <- as.Date("2022-01-01")
+date_fin <- as.Date("2022-12-31")
+coeff_annee <- 95.8
+
+INSERER KCMCA CREATION PASSE PRO SUR CDT 
+
+
+date_ouvertures_droit <- PJC %>%
+  select(id_midas, KROD3, KDDPJ) %>%
+  mutate(KDDPJ = as.Date(KDDPJ)) %>%
+  group_by(id_midas, KROD3) %>%
+  summarise(date_ouv_droit = min(KDDPJ)) %>%
+  ungroup() %>%
+  filter(date_ouv_droit <= date_fin & date_ouv_droit >= date_debut) %>%
+  rename(KROD1 = KROD3) %>%
+  left_join(ODD, by = c("id_midas", "KROD1")) %>%
+  distinct(id_midas, KROD1, date_ouv_droit, KQISLP)
+
+fait_generateur <- DAL %>%
+  right_join(date_ouvertures_droit, by = c("id_midas", "KROD1")) %>%
+  filter(KNCDDA == 1 | KCNDDA == 3) %>%
+  distinct(id_midas, KROD1, KCDA, date_ouv_droit, KQISLP) %>%
+  rename(KCDA1 = KCDA) %>%
+  left_join(CDT, by = c("id_midas", "KCDA1")) %>%
+  distinct(id_midas, KROD1, KDFPE, date_ouv_droit, KQISLP, passe_pro) %>%
+  mutate(KDFPE = as.Date(KDFPE))
+
+calcul_differe_specifique <- fait_generateur %>%
+  mutate(duree_differe_specifique = case_when(passe_pro == "licenciement_eco" ~ min(KQISLP/coeff_annee, 75)
+                                              passe_pro == "licenciement_autres" ~ min(KQISLP/coeff_annee, 150),
+                                              TRUE ~ min(KQISLP/coeff_annee, 150)))
+
+
+
+```
+
+## Le différé congés payés
+
+Le différé lié aux ICCP prend en compte l'ensemble des ICCP liées aux fins de contrat des 182 jours précédant l'ouverture de droit. Ce différé commence à la fin du contrat de travail générant l'ouverture de droit à l'Assurance-chômage et ne peut pas excéder 30 jours.
+
+La durée de ce différé correspond aux ICCP divisées par le salaire journalier de référence (SJR) de l'allocataire.
+
+Elle peut être calculée à partir de la variable des ICCP retenues pour le calcul de ce différé (`KQICCP`) et du SJR à l'ouverture de droit (`KQCSJP`) de la table ODD du FNA.
+
+## Le délai d'attente
+
+# A la reprise de droit
+
+# Lors d'un rechargement
+
+# Glossaire de l'indemnisation
+
+Ce glossaire est tiré du [bilan indemnisation 2022](https://dares.travail-emploi.gouv.fr/publication/indemnisation-des-demandeurs-demploi-en-2022#:~:text=L'allocation%20journali%C3%A8re%20est%20calcul%C3%A9e,%C3%A0%20partir%20de%20juillet%202022.) publié par la Dares.
+
+-   **Entree à l'Assurance-chômage :** une entrée à l'Assurance-chômage a lieu lorsqu'un demandeur d'emploi devient indemnisable, à la suite d'une perte d'emploi (ouverture de droit), ou d'une interruption (pour maladie par exemple) ou d'une ouverture de nouveaux droits.
+
+-   **Durée maximale d'indemnisation :** la durée maximale d'indemnisation, ou durée du droit, correspond au nombre de jours d'indemnisation auquel donnent droit les périodes d'affiliation qui ont été liquidées.
+
+-   **Indemnisable à l'Assurance-chômage :** une personne est dite "indemnisable" ou "couverte par une allocation" ou "a des droits ouverts à cette allocation", si elle a déposé une demande d'allocation qui a été acceptée.
+
+-   **Indemnisable en fin de mois :** indemnisable le dernier jour de ce mois.
+
+-   **Indemnisabilité continue :** une personne est continûment indemnisable un mois donné lorsque qu'elle est indemnisable tous les jours de ce mois, même si elle a changé d'allocation au cours du mois.
+
+-   **Indemnisé :** une personne est indemnisée par une allocation un mois donné si elle perçoit effectivement une allocation ce mois-ci. Dans certaines situations (activité réduite, différé ou délai d'attente, sanction), une personne peut être indemnisable un mois donné mais non indemnisée.
+
+-   **Période à Justification Constante (PJC) :** c'est une période pendant laquelle le montant versé est constant. Elle est donc définie par une date de début, une date de fin et un montant fixe d'allocation journalière versée. Une période à justification constante peut correspondre à un montant d'allocation journalière de 0 : l'allocataire est dit indemnisable non indemnisé. Il est pris en charge par l'Assurance-chômage mais aucune allocation ne lui est versée pour plusieurs motifs : atteinte du plafond de cumul d'activité réduite, prise en charge temporaire par la Sécurité Sociale, période de différé d'indemnisation...
+
+-   **Durée consommée de droit :** la durée consommée sur le droit est définie comme le cumul des jours déjà indemnisés au titre de ce droit à une date donnée. Elle ne peut être supérieure à la durée maximale d'indemnisation.
+
+-   **Sortie de l'Assurance-chômage :** une sortie de l'Assurance-chômage correspond à une interruption d'un droit d'au moins un jour ou à une fin de droits. Lorsqu'une personne cesse de percevoir une allocation, mais que le droit reste ouvert (pratique d'une activité réduite par exemple), elle ne sort pas de l'Assurance-chômage.

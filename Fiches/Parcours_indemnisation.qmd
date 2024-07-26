@@ -193,6 +193,8 @@ Une personne indemnisable dispose d'une PJC en cours dans la table **PJC** du FN
 ## En fin de mois 🔵
 
 ```{r}
+#| eval: false
+#| echo: true
 
 mois_fin <- as.Date("2021-01-31")
 
@@ -206,6 +208,8 @@ indemnisable_fm <- PJC %>%
 ## Tout le mois
 
 ```{r}
+#| eval: false
+#| echo: true
 
 mois_debut <- as.Date("2021-01-01")
 mois_fin <- as.Date("2021-01-31")
@@ -228,6 +232,8 @@ indemnisable_tm <- PJC %>%
 ## Au cours du mois
 
 ```{r}
+#| eval: false
+#| echo: true
 
 mois_debut <- as.Date("2021-01-01")
 mois_fin <- as.Date("2021-01-31")
@@ -269,6 +275,8 @@ Ces allocataires comptent parmi les indemnisables en fin de mois, mais parmi les
 ## En fin de mois 🔵
 
 ```{r}
+#| eval: false
+#| echo: true
 
 mois_fin <- as.Date("2021-01-31")
 
@@ -281,6 +289,8 @@ indemnisable_fm <- PJC %>%
 ## Tout le mois
 
 ```{r}
+#| eval: false
+#| echo: true
 
 mois_debut <- as.Date("2021-01-01")
 mois_fin <- as.Date("2021-01-31")
@@ -301,6 +311,8 @@ indemnisable_tm <- PJC %>%
 ## Au cours du mois
 
 ```{r}
+#| eval: false
+#| echo: true
 
 mois_debut <- as.Date("2021-01-01")
 mois_fin <- as.Date("2021-01-31")
@@ -510,6 +522,8 @@ Le repérage des rechargements suite à une fin de droit est permis par la table
 Un rechargement correspond à un nouveau couple identifiant `id_midas`, `KROD3` . Si la fin de droit est suivie de l'ouverture d'un nouveau droit associé à une demande d'allocation de type rechargement (`KCDAL = 26`) dont la décision est "ouverture de droit suite à rechargement (AC 2014)" (`KCNDDA = 10`).
 
 ```{r}
+#| eval: false
+#| echo: true
 
 date_fin_droit <- PJC %>%
   select(id_midas, KROD3, KDFPJ) %>%

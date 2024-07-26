@@ -221,6 +221,7 @@ website:
           - href: Fiches/Maintien_de_droits.qmd
           - href: Fiches/Allocations_regimes.qmd
           - href: Fiches/Parcours_indemnisation.qmd
+          - href: Fiches/Differe_indemnisation.qmd
 
     - title : "Etudes"
       style: "docked"
