@@ -47,7 +47,20 @@ date_debut <- as.Date("2022-01-01")
 date_fin <- as.Date("2022-12-31")
 coeff_annee <- 95.8
 
-INSERER KCMCA CREATION PASSE PRO SUR CDT 
+
+CDT <- CDT %>%
+  mutate(KCMCA_num = case_when(KCMCA =="XX" ~ 0,
+                               KCMCA == ""~ 0,
+                               TRUE ~ as.numeric(KCMCA))) %>% 
+  mutate(passe_pro = case_when((KCMCA_num > 10 & KCMCA_num < 15) ~ "Licenciement_eco",
+                               ((KCMCA_num >= 15 & KCMCA_num < 23) | (KCMCA_num > 27 & KCMCA_num < 30) | KCMCA_num == 25 | KCMCA_num == 38 | KCMCA_num == 50 | KCMCA_num == 57 | KCMCA_num == 91 | KCMCA_num == 95 | KCMCA_num == 80 | KCMCA_num == 85) ~ "Licenciement_autres",
+                               KCMCA_num == 40 ~ "Fin_CDD",
+                               KCMCA_num == 41 ~ "Fin_mission",
+                               ((KCMCA_num > 59 & KCMCA_num < 80) | (KCMCA_num > 99 & KCMCA_num < 176) | KCMCA_num == 87| KCMCA_num == 45 | KCMCA_num == 24)~ "Depart_volontaire",
+                               (KCMCA_num == 88 | KCMCA_num == 92) ~ "Rupture_conventionnelle",
+                               KCMCA_num == 1~ "Manquant",
+                               TRUE ~ "Autres"))
+
 
 
 date_ouvertures_droit <- PJC %>%
@@ -71,11 +84,9 @@ fait_generateur <- DAL %>%
   mutate(KDFPE = as.Date(KDFPE))
 
 calcul_differe_specifique <- fait_generateur %>%
-  mutate(duree_differe_specifique = case_when(passe_pro == "licenciement_eco" ~ min(KQISLP/coeff_annee, 75)
-                                              passe_pro == "licenciement_autres" ~ min(KQISLP/coeff_annee, 150),
+  mutate(duree_differe_specifique = case_when(passe_pro == "Licenciement_eco" ~ min(KQISLP/coeff_annee, 75)
+                                              passe_pro == "Licenciement_autres" ~ min(KQISLP/coeff_annee, 150),
                                               TRUE ~ min(KQISLP/coeff_annee, 150)))
-
-
 
 ```
 
@@ -87,11 +98,213 @@ La durée de ce différé correspond aux ICCP divisées par le salaire journalie
 
 Elle peut être calculée à partir de la variable des ICCP retenues pour le calcul de ce différé (`KQICCP`) et du SJR à l'ouverture de droit (`KQCSJP`) de la table ODD du FNA.
 
+```{r}
+#| eval: false
+#| echo: true
+
+
+calcul_differe_CP <- ODD %>%
+  select(id_midas, KROD1, KQICCP, KQCSJP) %>%
+  mutate(differe_CP = min(KQICCP/KQCSJP, 30)) %>%
+  distinct(id_midas, KROD1, differe_CP)
+
+# Récupération du fait générateur associé
+
+fait_generateur <- DAL %>%
+  right_join(calcul_differe_CP, by = c("id_midas", "KROD1")) %>%
+  filter(KNCDDA == 1 | KCNDDA == 3) %>%
+  distinct(id_midas, KROD1, KCDA, differe_CP) %>%
+  rename(KCDA1 = KCDA) %>%
+  left_join(CDT, by = c("id_midas", "KCDA1")) %>%
+  distinct(id_midas, KROD1, KDFPE, differe_CP) %>%
+  mutate(KDFPE = as.Date(KDFPE))
+
+
+```
+
 ## Le délai d'attente
 
-# A la reprise de droit
+Le délai d'attente de 7 jours à compter de la dernière fin de contrat s'applique à tous les allocataires de l'Assurance-chômage.
 
-# Lors d'un rechargement
+::: callout-tip
+## Et lors d'une reprise de droit ?
+
+Lors d'une reprise de droit, si le délai d'attente a déjà été appliqué dans les 12 derniers mois, il n'est pas appliqué à nouveau.
+
+Si les fins de contrat précédant la reprise de droit ont donné lieu au versement d'ISLR ou d'ICCP, de nouvelles périodes de différé s'appliquent.
+:::
+
+# Les durées de différé observées
+
+::: callout-important
+## Différé théorique et observé
+
+La durée de différé observée dans les données peut différer de la durée théorique. C'est le cas par exemple d'un allocataire qui se désinscrit de France Travail avant la fin de sa période de différé d'indemnisation, c'est-à-dire avant le premier versement de ses allocations.
+:::
+
+## Le différé spécifique
+
+Le différé spécifique court à la fin de chaque contrat pour lequel des ISLR ont été versées. A partir du FNA de MIDAS, il n'est pas possible de simuler la durée restante de différé spécifique à partir de la dernière fin de contrat : il faudrait connaître quels contrats de la période de référence ont donné lieu au versement d'ISLR et la durée de différé écoulée pendant les périodes intercontrats de cette période de référence. La table renseignant les périodes d'affiliation à l'Assurance-chômage (PAF) ne contient pas l'information par contrat sur les ISLR.
+
+Dans les données du FNA, les durées de différé écoulées à compter de l'ouverture de droit sont renseignées dans la table des périodes à justification constante (PJC) du FNA. Un différé correspond à une PJC non consommée, non payée (`KCPJC = 3`) dont le motif de non paiement est "carence, différé" (`KCMNI = 3`).
+
+La variable type de carence (`KCPJCC`) peut permettre d'isoler le différé spécifique (`KCPJCC = 03`) mais la qualité de cette variable n'a pas été expertisée.
+
+La durée de différé écoulée calculée ci-dessous est celle suivant l'ouverture de droit. Pour éviter d'inclure les différés de la reprise de droit, rattachés au même couple `id_midas`, `KROD3`, la durée observée est bornée à la première interruption de suivi dans les données de l'indemnisation. Voir à ce sujet la méthode de repérage des reprises de droit dans les données du FNA [en cliquant ici](../Fiches/Parcours_indemnisation.qmd).
+
+```{r}
+#| eval: false
+#| echo: true
+
+
+droits <- PJC %>%
+  distinct(id_midas, KROD3) 
+
+# Repérage des éventuels débuts de différés de reprises de droit pour les exclure
+
+date_fin_diff <- PJC_s %>%
+  select(id_midas, KROD3, KDDPJ, KDFPJ, KCPJC, KCMNI, KCPJCC) %>%
+  filter(KCPJC == 3 & KCMNI == "00") %>%
+  right_join(droits, by = c("id_midas", "KROD3")) %>%
+  group_by(id_midas, KROD3) %>%
+  arrange(id_midas, KROD3, KDDPJ) %>%
+  mutate(ecart = DATEDIFF(KDDPJ, lag(KDFPJ)) - 1) %>%
+  ungroup() %>%
+  filter(ecart > 0) %>%
+  distinct(id_midas, KROD3, KDDPJ) %>%
+  group_by(id_midas, KROD3) %>%
+  filter(KDDPJ == min(KDDPJ))  %>%
+  rename(date_fin_diff = KDDPJ)
+
+
+# Calcul de la durée de différé spécifique écoulée avant première sortie d'indemnisation
+
+duree_differe_islr <- PJC_s %>%
+  select(id_midas, KROD3, KDDPJ, KDFPJ, KCPJC, KCMNI, KCPJCC) %>%
+  filter(KCPJC == 3 & KCMNI == "00" & KCPJCC =="03") %>%
+  right_join(droits, by = c("id_midas", "KROD3")) %>%
+  left_join(date_fin_diff, by = c("id_midas", "KROD3")) %>%
+  group_by(id_midas, KROD3) %>%
+  mutate(date_fin_diff = ifelse(is.na(date_fin_diff), max(KDFPJ), date_fin_diff))%>%
+  ungroup() %>%
+  filter(KDDPJ < date_fin_diff) %>%
+  mutate(duree_PJC = DATEDIFF(KDFPJ, KDDPJ) + 1) %>%
+  group_by(id_midas, KROD3) %>%
+  mutate(differe_specifique = sum(duree_PJC)) %>%
+  mutate(differe_specifique = ifelse(is.na(differe_specifique), 0, differe_specifique)) %>%
+  ungroup() %>%
+  distinct(id_midas, KROD3, differe_specifique) 
+
+
+```
+
+## Le différé congés payés
+
+Le différé congés payés commence à la fin du dernier contrat de travail.
+
+Dans la table PJC du FNA, un différé congés payés correspond à une PJC non consommée, non payée (`KCPJC = 3`) dont le motif de non paiement est "carence, différé" (`KCMNI = 3`) avec un type de carence "congés payés" (`KCPJCC = 02`).
+
+```{r}
+#| eval: false
+#| echo: true
+
+
+droits <- PJC %>%
+  distinct(id_midas, KROD3) 
+
+# Repérage des éventuels débuts de différés de reprises de droit pour les exclure
+
+date_fin_diff <- PJC_s %>%
+  select(id_midas, KROD3, KDDPJ, KDFPJ, KCPJC, KCMNI, KCPJCC) %>%
+  filter(KCPJC == 3 & KCMNI == "00") %>%
+  right_join(droits, by = c("id_midas", "KROD3")) %>%
+  group_by(id_midas, KROD3) %>%
+  arrange(id_midas, KROD3, KDDPJ) %>%
+  mutate(ecart = DATEDIFF(KDDPJ, lag(KDFPJ)) - 1) %>%
+  ungroup() %>%
+  filter(ecart > 0) %>%
+  distinct(id_midas, KROD3, KDDPJ) %>%
+  group_by(id_midas, KROD3) %>%
+  filter(KDDPJ == min(KDDPJ))  %>%
+  rename(date_fin_diff = KDDPJ)
+
+
+# Calcul de la durée de différé spécifique écoulée avant première sortie d'indemnisation
+
+duree_differe_cp <- PJC_s %>%
+  select(id_midas, KROD3, KDDPJ, KDFPJ, KCPJC, KCMNI, KCPJCC) %>%
+  filter(KCPJC == 3 & KCMNI == "00" & KCPJCC =="02") %>%
+  right_join(droits, by = c("id_midas", "KROD3")) %>%
+  left_join(date_fin_diff, by = c("id_midas", "KROD3")) %>%
+  group_by(id_midas, KROD3) %>%
+  mutate(date_fin_diff = ifelse(is.na(date_fin_diff), max(KDFPJ), date_fin_diff))%>%
+  ungroup() %>%
+  filter(KDDPJ < date_fin_diff) %>%
+  mutate(duree_PJC = DATEDIFF(KDFPJ, KDDPJ) + 1) %>%
+  group_by(id_midas, KROD3) %>%
+  mutate(differe_cp = sum(duree_PJC)) %>%
+  mutate(differe_cp= ifelse(is.na(differe_cp), 0, differe_cp)) %>%
+  ungroup() %>%
+  distinct(id_midas, KROD3, differe_cp) 
+```
+
+## Le délai d'attente
+
+Le délai d'attente s'applique après les différés spécifiques et de congés payés.
+
+Le demandeur d'emploi dispose d'un an après sa fin de contrat pour s'inscrire à France Travail. Dans le cas où ses différés spécifiques et de congés payés sont déjà expirés lorsqu'il s'inscrit, le délai d'attente commence au jour de son inscription.
+
+Ce délai d'attente correspond à une PJC non payée, non consommée (`KCPJC = 3`), non payée pour motif "carence, différé" (`KCMNI = 00`) de type "différé d'indemnisation" (`KCPJCC = 04`).
+
+```{r}
+#| eval: false
+#| echo: true
+
+
+droits <- PJC %>%
+  distinct(id_midas, KROD3) 
+
+# Repérage des éventuels débuts de différés de reprises de droit pour les exclure
+
+date_fin_diff <- PJC_s %>%
+  select(id_midas, KROD3, KDDPJ, KDFPJ, KCPJC, KCMNI, KCPJCC) %>%
+  filter(KCPJC == 3 & KCMNI == "00") %>%
+  right_join(droits, by = c("id_midas", "KROD3")) %>%
+  group_by(id_midas, KROD3) %>%
+  arrange(id_midas, KROD3, KDDPJ) %>%
+  mutate(ecart = DATEDIFF(KDDPJ, lag(KDFPJ)) - 1) %>%
+  ungroup() %>%
+  filter(ecart > 0) %>%
+  distinct(id_midas, KROD3, KDDPJ) %>%
+  group_by(id_midas, KROD3) %>%
+  filter(KDDPJ == min(KDDPJ))  %>%
+  rename(date_fin_diff = KDDPJ)
+
+
+# Calcul de la durée de différé spécifique écoulée avant première sortie d'indemnisation
+
+duree_delai_attente <- PJC_s %>%
+  select(id_midas, KROD3, KDDPJ, KDFPJ, KCPJC, KCMNI, KCPJCC) %>%
+  filter(KCPJC == 3 & KCMNI == "00" & KCPJCC =="04") %>%
+  right_join(droits, by = c("id_midas", "KROD3")) %>%
+  left_join(date_fin_diff, by = c("id_midas", "KROD3")) %>%
+  group_by(id_midas, KROD3) %>%
+  mutate(date_fin_diff = ifelse(is.na(date_fin_diff), max(KDFPJ), date_fin_diff))%>%
+  ungroup() %>%
+  filter(KDDPJ < date_fin_diff) %>%
+  mutate(duree_PJC = DATEDIFF(KDFPJ, KDDPJ) + 1) %>%
+  group_by(id_midas, KROD3) %>%
+  mutate(delai_attente = sum(duree_PJC)) %>%
+  mutate(delai_attente= ifelse(is.na(delai_attente), 0, delai_attente)) %>%
+  ungroup() %>%
+  distinct(id_midas, KROD3, delai_attente) 
+```
+
+::: callout-tip
+## Ordre des différés
+
+Dans les données, le différé spécifique s'applique en premier, à compter de chaque fin de contrat donnant lieu au versement d'ISLR. Ensuite, le différé congés payés débute, après la fin du différé spécifique restant après le fait générateur. Enfin, le délai d'attente s'applique.
+:::
 
 # Glossaire de l'indemnisation
 

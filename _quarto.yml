@@ -222,6 +222,7 @@ website:
           - href: Fiches/Allocations_regimes.qmd
           - href: Fiches/Parcours_indemnisation.qmd
           - href: Fiches/Differe_indemnisation.qmd
+          - href: Fiches/Retour_emploi.qmd
 
     - title : "Etudes"
       style: "docked"
