@@ -2,9 +2,9 @@
 title: "Présentation de la table"
 ---
 
-## L'indemnisabilité des demandeurs d'emploi
+## L'indemnisabilité des inscrits à France Travail
 
-La table D2 donne les informations sur l'indemnisabilité des demandeurs d'emploi aux allocations chômage. Le fait d'être indemnisable à une allocation chômage ne veut pas dire être indemnisé : un demandeur d'emploi peut être indemnisé sur une période, mais ne pas percevoir d'allocation, par exemple lorsque les revenus tirés de son activité réduite dépassent le plafond. La table D2 ne permet pas de distinguer entre les personnes indemnisables et les personnes indemnisées.
+La table D2 donne les informations sur l'indemnisabilité des inscrits à France Travail aux allocations-chômage. Le fait d'être indemnisable à une allocation-chômage ne veut pas dire être indemnisé : une personne inscrite à France Travail peut être indemnisée sur une période, mais ne pas percevoir d'allocation, par exemple lorsque les revenus tirés de son activité réduite dépassent le plafond. La table D2 ne permet pas de distinguer entre les personnes indemnisables et les personnes indemnisées.
 
 ## Définition d'une période indemnisable
 
@@ -14,7 +14,7 @@ Les informations sur l'indemnisabilité mettent plus de temps à remonter, la ta
 
 De plus, 9 mois avant la fin des informations de la table D2, toutes les lignes se terminent et une nouvelle apparaît automatiquement avec les mêmes informations autres que les dates, même si la période indemnisable est ininterompue : la variable D2STATUT (label STATUT DE L'ENREGISTREMENT) prend deux valeurs C (consolidé) et P (provisoire). Par exemple, dans le FHS du quatrième trimestre 2021, une période en cours au 31 décembre 2020 a une ligne C avec JOURDV = 2020-12-31 et il y a une autre ligne P pour le même individu avec JOURDV = 2021-01-01.
 
-En cas de changement d'une des variables régime d'indemnisation (REGIND), filière d'indemnisation (filindem), type de population (typpope) ou régime particulier (REGIME), une nouvelle ligne est créée. Il est donc très compliqué d'associer différentes périodes de la table D2 à un droit et à une allocation chômage de manière certaine.
+En cas de changement d'une des variables régime d'indemnisation (REGIND), filière d'indemnisation (filindem), type de population (typpope) ou régime particulier (REGIME), une nouvelle ligne est créée. Il est donc très compliqué d'associer différentes périodes de la table D2 à un droit et à une allocation-chômage de manière certaine.
 
 ## Calcul du nombre d'indemnisables à une date
 

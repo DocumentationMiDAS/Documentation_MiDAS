@@ -2,9 +2,9 @@
 title: "Le Fichier Historique Statistique (FHS)"
 ---
 
-**Chaque trimestre**, **France Travail** produit le **Fichier Historique Statistique des demandeurs d'emploi inscrits à France Travail**. Ce fichier enregistre, **pour les 10 années antérieures**, tous les évènements successifs concernant les personnes qui ont été inscrites sur les listes de France Travail sur cette période, qu'elles soient ou non inscrites à la date d'extraction du fichier.
+**Chaque trimestre**, **France Travail** produit le **Fichier Historique Statistique des personnes inscrites à France Travail**. Ce fichier enregistre, **pour les 10 années antérieures**, tous les évènements successifs concernant les personnes qui ont été inscrites sur les listes de France Travail sur cette période, qu'elles soient ou non inscrites à la date d'extraction du fichier.
 
-Les données du FHS permettent d'analyser la trajectoire d'inscription des demandeurs d'emploi et d'éclairer notamment la question de la récurrence d'inscription sur les listes, d'ancienneté dans la catégorie A, ou les transitions entre les différentes catégories de demandeurs d'emploi.
+Les données du FHS permettent d'analyser la trajectoire d'inscription et d'éclairer notamment la question de la récurrence d'inscription sur les listes, d'ancienneté dans la catégorie A, ou les transitions entre les différentes catégories.
 
 ## Champ
 
@@ -14,14 +14,14 @@ Toute personne inscrite à France Travail au moins un jour depuis le 1er janvier
 
 Dans le cadre de MiDAS, les tables suivantes sont disponibles :
 
--   La **table [DE](DE/DE_presentation.html) (Demandes d'emploi)** : cette table contient des informations sur les caractéristiques des demandeurs d'emploi inscrits à France Travail (sexe, date de naissance, qualification, commune de résidence...) et des demandes (dates et motif d'inscription, catégorie d'inscription, type d'emploi recherché, date et motif d'annulation...) ;
+-   La **table [DE](DE/DE_presentation.html) (Demandes d'emploi)** : cette table contient des informations sur les caractéristiques des inscrits à France Travail (sexe, date de naissance, qualification, commune de résidence...) et des demandes (dates et motif d'inscription, catégorie d'inscription, type d'emploi recherché, date et motif d'annulation...) ;
 
--   La **table [E0](E0/E0_presentation.qmd)** **(activité réduite)** : cette table permet de connaître les périodes (année et mois) d'activité réduite exercées par les demandeurs d'emploi (inscrits en catégories B et C).
+-   La **table [E0](E0/E0_presentation.qmd)** **(activité réduite)** : cette table permet de connaître les périodes (année et mois) d'activité réduite exercées par les inscrits en catégories B et C.
 
 -   La **table [D2](D2/D2_presentation.qmd) (Indemnisabilité)** : code allocation et durée d'indemnisabilité maximale pour les droits calculés (pas forcément payés). Bien qu'elle permette de repérer le nombre d'indemnisables, il faut lui préférer les tables ODD et PJC du FNA pour ce qui est lié à l'indemnisabilité ;
 
--   La **table [P2](P2/P2_presentation.qmd) (Formations)** -- provenant à l'origine de la base FHS-services − qui contient des informations sur les formations suivies, majoritairement pour les demandeurs indemnisés par France Travail ;
+-   La **table [P2](P2/P2_presentation.qmd) (Formations)** -- provenant à l'origine de la base FHS-services − qui contient des informations sur les formations suivies, majoritairement pour les personnes indemnisées par France Travail ;
 
--   Les **tables [E3](E3/E3_presentation.qmd) et [E3-Cons](E3_Cons/E3_Cons_presentation.qmd) (actions)** -- provenant à l'origine de la base FHS-services − qui permettent d'identifier les dispositifs et prestations dont a bénéficié le demandeur d'emploi, ainsi que leur statut ;
+-   Les **tables [E3](E3/E3_presentation.qmd) et [E3-Cons](E3_Cons/E3_Cons_presentation.qmd) (actions)** -- provenant à l'origine de la base FHS-services − qui permettent d'identifier les dispositifs et prestations dont a bénéficié la personne inscrite, ainsi que leur statut ;
 
--   La **table [PARCOURS](Parcours/Parcours_presentation.qmd)** renseigne sur les types d'accompagnement auxquels les demandeurs d'emploi sont assignés en fonction de leur proximité avec le marché du travail (accompagnement "suivi", "guidé", renforcé" et "global").
+-   La **table [PARCOURS](Parcours/Parcours_presentation.qmd)** renseigne sur les types d'accompagnement auxquels les inscrits à France Travail sont assignés en fonction de leur proximité avec le marché du travail (accompagnement "suivi", "guidé", renforcé" et "global").

@@ -1,0 +1,17 @@
+---
+title: "Dictionnaire des variables"
+---
+
+| <br>Nom Oracle (SAS) | Nom segment | Libellé | Description | Modalités |
+|---------------|---------------|---------------|---------------|---------------|
+| KCASSM | PRMASS | Code site |  |  |
+| KCDPR | PRMTYPRM | Type de prime versé |  | [Codes allocations](../../../Fiches/Allocations_regimes.qmd) |
+| KCMIGQ | PRMMIG | Code migration LN3M |  |  |
+| KDDEE | PRMDTEFF | Date d'effet du versement de la prime |  |  |
+| KDDTA | PRMDTDPR | Date de début de la période d'attribution | Correspond au 1er jour calendaire du mois pour lequel le versement est effectué. À chaque rang de versement correspond sa date de début et sa date de fin de période d’attribution. |  |
+| KDFTA | PRMDTFPR | Date de fin de la période d'attrbution | Il s’agit du dernier jour calendaire du mois pour lequel le versement de la prime a été effectué. |  |
+| KDIPR | PRMDTMDT | Date de calcul du mandatement |  |  |
+| KNRPRP | PRMRGVER | Rang du versement de la prime |  |  |
+| KQMTPP | PRMMTPRC | Montant précompte retraite complémentaire |  |  |
+| KQRPRP | PRMMTB | Montant brut versé |  |  |
+| KRO7 | PRMODC | Identifiant du droit courant |  |  |

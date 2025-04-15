@@ -2,6 +2,6 @@
 title: "Présentation de la table"
 ---
 
-## Catégorie d'inscription du demandeur d'emploi
+## Catégorie d'inscription des personnes inscrites
 
-La table E0 donne les informations sur l'activité réduite (les heures travaillées des demandeurs d'emploi). Une ligne est identifiée de manière unique par les variables ID_MIDAS, NDEM et le mois d'effet (MOIS). Si un demandeur d'emploi a travaillé entre 1 et 78 heures inclus, il est en catégorie B pour ce mois, si c'est strictement plus de 78 heures, il est en catégorie C. S'il n'a pas travaillé, il est en catégorie A. Appariée à la table DE, la table E0 permet de comptabiliser les demandeurs d'emploi ventilés par catégorie inscrits à une date donnée.
+La table E0 donne les informations sur l'activité réduite, c'est-à-dire le nombre d'heures travaillées par les personnes inscrites à France Travail. Une ligne est identifiée de manière unique par les variables ID_MIDAS, NDEM et le mois d'effet (MOIS). Si un demandeur d'emploi a travaillé entre 1 et 78 heures inclus, il est en catégorie B pour ce mois, si c'est strictement plus de 78 heures, il est en catégorie C. S'il n'a pas travaillé, il est en catégorie A. Appariée à la table DE, la table E0 permet de comptabiliser les inscrits à France Travail ventilés par catégorie d'inscrits à une date donnée.

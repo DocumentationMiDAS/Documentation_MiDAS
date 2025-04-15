@@ -1,0 +1,5 @@
+---
+title: "Présentation de la table"
+---
+
+Cette table renseigne sur les aides et primes versées aux allocataires de l'assurance-chômage, avec la période de versement et le montant brut. La liste des aides et primes est disponible [ici](../../../Fiches/Allocations_regimes.qmd).

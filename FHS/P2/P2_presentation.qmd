@@ -2,14 +2,14 @@
 title: "Présentation de la table"
 ---
 
-## Formations suivies par les demandeurs d'emploi
+## Formations suivies par les inscrits à France Travail
 
 Cette table, issue du FHS-Services, donne des informations sur les services de France Travail.
 
-Elle donne les formations suivies par les demandeurs d'emploi, majoritairement pour les demandeurs d'emploi indemnisés.
+Elle donne les formations suivies par les personnes inscrites, majoritairement pour celles qui sont indemnisées.
 
-Une comparaison entre les données de cette table et celles de BREST, contenue dans Force, donnait beaucoup moins d'entrées en formation avec P2. Cela a confirmé la faiblesse des données du FH-services.
+Une comparaison entre les données de cette table et celles de BREST, contenue dans l'appariement ForCE, donnait beaucoup moins d'entrées en formation avec P2. Cela a confirmé la faiblesse des données du FHS-services.
 
 ::: callout-note
-FORCE (Formation, chômage, emploi) est un dispositif lancé en 2020 par la Dares qui vise à apparier plusieurs bases de données : les MMO (mouvement de main d'œuvre), le FHS, BREST (les formations), et I-milo (les missions locales).
+ForCE (Formation, Chômage, Emploi) est un dispositif lancé en 2020 par la Dares qui vise à apparier plusieurs bases de données : les MMO, le FHS, BREST (Base Régionalisée des Stagiaires de la Formation Professionnelle), et I-Milo (accompagnement des jeunes en Missions locales).
 :::

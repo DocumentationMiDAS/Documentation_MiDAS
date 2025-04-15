@@ -3,18 +3,18 @@ title: "Présentation générale"
 css: homepage.css
 ---
 
-MiDAS (**Mi**nima Sociaux, **D**roits d'**A**ssurance-chômage, parcours **S**alariés) est un appariement de données administratives mené par la **Dares** (département Suivi et indemnisation des demandeurs d'emploi (D-Side)), en collaboration avec la Cnaf et France Travail. Cet appariement porte sur le **champ exhaustif des demandeurs d'emploi qui ont été inscrits à France Travail au moins une fois depuis le 1er janvier 2017** complété par l'**ensemble des foyers bénéficiaires de minima sociaux (RSA, PA, AAH)** depuis cette même date.
+MiDAS (**Mi**nima Sociaux, **D**roits d'**A**ssurance-chômage, parcours **S**alariés) est un appariement de données administratives mené par la **Dares** (département Suivi et indemnisation des demandeurs d'emploi (D-Side)), en collaboration avec la Cnaf et France Travail. Cet appariement porte sur le **champ exhaustif des personnes qui ont été inscrites à France Travail au moins une fois depuis le 1er janvier 2017**, complété par l'**ensemble des foyers bénéficiaires de minima sociaux (RSA, PA, AAH)** depuis cette même date.
 
-Cet appariement permet de reconstituer les **trajectoires professionnelles** des allocataires de l'Assurance-chômage et des minima sociaux, afin notamment de pouvoir chiffrer de manière précise les **effets de la réforme de l'Assurance-chômage initiée en 2019** et d'étudier le retour et l'insertion dans l'emploi des demandeurs d'emploi et bénéficiaires de minima sociaux.
+Cet appariement permet de reconstituer les **trajectoires professionnelles** des allocataires de l'assurance-chômage et des minima sociaux, afin notamment de pouvoir chiffrer de manière précise les **effets de la réforme de l'assurance-chômage initiée en 2019** et d'étudier le retour et l'insertion dans l'emploi des inscrits à France Travail et bénéficiaires de minima sociaux.
 
 La première vague est disponible depuis janvier 2023.
 
 MiDAS regroupe ainsi les données :
 
--   De suivi des demandeurs d'emploi par le Fichier historique statistique (FHS) et d'indemnisation dans le Fichier national des allocataires (FNA) de **France Travail** ;
+-   De **France Travail**, qui permettent le suivi des inscrits à France Travail via le Fichier historique statistique (FHS) ainsi que le suivi de l'indemnisation des allocataires de l'assurance-chômage via le Fichier national des allocataires (FNA) ;
 
--   Du Fichier Allstat-FR6 de la **Cnaf** sur les prestations sociales ;
+-   De la **Cnaf**, qui renseignent sur les bénéficiaires de prestations sociales via le fichier Allstat-FR6 ;
 
--   Sur les contrats de travail reconstituées par la **Dares** dans les Mouvements de main-d'œuvre (MMO) à partir de la Déclaration sociale nominative (**DSN**).
+-   De la **Dares**, qui contiennent les contrats de travail (activité salariée), reconstitués dans les fichiers Mouvements de main-d'œuvre (MMO) à partir de la Déclaration sociale nominative (**DSN**).
 
-![](../images/sch%C3%A9ma_relationnel.png){width="100%"}
+![](images/clipboard-1410781446.png)
