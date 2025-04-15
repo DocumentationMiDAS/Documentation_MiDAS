@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -268,8 +302,14 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#allocataires-du-rsa-pour-un-mois-donné-nombre-de-foyers-dadultes-bénéficiaires-et-dautres-personnes-à-charge" id="toc-allocataires-du-rsa-pour-un-mois-donné-nombre-de-foyers-dadultes-bénéficiaires-et-dautres-personnes-à-charge" class="nav-link active" data-scroll-target="#allocataires-du-rsa-pour-un-mois-donné-nombre-de-foyers-dadultes-bénéficiaires-et-dautres-personnes-à-charge">Allocataires du RSA pour un mois donné : nombre de foyers, d’adultes bénéficiaires et d’autres personnes à charge</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -293,8 +333,152 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="allocataires-du-rsa-pour-un-mois-donné-nombre-de-foyers-dadultes-bénéficiaires-et-dautres-personnes-à-charge" class="level2">
+<h2 class="anchored" data-anchor-id="allocataires-du-rsa-pour-un-mois-donné-nombre-de-foyers-dadultes-bénéficiaires-et-dautres-personnes-à-charge">Allocataires du RSA pour un mois donné : nombre de foyers, d’adultes bénéficiaires et d’autres personnes à charge</h2>
+<p>Cette fiche propose un code permettant de reproduire les indicateurs publiés par la Cnaf sur les allocataires du RSA pour un mois donné : nombre de foyers sociaux, nombre d’adultes (responsable du dossier et éventuel conjoint), et nombre d’éventuels enfants et autres personnes à charge. Plusieurs sous-catégories de bénéficiaires du RSA sont également reproduites, en fonction de l’âge, de la situation familiale et du département de résidence.</p>
+<p>Pour calculer ces indicateurs, les tables ménages, minimas sociaux et top_conj sont utilisées.</p>
+<p>Remarque : la chaîne de caractère fournie à la fonction as.Date doit être de la forme “AAAA-MM-JJ”.</p>
+<p>Le code proposé ci-dessous utilise sparklyr et dplyr.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># définition du répertoire</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>dir_spark <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"file:///C:/Users/Public/Documents/MiDAS_parquet/Vague 4"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># création d'un calendrier avec les dates de début et de fin de mois</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>calendrier <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">debut_mois =</span> <span class="fu">seq.Date</span>(<span class="fu">as.Date</span>(<span class="st">"2010/01/01"</span>),</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                                              <span class="fu">as.Date</span>(<span class="st">"2030/01/01"</span>),</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">by =</span> <span class="st">"+1 months"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fin_mois =</span> (debut_mois <span class="sc">+</span> <span class="fu">months</span>(<span class="dv">1</span>)) <span class="sc">-</span><span class="dv">1</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">mois =</span> <span class="fu">paste0</span>(<span class="fu">substr</span>(debut_mois,<span class="dv">1</span>,<span class="dv">4</span>),<span class="fu">substr</span>(debut_mois,<span class="dv">6</span>,<span class="dv">7</span>)))</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># mois d'intérêt</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>mois <span class="ot">&lt;-</span> <span class="st">"2023-06-01"</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>mois_cnaf <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">substr</span>(<span class="fu">ymd</span>(<span class="fu">as.Date</span>(mois)),<span class="dv">6</span>,<span class="dv">7</span>), <span class="fu">substr</span>(<span class="fu">ymd</span>(<span class="fu">as.Date</span>(mois)),<span class="dv">3</span>,<span class="dv">4</span>))</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>mois_m <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">substr</span>(mois,<span class="dv">1</span>,<span class="dv">4</span>),<span class="fu">substr</span>(mois,<span class="dv">6</span>,<span class="dv">7</span>))</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>fin_mois_m <span class="ot">=</span> <span class="fu">pull</span>(calendrier <span class="sc">%&gt;%</span> <span class="fu">filter</span>(mois <span class="sc">==</span> mois_m) <span class="sc">%&gt;%</span> <span class="fu">select</span>(fin_mois))</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>debut_mois_m <span class="ot">=</span> <span class="fu">pull</span>(calendrier <span class="sc">%&gt;%</span> <span class="fu">filter</span>(mois <span class="sc">==</span> mois_m) <span class="sc">%&gt;%</span> <span class="fu">select</span>(debut_mois))</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="do">### A. Indicateurs RSA ------------</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Table Ménage</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>table_menage <span class="ot">&lt;-</span> <span class="fu">spark_read_parquet</span>(sc, <span class="fu">paste0</span>(dir_spark,<span class="st">"/Allstat/menage/cnaf_menage_"</span>, mois_cnaf, <span class="st">".parquet"</span>), </span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">memory =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">id_menage =</span> <span class="fu">paste0</span>(NORDALLC,NUMCAF)) <span class="sc">%&gt;%</span> <span class="co"># création d'un identifiant ménage</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">window_order</span>(id_menage) <span class="sc">%&gt;%</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id_menage) <span class="sc">%&gt;%</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">row_number</span>() <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="co"># Dédoublonne</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Table minimas sociaux</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>table_ms_rsa <span class="ot">&lt;-</span> <span class="fu">spark_read_parquet</span>(sc, <span class="fu">paste0</span>(dir_spark, </span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>                                          <span class="st">"/Allstat/minsoc/cnaf_minsoc_"</span>, mois_cnaf, <span class="st">".parquet"</span>), <span class="at">memory=</span><span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(RSAVERS <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"RSA droit commun"</span>, <span class="st">"RSA droit local"</span>,</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"RSA jeune"</span>, <span class="st">"RSA expérimental"</span>, <span class="st">"C"</span>, <span class="st">"L"</span>, <span class="st">"J"</span>, <span class="st">"E"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">id_menage =</span> <span class="fu">paste0</span>(NORDALLC,NUMCAF)) <span class="sc">%&gt;%</span> <span class="co"># création d'un identifiant ménage</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">window_order</span>(id_midas) <span class="sc">%&gt;%</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id_midas) <span class="sc">%&gt;%</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">row_number</span>() <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="co"># Dédoublonne</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="co"># left_join des tables prestations et ménage</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>ms_rsa <span class="ot">&lt;-</span> table_ms_rsa <span class="sc">%&gt;%</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(table_menage, <span class="at">by=</span><span class="st">"id_menage"</span>, <span class="at">suffix=</span><span class="fu">c</span>(<span class="st">"_ms"</span>,<span class="st">"_men"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>  <span class="co">#left_join(table_topconj, by=c("id_midas"="id_midas", "id_menage"="id_menage")) %&gt;% # dans la vague 4, la variable TOPCONJ est présente directement dans la table ménage. Pour les autres vagues, il faut exécuter ce left_join.</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    <span class="co"># situation familiale :</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">COUPLE =</span> <span class="fu">ifelse</span>(RSSITFAM <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Couple"</span>, <span class="st">"3"</span>), <span class="dv">1</span>,<span class="dv">0</span>),</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">ISOLE_FEMME =</span> <span class="fu">ifelse</span>(RSSITFAM <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Isolé femme"</span>, <span class="st">"2"</span>), <span class="dv">1</span>,<span class="dv">0</span>),</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">ISOLE_HOMME =</span> <span class="fu">ifelse</span>(RSSITFAM <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Isolé homme"</span>, <span class="st">"1"</span>) ,<span class="dv">1</span>,<span class="dv">0</span>),</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>    <span class="at">SIT_FAM_INCONNUE =</span> <span class="fu">ifelse</span>(RSSITFAM <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Sans signification ou inconnue"</span>, <span class="st">"0"</span>),<span class="dv">1</span>,<span class="dv">0</span>),</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>    <span class="co"># age à la fin du mois d'intérêt :</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>    <span class="at">AGE =</span> <span class="fu">ifelse</span>(TOP_CONJ <span class="sc">==</span> <span class="dv">1</span>, <span class="co"># rajouter l'âge du conjoint</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">trunc</span>(<span class="fu">time_length</span>(<span class="fu">interval</span>(<span class="fu">as.Date</span>(DTNAICON), fin_mois_m), <span class="st">"years"</span>)),</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">trunc</span>(<span class="fu">time_length</span>(<span class="fu">interval</span>(<span class="fu">as.Date</span>(DTNAIRES), fin_mois_m), <span class="st">"years"</span>))),</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>    <span class="at">AGE_25 =</span> <span class="fu">ifelse</span>(AGE <span class="sc">&lt;</span> <span class="dv">25</span>, <span class="dv">1</span>,<span class="dv">0</span>),</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>    <span class="at">AGE_25_34 =</span> <span class="fu">ifelse</span>(AGE <span class="sc">&gt;=</span> <span class="dv">25</span> <span class="sc">&amp;</span> AGE <span class="sc">&lt;</span> <span class="dv">35</span>, <span class="dv">1</span>,<span class="dv">0</span>),</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>    <span class="at">AGE_35_44 =</span> <span class="fu">ifelse</span>(AGE <span class="sc">&gt;=</span> <span class="dv">35</span> <span class="sc">&amp;</span> AGE <span class="sc">&lt;</span> <span class="dv">45</span>, <span class="dv">1</span>,<span class="dv">0</span>),</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>    <span class="at">AGE_45_54 =</span> <span class="fu">ifelse</span>(AGE <span class="sc">&gt;=</span> <span class="dv">45</span> <span class="sc">&amp;</span> AGE <span class="sc">&lt;</span> <span class="dv">55</span>, <span class="dv">1</span>,<span class="dv">0</span>),</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>    <span class="at">AGE_55 =</span> <span class="fu">ifelse</span>(AGE <span class="sc">&gt;=</span> <span class="dv">55</span>, <span class="dv">1</span>,<span class="dv">0</span>),</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>    <span class="at">AGE_inconnu =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(AGE),<span class="dv">1</span>,<span class="dv">0</span>),</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>    <span class="co"># nombre d'enfants et autres personnes à charge :</span></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>    <span class="at">RSENAUTC =</span> <span class="fu">as.numeric</span>(RSENAUTC),</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>    <span class="at">ENFCHAR_0 =</span> <span class="fu">ifelse</span>(RSENAUTC <span class="sc">==</span> <span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>),</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>    <span class="at">ENFCHAR_1 =</span> <span class="fu">ifelse</span>(RSENAUTC <span class="sc">==</span> <span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>),</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>    <span class="at">ENFCHAR_2 =</span> <span class="fu">ifelse</span>(RSENAUTC <span class="sc">==</span> <span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">0</span>),</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>    <span class="at">ENFCHAR_3plus =</span> <span class="fu">ifelse</span>(RSENAUTC <span class="sc">&gt;=</span> <span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">0</span>),</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>    <span class="co"># département  :</span></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>    <span class="at">departement =</span> <span class="fu">if_else</span>(<span class="fu">nchar</span>(CODEPOSD) <span class="sc">==</span> <span class="dv">4</span>, <span class="co"># retraiter les départements 1 à 9 en leur rajoutant 0 (01 à 09)</span></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">paste0</span>(<span class="st">"0"</span>,<span class="fu">substr</span>(CODEPOSD, <span class="dv">1</span>, <span class="dv">1</span>)),</span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">substr</span>(CODEPOSD, <span class="dv">1</span> ,<span class="dv">2</span>)),</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>    <span class="at">dep_numcaf =</span> <span class="fu">substr</span>(NUMCAF_ms,<span class="dv">1</span>,<span class="dv">2</span>),</span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>    <span class="at">outremer =</span> <span class="fu">ifelse</span>(dep_numcaf <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"97"</span>, <span class="st">"98"</span>), <span class="dv">1</span>, <span class="dv">0</span>) <span class="co"># département d'outre-mer</span></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>    <span class="at">metropole =</span> <span class="fu">ifelse</span>(outremer <span class="sc">==</span> <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="co"># résident en France métropolitaine</span></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>    <span class="at">isole_senf =</span> <span class="fu">ifelse</span>(COUPLE <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> RSENAUTC <span class="sc">==</span> <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="co"># personne seule sans enfant</span></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>    <span class="at">parent_isole =</span> <span class="fu">ifelse</span>(COUPLE <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> RSENAUTC <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="co"># personne seule avec enfant</span></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>    <span class="at">couple_senf =</span> <span class="fu">ifelse</span>(COUPLE <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> RSENAUTC <span class="sc">==</span> <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="co"># couple sans enfant</span></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>    <span class="at">couple_enf =</span> <span class="fu">ifelse</span>(COUPLE <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> RSENAUTC <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="co"># couple avec enfant</span></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>    <span class="at">homme_seul =</span> <span class="fu">ifelse</span>(ISOLE_HOMME <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> RSENAUTC <span class="sc">==</span> <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="co"># homme seul sans enfant</span></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>    <span class="at">femme_seule =</span> <span class="fu">ifelse</span>(ISOLE_FEMME <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> RSENAUTC <span class="sc">==</span> <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>),  <span class="co"># femme seule sans enfant </span></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>    <span class="at">rsa_maji =</span> <span class="fu">ifelse</span>(RSAMAJI <span class="sc">==</span> <span class="st">"1"</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="co"># RSA majoré parent isolé</span></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>    <span class="at">sans_rsa_maji =</span> <span class="fu">ifelse</span>(RSAMAJI <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"0"</span>, <span class="st">"2"</span>), <span class="dv">1</span>, <span class="dv">0</span>), <span class="co"># pas de RSA majoré</span></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>    <span class="at">rsa_jeunes =</span> <span class="fu">ifelse</span>(RSAVERS_ms <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"RSA jeune"</span>, <span class="st">"J"</span>), <span class="dv">1</span>, <span class="dv">0</span>), <span class="co"># RSA jeunes</span></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>    <span class="at">cumul_rsa_ppa =</span> <span class="fu">ifelse</span>(PPAVERS <span class="sc">!=</span> <span class="st">"0"</span>, <span class="dv">1</span>, <span class="dv">0</span>) <span class="co"># cumul RSA et prime d'activité</span></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a><span class="co"># nombre de foyers bénéficiaires du RSA</span></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>nb_foyers_rsa <span class="ot">&lt;-</span> ms_rsa <span class="sc">%&gt;%</span></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id_menage) <span class="sc">%&gt;%</span></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">nb_menage =</span> <span class="fu">n</span>())</span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="co"># nombre de bénéficiaires du RSA (responsables de dossier + conjoints)</span></span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a>verif_externe_rsa <span class="ot">&lt;-</span> ms_rsa <span class="sc">%&gt;%</span></span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">TOP_CONJ =</span> <span class="fu">as.numeric</span>(TOP_CONJ)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>    <span class="at">nb_rsa =</span> <span class="fu">n</span>(), <span class="co"># nb de bénéficiaires du RSA : responsables dossiers + conjoints</span></span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a>    <span class="at">nb_conjoints =</span> <span class="fu">sum</span>(TOP_CONJ, <span class="at">na.rm=</span><span class="cn">TRUE</span>), <span class="co"># nb conjoints</span></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a>    <span class="at">nb_rspd =</span> nb_rsa <span class="sc">-</span> nb_conjoints, <span class="co"># nb de responsables de dossier</span></span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a><span class="co"># catégories d'allocataires du RSA : selon l'âge, la situation familiale, le département de résidence</span></span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a><span class="co"># A partir de là toutes les statistiques sont calculées au niveau individuel, sur les responsables dossiers uniquement (TOP_CONJ == 0) afin de reproduire les indicateurs publiés par la Cnaf</span></span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a>verif_externe_rsa_rspd <span class="ot">&lt;-</span> ms_rsa <span class="sc">%&gt;%</span></span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(TOP_CONJ <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="co"># ne garder que les responsables de dossier</span></span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a>    <span class="at">nb_enfcha =</span> <span class="fu">sum</span>(RSENAUTC, <span class="at">na.rm=</span><span class="cn">TRUE</span>), <span class="co"># nb enfants ou autres personnes à charge</span></span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a>    <span class="at">nb_metropole =</span> <span class="fu">sum</span>(metropole, <span class="at">na.rm=</span><span class="cn">TRUE</span>), <span class="co"># nb de résidents metropole</span></span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a>    <span class="at">nb_outremer =</span> <span class="fu">sum</span>(outremer, <span class="at">na.rm=</span><span class="cn">TRUE</span>), <span class="co"># nb de résidents DROM</span></span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a>    <span class="at">nb_hommes_seuls =</span> <span class="fu">sum</span>(homme_seul, <span class="at">na.rm=</span><span class="cn">TRUE</span>), <span class="co"># nb hommes seuls sans enfants</span></span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a>    <span class="at">nb_femmes_seules =</span> <span class="fu">sum</span>(femme_seule, <span class="at">na.rm=</span><span class="cn">TRUE</span>), <span class="co"># nb femmes seules sans enfants</span></span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a>    <span class="at">nb_parent_isole =</span> <span class="fu">sum</span>(parent_isole, <span class="at">na.rm=</span><span class="cn">TRUE</span>), <span class="co"># nb personnes seules avec enfants</span></span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a>    <span class="at">nb_couple_senf =</span> <span class="fu">sum</span>(couple_senf, <span class="at">na.rm=</span><span class="cn">TRUE</span>), <span class="co"># nb couples sans enfants </span></span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a>    <span class="at">nb_couple_enf =</span> <span class="fu">sum</span>(couple_enf, <span class="at">na.rm=</span><span class="cn">TRUE</span>), <span class="co"># nb couples avec enfants </span></span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a>    <span class="at">nb_25 =</span> <span class="fu">sum</span>(AGE_25, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a>    <span class="at">nb_25_34 =</span> <span class="fu">sum</span>(AGE_25_34, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a>    <span class="at">nb_35_44 =</span> <span class="fu">sum</span>(AGE_35_44, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a>    <span class="at">nb_45_54 =</span> <span class="fu">sum</span>(AGE_45_54, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a>    <span class="at">nb_55 =</span> <span class="fu">sum</span>(AGE_55, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a>    <span class="at">nb_sans_rsamaji =</span> <span class="fu">sum</span>(sans_rsa_maji, <span class="at">na.rm=</span><span class="cn">TRUE</span>), <span class="co">#sans majoration pour parent isole</span></span>
+<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a>    <span class="at">nb_rsamaji =</span> <span class="fu">sum</span>(rsa_maji, <span class="at">na.rm=</span><span class="cn">TRUE</span>), <span class="co"># avec majoration pour parent isole</span></span>
+<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a>    <span class="at">nb_rsa_jeunes =</span> <span class="fu">sum</span>(rsa_jeunes, <span class="at">na.rm=</span><span class="cn">TRUE</span>), <span class="co"># RSA jeune</span></span>
+<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a>    <span class="at">nb_cumul_rsa_ppa =</span> <span class="fu">sum</span>(cumul_rsa_ppa, <span class="at">na.rm=</span><span class="cn">TRUE</span>) <span class="co"># cumul RSA et prime activité</span></span>
+<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
