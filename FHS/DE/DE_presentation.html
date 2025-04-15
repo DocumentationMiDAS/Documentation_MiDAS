@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.40">
+<meta name="generator" content="quarto-1.6.43">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -35,10 +35,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-d5a29efe3df95ec3e1b6c003e0793714.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-2619d6b8665cb2d4c443b1de909cb677.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -529,15 +529,15 @@ ul.task-list li input[type="checkbox"] {
 <section id="les-demandes-demploi" class="level2">
 <h2 class="anchored" data-anchor-id="les-demandes-demploi">Les demandes d’emploi</h2>
 <p>La table DE contient l’ensemble des demandes d’emploi des individus du champ de MiDAS. Une ligne de la table DE correspond à une période d’inscription à France Travail.</p>
-<p>Un individu peut avoir plusieurs demandes d’emploi. Une demande a une date de début (variable DATINS) et une date de fin (variable DATANN). La date de début est inclusive (l’inscription commence le jour indiqué) tandis que la date d’annulation est exclusive (le dernier jour d’inscription est le jour avant celui indiqué). Si le demandeur d’emploi est encore inscrit à la date de fin des données du FHS, cette variable est manquante. La table DE contient également le motif de l’inscription à France Travail, et le motif d’annulation lorsque le demandeur d’emploi se désinscrit.</p>
+<p>Un individu peut avoir plusieurs demandes d’emploi. Une demande a une date de début (variable DATINS) et une date de fin (variable DATANN). La date de début est inclusive (l’inscription commence le jour indiqué) tandis que la date d’annulation est exclusive (le dernier jour d’inscription est le jour avant celui indiqué). Si la personne est encore inscrite à la date de fin des données du FHS, cette variable est manquante. La table DE contient également le motif de l’inscription à France Travail, et le motif d’annulation lorsque la personne se désinscrit.</p>
 </section>
 <section id="les-catégories-dinscription" class="level2">
 <h2 class="anchored" data-anchor-id="les-catégories-dinscription">Les catégories d’inscription</h2>
-<p>Un demandeur d’emploi inscrit à France Travail peut être en catégories A, B, C, D ou E :</p>
+<p>Une personne inscrite à France Travail peut être en catégories A, B, C, D ou E :</p>
 <ul>
-<li><p>En <strong>catégorie A, B et C</strong>, il est tenu de rechercher un emploi, la différence entre ces catégories est le nombre d’heures d’activité réduite, disponible dans la table E0 du FHS ;</p></li>
-<li><p>En <strong>catégorie D</strong>, il n’est pas tenu de rechercher un emploi, en raison du suivi d’une formation, d’un congé maladie… ;</p></li>
-<li><p>En <strong>catégorie E</strong>, il est en emploi et non tenu d’en rechercher un.</p></li>
+<li><p>En <strong>catégorie A, B et C</strong>, elle est tenue de rechercher un emploi (“demandeurs d’emploi”), la différence entre ces catégories étant le nombre d’heures d’activité réduite, disponible dans la table E0 du FHS ;</p></li>
+<li><p>En <strong>catégorie D</strong>, elle n’est pas tenue de rechercher un emploi, en raison du suivi d’une formation, d’un congé maladie… ;</p></li>
+<li><p>En <strong>catégorie E</strong>, elle est en emploi et non tenu d’en rechercher un.</p></li>
 </ul>
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -552,15 +552,15 @@ Caution
 <p>Dans la table DE, la variable CATREGR permet de distinguer les catégories A, B et C (modalités 1, 2, 3) de la catégorie D (modalité 4) et de la catégorie E (modalité 5). Cependant, les modalités 1, 2 et 3 ne correspondent <strong>pas</strong> respectivement aux catégories A, B et C, elles distinguent le type de contrat recherché (CDI, CDD, temps complet, partiel). Il faut nécessairement utiliser la table E0 pour distinguer ces trois catégories.</p>
 </div>
 </div>
-<p>Il n’y a donc pas de nouvelle demande d’inscription pour les passages entre les catégories A, B et C. Lorsqu’un demandeur d’emploi passe d’une catégorie A, B ou C à la catégorie D ou E, une nouvelle ligne est automatiquement créée dans la table DE, même si le demandeur d’emploi reste inscrit en continu.</p>
+<p>Il n’y a donc pas de nouvelle demande d’inscription pour les passages entre les catégories A, B et C. Lorsqu’une personne passe d’une catégorie A, B ou C à la catégorie D ou E, une nouvelle ligne est automatiquement créée dans la table DE, même si elle reste inscrite en continu.</p>
 </section>
 <section id="le-profil-des-demandeurs-demploi" class="level2">
 <h2 class="anchored" data-anchor-id="le-profil-des-demandeurs-demploi">Le profil des demandeurs d’emploi</h2>
-<p>La table DE contient également les informations sociodémographiques des demandeurs d’emploi : sexe, date de naissance, qualification, commune de résidence…</p>
+<p>La table DE contient également les informations sociodémographiques des inscrits à France Travail : sexe, date de naissance, qualification, commune de résidence…</p>
 </section>
 <section id="les-déménagements" class="level2">
 <h2 class="anchored" data-anchor-id="les-déménagements">Les déménagements</h2>
-<p>Lorsqu’un demandeur d’emploi déménage, une nouvelle demande d’emploi apparaît, rattachée à sa nouvelle agence France Travail de référence. Le rattachement à une agence France Travail est fondé sur un critère géographique.</p>
+<p>Lorsqu’une personne inscrite déménage, une nouvelle demande d’emploi apparaît, rattachée à sa nouvelle agence France Travail de référence. Le rattachement à une agence France Travail est fondé sur un critère géographique.</p>
 
 
 </section>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.40">
+<meta name="generator" content="quarto-1.6.43">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -35,10 +35,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-d5a29efe3df95ec3e1b6c003e0793714.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-2619d6b8665cb2d4c443b1de909cb677.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -497,7 +497,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#lindemnisabilité-des-demandeurs-demploi" id="toc-lindemnisabilité-des-demandeurs-demploi" class="nav-link active" data-scroll-target="#lindemnisabilité-des-demandeurs-demploi">L’indemnisabilité des demandeurs d’emploi</a></li>
+  <li><a href="#lindemnisabilité-des-inscrits-à-france-travail" id="toc-lindemnisabilité-des-inscrits-à-france-travail" class="nav-link active" data-scroll-target="#lindemnisabilité-des-inscrits-à-france-travail">L’indemnisabilité des inscrits à France Travail</a></li>
   <li><a href="#définition-dune-période-indemnisable" id="toc-définition-dune-période-indemnisable" class="nav-link" data-scroll-target="#définition-dune-période-indemnisable">Définition d’une période indemnisable</a></li>
   <li><a href="#calcul-du-nombre-dindemnisables-à-une-date" id="toc-calcul-du-nombre-dindemnisables-à-une-date" class="nav-link" data-scroll-target="#calcul-du-nombre-dindemnisables-à-une-date">Calcul du nombre d’indemnisables à une date</a></li>
   </ul>
@@ -525,16 +525,16 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="lindemnisabilité-des-demandeurs-demploi" class="level2">
-<h2 class="anchored" data-anchor-id="lindemnisabilité-des-demandeurs-demploi">L’indemnisabilité des demandeurs d’emploi</h2>
-<p>La table D2 donne les informations sur l’indemnisabilité des demandeurs d’emploi aux allocations chômage. Le fait d’être indemnisable à une allocation chômage ne veut pas dire être indemnisé : un demandeur d’emploi peut être indemnisé sur une période, mais ne pas percevoir d’allocation, par exemple lorsque les revenus tirés de son activité réduite dépassent le plafond. La table D2 ne permet pas de distinguer entre les personnes indemnisables et les personnes indemnisées.</p>
+<section id="lindemnisabilité-des-inscrits-à-france-travail" class="level2">
+<h2 class="anchored" data-anchor-id="lindemnisabilité-des-inscrits-à-france-travail">L’indemnisabilité des inscrits à France Travail</h2>
+<p>La table D2 donne les informations sur l’indemnisabilité des inscrits à France Travail aux allocations-chômage. Le fait d’être indemnisable à une allocation-chômage ne veut pas dire être indemnisé : une personne inscrite à France Travail peut être indemnisée sur une période, mais ne pas percevoir d’allocation, par exemple lorsque les revenus tirés de son activité réduite dépassent le plafond. La table D2 ne permet pas de distinguer entre les personnes indemnisables et les personnes indemnisées.</p>
 </section>
 <section id="définition-dune-période-indemnisable" class="level2">
 <h2 class="anchored" data-anchor-id="définition-dune-période-indemnisable">Définition d’une période indemnisable</h2>
 <p>Une ligne de la table est une période indemnisable, elle est identifiée par l’ID_MiDAS et la variable NDEM, ainsi que par les dates de début et de fin de la période indemnisable (JOURDV et JOURFV). Ces dates sont inclusives.</p>
 <p>Les informations sur l’indemnisabilité mettent plus de temps à remonter, la table D2 s’arrête donc un trimestre plus tôt que les autres tables du FHS. Par exemple, dans le FHS du quatrième trimestre 2021, la variable JOURFV n’est jamais au-delà du 30 septembre 2021.</p>
 <p>De plus, 9 mois avant la fin des informations de la table D2, toutes les lignes se terminent et une nouvelle apparaît automatiquement avec les mêmes informations autres que les dates, même si la période indemnisable est ininterompue : la variable D2STATUT (label STATUT DE L’ENREGISTREMENT) prend deux valeurs C (consolidé) et P (provisoire). Par exemple, dans le FHS du quatrième trimestre 2021, une période en cours au 31 décembre 2020 a une ligne C avec JOURDV = 2020-12-31 et il y a une autre ligne P pour le même individu avec JOURDV = 2021-01-01.</p>
-<p>En cas de changement d’une des variables régime d’indemnisation (REGIND), filière d’indemnisation (filindem), type de population (typpope) ou régime particulier (REGIME), une nouvelle ligne est créée. Il est donc très compliqué d’associer différentes périodes de la table D2 à un droit et à une allocation chômage de manière certaine.</p>
+<p>En cas de changement d’une des variables régime d’indemnisation (REGIND), filière d’indemnisation (filindem), type de population (typpope) ou régime particulier (REGIME), une nouvelle ligne est créée. Il est donc très compliqué d’associer différentes périodes de la table D2 à un droit et à une allocation-chômage de manière certaine.</p>
 </section>
 <section id="calcul-du-nombre-dindemnisables-à-une-date" class="level2">
 <h2 class="anchored" data-anchor-id="calcul-du-nombre-dindemnisables-à-une-date">Calcul du nombre d’indemnisables à une date</h2>

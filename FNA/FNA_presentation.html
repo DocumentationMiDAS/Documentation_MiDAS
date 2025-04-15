@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.40">
+<meta name="generator" content="quarto-1.6.43">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -35,10 +35,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-d5a29efe3df95ec3e1b6c003e0793714.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-2619d6b8665cb2d4c443b1de909cb677.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -484,14 +484,14 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Le <strong>Fichier National des Allocataires de France Travail</strong> suit les <strong>trajectoires d’indemnisation</strong> des demandeurs d’emploi allocataires de l’Assurance-chômage. Il contient notamment toutes les informations nécessaires pour calculer cette indemnisation&nbsp;: période d’affiliation, salaire journalier de référence, durée d’indemnisation potentielle…</p>
+<p>Le <strong>Fichier National des Allocataires de France Travail</strong> suit les <strong>trajectoires d’indemnisation</strong> des personnes allocataires de l’assurance-chômage. Il contient notamment toutes les informations nécessaires pour calculer cette indemnisation&nbsp;: période d’affiliation, salaire journalier de référence, durée d’indemnisation potentielle…</p>
 <section id="champ" class="level2">
 <h2 class="anchored" data-anchor-id="champ">Champ</h2>
-<p><strong>Demandeurs d’emploi</strong> <strong>indemnisables au moins 1 jour depuis le 1er janvier 2017</strong>. Pour ces individus, MiDAS contient <strong>tout l’historique de leur indemnisation</strong> depuis 1993, ainsi que leurs périodes d’affiliation et d’activité réduite.</p>
+<p><strong>Personnes</strong> <strong>indemnisables au moins 1 jour depuis le 1er janvier 2017</strong>. Pour ces individus, MiDAS contient <strong>tout l’historique de leur indemnisation</strong> depuis 1993, ainsi que leurs périodes d’affiliation et d’activité réduite.</p>
 </section>
 <section id="structure-des-tables" class="level2">
 <h2 class="anchored" data-anchor-id="structure-des-tables">Structure des tables</h2>
-<p>Dans le cadre de MiDAS, les données sélectionnées sont issues de 7 segments du FNA&nbsp;:</p>
+<p>Dans le cadre de MiDAS, les données sélectionnées sont issues de 8 segments du FNA&nbsp;:</p>
 <ul>
 <li><p>Le segment <strong>« <a href="../FNA/IND/IND_presentation.html">Individu</a> » (IND, LN4A)</strong>&nbsp;: table centrale qui fait la jonction avec les autres tables, au niveau de l’individu&nbsp;;</p></li>
 <li><p>Le segment <strong>« <a href="../FNA/CDT/CDT_presentation.html">Contrat de travail</a> » (CDT, LN4E)</strong> indique la nature du dernier contrat de travail avant l’ouverture du droit (fait générateur) et son motif de fin ;</p></li>
@@ -499,27 +499,28 @@ ul.task-list li input[type="checkbox"] {
 <li><p>Le segment <strong>« <a href="../FNA/DAL/DAL_presentation.html">Demande d’allocation</a> » (DAL, LN1N)</strong> : table qui renseigne sur les demandes d’allocation (type de demande, nombre de jours de différés, demandes rejetées) rattachées aux droits ouverts. Cette table contient toutes les demandes, y compris celles qui n’ont pas débouché sur une ouverture de droit&nbsp;;</p></li>
 <li><p>Le segment <strong>« <a href="../FNA/ODD/ODD_presentation.html">Ouverture de droit</a> » (ODD, LN1S)</strong> : cette table fournit les caractéristiques du droit ouvert. Une ligne correspond à un droit. On distingue plusieurs situations :</p>
 <ul>
-<li><p><em>L’ouverture et la fin de droit</em> : lorsque la demande allocation est acceptée, le demandeur d’emploi peut s’ouvrir un droit (KCNDDA = 01 dans la table DAL). Les paramètres de l’indemnisation associés au droit sont renseignés par les dates de PJC (KDDPJ et KDFPJ);</p></li>
+<li><p><em>L’ouverture et la fin de droit</em> : lorsque la demande allocation est acceptée, le demandeur d’emploi peut s’ouvrir un droit (KCNDDA = 01 dans la table DAL). Les paramètres de l’indemnisation associés au droit sont renseignés par les dates de PJC (KDDPJ et KDFPJ) ;</p></li>
 <li><p>La <em>reprise de droit</em>, qui n’entraîne pas de nouveau droit (pas de nouveau KROD, l’identifiant du droit) : elle peut être identifiée dans DAL (KCNDDA = 03) et dans PJC (KCOPP = 20)&nbsp;;</p></li>
 <li><p>Le <em>rechargement de droit</em> (anciennement « réadmission »), entraîne un nouveau droit (une nouvelle ligne avec un nouveau KROD) : il peut être identifié dans DAL (KCDAL = 26 ; KCNDDA = 10), ODD (KCRRD) et dans PJC (KCOPP = 02).</p></li>
 </ul></li>
 <li><p>Le segment <strong>« <a href="../FNA/PJC/PJC_presentation.html">Période à justification constante</a> » (PJC, LN2P)</strong> contient de nombreuses informations permettant de calculer le nombre d’indemnisables et d’indemnisés un mois donné (date de début et de fin de PJC, PJC payée ou non, motif d’ouverture et de fermeture de la PJC, allocation, SJR et montant d’allocation). Pour chaque droit, cette table contient une ligne par PJC, qui est la plus petite unité de temps qui découpe un droit. Le passage d’une PJC à une autre est dû au changement de type de PJC (KCPJC)&nbsp;: si la PJC n’est pas payée, on connaît le motif de son non paiement (KCMNI). Si celle-ci n’est ni payée ni consommé (KCPJC = 3), c’est qu’elle est reportée, en raison principalement de l’exercice d’une activité réduite ;</p></li>
+<li><p>Le segment <strong>« <a href="../FNA/PRM/PRM_presentation.html">Prime versée</a> » (PRM, LN3M)</strong> contient les aides et primes versées aux allocataires de l’assurance-chômage ;</p></li>
 <li><p>Le segment <strong>« <a href="../FNA/PAR/PAR_presentation.html">Période d’activité réduite</a> » (PAR, LN2K)</strong> renseigne sur l’activité réduite (nombre d’heures, salaire brut et périodes).</p></li>
 </ul>
 </section>
 <section id="le-parcours-de-lindemnisation-à-france-travail" class="level2">
 <h2 class="anchored" data-anchor-id="le-parcours-de-lindemnisation-à-france-travail">Le “parcours de l’indemnisation” à France Travail</h2>
-<p>Un nouveau demandeur d’emploi, au moment de son inscription, apparaît dans la table DE du FHS. Ensuite, pour pouvoir être indemnisé :</p>
+<p>Un personne qui s’inscrit à France Travail apparaît dans la table DE du FHS. Ensuite, pour pouvoir être indemnisée :</p>
 <ul>
-<li><p>Le demandeur d’emploi (DE) effectue une demande d’allocation (table DAL) qui peut être acceptée ou rejetée ;</p></li>
-<li><p>La DAL est acceptée si le DE a suffisamment travaillé : la table CDT (contrat de travail) renseigne sur le dernier contrat du demandeur d’emploi ayant permis l’ouverture de droit. En complément, la table PAF (période d’affiliation) renseigne sur l’ensemble des évènements connus par le DE, ce qui inclut les contrats de travail (information à mettre en regard avec les MMO) mais aussi les périodes de formation et d’arrêt de travail ;</p></li>
-<li><p>Une fois la DAL acceptée, le DE peut s’ouvrir un droit à l’Assurance-chômage, dont les caractéristiques sont présentes au sein de la table ODD (ouverture de droit) ;</p></li>
+<li><p>Elle effectue une demande d’allocation (table DAL) qui peut être acceptée ou rejetée ;</p></li>
+<li><p>La DAL est acceptée si la personne a suffisamment travaillé : la table CDT (contrat de travail) renseigne sur son dernier contrat ayant permis l’ouverture de droit. En complément, la table PAF (période d’affiliation) renseigne sur l’ensemble des évènements connus par la personne, ce qui inclut les contrats de travail (information à mettre en regard avec les MMO) mais aussi les périodes de formation et d’arrêt de travail ;</p></li>
+<li><p>Une fois la DAL acceptée, la personne peut s’ouvrir un droit à l’assurance-chômage, dont les caractéristiques sont présentes au sein de la table ODD (ouverture de droit) ;</p></li>
 <li><p>Pour chaque droit ouvert, est associée une ou plusieurs périodes à justification constante (PJC) pendant lesquelles les paramètres de l’indemnisation restent inchangés.</p></li>
 </ul>
-<p>L’activité réduite&nbsp;: l’information sur les allocataires de l’Assurance-chômage qui travaillent (c’est-à-dire inscrits en catégories B et C à France Travail) est renseignée dans le FHS (table E0) et dans le FNA (table PAR). Deux différences sont à noter entre ces deux tables :</p>
+<p>L’activité réduite&nbsp;: l’information sur les allocataires de l’assurance-chômage qui travaillent est renseignée dans le FHS (table E0) et dans le FNA (table PAR). Deux différences sont à noter entre ces deux tables :</p>
 <ul>
-<li><p>Seule la table PAR renseigne sur le salaire brut perçu dans le cadre d’une activité réduite exercée par le demandeur d’emploi (variable KQBARP) ;</p></li>
-<li><p>La table E0 ne contient que les heures d’activité réduite des personnes inscrites en catégories A, B ou C.</p></li>
+<li><p>Seule la table PAR renseigne sur le salaire brut perçu dans le cadre d’une activité réduite (variable KQBARP) ;</p></li>
+<li><p>La table E0 ne contient que les heures d’activité réduite des personnes inscrites en catégories B ou C.</p></li>
 </ul>
 
 
