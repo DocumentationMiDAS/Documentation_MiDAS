@@ -1,5 +1,3 @@
 ---
 title: "Solution de partage de codes"
 ---
-
-Les programmes sources des publications produites à partir des données MiDAS seront bientôt mis à disposition sur Github [à cette adresse](https://github.com/DocumentationMiDAS/Publications).

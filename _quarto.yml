@@ -99,9 +99,6 @@ website:
         - section: "Parcours"
           contents: 
             - href: FHS/Parcours/Parcours_presentation.qmd
-            - section: "Dictionnaire"
-              contents: 
-              - href: FHS/Parcours/Dico_FHS_Parcours/Parcours_dictionnaire.qmd
         - section: "Cibles"
           contents: 
             - href: FHS/Cibles/FHS_cibles.qmd
@@ -220,8 +217,6 @@ website:
           - href: Fiches/Fiches_presentation.qmd
           - href: Fiches/Maintien_de_droits.qmd
           - href: Fiches/Allocations_regimes.qmd
-          - href: Fiches/Parcours_indemnisation.qmd
-          - href: Fiches/Differe_indemnisation.qmd
 
     - title : "Etudes"
       style: "docked"
