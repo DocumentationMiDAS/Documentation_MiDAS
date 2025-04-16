@@ -71,7 +71,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -109,7 +109,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">MMO</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../Fiches/Fiches_presentation.html"> 
+    <a class="nav-link active" href="../Fiches/Fiches_presentation.html" aria-current="page"> 
 <span class="menu-text">Fiches</span></a>
   </li>  
   <li class="nav-item">
@@ -126,10 +126,63 @@ ul.task-list li input[type="checkbox"] {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Fiches/Activité réduite.html">Activité réduite</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Fiches/Fiches_presentation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fiches thématiques</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Fiches/Maintien_de_droits.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Maintien de droits</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Fiches/Allocations_regimes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Allocations agrégées et régimes d’indemnisation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Fiches/Parcours_indemnisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Le parcours de l’indemnisation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Fiches/Differe_indemnisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Différé d’indemnisation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Fiches/Activité réduite.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Activité réduite</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -179,11 +232,11 @@ ul.task-list li input[type="checkbox"] {
 <p>Les personnes en activité réduite sont les personnes qui occupent une activité professionnelle tout en étant inscrites à France Travail&nbsp;; on parle également d’«&nbsp;<em>allocataires qui travaillent</em>&nbsp;». MiDAS contient deux sources différentes d’information sur la pratique de l’activité réduite&nbsp;: d’une part la table E0 du FHS, d’autre part la table PAR du FNA. Des préconisations sont fournies à la fin de cette fiche pour repérer les personnes en activité réduite dans MiDAS.</p>
 <section id="i.-définir-la-catégorie-dinscription" class="level1">
 <h1>I. Définir la catégorie d’inscription</h1>
-<p>Pour repérer les personnes en activité réduite, il faut tout d’abord déterminer les personnes qui peuvent effectivement en exercer une parmi les inscrits à France Travail. Cinq catégories d’inscription existent à France Travail et seules les catégories B à E sont concernées&nbsp;: les personnes qui exercent une activité réduite sont principalement classées en catégories B ou C, la distinction entre les deux étant définie par le nombre d’heures d’activité réduite exercées un mois donné<a href="#_ftn1">[1]</a> (plus ou moins 78 heures), mais on les retrouve également dans les catégories D et E (respectivement des personnes en Contrat de sécurisation professionnelle (CSP) ou en contrat aidé par exemple).</p>
+<p>Pour repérer les personnes en activité réduite, il faut tout d’abord déterminer les personnes qui peuvent effectivement en exercer une parmi les inscrits à France Travail. Cinq catégories d’inscription existent à France Travail et seules les catégories B à E sont concernées&nbsp;: les personnes qui exercent une activité réduite sont principalement classées en catégories B ou C, la distinction entre les deux étant définie par le nombre d’heures d’activité réduite exercées un mois donné<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> (plus ou moins 78 heures), mais on les retrouve également dans les catégories D et E (respectivement des personnes en Contrat de sécurisation professionnelle (CSP) ou en contrat aidé par exemple).</p>
 <p>Dans MiDAS, comme plus généralement pour le suivi des inscrits à France Travail en fin de mois, les catégories d’inscription sont définies à l’aide des tables DE et E0 du FHS qui servent à déterminer le nombre de personnes inscrites chaque mois à France Travail. On utilise les variables suivantes&nbsp;: les dates d’inscription et de désinscription à France Travail (DATINS et DATANN) pour déterminer les personnes inscrites chaque mois, la catégorie opérationnelle de France Travail (CATREGR) et le nombre d’heures d’activité réduite (NBHEUR) renseigné dans E0. Pour un mois donné&nbsp;:</p>
 <ul>
 <li><p>Une personne est en catégorie A si CATREGR vaut «&nbsp;1&nbsp;», «&nbsp;2&nbsp;» ou «&nbsp;3&nbsp;» et qu’elle n’apparaît pas dans E0&nbsp;;</p></li>
-<li><p>Une personne est en catégorie B si CATREGR vaut «&nbsp;1&nbsp;», «&nbsp;2&nbsp;» ou «&nbsp;3&nbsp;» et que NBHEUR ≤ 78<a href="#_ftn2">[2]</a>&nbsp;;</p></li>
+<li><p>Une personne est en catégorie B si CATREGR vaut «&nbsp;1&nbsp;», «&nbsp;2&nbsp;» ou «&nbsp;3&nbsp;» et que NBHEUR ≤ 78<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>&nbsp;;</p></li>
 <li><p>Un personne est en catégorie C si CATREGR vaut « 1 », « 2 » ou « 3 » et que NBHEUR &gt; 78 ;</p></li>
 <li><p>Une personne est en catégorie D si CATREGR vaut «&nbsp;4&nbsp;»&nbsp;;</p></li>
 <li><p>Une personne est en catégorie E si CATREGR vaut «&nbsp;5&nbsp;».</p></li>
@@ -277,7 +330,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="iv.-comparaison-avec-lunedic" class="level1">
 <h1>IV. Comparaison avec l’Unedic</h1>
-<p>À titre de comparaison, l’Unedic estime à 853&nbsp;721 le nombre d’allocataires qui travaillent et qui sont indemnisés au 30 septembre 2022, avec un droit ouvert à certaines allocations (ARE, AREF, ASP, ATI, AREP). En appliquant la définition de l’activité réduite avec MiDAS sur le même champ, on obtient 873&nbsp;607 personnes, en supprimant ceux qui déclarent 0 heures d’activité réduite<a href="#_ftn1">[1]</a>.</p>
+<p>À titre de comparaison, l’Unedic estime à 853&nbsp;721 le nombre d’allocataires qui travaillent et qui sont indemnisés au 30 septembre 2022, avec un droit ouvert à certaines allocations (ARE, AREF, ASP, ATI, AREP). En appliquant la définition de l’activité réduite avec MiDAS sur le même champ, on obtient 873&nbsp;607 personnes, en supprimant ceux qui déclarent 0 heures d’activité réduite<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</p>
 </section>
 <section id="v.-conclusions-sur-lactivité-réduite" class="level1">
 <h1>V. Conclusions sur l’activité réduite</h1>
@@ -297,14 +350,19 @@ ul.task-list li input[type="checkbox"] {
 <li><p>Plafonner à 200 les heures renseignées dans le FNA&nbsp;;</p></li>
 <li><p>Ne pas utiliser la variable qui renseigne sur la rémunération brute d’activité réduite, en raison de sa mauvaise qualité pour près d’un tiers à un quart des personnes en activité réduite.</p></li>
 </ul>
-<p><a href="#_ftnref1">[1]</a> Filtrer sur le salaire d’activité réduite renseigné (mais en gardant les montants nuls) donne 868&nbsp;890 personnes.</p>
-<p><a href="#_ftnref1">[2]</a> L’activité réduite est toujours identifiée sur un mois complet&nbsp;: il n’y a pas de date de début, ni de date de fin.</p>
-<p><a href="#_ftnref2">[3]</a> Sont incluses les personnes qui déclarent 0 heures d’activité réduite&nbsp;: en septembre 2022, parmi les personnes qui sont continûment inscrites et indemnisables, seules 1&nbsp;640 déclarent 0 heures d’activité réduite. À noter également qu’il n’y a pas d’heures d’activité réduite non renseignées dans la table E0.</p>
 
 
 </section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>L’activité réduite est toujours identifiée sur un mois complet&nbsp;: il n’y a pas de date de début, ni de date de fin.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Sont incluses les personnes qui déclarent 0 heures d’activité réduite&nbsp;: en septembre 2022, parmi les personnes qui sont continûment inscrites et indemnisables, seules 1&nbsp;640 déclarent 0 heures d’activité réduite. À noter également qu’il n’y a pas d’heures d’activité réduite non renseignées dans la table E0.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Filtrer sur le salaire d’activité réduite renseigné (mais en gardant les montants nuls) donne 868&nbsp;890 personnes.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
