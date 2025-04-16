@@ -6,19 +6,23 @@ Les personnes en activité réduite sont les personnes qui occupent une activit�
 
 # I. Définir la catégorie d’inscription
 
-Pour repérer les personnes en activité réduite, il faut tout d’abord déterminer les personnes qui peuvent effectivement en exercer une parmi les inscrits à France Travail. Cinq catégories d’inscription existent à France Travail et seules les catégories B à E sont concernées : les personnes qui exercent une activité réduite sont principalement classées en catégories B ou C, la distinction entre les deux étant définie par le nombre d’heures d’activité réduite exercées un mois donné[\[1\]](#_ftn1) (plus ou moins 78 heures), mais on les retrouve également dans les catégories D et E (respectivement des personnes en Contrat de sécurisation professionnelle (CSP) ou en contrat aidé par exemple).
+Pour repérer les personnes en activité réduite, il faut tout d’abord déterminer les personnes qui peuvent effectivement en exercer une parmi les inscrits à France Travail. Cinq catégories d’inscription existent à France Travail et seules les catégories B à E sont concernées : les personnes qui exercent une activité réduite sont principalement classées en catégories B ou C, la distinction entre les deux étant définie par le nombre d’heures d’activité réduite exercées un mois donné[^1] (plus ou moins 78 heures), mais on les retrouve également dans les catégories D et E (respectivement des personnes en Contrat de sécurisation professionnelle (CSP) ou en contrat aidé par exemple).
+
+[^1]: L’activité réduite est toujours identifiée sur un mois complet : il n’y a pas de date de début, ni de date de fin.
 
 Dans MiDAS, comme plus généralement pour le suivi des inscrits à France Travail en fin de mois, les catégories d’inscription sont définies à l’aide des tables DE et E0 du FHS qui servent à déterminer le nombre de personnes inscrites chaque mois à France Travail. On utilise les variables suivantes : les dates d’inscription et de désinscription à France Travail (DATINS et DATANN) pour déterminer les personnes inscrites chaque mois, la catégorie opérationnelle de France Travail (CATREGR) et le nombre d’heures d’activité réduite (NBHEUR) renseigné dans E0. Pour un mois donné :
 
 -   Une personne est en catégorie A si CATREGR vaut « 1 », « 2 » ou « 3 » et qu'elle n’apparaît pas dans E0 ;
 
--   Une personne est en catégorie B si CATREGR vaut « 1 », « 2 » ou « 3 » et que NBHEUR ≤ 78[\[2\]](#_ftn2) ;
+-   Une personne est en catégorie B si CATREGR vaut « 1 », « 2 » ou « 3 » et que NBHEUR ≤ 78[^2] ;
 
 -   Un personne est en catégorie C si CATREGR vaut « 1 », « 2 » ou « 3 » et que NBHEUR \> 78 ;
 
 -   Une personne est en catégorie D si CATREGR vaut « 4 » ;
 
 -   Une personne est en catégorie E si CATREGR vaut « 5 ».
+
+[^2]: Sont incluses les personnes qui déclarent 0 heures d’activité réduite : en septembre 2022, parmi les personnes qui sont continûment inscrites et indemnisables, seules 1 640 déclarent 0 heures d’activité réduite. À noter également qu’il n’y a pas d’heures d’activité réduite non renseignées dans la table E0.
 
 # II. Définir l’activité réduite
 
@@ -142,7 +146,9 @@ Pour les personnes qui sont au cumul, c’est-à-dire celles qui sont indemnisé
 
 # IV. Comparaison avec l’Unedic
 
-À titre de comparaison, l’Unedic estime à 853 721 le nombre d'allocataires qui travaillent et qui sont indemnisés au 30 septembre 2022, avec un droit ouvert à certaines allocations (ARE, AREF, ASP, ATI, AREP). En appliquant la définition de l’activité réduite avec MiDAS sur le même champ, on obtient 873 607 personnes, en supprimant ceux qui déclarent 0 heures d’activité réduite[\[1\]](#_ftn1).
+À titre de comparaison, l’Unedic estime à 853 721 le nombre d'allocataires qui travaillent et qui sont indemnisés au 30 septembre 2022, avec un droit ouvert à certaines allocations (ARE, AREF, ASP, ATI, AREP). En appliquant la définition de l’activité réduite avec MiDAS sur le même champ, on obtient 873 607 personnes, en supprimant ceux qui déclarent 0 heures d’activité réduite[^3].
+
+[^3]: Filtrer sur le salaire d’activité réduite renseigné (mais en gardant les montants nuls) donne 868 890 personnes.
 
 # V. Conclusions sur l’activité réduite
 
@@ -169,9 +175,3 @@ La comparaison des tables E0 du FHS et PAR du FNA permet d’établir les consta
 -   Plafonner à 200 les heures renseignées dans le FNA ;
 
 -   Ne pas utiliser la variable qui renseigne sur la rémunération brute d’activité réduite, en raison de sa mauvaise qualité pour près d’un tiers à un quart des personnes en activité réduite.
-
-[\[1\]](#_ftnref1) Filtrer sur le salaire d’activité réduite renseigné (mais en gardant les montants nuls) donne 868 890 personnes.
-
-[\[2\]](#_ftnref1) L’activité réduite est toujours identifiée sur un mois complet : il n’y a pas de date de début, ni de date de fin.
-
-[\[3\]](#_ftnref2) Sont incluses les personnes qui déclarent 0 heures d’activité réduite : en septembre 2022, parmi les personnes qui sont continûment inscrites et indemnisables, seules 1 640 déclarent 0 heures d’activité réduite. À noter également qu’il n’y a pas d’heures d’activité réduite non renseignées dans la table E0.

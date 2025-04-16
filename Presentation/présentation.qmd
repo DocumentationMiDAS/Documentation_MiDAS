@@ -15,6 +15,6 @@ MiDAS regroupe ainsi les données :
 
 -   De la **Cnaf**, qui renseignent sur les bénéficiaires de prestations sociales via le fichier Allstat-FR6 ;
 
--   De la **Dares**, qui contiennent les contrats de travail (activité salariée), reconstitués dans les fichiers Mouvements de main-d'œuvre (MMO) à partir de la Déclaration sociale nominative (**DSN**).
+-   De la **Dares**, qui contiennent les contrats de travail (activité salariée), reconstitués dans les fichiers Mouvements de main-d'œuvre (MMO) à partir de la Déclaration sociale nominative (DSN).
 
 ![](images/clipboard-1410781446.png)

@@ -163,6 +163,12 @@ website:
         - section: "IND"
           contents: 
             - href: FNA/IND/IND_presentation.qmd
+        - section: "PRM"
+          contents: 
+            - href: FNA/PRM/PRM_presentation.qmd
+            - section: "Dictionnaire"
+              contents: 
+              - href: FNA/PRM/Dico_FNA_PRM/PRM_dictionnaire.qmd
         - section: "Cibles"
           contents: 
             - href: FNA/Cibles/FNA_cibles.qmd
@@ -222,6 +228,7 @@ website:
           - href: Fiches/Allocations_regimes.qmd
           - href: Fiches/Parcours_indemnisation.qmd
           - href: Fiches/Differe_indemnisation.qmd
+          - href: Fiches/Activité réduite.qmd
 
     - title : "Etudes"
       style: "docked"

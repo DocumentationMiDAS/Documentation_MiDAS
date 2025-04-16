@@ -14,4 +14,4 @@ title: "Dictionnaire des variables"
 | KNRPRP | PRMRGVER | Rang du versement de la prime |  |  |
 | KQMTPP | PRMMTPRC | Montant précompte retraite complémentaire |  |  |
 | KQRPRP | PRMMTB | Montant brut versé |  |  |
-| KRO7 | PRMODC | Identifiant du droit courant |  |  |
+| KROD7 | PRMODC | Identifiant du droit courant |  |  |
