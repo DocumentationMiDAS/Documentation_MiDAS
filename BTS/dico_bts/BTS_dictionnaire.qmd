@@ -1,0 +1,12 @@
+---
+title: "Dictionnaire des variables"
+---
+
+| <br>Variable | <br>Description | <br>Modalités | <br>Commentaires |
+|:--:|:--:|:--:|:--:|
+| <br>ANNEE | <br> | <br> | <br> |
+| <br>CPFD |  | <br>C. Temps complet<br>P. Temps partiel<br>N. Non concerné<br>S. Chômage |  |
+| NBHEUR | Nombre d'heures travaillées |  |  |
+| S_BRUT | Montant du salaire brut |  |  |
+| S_NET | Montant du salaire net |  |  |
+| Siret |  |  |  |

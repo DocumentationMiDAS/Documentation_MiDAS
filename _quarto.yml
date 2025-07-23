@@ -8,29 +8,31 @@ website:
     search: true
     left:
       - text: "MiDAS"
-        href : Presentation/présentation.qmd
-      - text : "FHS"
-        href : FHS/FHS_presentation.qmd
-      - text : "FNA"
-        href : FNA/FNA_presentation.qmd
-      - text : "Allstat-FR6"
-        href : Allstat_FR6/Allstat_FR6_presentation.qmd
-      - text : "MMO"
-        href : MMO/mmo_presentation.qmd
-      - text : "Fiches"
-        href : Fiches/Fiches_presentation.qmd
-      # - text : "Etudes"
-      #   href : Etudes/etudes.qmd
-      # - text : "Outils"
-      #   href : Outils/outils.qmd
-      # - text : "NEW"
-      #   href : NEW/new_presentation.qmd
-      - text : "Codes"
-        href : Codes/codes_presentation.qmd
+        href: Presentation/présentation.qmd
+      - text: "FHS"
+        href: FHS/FHS_presentation.qmd
+      - text: "FNA"
+        href: FNA/FNA_presentation.qmd
+      - text: "Allstat-FR6"
+        href: Allstat_FR6/Allstat_FR6_presentation.qmd
+      - text: "MMO"
+        href: MMO/mmo_presentation.qmd
+      - text: "Fiches"
+        href: Fiches/Fiches_presentation.qmd
+      - text: "BTS"
+        href: BTS/BTS_presentation.qmd
+      # - text: "Etudes"
+      #   href: Etudes/etudes.qmd
+      # - text: "Outils"
+      #   href: Outils/outils.qmd
+      # - text: "NEW"
+      #   href: NEW/new_presentation.qmd
+      - text: "Codes"
+        href: Codes/codes_presentation.qmd
       - about.qmd
       
   sidebar: 
-    - title : "MiDAS"
+    - title: "MiDAS"
       style: "docked"
       background: light
       contents:
@@ -39,7 +41,7 @@ website:
         - href: Presentation/presentation2.qmd
         
         
-    - title : "FHS"
+    - title: "FHS"
       style: "docked"
       background: light
       contents:
@@ -107,7 +109,7 @@ website:
             - href: FHS/Cibles/FHS_cibles.qmd
         
             
-    - title : "FNA"
+    - title: "FNA"
       style: "docked"
       background: light
       contents:
@@ -179,7 +181,7 @@ website:
       style: "docked"
       background: light
       contents: 
-        - section : "Présentation"
+        - section: "Présentation"
           contents: 
             - Allstat_FR6/Allstat_FR6_presentation.qmd
         - section: "Prestations"
@@ -201,23 +203,36 @@ website:
           contents: 
             - href: Allstat_FR6/Cibles/Allstat_FR6_cibles.qmd
 
-    - title : "MMO"
+
+    - title: "MMO"
       style: "docked"
       background: light
       contents: 
-      - section : "Présentation"
-        contents: 
-          - MMO/mmo_presentation.qmd
-      - section: "Dictionnaire"
-        contents: 
-          - href: MMO/Dico_mmo/mmo_dictionnaire.qmd
-          - href: MMO/Dico_mmo/mmo_variables/MotifRecours.qmd
-          - href: MMO/Dico_mmo/mmo_variables/MotifRupture.qmd
-          - href: MMO/Dico_mmo/mmo_variables/Nature.qmd
-          - href: MMO/Dico_mmo/mmo_variables/SalaireBase.qmd
-      - section: "Cibles"
-        contents: 
-          - href: MMO/Cibles/mmo_cibles.qmd
+        - section: "Présentation"
+          contents: 
+            - MMO/mmo_presentation.qmd
+        - section: "Dictionnaire"
+          contents: 
+            - href: MMO/Dico_mmo/mmo_dictionnaire.qmd
+            - href: MMO/Dico_mmo/mmo_variables/MotifRecours.qmd
+            - href: MMO/Dico_mmo/mmo_variables/MotifRupture.qmd
+            - href: MMO/Dico_mmo/mmo_variables/Nature.qmd
+            - href: MMO/Dico_mmo/mmo_variables/SalaireBase.qmd
+        - section: "Cibles"
+          contents: 
+            - href: MMO/Cibles/mmo_cibles.qmd
+          
+    - title: "BTS"
+      style: "docked"
+      background: light
+      contents:
+        - section: "Présentation"
+          contents:
+            - BTS/BTS_presentation.qmd
+        - section: "Dictionnaire"
+          contents:
+            - href: BTS/dico_bts/BTS_dictionnaire.qmd
+
           
     - title : "Fiches"
       style: "docked"

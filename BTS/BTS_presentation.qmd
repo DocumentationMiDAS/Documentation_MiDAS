@@ -1,0 +1,5 @@
+---
+title: "Présentation de la table"
+---
+
+Les données BTS permettent de compléter les données MMO, notamment par l'ajout du nombre d'heures et du salaire brut et net.

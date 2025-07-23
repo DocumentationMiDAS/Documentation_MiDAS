@@ -2,11 +2,7 @@
 title: "KCNPL"
 ---
 
-Cette rubrique définit la nature d'une période du passé professionnel. Pour Athéna Est, cette rubrique est disponible pour les Annexes 2 et 8. Pour les Annexes, la nature de période se décompose en :
-"A" Valeur constante
-"X" Numéro de l'Annexe
-"99" Code numérique sur 2 positions qui correspond à la qualification de l'individu au niveau de l'annexe
-
+Cette rubrique définit la nature d'une période du passé professionnel. Pour Athéna Est, cette rubrique est disponible pour les Annexes 2 et 8. Pour les Annexes, la nature de période se décompose en : "A" Valeur constante "X" Numéro de l'Annexe "99" Code numérique sur 2 positions qui correspond à la qualification de l'individu au niveau de l'annexe
 
 **AGRI**. EXPLOITANT AGRICOLE
 
