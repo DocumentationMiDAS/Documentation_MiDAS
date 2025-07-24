@@ -6,6 +6,12 @@ title: "Présentation de la table"
 
 La table D2 donne les informations sur l'indemnisabilité des inscrits à France Travail aux allocations-chômage. Le fait d'être indemnisable à une allocation-chômage ne veut pas dire être indemnisé : une personne inscrite à France Travail peut être indemnisée sur une période, mais ne pas percevoir d'allocation, par exemple lorsque les revenus tirés de son activité réduite dépassent le plafond. La table D2 ne permet pas de distinguer entre les personnes indemnisables et les personnes indemnisées.
 
+::: callout-warning
+### Utilisation déconseillée
+
+Il n'est pas recommandé d'utiliser cette table car les informations qu'elle contient sur l'indemnisabilité sont moins fiables que celles du **FNA**, présent dans MiDAS.
+:::
+
 ## Définition d'une période indemnisable
 
 Une ligne de la table est une période indemnisable, elle est identifiée par l'ID_MiDAS et la variable NDEM, ainsi que par les dates de début et de fin de la période indemnisable (JOURDV et JOURFV). Ces dates sont inclusives.
@@ -19,7 +25,3 @@ En cas de changement d'une des variables régime d'indemnisation (REGIND), fili�
 ## Calcul du nombre d'indemnisables à une date
 
 Il est facile de donner le nombre d'indemnisables à une date donnée à partir de la table D2. Le type d'allocation est donné par la variable de code allocation indemnisable (INDEM). La variable ODDMAX donne la durée théorique d'indemnisation du droit de la période concernée. S'il n'y a pas de durée théorique (par exemple pour l'ASS), cette variable vaut 9998.
-
-::: callout-warning
-Il n'est pas recommandé d'utiliser cette table car les informations qu'elle contient sur l'indemnisabilité sont moins fiables que celles du **FNA**, présent dans MiDAS.
-:::

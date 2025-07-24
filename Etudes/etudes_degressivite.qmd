@@ -1,5 +1,0 @@
----
-title: "Dégressivité"
----
-
-Mise à disposition d'un programme commenté et des résultats de l'étude.

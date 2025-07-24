@@ -1,16 +1,8 @@
 ---
-title: "About"
+title: "Contact"
 ---
 
-# Mentions légales
-
-## Editeur
-
-## Responsabilité sur les contenus
-
-La Documentation de la base de données MiDAS est évolutive : elle vise à être progressivement enrichie au fil de ses exploitations. Ce document en constitue une première version, mise à jour en septembre 2023. Afin de l'améliorer, nous sommes preneurs de toutes vos remarques ou suggestions de compléments. Pour cela, vous pouvez contacter les responsables du site à l'adresse midas\@travail.gouv.fr.
-
-Comment contribuer au site ?
+Pour toute question concernant cette documentation, vous pouvez contacter les responsables du site à l'adresse midas\@travail.gouv.fr.
 
 ## Illustrations du site
 
@@ -21,5 +13,3 @@ Source des illustrations libres de droit :
 -   pixabay
 
 -   github.com
-
-## Droits de reproduction

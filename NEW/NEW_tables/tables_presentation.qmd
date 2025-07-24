@@ -1,7 +1,0 @@
----
-title: "Tables mensuelles"
-date: today
-author: Léonie
----
-
-Nouvelles tables mensuelles

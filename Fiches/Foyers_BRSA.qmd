@@ -1,5 +1,5 @@
 ---
-title: "Reproduction d'indicateurs cibles"
+title: "Foyers bénéficiaires du RSA"
 execute: 
   enabled: false
 ---
@@ -52,7 +52,8 @@ table_menage <- spark_read_parquet(sc, paste0(dir_spark,"/Allstat/menage/cnaf_me
 table_ms_rsa <- spark_read_parquet(sc, paste0(dir_spark, 
                                           "/Allstat/minsoc/cnaf_minsoc_", mois_cnaf, ".parquet"), memory=FALSE) %>%
   dplyr::filter(RSAVERS %in% c("RSA droit commun", "RSA droit local",
-                               "RSA jeune", "RSA expérimental", "C", "L", "J", "E")) %>%
+                               "RSA jeune", "RSA expérimental", "C", "L", "J", "E")
+                & MTRSAVER != 0) %>%
   dplyr::mutate(id_menage = paste0(NORDALLC,NUMCAF)) %>% # création d'un identifiant ménage
   window_order(id_midas) %>%
   group_by(id_midas) %>%

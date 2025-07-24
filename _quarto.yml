@@ -15,18 +15,10 @@ website:
         href: FNA/FNA_presentation.qmd
       - text: "Allstat-FR6"
         href: Allstat_FR6/Allstat_FR6_presentation.qmd
-      - text: "MMO"
-        href: MMO/mmo_presentation.qmd
+      - text: "DSN"
+        href: DSN/DSN_presentation.qmd
       - text: "Fiches"
         href: Fiches/Fiches_presentation.qmd
-      - text: "BTS"
-        href: BTS/BTS_presentation.qmd
-      # - text: "Etudes"
-      #   href: Etudes/etudes.qmd
-      # - text: "Outils"
-      #   href: Outils/outils.qmd
-      # - text: "NEW"
-      #   href: NEW/new_presentation.qmd
       - text: "Codes"
         href: Codes/codes_presentation.qmd
       - about.qmd
@@ -69,13 +61,6 @@ website:
             - section: "Dictionnaire"
               contents: 
               - href: FHS/E0/Dico_FHS_E0/E0_dictionnaire.qmd
-        - section: "D2"
-          contents: 
-            - href: FHS/D2/D2_presentation.qmd
-            - section: "Dictionnaire"
-              contents: 
-              - href: FHS/D2/Dico_FHS_D2/D2_dictionnaire.qmd
-              - href: FHS/D2/Dico_FHS_D2/FHS_D2_variables/INDEM.qmd
         - section: "P2"
           contents: 
             - href: FHS/P2/P2_presentation.qmd
@@ -85,6 +70,19 @@ website:
               - href: FHS/P2/Dico_FHS_P2/FHS_P2_variables/CATFIN.qmd
               - href: FHS/P2/Dico_FHS_P2/FHS_P2_variables/FORMACOD.qmd
               - href: FHS/P2/Dico_FHS_P2/FHS_P2_variables/ORGCAT.qmd
+        - section: "Parcours"
+          contents: 
+            - href: FHS/Parcours/Parcours_presentation.qmd
+            - section: "Dictionnaire"
+              contents: 
+              - href: FHS/Parcours/Dico_FHS_Parcours/Parcours_dictionnaire.qmd
+        - section: "D2"
+          contents: 
+            - href: FHS/D2/D2_presentation.qmd
+            - section: "Dictionnaire"
+              contents: 
+              - href: FHS/D2/Dico_FHS_D2/D2_dictionnaire.qmd
+              - href: FHS/D2/Dico_FHS_D2/FHS_D2_variables/INDEM.qmd
         - section: "E3"
           contents: 
             - href: FHS/E3/E3_presentation.qmd
@@ -97,17 +95,7 @@ website:
             - href: FHS/E3_Cons/E3_Cons_presentation.qmd
             - section: "Dictionnaire"
               contents: 
-              - href: FHS/E3/Dico_FHS_E3/E3_dictionnaire.qmd
-        - section: "Parcours"
-          contents: 
-            - href: FHS/Parcours/Parcours_presentation.qmd
-            - section: "Dictionnaire"
-              contents: 
-              - href: FHS/Parcours/Dico_FHS_Parcours/Parcours_dictionnaire.qmd
-        - section: "Cibles"
-          contents: 
-            - href: FHS/Cibles/FHS_cibles.qmd
-        
+              - href: FHS/E3/Dico_FHS_E3/E3_dictionnaire.qmd        
             
     - title: "FNA"
       style: "docked"
@@ -171,9 +159,6 @@ website:
             - section: "Dictionnaire"
               contents: 
               - href: FNA/PRM/Dico_FNA_PRM/PRM_dictionnaire.qmd
-        - section: "Cibles"
-          contents: 
-            - href: FNA/Cibles/FNA_cibles.qmd
   
 
             
@@ -199,40 +184,32 @@ website:
               - href: Allstat_FR6/Menages/Dico_allstat_foyers/menages_dictionnaire.qmd
               - href: Allstat_FR6/Menages/Dico_allstat_foyers/allstat_foyers_variables/actrespd.qmd
               - href: Allstat_FR6/Menages/Dico_allstat_foyers/allstat_foyers_variables/regrespd.qmd
-        - section: "Cibles"
-          contents: 
-            - href: Allstat_FR6/Cibles/Allstat_FR6_cibles.qmd
 
 
-    - title: "MMO"
+    - title: "DSN"
       style: "docked"
       background: light
       contents: 
         - section: "Présentation"
           contents: 
-            - MMO/mmo_presentation.qmd
-        - section: "Dictionnaire"
+            - DSN/DSN_presentation.qmd
+            
+        - section: "MMO"
           contents: 
-            - href: MMO/Dico_mmo/mmo_dictionnaire.qmd
-            - href: MMO/Dico_mmo/mmo_variables/MotifRecours.qmd
-            - href: MMO/Dico_mmo/mmo_variables/MotifRupture.qmd
-            - href: MMO/Dico_mmo/mmo_variables/Nature.qmd
-            - href: MMO/Dico_mmo/mmo_variables/SalaireBase.qmd
-        - section: "Cibles"
-          contents: 
-            - href: MMO/Cibles/mmo_cibles.qmd
-          
-    - title: "BTS"
-      style: "docked"
-      background: light
-      contents:
-        - section: "Présentation"
+            - href: DSN/MMO/mmo_presentation.qmd
+            - section: "Dictionnaire"
+              contents: 
+                - href: DSN/MMO/Dico_mmo/mmo_dictionnaire.qmd
+                - href: DSN/MMO/Dico_mmo/mmo_variables/MotifRecours.qmd
+                - href: DSN/MMO/Dico_mmo/mmo_variables/MotifRupture.qmd
+                - href: DSN/MMO/Dico_mmo/mmo_variables/Nature.qmd
+                - href: DSN/MMO/Dico_mmo/mmo_variables/SalaireBase.qmd
+        - section: "BTS"
           contents:
-            - BTS/BTS_presentation.qmd
-        - section: "Dictionnaire"
-          contents:
-            - href: BTS/dico_bts/BTS_dictionnaire.qmd
-
+            - href: DSN/BTS/BTS_presentation.qmd
+            - section: "Dictionnaire"
+              contents:
+              - href: DSN/BTS/Dico_BTS/BTS_dictionnaire.qmd
           
     - title : "Fiches"
       style: "docked"
@@ -244,44 +221,13 @@ website:
           - href: Fiches/Parcours_indemnisation.qmd
           - href: Fiches/Differe_indemnisation.qmd
           - href: Fiches/Activité réduite.qmd
-
-    - title : "Etudes"
-      style: "docked"
-      background: light
-      contents:
-          - href: Etudes/etudes.qmd
-          - href: Etudes/etudes_retour_emploi.qmd
-          - href: Etudes/etudes_degressivite.qmd
-
-    - title : "Outils"
-      style: "docked"
-      background: light
-      contents:
-          - href: Outils/outils.qmd
-          - href: Outils/outils_parquet.qmd
-          - href: Outils/outils_spark.qmd
-          - href: Outils/outils_benchmark.qmd
-    
-    - title: "NEW"
-      style: "docked"
-      background: light
-      contents: 
-        - section : "Présentation"
-          contents: 
-            - NEW/new_presentation.qmd
-        - section: "Nouvelles variables"
-          contents: 
-            - href: NEW/NEW_variables/variables_presentation.qmd
-        - section: "Nouvelles tables mensuelles"
-          contents: 
-            - href: NEW/NEW_tables/tables_presentation.qmd
+          - href: Fiches/Foyers_BRSA.qmd
             
 
 
 format:
   html:
     theme: pulse
-    css: styles.css
     toc: true
 
 editor: visual

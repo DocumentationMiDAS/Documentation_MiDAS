@@ -1,8 +1,8 @@
 ---
-title: "Les Mouvements de Main d'Oeuvre (MMO)"
+title: "Présentation de la DSN"
 ---
-
-La Dares fournit les données de Mouvements de Main-d'œuvre (MMO)[^1] tirées de la Déclaration sociale nominative (DSN), qui permet de suivre l'ensemble des contrats salariés des personnes inscrites à Frace Travail et des bénéficiaires de minima sociaux. La DSN repose sur la transmission unique, mensuelle et dématérialisée des données issues de la paie et sur des signalements d’évènements. Plus précisément, la DSN remplace depuis 2017, dans la plupart des entreprises, la déclaration annuelle de données sociales unifiée (DADS-U) afin d'unifier les déclarations et démarches relatives à la gestion de la protection sociale des employés, autrefois adressées à une diversité d'acteurs (CPAM, Urssaf, AGIRC ARRCO, Organismes complémentaires, Pôle emploi, Centre des impôts, Caisses de régimes spéciaux...).
+ 
+La Déclaration Sociale Nominative (DSN) permet de suivre l'ensemble des contrats salariés des personnes inscrites à Frace Travail et des bénéficiaires de minima sociaux. La DSN repose sur la transmission unique, mensuelle et dématérialisée des données issues de la paie et sur des signalements d’évènements. Plus précisément, la DSN remplace depuis 2017, dans la plupart des entreprises, la déclaration annuelle de données sociales unifiée (DADS-U) afin d'unifier les déclarations et démarches relatives à la gestion de la protection sociale des employés, autrefois adressées à une diversité d'acteurs (CPAM, Urssaf, AGIRC ARRCO, Organismes complémentaires, Pôle emploi, Centre des impôts, Caisses de régimes spéciaux...).
 
 [^1]: Cette partie est issue de la documentation ForCE (Formation, Chômage Emploi), les données MMO transmises au CASD pour ces deux appariements étant identiques.
 
@@ -15,11 +15,3 @@ Le champ des contrats couverts par la DSN est progressivement élargi, ce qui cr
 -   Une partie de l'emploi agricole n'est pas intégrée en DSN. Il s'agit des contrats déclarés à l'aide des « Titres emploi simplifié agricole » (Tesa), dispositif géré par la MSA (Mutualité Sociale Agricole : sécurité sociale des agriculteurs et des salariés agricoles) pour faciliter la déclaration des salariés en CDD et des travailleurs occasionnels des TPE rattachées au régime agricole. Le calendrier sous lequel les Tesa pourraient être intégrés en DSN n'est pas connu à ce jour ;
 
 -   Pour les particuliers employeurs, pas de calendrier prévu pour leur entrée en DSN.
-
-Plusieurs tables MMO sont transmises selon la période de référence considérée. [L'unité statistique des tables est celle du contrat]{.underline} : chaque table contient une ligne pour tout contrat actif au moins un jour sur la période de référence. Plusieurs lignes peuvent correspondre à un même individu si celui-ci a eu plusieurs contrats sur la période de référence. Les contrats sont qualifiés selon leur modalité active au dernier jour de la période de référence.
-
-[Exemple]{.underline} : la table « 2017 » contient les contrats actifs au moins un jour sur l'année 2017, c'est-à-dire ayant une date de début antérieure au 1er janvier 2018 et une date de fin postérieure au 31 décembre 2016 ou manquante si le contrat est en cours. La PCS renseignée est la PCS du contrat au 31/12/2017.
-
-Un contrat actif sur plusieurs périodes de référence (par exemple 2017 et 2018) peut être identifié via l'identifiant du contrat (L_CONTRAT_SQN). Sur une période donnée, les contrats dont l'identifiant L_CONTRAT_SQN est vide sont des contrats inactifs sur cette période (mais actifs sur une autre période).
-
-[Exemple]{.underline} : un contrat actif sur les années 2017 et 2018 (date de début ≤ 31.12.2017 et 01.01.2018 ≤ date de fin ≤ 31.12.2018) sera présent dans toutes les tables mais identifiable via son identifiant L_CONTRAT_SQN dans les tables 2017 et 2018 uniquement.

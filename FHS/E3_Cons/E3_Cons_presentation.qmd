@@ -5,3 +5,9 @@ title: "Présentation de la table"
 ## Prestations proposées par France Travail
 
 Cette table, comme E3, donne les prestations pour les inscrits à France Travail. C'est la variable code action (CODACT) qui donne la nature de ces prestations. Cette table, issue du FHS-Services, donne des informations sur les services de France Travail.
+
+::: callout-caution
+### Données non expertisées
+
+Ces données n'ont pas été exploitées par la Dares et n'ont donc pas fait l'objet d'une expertise qui permettrait de fournir des recommandations d'utilisation statistique.
+:::

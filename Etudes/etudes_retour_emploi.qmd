@@ -1,5 +1,0 @@
----
-title: "Retour à l'emploi"
----
-
-Présentation des différentes manières de calculer le retour à l'emploi, mise à disposition des programmes et des résultats.

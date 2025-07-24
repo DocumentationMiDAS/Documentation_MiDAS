@@ -1,3 +1,0 @@
----
-title: "Reproduction d'indicateurs cibles"
----

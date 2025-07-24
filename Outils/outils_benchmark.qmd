@@ -1,5 +1,0 @@
----
-title: "Benchmark"
----
-
-Présentation des solutions les plus rapides et les moins coûteuses sur des opérations usuelles

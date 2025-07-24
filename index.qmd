@@ -5,25 +5,29 @@ title-block-style: none
 css: homepage.css
 listing:
   contents: 
-    - "Actus/*.qmd"
+    - "Fiches/Allocations_regimes.qmd"
+    - "Fiches/Parcours_indemnisation.qmd"
+    - "Fiches/Activité réduite.qmd"
   type: grid
   sort: "date"
 ---
 
-::: {#banner_1 .column-screen}
-::: {.grid .column-page}
-::: {.g-col-md-8}
+:::::::::::: {#banner_1 .column-screen}
+::::::::::: {.grid .column-page}
+::::::::: g-col-md-8
 ::: h1
 Le projet MiDAS
 :::
 
+<a class="github-button" href="https://github.com/DocumentationMiDAS/Documentation_MiDAS" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star this website on Github">Star this website on Github</a>
 
-```{=html}
-<a class="github-button" href="https://github.com/DocumentationMiDAS/Documentation_MiDAS" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star this website on Github">Star this website on Github</a><script async defer src="https://buttons.github.io/buttons.js"></script>
-```
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
 <br>
 
 Ce site constitue la documentation de l'appariement MiDAS, créé pour évaluer les effets de la réforme 2019-2021 du système d'Assurance Chômage.
+
+Cette documentation est mise à jour à chaque nouvelle réception des données pour rendre compte de leur évolution.
 
 L'ensemble des codes sources du site est stocké sur [Github](https://github.com/DocumentationMiDAS/Documentation_MiDAS) <a href="https://github.com/DocumentationMiDAS/Documentation_MiDAS" class="github"><i class="fab fa-github"></i></a>
 
@@ -32,33 +36,27 @@ L'ensemble des codes sources du site est stocké sur [Github](https://github.com
 ::: h3
 Les objectifs de la documentation MiDAS :
 :::
+
 <br>
 
-::: {.grid}
-
-::: {.g-col-4}
-![](images/GitHub-Mark.png){width=100 fig-align="center"}
-[Collaborative]{.rose}
+:::::: grid
+::: g-col-4
+![](images/GitHub-Mark.png){width="100" fig-align="center"} [Collaborative]{.rose}
 :::
 
-::: {.g-col-4}
-![](images/loupe.png){width=99 fig-align="center"}
-[Transparente]{.rose}
+::: g-col-4
+![](images/loupe.png){width="99" fig-align="center"} [Transparente]{.rose}
 :::
 
-::: {.g-col-3}
-
-![](images/logo_web.png){width=103 fig-align="center"}
-[Accessible]{.rose}
+::: g-col-3
+![](images/logo_web.png){width="103" fig-align="center"} [Accessible]{.rose}
 :::
-
-:::
-
+::::::
 
 <br>
 
 <br>
-:::
+:::::::::
 
 ::: {.g-col-6 .g-col-md-4}
 <br>
@@ -71,12 +69,12 @@ Les objectifs de la documentation MiDAS :
 
 ![](images/logo_dares.png){width="500" fig-align="center"}
 :::
-:::
-:::
+:::::::::::
+::::::::::::
 
-::: {#banner_2 .column-screen}
-::: {.grid .column-page}
-::: {.g-col-6 .g-col-md-4 .g-col-8}
+:::::::::: {#banner_2 .column-screen}
+::::::::: {.grid .column-page}
+:::: {.g-col-6 .g-col-md-4 .g-col-8}
 ::: h1
 Minima sociaux
 :::
@@ -88,31 +86,29 @@ Les données de la Caisse Nationale des Allocations Familiales portant sur les [
 <br>
 
 <br>
-:::
+::::
 
-::: {.g-col-6 .g-col-md-5 .g-col-8}
+:::: {.g-col-6 .g-col-md-5 .g-col-8}
 ::: h1
 Droits d'Assurance Chômage
 :::
 
 Les données de Pôle Emploi sur l'**inscription** et l'**indemnisation** des [demandeurs d'emploi]{.rose}. <br>
-:::
+::::
 
-::: {.g-col-6 .g-col-md-3 .g-col-8}
+:::: {.g-col-6 .g-col-md-3 .g-col-8}
 ::: h1
 Parcours Salariés
 :::
 
 Les données de la Dares issues de l'exploitation des Déclarations Sociales Nominatives (DSN) sur les [contrats salariés]{.rose} pour les personnes inscrites à Pôle Emploi et/ou bénéficiant de minima sociaux. <br>
-:::
-:::
-:::
+::::
+:::::::::
+::::::::::
 
-::: column-screen
-::: {.grid .column-page}
+::::::: column-screen
+:::::: {.grid .column-page style="max-width: 1000px; margin: 0 auto;"}
 ::: g-col-4
-
-
 <br>
 
 <br>
@@ -124,11 +120,10 @@ Les données de la Dares issues de l'exploitation des Déclarations Sociales Nom
 ![](images/trajectoires_statistiques.jpg){width="300" fig-align="center"}
 :::
 
-::: g-col-8
+:::: g-col-8
 ::: h1
 MiDAS, des données au coeur de l'actualité
 :::
-
 
 ⌚ Evaluer les réformes du système d'assurance chômage avec des données mises à jour régulièrement
 
@@ -139,19 +134,36 @@ MiDAS, des données au coeur de l'actualité
 📊 Mesurer le retour à l'emploi des populations ciblées par les politiques du marché du travail
 
 <br>
+::::
+::::::
+:::::::
 
-:::
-:::
-:::
-
-::: {#banner_2 .column-screen}
+::::: {#banner_2 .column-screen}
+:::: column-page
 ::: h1
-[Les dernières actus de MiDAS]{.headline} :
-<br>
+Accès aux données MiDAS
+:::
 
 <br>
 
+Pour accéder aux données, il faut faire une demande au comité du secret statistique via le portail [CDAP](https://cdap.casd.eu/comite-secret-statistique).
+
+Vous pouvez consulter la liste des projets utilisant MiDAS sur le [site du CASD](https://www.casd.eu/source/minima-sociaux-droits-dassurance-chomage-et-parcours-salaries/).
+
+<br>
+
+<br>
+::::
+:::::
+
+::::: column-screen
+:::: {.column-page style="max-width: 1000px; margin: 0 auto;"}
+::: h1
+Des fiches d'aide à la manipulation de MiDAS sont disponibles dans la rubrique [Fiches](Fiches/Fiches_presentation.qmd) : <br>
+
+<br>
 :::
-:::
+::::
+:::::
 
 <br>
