@@ -2,10 +2,9 @@
   {
     "listing": "/index.html",
     "items": [
-      "/Actus/vague_2_dispo.html",
-      "/Actus/ajout_cibles.html",
-      "/Actus/autre_actu1.html",
-      "/Actus/autre_actu2.html"
+      "/Fiches/Allocations_regimes.html",
+      "/Fiches/Parcours_indemnisation.html",
+      "/Fiches/Activité réduite.html"
     ]
   }
 ]

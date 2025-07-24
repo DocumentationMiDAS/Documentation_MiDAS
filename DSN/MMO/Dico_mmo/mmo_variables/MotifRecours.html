@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Reproduction d’indicateurs cibles – Documentation MiDAS</title>
+<title>Motif Recours – Documentation MiDAS</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,61 +20,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-4e06652229b68a313dbee95ce7d2703d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap-4e06652229b68a313dbee95ce7d2703d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -104,7 +69,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-light">
@@ -114,7 +78,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../../../../index.html">
     <span class="navbar-title">Documentation MiDAS</span>
     </a>
   </div>
@@ -125,40 +89,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../Presentation/présentation.html"> 
+    <a class="nav-link" href="../../../../Presentation/présentation.html"> 
 <span class="menu-text">MiDAS</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../FHS/FHS_presentation.html" aria-current="page"> 
+    <a class="nav-link" href="../../../../FHS/FHS_presentation.html"> 
 <span class="menu-text">FHS</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../FNA/FNA_presentation.html"> 
+    <a class="nav-link" href="../../../../FNA/FNA_presentation.html"> 
 <span class="menu-text">FNA</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../Allstat_FR6/Allstat_FR6_presentation.html"> 
+    <a class="nav-link" href="../../../../Allstat_FR6/Allstat_FR6_presentation.html"> 
 <span class="menu-text">Allstat-FR6</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../MMO/mmo_presentation.html"> 
-<span class="menu-text">MMO</span></a>
+    <a class="nav-link active" href="../../../../DSN/DSN_presentation.html" aria-current="page"> 
+<span class="menu-text">DSN</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../Fiches/Fiches_presentation.html"> 
+    <a class="nav-link" href="../../../../Fiches/Fiches_presentation.html"> 
 <span class="menu-text">Fiches</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../BTS/BTS_presentation.html"> 
-<span class="menu-text">BTS</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../Codes/codes_presentation.html"> 
+    <a class="nav-link" href="../../../../Codes/codes_presentation.html"> 
 <span class="menu-text">Codes</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
-<span class="menu-text">About</span></a>
+    <a class="nav-link" href="../../../../about.html"> 
+<span class="menu-text">Contact</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -171,7 +131,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../FHS/Cibles/FHS_cibles.html">Cibles</a></li><li class="breadcrumb-item"><a href="../../FHS/Cibles/FHS_cibles.html">Reproduction d’indicateurs cibles</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../DSN/MMO/mmo_presentation.html">MMO</a></li><li class="breadcrumb-item"><a href="../../../../DSN/MMO/Dico_mmo/mmo_dictionnaire.html">Dictionnaire</a></li><li class="breadcrumb-item"><a href="../../../../DSN/MMO/Dico_mmo/mmo_variables/MotifRecours.html">Motif Recours</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -194,8 +154,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../FHS/FHS_presentation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Le Fichier Historique Statistique (FHS)</span></a>
+  <a href="../../../../DSN/DSN_presentation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Présentation de la DSN</span></a>
   </div>
 </li>
       </ul>
@@ -203,7 +163,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">DE</span></a>
+ <span class="menu-text">MMO</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -211,71 +171,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../FHS/DE/DE_presentation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Présentation de la table DE</span></a>
+  <a href="../../../../DSN/MMO/mmo_presentation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Présentation de la table</span></a>
   </div>
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Dictionnaire</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../FHS/DE/Dico_FHS_DE/DE_dictionnaire.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../DSN/MMO/Dico_mmo/mmo_dictionnaire.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Dictionnaire des variables</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../FHS/DE/Dico_FHS_DE/FHS_DE_variables/MOTANN.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">MOTANN</span></a>
+  <a href="../../../../DSN/MMO/Dico_mmo/mmo_variables/MotifRecours.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Motif Recours</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../FHS/DE/Dico_FHS_DE/FHS_DE_variables/MOTANN_a.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">MOTANN_a</span></a>
+  <a href="../../../../DSN/MMO/Dico_mmo/mmo_variables/MotifRupture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Motif Rupture</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../FHS/DE/Dico_FHS_DE/FHS_DE_variables/MOTINS.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">MOTINS</span></a>
+  <a href="../../../../DSN/MMO/Dico_mmo/mmo_variables/Nature.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Nature</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../FHS/DE/Dico_FHS_DE/FHS_DE_variables/MOTINS_a.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">MOTINS_a</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../FHS/DE/Dico_FHS_DE/FHS_DE_variables/NATION.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">NATION</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../FHS/DE/Dico_FHS_DE/FHS_DE_variables/SITPAR.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">SITPAR</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../FHS/DE/Dico_FHS_DE/FHS_DE_variables/SITPAR_a.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">SITPAR_a</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../FHS/DE/Dico_FHS_DE/FHS_DE_variables/REGION.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">REGION</span></a>
+  <a href="../../../../DSN/MMO/Dico_mmo/mmo_variables/SalaireBase.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Le salaire de base dans les MMO</span></a>
   </div>
 </li>
       </ul>
@@ -285,7 +221,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">E0</span></a>
+ <span class="menu-text">BTS</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -293,7 +229,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../FHS/E0/E0_presentation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../DSN/BTS/BTS_presentation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Présentation de la table</span></a>
   </div>
 </li>
@@ -308,223 +244,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../FHS/E0/Dico_FHS_E0/E0_dictionnaire.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../DSN/BTS/Dico_BTS/BTS_dictionnaire.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Dictionnaire des variables</span></a>
   </div>
 </li>
       </ul>
   </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
- <span class="menu-text">D2</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../FHS/D2/D2_presentation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Présentation de la table</span></a>
-  </div>
-</li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
- <span class="menu-text">Dictionnaire</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../FHS/D2/Dico_FHS_D2/D2_dictionnaire.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Dictionnaire des variables</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
- <span class="menu-text">P2</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../FHS/P2/P2_presentation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Présentation de la table</span></a>
-  </div>
-</li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false">
- <span class="menu-text">Dictionnaire</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../FHS/P2/Dico_FHS_P2/P2_dictionnaire.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Dictionnaire des variables</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../FHS/P2/Dico_FHS_P2/FHS_P2_variables/CATFIN.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">CATFIN</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../FHS/P2/Dico_FHS_P2/FHS_P2_variables/FORMACOD.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">FORMACOD</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../FHS/P2/Dico_FHS_P2/FHS_P2_variables/ORGCAT.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">ORGCAT</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
- <span class="menu-text">E3</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../FHS/E3/E3_presentation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Présentation de la table</span></a>
-  </div>
-</li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false">
- <span class="menu-text">Dictionnaire</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../FHS/E3/Dico_FHS_E3/E3_dictionnaire.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Dictionnaire des variables</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../FHS/E3/Dico_FHS_E3/FHS_E3_variables/CODACT.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">CODACT</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true">
- <span class="menu-text">E3_Cons</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../FHS/E3_Cons/E3_Cons_presentation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Présentation de la table</span></a>
-  </div>
-</li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false">
- <span class="menu-text">Dictionnaire</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../FHS/E3/Dico_FHS_E3/E3_dictionnaire.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Dictionnaire des variables</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="true">
- <span class="menu-text">Parcours</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../FHS/Parcours/Parcours_presentation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">La table Parcours du FHS</span></a>
-  </div>
-</li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="false">
- <span class="menu-text">Dictionnaire</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../FHS/Parcours/Dico_FHS_Parcours/Parcours_dictionnaire.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">La table Parcours du FHS</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-16" role="navigation" aria-expanded="true">
- <span class="menu-text">Cibles</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-16" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-16" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../FHS/Cibles/FHS_cibles.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Reproduction d’indicateurs cibles</span></a>
-  </div>
-</li>
       </ul>
   </li>
     </ul>
@@ -532,21 +257,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#nombre-dinscrits-en-catégories-a-b-c-en-fin-de-mois-pour-un-mois-donné" id="toc-nombre-dinscrits-en-catégories-a-b-c-en-fin-de-mois-pour-un-mois-donné" class="nav-link active" data-scroll-target="#nombre-dinscrits-en-catégories-a-b-c-en-fin-de-mois-pour-un-mois-donné">Nombre d’inscrits en catégories A, B, C en fin de mois pour un mois donné</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../FHS/Cibles/FHS_cibles.html">Cibles</a></li><li class="breadcrumb-item"><a href="../../FHS/Cibles/FHS_cibles.html">Reproduction d’indicateurs cibles</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../DSN/MMO/mmo_presentation.html">MMO</a></li><li class="breadcrumb-item"><a href="../../../../DSN/MMO/Dico_mmo/mmo_dictionnaire.html">Dictionnaire</a></li><li class="breadcrumb-item"><a href="../../../../DSN/MMO/Dico_mmo/mmo_variables/MotifRecours.html">Motif Recours</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Reproduction d’indicateurs cibles</h1>
+<h1 class="title">Motif Recours</h1>
 </div>
 
 
@@ -563,25 +282,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="nombre-dinscrits-en-catégories-a-b-c-en-fin-de-mois-pour-un-mois-donné" class="level2">
-<h2 class="anchored" data-anchor-id="nombre-dinscrits-en-catégories-a-b-c-en-fin-de-mois-pour-un-mois-donné">Nombre d’inscrits en catégories A, B, C en fin de mois pour un mois donné</h2>
-<p>Pour calculer cet indicateur, les variables Date d’effet d’inscription de la demande (<strong>DATINS</strong>), Date d’annulation de la demande (<strong>DATANN)</strong> et Catégorie opérationnelle du demandeur d’emploi relative à la dernière situation connue (<strong>CATREGR</strong>) sont utilisées. Il faut noter que les modalités 1, 2 et 3 de CATREGR ne correspondent pas respectivement aux catégories d’inscription A, B et C statistiques, mais au type de contrat recherché. Néanmoins, l’ensemble des personnes pour lesquelles CATREGR vaut 1, 2 ou 3 est équivalent à l’ensemble des demandeurs d’emploi inscrits en catégorie A, B ou C, car ce sont les demandeurs d’emploi tenus à des actes positifs de recherche d’emploi, quelle que soit la durée d’activité réduite exercée au cours du mois.</p>
-<p>Remarque : la chaîne de caractère fournie à la fonction as.Date doit être de la forme “AAAA-MM-JJ”.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Chargement du package dplyr </span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Définition de la date de fin du mois dont on veut les inscrits en fin de mois</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>mois <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2021-12-31"</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Utilisation de la table DE</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>inscrits <span class="ot">&lt;-</span> DE <span class="sc">%&gt;%</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(DATINS <span class="sc">&lt;=</span> mois <span class="sc">&amp;</span> DATANN <span class="sc">&gt;=</span> mois <span class="sc">&amp;</span> CATREGR <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"1"</span>, <span class="st">"2"</span>, <span class="st">"3"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<p>Motif de recours au dernier jour de la période de référence</p>
+<p><strong>01</strong>. Remplacement d’un salarié</p>
+<p><strong>02</strong>. Accroissement temporaire de l’activité de l’entreprise</p>
+<p><strong>03</strong>. Emplois à caractère saisonnier</p>
+<p><strong>04</strong>. Contrat vendanges</p>
+<p><strong>05</strong>. Contrat d’usage</p>
+<p><strong>06</strong>. Contrat à durée déterminée à objet défini</p>
+<p><strong>07</strong>. Remplacement d’un chef d’entreprise (« artisanale, industrielle ou commerciale, d’une personne exerçant une profession libérale, de son conjoint participant effectivement à l’activité de l’entreprise à titre professionnel et habituel ou d’un associé non salarié d’une société civile professionnelle, d’une société civile de moyens ou d’une société d’exercice libéral »)</p>
+<p><strong>08</strong>. Remplacement du chef d’une exploitation agricole (« ou d’une entreprise mentionnée aux 1° à 4° de l’article L. 722-1 du code rural et de la pêche maritime, d’un aide familial, d’un associé d’exploitation, ou de leur conjoint mentionné à l’article L. 722-10 du même code dès lors qu’il participe effectivement à l’activité de l’exploitation agricole ou de l’entreprise »)</p>
+<p><strong>09</strong>. Recrutement de personnes sans emploi rencontrant des difficultés sociales et professionnelles particulières</p>
+<p><strong>10</strong>. Complément de formation professionnelle au salarié</p>
+<p><strong>11</strong>. Formation professionnelle au salarié par la voie de l’apprentissage, en vue de l’obtention d’une qualification professionnelle sanctionnée par un diplôme ou un titre à finalité professionnelle enregistré au répertoire national des certifications professionnelles</p>
+<p><strong>12</strong>. Remplacement d’un salarié passé provisoirement à temps partiel</p>
+<p><strong>13</strong>. Attente de la suppression définitive du poste du salarié ayant quitté définitivement l’entreprise</p>
+<p><strong>14</strong>. Contrat de voyage</p>
+<p><strong>15</strong>. Recrutement d’un intérimaire en sa qualité de BOETH</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

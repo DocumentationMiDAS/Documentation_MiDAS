@@ -79,9 +79,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-title','listing-author','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description"],
+      searchColumns: ["listing-title","listing-author","listing-image","listing-description"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -129,7 +129,6 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="homepage.css">
 </head>
 
@@ -167,16 +166,12 @@ window.Quarto = {
 <span class="menu-text">Allstat-FR6</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./MMO/mmo_presentation.html"> 
-<span class="menu-text">MMO</span></a>
+    <a class="nav-link" href="./DSN/DSN_presentation.html"> 
+<span class="menu-text">DSN</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./Fiches/Fiches_presentation.html"> 
 <span class="menu-text">Fiches</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./BTS/BTS_presentation.html"> 
-<span class="menu-text">BTS</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./Codes/codes_presentation.html"> 
@@ -184,7 +179,7 @@ window.Quarto = {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./about.html"> 
-<span class="menu-text">About</span></a>
+<span class="menu-text">Contact</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -210,9 +205,11 @@ window.Quarto = {
 <div class="h1">
 <p>Le projet MiDAS</p>
 </div>
-<a class="github-button" href="https://github.com/DocumentationMiDAS/Documentation_MiDAS" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star this website on Github">Star this website on Github</a><script async="" defer="" src="https://buttons.github.io/buttons.js"></script>
+<p><a class="github-button" href="https://github.com/DocumentationMiDAS/Documentation_MiDAS" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star this website on Github">Star this website on Github</a></p>
+<script async="" defer="" src="https://buttons.github.io/buttons.js"></script>
 <p><br></p>
 <p>Ce site constitue la documentation de l’appariement MiDAS, créé pour évaluer les effets de la réforme 2019-2021 du système d’Assurance Chômage.</p>
+<p>Cette documentation est mise à jour à chaque nouvelle réception des données pour rendre compte de leur évolution.</p>
 <p>L’ensemble des codes sources du site est stocké sur <a href="https://github.com/DocumentationMiDAS/Documentation_MiDAS">Github</a> <a href="https://github.com/DocumentationMiDAS/Documentation_MiDAS" class="github"><i class="fab fa-github"></i></a></p>
 <p><br></p>
 <div class="h3">
@@ -272,7 +269,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="column-screen page-columns page-full">
-<div class="grid page-columns page-full">
+<div class="grid page-columns page-full" style="max-width: 1000px; margin: 0 auto;">
 <div class="g-col-4 page-columns page-full">
 <p><br></p>
 <p><br></p>
@@ -296,10 +293,24 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div id="banner_2" class="column-screen">
+<div id="banner_2" class="column-screen page-columns page-full">
+<div class="column-page">
 <div class="h1">
-<p><span class="headline">Les dernières actus de MiDAS</span> : <br></p>
+<p>Accès aux données MiDAS</p>
+</div>
 <p><br></p>
+<p>Pour accéder aux données, il faut faire une demande au comité du secret statistique via le portail <a href="https://cdap.casd.eu/comite-secret-statistique">CDAP</a>.</p>
+<p>Vous pouvez consulter la liste des projets utilisant MiDAS sur le <a href="https://www.casd.eu/source/minima-sociaux-droits-dassurance-chomage-et-parcours-salaries/">site du CASD</a>.</p>
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+<div class="column-screen page-columns page-full">
+<div class="column-page" style="max-width: 1000px; margin: 0 auto;">
+<div class="h1">
+<p>Des fiches d’aide à la manipulation de MiDAS sont disponibles dans la rubrique <a href="./Fiches/Fiches_presentation.html">Fiches</a> : <br></p>
+<p><br></p>
+</div>
 </div>
 </div>
 <p><br></p>
@@ -309,89 +320,58 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
 <div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-listing-date-sort="1683244800000" data-listing-file-modified-sort="1753281330019" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="12">
-<a href="./Actus/vague_2_dispo.html" class="quarto-grid-link">
+<div class="g-col-1" data-index="0" data-listing-file-modified-sort="1753358287456" data-listing-reading-time-sort="30" data-listing-word-count-sort="5948">
+<a href="./Fiches/Allocations_regimes.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
-La vague 2 de MiDAS est disponible
+Allocations agrégées et régimes d’indemnisation
 </h5>
 <div class="card-text listing-description delink">
-Les données de la vague 2 de MiDAS sont disponibles sous CASD.
+Date de mise à jour : juin 2024
 </div>
-<div class="card-attribution card-text-small justify">
+<div class="card-attribution card-text-small start">
 <div class="listing-author">
-Dares-DSIDE
-</div>
-<div class="listing-date">
-May 5, 2023
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="1" data-listing-date-sort="1723161600000" data-listing-file-modified-sort="1753281330019" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="12">
-<a href="./Actus/ajout_cibles.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Ajout des programmes cibles
-</h5>
-<div class="card-text listing-description delink">
-Les programmes des cibles Dares ont été ajoutés sur le site documentaire.
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-Dares-DSIDE
-</div>
-<div class="listing-date">
-Aug 9, 2024
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="2" data-listing-date-sort="1753228800000" data-listing-file-modified-sort="1753281330019" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-<a href="./Actus/autre_actu1.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Autre actualité
-</h5>
-<div class="card-text listing-description delink">
 
 </div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-random_author
 </div>
-<div class="listing-date">
-Jul 23, 2025
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="1" data-listing-file-modified-sort="1753358287457" data-listing-reading-time-sort="24" data-listing-word-count-sort="4618">
+<a href="./Fiches/Parcours_indemnisation.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top"><img src="images/parcours_indemnisation_schema.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Le parcours de l’indemnisation
+</h5>
+<div class="card-text listing-description delink">
+Cette fiche présente les principaux concepts de l’indemnisation, la manière dont ils apparaissent dans les données de l’indemnisation de MiDAS : le Fichier National des…
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+
 </div>
 </div>
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="3" data-listing-date-sort="1753228800000" data-listing-file-modified-sort="1753281330019" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="3">
-<a href="./Actus/autre_actu2.html" class="quarto-grid-link">
+<div class="g-col-1" data-index="2" data-listing-file-modified-sort="1753358287456" data-listing-reading-time-sort="11" data-listing-word-count-sort="2057">
+<a href="./Fiches/Activité réduite.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
-<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
+<p class="card-img-top"><img src="Fiches/images/clipboard-775392700.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
-Autre actualité bis
+Activité réduite
 </h5>
 <div class="card-text listing-description delink">
-Un autre exemple.
+Les personnes en activité réduite sont les personnes qui occupent une activité professionnelle tout en étant inscrites à France Travail&nbsp;; on parle également d’«&nbsp;<em>allocataires…</em>
 </div>
-<div class="card-attribution card-text-small justify">
+<div class="card-attribution card-text-small start">
 <div class="listing-author">
-un_contributeur
-</div>
-<div class="listing-date">
-Jul 23, 2025
+
 </div>
 </div>
 </div>
