@@ -12,12 +12,12 @@ Le champ est le suivant selon les bases de données :
 
 Le champ de MiDAS comprend ainsi les inscrits à France Travail (fichier FHS) dont les indemnisables et indemnisés (fichier FNA), auxquels sont appariés les bénéficiaires des minima sociaux (fichiers "Prestations"). Les données MMO sont appariées à ce champ, de même que les données de la Cnaf portant sur la composition du ménage (fichiers "Ménages").
 
-![](images/Présentation1.gif)
+![](images/clipboard-3311172363.png)
 
 ## Champ détaillé de chaque source
 
 | Source | Champ des données |
-|----|----|
+|------------------------------------|------------------------------------|
 | FHS | Toute personne inscrite à France Travail au moins un jour depuis le 1er janvier 2017 avec son historique d'inscription remontant à 10 ans (juin 2012) pour la France entière. |
 | FNA | Personnes indemnisables au moins 1 jour depuis le 1er janvier 2017. Pour ces individus, MiDAS contient tout l'historique de l'indemnisation depuis 1993, des périodes d'affiliation et de l'activité réduite. |
 | Allstat-FR6 | L'ensemble des foyers sociaux bénéficiaires du RSA, de la PA et de l'AAH depuis janvier 2017 (fichier « Prestations ») pour la France entière. Ainsi, tout adulte seul ou membre d'un couple constitutif d'un foyer social qui perçoit un droit au RSA ou à la PA est suivi dans MiDAS quel que soit son âge. À noter l'absence des enfants de 18 à 25 ans qui vivent chez leurs parents, même si ces derniers appartiennent au foyer social bénéficiaire du RSA ou de la PA. Enfin, pour l'AAH, si son versement est soumis aux conditions de ressources du ménage , il s'agit d'une prestation individuelle et seul l'allocataire en est le bénéficiaire. Ainsi, son conjoint est conservé dans MiDAS s'il a été inscrit au moins une fois à France Travail ou si le couple a bénéficié du RSA ou de la PA depuis 2017. |

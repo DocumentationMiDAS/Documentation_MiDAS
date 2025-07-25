@@ -1,0 +1,75 @@
+---
+title: "Cumul allocation-chômage et minima sociaux"
+execute: 
+  enabled: false
+---
+
+Cette fiche s'intéresse aux personnes inscrites à France Travail, qu'elles soient indemnisables, indemnisées ou non indemnisables, et qui perçoivent un mois donné un minima social (RSA, prime d'activité, AAH).
+
+![[Source]{.underline} : [Dares](https://dares.travail-emploi.gouv.fr/publication/indemnisation-des-demandeurs-demploi-en-2023#:~:text=En%20d%C3%A9cembre%202023%2C%20les%20demandeurs,%C3%A0%20celui%20de%20d%C3%A9cembre%202022.).](images/clipboard-1381568040.png)
+
+Le code ci-dessous permet de reconstituer le tableau précédent sur n'importe qu'elle période.
+
+```{r}
+DE_s <- spark_read_parquet(sc,
+                           path = "hdfs:///dataset/MiDAS_v6/FHS/de.parquet",
+                           memory = FALSE)
+PJC_s <- spark_read_parquet(sc,
+                            path = "hdfs:///dataset/MiDAS_v6/FNA/pjc.parquet",
+                            memory = FALSE)
+PRM_s <- spark_read_parquet(sc,
+                            path = "hdfs:///dataset/MiDAS_v6/FNA/prm.parquet",
+                            memory = FALSE)
+BMS_s <- spark_read_parquet(sc,
+                               path = "hdfs:///dataset/MiDAS_v6/Allstat/minsoc/cnaf_indiv_1223.parquet", # à modifier selon la période étudiée
+                               memory = FALSE)
+
+
+# Période étudiée
+date_fin <- as.Date("2023-12-31")
+date_ms <- as.Date("2023-12-01")
+
+
+# Etape 1 : pour identifier les personnes indemnisables et indemnisées, repartir du code de la fiche "Allocations agrégées et régimes d'indemnisation", qui crée 
+# la table "alloc_fm" contenant toutes les personnes d'intérêt sur la période étudiée.
+
+pjc_clean <- alloc_fm %>% 
+  select(id_midas,KROD1,KDDPJ,KDFPJ,KCPJC)
+
+# Inscrits à FT
+champ_de_fm <- DE_s %>%
+  filter(DATINS <= date_fin & (is.na(DATANN) | DATANN > date_fin)) %>% # Nombre d'inscrits en fin de mois
+  select(id_midas,DATINS,DATANN) %>% 
+  distinct(id_midas,.keep_all = T) # On garde une période d'inscription par personne
+
+
+# Bénéficiaires de minima sociaux
+champ_bms <- BMS_s %>%
+  select(id_midas,DTREFFRE,NUMCAF,NORDALLC,RSAVERS,MTRSAVER,PPAVERS,MTPPAVER,AAHVERS,MTAAHVER) %>%
+  filter(DTREFFRE == date_ms) %>%
+  distinct(id_midas,.keep_all = T)
+
+
+champ_ac_ms <- pjc_clean %>% 
+  full_join(champ_de_fm, by = "id_midas") %>% # Garde les non indemnisables
+  left_join(champ_bms, by = "id_midas") %>%
+  mutate(ins = if_else(!(is.na(DATINS)),1,0),
+         inda = if_else(!(is.na(KDDPJ)),1,0),
+         non_inda = if_else(inda == 0 & ins == 1,1,0),
+         inde = if_else(inda == 1 & KCPJC %in% c("1","4"),1,0),
+         RSA = if_else(RSAVERS %in% c("C","J","E","L") & MTRSAVER > 0,1,0),
+         PPA = if_else(!(PPAVERS == 0) & MTPPAVER > 0,1,0),
+         AAH = if_else(!(AAHVERS == 0) & MTAAHVER > 0,1,0))
+
+
+tab_2 <- champ_ac_ms %>% 
+  filter(non_inda == 1) %>% # à modifier
+  summarize(eff = n_distinct(id_midas),
+            eff_rsa = sum(RSA),
+            eff_ppa = sum(PPA),
+            eff_aah = sum(AAH)) %>% 
+  mutate(part_rsa = round((eff_rsa/eff)*100),
+         part_ppa = round((eff_ppa/eff)*100),
+         part_aah = round((eff_aah/eff)*100)) %>% 
+  collect()
+```
