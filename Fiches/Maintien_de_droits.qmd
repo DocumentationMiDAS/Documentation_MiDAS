@@ -14,7 +14,7 @@ Les demandeurs d'emploi indemnisés à l'âge d'accès peuvent voir leurs droits
 
 -   être âgé d'au moins entre 62 et 64 ans selon la date de naissance ;
 
--   être indemnisé depuis au moins un an, soit 360 jours depuis l'ouverture des droits ;
+-   être indemnisé depuis au moins un an, soit 360 jours depuis l'ouverture des droits (365 jours avant le 31 mars 2025) ;
 
 -   ne pas pouvoir prétendre à une retraite à taux plein ;
 
