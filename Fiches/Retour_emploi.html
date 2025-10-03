@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -67,14 +67,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-4e06652229b68a313dbee95ce7d2703d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ee590d1db77319ae38f478d857c8e9b6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -113,6 +114,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Documentation MiDAS</span>
     </a>
@@ -221,7 +224,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Différence de sources
+<span class="screen-reader-only">Caution</span>Différence de sources
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -239,7 +242,7 @@ Différence de sources
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Les catégories statistiques d’inscription
+<span class="screen-reader-only">Note</span>Les catégories statistiques d’inscription
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -313,7 +316,7 @@ Caution
 <p>La situation vis-à-vis de l’emploi salarié est disponible dans les MMO de MiDAS.</p>
 <p>Voici une méthode pour repérer les demandeurs d’emploi inscrits sur les mois nécessaires pour le calcul de l’indicateur :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Préparation de la table E0 pour le mois m</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Préparation de la table E0 pour le mois m</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>activite_reduite_m <span class="ot">&lt;-</span> E0 <span class="sc">%&gt;%</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">NBHEUR_m0 =</span> <span class="fu">as.numeric</span>(NBHEUR)) <span class="sc">%&gt;%</span> </span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(MOIS <span class="sc">==</span> mois_m) <span class="sc">%&gt;%</span> </span>
@@ -436,14 +439,14 @@ Caution
 <span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">des_m1 =</span> <span class="dv">1</span>,</span>
 <span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a>         <span class="at">MOTANN_m1 =</span> MOTANN) <span class="sc">%&gt;%</span></span>
-<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id_midas, des_m1, MOTANN_m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id_midas, des_m1, MOTANN_m1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="repérage-des-contrats" class="level3">
 <h3 class="anchored" data-anchor-id="repérage-des-contrats">Repérage des contrats</h3>
 <p>Voici une méthode pour repérer la situation vis-à-vis de l’emploi salarié nécessaire au calcul de l’indicateur d’accès à l’emploi France Travail :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Création d'une table MMO totale</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Création d'une table MMO totale</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="do">##### Contrat débutant en M+1 #####</span></span>
@@ -551,13 +554,13 @@ Caution
 <span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(contrat_encours_m1, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"id_midas"</span> <span class="ot">=</span> <span class="st">"id_midas"</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(contrat_encours_m2, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"id_midas"</span> <span class="ot">=</span> <span class="st">"id_midas"</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(contrat_encours_m6, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"id_midas"</span> <span class="ot">=</span> <span class="st">"id_midas"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mois =</span> mois_m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mois =</span> mois_m1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="approche-standard" class="level2">
 <h2 class="anchored" data-anchor-id="approche-standard">Approche standard</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>critere <span class="ot">=</span> base_travail <span class="sc">%&gt;%</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>critere <span class="ot">=</span> base_travail <span class="sc">%&gt;%</span> </span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">NBHEUR_m0 =</span> <span class="fu">as.numeric</span>(NBHEUR_m0)) <span class="sc">%&gt;%</span> </span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">starts_with</span>(<span class="st">"catnouv"</span>), <span class="sc">~</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(.),<span class="st">"V"</span>,.)),</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>         <span class="fu">across</span>(<span class="fu">starts_with</span>(<span class="st">"contrat"</span>), <span class="sc">~</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(.),<span class="st">"Vide"</span>,.))) <span class="sc">%&gt;%</span> </span>
@@ -585,13 +588,13 @@ Caution
 <span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">ifelse</span>(c1b <span class="sc">==</span> <span class="st">"1"</span>,<span class="st">"c1b"</span>,</span>
 <span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>                                 <span class="fu">ifelse</span>(c2 <span class="sc">==</span> <span class="st">"1"</span>,<span class="st">"c2"</span>,</span>
 <span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>                                        <span class="fu">ifelse</span>(c3 <span class="sc">==</span> <span class="st">"1"</span>,<span class="st">"c3"</span>,</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>                                               <span class="fu">ifelse</span>(c4 <span class="sc">==</span> <span class="st">"1"</span>,<span class="st">"c4"</span>,<span class="cn">NA</span>)))))) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>                                               <span class="fu">ifelse</span>(c4 <span class="sc">==</span> <span class="st">"1"</span>,<span class="st">"c4"</span>,<span class="cn">NA</span>)))))) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="approche-souple" class="level2">
 <h2 class="anchored" data-anchor-id="approche-souple">Approche souple</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>critere <span class="ot">=</span> base_travail <span class="sc">%&gt;%</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>critere <span class="ot">=</span> base_travail <span class="sc">%&gt;%</span> </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">NBHEUR_m0 =</span> <span class="fu">as.numeric</span>(NBHEUR_m0)) <span class="sc">%&gt;%</span> </span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">starts_with</span>(<span class="st">"catnouv"</span>), <span class="sc">~</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(.),<span class="st">"V"</span>,.)),</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>         <span class="fu">across</span>(<span class="fu">starts_with</span>(<span class="st">"contrat"</span>), <span class="sc">~</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(.),<span class="st">"Vide"</span>,.))) <span class="sc">%&gt;%</span> </span>
@@ -624,13 +627,13 @@ Caution
 <span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>                                 <span class="fu">ifelse</span>(c1b_souple <span class="sc">==</span> <span class="st">"1"</span>,<span class="st">"c1b_souple"</span>,</span>
 <span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>                                        <span class="fu">ifelse</span>(c2_souple <span class="sc">==</span> <span class="st">"1"</span>,<span class="st">"c2_souple"</span>,</span>
 <span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>                                               <span class="fu">ifelse</span>(c3_souple <span class="sc">==</span> <span class="st">"1"</span>,<span class="st">"c3_souple"</span>,</span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>                                                      <span class="fu">ifelse</span>(c4_souple <span class="sc">==</span> <span class="st">"1"</span>,<span class="st">"c4_souple"</span>,<span class="cn">NA</span>))))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>                                                      <span class="fu">ifelse</span>(c4_souple <span class="sc">==</span> <span class="st">"1"</span>,<span class="st">"c4_souple"</span>,<span class="cn">NA</span>))))))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="approche-stricte" class="level2">
 <h2 class="anchored" data-anchor-id="approche-stricte">Approche stricte</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>critere <span class="ot">=</span> base_travail <span class="sc">%&gt;%</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>critere <span class="ot">=</span> base_travail <span class="sc">%&gt;%</span> </span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">NBHEUR_m0 =</span> <span class="fu">as.numeric</span>(NBHEUR_m0)) <span class="sc">%&gt;%</span> </span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">starts_with</span>(<span class="st">"catnouv"</span>), <span class="sc">~</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(.),<span class="st">"V"</span>,.)),</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>         <span class="fu">across</span>(<span class="fu">starts_with</span>(<span class="st">"contrat"</span>), <span class="sc">~</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(.),<span class="st">"Vide"</span>,.))) <span class="sc">%&gt;%</span> </span>
@@ -657,7 +660,7 @@ Caution
 <span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>                                  <span class="fu">ifelse</span>(c1b_stricte <span class="sc">==</span> <span class="st">"1"</span>,<span class="st">"c1b_stricte"</span>,</span>
 <span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>                                         <span class="fu">ifelse</span>(c2_stricte <span class="sc">==</span> <span class="st">"1"</span>,<span class="st">"c2_stricte"</span>,</span>
 <span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>                                                <span class="fu">ifelse</span>(c3_stricte <span class="sc">==</span> <span class="st">"1"</span>,<span class="st">"c3_stricte"</span>,</span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>                                                       <span class="fu">ifelse</span>(c4_stricte <span class="sc">==</span> <span class="st">"1"</span>,<span class="st">"c4_stricte"</span>,<span class="cn">NA</span>))))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>                                                       <span class="fu">ifelse</span>(c4_stricte <span class="sc">==</span> <span class="st">"1"</span>,<span class="st">"c4_stricte"</span>,<span class="cn">NA</span>))))))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 </section>
@@ -671,7 +674,7 @@ Caution
 </ul>
 <p><img src="../images/retour_emploi_durable.PNG" class="img-fluid"></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>critere <span class="ot">=</span> base_travail <span class="sc">%&gt;%</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>critere <span class="ot">=</span> base_travail <span class="sc">%&gt;%</span> </span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">NBHEUR_m0 =</span> <span class="fu">as.numeric</span>(NBHEUR_m0)) <span class="sc">%&gt;%</span> </span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">starts_with</span>(<span class="st">"catnouv"</span>), <span class="sc">~</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(.),<span class="st">"V"</span>,.)),</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>         <span class="fu">across</span>(<span class="fu">starts_with</span>(<span class="st">"contrat"</span>), <span class="sc">~</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(.),<span class="st">"Vide"</span>,.))) <span class="sc">%&gt;%</span> </span>
@@ -707,14 +710,14 @@ Caution
 <span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">red_c2_6m =</span> <span class="fu">if_else</span>(RE <span class="sc">==</span> <span class="st">"1"</span> <span class="sc">&amp;</span> MOTANN_m1 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"15"</span>,<span class="st">"16"</span>) <span class="sc">&amp;</span> <span class="sc">!</span>catnouv_m6 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"A"</span>,<span class="st">"B"</span>,<span class="st">"C"</span>,<span class="st">"D"</span>),<span class="st">"1"</span>,<span class="st">"0"</span>),</span>
 <span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">red_c3_6m =</span> <span class="fu">if_else</span>(RE <span class="sc">==</span> <span class="st">"1"</span> <span class="sc">&amp;</span> c3 <span class="sc">==</span> <span class="st">"1"</span> <span class="sc">&amp;</span> <span class="sc">!</span>catnouv_m6 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"A"</span>,<span class="st">"B"</span>,<span class="st">"C"</span>,<span class="st">"D"</span>),<span class="st">"1"</span>,<span class="st">"0"</span>),</span>
 <span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>  <span class="at">red_6m =</span> <span class="fu">if_else</span>(red_c1a_6m <span class="sc">==</span> <span class="st">"1"</span> <span class="sc">|</span> red_c2_6m <span class="sc">==</span> <span class="st">"1"</span> <span class="sc">|</span> red_c3_6m <span class="sc">==</span> <span class="st">"1"</span>,<span class="st">"1"</span>,<span class="st">"0"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>  <span class="at">red_6m =</span> <span class="fu">if_else</span>(red_c1a_6m <span class="sc">==</span> <span class="st">"1"</span> <span class="sc">|</span> red_c2_6m <span class="sc">==</span> <span class="st">"1"</span> <span class="sc">|</span> red_c3_6m <span class="sc">==</span> <span class="st">"1"</span>,<span class="st">"1"</span>,<span class="st">"0"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="accèspassage-par-lemploi-salarié" class="level1">
 <h1>Accès/passage par l’emploi salarié</h1>
 <p>Pour calculer un taux d’accès (ou passage) par l’emploi salarié simple à 6 mois (différent de l’indicateur France Travail) pour un stock de DEFM au mois m, voici une méthode :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">### DEFM M </span><span class="al">###</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">### DEFM M </span><span class="al">###</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>defm_m <span class="ot">=</span> DE <span class="sc">%&gt;%</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id_midas, DATINS, DATANN, CATREGR) <span class="sc">%&gt;%</span>     </span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(DATINS <span class="sc">&lt;=</span> fin_mois_m <span class="sc">&amp;</span> (<span class="fu">is.na</span>(DATANN) <span class="sc">|</span> DATANN <span class="sc">&gt;</span> fin_mois_m))<span class="sc">%&gt;%</span></span>
@@ -728,14 +731,14 @@ Caution
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>passage_emploi <span class="ot">&lt;-</span> MMO <span class="sc">%&gt;%</span></span>
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">right_join</span>(defm_m, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"id_midas"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">passage_emploi_m6 =</span> <span class="fu">ifelse</span>(DebutCTT <span class="sc">&gt;=</span> fin_mois_m <span class="sc">&amp;</span> DebutCTT <span class="sc">&lt;=</span> fin_mois_m6, <span class="dv">1</span>, <span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">passage_emploi_m6 =</span> <span class="fu">ifelse</span>(DebutCTT <span class="sc">&gt;=</span> fin_mois_m <span class="sc">&amp;</span> DebutCTT <span class="sc">&lt;=</span> fin_mois_m6, <span class="dv">1</span>, <span class="dv">0</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="présence-en-emploi-salarié" class="level1">
 <h1>Présence en emploi salarié</h1>
 <p>Pour calculer un taux de présence en emploi salarié simple à horizon 6 mois (différent de l’indicateur France Travail) pour un stock de DEFM au mois m, voici une méthode :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">### DEFM M </span><span class="al">###</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">### DEFM M </span><span class="al">###</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>defm_m <span class="ot">=</span> DE <span class="sc">%&gt;%</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id_midas, DATINS, DATANN, CATREGR) <span class="sc">%&gt;%</span>     </span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(DATINS <span class="sc">&lt;=</span> fin_mois_m <span class="sc">&amp;</span> (<span class="fu">is.na</span>(DATANN) <span class="sc">|</span> DATANN <span class="sc">&gt;</span> fin_mois_m))<span class="sc">%&gt;%</span></span>
@@ -749,7 +752,7 @@ Caution
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>presence_emploi <span class="ot">&lt;-</span> MMO <span class="sc">%&gt;%</span></span>
 <span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">right_join</span>(defm_m, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"id_midas"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">presence_emploi_m6 =</span> <span class="fu">ifelse</span>(DebutCTT <span class="sc">&lt;=</span> fin_mois_m6 <span class="sc">&amp;</span> (FinCTT <span class="sc">&gt;=</span> debut_mois_m6 <span class="sc">|</span> <span class="fu">is.na</span>(FinCTT)), <span class="dv">1</span>, <span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">presence_emploi_m6 =</span> <span class="fu">ifelse</span>(DebutCTT <span class="sc">&lt;=</span> fin_mois_m6 <span class="sc">&amp;</span> (FinCTT <span class="sc">&gt;=</span> debut_mois_m6 <span class="sc">|</span> <span class="fu">is.na</span>(FinCTT)), <span class="dv">1</span>, <span class="dv">0</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
 
@@ -807,13 +810,14 @@ Caution
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -67,14 +67,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-4e06652229b68a313dbee95ce7d2703d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ee590d1db77319ae38f478d857c8e9b6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -113,6 +114,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Documentation MiDAS</span>
     </a>
@@ -176,6 +179,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -284,11 +291,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>L’entrée à l’Assurance-chômage</h1>
 <p>Lorsque la demande d’allocation d’un demandeur d’emploi est acceptée, elle donne lieu à l’ouverture de droit à l’Assurance-chômage. La date d’ouverture de droit n’est pas disponible directement dans les données du FNA et doit être calculée à l’aide de la table PJC. La date d’ouverture de droit correspond à la date de début de la première période à justification constante (PJC) de ce droit. Un droit est repéré par le couple identifiant <code>id_midas</code>, <code>KROD3</code> (pour la table PJC) ou <code>KROD1</code> (pour les tables ODD et DAL, ce sont les mêmes variables dans les trois tables).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ouverture_droit <span class="ot">&lt;-</span> PJC <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ouverture_droit <span class="ot">&lt;-</span> PJC <span class="sc">%&gt;%</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id_midas, KROD3, KDDPJ) <span class="sc">%&gt;%</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id_midas, KROD3) <span class="sc">%&gt;%</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">date_ouv_droit =</span> <span class="fu">min</span>(KDDPJ)) <span class="sc">%&gt;%</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>La date d’ouverture de droit est majoritairement différente de la date du premier jour indemnisé renseignée dans <code>KDPOD</code> de la table ODD, du fait de la période de différé d’indemnisation de début de droit.</p>
 </section>
@@ -305,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>La durée de différé spécifique associée à un droit peut être recalculée à partir du montant des ISLR retenues pour le calcul de ce différé spécifique, renseigné dans la table ODD du FNA (<code>KQISLP</code>).</p>
 <p>Pour recalculer la durée du différé spécifique, il est nécessaire de connaître le motif de fin du contrat fait générateur de l’ouverture de droit disponible dans la table CDT du FNA (<code>KCMCA</code>). Les modalités de cette variable sont regroupées pour correspondre aux différents plafonds de différé spécifique.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>date_debut <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2022-01-01"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>date_debut <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2022-01-01"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>date_fin <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2022-12-31"</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>coeff_annee <span class="ot">&lt;-</span> <span class="fl">95.8</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -348,7 +355,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>calcul_differe_specifique <span class="ot">&lt;-</span> fait_generateur <span class="sc">%&gt;%</span></span>
 <span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">duree_differe_specifique =</span> <span class="fu">case_when</span>(passe_pro <span class="sc">==</span> <span class="st">"Licenciement_eco"</span> <span class="sc">~</span> <span class="fu">min</span>(KQISLP<span class="sc">/</span>coeff_annee, <span class="dv">75</span>)</span>
 <span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>                                              passe_pro <span class="sc">==</span> <span class="st">"Licenciement_autres"</span> <span class="sc">~</span> <span class="fu">min</span>(KQISLP<span class="sc">/</span>coeff_annee, <span class="dv">150</span>),</span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>                                              <span class="cn">TRUE</span> <span class="sc">~</span> <span class="fu">min</span>(KQISLP<span class="sc">/</span>coeff_annee, <span class="dv">150</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>                                              <span class="cn">TRUE</span> <span class="sc">~</span> <span class="fu">min</span>(KQISLP<span class="sc">/</span>coeff_annee, <span class="dv">150</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="le-différé-congés-payés" class="level2">
@@ -357,7 +364,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>La durée de ce différé correspond aux ICCP divisées par le salaire journalier de référence (SJR) de l’allocataire.</p>
 <p>Elle peut être calculée à partir de la variable des ICCP retenues pour le calcul de ce différé (<code>KQICCP</code>) et du SJR à l’ouverture de droit (<code>KQCSJP</code>) de la table ODD du FNA.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>calcul_differe_CP <span class="ot">&lt;-</span> ODD <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>calcul_differe_CP <span class="ot">&lt;-</span> ODD <span class="sc">%&gt;%</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id_midas, KROD1, KQICCP, KQCSJP) <span class="sc">%&gt;%</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">differe_CP =</span> <span class="fu">min</span>(KQICCP<span class="sc">/</span>KQCSJP, <span class="dv">30</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas, KROD1, differe_CP)</span>
@@ -371,7 +378,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">KCDA1 =</span> KCDA) <span class="sc">%&gt;%</span></span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(CDT, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"id_midas"</span>, <span class="st">"KCDA1"</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas, KROD1, KDFPE, differe_CP) <span class="sc">%&gt;%</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">KDFPE =</span> <span class="fu">as.Date</span>(KDFPE))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">KDFPE =</span> <span class="fu">as.Date</span>(KDFPE))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="le-délai-dattente" class="level2">
@@ -383,7 +390,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Et lors d’une reprise de droit ?
+<span class="screen-reader-only">Tip</span>Et lors d’une reprise de droit ?
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -401,7 +408,7 @@ Et lors d’une reprise de droit ?
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Différé théorique et observé
+<span class="screen-reader-only">Important</span>Différé théorique et observé
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -415,7 +422,7 @@ Différé théorique et observé
 <p>La variable type de carence (<code>KCPJCC</code>) peut permettre d’isoler le différé spécifique (<code>KCPJCC = 03</code>) mais la qualité de cette variable n’a pas été expertisée.</p>
 <p>La durée de différé écoulée calculée ci-dessous est celle suivant l’ouverture de droit. Pour éviter d’inclure les différés de la reprise de droit, rattachés au même couple <code>id_midas</code>, <code>KROD3</code>, la durée observée est bornée à la première interruption de suivi dans les données de l’indemnisation. Voir à ce sujet la méthode de repérage des reprises de droit dans les données du FNA <a href="../Fiches/Parcours_indemnisation.html">en cliquant ici</a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>droits <span class="ot">&lt;-</span> PJC <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>droits <span class="ot">&lt;-</span> PJC <span class="sc">%&gt;%</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas, KROD3) </span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Repérage des éventuels débuts de différés de reprises de droit pour les exclure</span></span>
@@ -451,7 +458,7 @@ Différé théorique et observé
 <span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">differe_specifique =</span> <span class="fu">sum</span>(duree_PJC)) <span class="sc">%&gt;%</span></span>
 <span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">differe_specifique =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(differe_specifique), <span class="dv">0</span>, differe_specifique)) <span class="sc">%&gt;%</span></span>
 <span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas, KROD3, differe_specifique) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas, KROD3, differe_specifique) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="le-différé-congés-payés-1" class="level2">
@@ -459,7 +466,7 @@ Différé théorique et observé
 <p>Le différé congés payés commence à la fin du dernier contrat de travail.</p>
 <p>Dans la table PJC du FNA, un différé congés payés correspond à une PJC non consommée, non payée (<code>KCPJC = 3</code>) dont le motif de non paiement est “carence, différé” (<code>KCMNI = 3</code>) avec un type de carence “congés payés” (<code>KCPJCC = 02</code>).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>droits <span class="ot">&lt;-</span> PJC <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>droits <span class="ot">&lt;-</span> PJC <span class="sc">%&gt;%</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas, KROD3) </span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Repérage des éventuels débuts de différés de reprises de droit pour les exclure</span></span>
@@ -495,7 +502,7 @@ Différé théorique et observé
 <span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">differe_cp =</span> <span class="fu">sum</span>(duree_PJC)) <span class="sc">%&gt;%</span></span>
 <span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">differe_cp=</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(differe_cp), <span class="dv">0</span>, differe_cp)) <span class="sc">%&gt;%</span></span>
 <span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas, KROD3, differe_cp) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas, KROD3, differe_cp) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="le-délai-dattente-1" class="level2">
@@ -504,7 +511,7 @@ Différé théorique et observé
 <p>Le demandeur d’emploi dispose d’un an après sa fin de contrat pour s’inscrire à France Travail. Dans le cas où ses différés spécifiques et de congés payés sont déjà expirés lorsqu’il s’inscrit, le délai d’attente commence au jour de son inscription.</p>
 <p>Ce délai d’attente correspond à une PJC non payée, non consommée (<code>KCPJC = 3</code>), non payée pour motif “carence, différé” (<code>KCMNI = 00</code>) de type “différé d’indemnisation” (<code>KCPJCC = 04</code>).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>droits <span class="ot">&lt;-</span> PJC <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>droits <span class="ot">&lt;-</span> PJC <span class="sc">%&gt;%</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas, KROD3) </span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Repérage des éventuels débuts de différés de reprises de droit pour les exclure</span></span>
@@ -540,7 +547,7 @@ Différé théorique et observé
 <span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">delai_attente =</span> <span class="fu">sum</span>(duree_PJC)) <span class="sc">%&gt;%</span></span>
 <span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">delai_attente=</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(delai_attente), <span class="dv">0</span>, delai_attente)) <span class="sc">%&gt;%</span></span>
 <span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas, KROD3, delai_attente) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas, KROD3, delai_attente) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -548,7 +555,7 @@ Différé théorique et observé
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Ordre des différés
+<span class="screen-reader-only">Tip</span>Ordre des différés
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -627,13 +634,14 @@ Ordre des différés
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

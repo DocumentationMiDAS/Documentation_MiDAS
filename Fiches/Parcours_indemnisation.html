@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -67,14 +67,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-4e06652229b68a313dbee95ce7d2703d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ee590d1db77319ae38f478d857c8e9b6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -113,6 +114,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Documentation MiDAS</span>
     </a>
@@ -176,6 +179,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -303,7 +310,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Programmation
+<span class="screen-reader-only">Note</span>Programmation
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -338,7 +345,7 @@ Programmation
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Indemnisables non inscrits
+<span class="screen-reader-only">Caution</span>Indemnisables non inscrits
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -355,7 +362,7 @@ Indemnisables non inscrits
 <p>La <strong>date d’ouverture de droit doit être recalculée à partir de la table PJC du FNA</strong>. La premiere PJC sur le droit (couple <code>id_midas</code>, <code>KROD3</code>), celle dont la date de début <code>KDDPJ</code> est minimale pour ce couple identifiant, correspond à l’ouverture de droit. Cette première PJC est la grande majorité du temps non payée, non consommée (<code>KCPJC = 3</code>), avec une allocation journalière <code>KQBPJP</code> nulle car elle correspond à une période indemnisable non indemnisée de <strong>différé d’indemnisation.</strong></p>
 <p>Pour calculer la date d’ouverture de droit et comptabiliser l’ensemble des ouvertures de droit un mois donné :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>mois_debut <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2021-01-01"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>mois_debut <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2021-01-01"</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>mois_fin <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2021-01-31"</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>ouvertures_droit_mois <span class="ot">&lt;-</span> PJC <span class="sc">%&gt;%</span></span>
@@ -364,7 +371,7 @@ Indemnisables non inscrits
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id_midas, KROD3) <span class="sc">%&gt;%</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">date_ouv_droit =</span> <span class="fu">min</span>(KDDPJ)) <span class="sc">%&gt;%</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(date_ouv_droit <span class="sc">&gt;=</span> mois_debut <span class="sc">&amp;</span> date_ouv_droit <span class="sc">&lt;=</span> mois_fin) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(date_ouv_droit <span class="sc">&gt;=</span> mois_debut <span class="sc">&amp;</span> date_ouv_droit <span class="sc">&lt;=</span> mois_fin) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="fait-générateur" class="level1">
@@ -393,7 +400,7 @@ Indemnisables non inscrits
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Entrée dans le FNA par PJC ou ODD 💡
+<span class="screen-reader-only">Warning</span>Entrée dans le FNA par PJC ou ODD 💡
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -403,14 +410,14 @@ Entrée dans le FNA par PJC ou ODD 💡
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>droits_faits_generateurs <span class="ot">&lt;-</span> ODD <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>droits_faits_generateurs <span class="ot">&lt;-</span> ODD <span class="sc">%&gt;%</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas, KROD1) <span class="sc">%&gt;%</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(DAL, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"id_midas"</span>, <span class="st">"KROD1"</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(KNCDDA <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> KCNDDA <span class="sc">==</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas, KROD1, KCDA) <span class="sc">%&gt;%</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">KCDA1 =</span> KCDA) <span class="sc">%&gt;%</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(CDT, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"id_midas"</span>, <span class="st">"KCDA1"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas, KROD1, KDFPE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas, KROD1, KDFPE)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="durée-potentielle-dindemnisation" class="level1">
@@ -421,7 +428,7 @@ Entrée dans le FNA par PJC ou ODD 💡
 <p>L’âge à la fin du contrat de travail peut être calculé à l’aide de la date de naissance disponible dans la table DE du FHS. Pour les faits générateurs manquants, il est possible de lui substituer l’âge à l’ouverture de droit.</p>
 <p>Par exemple, en distinguant les droits ouverts avant le 1er février 2023 (date d’entrée en vigueur de la contracyclicité) et les droits ouverts ensuite :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>droit_datnais <span class="ot">&lt;-</span> DE <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>droit_datnais <span class="ot">&lt;-</span> DE <span class="sc">%&gt;%</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas, datnais) <span class="sc">%&gt;%</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">right_join</span>(ODD, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"id_midas"</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas, KROD1, datnais)</span>
@@ -455,7 +462,7 @@ Entrée dans le FNA par PJC ou ODD 💡
 <span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>                               age_fin_ctt <span class="sc">&gt;=</span> <span class="dv">55</span> <span class="sc">&amp;</span> (KDFPE <span class="sc">&lt;</span> <span class="fu">as.Date</span>(<span class="st">"2023-02-01"</span>) <span class="sc">|</span> (<span class="fu">is.na</span>(KDFPE) <span class="sc">&amp;</span> date_ouv_droit <span class="sc">&lt;</span> <span class="fu">as.Date</span>(<span class="st">"2023-02-01"</span>))) <span class="sc">~</span> <span class="fu">ifelse</span>(KPJDXP <span class="sc">&gt;</span> <span class="dv">1095</span>, <span class="dv">1095</span>, KPJDXP),</span>
 <span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>                               age_fin_ctt <span class="sc">&lt;</span> <span class="dv">53</span> <span class="sc">&amp;</span> (KDFPE <span class="sc">&gt;=</span> <span class="fu">as.Date</span>(<span class="st">"2023-02-01"</span>) <span class="sc">|</span> (<span class="fu">is.na</span>(KDFPE) <span class="sc">&amp;</span> date_ouv_droit <span class="sc">&gt;=</span> <span class="fu">as.Date</span>(<span class="st">"2023-02-01"</span>))) <span class="sc">~</span> <span class="fu">ifelse</span>(KPJDXP <span class="sc">&gt;</span> <span class="dv">548</span>, <span class="dv">548</span>, KPJDXP),</span>
 <span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>                               age_fin_ctt <span class="sc">&gt;=</span> <span class="dv">53</span> <span class="sc">&amp;</span> age_fin_ctt <span class="sc">&lt;</span> <span class="dv">55</span> <span class="sc">&amp;</span> (KDFPE <span class="sc">&gt;=</span> <span class="fu">as.Date</span>(<span class="st">"2023-02-01"</span>) <span class="sc">|</span> (<span class="fu">is.na</span>(KDFPE) <span class="sc">&amp;</span> date_ouv_droit <span class="sc">&gt;=</span> <span class="fu">as.Date</span>(<span class="st">"2023-02-01"</span>)))<span class="sc">~</span> <span class="fu">ifelse</span>(KPJDXP <span class="sc">&gt;</span> <span class="dv">685</span>, <span class="dv">685</span>, KPJDXP),</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>                               age_fin_ctt <span class="sc">&gt;=</span> <span class="dv">55</span> <span class="sc">&amp;</span> (KDFPE <span class="sc">&lt;=</span> <span class="fu">as.Date</span>(<span class="st">"2023-02-01"</span>) <span class="sc">|</span> (<span class="fu">is.na</span>(KDFPE) <span class="sc">&amp;</span> date_ouv_droit <span class="sc">&lt;=</span> <span class="fu">as.Date</span>(<span class="st">"2023-02-01"</span>))) <span class="sc">~</span> <span class="fu">ifelse</span>(KPJDXP <span class="sc">&gt;</span> <span class="dv">822</span>, <span class="dv">822</span>, KPJDXP)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>                               age_fin_ctt <span class="sc">&gt;=</span> <span class="dv">55</span> <span class="sc">&amp;</span> (KDFPE <span class="sc">&lt;=</span> <span class="fu">as.Date</span>(<span class="st">"2023-02-01"</span>) <span class="sc">|</span> (<span class="fu">is.na</span>(KDFPE) <span class="sc">&amp;</span> date_ouv_droit <span class="sc">&lt;=</span> <span class="fu">as.Date</span>(<span class="st">"2023-02-01"</span>))) <span class="sc">~</span> <span class="fu">ifelse</span>(KPJDXP <span class="sc">&gt;</span> <span class="dv">822</span>, <span class="dv">822</span>, KPJDXP)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="ensemble-des-indemnisables" class="level1">
@@ -464,18 +471,18 @@ Entrée dans le FNA par PJC ou ODD 💡
 <section id="en-fin-de-mois" class="level2">
 <h2 class="anchored" data-anchor-id="en-fin-de-mois">En fin de mois 🔵</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mois_fin <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2021-01-31"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mois_fin <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2021-01-31"</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>indemnisable_fm <span class="ot">&lt;-</span> PJC <span class="sc">%&gt;%</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id_midas, KCPJC, KDDPJ, KDFPJ) <span class="sc">%&gt;%</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(KDDPJ <span class="sc">&lt;=</span> mois_fin <span class="sc">&amp;</span> KDFPJ <span class="sc">&gt;=</span> mois_fin) <span class="sc">%&gt;%</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="tout-le-mois" class="level2">
 <h2 class="anchored" data-anchor-id="tout-le-mois">Tout le mois</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>mois_debut <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2021-01-01"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>mois_debut <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2021-01-01"</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>mois_fin <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2021-01-31"</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>mois_duree  <span class="ot">=</span> mois_fin <span class="sc">-</span> mois_debut <span class="sc">+</span> <span class="dv">1</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -489,19 +496,19 @@ Entrée dans le FNA par PJC ou ODD 💡
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">duree_indemnisable =</span> <span class="fu">sum</span>(duree_PJC_trunc)) <span class="sc">%&gt;%</span></span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(duree_indemnisable <span class="sc">==</span> mois_duree) <span class="sc">%&gt;%</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="au-cours-du-mois" class="level2">
 <h2 class="anchored" data-anchor-id="au-cours-du-mois">Au cours du mois</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>mois_debut <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2021-01-01"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>mois_debut <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2021-01-01"</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>mois_fin <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2021-01-31"</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>indemnisable_cm <span class="ot">&lt;-</span> PJC <span class="sc">%&gt;%</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id_midas, KCPJC, KDDPJ, KDFPJ) <span class="sc">%&gt;%</span></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(KDDPJ <span class="sc">&lt;=</span> mois_fin <span class="sc">&amp;</span> KDFPJ <span class="sc">&gt;=</span> mois_debut) <span class="sc">%&gt;%</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="cas-de-lactivité-réduite" class="level2">
@@ -518,7 +525,7 @@ Entrée dans le FNA par PJC ou ODD 💡
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Exemple
+<span class="screen-reader-only">Note</span>Exemple
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -539,18 +546,18 @@ Exemple
 <section id="en-fin-de-mois-1" class="level2">
 <h2 class="anchored" data-anchor-id="en-fin-de-mois-1">En fin de mois 🔵</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mois_fin <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2021-01-31"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mois_fin <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2021-01-31"</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>indemnisable_fm <span class="ot">&lt;-</span> PJC <span class="sc">%&gt;%</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id_midas, KCPJC, KDDPJ, KDFPJ) <span class="sc">%&gt;%</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(KDDPJ <span class="sc">&lt;=</span> mois_fin <span class="sc">&amp;</span> KDFPJ <span class="sc">&gt;=</span> mois_fin <span class="sc">&amp;</span> KCPJC <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="tout-le-mois-1" class="level2">
 <h2 class="anchored" data-anchor-id="tout-le-mois-1">Tout le mois</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>mois_debut <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2021-01-01"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>mois_debut <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2021-01-01"</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>mois_fin <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2021-01-31"</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>indemnisable_tm <span class="ot">&lt;-</span> PJC <span class="sc">%&gt;%</span></span>
@@ -562,19 +569,19 @@ Exemple
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">nb_PJC_payee =</span> <span class="fu">sum</span>(PJC_payee)) <span class="sc">%&gt;%</span></span>
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(nb_PJC <span class="sc">==</span> nb_PJC_payee) <span class="sc">%&gt;%</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="au-cours-du-mois-1" class="level2">
 <h2 class="anchored" data-anchor-id="au-cours-du-mois-1">Au cours du mois</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>mois_debut <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2021-01-01"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>mois_debut <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2021-01-01"</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>mois_fin <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2021-01-31"</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>indemnisable_cm <span class="ot">&lt;-</span> PJC <span class="sc">%&gt;%</span></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id_midas, KCPJC, KDDPJ, KDFPJ) <span class="sc">%&gt;%</span></span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(KDDPJ <span class="sc">&lt;=</span> mois_fin <span class="sc">&amp;</span> KDFPJ <span class="sc">&gt;=</span> mois_debut <span class="sc">&amp;</span> KCPJC <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 </section>
@@ -598,7 +605,7 @@ Exemple
 </ul>
 <p>Par exemple, voici le programme pour calculer la consommation de droit d’un ensemble d’allocataires ouvrant un droit au cours de ce mois.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>mois_debut <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2021-01-01"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>mois_debut <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2021-01-01"</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>mois_fin <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2021-01-31"</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>ouvertures_droit_mois <span class="ot">&lt;-</span> PJC <span class="sc">%&gt;%</span></span>
@@ -618,7 +625,7 @@ Exemple
 <span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id_midas, KROD3) <span class="sc">%&gt;%</span></span>
 <span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">conso_droit_obs =</span> <span class="fu">sum</span>(duree_PJC, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">conso_droit =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(conso_droit_obs, <span class="dv">0</span>, conso_droit_obs)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">conso_droit =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(conso_droit_obs, <span class="dv">0</span>, conso_droit_obs)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -626,7 +633,7 @@ Exemple
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Droit ouvert non consommé
+<span class="screen-reader-only">Caution</span>Droit ouvert non consommé
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -647,7 +654,7 @@ Droit ouvert non consommé
 <p><img src="../images/reprise_droit.png" class="img-fluid"></p>
 <p>Dans les données, le repérage des reprises de droit se fait comme suit : lorsque deux PJC sur le même droit (même couple identifiant <code>id_midas</code>, <code>KROD3</code>) sont espacées d’au moins un jour, la nouvelle PJC correspond à une reprise de droit.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>mois_debut <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2021-01-01"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>mois_debut <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2021-01-01"</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>mois_fin <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2021-01-31"</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>reprise_droit <span class="ot">&lt;-</span> PJC <span class="sc">%&gt;%</span></span>
@@ -655,7 +662,7 @@ Droit ouvert non consommé
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(id_midas, KROD3, KDDPJ) <span class="sc">%&gt;%</span></span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ecart =</span> KDDPJ <span class="sc">-</span> <span class="fu">lag</span>(KDFPJ)) <span class="sc">%&gt;%</span></span>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ecart <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> KDDPJ <span class="sc">&gt;=</span> mois_debut <span class="sc">&amp;</span> KDDPJ <span class="sc">&lt;=</span> mois_fin) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ecart <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> KDDPJ <span class="sc">&gt;=</span> mois_debut <span class="sc">&amp;</span> KDDPJ <span class="sc">&lt;=</span> mois_fin) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="droit-doption" class="level2">
 <h2 class="anchored" data-anchor-id="droit-doption">Droit d’option</h2>
@@ -671,7 +678,7 @@ Droit ouvert non consommé
 <p>Une fin de droit a lieu lorsque l’allocataire consomme une durée égale à la durée potentielle d’indemnisation de son droit.</p>
 <p>Pour repérer une fin de droit, il suffit de vérifier que la durée consommé du droit à la date de fin de PJC est égale à la durée potentielle d’indemnisation redressée.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>mois_debut <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2021-01-01"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>mois_debut <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2021-01-01"</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>mois_fin <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2021-01-31"</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul de la duree maximale redressee</span></span>
@@ -740,14 +747,14 @@ Droit ouvert non consommé
 <span id="cb12-67"><a href="#cb12-67" aria-hidden="true" tabindex="-1"></a>fin_droit <span class="ot">&lt;-</span> conso_droit <span class="sc">%&gt;%</span></span>
 <span id="cb12-68"><a href="#cb12-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(duree_max_redressee, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb12-69"><a href="#cb12-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(conso_droit <span class="sc">==</span> duree_max) <span class="sc">%&gt;%</span></span>
-<span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas, KROD3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas, KROD3)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="suivies-dun-rechargement" class="level2">
 <h2 class="anchored" data-anchor-id="suivies-dun-rechargement">Suivies d’un rechargement 🟢</h2>
 <p>Le repérage des rechargements suite à une fin de droit est permis par la table DAL. Au sujet des rechargements, voir l’article de l’UNEDIC <a href="https://www.unedic.org/la-reglementation/fiches-thematiques/droits-rechargeables">à ce lien</a>.</p>
 <p>Un rechargement correspond à un nouveau couple identifiant <code>id_midas</code>, <code>KROD3</code> . Si la fin de droit est suivie de l’ouverture d’un nouveau droit associé à une demande d’allocation de type rechargement (<code>KCDAL = 26</code>) dont la décision est “ouverture de droit suite à rechargement (AC 2014)” (<code>KCNDDA = 10</code>).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>date_fin_droit <span class="ot">&lt;-</span> PJC <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>date_fin_droit <span class="ot">&lt;-</span> PJC <span class="sc">%&gt;%</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id_midas, KROD3, KDFPJ) <span class="sc">%&gt;%</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">KDDPJ =</span> <span class="fu">as.Date</span>(KDDPJ)) <span class="sc">%&gt;%</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id_midas, KROD3) <span class="sc">%&gt;%</span></span>
@@ -773,7 +780,7 @@ Droit ouvert non consommé
 <span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">KROD3_rechargement =</span> KROD1) <span class="sc">%&gt;%</span></span>
 <span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">right_join</span>(nouveau_droit, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"id_midas"</span>, <span class="st">"KROD3_rechargement"</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(KCDAL <span class="sc">==</span> <span class="dv">26</span> <span class="sc">&amp;</span> KCNDDA <span class="sc">==</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas, KROD1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas, KROD1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 </section>
@@ -855,13 +862,14 @@ Droit ouvert non consommé
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
