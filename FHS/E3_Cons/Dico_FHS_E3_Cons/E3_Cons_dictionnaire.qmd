@@ -6,7 +6,6 @@ Ces variables sont identiques à celles de la table E3. Se référer au [diction
 
 | Variables | Libellé                       |
 |-----------|-------------------------------|
-| BNI       |                               |
 | CODACT    | CODE ACTION                   |
 | CODPAR    | Code partenaire               |
 | DATMAJAC  | DATE DE MISE A JOUR DU STATUT |
