@@ -129,6 +129,9 @@ Deux versions du même programme sont présentées :
 Cette configuration est la configuration recommandée pour utiliser le cluster spark de la bulle Midares. Elle permet d'effectuer des traitements lourds sur la totalité du champ de Midas.
 
 ```{r}
+#| eval: false
+#| echo: true
+
 # Fichier de configuration Spark
 conf <- spark_config()
 conf["spark.driver.memory"] <- "20g"
@@ -178,7 +181,7 @@ for (c in seq_along(cohortes)) {
 
 La table obtenue `table_cnaf_totale_s` est un spark_data_frame : c'est une table qui contient toutes les tables mensuelles prestations de la CNAF de l'année 2022. Voici un aperçu de la structure de `table_cnaf_totale_s`:
 
-![](images/fiche retour emploi-etape-1.drawio.png){fig-align="center"}
+![](images/fiche%20retour%20emploi-etape-1.drawio.png){fig-align="center"}
 
 ### Etape 2 : repérer les bénéficiaires du RSA
 
@@ -201,7 +204,7 @@ Cette table de champ est persistée en mémoire RAM par spark à l'aide de la fo
 
 La table `beneficiaires_rsa` a la structure suivante :
 
-![](images/fiche retour emploi-etape-2.drawio.png){fig-align="center"}
+![](images/fiche%20retour%20emploi-etape-2.drawio.png){fig-align="center"}
 
 ### Etape 3 : empiler et pivoter les MMO
 
@@ -217,7 +220,7 @@ En empilant les tables annuelles des MMO, il ne faut pas dédoublonner les ligne
 
 La table obtenue `MMO_tot` contient une ligne par mois d'emploi BIT pour chaque contrat, elle a la structure suivante :
 
-![](images/fiche retour emploi-etape-3.drawio.png){fig-align="center"}
+![](images/fiche%20retour%20emploi-etape-3.drawio.png){fig-align="center"}
 
 Elle ne contient que les contrats dont le salaire en DSN est bien déclarée (`Quali_Salaire_Base == 7`).
 
@@ -252,7 +255,7 @@ La table `MMO_tot` contient une information mensuelle sur l'emploi BIT en colonn
 
 La table `MMO_pivot` obtenue est la suivante :
 
-![](images/fiche retour emploi-etape-4.drawio.png){fig-align="center"}
+![](images/fiche%20retour%20emploi-etape-4.drawio.png){fig-align="center"}
 
 ```{r}
 #| eval: false
@@ -272,7 +275,7 @@ MMO_pivot <- MMO_tot %>%
 
 Pour chaque bénéficiaire du RSA un mois donné, on calcule le mois d'horizon n, jusqu'à l'horizon 24. La structure de la table `horizon_brsa` est la suivante :
 
-![](images/fiche retour emploi-etape-5.drawio.png){fig-align="center"}
+![](images/fiche%20retour%20emploi-etape-5.drawio.png){fig-align="center"}
 
 ```{r}
 #| eval: false
@@ -296,7 +299,7 @@ horizon_brsa <- beneficiaires_rsa %>%
 
 Les contrats salariés en cours au mois d'horizon n sont ajoutés à la table. Un individu peut avoir pour un même mois d'horizon plusieurs contrats en cours. L'information est résumée : si un individu a au moins un contrat en cours le mois d'horizon n, la variable `en_emploi` vaut 1, sinon 0. La structure de `table_finale` est la suivante :
 
-![](images/fiche retour emploi-etape-6.drawio.png){fig-align="center"}
+![](images/fiche%20retour%20emploi-etape-6.drawio.png){fig-align="center"}
 
 ```{r}
 #| eval: false
