@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Mesurer l’emploi salarié – Documentation MiDAS</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-ee590d1db77319ae38f478d857c8e9b6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Documentation MiDAS</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../Presentation/présentation.html"> 
+<span class="menu-text">MiDAS</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../FHS/FHS_presentation.html"> 
+<span class="menu-text">FHS</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../FNA/FNA_presentation.html"> 
+<span class="menu-text">FNA</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../Allstat_FR6/Allstat_FR6_presentation.html"> 
+<span class="menu-text">Allstat-FR6</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../DSN/DSN_presentation.html"> 
+<span class="menu-text">DSN</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../Fiches/Fiches_presentation.html" aria-current="page"> 
+<span class="menu-text">Fiches</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../Codes/codes_presentation.html"> 
+<span class="menu-text">Codes</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">Contact</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Fiches/Retour_emploi_rsa.html">Mesurer l’emploi salarié</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Fiches/Fiches_presentation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fiches thématiques</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Fiches/Retour_emploi_rsa.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Mesurer l’emploi salarié</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Fiches/Maintien_de_droits.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Maintien de droits</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Fiches/Allocations_regimes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Allocations agrégées et régimes d’indemnisation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Fiches/Parcours_indemnisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Le parcours de l’indemnisation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Fiches/Differe_indemnisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Différé d’indemnisation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Fiches/Activité réduite.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Activité réduite</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Fiches/Foyers_BRSA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Foyers bénéficiaires du RSA</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Fiches/Cumul_AC_MS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cumul allocation-chômage et minima sociaux</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#mesurer-la-présence-en-emploi-salarié" id="toc-mesurer-la-présence-en-emploi-salarié" class="nav-link active" data-scroll-target="#mesurer-la-présence-en-emploi-salarié">Mesurer la présence en emploi salarié</a></li>
+  <li><a href="#repérage-dans-les-données-cluster-spark" id="toc-repérage-dans-les-données-cluster-spark" class="nav-link" data-scroll-target="#repérage-dans-les-données-cluster-spark">Repérage dans les données : cluster spark</a>
+  <ul class="collapse">
+  <li><a href="#sparklyr" id="toc-sparklyr" class="nav-link" data-scroll-target="#sparklyr">Sparklyr</a>
+  <ul class="collapse">
+  <li><a href="#cluster-spark-et-double-distribution" id="toc-cluster-spark-et-double-distribution" class="nav-link" data-scroll-target="#cluster-spark-et-double-distribution">Cluster spark et double distribution</a></li>
+  <li><a href="#bonnes-pratiques-de-programmation-sur-un-cluster" id="toc-bonnes-pratiques-de-programmation-sur-un-cluster" class="nav-link" data-scroll-target="#bonnes-pratiques-de-programmation-sur-un-cluster">Bonnes pratiques de programmation sur un cluster</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#présence-en-emploi-de-cohortes-mensuelles-de-bénéficiaires-du-rsa-à-différents-horizons" id="toc-présence-en-emploi-de-cohortes-mensuelles-de-bénéficiaires-du-rsa-à-différents-horizons" class="nav-link" data-scroll-target="#présence-en-emploi-de-cohortes-mensuelles-de-bénéficiaires-du-rsa-à-différents-horizons">Présence en emploi de cohortes mensuelles de bénéficiaires du RSA à différents horizons</a>
+  <ul class="collapse">
+  <li><a href="#programmation-vectorielle" id="toc-programmation-vectorielle" class="nav-link" data-scroll-target="#programmation-vectorielle">Programmation vectorielle</a>
+  <ul class="collapse">
+  <li><a href="#etape-0-connexion-au-cluster" id="toc-etape-0-connexion-au-cluster" class="nav-link" data-scroll-target="#etape-0-connexion-au-cluster">Etape 0 : connexion au cluster</a></li>
+  <li><a href="#etape-1-empiler-les-tables-cnaf" id="toc-etape-1-empiler-les-tables-cnaf" class="nav-link" data-scroll-target="#etape-1-empiler-les-tables-cnaf">Etape 1 : empiler les tables cnaf</a></li>
+  <li><a href="#etape-2-repérer-les-bénéficiaires-du-rsa" id="toc-etape-2-repérer-les-bénéficiaires-du-rsa" class="nav-link" data-scroll-target="#etape-2-repérer-les-bénéficiaires-du-rsa">Etape 2 : repérer les bénéficiaires du RSA</a></li>
+  <li><a href="#etape-3-empiler-et-pivoter-les-mmo" id="toc-etape-3-empiler-et-pivoter-les-mmo" class="nav-link" data-scroll-target="#etape-3-empiler-et-pivoter-les-mmo">Etape 3 : empiler et pivoter les MMO</a></li>
+  <li><a href="#etape-4-pivot-pour-filtrer-sur-les-mois-demploi-bit" id="toc-etape-4-pivot-pour-filtrer-sur-les-mois-demploi-bit" class="nav-link" data-scroll-target="#etape-4-pivot-pour-filtrer-sur-les-mois-demploi-bit">Etape 4 : pivot pour filtrer sur les mois d’emploi BIT</a></li>
+  <li><a href="#etape-5-repérer-les-horizons" id="toc-etape-5-repérer-les-horizons" class="nav-link" data-scroll-target="#etape-5-repérer-les-horizons">Etape 5 : repérer les horizons</a></li>
+  <li><a href="#etape-6-récupérer-les-contrats-en-cours-au-mois-dhorizon" id="toc-etape-6-récupérer-les-contrats-en-cours-au-mois-dhorizon" class="nav-link" data-scroll-target="#etape-6-récupérer-les-contrats-en-cours-au-mois-dhorizon">Etape 6 : récupérer les contrats en cours au mois d’horizon</a></li>
+  <li><a href="#etape-7-part-de-présence-en-emploi-par-cohorte-mensuelle" id="toc-etape-7-part-de-présence-en-emploi-par-cohorte-mensuelle" class="nav-link" data-scroll-target="#etape-7-part-de-présence-en-emploi-par-cohorte-mensuelle">Etape 7 : Part de présence en emploi par cohorte mensuelle</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul></li>
+  <li><a href="#comparaison-boucle-for-et-programmation-vectorielle-sur-un-cluster" id="toc-comparaison-boucle-for-et-programmation-vectorielle-sur-un-cluster" class="nav-link" data-scroll-target="#comparaison-boucle-for-et-programmation-vectorielle-sur-un-cluster">Comparaison boucle for et programmation vectorielle sur un cluster</a></li>
+  <li><a href="#programmation-en-cas-de-ressources-informatiques-limitées" id="toc-programmation-en-cas-de-ressources-informatiques-limitées" class="nav-link" data-scroll-target="#programmation-en-cas-de-ressources-informatiques-limitées">Programmation en cas de ressources informatiques limitées</a>
+  <ul class="collapse">
+  <li><a href="#arrow" id="toc-arrow" class="nav-link" data-scroll-target="#arrow">Arrow</a></li>
+  <li><a href="#boucle-for-la-solution-parcimonieuse" id="toc-boucle-for-la-solution-parcimonieuse" class="nav-link" data-scroll-target="#boucle-for-la-solution-parcimonieuse">Boucle for : la solution parcimonieuse</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Mesurer l’emploi salarié</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="mesurer-la-présence-en-emploi-salarié" class="level1">
+<h1>Mesurer la présence en emploi salarié</h1>
+<p>Un individu est en emploi salarié s’il remplit les trois conditions suivantes :</p>
+<ul>
+<li><p>il occupe un contrat salarié en cours au moins un jour sur le mois calendaire considéré ;</p></li>
+<li><p>Ce contrat est un emploi au sens du <strong>BIT</strong> ce même mois ;</p></li>
+<li><p>Le <strong>salaire</strong> déclaré en DSN associé à ce contrat est de <strong>bonne qualité</strong> statistique : la variable Quali_Salaire_Base vaut 7.</p></li>
+</ul>
+<p>Ces informations sont disponibles dans la table MMO de MiDAS.</p>
+<p>De plus, cet individu est en <strong>emploi durable</strong> si :</p>
+<ul>
+<li><p>son contrat est un CDD de plus de 6 mois : nature de contrat 02, 07, 10, 20, 21, 32, 51, 52, 80, 81, 92, 93 ;</p></li>
+<li><p>ou son contrat est un CDI, quelle que soit la durée déjà observée en CDI : nature de contrat 01, 09, 50, 82, 91.</p></li>
+</ul>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Emploi intérimaire
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Les CDI intérimaires sont regroupés avec les missions d’intérim et ne correspondent pas à de l’emploi durable.</p>
+</div>
+</div>
+<p>Si un mois donné, un individu occupe à la fois un emploi durable et un emploi non durable, il est comptabilisé en emploi durable.</p>
+<p>Ces critères sont ceux retenus dans <a href="#0">les publications sur les bénéficiaires du RSA et l’inscription à France Travail</a>, dont les programmes de production à partir des données MiDAS sont disponibles <a href="https://github.com/DocumentationMiDAS/Publications/tree/main/Dares%20Focus%20-%20B%C3%A9n%C3%A9ficiaires%20du%20RSA%20et%20inscription%20%C3%A0%20France%20Travail%20%3A%20parcours%20%C3%A0%20horizon%20d'un%20an">à ce lien</a>.</p>
+</section>
+<section id="repérage-dans-les-données-cluster-spark" class="level1">
+<h1>Repérage dans les données : cluster spark</h1>
+<section id="sparklyr" class="level2">
+<h2 class="anchored" data-anchor-id="sparklyr">Sparklyr</h2>
+<p>L’environnement de travail pour les données MiDAS à la Dares est un cluster spark yarn.</p>
+<p>Les quatre manières de programmer en spark sont les suivantes</p>
+<ul>
+<li><p><strong>sparklyr</strong> : utilisation de spark avec R en syntaxe dplyr ;</p></li>
+<li><p>sparkR : utilisation de spark avec R dans une syntaxe plus proche du SQL ;</p></li>
+<li><p>pyspark : utilisation de spark avec python ;</p></li>
+<li><p>requêtes SQL : via R ou python.</p></li>
+</ul>
+<p>Le langage retenu dans ce tutoriel est sparklyr. Une formation de programmation sur un cluster spark avec sparklyr est disponible <a href="https://leoniefvr.github.io/Formation_spark/">ici</a>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sparklyr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="cluster-spark-et-double-distribution" class="level3">
+<h3 class="anchored" data-anchor-id="cluster-spark-et-double-distribution">Cluster spark et double distribution</h3>
+<p>Le cluster spark est un ensemble d’ordinateurs connectés entre eux en réseau et dont les tâches sont centralisées et organisées par un cluster manager yarn :</p>
+<p><img src="images/schema_cluster.drawio.png" class="img-fluid"></p>
+<p>Le cluster spark fonctionne sur un principe de double distribution :</p>
+<ul>
+<li><p>les <strong>données Midas sont distribuées</strong> sur les ordinateurs du cluster : chaque ordinateur ne connaît qu’une partie des données Midas. Les ordinateurs peuvent s’échanger des données entre eux via le réseau : cette opération est un <strong>shuffle</strong>.</p></li>
+<li><p>les <strong>tâches à effectuer sont distribuées</strong> sur les ordinateurs : chaque ordinateur effectue son calcul en parallèle des autres.</p></li>
+</ul>
+<p>Ce mode de fonctionnement a une implication importante sur la manière de programmer : l<strong>es opérations vectorielles</strong> (qui s’appliquent à une colonne intégrale) sont <strong>beaucoup plus rapides que les opérations qui s’appliquent à des groupes de lignes.</strong></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Opération vectorielle
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Une opération vectorielle est une opération qui s’applique simultanément à une <strong>colonne entière</strong> de données, plutôt qu’à chaque ligne une par une. En spark, comme en R, la multiplication par 2 d’une colonne est vectorielle.</p>
+<p>Ce type d’opération ne nécessite <strong>aucun</strong> <strong>shuffle</strong> : chaque ordinateur multiplie par 2 le morceau de colonne dont il dispose, en une seule fois, et en parallèle des autres ordinateurs. C’est très rapide, même sur des milliards de lignes.</p>
+</div>
+</div>
+<p><img src="images/map_distribue.drawio.png" class="img-fluid"></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Opération ligne par ligne
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Certaines opérations nécessitent forcément de lire les données ligne à ligne. C’est le cas des jointures, qui nécessitent de comparer deux colonnes d’identifiant de jointure entre elles. Comme les données sont distribuées, les ordinateurs du cluster doivent s’échanger des données (<strong>shuffle</strong>) pour comparer les colonnes de jointure sur un même ordinateur.</p>
+<p>Les opérations par groupe de ligne (<code>group_by(id)</code>) nécessitent aussi un échange de données entre ordinateurs pour regrouper les lignes avec la même valeur de id sur le même ordinateur.</p>
+<p>Les opérations qui nécessitent des shuffles sont beaucoup plus <strong>lentes</strong> : l’échange de données volumineuses via le réseau impose un coût en temps incompressible.</p>
+</div>
+</div>
+<div>
+<p><img src="images/reduce_distribue.drawio.png" class="img-fluid"></p>
+</div>
+<p>Spark dispose d’alhorithme pour optimiser les jointures, qui ne sont pas détaillés ici :</p>
+<ul>
+<li><p>broadcast join ;</p></li>
+<li><p>sort-merge join ou shuffle hash join.</p></li>
+</ul>
+</section>
+<section id="bonnes-pratiques-de-programmation-sur-un-cluster" class="level3">
+<h3 class="anchored" data-anchor-id="bonnes-pratiques-de-programmation-sur-un-cluster">Bonnes pratiques de programmation sur un cluster</h3>
+<p>Pour tirer pleinement parti du calcul distribué, il est nécessaire de <strong>limiter au maximum les shuffles</strong>, en programmant de la manière la plus vectorielle possible. Il est recommandé d’éviter les boucles for. Une boucle for porte sur un ensemble de lignes. Par exemple, une boucle for qui repète une opération mois par mois pour 12 mois impliquera a minima 12 shuffles sur un cluster spark.</p>
+<p>Dans cette fiche, deux manières alternatives de programmer sont présentées pour mesurer le retour à l’emploi. Elle vise à illustrer dans quel cas une boucle for est utile, et comment l’éviter lorsqu’on programme sur un cluster spark.</p>
+</section>
+</section>
+</section>
+<section id="présence-en-emploi-de-cohortes-mensuelles-de-bénéficiaires-du-rsa-à-différents-horizons" class="level1">
+<h1>Présence en emploi de cohortes mensuelles de bénéficiaires du RSA à différents horizons</h1>
+<p>Pour chaque cohorte mensuelle de bénéficiaires du RSA, le taux de présence en emploi est observé 1, 2, 3, …, 24 mois après.</p>
+<p>Le but est de construire pour chaque mois de 2022 le graphique suivant :</p>
+<p>Deux versions du même programme sont présentées :</p>
+<ul>
+<li><p>une version vectorielle compatible avec sparklyr et optimisée pour un cluster de calcul ;</p></li>
+<li><p>une version en boucle for, inadaptée pour spark mais adaptée pour un ordinateur simple en R.</p></li>
+</ul>
+<section id="programmation-vectorielle" class="level2">
+<h2 class="anchored" data-anchor-id="programmation-vectorielle">Programmation vectorielle</h2>
+<section id="etape-0-connexion-au-cluster" class="level3">
+<h3 class="anchored" data-anchor-id="etape-0-connexion-au-cluster">Etape 0 : connexion au cluster</h3>
+<p>Cette configuration est la configuration recommandée pour utiliser le cluster spark de la bulle Midares. Elle permet d’effectuer des traitements lourds sur la totalité du champ de Midas.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fichier de configuration Spark</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>conf <span class="ot">&lt;-</span> <span class="fu">spark_config</span>()</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>conf[<span class="st">"spark.driver.memory"</span>] <span class="ot">&lt;-</span> <span class="st">"20g"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>conf[<span class="st">"spark.executor.memory"</span>] <span class="ot">&lt;-</span> <span class="st">"60g"</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>conf[<span class="st">"spark.executor.cores"</span>] <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>conf[<span class="st">"spark.executor.instances"</span>] <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>conf[<span class="st">"spark.sql.reduction.limit"</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>conf<span class="sc">$</span>spark.driver.maxResultSize <span class="ot">&lt;-</span> <span class="dv">0</span>  </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>sc <span class="ot">&lt;-</span> <span class="fu">spark_connect</span>(<span class="at">master=</span><span class="st">"yarn"</span>, <span class="at">config =</span> conf)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="etape-1-empiler-les-tables-cnaf" class="level3">
+<h3 class="anchored" data-anchor-id="etape-1-empiler-les-tables-cnaf">Etape 1 : empiler les tables cnaf</h3>
+<p>Spark est optimisé pour les traitements vectoriels : il est conseillé d’empiler toutes les tables mensuelles de la CNAF pour programmer sur les colonnes de cette table complète. Il est beaucoup plus rapide pour spark d’effectuer une fois une opération sur les colonnes d’une table très volumineuse que de segmenter le calcul sur des tables mensuelles.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Chemin vers les données MiDAS </span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>chemin_cnaf <span class="ot">&lt;-</span> <span class="st">"hdfs:///dataset/MiDAS_v6/Allstat/minsoc/"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Cohortes de BRSA considérées</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>cohortes <span class="ot">&lt;-</span> <span class="fu">sprintf</span>(<span class="st">"%02d22"</span>,<span class="dv">01</span><span class="sc">:</span><span class="dv">12</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>table_cnaf_totale <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">id_midas =</span> <span class="fu">character</span>(),</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                                <span class="at">MTRSAVER =</span> <span class="fu">numeric</span>(),</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>                                <span class="at">RSAVERS =</span> <span class="fu">character</span>(),</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                                <span class="at">mois =</span> <span class="fu">as.Date</span>(<span class="fu">character</span>()))</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Copie vers Spark</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>table_cnaf_totale_s <span class="ot">&lt;-</span> <span class="fu">copy_to</span>(sc, table_cnaf_totale, <span class="st">"table_cnaf_totale_spark"</span>, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (c <span class="cf">in</span> <span class="fu">seq_along</span>(cohortes)) {</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  nom_var_cohorte <span class="ot">&lt;-</span> cohortes[c]</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  table_cnaf_mois <span class="ot">&lt;-</span> <span class="fu">spark_read_parquet</span>(<span class="fu">paste0</span>(chemin_cnaf, <span class="st">"cnaf_indiv_"</span>, nom_var_cohorte, <span class="st">".parquet"</span>), <span class="at">memory =</span> F) <span class="sc">%&gt;%</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(id_midas, RSAVERS, MTRSAVER) <span class="sc">%&gt;%</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">mois =</span> <span class="fu">as.Date</span>(<span class="fu">paste0</span>(<span class="st">"20"</span>, <span class="fu">substr</span>(nom_var_cohorte, <span class="dv">3</span>,<span class="dv">4</span>), <span class="st">"-"</span>, <span class="fu">substr</span>(nom_var_cohorte, <span class="dv">1</span>,<span class="dv">2</span>), <span class="st">"-01"</span>)))</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  table_cnaf_totale_s <span class="ot">&lt;-</span> <span class="fu">sdf_bind_rows</span>(table_cnaf_totale_s, table_cnaf_mois) </span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>La table obtenue <code>table_cnaf_totale_s</code> est un spark_data_frame : c’est une table qui contient toutes les tables mensuelles prestations de la CNAF de l’année 2022. Voici un aperçu de la structure de <code>table_cnaf_totale_s</code>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/fiche retour emploi-etape-1.drawio.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="etape-2-repérer-les-bénéficiaires-du-rsa" class="level3">
+<h3 class="anchored" data-anchor-id="etape-2-repérer-les-bénéficiaires-du-rsa">Etape 2 : repérer les bénéficiaires du RSA</h3>
+<p>Seuls les bénéficiaires du RSA qui perçoivent effectivement un montant de RSA non nul un mois donné sont conservés dans le champ.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>beneficiaires_rsa <span class="ot">&lt;-</span> table_cnaf_totale_s <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(RSAVERS <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"RSA droit commun"</span>, <span class="st">"RSA droit local"</span>, <span class="st">"RSA jeune"</span>, <span class="st">"RSA expérimental"</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                        <span class="st">"C"</span>, <span class="st">"L"</span>, <span class="st">"J"</span>, <span class="st">"E"</span>) <span class="sc">&amp;</span> MTRSAVER <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas, mois) <span class="sc">%&gt;%</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sdf_register</span>(<span class="st">"beneficiaires_rsa"</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_cache</span>(sc, <span class="st">"beneficiaires_rsa"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Cette table de champ est persistée en mémoire RAM par spark à l’aide de la fonction <code>tbl_cache()</code>.</p>
+<p>La table <code>beneficiaires_rsa</code> a la structure suivante :</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/fiche retour emploi-etape-2.drawio.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="etape-3-empiler-et-pivoter-les-mmo" class="level3">
+<h3 class="anchored" data-anchor-id="etape-3-empiler-et-pivoter-les-mmo">Etape 3 : empiler et pivoter les MMO</h3>
+<p>De même pour les tables annuelles des MMO, il est plus efficient de les empiler avant d’effectuer tout calcul.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Variables d’emploi BIT dans les MMO
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Chaque table annuelle ne contient l’indicatrice d’emploi BIT que pour les mois de l’année correspondant à la table.</p>
+<p>En empilant les tables annuelles des MMO, il ne faut pas dédoublonner les lignes pour les mêmes contrats : chaque ligne de chaque table annuelle contient des informations à différentes périodes temporelles pour l’emploi BIT.</p>
+</div>
+</div>
+<p>La table obtenue <code>MMO_tot</code> contient une ligne par mois d’emploi BIT pour chaque contrat, elle a la structure suivante :</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/fiche retour emploi-etape-3.drawio.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Elle ne contient que les contrats dont le salaire en DSN est bien déclarée (<code>Quali_Salaire_Base == 7</code>).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>chemin_mmo <span class="ot">&lt;-</span> <span class="st">"C:/Users/Public/Documents/MiDAS_parquet/Vague 6/MMO/"</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>MMO_2022 <span class="ot">&lt;-</span> <span class="fu">spark_read_parquet</span>(sc, <span class="fu">paste0</span>(chemin_mmo, <span class="st">"MMO_2_2022_M6.parquet"</span>), <span class="at">memory =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>MMO_2023 <span class="ot">&lt;-</span> <span class="fu">spark_read_parquet</span>(sc, <span class="fu">paste0</span>(chemin_mmo, <span class="st">"MMO_2_2023_M6.parquet"</span>), <span class="at">memory =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>MMO_2024 <span class="ot">&lt;-</span> <span class="fu">spark_read_parquet</span>(sc, <span class="fu">paste0</span>(chemin_mmo, <span class="st">"MMO_2_2024_M6.parquet"</span>), <span class="at">memory =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>MMO_tot <span class="ot">&lt;-</span> <span class="fu">sdf_bind_rows</span>(MMO_2022, MMO_2023, MMO_2024) <span class="sc">%&gt;%</span> <span class="co">#Empiler les tables annuelles pour travailler en vectoriel</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Quali_Salaire_Base <span class="sc">==</span> <span class="dv">7</span>) <span class="sc">%&gt;%</span> <span class="co"># uniquement les contrats dont le salaire est bien déclaré</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">FinCTT =</span> <span class="fu">as.Date</span>(FinCTT), <span class="at">DebutCTT =</span> <span class="fu">as.Date</span>(DebutCTT)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">type_contrat =</span> <span class="fu">case_when</span>(Nature <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"01"</span>, <span class="st">"09"</span>, <span class="st">"50"</span>, <span class="st">"82"</span>, <span class="st">"91"</span>) <span class="sc">~</span> <span class="st">"CDI"</span>,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>                                  Nature <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"02"</span>, <span class="st">"07"</span>, <span class="st">"10"</span>, <span class="st">"20"</span>, <span class="st">"21"</span>, <span class="st">"32"</span>, <span class="st">"51"</span>, <span class="st">"52"</span>, <span class="st">"80"</span>, <span class="st">"81"</span>, <span class="st">"92"</span>, <span class="st">"93"</span>) <span class="sc">~</span> <span class="st">"CDD"</span>,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>                                  Nature <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"03"</span>, <span class="st">"08"</span>) <span class="sc">~</span> <span class="st">"interim"</span>,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>                                  Nature <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"29"</span>, <span class="st">"53"</span>, <span class="st">"60"</span>, <span class="st">"70"</span>, <span class="st">"89"</span>, <span class="st">"90"</span>) <span class="sc">~</span> <span class="st">"autre"</span>,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>                                  <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(DebutCTT)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">duree_ctt =</span> <span class="fu">DATEDIFF</span>(FinCTT,DebutCTT) <span class="sc">+</span> <span class="dv">1</span>, </span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">emploi_d =</span> <span class="fu">ifelse</span>((type_contrat <span class="sc">==</span> <span class="st">"CDD"</span> <span class="sc">&amp;</span> (duree_ctt <span class="sc">&gt;</span> <span class="dv">180</span> <span class="sc">|</span> <span class="fu">is.na</span>(duree_ctt))) <span class="sc">|</span> type_contrat <span class="sc">==</span> <span class="st">"CDI"</span>, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="sc">%&gt;%</span> <span class="co"># définition de l'emploi durable : CDD de plus de 6 mois ou CDI</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id_midas, DebutCTT, FinCTT, <span class="fu">starts_with</span>(<span class="st">"emploi_bit"</span>), emploi_d) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="etape-4-pivot-pour-filtrer-sur-les-mois-demploi-bit" class="level3">
+<h3 class="anchored" data-anchor-id="etape-4-pivot-pour-filtrer-sur-les-mois-demploi-bit">Etape 4 : pivot pour filtrer sur les mois d’emploi BIT</h3>
+<p>La table <code>MMO_tot</code> contient une information mensuelle sur l’emploi BIT en colonne. Comme la présence en emploi salarié est une présence au sens du BIT, il est plus pratique de pivoter la table (passage au format long) pour appliquer le filtre sur l’emploi BIT.</p>
+<p>La table <code>MMO_pivot</code> obtenue est la suivante :</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/fiche retour emploi-etape-4.drawio.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>MMO_pivot <span class="ot">&lt;-</span> MMO_tot <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"emploi_bit_"</span>), <span class="at">names_to =</span> <span class="st">"date_emploi_bit"</span>, <span class="at">names_prefix =</span> <span class="st">"emploi_bit_"</span>, <span class="at">values_to =</span> <span class="st">"emploi_bit"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># passage des variables emploi bit en ligne contrat X mois avec une indicatrice </span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># pour chaque mois qui indique si le contrat correspond à de l'emploi bit sur le mois</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date_emploi_bit_deb =</span> <span class="fu">as.Date</span>(<span class="fu">paste0</span>(<span class="fu">substr</span>(date_emploi_bit,<span class="dv">1</span>,<span class="dv">4</span>), <span class="st">"-"</span>, <span class="fu">substr</span>(date_emploi_bit,<span class="dv">6</span>,<span class="dv">7</span>), <span class="st">"-01"</span>)),</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">date_emploi_bit_fin =</span> <span class="fu">last_day</span>(date_emploi_bit_deb)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(emploi_bit <span class="sc">==</span> <span class="dv">1</span>) <span class="co"># on ne conserve que les lignes contrats X mois où les contrats sont en emploi BIT</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="etape-5-repérer-les-horizons" class="level3">
+<h3 class="anchored" data-anchor-id="etape-5-repérer-les-horizons">Etape 5 : repérer les horizons</h3>
+<p>Pour chaque bénéficiaire du RSA un mois donné, on calcule le mois d’horizon n, jusqu’à l’horizon 24. La structure de la table <code>horizon_brsa</code> est la suivante :</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/fiche retour emploi-etape-5.drawio.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rlang)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Table des horizons qu'on souhaite considérer</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>horizon_num <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">horizon =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">24</span>))</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>horizon_num_s <span class="ot">&lt;-</span> <span class="fu">copy_to</span>(sc, horizon_num)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Produit cartésien de chaque bénéficiaire du RSA un mois donné avec les 24 horizons observés</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>horizon_brsa <span class="ot">&lt;-</span> beneficiaires_rsa <span class="sc">%&gt;%</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cross_join</span>(horizon_num_s) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date_horizon =</span> <span class="fu">sql</span>(<span class="st">"add_months(mois, horizon)"</span>))  <span class="co"># calcul du mois calendaire d'horizon : si on considère un BRSA en janvier 2022, l'horizon 2 est mars 2022</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="etape-6-récupérer-les-contrats-en-cours-au-mois-dhorizon" class="level3">
+<h3 class="anchored" data-anchor-id="etape-6-récupérer-les-contrats-en-cours-au-mois-dhorizon">Etape 6 : récupérer les contrats en cours au mois d’horizon</h3>
+<p>Les contrats salariés en cours au mois d’horizon n sont ajoutés à la table. Un individu peut avoir pour un même mois d’horizon plusieurs contrats en cours. L’information est résumée : si un individu a au moins un contrat en cours le mois d’horizon n, la variable <code>en_emploi</code> vaut 1, sinon 0. La structure de <code>table_finale</code> est la suivante :</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/fiche retour emploi-etape-6.drawio.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Jointure avec les mois d'emploi BIT</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ajout_mois_emploi_bit <span class="ot">&lt;-</span> horizon_brsa <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(MMO_pivot, <span class="at">sql_on =</span> <span class="st">"LHS.id_midas = RHS.id_midas</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="st">            AND RHS.date_emploi_bit_deb &lt;= LHS.date_horizon</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="st">            AND RHS.date_emploi_bit_fin &gt;= LHS.date_horizon"</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">keep =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="co"># pour chaque horizon, on ne conserve que les contrats d'emploi BIT du même mois</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>id_midas_y) <span class="sc">%&gt;%</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">id_midas =</span> id_midas_x) <span class="sc">%&gt;%</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">en_emploi =</span> <span class="fu">ifelse</span>(<span class="sc">!</span><span class="fu">is.na</span>(DebutCTT), <span class="dv">1</span>, <span class="dv">0</span>), <span class="co"># si un contrat est retrouvé, l'individu est en emploi salarié le mois d'horizon considéré</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">en_emploi_durable =</span> <span class="fu">ifelse</span>(<span class="sc">!</span><span class="fu">is.na</span>(DebutCTT) <span class="sc">&amp;</span> emploi_d <span class="sc">==</span> <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id_midas, KROD3, horizon) <span class="sc">%&gt;%</span> <span class="co"># on dédoublonne : plusieurs contrats emploi BIT peuvent être retrouvés pour un individu un même mois d'horizon</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">en_emploi =</span> <span class="fu">ifelse</span>(<span class="fu">sum</span>(en_emploi) <span class="sc">&gt;=</span> <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">en_emploi_durable =</span> <span class="fu">ifelse</span>(<span class="fu">sum</span>(en_emploi_durable) <span class="sc">&gt;=</span> <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  ungroup <span class="sc">%&gt;%</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sdf_register</span>(<span class="at">name =</span> <span class="st">"ajout_mois_emploi_bit"</span>)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_cache</span>(sc, <span class="at">name =</span> <span class="st">"ajout_mois_emploi_bit"</span>)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajout à la table individuelle de bénéficiaires mensuels du RSA</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>table_finale <span class="ot">&lt;-</span> beneficiaires_rsa <span class="sc">%&gt;%</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas, KROD3, mois) <span class="sc">%&gt;%</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(ajout_mois_emploi_bit, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>)) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="etape-7-part-de-présence-en-emploi-par-cohorte-mensuelle" class="level3">
+<h3 class="anchored" data-anchor-id="etape-7-part-de-présence-en-emploi-par-cohorte-mensuelle">Etape 7 : Part de présence en emploi par cohorte mensuelle</h3>
+<p>Le format de <code>table_finale</code> est long : une ligne correspond à un mois d’horizon considéré par rapport au mois de perception du RSA de l’individu. Ce format est pratique pour représenter des taux de présence en emploi salarié avec <code>ggplot2</code>. Le programme ci-dessous permet de tracer le profil de présence en emploi salarié par cohorte mensuelle de bénéficiaires du RSA.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>prop_re <span class="ot">&lt;-</span> table_finale <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(mois, horizon) <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">eff =</span> <span class="fu">sum</span>(en_emploi),</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">tot =</span> <span class="fu">n</span>())  <span class="sc">%&gt;%</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> eff<span class="sc">*</span><span class="dv">100</span><span class="sc">/</span>tot) <span class="sc">%&gt;%</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(mois)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>mois <span class="ot">&lt;-</span> prop_re <span class="sc">%&gt;%</span> <span class="fu">pull</span>(mois)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(mois)){</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  c0 <span class="ot">&lt;-</span> mois[i]</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  df_c <span class="ot">&lt;-</span> prop_re <span class="sc">%&gt;%</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(mois <span class="sc">==</span> c0) <span class="sc">%&gt;%</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(horizon)</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_c, <span class="fu">aes</span>(<span class="at">x =</span> horizon, <span class="at">y =</span> prop)) <span class="sc">+</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">1.8</span>) <span class="sc">+</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">24</span>)  <span class="sc">+</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste0</span>(<span class="st">"Taux de présence en emploi - cohorte "</span>, c0),</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Horizon (mois)"</span>,</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Présence en contrat salarié"</span>) <span class="sc">+</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>(<span class="at">base_size=</span><span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>  f <span class="ot">&lt;-</span> <span class="fu">paste0</span>(path_resultat, <span class="st">"taux_re_cohorte_"</span>, c0, <span class="st">".png"</span>)</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggsave</span>(<span class="at">filename =</span> f, <span class="at">plot =</span> p, <span class="at">width =</span> <span class="dv">7</span>, <span class="at">height =</span> <span class="fl">4.2</span>, <span class="at">dpi =</span> <span class="dv">150</span>, <span class="at">units =</span> <span class="st">"in"</span>)</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="conclusion" class="level3">
+<h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
+<p>Pour calculer le retour à l’emploi, des colonnes (=vecteurs) de dates sont comparés entre eux, ce qui permet de calculer pour toute cohorte et tout horizon la présence en emploi en une unique opération. Même si joindre l’ensemble des contrats salariés à l’ensemble des mois d’horizon peut donner une table avec plusieurs millions de lignes, spark est tout à fait adapté pour traiter des données aussi volumineuses avec des opérations vectorielles et des jointures optimisées, si le programme limite les shuffles.</p>
+</section>
+</section>
+<section id="comparaison-boucle-for-et-programmation-vectorielle-sur-un-cluster" class="level2">
+<h2 class="anchored" data-anchor-id="comparaison-boucle-for-et-programmation-vectorielle-sur-un-cluster">Comparaison boucle for et programmation vectorielle sur un cluster</h2>
+</section>
+<section id="programmation-en-cas-de-ressources-informatiques-limitées" class="level2">
+<h2 class="anchored" data-anchor-id="programmation-en-cas-de-ressources-informatiques-limitées">Programmation en cas de ressources informatiques limitées</h2>
+<section id="arrow" class="level3">
+<h3 class="anchored" data-anchor-id="arrow">Arrow</h3>
+<section id="avantages-darrow" class="level4">
+<h4 class="anchored" data-anchor-id="avantages-darrow">1. Avantages d’<code>arrow</code></h4>
+<ul>
+<li><strong>Mémoire</strong> : <code>arrow</code> lit les données directement sur disque (souvent au format Parquet/Feather) et ne charge que ce qui est nécessaire (colonnes et lignes utiles). On évite de saturer la RAM avec de gros volumes de données.</li>
+<li><strong>Vitesse</strong> : grâce au format colonne et à des optimisations, les filtres et agrégations sont beaucoup plus rapides qu’avec un CSV chargé en entier.</li>
+</ul>
+<hr>
+</section>
+<section id="open_dataset-vs.-data.frame-classique" class="level4">
+<h4 class="anchored" data-anchor-id="open_dataset-vs.-data.frame-classique">2. <code>open_dataset()</code> vs.&nbsp;data.frame classique</h4>
+<ul>
+<li><strong><code>open_dataset()</code></strong>
+<ul>
+<li>Ouvre un dossier de fichiers comme une table logique unique.</li>
+<li>Ne charge rien immédiatement : il “pointe” simplement vers les données et lit des métadonnées (nom de colonnes).</li>
+<li>Les verbes <code>dplyr</code> sont lus en lazy evaluation (voir plus bas).</li>
+</ul></li>
+<li><strong>data.frame ou tibble</strong>
+<ul>
+<li>Charge toute la table en mémoire.</li>
+<li>Chaque opération duplique potentiellement des données et consomme la RAM.</li>
+<li>Impossible de travailler si la table dépasse la mémoire disponible.</li>
+</ul></li>
+</ul>
+<hr>
+</section>
+<section id="le-principe-de-la-lazy-evaluation" class="level4">
+<h4 class="anchored" data-anchor-id="le-principe-de-la-lazy-evaluation">3. Le principe de la <em>lazy evaluation</em></h4>
+<ul>
+<li>Avec <code>arrow</code> + <code>dplyr</code>, les instructions sont enregistrées comme un plan de calcul, mais <strong>rien n’est exécuté tout de suite</strong>.</li>
+<li>L’exécution n’a lieu que lorsqu’un résultat final est demandé (affichage <code>print()</code>, export <code>write_parquet()</code>, agrégat <code>summarise() %&gt;% collect()</code>.</li>
+<li>Avantage : <code>arrow</code> peut optimiser la requête (ne lire que les colonnes/partitions utiles, paralléliser, etc.).</li>
+</ul>
+<hr>
+</section>
+<section id="utiliser-collect-avec-parcimonie" class="level4">
+<h4 class="anchored" data-anchor-id="utiliser-collect-avec-parcimonie">4. Utiliser <code>collect()</code> avec parcimonie ?</h4>
+<ul>
+<li><code>collect()</code> ramène le résultat en R sous forme de <code>tibble</code> ou <code>data.frame</code>, donc en mémoire.</li>
+<li>Utilisé trop tôt ou trop souvent, on perd les avantages d’<code>arrow</code> et on risque de saturer la RAM.</li>
+<li>Bonne pratique : enchaîner les transformations (<code>filter</code>, <code>select</code>, <code>mutate</code>, <code>summarise</code>) sur le dataset au format d’<code>arrow</code>, puis appeler <code>collect()</code> uniquement à la fin, sur un résultat réduit (quelques colonnes, agrégats ou milliers de lignes).</li>
+<li>Pour écrire un résultat volumineux, préférer <code>write_dataset()</code> qui reste côté <code>arrow</code>.</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arrow)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="boucle-for-la-solution-parcimonieuse" class="level3">
+<h3 class="anchored" data-anchor-id="boucle-for-la-solution-parcimonieuse">Boucle for : la solution parcimonieuse</h3>
+<p>Voici les étapes :</p>
+<ol type="1">
+<li><p>une cohorte mensuelle de bénéficiaires du RSA est considérée à chaque itération de la boucle for principale : seule la table mensuelle CNAF du mois en question est chargée avec <code>arrow</code>, filtrée sur les bénéficiaires du RSA puis collectée en mémoire</p></li>
+<li><p>Une autre boucle for permet pour chaque cohorte mensuelle de bénéficiaires du RSA de repérer la présence en emploi salairé à chaque horizon : pour chaque horizon sur les 24 considérés, la table MMO annuelle correspondante est chargée avec <code>arrow</code>, filtrée sur les contrats du mois d’horizon considéré, et appariée avec la cohorte de bénéficiaire du RSA.</p></li>
+<li><p>Pour supprimer les tables de la mémoire à chaque itération, seuls les effectifs de bénéficiaires du RSA et de bénéficiaires présents en emploi sont conservés à chaque itération.</p></li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Chemin vers les données MiDAS </span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>chemin_cnaf <span class="ot">&lt;-</span> <span class="st">"C:/Users/Public/Documents/MiDAS_parquet/Vague 6/Allstat/minsoc/"</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>chemin_mmo <span class="ot">&lt;-</span> <span class="st">"C:/Users/Public/Documents/MiDAS_parquet/Vague 6/MMO/"</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Cohortes de BRSA considérées</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>cohortes <span class="ot">&lt;-</span> <span class="fu">sprintf</span>(<span class="st">"%02d22"</span>,<span class="dv">01</span><span class="sc">:</span><span class="dv">12</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>dates_cohortes <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">as.Date</span>(<span class="st">"2022-01-01"</span>),<span class="fu">as.Date</span>(<span class="st">"2022-12-01"</span>), <span class="at">by =</span> <span class="st">"month"</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>resultats <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(c <span class="cf">in</span> <span class="fu">seq_along</span>(cohortes)) {</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  nom_var_cohorte <span class="ot">&lt;-</span> cohortes[c]</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  debut_cohorte <span class="ot">&lt;-</span> dates_cohortes[c]</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  fin_observation <span class="ot">&lt;-</span> debut_cohorte <span class="sc">%m+%</span> <span class="fu">months</span>(<span class="dv">23</span>)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>  dates_obs <span class="ot">&lt;-</span> <span class="fu">seq</span>(debut_cohorte,fin_observation, <span class="at">by =</span> <span class="st">"month"</span>)</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>  dates_obs_fm <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="fu">format</span>(dates_obs <span class="sc">+</span> <span class="dv">31</span>, <span class="st">"%Y-%m-01"</span>)) <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>  dates_obs_bit <span class="ot">&lt;-</span> <span class="fu">format</span>(dates_obs,<span class="st">"%Y_%m"</span>)</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>  table_cnaf <span class="ot">&lt;-</span> <span class="fu">open_dataset</span>(<span class="fu">paste0</span>(chemin_cnaf, <span class="st">"cnaf_indiv_"</span>, nom_var_cohorte, <span class="st">".parquet"</span>))</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>  brsa_mois <span class="ot">&lt;-</span> table_cnaf <span class="sc">%&gt;%</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(RSAVERS <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"RSA droit commun"</span>, <span class="st">"RSA droit local"</span>, <span class="st">"RSA jeune"</span>, <span class="st">"RSA expérimental"</span>,</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"C"</span>, <span class="st">"L"</span>, <span class="st">"J"</span>, <span class="st">"E"</span>) <span class="sc">&amp;</span> MTRSAVER <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">distinct</span>(id_midas) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">collect</span>()</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(dates_obs_fm)) {</span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>    deb_mois <span class="ot">&lt;-</span> dates_obs[i]</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>    fin_mois <span class="ot">&lt;-</span> dates_obs_fm[i]</span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>    mois_bit <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"emploi_bit_"</span>,dates_obs_bit[i])</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>    annee_mmo <span class="ot">&lt;-</span> <span class="fu">substr</span>(fin_mois, <span class="dv">1</span>, <span class="dv">4</span>)</span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>    MMO_annee <span class="ot">&lt;-</span> <span class="fu">open_dataset</span>(<span class="fu">paste0</span>(chemin_mmo, <span class="st">"MMO_2_"</span>, annee_mmo, <span class="st">"_M6.parquet"</span>))</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>    MMO_mois <span class="ot">&lt;-</span> MMO_annee <span class="sc">%&gt;%</span></span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">DebutCTT =</span> <span class="fu">as.Date</span>(DebutCTT),</span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>             <span class="at">FinCTT =</span> <span class="fu">as.Date</span>(FinCTT)) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(DebutCTT <span class="sc">&lt;=</span> fin_mois <span class="sc">&amp;</span> (<span class="fu">is.na</span>(FinCTT) <span class="sc">|</span> FinCTT <span class="sc">&gt;=</span> deb_mois) </span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>             <span class="sc">&amp;</span> .data[[mois_bit]] <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> Quali_Salaire_Base <span class="sc">==</span> <span class="dv">7</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">type_contrat =</span> <span class="fu">case_when</span>(Nature <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"01"</span>, <span class="st">"09"</span>, <span class="st">"50"</span>, <span class="st">"82"</span>, <span class="st">"91"</span>) <span class="sc">~</span> <span class="st">"CDI"</span>,</span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>                                      Nature <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"02"</span>, <span class="st">"07"</span>, <span class="st">"10"</span>, <span class="st">"20"</span>, <span class="st">"21"</span>, <span class="st">"32"</span>, <span class="st">"51"</span>, <span class="st">"52"</span>, <span class="st">"80"</span>, <span class="st">"81"</span>, <span class="st">"92"</span>, <span class="st">"93"</span>) <span class="sc">~</span> <span class="st">"CDD"</span>,</span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a>                                      Nature <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"03"</span>, <span class="st">"08"</span>) <span class="sc">~</span> <span class="st">"interim"</span>,</span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a>                                      Nature <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"29"</span>, <span class="st">"53"</span>, <span class="st">"60"</span>, <span class="st">"70"</span>, <span class="st">"89"</span>, <span class="st">"90"</span>) <span class="sc">~</span> <span class="st">"autre"</span>,</span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>                                      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"autres"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(id_midas, DebutCTT, FinCTT, .data[[mois_bit]], type_contrat) <span class="sc">%&gt;%</span></span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a>      <span class="fu">collect</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">duree_ctt =</span> FinCTT <span class="sc">-</span> DebutCTT <span class="sc">+</span> <span class="dv">1</span>, </span>
+<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a>             <span class="at">emploi_d =</span> <span class="fu">ifelse</span>((type_contrat <span class="sc">==</span> <span class="st">"CDD"</span> <span class="sc">&amp;</span> (duree_ctt <span class="sc">&gt;</span> <span class="dv">180</span> <span class="sc">|</span><span class="fu">is.na</span>(duree_ctt))) <span class="sc">|</span> type_contrat <span class="sc">==</span> <span class="st">"CDI"</span>, <span class="dv">1</span>, <span class="dv">0</span>)) </span>
+<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a>    brsa_contrat <span class="ot">&lt;-</span> brsa_mois <span class="sc">%&gt;%</span> </span>
+<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a>      <span class="fu">inner_join</span>(MMO_mois, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"id_midas"</span>))</span>
+<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rm</span>(MMO_mois)</span>
+<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gc</span>()</span>
+<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a>    eff_en_emploi <span class="ot">&lt;-</span> brsa_contrat <span class="sc">%&gt;%</span> </span>
+<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n_distinct</span>(id_midas)) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a>      <span class="fu">pull</span>(count)</span>
+<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a>    eff_en_emploi_d <span class="ot">&lt;-</span> brsa_contrat <span class="sc">%&gt;%</span></span>
+<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(emploi_d <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n_distinct</span>(id_midas)) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a>      <span class="fu">pull</span>(count)</span>
+<span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a>    eff_tot <span class="ot">&lt;-</span> brsa_mois <span class="sc">%&gt;%</span> </span>
+<span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarise</span>(<span class="at">eff_tot =</span> <span class="fu">n_distinct</span>(id_midas)) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a>      <span class="fu">pull</span>(eff_tot)</span>
+<span id="cb11-72"><a href="#cb11-72" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-73"><a href="#cb11-73" aria-hidden="true" tabindex="-1"></a>    resultats[[<span class="fu">length</span>(resultats) <span class="sc">+</span> <span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">cohorte =</span> <span class="fu">format</span>(debut_cohorte,<span class="st">"%Y_%m"</span>),</span>
+<span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a>                                                 <span class="at">mois_obs =</span> <span class="fu">format</span>(dates_obs[i],<span class="st">"%Y_%m"</span>),</span>
+<span id="cb11-75"><a href="#cb11-75" aria-hidden="true" tabindex="-1"></a>                                                 <span class="at">taux_emploi =</span> <span class="fu">round</span>(eff_en_emploi <span class="sc">/</span> eff_tot <span class="sc">*</span> <span class="dv">100</span>),</span>
+<span id="cb11-76"><a href="#cb11-76" aria-hidden="true" tabindex="-1"></a>                                                 <span class="at">taux_emploi_d =</span> <span class="fu">round</span>(eff_en_emploi_d <span class="sc">/</span> eff_tot <span class="sc">*</span> <span class="dv">100</span>))</span>
+<span id="cb11-77"><a href="#cb11-77" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb11-78"><a href="#cb11-78" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-79"><a href="#cb11-79" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rm</span>(brsa_contrat)</span>
+<span id="cb11-80"><a href="#cb11-80" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rm</span>(brsa_mois)</span>
+<span id="cb11-81"><a href="#cb11-81" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gc</span>()</span>
+<span id="cb11-82"><a href="#cb11-82" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-83"><a href="#cb11-83" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/DocumentationMiDAS\.github\.io\/Documentation_MiDAS\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
