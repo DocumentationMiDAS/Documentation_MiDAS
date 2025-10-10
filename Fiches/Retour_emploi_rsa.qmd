@@ -98,7 +98,7 @@ Les opérations qui nécessitent des shuffles sont beaucoup plus **lentes** : l'
 
 </div>
 
-Spark dispose d'alhorithme pour optimiser les jointures, qui ne sont pas détaillés ici :
+Spark dispose d'algorithme pour optimiser les jointures, qui ne sont pas détaillés ici :
 
 -   broadcast join ;
 
