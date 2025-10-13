@@ -76,7 +76,7 @@ date_ouvertures_droit <- PJC %>%
 
 fait_generateur <- DAL %>%
   right_join(date_ouvertures_droit, by = c("id_midas", "KROD1")) %>%
-  filter(KNCDDA == 1 | KCNDDA == 3) %>%
+  filter(KCNDDA == 1 | KCNDDA == 3) %>%
   distinct(id_midas, KROD1, KCDA, date_ouv_droit, KQISLP) %>%
   rename(KCDA1 = KCDA) %>%
   left_join(CDT, by = c("id_midas", "KCDA1")) %>%
