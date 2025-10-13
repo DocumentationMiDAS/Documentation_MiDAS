@@ -112,7 +112,7 @@ calcul_differe_CP <- ODD %>%
 
 fait_generateur <- DAL %>%
   right_join(calcul_differe_CP, by = c("id_midas", "KROD1")) %>%
-  filter(KNCDDA == 1 | KCNDDA == 3) %>%
+  filter(KCNDDA == 1 | KCNDDA == 3) %>%
   distinct(id_midas, KROD1, KCDA, differe_CP) %>%
   rename(KCDA1 = KCDA) %>%
   left_join(CDT, by = c("id_midas", "KCDA1")) %>%
