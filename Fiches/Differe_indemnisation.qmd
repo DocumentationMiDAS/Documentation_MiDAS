@@ -42,14 +42,6 @@ La date d'ouverture de droit est majoritairement différente de la date du premi
 
 Dans la grande majorité des cas, le versement des allocations ne débute pas à compter de l'ouverture de droit du fait des différés d'indemnisation. Trois types de différés s'appliquent : le différé spécifique lié aux indemnités supralégales de rupture de contrat de travail (ISLR), le différé lié aux indemnités compensatrices de congés payés (ICCP) non pris avant la fin d'un contrat et le délai d'attente.
 
-```{python}
-#| eval: false
-#| echo: true
-#| python.reticulate: false
-un_code
-```
-
-
 ## Le différé spécifique
 
 Le différé spécifique est le différé lié aux indemnités supra légales de rupture de contrat (ISLR). Il commence à compter de la fin de chaque contrat de travail à l'occasion de laquelle ont été versées des indemnités de rupture. La durée de ce différé correspond au montant des indemnités supra légales liées à la rupture du contrat de travail divisé par un seuil qui dépend du plafond annuel du régime d'assurance vieillesse de la sécurité sociale (95,8 en 2020, 2021 et 2022 ; 102,4 en 2023 ; 107,9 en 2024 et 109,6 en 2025). Cette durée est plafonnée :
