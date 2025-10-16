@@ -11,6 +11,33 @@ Cet article présente les différents concepts liés aux différés d'indemnisat
 Lorsque la demande d'allocation d'un demandeur d'emploi est acceptée, elle donne lieu à l'ouverture de droit à l'Assurance-chômage. La date d'ouverture de droit n'est pas disponible directement dans les données du FNA et doit être calculée à l'aide de la table PJC. La date d'ouverture de droit correspond à la date de début de la première période à justification constante (PJC) de ce droit. Un droit est repéré par le couple identifiant `id_midas`, `KROD3` (pour la table PJC) ou `KROD1` (pour les tables ODD et DAL, ce sont les mêmes variables dans les trois tables).
 
 
+
+::: {.panel-tabset}
+
+### R
+```{r}
+#| eval: false
+#| echo: true
+
+ouverture_droit <- PJC %>%
+  select(id_midas, KROD3, KDDPJ) %>%
+  group_by(id_midas, KROD3) %>%
+  summarise(date_ouv_droit = min(KDDPJ)) %>%
+  ungroup()
+```
+
+### Python
+```{python}
+#| eval: false
+#| echo: true
+
+ouverture_droit = PJC.groupBy("id_midas", "KROD3") \
+    .agg(F.min("KDDPJ").alias("date_ouv_droit"))
+```
+
+:::
+
+
 ```{python}
 #| eval: false
 #| echo: true
