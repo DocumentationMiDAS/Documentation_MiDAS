@@ -54,13 +54,16 @@ La durée de différé spécifique associée à un droit peut être recalculée 
 
 Pour recalculer la durée du différé spécifique, il est nécessaire de connaître le motif de fin du contrat fait générateur de l'ouverture de droit disponible dans la table CDT du FNA (`KCMCA`). Les modalités de cette variable sont regroupées pour correspondre aux différents plafonds de différé spécifique.
 
+::: panel-tabset
+### R
+
 ```{r}
 #| eval: false
 #| echo: true
 
 date_debut <- as.Date("2022-01-01")
 date_fin <- as.Date("2022-12-31")
-coeff_annee <- 95.8
+coeff_2022 <- 95.8
 
 
 CDT <- CDT %>%
@@ -99,11 +102,76 @@ fait_generateur <- DAL %>%
   mutate(KDFPE = as.Date(KDFPE))
 
 calcul_differe_specifique <- fait_generateur %>%
-  mutate(duree_differe_specifique = case_when(passe_pro == "Licenciement_eco" ~ min(KQISLP/coeff_annee, 75)
-                                              passe_pro == "Licenciement_autres" ~ min(KQISLP/coeff_annee, 150),
-                                              TRUE ~ min(KQISLP/coeff_annee, 150)))
+  mutate(duree_differe_specifique = case_when(passe_pro == "Licenciement_eco" ~ min(KQISLP/coeff_2022, 75)
+                                              passe_pro == "Licenciement_autres" ~ min(KQISLP/coeff_2022, 150),
+                                              TRUE ~ min(KQISLP/coeff_2022, 150)))
 
 ```
+
+### Python
+
+```{python}
+#| eval: false
+#| echo: true
+#| python.reticulate: false
+
+date_debut = date(2022, 1, 1)
+date_fin = date(2022, 12, 31)
+coeff_2022 = 95.8
+
+CDT = ( 
+    CDT.withColumn("KCMCA_num", F.when((F.col("KCMMA") == "XX") | (F.col("KCMCA") == ""), F.lit(0))
+        .otherwise(F.col("KCMCA").cast("double")))
+)
+
+CDT = ( 
+    CDT.withColumn("passe_pro", F.when((F.col("KCMMA") > 10) & (F.col("KCMCA") < 15), "Licenciement_eco")
+        .when(((F.col("KCMCA_num") >= 15) & (F.col("KCMCA_num") < 23)) |
+          ((F.col("KCMCA_num") > 27) & (F.col("KCMCA_num") < 30)) |
+          F.col("KCMCA_num").isin(25, 38, 50, 57, 91, 95, 80, 85), "Licenciement_autres")
+        .when(F.col("KCMCA_num") == 40, "Fin_CDD")
+        .when(F.col("KCMCA_num") == 41, "Fin_mission")
+        .when(((F.col("KCMCA_num") > 59) & (F.col("KCMCA_num") < 80)) |
+          ((F.col("KCMCA_num") > 99) & (F.col("KCMCA_num") < 176)) |
+          F.col("KCMCA_num").isin(87, 45, 24), "Depart_volontaire")
+        .when(F.col("KCMCA_num").isin(88, 92), "Rupture_conventionnelle")
+        .when(F.col("KCMCA_num") == 1, "Manquant")
+        .otherwise("Autres"))
+)
+
+date_ouvertures_droit = (
+    PJC.withColumn("KDDPJ", F.to_date("KDDPJ"))
+    .groupBy("id_midas", "KROD3")
+    .agg(F.min("KDDPJ").alias("date_ouv_droit"))
+    .filter((F.col("date_ouv_droit") >= F.lit(date_debut)) & (F.col("date_ouv_droit") <= F.lit(date_fin)))
+    .withColumnRenamed("KROD3", "KROD1")
+    .join("ODD", on=["id_midas", "KROD1"], how = "left")
+    .select("id_midas", "KROD1", "date_ouv_droit", "KQISLP")
+    .dropDuplicates()
+)
+
+
+fait_generateur = ( 
+    DAL.join(date_ouvertures_droit, on=["id_midas", "KROD1"], how="right")
+    .filter((F.col("KCNDDA") == 1) | (F.col("KCNDDA") == 3))
+    .select("id_midas", "KROD1", "KCDA", "date_ouv_droit", "KQISLP")
+    .dropDuplicates()
+    .withColumnRenamed("KCDA", "KCDA1")
+    .join(CDT, on=["id_midas", "KCDA1"], how="left")
+    .select("id_midas", "KROD1", "KDFPE", "date_ouv_droit", "KQISLP", "passe_pro")
+    .withColumn("KDFPE", F.to_date("KDFPE"))
+    .dropDuplicates()
+)
+
+
+calcul_differe_specifique = (
+    fait_generateur.withColumn("duree_differe_specifique", 
+    F.when(F.col("passe_pro") == "Licenciement_eco", F.least(F.col("KQILSP") / coeff_2022, F.lit(75)))
+    .when(F.col("passe_pro") == "Licenciement_autres", F.least(F.col("KQILSP") / coeff_2022, F.lit(150)))
+    .otherwise(F.least(F.col("KQILSP") / coeff_2022, F.lit(150))))
+)
+```
+:::
 
 ## Le différé congés payés
 
@@ -112,6 +180,9 @@ Le différé lié aux ICCP prend en compte l'ensemble des ICCP liées aux fins d
 La durée de ce différé correspond aux ICCP divisées par le salaire journalier de référence (SJR) de l'allocataire.
 
 Elle peut être calculée à partir de la variable des ICCP retenues pour le calcul de ce différé (`KQICCP`) et du SJR à l'ouverture de droit (`KQCSJP`) de la table ODD du FNA.
+
+::: panel-tabset
+### R
 
 ```{r}
 #| eval: false
@@ -136,6 +207,36 @@ fait_generateur <- DAL %>%
 
 
 ```
+
+### Python
+
+```{python}
+#| eval: false
+#| echo: true
+#| python.reticulate: false
+
+calcul_differe_CP = (
+    ODD.select("id_midas", "KROD1", "KQICCP", "KQCSJP")
+    .withColumn("differe_CP", F.least(F.col("KQICCP") / F.col("KQCSJP"), F.lit(30)))
+    .select("id_midas", "KROD1", "differe_CP")
+    .dropDuplicates()
+)
+
+fait_generateur = (
+    DAL.join(calcul_differe_CP, on=["id_midas", "KROD1"], how="right")
+    .filter((F.col("KCNDDA") == 1) | (F.col("KCNDDA") == 3))
+    .select("id_midas", "KROD1", "KCDA", "differe_CP")
+    .dropDuplicates()
+    .withColumnRenamed("KCDA", "KCDA1")
+    .join(CDT, on=["id_midas", "KCDA1"], how="left")
+    .select("id_midas", "KROD1", "KDFPE", "differe_CP")
+    .dropDuplicates()
+    .withColumn("KDFPE", F.to_date("KDFPE"))
+)
+
+
+```
+:::
 
 ## Le délai d'attente
 
