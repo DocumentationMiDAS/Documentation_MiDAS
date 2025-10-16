@@ -30,6 +30,7 @@ ouverture_droit <- PJC %>%
 ```{python}
 #| eval: false
 #| echo: true
+#| python.reticulate: false
 
 ouverture_droit = PJC.groupBy("id_midas", "KROD3") \
     .agg(F.min("KDDPJ").alias("date_ouv_droit"))
