@@ -39,27 +39,7 @@ ouverture_droit = PJC.groupBy("id_midas", "KROD3") \
 :::
 
 
-```{python}
-#| eval: false
-#| echo: true
-#| python.reticulate: false
 
-ouverture_droit = PJC.groupBy("id_midas", "KROD3") \
-    .agg(F.min("KDDPJ").alias("date_ouv_droit"))
-```
-
-
-
-```{r}
-#| eval: false
-#| echo: true
-
-ouverture_droit <- PJC %>%
-  select(id_midas, KROD3, KDDPJ) %>%
-  group_by(id_midas, KROD3) %>%
-  summarise(date_ouv_droit = min(KDDPJ)) %>%
-  ungroup()
-```
 
 La date d'ouverture de droit est majoritairement différente de la date du premier jour indemnisé renseignée dans `KDPOD` de la table ODD, du fait de la période de différé d'indemnisation de début de droit.
 
