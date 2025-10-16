@@ -109,6 +109,9 @@ Le régime de France Travail concerne les personnes prises en charge par l’op�
 
 On peut reconstituer les régimes d'indemnisation en appariant les tables PJC, ODD et PRM pour créer une variable ALLOC qui distingue les codes allocations selon les regroupements réalisés précédemment.
 
+::: panel-tabset
+### R
+
 ```{r}
 # Chargement des tables
 
@@ -270,3 +273,178 @@ alloc_fm <- pjc_fm %>%
 
 tbl_cache(sc, name = "alloc_fm_cache")
 ```
+
+### Python
+
+```{python}
+#| eval: false
+#| echo: true
+#| python.reticulate: false
+
+# Chargement des tables
+
+PJC_s = spark.read.parquet("hdfs:///dataset/MiDAS_v6/FNA/pjc.parquet")
+PRM_s = spark.read.parquet("hdfs:///dataset/MiDAS_v6/FNA/prm.parquet")
+ODD_s = spark.read.parquet("hdfs:///dataset/MiDAS_v6/FNA/odd.parquet")
+
+# Période étudiée
+date_fin = "2024-12-31"
+
+codes_pjc = (
+    PJC_s
+    .withColumnRenamed("KROD3", "KROD1")  # Renommage pour appariement avec ODD
+    .filter((F.col("KDDPJ") <= date_fin) & (F.col("KDFPJ") >= date_fin))  # Filtrage des périodes actives à fin décembre
+    .withColumn("alloc", F.when(F.col("KCALF").isin(
+        "01","21","22","27","40","43","47","54","64","67","82","AC","BB","BK","CJ","DM","EF","EW","FL","GV","HF"), "01")  # ARE
+        .when(F.col("KCALF") == "CN", "02")  # ARE-I
+        .when(F.col("KCALF").isin("BP","CQ","HD"), "03")  # ARED
+        .when(F.col("KCALF").isin("33","34","35","48","49","55","65","83","AD","BC","BN","CK","DQ","EL","EX","FO","GZ","HG"), "04")  # AREF-I
+        .when(F.col("KCALF") == "CO", "05")  # AREF-I
+        .when(F.col("KCALF").isin("BQ","CR","HE"), "06")  # AREF-D
+        .when(F.col("KCALF") == "FM", "07")  # ARER
+        .when(F.col("KCALF").isin("CT","DT","EN"), "08")  # ARER-I
+        .when(F.col("KCALF").isin("CU","DU","EO"), "09")  # ARER-FI
+        .when(F.col("KCALF") == "FP", "10")  # AREFR
+        .when(F.col("KCALF").isin("EA","GI"), "11")  # ATI
+        .when(F.col("KCALF").isin("EB","GJ"), "12")  # ATIF
+        .when(F.col("KCALF").isin("EC","GS"), "13")  # ADM
+        .when(F.col("KCALF").isin("EP","GT"), "14")  # ADM-F
+        .when(F.col("KCALF").isin("AM","AO","AQ","BU","BV","BW","BX","BY","FR","FS","FT","FU","FV","FW","FX"), "15")  # ASP
+        .when(F.col("KCALF").isin("AN","AP","AR","BZ","CA","CB","CC","GC","GD","GE","GF","GG","GH"), "16")  # ASP-F
+        .when(F.col("KCALF").isin("AK","GK"), "17")  # ASP-ARE
+        .when(F.col("KCALF").isin("AL","GL"), "18")  # ASP-AREF
+        .when(F.col("KCALF") == "61", "20")  # ASR
+        .when(F.col("KCALF") == "84", "21")  # ASRF
+        .when(F.col("KCALF") == "62", "22")  # ASR-ARE
+        .when(F.col("KCALF") == "85", "23")  # ASR-AREF
+        .when(F.col("KCALF").isin("70","88","91"), "24")  # ATP
+        .when(F.col("KCALF").isin("66","86","AG"), "25")  # ADR
+        .when(F.col("KCALF") == "CP", "27")  # ARCE-I
+        .when(F.col("KCALF") == "57", "29")  # AFPS
+        .when(F.col("KCALF") == "58", "30")  # AFPSF
+        .when(F.col("KCALF") == "59", "31")  # AFT
+        .when(F.col("KCALF") == "60", "32")  # AFTF
+        .when(F.col("KCALF").isin("23","28","31","32"), "33")  # AFD-RAC
+        .when(F.col("KCALF").isin("25","30","44","56","BD"), "34")  # ASS
+        .when(F.col("KCALF") == "51", "35")  # ASS-F
+        .when(F.col("KCALF") == "24", "36")  # AI
+        .when(F.col("KCALF").isin("73","74","90"), "37")  # ATA
+        .when(F.col("KCALF").isin("52","53","93","94","97","98"), "38")  # AER
+        .when(F.col("KCALF").isin("AT","AV","BE","BF","BS","BT"), "39")  # ATS
+        .when(F.col("KCALF").isin("04","63"), "40")  # AF
+        .when(F.col("KCALF").isin("71","75","DV"), "41")  # APS
+        .when(F.col("KCALF").isin("72","76","DX"), "42")  # APS-F
+        .when(F.col("KCALF").isin("77","DW"), "43")  # AFD
+        .when(F.col("KCALF").isin("78","DY"), "44")  # AFD-F
+        .when(F.col("KCALF") == "96", "45")  # AEPE
+        .when(F.col("KCALF").isin("99","AY","BG","BJ","BR","CI","CX","DZ","EE"), "46")  # RFF
+        .when(F.col("KCALF") == "39", "47")  # RSP
+        .when(F.col("KCALF").isin("92","95"), "48")  # AFDEF
+        .when(F.col("KCALF") == "29", "49")  # ASC
+        .when(F.col("KCALF").isin("41","50"), "50")  # AFF
+        .when(F.col("KCALF") == "45", "51")  # ACCRE-ASS
+        .when(F.col("KCALF").isin("AE","BH","BM","CL","DO","EI","EY","FN","GY"), "52")  # ARE-CG
+        .when(F.col("KCALF").isin("AF","BI","BO","CM","DR","EM","EZ","FQ","HA"), "53")  # AREF-CG
+        .when(F.col("KCALF") == "81", "54")  # RFPE
+        .when(F.col("KCALF").isin("EQ","ER","FH","GU","HH"), "55")  # RFF
+        .when(F.col("KCALF").isin("0C","0E","15"), "56")  # ASFNE
+        .when(F.col("KCALF").isin("11","17","18"), "57")  # PRP
+        .when(F.col("KCALF") == "26", "58")  # ACO
+        .when(F.col("KCALF") == "42", "59")  # ARPE
+        .when(F.col("KCALF").isin("CY","CZ","DA","DB","DC","DD","DE","DF","DG","DH","DI","DJ","DK","DL"), "60")  # AAP
+        .when(F.col("KCALF") == "AI", "61")  # ADR-CG
+        .otherwise("NA")  # Valeur par défaut
+    )
+    .withColumn("regime_alloc", F.when(F.col("alloc").isin(
+        "01","02","03","04","05","06","07","08","09","10","11","12","13","14","15",
+        "16","17","18","20","21","22","23","24","25","27","29","30","31","32","33","RAC-PRM"), "1")  # Régime de l'assurance-chômage
+        .when(F.col("alloc").isin(
+        "34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51"), "2")  # Régime de l'État
+        .when(F.col("alloc").isin(
+        "52","53","54","55","56","57","58","59","60","61"), "3")  # Régime de France Travail
+        .otherwise("NA")
+    )
+)
+
+prm_fm = (
+    PRM_s
+    .select("id_midas", "KROD7", "KDDTA", "KDFTA", "KCDPR")
+    .withColumn("prime", F.when(F.col("KCDPR").isin("AAAH", "AAAH16"), "CW")  # RAC-PRM
+        .when(F.col("KCDPR") == "ACEJ", "FG")  # RAC-PRM
+        .when(F.col("KCDPR") == "ADR11", "AG")  # IDR-CSP
+        .when(F.col("KCDPR") == "AES-S22", "GP")  # RAC-PRM (GO correspond à la même aide)
+        .when(F.col("KCDPR") == "AFFORM", "FA")  # RAC-PRM
+        .when(F.col("KCDPR") == "AIJ20", "ET")  # RAC-PRM
+        .when(F.col("KCDPR") == "AIJA20", "EV")  # RAC-PRM
+        .when(F.col("KCDPR") == "AJD20", "EU")  # RAC-PRM
+        .when(F.col("KCDPR") == "APJE", "FK")  # RAC-PRM
+        .when(F.col("KCDPR") == "ARCE06", "68")  # ARCE
+        .when(F.col("KCDPR") == "ARCE12", "AZ")  # ARCE
+        .when(F.col("KCDPR") == "ARCE12CG", "BA")  # ARCE-CG
+        .when(F.col("KCDPR") == "ARCE17", "DR")  # ARCE
+        .when(F.col("KCDPR") == "ARCE19", "EH")  # ARCE
+        .when(F.col("KCDPR") == "ARCE23", "GX")  # ARCE
+        .when(F.col("KCDPR") == "ARCE23CG", "HC")  # ARCECG
+        .when(F.col("KCDPR") == "ARCEA816", "CP")  # ARCECG
+        .when(F.col("KCDPR") == "ARCECG17", "DS")  # ARCECG
+        .when(F.col("KCDPR") == "ARCECG19", "EK")  # ARCECG
+        .when(F.col("KCDPR") == "ARE", "AC")  # ARE
+        .when(F.col("KCDPR") == "ARE-CG", "AE")  # ARE-CG
+        .when(F.col("KCDPR") == "ARE03", "54")  # ARE
+        .when(F.col("KCDPR") == "AREG", "GQ")  # RAC-PRM
+        .when(F.col("KCDPR") == "ASP15", "BU")  # ASP
+        .when(F.col("KCDPR") == "ASP21", "FR")  # ASP
+        .when(F.col("KCDPR") == "ASP21DC", "FW")  # ASP
+        .when(F.col("KCDPR") == "ASS04", "56")  # ASS
+        .when(F.col("KCDPR") == "CSPPR15", "CE")  # ASP
+        .when(F.col("KCDPR") == "CSPPR15R", "CG")  # ASP
+        .when(F.col("KCDPR") == "CSPPR21", "FZ")  # ASP
+        .when(F.col("KCDPR") == "CSPPR21E", "GA")  # ASP
+        .when(F.col("KCDPR").isin("DCARE06","DCARE09","DCARE11","DCARE14","DCARE17","DCARE19","DCARE23"), "GW")  # DC
+        .when(F.col("KCDPR") == "DCARECG", "HB")  # DC-CG
+        .when(F.col("KCDPR") == "DCA816", "CS")  # DC
+        .when(F.col("KCDPR") == "DELD", "FJ")  # RAC-PRM
+        .when(F.col("KCDPR") == "FSSAACRE", "FC")  # RAC-PRM
+        .when(F.col("KCDPR") == "FSSAAFAM", "FE")  # RAC-PRM
+        .when(F.col("KCDPR") == "FSSAAMOB", "FD")  # RAC-PRM
+        .when(F.col("KCDPR") == "FSSAMASP", "GM")  # RAC-PRM
+        .when(F.col("KCDPR") == "FSSAMRAN", "GN")  # RAC-PRM
+        .when(F.col("KCDPR") == "FSSAPREC", "FF")  # RAC-PRM
+        .when(F.col("KCDPR") == "FSSARTRI", "GR")  # RAC-PRM
+        .when(F.col("KCDPR") == "IDR", "AS")  # IDR-CSP
+        .when(F.col("KCDPR") == "IDRCSP15", "CD")  # IDR-CSP
+        .when(F.col("KCDPR") == "IDRCSP21", "FY")  # IDR
+        .when(F.col("KCDPR") == "INFL21", "FI")  # à définir
+        .when(F.col("KCDPR") == "JO2024", "")  # à définir
+        .when(F.col("KCDPR") == "PEP20", "ES")  # RAC-PRM
+        .when(F.col("KCDPR") == "PTS15", "CH")  # RAC-PRM
+        .otherwise("NA")
+    )
+    .withColumn("prime_alloc", F.when(F.col("prime").isin("54", "AC"), "01")  # ARE
+        .when(F.col("prime").isin("BU","CE","CG","FR","FW","FZ","GA"), "15")  # ASP
+        .when(F.col("prime").isin("AG","AS","CD","FY"), "19")  # IDR-CSP
+        .when(F.col("prime").isin("68","87","AH","AZ","DR","ED","EH","GX"), "26")  # ARCE
+        .when(F.col("prime").isin("AW","BL","CS","CV","DN","EG","GW"), "28")  # DC
+        .when(F.col("prime").isin("CH","CW","ES","ET","EV","EU","FA","FC","FD","FE","FF","FG","FJ","FK","GM","GN","GP","GQ","GR"), "RAC-PRM")  # Autres aides
+        .when(F.col("prime") == "56", "34")  # ASS
+        .when(F.col("prime") == "AE", "52")  # ARE-CG
+        .when(F.col("prime").isin("AJ","BA","CP","DS","EK","HC"), "62")  # ARCE-CG
+        .when(F.col("prime").isin("DP","EJ","HB"), "63")  # DC-CG
+        .otherwise("NA")
+    )
+    .filter((F.col("KDDTA") <= date_fin) & (F.col("KDFTA") >= date_fin))  # Filtrage des aides versées sur la période étudiée
+)
+
+alloc_fm = (
+    pjc_fm
+    .join(ODD_s, on=["id_midas", "KROD1"], how="left")
+    .join(prm_fm, on="id_midas", how="left") 
+)
+
+alloc_fm.registerTempTable("alloc_fm_cache")
+
+spark.catalog.cacheTable("alloc_fm_cache")
+
+
+```
+:::
