@@ -479,17 +479,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    .dropDuplicates()</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>fait_generateur <span class="op">=</span> (</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    DAL.join(calcul_differe_CP, on<span class="op">=</span>[<span class="st">"id_midas"</span>, <span class="st">"KROD1"</span>], how<span class="op">=</span><span class="st">"right"</span>)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>((F.col(<span class="st">"KCNDDA"</span>) <span class="op">==</span> <span class="dv">1</span>) <span class="op">|</span> (F.col(<span class="st">"KCNDDA"</span>) <span class="op">==</span> <span class="dv">3</span>))</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    .select(<span class="st">"id_midas"</span>, <span class="st">"KROD1"</span>, <span class="st">"KCDA"</span>, <span class="st">"differe_CP"</span>)</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    .dropDuplicates()</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    .withColumnRenamed(<span class="st">"KCDA"</span>, <span class="st">"KCDA1"</span>)</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    .join(CDT, on<span class="op">=</span>[<span class="st">"id_midas"</span>, <span class="st">"KCDA1"</span>], how<span class="op">=</span><span class="st">"left"</span>)</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    .select(<span class="st">"id_midas"</span>, <span class="st">"KROD1"</span>, <span class="st">"KDFPE"</span>, <span class="st">"differe_CP"</span>)</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    .dropDuplicates()</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    .withColumn(<span class="st">"KDFPE"</span>, F.to_date(<span class="st">"KDFPE"</span>))</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Récupération du fait générateur associé</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>fait_generateur <span class="op">=</span> (</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    DAL.join(calcul_differe_CP, on<span class="op">=</span>[<span class="st">"id_midas"</span>, <span class="st">"KROD1"</span>], how<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>((F.col(<span class="st">"KCNDDA"</span>) <span class="op">==</span> <span class="dv">1</span>) <span class="op">|</span> (F.col(<span class="st">"KCNDDA"</span>) <span class="op">==</span> <span class="dv">3</span>))</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    .select(<span class="st">"id_midas"</span>, <span class="st">"KROD1"</span>, <span class="st">"KCDA"</span>, <span class="st">"differe_CP"</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    .dropDuplicates()</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    .withColumnRenamed(<span class="st">"KCDA"</span>, <span class="st">"KCDA1"</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    .join(CDT, on<span class="op">=</span>[<span class="st">"id_midas"</span>, <span class="st">"KCDA1"</span>], how<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    .select(<span class="st">"id_midas"</span>, <span class="st">"KROD1"</span>, <span class="st">"KDFPE"</span>, <span class="st">"differe_CP"</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    .dropDuplicates()</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    .withColumn(<span class="st">"KDFPE"</span>, F.to_date(<span class="st">"KDFPE"</span>))</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -535,13 +537,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Dans les données du FNA, les durées de différé écoulées à compter de l’ouverture de droit sont renseignées dans la table des périodes à justification constante (PJC) du FNA. Un différé correspond à une PJC non consommée, non payée (<code>KCPJC = 3</code>) dont le motif de non paiement est “carence, différé” (<code>KCMNI = 3</code>).</p>
 <p>La variable type de carence (<code>KCPJCC</code>) peut permettre d’isoler le différé spécifique (<code>KCPJCC = 03</code>) mais la qualité de cette variable n’a pas été expertisée.</p>
 <p>La durée de différé écoulée calculée ci-dessous est celle suivant l’ouverture de droit. Pour éviter d’inclure les différés de la reprise de droit, rattachés au même couple <code>id_midas</code>, <code>KROD3</code>, la durée observée est bornée à la première interruption de suivi dans les données de l’indemnisation. Voir à ce sujet la méthode de repérage des reprises de droit dans les données du FNA <a href="../Fiches/Parcours_indemnisation.html">en cliquant ici</a>.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>droits <span class="ot">&lt;-</span> PJC <span class="sc">%&gt;%</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas, KROD3) </span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Repérage des éventuels débuts de différés de reprises de droit pour les exclure</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>date_fin_diff <span class="ot">&lt;-</span> PJC_s <span class="sc">%&gt;%</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>date_fin_diff <span class="ot">&lt;-</span> PJC <span class="sc">%&gt;%</span></span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id_midas, KROD3, KDDPJ, KDFPJ, KCPJC, KCMNI, KCPJCC) <span class="sc">%&gt;%</span></span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(KCPJC <span class="sc">==</span> <span class="dv">3</span> <span class="sc">&amp;</span> KCMNI <span class="sc">==</span> <span class="st">"00"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">right_join</span>(droits, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>)) <span class="sc">%&gt;%</span></span>
@@ -558,7 +564,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul de la durée de différé spécifique écoulée avant première sortie d'indemnisation</span></span>
 <span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>duree_differe_islr <span class="ot">&lt;-</span> PJC_s <span class="sc">%&gt;%</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>duree_differe_islr <span class="ot">&lt;-</span> PJC <span class="sc">%&gt;%</span></span>
 <span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id_midas, KROD3, KDDPJ, KDFPJ, KCPJC, KCMNI, KCPJCC) <span class="sc">%&gt;%</span></span>
 <span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(KCPJC <span class="sc">==</span> <span class="dv">3</span> <span class="sc">&amp;</span> KCMNI <span class="sc">==</span> <span class="st">"00"</span> <span class="sc">&amp;</span> KCPJCC <span class="sc">==</span><span class="st">"03"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">right_join</span>(droits, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>)) <span class="sc">%&gt;%</span></span>
@@ -574,63 +580,67 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas, KROD3, differe_specifique) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<div class="cell" data-python.reticulate="false">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>droits <span class="op">=</span> PJC.select(<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>).distinct()</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Repérage des éventuels débuts de différés de reprises de droit pour les exclure</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>date_fin_diff <span class="op">=</span> (</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    PJC</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    .select(<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>, <span class="st">"KDDPJ"</span>, <span class="st">"KDFPJ"</span>, <span class="st">"KCPJC"</span>, <span class="st">"KCMNI"</span>, <span class="st">"KCPJCC"</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>((F.col(<span class="st">"KCPJC"</span>) <span class="op">==</span> <span class="dv">3</span>) <span class="op">&amp;</span> (F.col(<span class="st">"KCMNI"</span>) <span class="op">==</span> <span class="st">"00"</span>))</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    .join(droits, on<span class="op">=</span>[<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>], how<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>window_spec <span class="op">=</span> Window.partitionBy(<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>).orderBy(<span class="st">"KDDPJ"</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>date_fin_diff <span class="op">=</span> (</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    date_fin_diff</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    .withColumn(<span class="st">"prev_KDFPJ"</span>, F.lag(<span class="st">"KDFPJ"</span>).over(window_spec))</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    .withColumn(<span class="st">"ecart"</span>, F.datediff(<span class="st">"KDDPJ"</span>, F.col(<span class="st">"prev_KDFPJ"</span>)) <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(F.col(<span class="st">"ecart"</span>) <span class="op">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    .select(<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>, <span class="st">"KDDPJ"</span>)</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    .groupBy(<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>)</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    .agg(F.<span class="bu">min</span>(<span class="st">"KDDPJ"</span>).alias(<span class="st">"date_fin_diff"</span>))</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul de la durée de différé spécifique écoulée avant première sortie d'indemnisation</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>duree_differe_islr <span class="op">=</span> (</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    PJC</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>    .select(<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>, <span class="st">"KDDPJ"</span>, <span class="st">"KDFPJ"</span>, <span class="st">"KCPJC"</span>, <span class="st">"KCMNI"</span>, <span class="st">"KCPJCC"</span>)</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>((F.col(<span class="st">"KCPJC"</span>) <span class="op">==</span> <span class="dv">3</span>) <span class="op">&amp;</span> (F.col(<span class="st">"KCMNI"</span>) <span class="op">==</span> <span class="st">"00"</span>) <span class="op">&amp;</span> (F.col(<span class="st">"KCPJCC"</span>) <span class="op">==</span> <span class="st">"03"</span>))</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>    .join(droits, on<span class="op">=</span>[<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>], how<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>    .join(date_fin_diff, on<span class="op">=</span>[<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>], how<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>    .withColumn(<span class="st">"date_fin_diff"</span>, F.when(F.col(<span class="st">"date_fin_diff"</span>).isNull(), F.<span class="bu">max</span>(<span class="st">"KDFPJ"</span>).over(window_spec)).otherwise(F.col(<span class="st">"date_fin_diff"</span>)))</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(F.col(<span class="st">"KDDPJ"</span>) <span class="op">&lt;</span> F.col(<span class="st">"date_fin_diff"</span>))</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>    .withColumn(<span class="st">"duree_PJC"</span>, F.datediff(<span class="st">"KDFPJ"</span>, <span class="st">"KDDPJ"</span>) <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>    .groupBy(<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>)</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>    .agg(F.<span class="bu">sum</span>(<span class="st">"duree_PJC"</span>).alias(<span class="st">"differe_specifique"</span>))</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>    .fillna({<span class="st">"differe_specifique"</span>: <span class="dv">0</span>})</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="le-différé-congés-payés-1" class="level2">
 <h2 class="anchored" data-anchor-id="le-différé-congés-payés-1">Le différé congés payés</h2>
 <p>Le différé congés payés commence à la fin du dernier contrat de travail.</p>
 <p>Dans la table PJC du FNA, un différé congés payés correspond à une PJC non consommée, non payée (<code>KCPJC = 3</code>) dont le motif de non paiement est “carence, différé” (<code>KCMNI = 3</code>) avec un type de carence “congés payés” (<code>KCPJCC = 02</code>).</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>droits <span class="ot">&lt;-</span> PJC <span class="sc">%&gt;%</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas, KROD3) </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Repérage des éventuels débuts de différés de reprises de droit pour les exclure</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>date_fin_diff <span class="ot">&lt;-</span> PJC_s <span class="sc">%&gt;%</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id_midas, KROD3, KDDPJ, KDFPJ, KCPJC, KCMNI, KCPJCC) <span class="sc">%&gt;%</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(KCPJC <span class="sc">==</span> <span class="dv">3</span> <span class="sc">&amp;</span> KCMNI <span class="sc">==</span> <span class="st">"00"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">right_join</span>(droits, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id_midas, KROD3) <span class="sc">%&gt;%</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(id_midas, KROD3, KDDPJ) <span class="sc">%&gt;%</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ecart =</span> <span class="fu">DATEDIFF</span>(KDDPJ, <span class="fu">lag</span>(KDFPJ)) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ecart <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas, KROD3, KDDPJ) <span class="sc">%&gt;%</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id_midas, KROD3) <span class="sc">%&gt;%</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(KDDPJ <span class="sc">==</span> <span class="fu">min</span>(KDDPJ))  <span class="sc">%&gt;%</span></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">date_fin_diff =</span> KDDPJ)</span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul de la durée de différé spécifique écoulée avant première sortie d'indemnisation</span></span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>duree_differe_cp <span class="ot">&lt;-</span> PJC_s <span class="sc">%&gt;%</span></span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id_midas, KROD3, KDDPJ, KDFPJ, KCPJC, KCMNI, KCPJCC) <span class="sc">%&gt;%</span></span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(KCPJC <span class="sc">==</span> <span class="dv">3</span> <span class="sc">&amp;</span> KCMNI <span class="sc">==</span> <span class="st">"00"</span> <span class="sc">&amp;</span> KCPJCC <span class="sc">==</span><span class="st">"02"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">right_join</span>(droits, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(date_fin_diff, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id_midas, KROD3) <span class="sc">%&gt;%</span></span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date_fin_diff =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(date_fin_diff), <span class="fu">max</span>(KDFPJ), date_fin_diff))<span class="sc">%&gt;%</span></span>
-<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(KDDPJ <span class="sc">&lt;</span> date_fin_diff) <span class="sc">%&gt;%</span></span>
-<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">duree_PJC =</span> <span class="fu">DATEDIFF</span>(KDFPJ, KDDPJ) <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id_midas, KROD3) <span class="sc">%&gt;%</span></span>
-<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">differe_cp =</span> <span class="fu">sum</span>(duree_PJC)) <span class="sc">%&gt;%</span></span>
-<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">differe_cp=</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(differe_cp), <span class="dv">0</span>, differe_cp)) <span class="sc">%&gt;%</span></span>
-<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas, KROD3, differe_cp) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="le-délai-dattente-1" class="level2">
-<h2 class="anchored" data-anchor-id="le-délai-dattente-1">Le délai d’attente</h2>
-<p>Le délai d’attente s’applique après les différés spécifiques et de congés payés.</p>
-<p>Le demandeur d’emploi dispose d’un an après sa fin de contrat pour s’inscrire à France Travail. Dans le cas où ses différés spécifiques et de congés payés sont déjà expirés lorsqu’il s’inscrit, le délai d’attente commence au jour de son inscription.</p>
-<p>Ce délai d’attente correspond à une PJC non payée, non consommée (<code>KCPJC = 3</code>), non payée pour motif “carence, différé” (<code>KCMNI = 00</code>) de type “différé d’indemnisation” (<code>KCPJCC = 04</code>).</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>droits <span class="ot">&lt;-</span> PJC <span class="sc">%&gt;%</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas, KROD3) </span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Repérage des éventuels débuts de différés de reprises de droit pour les exclure</span></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>date_fin_diff <span class="ot">&lt;-</span> PJC_s <span class="sc">%&gt;%</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>date_fin_diff <span class="ot">&lt;-</span> PJC <span class="sc">%&gt;%</span></span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id_midas, KROD3, KDDPJ, KDFPJ, KCPJC, KCMNI, KCPJCC) <span class="sc">%&gt;%</span></span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(KCPJC <span class="sc">==</span> <span class="dv">3</span> <span class="sc">&amp;</span> KCMNI <span class="sc">==</span> <span class="st">"00"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">right_join</span>(droits, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>)) <span class="sc">%&gt;%</span></span>
@@ -647,9 +657,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul de la durée de différé spécifique écoulée avant première sortie d'indemnisation</span></span>
 <span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>duree_delai_attente <span class="ot">&lt;-</span> PJC_s <span class="sc">%&gt;%</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>duree_differe_cp <span class="ot">&lt;-</span> PJC <span class="sc">%&gt;%</span></span>
 <span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id_midas, KROD3, KDDPJ, KDFPJ, KCPJC, KCMNI, KCPJCC) <span class="sc">%&gt;%</span></span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(KCPJC <span class="sc">==</span> <span class="dv">3</span> <span class="sc">&amp;</span> KCMNI <span class="sc">==</span> <span class="st">"00"</span> <span class="sc">&amp;</span> KCPJCC <span class="sc">==</span><span class="st">"04"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(KCPJC <span class="sc">==</span> <span class="dv">3</span> <span class="sc">&amp;</span> KCMNI <span class="sc">==</span> <span class="st">"00"</span> <span class="sc">&amp;</span> KCPJCC <span class="sc">==</span><span class="st">"02"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">right_join</span>(droits, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(date_fin_diff, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id_midas, KROD3) <span class="sc">%&gt;%</span></span>
@@ -658,10 +668,151 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(KDDPJ <span class="sc">&lt;</span> date_fin_diff) <span class="sc">%&gt;%</span></span>
 <span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">duree_PJC =</span> <span class="fu">DATEDIFF</span>(KDFPJ, KDDPJ) <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id_midas, KROD3) <span class="sc">%&gt;%</span></span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">delai_attente =</span> <span class="fu">sum</span>(duree_PJC)) <span class="sc">%&gt;%</span></span>
-<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">delai_attente=</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(delai_attente), <span class="dv">0</span>, delai_attente)) <span class="sc">%&gt;%</span></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">differe_cp =</span> <span class="fu">sum</span>(duree_PJC)) <span class="sc">%&gt;%</span></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">differe_cp=</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(differe_cp), <span class="dv">0</span>, differe_cp)) <span class="sc">%&gt;%</span></span>
 <span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas, KROD3, delai_attente) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas, KROD3, differe_cp) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<div class="cell" data-python.reticulate="false">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>droits <span class="op">=</span> PJC.select(<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>).distinct()</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Repérage des éventuels débuts de différés de reprises de droit pour les exclure</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>date_fin_diff <span class="op">=</span> (</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    PJC</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    .select(<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>, <span class="st">"KDDPJ"</span>, <span class="st">"KDFPJ"</span>, <span class="st">"KCPJC"</span>, <span class="st">"KCMNI"</span>, <span class="st">"KCPJCC"</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>((F.col(<span class="st">"KCPJC"</span>) <span class="op">==</span> <span class="dv">3</span>) <span class="op">&amp;</span> (F.col(<span class="st">"KCMNI"</span>) <span class="op">==</span> <span class="st">"00"</span>))</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    .join(droits, on<span class="op">=</span>[<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>], how<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>window_spec <span class="op">=</span> Window.partitionBy(<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>).orderBy(<span class="st">"KDDPJ"</span>)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>date_fin_diff <span class="op">=</span> (</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    date_fin_diff</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    .withColumn(<span class="st">"prev_KDFPJ"</span>, F.lag(<span class="st">"KDFPJ"</span>).over(window_spec))</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    .withColumn(<span class="st">"ecart"</span>, F.datediff(<span class="st">"KDDPJ"</span>, F.col(<span class="st">"prev_KDFPJ"</span>)) <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(F.col(<span class="st">"ecart"</span>) <span class="op">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    .select(<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>, <span class="st">"KDDPJ"</span>)</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    .groupBy(<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>)</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    .agg(F.<span class="bu">min</span>(<span class="st">"KDDPJ"</span>).alias(<span class="st">"date_fin_diff"</span>))</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul de la durée de différé spécifique écoulée avant première sortie d'indemnisation</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>duree_differe_cp <span class="op">=</span> (</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>    PJC</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>    .select(<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>, <span class="st">"KDDPJ"</span>, <span class="st">"KDFPJ"</span>, <span class="st">"KCPJC"</span>, <span class="st">"KCMNI"</span>, <span class="st">"KCPJCC"</span>)</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>((F.col(<span class="st">"KCPJC"</span>) <span class="op">==</span> <span class="dv">3</span>) <span class="op">&amp;</span> (F.col(<span class="st">"KCMNI"</span>) <span class="op">==</span> <span class="st">"00"</span>) <span class="op">&amp;</span> (F.col(<span class="st">"KCPJCC"</span>) <span class="op">==</span> <span class="st">"02"</span>))</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>    .join(droits, on<span class="op">=</span>[<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>], how<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>    .join(date_fin_diff, on<span class="op">=</span>[<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>], how<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>    .withColumn(<span class="st">"date_fin_diff"</span>, F.when(F.col(<span class="st">"date_fin_diff"</span>).isNull(), F.<span class="bu">max</span>(<span class="st">"KDFPJ"</span>).over(window_spec)).otherwise(F.col(<span class="st">"date_fin_diff"</span>)))</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(F.col(<span class="st">"KDDPJ"</span>) <span class="op">&lt;</span> F.col(<span class="st">"date_fin_diff"</span>))</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>    .withColumn(<span class="st">"duree_PJC"</span>, F.datediff(<span class="st">"KDFPJ"</span>, <span class="st">"KDDPJ"</span>) <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>    .groupBy(<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>)</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>    .agg(F.<span class="bu">sum</span>(<span class="st">"duree_PJC"</span>).alias(<span class="st">"differe_cp"</span>))</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>    .fillna({<span class="st">"differe_cp"</span>: <span class="dv">0</span>})</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>    .select(<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>, <span class="st">"differe_cp"</span>)</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="le-délai-dattente-1" class="level2">
+<h2 class="anchored" data-anchor-id="le-délai-dattente-1">Le délai d’attente</h2>
+<p>Le délai d’attente s’applique après les différés spécifiques et de congés payés.</p>
+<p>Le demandeur d’emploi dispose d’un an après sa fin de contrat pour s’inscrire à France Travail. Dans le cas où ses différés spécifiques et de congés payés sont déjà expirés lorsqu’il s’inscrit, le délai d’attente commence au jour de son inscription.</p>
+<p>Ce délai d’attente correspond à une PJC non payée, non consommée (<code>KCPJC = 3</code>), non payée pour motif “carence, différé” (<code>KCMNI = 00</code>) de type “différé d’indemnisation” (<code>KCPJCC = 04</code>).</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>droits <span class="ot">&lt;-</span> PJC <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas, KROD3) </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Repérage des éventuels débuts de différés de reprises de droit pour les exclure</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>date_fin_diff <span class="ot">&lt;-</span> PJC <span class="sc">%&gt;%</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id_midas, KROD3, KDDPJ, KDFPJ, KCPJC, KCMNI, KCPJCC) <span class="sc">%&gt;%</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(KCPJC <span class="sc">==</span> <span class="dv">3</span> <span class="sc">&amp;</span> KCMNI <span class="sc">==</span> <span class="st">"00"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">right_join</span>(droits, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id_midas, KROD3) <span class="sc">%&gt;%</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(id_midas, KROD3, KDDPJ) <span class="sc">%&gt;%</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ecart =</span> <span class="fu">DATEDIFF</span>(KDDPJ, <span class="fu">lag</span>(KDFPJ)) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ecart <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas, KROD3, KDDPJ) <span class="sc">%&gt;%</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id_midas, KROD3) <span class="sc">%&gt;%</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(KDDPJ <span class="sc">==</span> <span class="fu">min</span>(KDDPJ))  <span class="sc">%&gt;%</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">date_fin_diff =</span> KDDPJ)</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul de la durée de différé spécifique écoulée avant première sortie d'indemnisation</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>duree_delai_attente <span class="ot">&lt;-</span> PJC <span class="sc">%&gt;%</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id_midas, KROD3, KDDPJ, KDFPJ, KCPJC, KCMNI, KCPJCC) <span class="sc">%&gt;%</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(KCPJC <span class="sc">==</span> <span class="dv">3</span> <span class="sc">&amp;</span> KCMNI <span class="sc">==</span> <span class="st">"00"</span> <span class="sc">&amp;</span> KCPJCC <span class="sc">==</span><span class="st">"04"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">right_join</span>(droits, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(date_fin_diff, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id_midas, KROD3) <span class="sc">%&gt;%</span></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date_fin_diff =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(date_fin_diff), <span class="fu">max</span>(KDFPJ), date_fin_diff))<span class="sc">%&gt;%</span></span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(KDDPJ <span class="sc">&lt;</span> date_fin_diff) <span class="sc">%&gt;%</span></span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">duree_PJC =</span> <span class="fu">DATEDIFF</span>(KDFPJ, KDDPJ) <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id_midas, KROD3) <span class="sc">%&gt;%</span></span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">delai_attente =</span> <span class="fu">sum</span>(duree_PJC)) <span class="sc">%&gt;%</span></span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">delai_attente=</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(delai_attente), <span class="dv">0</span>, delai_attente)) <span class="sc">%&gt;%</span></span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas, KROD3, delai_attente) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
+<div class="cell" data-python.reticulate="false">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>droits <span class="op">=</span> PJC.select(<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>).distinct()</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Repérage des éventuels débuts de différés de reprises de droit pour les exclure</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>date_fin_diff <span class="op">=</span> (</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    PJC</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    .select(<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>, <span class="st">"KDDPJ"</span>, <span class="st">"KDFPJ"</span>, <span class="st">"KCPJC"</span>, <span class="st">"KCMNI"</span>, <span class="st">"KCPJCC"</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>((F.col(<span class="st">"KCPJC"</span>) <span class="op">==</span> <span class="dv">3</span>) <span class="op">&amp;</span> (F.col(<span class="st">"KCMNI"</span>) <span class="op">==</span> <span class="st">"00"</span>))</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    .join(droits, on<span class="op">=</span>[<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>], how<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>window_spec <span class="op">=</span> Window.partitionBy(<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>).orderBy(<span class="st">"KDDPJ"</span>)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>date_fin_diff <span class="op">=</span> (</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    date_fin_diff</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    .withColumn(<span class="st">"prev_KDFPJ"</span>, F.lag(<span class="st">"KDFPJ"</span>).over(window_spec))</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    .withColumn(<span class="st">"ecart"</span>, F.datediff(<span class="st">"KDDPJ"</span>, F.col(<span class="st">"prev_KDFPJ"</span>)) <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(F.col(<span class="st">"ecart"</span>) <span class="op">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    .select(<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>, <span class="st">"KDDPJ"</span>)</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    .groupBy(<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>)</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    .agg(F.<span class="bu">min</span>(<span class="st">"KDDPJ"</span>).alias(<span class="st">"date_fin_diff"</span>))</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul de la durée de différé spécifique écoulée avant première sortie d'indemnisation</span></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>duree_delai_attente <span class="op">=</span> (</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    PJC</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    .select(<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>, <span class="st">"KDDPJ"</span>, <span class="st">"KDFPJ"</span>, <span class="st">"KCPJC"</span>, <span class="st">"KCMNI"</span>, <span class="st">"KCPJCC"</span>)</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>((F.col(<span class="st">"KCPJC"</span>) <span class="op">==</span> <span class="dv">3</span>) <span class="op">&amp;</span> (F.col(<span class="st">"KCMNI"</span>) <span class="op">==</span> <span class="st">"00"</span>) <span class="op">&amp;</span> (F.col(<span class="st">"KCPJCC"</span>) <span class="op">==</span> <span class="st">"04"</span>))</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>    .join(droits, on<span class="op">=</span>[<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>], how<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>    .join(date_fin_diff, on<span class="op">=</span>[<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>], how<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>    .withColumn(<span class="st">"date_fin_diff"</span>, F.when(F.col(<span class="st">"date_fin_diff"</span>).isNull(), F.<span class="bu">max</span>(<span class="st">"KDFPJ"</span>).over(window_spec)).otherwise(F.col(<span class="st">"date_fin_diff"</span>)))</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(F.col(<span class="st">"KDDPJ"</span>) <span class="op">&lt;</span> F.col(<span class="st">"date_fin_diff"</span>))</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>    .withColumn(<span class="st">"duree_PJC"</span>, F.datediff(<span class="st">"KDFPJ"</span>, <span class="st">"KDDPJ"</span>) <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>    .groupBy(<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>)</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>    .agg(F.<span class="bu">sum</span>(<span class="st">"duree_PJC"</span>).alias(<span class="st">"delai_attente"</span>))</span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>    .fillna({<span class="st">"delai_attente"</span>: <span class="dv">0</span>})</span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>    .select(<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>, <span class="st">"delai_attente"</span>)</span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
