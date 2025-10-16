@@ -222,6 +222,8 @@ calcul_differe_CP = (
     .dropDuplicates()
 )
 
+# Récupération du fait générateur associé
+
 fait_generateur = (
     DAL.join(calcul_differe_CP, on=["id_midas", "KROD1"], how="right")
     .filter((F.col("KCNDDA") == 1) | (F.col("KCNDDA") == 3))
@@ -268,6 +270,9 @@ La variable type de carence (`KCPJCC`) peut permettre d'isoler le différé spé
 
 La durée de différé écoulée calculée ci-dessous est celle suivant l'ouverture de droit. Pour éviter d'inclure les différés de la reprise de droit, rattachés au même couple `id_midas`, `KROD3`, la durée observée est bornée à la première interruption de suivi dans les données de l'indemnisation. Voir à ce sujet la méthode de repérage des reprises de droit dans les données du FNA [en cliquant ici](../Fiches/Parcours_indemnisation.qmd).
 
+::: panel-tabset
+### R
+
 ```{r}
 #| eval: false
 #| echo: true
@@ -278,7 +283,7 @@ droits <- PJC %>%
 
 # Repérage des éventuels débuts de différés de reprises de droit pour les exclure
 
-date_fin_diff <- PJC_s %>%
+date_fin_diff <- PJC %>%
   select(id_midas, KROD3, KDDPJ, KDFPJ, KCPJC, KCMNI, KCPJCC) %>%
   filter(KCPJC == 3 & KCMNI == "00") %>%
   right_join(droits, by = c("id_midas", "KROD3")) %>%
@@ -295,7 +300,7 @@ date_fin_diff <- PJC_s %>%
 
 # Calcul de la durée de différé spécifique écoulée avant première sortie d'indemnisation
 
-duree_differe_islr <- PJC_s %>%
+duree_differe_islr <- PJC %>%
   select(id_midas, KROD3, KDDPJ, KDFPJ, KCPJC, KCMNI, KCPJCC) %>%
   filter(KCPJC == 3 & KCMNI == "00" & KCPJCC =="03") %>%
   right_join(droits, by = c("id_midas", "KROD3")) %>%
@@ -314,11 +319,64 @@ duree_differe_islr <- PJC_s %>%
 
 ```
 
+### Python
+
+```{python}
+#| eval: false
+#| echo: true
+#| python.reticulate: false
+
+droits = PJC.select("id_midas", "KROD3").distinct()
+
+# Repérage des éventuels débuts de différés de reprises de droit pour les exclure
+
+date_fin_diff = (
+    PJC
+    .select("id_midas", "KROD3", "KDDPJ", "KDFPJ", "KCPJC", "KCMNI", "KCPJCC")
+    .filter((F.col("KCPJC") == 3) & (F.col("KCMNI") == "00"))
+    .join(droits, on=["id_midas", "KROD3"], how="right")
+)
+
+window_spec = Window.partitionBy("id_midas", "KROD3").orderBy("KDDPJ")
+
+date_fin_diff = (
+    date_fin_diff
+    .withColumn("prev_KDFPJ", F.lag("KDFPJ").over(window_spec))
+    .withColumn("ecart", F.datediff("KDDPJ", F.col("prev_KDFPJ")) - 1)
+    .filter(F.col("ecart") > 0)
+    .select("id_midas", "KROD3", "KDDPJ")
+    .groupBy("id_midas", "KROD3")
+    .agg(F.min("KDDPJ").alias("date_fin_diff"))
+)
+
+# Calcul de la durée de différé spécifique écoulée avant première sortie d'indemnisation
+
+duree_differe_islr = (
+    PJC
+    .select("id_midas", "KROD3", "KDDPJ", "KDFPJ", "KCPJC", "KCMNI", "KCPJCC")
+    .filter((F.col("KCPJC") == 3) & (F.col("KCMNI") == "00") & (F.col("KCPJCC") == "03"))
+    .join(droits, on=["id_midas", "KROD3"], how="right")
+    .join(date_fin_diff, on=["id_midas", "KROD3"], how="left")
+    .withColumn("date_fin_diff", F.when(F.col("date_fin_diff").isNull(), F.max("KDFPJ").over(window_spec)).otherwise(F.col("date_fin_diff")))
+    .filter(F.col("KDDPJ") < F.col("date_fin_diff"))
+    .withColumn("duree_PJC", F.datediff("KDFPJ", "KDDPJ") + 1)
+    .groupBy("id_midas", "KROD3")
+    .agg(F.sum("duree_PJC").alias("differe_specifique"))
+    .fillna({"differe_specifique": 0})
+)
+
+
+```
+:::
+
 ## Le différé congés payés
 
 Le différé congés payés commence à la fin du dernier contrat de travail.
 
 Dans la table PJC du FNA, un différé congés payés correspond à une PJC non consommée, non payée (`KCPJC = 3`) dont le motif de non paiement est "carence, différé" (`KCMNI = 3`) avec un type de carence "congés payés" (`KCPJCC = 02`).
+
+::: panel-tabset
+### R
 
 ```{r}
 #| eval: false
@@ -330,7 +388,7 @@ droits <- PJC %>%
 
 # Repérage des éventuels débuts de différés de reprises de droit pour les exclure
 
-date_fin_diff <- PJC_s %>%
+date_fin_diff <- PJC %>%
   select(id_midas, KROD3, KDDPJ, KDFPJ, KCPJC, KCMNI, KCPJCC) %>%
   filter(KCPJC == 3 & KCMNI == "00") %>%
   right_join(droits, by = c("id_midas", "KROD3")) %>%
@@ -347,7 +405,7 @@ date_fin_diff <- PJC_s %>%
 
 # Calcul de la durée de différé spécifique écoulée avant première sortie d'indemnisation
 
-duree_differe_cp <- PJC_s %>%
+duree_differe_cp <- PJC %>%
   select(id_midas, KROD3, KDDPJ, KDFPJ, KCPJC, KCMNI, KCPJCC) %>%
   filter(KCPJC == 3 & KCMNI == "00" & KCPJCC =="02") %>%
   right_join(droits, by = c("id_midas", "KROD3")) %>%
@@ -364,6 +422,57 @@ duree_differe_cp <- PJC_s %>%
   distinct(id_midas, KROD3, differe_cp) 
 ```
 
+### Python
+
+```{python}
+#| eval: false
+#| echo: true
+#| python.reticulate: false
+
+droits = PJC.select("id_midas", "KROD3").distinct()
+
+# Repérage des éventuels débuts de différés de reprises de droit pour les exclure
+
+date_fin_diff = (
+    PJC
+    .select("id_midas", "KROD3", "KDDPJ", "KDFPJ", "KCPJC", "KCMNI", "KCPJCC")
+    .filter((F.col("KCPJC") == 3) & (F.col("KCMNI") == "00"))
+    .join(droits, on=["id_midas", "KROD3"], how="right")
+)
+
+window_spec = Window.partitionBy("id_midas", "KROD3").orderBy("KDDPJ")
+
+date_fin_diff = (
+    date_fin_diff
+    .withColumn("prev_KDFPJ", F.lag("KDFPJ").over(window_spec))
+    .withColumn("ecart", F.datediff("KDDPJ", F.col("prev_KDFPJ")) - 1)
+    .filter(F.col("ecart") > 0)
+    .select("id_midas", "KROD3", "KDDPJ")
+    .groupBy("id_midas", "KROD3")
+    .agg(F.min("KDDPJ").alias("date_fin_diff"))
+)
+
+# Calcul de la durée de différé spécifique écoulée avant première sortie d'indemnisation
+
+duree_differe_cp = (
+    PJC
+    .select("id_midas", "KROD3", "KDDPJ", "KDFPJ", "KCPJC", "KCMNI", "KCPJCC")
+    .filter((F.col("KCPJC") == 3) & (F.col("KCMNI") == "00") & (F.col("KCPJCC") == "02"))
+    .join(droits, on=["id_midas", "KROD3"], how="right")
+    .join(date_fin_diff, on=["id_midas", "KROD3"], how="left")
+    .withColumn("date_fin_diff", F.when(F.col("date_fin_diff").isNull(), F.max("KDFPJ").over(window_spec)).otherwise(F.col("date_fin_diff")))
+    .filter(F.col("KDDPJ") < F.col("date_fin_diff"))
+    .withColumn("duree_PJC", F.datediff("KDFPJ", "KDDPJ") + 1)
+    .groupBy("id_midas", "KROD3")
+    .agg(F.sum("duree_PJC").alias("differe_cp"))
+    .fillna({"differe_cp": 0})
+    .select("id_midas", "KROD3", "differe_cp")
+)
+
+
+```
+:::
+
 ## Le délai d'attente
 
 Le délai d'attente s'applique après les différés spécifiques et de congés payés.
@@ -371,6 +480,9 @@ Le délai d'attente s'applique après les différés spécifiques et de congés 
 Le demandeur d'emploi dispose d'un an après sa fin de contrat pour s'inscrire à France Travail. Dans le cas où ses différés spécifiques et de congés payés sont déjà expirés lorsqu'il s'inscrit, le délai d'attente commence au jour de son inscription.
 
 Ce délai d'attente correspond à une PJC non payée, non consommée (`KCPJC = 3`), non payée pour motif "carence, différé" (`KCMNI = 00`) de type "différé d'indemnisation" (`KCPJCC = 04`).
+
+::: panel-tabset
+### R
 
 ```{r}
 #| eval: false
@@ -382,7 +494,7 @@ droits <- PJC %>%
 
 # Repérage des éventuels débuts de différés de reprises de droit pour les exclure
 
-date_fin_diff <- PJC_s %>%
+date_fin_diff <- PJC %>%
   select(id_midas, KROD3, KDDPJ, KDFPJ, KCPJC, KCMNI, KCPJCC) %>%
   filter(KCPJC == 3 & KCMNI == "00") %>%
   right_join(droits, by = c("id_midas", "KROD3")) %>%
@@ -399,7 +511,7 @@ date_fin_diff <- PJC_s %>%
 
 # Calcul de la durée de différé spécifique écoulée avant première sortie d'indemnisation
 
-duree_delai_attente <- PJC_s %>%
+duree_delai_attente <- PJC %>%
   select(id_midas, KROD3, KDDPJ, KDFPJ, KCPJC, KCMNI, KCPJCC) %>%
   filter(KCPJC == 3 & KCMNI == "00" & KCPJCC =="04") %>%
   right_join(droits, by = c("id_midas", "KROD3")) %>%
@@ -415,6 +527,56 @@ duree_delai_attente <- PJC_s %>%
   ungroup() %>%
   distinct(id_midas, KROD3, delai_attente) 
 ```
+
+### Python
+
+```{python}
+#| eval: false
+#| echo: true
+#| python.reticulate: false
+
+droits = PJC.select("id_midas", "KROD3").distinct()
+
+# Repérage des éventuels débuts de différés de reprises de droit pour les exclure
+
+date_fin_diff = (
+    PJC
+    .select("id_midas", "KROD3", "KDDPJ", "KDFPJ", "KCPJC", "KCMNI", "KCPJCC")
+    .filter((F.col("KCPJC") == 3) & (F.col("KCMNI") == "00"))
+    .join(droits, on=["id_midas", "KROD3"], how="right")
+)
+
+window_spec = Window.partitionBy("id_midas", "KROD3").orderBy("KDDPJ")
+
+date_fin_diff = (
+    date_fin_diff
+    .withColumn("prev_KDFPJ", F.lag("KDFPJ").over(window_spec))
+    .withColumn("ecart", F.datediff("KDDPJ", F.col("prev_KDFPJ")) - 1)
+    .filter(F.col("ecart") > 0)
+    .select("id_midas", "KROD3", "KDDPJ")
+    .groupBy("id_midas", "KROD3")
+    .agg(F.min("KDDPJ").alias("date_fin_diff"))
+)
+
+# Calcul de la durée de différé spécifique écoulée avant première sortie d'indemnisation
+
+duree_delai_attente = (
+    PJC
+    .select("id_midas", "KROD3", "KDDPJ", "KDFPJ", "KCPJC", "KCMNI", "KCPJCC")
+    .filter((F.col("KCPJC") == 3) & (F.col("KCMNI") == "00") & (F.col("KCPJCC") == "04"))
+    .join(droits, on=["id_midas", "KROD3"], how="right")
+    .join(date_fin_diff, on=["id_midas", "KROD3"], how="left")
+    .withColumn("date_fin_diff", F.when(F.col("date_fin_diff").isNull(), F.max("KDFPJ").over(window_spec)).otherwise(F.col("date_fin_diff")))
+    .filter(F.col("KDDPJ") < F.col("date_fin_diff"))
+    .withColumn("duree_PJC", F.datediff("KDFPJ", "KDDPJ") + 1)
+    .groupBy("id_midas", "KROD3")
+    .agg(F.sum("duree_PJC").alias("delai_attente"))
+    .fillna({"delai_attente": 0})
+    .select("id_midas", "KROD3", "delai_attente")
+)
+
+```
+:::
 
 ::: callout-tip
 ## Ordre des différés
