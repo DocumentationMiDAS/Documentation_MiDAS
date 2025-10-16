@@ -27,6 +27,11 @@ jobs:
         with:
           cache-version: 1
 
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
         with:
