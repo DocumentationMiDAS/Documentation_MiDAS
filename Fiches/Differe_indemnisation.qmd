@@ -14,6 +14,7 @@ Lorsque la demande d'allocation d'un demandeur d'emploi est acceptée, elle donn
 ```{python}
 #| eval: false
 #| echo: true
+#| python.reticulate: false
 
 ouverture_droit = PJC.groupBy("id_midas", "KROD3") \
     .agg(F.min("KDDPJ").alias("date_ouv_droit"))
