@@ -1,9 +1,6 @@
 project:
   type: website
 
-engines:
-  python: python3
-
 website:
   title: "Documentation MiDAS"
   navbar:
