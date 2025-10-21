@@ -6,7 +6,7 @@ editor: visual
 
 # Mesurer la présence en emploi salarié
 
-Un individu est en emploi salarié s'il remplit les trois conditions suivantes :
+Un individu est considéré comme en emploi salarié s'il remplit les trois conditions suivantes :
 
 -   il occupe un contrat salarié en cours au moins un jour sur le mois calendaire considéré ;
 
@@ -16,7 +16,7 @@ Un individu est en emploi salarié s'il remplit les trois conditions suivantes :
 
 Ces informations sont disponibles dans la table MMO de MiDAS.
 
-De plus, cet individu est en **emploi durable** si :
+De plus, cet individu est classé en **emploi durable** si :
 
 -   son contrat est un CDD de plus de 6 mois : nature de contrat 02, 07, 10, 20, 21, 32, 51, 52, 80, 81, 92, 93 ;
 
@@ -32,89 +32,47 @@ Si un mois donné, un individu occupe à la fois un emploi durable et un emploi 
 
 Ces critères sont ceux retenus dans [les publications sur les bénéficiaires du RSA et l'inscription à France Travail](#0), dont les programmes de production à partir des données MiDAS sont disponibles [à ce lien](https://github.com/DocumentationMiDAS/Publications/tree/main/Dares%20Focus%20-%20B%C3%A9n%C3%A9ficiaires%20du%20RSA%20et%20inscription%20%C3%A0%20France%20Travail%20%3A%20parcours%20%C3%A0%20horizon%20d'un%20an).
 
-# Repérage dans les données : cluster spark
+## Exemple : mesurer la présence en emploi salarié de cohortes mensuelles de bénéficiaires du RSA
 
-## Sparklyr
+Pour chaque cohorte mensuelle de bénéficiaires du RSA, le taux de présence en emploi salarié au moins un jour dans le mois est observé 1, 2, 3, ..., 24 mois après.
 
-L'environnement de travail pour les données MiDAS à la Dares est un cluster spark yarn.
-
-Les quatre manières de programmer en spark sont les suivantes
-
--   **sparklyr** : utilisation de spark avec R en syntaxe dplyr ;
-
--   sparkR : utilisation de spark avec R dans une syntaxe plus proche du SQL ;
-
--   pyspark : utilisation de spark avec python ;
-
--   requêtes SQL : via R ou python.
-
-Le langage retenu dans ce tutoriel est sparklyr. Une formation de programmation sur un cluster spark avec sparklyr est disponible [ici](https://leoniefvr.github.io/Formation_spark/).
+Le but est de construire pour chaque mois de 2022 le graphique suivant (sur données factices) :
 
 ```{r}
-#| eval: false
-#| echo: true
+#| echo: false
+#| warning: false
 
-library(sparklyr)
+library(ggplot2)
+library(dplyr)
+
+# Générer données factices
+set.seed(123)
+
+df <- tibble(
+  horizon = 0:24,
+  # une fonction log pour simuler une croissance concave, 
+  # puis normalisée entre 0.10 et 0.40
+  taux = 0.10 + 0.30 * (log(horizon + 1) / log(25))
+)
+
+# Petite perturbation aléatoire pour éviter la courbe trop lisse
+df <- df %>%
+  mutate(taux = taux + rnorm(n(), mean = 0, sd = 0.005)) %>%
+  mutate(taux = pmax(pmin(taux, 0.40), 0.10))  # bornes entre 10% et 40%
+
+# Graphique
+ggplot(df, aes(x = horizon, y = taux)) +
+  geom_line(color = "steelblue", size = 1.2) +
+  geom_point(color = "steelblue", size = 2) +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
+  labs(
+    title = "Emploi salarié des bénéficiaires du RSA en janvier 2022",
+    x = "Horizon (mois)",
+    y = "Taux de présence en emploi salarié"
+  ) +
+  theme_minimal(base_size = 14)
 
 ```
-
-### Cluster spark et double distribution
-
-Le cluster spark est un ensemble d'ordinateurs connectés entre eux en réseau et dont les tâches sont centralisées et organisées par un cluster manager yarn :
-
-![](images/schema_cluster.drawio.png)
-
-Le cluster spark fonctionne sur un principe de double distribution :
-
--   les **données Midas sont distribuées** sur les ordinateurs du cluster : chaque ordinateur ne connaît qu'une partie des données Midas. Les ordinateurs peuvent s'échanger des données entre eux via le réseau : cette opération est un **shuffle**.
-
--   les **tâches à effectuer sont distribuées** sur les ordinateurs : chaque ordinateur effectue son calcul en parallèle des autres.
-
-Ce mode de fonctionnement a une implication importante sur la manière de programmer : l**es opérations vectorielles** (qui s'appliquent à une colonne intégrale) sont **beaucoup plus rapides que les opérations qui s'appliquent à des groupes de lignes.**
-
-::: callout-note
-## Opération vectorielle
-
-Une opération vectorielle est une opération qui s'applique simultanément à une **colonne entière** de données, plutôt qu'à chaque ligne une par une. En spark, comme en R, la multiplication par 2 d'une colonne est vectorielle.
-
-Ce type d'opération ne nécessite **aucun** **shuffle** : chaque ordinateur multiplie par 2 le morceau de colonne dont il dispose, en une seule fois, et en parallèle des autres ordinateurs. C'est très rapide, même sur des milliards de lignes.
-:::
-
-![](images/map_distribue.drawio.png)
-
-::: callout-note
-## Opération ligne par ligne
-
-Certaines opérations nécessitent forcément de lire les données ligne à ligne. C'est le cas des jointures, qui nécessitent de comparer deux colonnes d'identifiant de jointure entre elles. Comme les données sont distribuées, les ordinateurs du cluster doivent s'échanger des données (**shuffle**) pour comparer les colonnes de jointure sur un même ordinateur.
-
-Les opérations par groupe de ligne (`group_by(id)`) nécessitent aussi un échange de données entre ordinateurs pour regrouper les lignes avec la même valeur de id sur le même ordinateur.
-
-Les opérations qui nécessitent des shuffles sont beaucoup plus **lentes** : l'échange de données volumineuses via le réseau impose un coût en temps incompressible.
-:::
-
-<div>
-
-![](images/reduce_distribue.drawio.png)
-
-</div>
-
-Spark dispose d'algorithmes pour optimiser les jointures, qui ne sont pas détaillés ici :
-
--   broadcast join ;
-
--   sort-merge join ou shuffle hash join.
-
-### Bonnes pratiques de programmation sur un cluster
-
-Pour tirer pleinement parti du calcul distribué, il est nécessaire de **limiter au maximum les shuffles**, en programmant de la manière la plus vectorielle possible. Il est recommandé d'éviter les boucles for. Une boucle for porte sur un ensemble de lignes. Par exemple, une boucle for qui repète une opération mois par mois pour 12 mois impliquera a minima 12 shuffles sur un cluster spark.
-
-Dans cette fiche, deux manières alternatives de programmer sont présentées pour mesurer le retour à l'emploi. Elle vise à illustrer dans quel cas une boucle for est utile, et comment l'éviter lorsqu'on programme sur un cluster spark.
-
-# Présence en emploi de cohortes mensuelles de bénéficiaires du RSA à différents horizons
-
-Pour chaque cohorte mensuelle de bénéficiaires du RSA, le taux de présence en emploi est observé 1, 2, 3, ..., 24 mois après.
-
-Le but est de construire pour chaque mois de 2022 le graphique suivant :
 
 Deux versions du même programme sont présentées :
 
@@ -122,9 +80,11 @@ Deux versions du même programme sont présentées :
 
 -   une version en boucle for, inadaptée pour spark mais adaptée pour un ordinateur simple en R.
 
-## Programmation vectorielle
+Pour comprendre la nécessité de programmer différemment sur un cluster spark, voir [la fiche dédiée](Cluster_spark.qmd).
 
-### Etape 0 : connexion au cluster
+# Repérage dans les données : cluster spark
+
+## Etape 0 : connexion au cluster
 
 Cette configuration est la configuration recommandée pour utiliser le cluster spark de la bulle Midares. Elle permet d'effectuer des traitements lourds sur la totalité du champ de Midas.
 
@@ -144,9 +104,11 @@ conf$spark.driver.maxResultSize <- 0
 sc <- spark_connect(master="yarn", config = conf)
 ```
 
-### Etape 1 : empiler les tables cnaf
+## Etape 1 : charger (lazy) les tables cnaf en une fois
 
-Spark est optimisé pour les traitements vectoriels : il est conseillé d'empiler toutes les tables mensuelles de la CNAF pour programmer sur les colonnes de cette table complète. Il est beaucoup plus rapide pour spark d'effectuer une fois une opération sur les colonnes d'une table très volumineuse que de segmenter le calcul sur des tables mensuelles.
+Spark est optimisé pour les traitements vectoriels : il est conseillé de traiter toutes les tables mensuelles de la CNAF comme une unique table complète. Il est beaucoup plus rapide pour spark d'effectuer une fois une opération sur les colonnes d'une table très volumineuse que de segmenter le calcul sur des tables mensuelles.
+
+Spark permet de pointer vers l'ensemble des tables d'un même dossier en une fois, de manière lazy. L'option mergeSchema permet de conserver les variables qui peuvent être absentes dans certaines tables. Par exemple, pour lire l'ensemble des tables passage, il est important de mettre cette option pour garder la variable topconj qui n'est dans les tables qu'à partir de juillet 2018.
 
 ```{r}
 #| eval: false
@@ -154,28 +116,15 @@ Spark est optimisé pour les traitements vectoriels : il est conseillé d'empile
 
 # Chemin vers les données MiDAS 
 chemin_cnaf <- "hdfs:///dataset/MiDAS_v6/Allstat/minsoc/"
-
 # Cohortes de BRSA considérées
 cohortes <- sprintf("%02d22",01:12)
 
-table_cnaf_totale <- data.frame(id_midas = character(),
-                                MTRSAVER = numeric(),
-                                RSAVERS = character(),
-                                mois = as.Date(character()))
+# chargement des tables prestations et filtre sur les cohortes mensuelles considérées
+table_cnaf_totale_s <- spark_read_parquet(sc, name = "table_cnaf_totale", path = paste0(chemin_cnaf, "cnaf_indiv_*.parquet"), options = list(mergeSchema = "true"), memory = F) %>%
+  select(id_midas, RSAVERS, MTRSAVER) %>%
+  mutate(mois = DTREFFRE) %>%
+  filter(mois >= as.Date("2022-01-01") & mois <= as.Date("2022-12-01"))
 
-# Copie vers Spark
-table_cnaf_totale_s <- copy_to(sc, table_cnaf_totale, "table_cnaf_totale_spark", overwrite = TRUE)
-
-
-for (c in seq_along(cohortes)) {
-  nom_var_cohorte <- cohortes[c]
-  
-  table_cnaf_mois <- spark_read_parquet(paste0(chemin_cnaf, "cnaf_indiv_", nom_var_cohorte, ".parquet"), memory = F) %>%
-    select(id_midas, RSAVERS, MTRSAVER) %>%
-    mutate(mois = as.Date(paste0("20", substr(nom_var_cohorte, 3,4), "-", substr(nom_var_cohorte, 1,2), "-01")))
-  
-  table_cnaf_totale_s <- sdf_bind_rows(table_cnaf_totale_s, table_cnaf_mois) 
-}
 
 ```
 
@@ -183,7 +132,7 @@ La table obtenue `table_cnaf_totale_s` est un spark_data_frame : c'est une table
 
 ![](images/fiche%20retour%20emploi-etape-1.drawio.png){fig-align="center"}
 
-### Etape 2 : repérer les bénéficiaires du RSA
+## Etape 2 : repérer les bénéficiaires du RSA
 
 Seuls les bénéficiaires du RSA qui perçoivent effectivement un montant de RSA non nul un mois donné sont conservés dans le champ.
 
@@ -206,7 +155,7 @@ La table `beneficiaires_rsa` a la structure suivante :
 
 ![](images/fiche%20retour%20emploi-etape-2.drawio.png){fig-align="center"}
 
-### Etape 3 : empiler et pivoter les MMO
+## Etape 3 : empiler et pivoter les MMO
 
 De même pour les tables annuelles des MMO, il est plus efficient de les empiler avant d'effectuer tout calcul.
 
@@ -249,7 +198,7 @@ MMO_tot <- sdf_bind_rows(MMO_2022, MMO_2023, MMO_2024) %>% #Empiler les tables a
 
 ```
 
-### Etape 4 : pivot pour filtrer sur les mois d'emploi BIT
+## Etape 4 : pivot pour filtrer sur les mois d'emploi BIT
 
 La table `MMO_tot` contient une information mensuelle sur l'emploi BIT en colonne. Comme la présence en emploi salarié est une présence au sens du BIT, il est plus pratique de pivoter la table (passage au format long) pour appliquer le filtre sur l'emploi BIT.
 
@@ -271,7 +220,7 @@ MMO_pivot <- MMO_tot %>%
 
 ```
 
-### Etape 5 : repérer les horizons
+## Etape 5 : repérer les horizons
 
 Pour chaque bénéficiaire du RSA un mois donné, on calcule le mois d'horizon n, jusqu'à l'horizon 24. La structure de la table `horizon_brsa` est la suivante :
 
@@ -284,7 +233,7 @@ Pour chaque bénéficiaire du RSA un mois donné, on calcule le mois d'horizon n
 library(rlang)
 
 # Table des horizons qu'on souhaite considérer
-horizon_num <- data.frame(horizon = c(1:24))
+horizon_num <- data.frame(horizon = c(0:24))
 horizon_num_s <- copy_to(sc, horizon_num)
 
 # Produit cartésien de chaque bénéficiaire du RSA un mois donné avec les 24 horizons observés
@@ -295,7 +244,7 @@ horizon_brsa <- beneficiaires_rsa %>%
 
 ```
 
-### Etape 6 : récupérer les contrats en cours au mois d'horizon
+## Etape 6 : récupérer les contrats en cours au mois d'horizon
 
 Les contrats salariés en cours au mois d'horizon n sont ajoutés à la table. Un individu peut avoir pour un même mois d'horizon plusieurs contrats en cours. L'information est résumée : si un individu a au moins un contrat en cours le mois d'horizon n, la variable `en_emploi` vaut 1, sinon 0. La structure de `table_finale` est la suivante :
 
@@ -331,7 +280,7 @@ table_finale <- beneficiaires_rsa %>%
 
 ```
 
-### Etape 7 : Part de présence en emploi par cohorte mensuelle
+## Etape 7 : Part de présence en emploi par cohorte mensuelle
 
 Le format de `table_finale` est long : une ligne correspond à un mois d'horizon considéré par rapport au mois de perception du RSA de l'individu. Ce format est pratique pour représenter des taux de présence en emploi salarié avec `ggplot2`. Le programme ci-dessous permet de tracer le profil de présence en emploi salarié par cohorte mensuelle de bénéficiaires du RSA.
 
@@ -371,59 +320,11 @@ for (i in seq_along(mois)){
 }
 ```
 
-### Conclusion
+## Conclusion
 
 Pour calculer le retour à l'emploi, des colonnes (=vecteurs) de dates sont comparés entre eux, ce qui permet de calculer pour toute cohorte et tout horizon la présence en emploi en une unique opération. Même si joindre l'ensemble des contrats salariés à l'ensemble des mois d'horizon peut donner une table avec plusieurs millions de lignes, spark est tout à fait adapté pour traiter des données aussi volumineuses avec des opérations vectorielles et des jointures optimisées, si le programme limite les shuffles.
 
-## Comparaison boucle for et programmation vectorielle sur un cluster
-
-## Programmation en cas de ressources informatiques limitées
-
-### Arrow
-
-#### 1. Avantages d’`arrow`
-
--   **Mémoire** : `arrow` lit les données directement sur disque (souvent au format Parquet/Feather) et ne charge que ce qui est nécessaire (colonnes et lignes utiles). On évite de saturer la RAM avec de gros volumes de données.
--   **Vitesse** : grâce au format colonne et à des optimisations, les filtres et agrégations sont beaucoup plus rapides qu’avec un CSV chargé en entier.
-
-------------------------------------------------------------------------
-
-#### 2. `open_dataset()` vs. data.frame classique
-
--   **`open_dataset()`**
-    -   Ouvre un dossier de fichiers comme une table logique unique.
-    -   Ne charge rien immédiatement : il "pointe" simplement vers les données et lit des métadonnées (nom de colonnes).
-    -   Les verbes `dplyr` sont lus en lazy evaluation (voir plus bas).
--   **data.frame ou tibble**
-    -   Charge toute la table en mémoire.
-    -   Chaque opération duplique potentiellement des données et consomme la RAM.
-    -   Impossible de travailler si la table dépasse la mémoire disponible.
-
-------------------------------------------------------------------------
-
-#### 3. Le principe de la *lazy evaluation*
-
--   Avec `arrow` + `dplyr`, les instructions sont enregistrées comme un plan de calcul, mais **rien n’est exécuté tout de suite**.
--   L’exécution n’a lieu que lorsqu’un résultat final est demandé (affichage `print()`, export `write_parquet()`, agrégat `summarise() %>% collect()`.
--   Avantage : `arrow` peut optimiser la requête (ne lire que les colonnes/partitions utiles, paralléliser, etc.).
-
-------------------------------------------------------------------------
-
-#### 4. Utiliser `collect()` avec parcimonie ?
-
--   `collect()` ramène le résultat en R sous forme de `tibble` ou `data.frame`, donc en mémoire.
--   Utilisé trop tôt ou trop souvent, on perd les avantages d’`arrow` et on risque de saturer la RAM.
--   Bonne pratique : enchaîner les transformations (`filter`, `select`, `mutate`, `summarise`) sur le dataset au format d'`arrow`, puis appeler `collect()` uniquement à la fin, sur un résultat réduit (quelques colonnes, agrégats ou milliers de lignes).
--   Pour écrire un résultat volumineux, préférer `write_dataset()` qui reste côté `arrow`.
-
-```{r}
-#| eval: false
-#| echo: true
-
-library(arrow)
-```
-
-### Boucle for : la solution parcimonieuse
+# Programmation en cas de ressources informatiques limitées
 
 Voici les étapes :
 
@@ -446,8 +347,6 @@ cohortes <- sprintf("%02d22",01:12)
 dates_cohortes <- seq(as.Date("2022-01-01"),as.Date("2022-12-01"), by = "month")
 
 resultats <- list()
-
-
 
 for(c in seq_along(cohortes)) {
   nom_var_cohorte <- cohortes[c]

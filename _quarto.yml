@@ -215,6 +215,7 @@ website:
       background: light
       contents:
           - href: Fiches/Fiches_presentation.qmd
+          - href: Fiches/Cluster_spark.qmd
           - href: Fiches/Retour_emploi_rsa.qmd
           - href: Fiches/Maintien_de_droits.qmd
           - href: Fiches/Allocations_regimes.qmd
