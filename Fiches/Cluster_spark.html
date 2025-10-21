@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Activité réduite – Documentation MiDAS</title>
+<title>Programmer sur un cluster spark – Documentation MiDAS</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -134,7 +169,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Fiches/Activité réduite.html">Activité réduite</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Fiches/Cluster_spark.html">Programmer sur un cluster spark</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -158,7 +193,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Fiches/Cluster_spark.html" class="sidebar-item-text sidebar-link">
+  <a href="../Fiches/Cluster_spark.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Programmer sur un cluster spark</span></a>
   </div>
 </li>
@@ -194,7 +229,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Fiches/Activité réduite.html" class="sidebar-item-text sidebar-link active">
+  <a href="../Fiches/Activité réduite.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Activité réduite</span></a>
   </div>
 </li>
@@ -220,21 +255,15 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#i.-définir-la-catégorie-dinscription" id="toc-i.-définir-la-catégorie-dinscription" class="nav-link active" data-scroll-target="#i.-définir-la-catégorie-dinscription">I. Définir la catégorie d’inscription</a></li>
-  <li><a href="#ii.-définir-lactivité-réduite" id="toc-ii.-définir-lactivité-réduite" class="nav-link" data-scroll-target="#ii.-définir-lactivité-réduite">II. Définir l’activité réduite</a></li>
-  <li><a href="#iii.-statistiques-descriptives-sur-lactivité-réduite" id="toc-iii.-statistiques-descriptives-sur-lactivité-réduite" class="nav-link" data-scroll-target="#iii.-statistiques-descriptives-sur-lactivité-réduite">III. Statistiques descriptives sur l’activité réduite</a>
+  <li><a href="#sparklyr" id="toc-sparklyr" class="nav-link active" data-scroll-target="#sparklyr">Sparklyr</a>
   <ul class="collapse">
-  <li><a href="#a.-catégorie-dinscription-et-activité-réduite" id="toc-a.-catégorie-dinscription-et-activité-réduite" class="nav-link" data-scroll-target="#a.-catégorie-dinscription-et-activité-réduite">A. Catégorie d’inscription et activité réduite</a></li>
-  <li><a href="#b.-les-heures-dactivité-réduite" id="toc-b.-les-heures-dactivité-réduite" class="nav-link" data-scroll-target="#b.-les-heures-dactivité-réduite">B. Les heures d’activité réduite</a>
+  <li><a href="#cluster-spark-et-double-distribution" id="toc-cluster-spark-et-double-distribution" class="nav-link" data-scroll-target="#cluster-spark-et-double-distribution">Cluster spark et double distribution</a></li>
+  <li><a href="#bonnes-pratiques-de-programmation-sur-un-cluster" id="toc-bonnes-pratiques-de-programmation-sur-un-cluster" class="nav-link" data-scroll-target="#bonnes-pratiques-de-programmation-sur-un-cluster">Bonnes pratiques de programmation sur un cluster</a></li>
+  </ul></li>
+  <li><a href="#programmation-en-cas-de-ressources-informatiques-limitées" id="toc-programmation-en-cas-de-ressources-informatiques-limitées" class="nav-link" data-scroll-target="#programmation-en-cas-de-ressources-informatiques-limitées">Programmation en cas de ressources informatiques limitées</a>
   <ul class="collapse">
-  <li><a href="#les-heures-dactivité-réduite-dans-le-fhs" id="toc-les-heures-dactivité-réduite-dans-le-fhs" class="nav-link" data-scroll-target="#les-heures-dactivité-réduite-dans-le-fhs">1. Les heures d’activité réduite dans le FHS</a></li>
-  <li><a href="#les-heures-dactivité-réduite-dans-le-fna" id="toc-les-heures-dactivité-réduite-dans-le-fna" class="nav-link" data-scroll-target="#les-heures-dactivité-réduite-dans-le-fna">2. Les heures d’activité réduite dans le FNA</a></li>
-  <li><a href="#le-nombre-dheures-dactivité-réduite-entre-les-deux-tables" id="toc-le-nombre-dheures-dactivité-réduite-entre-les-deux-tables" class="nav-link" data-scroll-target="#le-nombre-dheures-dactivité-réduite-entre-les-deux-tables">3. Le nombre d’heures d’activité réduite entre les deux tables</a></li>
+  <li><a href="#arrow" id="toc-arrow" class="nav-link" data-scroll-target="#arrow">Arrow</a></li>
   </ul></li>
-  <li><a href="#c.-la-rémunération-de-lactivité-réduite" id="toc-c.-la-rémunération-de-lactivité-réduite" class="nav-link" data-scroll-target="#c.-la-rémunération-de-lactivité-réduite">C. La rémunération de l’activité réduite</a></li>
-  </ul></li>
-  <li><a href="#iv.-comparaison-avec-lunedic" id="toc-iv.-comparaison-avec-lunedic" class="nav-link" data-scroll-target="#iv.-comparaison-avec-lunedic">IV. Comparaison avec l’Unedic</a></li>
-  <li><a href="#v.-conclusions-sur-lactivité-réduite" id="toc-v.-conclusions-sur-lactivité-réduite" class="nav-link" data-scroll-target="#v.-conclusions-sur-lactivité-réduite">V. Conclusions sur l’activité réduite</a></li>
   </ul>
 </nav>
     </div>
@@ -243,7 +272,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Activité réduite</h1>
+<h1 class="title">Programmer sur un cluster spark</h1>
 </div>
 
 
@@ -260,140 +289,132 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Les personnes en activité réduite sont les personnes qui occupent une activité professionnelle tout en étant inscrites à France Travail&nbsp;; on parle également d’«&nbsp;<em>allocataires qui travaillent</em>&nbsp;». MiDAS contient deux sources différentes d’information sur la pratique de l’activité réduite&nbsp;: d’une part la table E0 du FHS, d’autre part la table PAR du FNA. Des préconisations sont fournies à la fin de cette fiche pour repérer les personnes en activité réduite dans MiDAS.</p>
-<section id="i.-définir-la-catégorie-dinscription" class="level1">
-<h1>I. Définir la catégorie d’inscription</h1>
-<p>Pour repérer les personnes en activité réduite, il faut tout d’abord déterminer les personnes qui peuvent effectivement en exercer une parmi les inscrits à France Travail. Cinq catégories d’inscription existent à France Travail et seules les catégories B à E sont concernées&nbsp;: les personnes qui exercent une activité réduite sont principalement classées en catégories B ou C, la distinction entre les deux étant définie par le nombre d’heures d’activité réduite exercées un mois donné<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> (plus ou moins 78 heures), mais on les retrouve également dans les catégories D et E (respectivement des personnes en Contrat de sécurisation professionnelle (CSP) ou en contrat aidé par exemple).</p>
-<p>Dans MiDAS, comme plus généralement pour le suivi des inscrits à France Travail en fin de mois, les catégories d’inscription sont définies à l’aide des tables DE et E0 du FHS qui servent à déterminer le nombre de personnes inscrites chaque mois à France Travail. On utilise les variables suivantes&nbsp;: les dates d’inscription et de désinscription à France Travail (DATINS et DATANN) pour déterminer les personnes inscrites chaque mois, la catégorie opérationnelle de France Travail (CATREGR) et le nombre d’heures d’activité réduite (NBHEUR) renseigné dans E0. Pour un mois donné&nbsp;:</p>
+<section id="sparklyr" class="level2">
+<h2 class="anchored" data-anchor-id="sparklyr">Sparklyr</h2>
+<p>L’environnement de travail pour les données MiDAS à la Dares est un cluster spark yarn.</p>
+<p>Les quatre manières de programmer en spark sont les suivantes</p>
 <ul>
-<li><p>Une personne est en catégorie A si CATREGR vaut «&nbsp;1&nbsp;», «&nbsp;2&nbsp;» ou «&nbsp;3&nbsp;» et qu’elle n’apparaît pas dans E0&nbsp;;</p></li>
-<li><p>Une personne est en catégorie B si CATREGR vaut «&nbsp;1&nbsp;», «&nbsp;2&nbsp;» ou «&nbsp;3&nbsp;» et que NBHEUR ≤ 78<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>&nbsp;;</p></li>
-<li><p>Un personne est en catégorie C si CATREGR vaut « 1 », « 2 » ou « 3 » et que NBHEUR &gt; 78 ;</p></li>
-<li><p>Une personne est en catégorie D si CATREGR vaut «&nbsp;4&nbsp;»&nbsp;;</p></li>
-<li><p>Une personne est en catégorie E si CATREGR vaut «&nbsp;5&nbsp;».</p></li>
+<li><p><strong>sparklyr</strong> : utilisation de spark avec R en syntaxe dplyr ;</p></li>
+<li><p>sparkR : utilisation de spark avec R dans une syntaxe plus proche du SQL ;</p></li>
+<li><p>pyspark : utilisation de spark avec python ;</p></li>
+<li><p>requêtes SQL : via R ou python.</p></li>
+</ul>
+<p>Le langage retenu dans ce tutoriel est sparklyr. Une formation de programmation sur un cluster spark avec sparklyr est disponible <a href="https://leoniefvr.github.io/Formation_spark/">ici</a>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sparklyr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="cluster-spark-et-double-distribution" class="level3">
+<h3 class="anchored" data-anchor-id="cluster-spark-et-double-distribution">Cluster spark et double distribution</h3>
+<p>Le cluster spark est un ensemble d’ordinateurs connectés entre eux en réseau et dont les tâches sont centralisées et organisées par un cluster manager yarn :</p>
+<p><img src="images/schema_cluster.drawio.png" class="img-fluid"></p>
+<p>Le cluster spark fonctionne sur un principe de double distribution :</p>
+<ul>
+<li><p>les <strong>données Midas sont distribuées</strong> sur les ordinateurs du cluster : chaque ordinateur ne connaît qu’une partie des données Midas. Les ordinateurs peuvent s’échanger des données entre eux via le réseau : cette opération est un <strong>shuffle</strong>.</p></li>
+<li><p>les <strong>tâches à effectuer sont distribuées</strong> sur les ordinateurs : chaque ordinateur effectue son calcul en parallèle des autres.</p></li>
+</ul>
+<p>Ce mode de fonctionnement a une implication importante sur la manière de programmer : l<strong>es opérations vectorielles</strong> (qui s’appliquent à une colonne intégrale) sont <strong>beaucoup plus rapides que les opérations qui s’appliquent à des groupes de lignes.</strong></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Opération vectorielle
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Une opération vectorielle est une opération qui s’applique simultanément à une <strong>colonne entière</strong> de données, plutôt qu’à chaque ligne une par une. En spark, comme en R, la multiplication par 2 d’une colonne est vectorielle.</p>
+<p>Ce type d’opération ne nécessite <strong>aucun</strong> <strong>shuffle</strong> : chaque ordinateur multiplie par 2 le morceau de colonne dont il dispose, en une seule fois, et en parallèle des autres ordinateurs. C’est très rapide, même sur des milliards de lignes.</p>
+</div>
+</div>
+<p><img src="images/map_distribue.drawio.png" class="img-fluid"></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Opération ligne par ligne
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Certaines opérations nécessitent forcément de lire les données ligne à ligne. C’est le cas des jointures, qui nécessitent de comparer deux colonnes d’identifiant de jointure entre elles. Comme les données sont distribuées, les ordinateurs du cluster doivent s’échanger des données (<strong>shuffle</strong>) pour comparer les colonnes de jointure sur un même ordinateur.</p>
+<p>Les opérations par groupe de ligne (<code>group_by(id)</code>) nécessitent aussi un échange de données entre ordinateurs pour regrouper les lignes avec la même valeur de id sur le même ordinateur.</p>
+<p>Les opérations qui nécessitent des shuffles sont beaucoup plus <strong>lentes</strong> : l’échange de données volumineuses via le réseau impose un coût en temps incompressible.</p>
+</div>
+</div>
+<div>
+<p><img src="images/reduce_distribue.drawio.png" class="img-fluid"></p>
+</div>
+<p>Spark dispose d’algorithmes pour optimiser les jointures, qui ne sont pas détaillés ici :</p>
+<ul>
+<li><p>broadcast join ;</p></li>
+<li><p>sort-merge join ou shuffle hash join.</p></li>
 </ul>
 </section>
-<section id="ii.-définir-lactivité-réduite" class="level1">
-<h1>II. Définir l’activité réduite</h1>
-<p>Dans MiDAS, deux tables renseignent sur l’activité réduite&nbsp;: la table E0 du FHS et la table PAR du FNA. Elles sont utilisées de manière complémentaire pour repérer l’activité réduite&nbsp;:</p>
+<section id="bonnes-pratiques-de-programmation-sur-un-cluster" class="level3">
+<h3 class="anchored" data-anchor-id="bonnes-pratiques-de-programmation-sur-un-cluster">Bonnes pratiques de programmation sur un cluster</h3>
+<p>Pour tirer pleinement parti du calcul distribué, il est nécessaire de <strong>limiter au maximum les shuffles</strong>, en programmant de la manière la plus vectorielle possible. Il est recommandé d’éviter les boucles for. Une boucle for porte sur un ensemble de lignes. Par exemple, une boucle for qui repète une opération mois par mois pour 12 mois impliquera a minima 12 shuffles sur un cluster spark.</p>
+<p>Dans cette fiche, deux manières alternatives de programmer sont présentées pour mesurer le retour à l’emploi. Elle vise à illustrer dans quel cas une boucle for est utile, et comment l’éviter lorsqu’on programme sur un cluster spark.</p>
+</section>
+</section>
+<section id="programmation-en-cas-de-ressources-informatiques-limitées" class="level1">
+<h1>Programmation en cas de ressources informatiques limitées</h1>
+<section id="arrow" class="level3">
+<h3 class="anchored" data-anchor-id="arrow">Arrow</h3>
+<section id="avantages-darrow" class="level4">
+<h4 class="anchored" data-anchor-id="avantages-darrow">1. Avantages d’<code>arrow</code></h4>
 <ul>
-<li><p>La table E0 renseigne uniquement sur les personnes inscrites en catégories B et C. Le nombre d’heures est plafonné à 200, ce qui revient à une journée de 10 heures de travail maximal, soit 50 heures par semaine. En revanche, aucune information sur le salaire perçu dans le cadre de l’activité réduite est présente&nbsp;;</p></li>
-<li><p>La table PAR renseigne sur l’ensemble des personnes inscrites à France Travail, indépendamment de la catégorie d’inscription. Le nombre d’heures renseignées (KPHARP) n’est pas plafonné, mais cette table donne le salaire brut de l’activité réduite exercée (KQBARP).</p></li>
+<li><strong>Mémoire</strong> : <code>arrow</code> lit les données directement sur disque (souvent au format Parquet/Feather) et ne charge que ce qui est nécessaire (colonnes et lignes utiles). On évite de saturer la RAM avec de gros volumes de données.</li>
+<li><strong>Vitesse</strong> : grâce au format colonne et à des optimisations, les filtres et agrégations sont beaucoup plus rapides qu’avec un CSV chargé en entier.</li>
 </ul>
+<hr>
 </section>
-<section id="iii.-statistiques-descriptives-sur-lactivité-réduite" class="level1">
-<h1>III. Statistiques descriptives sur l’activité réduite</h1>
-<p>La suite de la fiche prend comme champ les personnes continûment inscrites et indemnisables sur tout le mois de septembre 2022.</p>
-<section id="a.-catégorie-dinscription-et-activité-réduite" class="level2">
-<h2 class="anchored" data-anchor-id="a.-catégorie-dinscription-et-activité-réduite">A. Catégorie d’inscription et activité réduite</h2>
-<p>Tout d’abord, selon que l’on utilise le nombre d’heures renseignées dans le FHS ou celui du FNA, la répartition des demandeurs d’emploi par catégorie d’inscription n’est pas la même.</p>
-<p><strong>Tableau 1 : Personnes inscrites et indemnisables à France Travail par catégorie d’inscription en septembre 2022 selon la source de données</strong></p>
-<p><img src="images/clipboard-775392700.png" class="img-fluid"></p>
-<p>Les personnes comptabilisées comme faisant de l’activité réduite sont dans le rectangle vert&nbsp;; celles dans le rectangle jaune apparaissent dans la table PAR du FNA mais ne sont pas comptabilisées car elles sont classées en A dans le FHS&nbsp;: parmi ces dernières, deux tiers déclarent soit un nombre d’heures nul, soit un salaire nul (61 % déclarent un salaire nul, 62 % un nombre d’heures nuls, 1 % déclarent 1 heure). Pour cette raison, ces personnes ne sont pas considérées en activité réduite.&nbsp;</p>
-<p>Parmi les personnes classées en D ou E, 76 % exercent une activité réduite en septembre 2022. Seule la table PAR fournit une information exhaustive&nbsp;(tableau 2). Pour cette raison, l’information issue du FHS n’est pas retenue pour caractériser l’activité réduite des catégories D et E.</p>
-<p><strong>Tableau 2 : L’information disponible des catégories D et E qui font de l’activité réduite</strong></p>
-<p><img src="images/clipboard-420868333.png" class="img-fluid"></p>
-</section>
-<section id="b.-les-heures-dactivité-réduite" class="level2">
-<h2 class="anchored" data-anchor-id="b.-les-heures-dactivité-réduite">B. Les heures d’activité réduite</h2>
-<section id="les-heures-dactivité-réduite-dans-le-fhs" class="level3">
-<h3 class="anchored" data-anchor-id="les-heures-dactivité-réduite-dans-le-fhs">1. Les heures d’activité réduite dans le FHS</h3>
-<p>Parmi les inscrits et indemnisables en catégories B et C qui font de l’activité réduite, environ 1 500 personnes déclarent 0 heures d’activité réduite en septembre 2022, soit moins d’1 % du champ. En les retirant, on observe trois pics (graphique 1) :</p>
+<section id="open_dataset-vs.-data.frame-classique" class="level4">
+<h4 class="anchored" data-anchor-id="open_dataset-vs.-data.frame-classique">2. <code>open_dataset()</code> vs.&nbsp;data.frame classique</h4>
 <ul>
-<li><p>Un pic à 1 heure (2 % du champ) : il s’agit de l’activité réduite non salariée ;</p></li>
-<li><p>Un pic à 151 heures (13 % du champ) : sachant que le mois de septembre 2022 compte 22 jours ouvrés, cela représente une journée de travail de 7 heures, soit une semaine de travail de 35 heures ;</p></li>
-<li><p>Un pic à 200 heures (6 % du champ) : il s’agit des personnes qui travaillent effectivement 200 heures dans le mois (soit 10 heures par jour pour une semaine de travail de 5 jours) et des personnes dont les heures déclarées, supérieures à 200, ont été plafonnées.</p></li>
-</ul>
-<p><strong>Graphique 1 : Distribution des heures d’activité réduite dans le FHS (catégories B et C)</strong></p>
-<p><img src="images/clipboard-98677923.png" class="img-fluid"></p>
-<p><u>Source</u>&nbsp;: MiDAS (FHS).</p>
-<p><u>Champ</u> : Personnes continûment inscrites à France Travail en catégories B et C qui sont indemnisables sur l’ensemble du mois de septembre 2022, hors heures nulles déclarées.</p>
-</section>
-<section id="les-heures-dactivité-réduite-dans-le-fna" class="level3">
-<h3 class="anchored" data-anchor-id="les-heures-dactivité-réduite-dans-le-fna">2. Les heures d’activité réduite dans le FNA</h3>
-<p>Parmi les inscrits et indemnisables en catégories D et E qui font de l’activité réduite, environ 20&nbsp;000 personnes déclarent 0 heures d’activité réduite en septembre 2022, soit 10 % du champ. En les retirant, on observe deux pics (graphique 2a) :</p>
+<li><strong><code>open_dataset()</code></strong>
 <ul>
-<li><p>Un pic à 1 heure (12 % du champ)&nbsp;;</p></li>
-<li><p>Un pic à 151 heures (22 % du champ).</p></li>
-</ul>
-<p>Certaines heures déclarées sont supérieures à 200 car elles ne sont pas plafonnées.</p>
-<p><strong>Graphique 2a&nbsp;: Distribution des heures d’activité réduite dans le FNA (catégories D et E), avec plafonnement des heures à 200</strong></p>
-<p><img src="images/clipboard-2889079525.png" class="img-fluid"></p>
-<p><u>Source</u>&nbsp;: MiDAS (FHS-FNA).</p>
-<p><u>Champ</u> : Personnes continûment inscrites à France Travail en catégories D et E qui sont indemnisables sur l’ensemble du mois de septembre 2022, hors heures nulles déclarées.</p>
-<p>Parmi l’ensemble des inscrits et indemnisables qui déclarent faire de l’activité réduite dans le FNA, environ 95&nbsp;000 personnes déclarent 0 heures d’activité réduite en septembre 2022, soit 5 % du champ. En les retirant, on observe deux pics (graphique 2b) :</p>
+<li>Ouvre un dossier de fichiers comme une table logique unique.</li>
+<li>Ne charge rien immédiatement : il “pointe” simplement vers les données et lit des métadonnées (nom de colonnes).</li>
+<li>Les verbes <code>dplyr</code> sont lus en lazy evaluation (voir plus bas).</li>
+</ul></li>
+<li><strong>data.frame ou tibble</strong>
 <ul>
-<li><p>Un pic à 1 heure (3 % du champ)&nbsp;;</p></li>
-<li><p>Un pic à 151 heures (14 % du champ).</p></li>
+<li>Charge toute la table en mémoire.</li>
+<li>Chaque opération duplique potentiellement des données et consomme la RAM.</li>
+<li>Impossible de travailler si la table dépasse la mémoire disponible.</li>
+</ul></li>
 </ul>
-<p>Certaines heures déclarées sont supérieures à 200 car elles ne sont pas plafonnées.</p>
-<p><strong>Graphique 2b&nbsp;: Distribution des heures d’activité réduite dans le FNA (catégories B et C)</strong></p>
-<p><img src="images/clipboard-1221125614.png" class="img-fluid"></p>
-<p><u>Source</u>&nbsp;: MiDAS (FHS-FNA).</p>
-<p><u>Champ</u> : Personnes continûment inscrites à France Travail (toutes catégories confondues) dans le FNA qui sont indemnisables sur l’ensemble du mois de septembre 2022, hors heures nulles déclarées.</p>
+<hr>
 </section>
-<section id="le-nombre-dheures-dactivité-réduite-entre-les-deux-tables" class="level3">
-<h3 class="anchored" data-anchor-id="le-nombre-dheures-dactivité-réduite-entre-les-deux-tables">3. Le nombre d’heures d’activité réduite entre les deux tables</h3>
-<p>Certaines personnes sont considérées en activité réduite selon une source et non selon l’autre. Ainsi, parmi les personnes inscrites et indemnisables tout le mois, tenues de faire des actes positifs de recherche d’emploi et qui sont en activité réduite en septembre 2022&nbsp;:</p>
+<section id="le-principe-de-la-lazy-evaluation" class="level4">
+<h4 class="anchored" data-anchor-id="le-principe-de-la-lazy-evaluation">3. Le principe de la <em>lazy evaluation</em></h4>
 <ul>
-<li><p>99,6 % de ceux qui pratiquent l’activité réduite d’après le FHS (catégories B et C) la pratiquent également d’après le FNA ;</p></li>
-<li><p>98 % des catégories B dans le FHS sont également dans cette catégorie dans le FNA ;</p></li>
-<li><p>98 % des catégories C dans le FHS sont également dans cette catégorie dans le FNA.</p></li>
+<li>Avec <code>arrow</code> + <code>dplyr</code>, les instructions sont enregistrées comme un plan de calcul, mais <strong>rien n’est exécuté tout de suite</strong>.</li>
+<li>L’exécution n’a lieu que lorsqu’un résultat final est demandé (affichage <code>print()</code>, export <code>write_parquet()</code>, agrégat <code>summarise() %&gt;% collect()</code>.</li>
+<li>Avantage : <code>arrow</code> peut optimiser la requête (ne lire que les colonnes/partitions utiles, paralléliser, etc.).</li>
 </ul>
-<p>Pour les personnes qui apparaissent dans les deux tables, on constate que le nombre d’heures déclarées est quasiment identique pour la quasi-totalité d’entre elles : après plafonnement des heures déclarées dans le FNA (graphique 3), <u>95 % des personnes présentes dans les deux tables déclarent le même nombre d’heures d’activité réduite</u>.</p>
-<p>Parmi les 5 % restantes (80&nbsp;000 personnes), à savoir les personnes pour lesquelles la différence d’heures déclarées entre le FNA et le FHS n’est pas nulle, on observe un pic à -1 heure (8 % du champ). Le taux de correspondance atteint 97 % en supprimant les heures nulles ou égales à 1 (tableau 3).</p>
-<p><strong>Graphique 3&nbsp;: Distribution des différences d’heures d’activité réduite déclarées entre le FNA et le FHS après plafonnement des heures dans le FNA</strong></p>
-<p><img src="images/clipboard-579563012.png" class="img-fluid"></p>
-<p><u>Source</u>&nbsp;: MiDAS (FHS-FNA).</p>
-<p><u>Champ</u>&nbsp;: Personnes continûment inscrites et indemnisables sur tout le mois de septembre 2022 qui apparaissent à la fois dans E0 et PAR mais qui ne déclarent pas le même nombre d’heures d’activité réduite dans le FHS et le FNA, même après avoir plafonné ces dernières.</p>
-<p><img src="images/clipboard-3495976189.png" class="img-fluid"></p>
+<hr>
 </section>
-</section>
-<section id="c.-la-rémunération-de-lactivité-réduite" class="level2">
-<h2 class="anchored" data-anchor-id="c.-la-rémunération-de-lactivité-réduite">C. La rémunération de l’activité réduite</h2>
-<p>Si on s’intéresse à toutes les personnes qui déclarent faire de l’activité réduite dans le FNA, on constate que près de 12 % déclarent une rémunération nulle. En les retirant du champ, on observe un léger pic à 1&nbsp;679 € (0,6 % du champ), qui correspond au montant brut du SMIC en septembre 2022 pour un emploi à temps plein.</p>
-<p><strong>Graphique 4&nbsp;: Distribution des rémunérations d’activité réduite déclarées dans le FNA</strong></p>
-<p><img src="images/clipboard-3553589360.png" class="img-fluid"></p>
-<p><u>Source</u>&nbsp;: MiDAS (FHS-FNA).</p>
-<p><u>Champ</u> : Personnes continûment inscrites à France Travail (toutes catégories confondues) qui sont présentes dans PAR et qui sont indemnisables sur l’ensemble du mois de septembre 2022, hors salaires nuls déclarés.</p>
-<p>Pour les personnes qui sont au cumul, c’est-à-dire celles qui sont indemnisées par une allocation-chômage et qui exercent une activité réduite, il est possible de vérifier la validité de cette variable de rémunération en comparant le nombre de jours effectivement indemnisés dans le mois à sa valeur prédite, d’après le montant de cette rémunération et les caractéristiques du droit. Cet exercice révèle des incohérences dans un quart à un tiers des cas (sachant que ce taux augmente si on prend un champ moins restrictif), ce qui incite à ne pas utiliser cette variable de rémunération (cf.&nbsp;partie V).</p>
-</section>
-</section>
-<section id="iv.-comparaison-avec-lunedic" class="level1">
-<h1>IV. Comparaison avec l’Unedic</h1>
-<p>À titre de comparaison, l’Unedic estime à 853&nbsp;721 le nombre d’allocataires qui travaillent et qui sont indemnisés au 30 septembre 2022, avec un droit ouvert à certaines allocations (ARE, AREF, ASP, ATI, AREP). En appliquant la définition de l’activité réduite avec MiDAS sur le même champ, on obtient 873&nbsp;607 personnes, en supprimant ceux qui déclarent 0 heures d’activité réduite<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</p>
-</section>
-<section id="v.-conclusions-sur-lactivité-réduite" class="level1">
-<h1>V. Conclusions sur l’activité réduite</h1>
-<p>La comparaison des tables E0 du FHS et PAR du FNA permet d’établir les constats suivants sur la mesure de l’activité réduite&nbsp;:</p>
+<section id="utiliser-collect-avec-parcimonie" class="level4">
+<h4 class="anchored" data-anchor-id="utiliser-collect-avec-parcimonie">4. Utiliser <code>collect()</code> avec parcimonie ?</h4>
 <ul>
-<li><p>La mesure de l’activité réduite des catégories D et E peut uniquement être établie de manière exhaustive à partir de la table PAR du FNA&nbsp;;</p></li>
-<li><p>Concernant les allocataires tenus de faire des actes positifs de recherche d’emploi&nbsp;:</p>
-<p>o 99,6 % de ceux qui pratiquent l’activité réduite d’après le FHS (catégories B et C) la pratiquent également d’après le FNA&nbsp;;</p>
-<p>o 98 % des catégories B dans le FHS sont également dans cette catégorie dans le FNA&nbsp;;</p>
-<p>o 98 % des catégories C dans le FHS sont également dans cette catégorie dans le FNA&nbsp;;</p>
-<p>o 95&nbsp;% de ceux présents à la fois dans le FHS et dans le FNA déclarent les mêmes heures travaillées dans les deux sources après plafonnement des heures dans le FNA à 200. En supprimant les cas extrêmes (0 ou 1 heure travaillée), ce taux atteint 97&nbsp;%.</p></li>
+<li><code>collect()</code> ramène le résultat en R sous forme de <code>tibble</code> ou <code>data.frame</code>, donc en mémoire.</li>
+<li>Utilisé trop tôt ou trop souvent, on perd les avantages d’<code>arrow</code> et on risque de saturer la RAM.</li>
+<li>Bonne pratique : enchaîner les transformations (<code>filter</code>, <code>select</code>, <code>mutate</code>, <code>summarise</code>) sur le dataset au format d’<code>arrow</code>, puis appeler <code>collect()</code> uniquement à la fin, sur un résultat réduit (quelques colonnes, agrégats ou milliers de lignes).</li>
+<li>Pour écrire un résultat volumineux, préférer <code>write_dataset()</code> qui reste côté <code>arrow</code>.</li>
 </ul>
-<p><u><strong>Préconisations&nbsp;:</strong></u></p>
-<ul>
-<li><p>Utiliser le nombre d’heures d’activité réduite renseignées dans le FHS pour distinguer les personnes en catégories B et C&nbsp;;</p></li>
-<li><p>Utiliser le nombre d’heures d’activité réduite renseignées dans le FNA pour les personnes inscrites en catégories D et E ;</p></li>
-<li><p>Plafonner à 200 les heures renseignées dans le FNA&nbsp;;</p></li>
-<li><p>Ne pas utiliser la variable qui renseigne sur la rémunération brute d’activité réduite, en raison de sa mauvaise qualité pour près d’un tiers à un quart des personnes en activité réduite.</p></li>
-</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arrow)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 
 
 </section>
+</section>
+</section>
 
-
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
-<ol>
-<li id="fn1"><p>L’activité réduite est toujours identifiée sur un mois complet&nbsp;: il n’y a pas de date de début, ni de date de fin.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>Sont incluses les personnes qui déclarent 0 heures d’activité réduite&nbsp;: en septembre 2022, parmi les personnes qui sont continûment inscrites et indemnisables, seules 1&nbsp;640 déclarent 0 heures d’activité réduite. À noter également qu’il n’y a pas d’heures d’activité réduite non renseignées dans la table E0.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>Filtrer sur le salaire d’activité réduite renseigné (mais en gardant les montants nuls) donne 868&nbsp;890 personnes.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
