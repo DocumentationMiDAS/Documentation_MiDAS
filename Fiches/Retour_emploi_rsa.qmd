@@ -88,6 +88,9 @@ Pour comprendre la nécessité de programmer différemment sur un cluster spark,
 
 Cette configuration est la configuration recommandée pour utiliser le cluster spark de la bulle Midares. Elle permet d'effectuer des traitements lourds sur la totalité du champ de Midas.
 
+::: panel-tabset
+### R
+
 ```{r}
 #| eval: false
 #| echo: true
@@ -104,11 +107,35 @@ conf$spark.driver.maxResultSize <- 0
 sc <- spark_connect(master="yarn", config = conf)
 ```
 
+### Python
+
+```{python}
+#| eval: false
+#| echo: true
+#| python.reticulate: false
+
+# Fichier de configuration Spark
+spark = (SparkSession.builder
+    .appName("MonApplicationSpark")
+    .master("yarn")
+    .config("spark.driver.memory", "20g")
+    .config("spark.executor.memory", "60g")
+    .config("spark.executor.cores", "4")
+    .config("spark.executor.instances", "2")
+    .config("spark.sql.reduction.limit", "0")
+    .config("spark.driver.maxResultSize", "0")
+    .getOrCreate())
+```
+:::
+
 ## Etape 1 : charger (lazy) les tables cnaf en une fois
 
 Spark est optimisé pour les traitements vectoriels : il est conseillé de traiter toutes les tables mensuelles de la CNAF comme une unique table complète. Il est beaucoup plus rapide pour spark d'effectuer une fois une opération sur les colonnes d'une table très volumineuse que de segmenter le calcul sur des tables mensuelles.
 
 Spark permet de pointer vers l'ensemble des tables d'un même dossier en une fois, de manière lazy. L'option mergeSchema permet de conserver les variables qui peuvent être absentes dans certaines tables. Par exemple, pour lire l'ensemble des tables passage, il est important de mettre cette option pour garder la variable topconj qui n'est dans les tables qu'à partir de juillet 2018.
+
+::: panel-tabset
+### R
 
 ```{r}
 #| eval: false
@@ -119,7 +146,7 @@ chemin_cnaf <- "hdfs:///dataset/MiDAS_v6/Allstat/minsoc/"
 # Cohortes de BRSA considérées
 cohortes <- sprintf("%02d22",01:12)
 
-# chargement des tables prestations et filtre sur les cohortes mensuelles considérées
+# Chargement des tables prestations et filtre sur les cohortes mensuelles considérées
 table_cnaf_totale_s <- spark_read_parquet(sc, name = "table_cnaf_totale", path = paste0(chemin_cnaf, "cnaf_indiv_*.parquet"), options = list(mergeSchema = "true"), memory = F) %>%
   select(id_midas, RSAVERS, MTRSAVER) %>%
   mutate(mois = DTREFFRE) %>%
@@ -128,6 +155,30 @@ table_cnaf_totale_s <- spark_read_parquet(sc, name = "table_cnaf_totale", path =
 
 ```
 
+### Python
+
+```{python}
+#| eval: false
+#| echo: true
+#| python.reticulate: false
+
+# Chemin vers les données MiDAS
+chemin_cnaf = "hdfs:///dataset/MiDAS_v6/Allstat/minsoc/"
+# Cohortes de BRSA considérées
+cohortes = [f"{i:02d}22" for i in range(1, 13)]
+
+# Chargement des tables prestations et filtre sur les cohortes mensuelles considérées
+table_cnaf_totale_s = (spark.read
+    .option("mergeSchema", "true")
+    .parquet(f"{chemin_cnaf}cnaf_indiv_*.parquet")
+    .select("id_midas", "RSAVERS", "MTRSAVER", "DTREFFRE")
+    .withColumn("mois", to_date(col("DTREFFRE")))
+    .filter((col("mois") >= "2022-01-01") & (col("mois") <= "2022-12-01"))
+)
+
+```
+:::
+
 La table obtenue `table_cnaf_totale_s` est un spark_data_frame : c'est une table qui contient toutes les tables mensuelles prestations de la CNAF de l'année 2022. Voici un aperçu de la structure de `table_cnaf_totale_s`:
 
 ![](images/fiche%20retour%20emploi-etape-1.drawio.png){fig-align="center"}
@@ -135,6 +186,9 @@ La table obtenue `table_cnaf_totale_s` est un spark_data_frame : c'est une table
 ## Etape 2 : repérer les bénéficiaires du RSA
 
 Seuls les bénéficiaires du RSA qui perçoivent effectivement un montant de RSA non nul un mois donné sont conservés dans le champ.
+
+::: panel-tabset
+### R
 
 ```{r}
 #| eval: false
@@ -148,6 +202,27 @@ beneficiaires_rsa <- table_cnaf_totale_s %>%
   
 tbl_cache(sc, "beneficiaires_rsa")
 ```
+
+### Python
+
+```{python}
+#| eval: false
+#| echo: true
+#| python.reticulate: false
+
+beneficiaires_rsa = (table_cnaf_totale_s
+    .filter((col("RSAVERS").isin("RSA droit commun", "RSA droit local", "RSA jeune", "RSA expérimental", "C", "L", "J", "E")) & 
+            (col("MTRSAVER") > 0))
+    .select("id_midas", "mois")
+    .dropDuplicates()
+)
+
+beneficiaires_rsa.createOrReplaceTempView("beneficiaires_rsa")
+
+spark.catalog.cacheTable("beneficiaires_rsa")
+
+```
+:::
 
 Cette table de champ est persistée en mémoire RAM par spark à l'aide de la fonction `tbl_cache()`.
 
@@ -172,6 +247,9 @@ La table obtenue `MMO_tot` contient une ligne par mois d'emploi BIT pour chaque 
 ![](images/fiche%20retour%20emploi-etape-3.drawio.png){fig-align="center"}
 
 Elle ne contient que les contrats dont le salaire en DSN est bien déclarée (`Quali_Salaire_Base == 7`).
+
+::: panel-tabset
+### R
 
 ```{r}
 #| eval: false
@@ -198,6 +276,40 @@ MMO_tot <- sdf_bind_rows(MMO_2022, MMO_2023, MMO_2024) %>% #Empiler les tables a
 
 ```
 
+### Python
+
+```{python}
+#| eval: false
+#| echo: true
+#| python.reticulate: false
+
+chemin_mmo = "C:/Users/Public/Documents/MiDAS_parquet/Vague 6/MMO/"
+MMO_2022 = spark.read.parquet(f"{chemin_mmo}MMO_2_2022_M6.parquet")
+MMO_2023 = spark.read.parquet(f"{chemin_mmo}MMO_2_2023_M6.parquet")
+MMO_2024 = spark.read.parquet(f"{chemin_mmo}MMO_2_2024_M6.parquet")
+
+MMO_tot = MMO_2022.unionByName(MMO_2023).unionByName(MMO_2024)
+
+MMO_tot = (MMO_tot
+    .filter(F.col("Quali_Salaire_Base") == 7)
+    .withColumn("FinCTT", F.to_date(F.col("FinCTT")))
+    .withColumn("DebutCTT", F.to_date(F.col("DebutCTT")))
+    .withColumn("type_contrat", F.when(F.col("Nature").isin("01", "09", "50", "82", "91"), "CDI")
+                                .when(F.col("Nature").isin("02", "07", "10", "20", "21", "32", "51", "52", "80", "81", "92", "93"), "CDD")
+                                .when(F.col("Nature").isin("03", "08"), "interim")
+                                .when(F.col("Nature").isin("29", "53", "60", "70", "89", "90"), "autre")
+                                .otherwise(None))
+    .filter(F.col("DebutCTT").isNotNull())
+    .withColumn("duree_ctt", F.datediff(F.col("FinCTT"), F.col("DebutCTT")) + F.lit(1))
+    .withColumn("emploi_d", 
+    F.when((F.col("type_contrat") == "CDD") & ((F.col("duree_ctt") > 180) | F.col("duree_ctt").isNull()), 1)
+    .when(F.col("type_contrat") == "CDI", 1).otherwise(0))
+    .select("id_midas", "DebutCTT", "FinCTT", *[c for c in MMO_tot.columns if c.startswith("emploi_bit")], "emploi_d")
+)
+
+```
+:::
+
 ## Etape 4 : pivot pour filtrer sur les mois d'emploi BIT
 
 La table `MMO_tot` contient une information mensuelle sur l'emploi BIT en colonne. Comme la présence en emploi salarié est une présence au sens du BIT, il est plus pratique de pivoter la table (passage au format long) pour appliquer le filtre sur l'emploi BIT.
@@ -205,6 +317,9 @@ La table `MMO_tot` contient une information mensuelle sur l'emploi BIT en colonn
 La table `MMO_pivot` obtenue est la suivante :
 
 ![](images/fiche%20retour%20emploi-etape-4.drawio.png){fig-align="center"}
+
+::: panel-tabset
+### R
 
 ```{r}
 #| eval: false
@@ -220,11 +335,43 @@ MMO_pivot <- MMO_tot %>%
 
 ```
 
+### Python
+
+```{python}
+#| eval: false
+#| echo: true
+#| python.reticulate: false
+
+MMO_pivot = (MMO_tot
+    .select("id_midas", "DebutCTT", "FinCTT",
+    *[F.struct(F.lit(c.replace("emploi_bit_", "")).alias("date_emploi_bit"),
+               F.col(c).alias("emploi_bit")).alias(c) for c in MMO_tot.columns if c.startswith("emploi_bit_")])
+    .selectExpr("id_midas", "DebutCTT", "FinCTT", "stack(" + 
+             str(len([c for c in MMO_tot.columns if c.startswith("emploi_bit_")])) + ", " +
+             ", ".join([f"'{c}', {c}" for c in MMO_tot.columns if c.startswith("emploi_bit_")]) + 
+             ") as (date_emploi_bit, emploi_bit)")
+)
+
+# passage des variables emploi bit en ligne contrat X mois avec une indicatrice
+# pour chaque mois qui indique si le contrat correspond à de l'emploi bit sur le mois
+
+MMO_pivot = (MMO_pivot
+    .withColumn("date_emploi_bit_deb", F.to_date(F.concat_ws("-", F.substring("date_emploi_bit", 1, 4), F.substring("date_emploi_bit", 6, 2), F.lit("01"))))
+    .withColumn("date_emploi_bit_fin", F.last_day(F.col("date_emploi_bit_deb")))
+    .filter(F.col("emploi_bit") == 1) # on ne conserve que les lignes contrats X mois où les contrats sont en emploi BIT
+)
+
+```
+:::
+
 ## Etape 5 : repérer les horizons
 
 Pour chaque bénéficiaire du RSA un mois donné, on calcule le mois d'horizon n, jusqu'à l'horizon 24. La structure de la table `horizon_brsa` est la suivante :
 
 ![](images/fiche%20retour%20emploi-etape-5.drawio.png){fig-align="center"}
+
+::: panel-tabset
+### R
 
 ```{r}
 #| eval: false
@@ -244,11 +391,36 @@ horizon_brsa <- beneficiaires_rsa %>%
 
 ```
 
+### Python
+
+```{python}
+#| eval: false
+#| echo: true
+#| python.reticulate: false
+
+from pyspark.sql import Row
+
+# Table des horizons qu'on souhaite considérer
+# En PySpark, on crée directement le DataFrame sans passer par une copie
+horizon_num = spark.createDataFrame([Row(horizon=i) for i in range(25)])
+
+# Produit cartésien de chaque bénéficiaire du RSA un mois donné avec les 24 horizons observés
+horizon_brsa = beneficiaires_rsa.crossJoin(horizon_num)
+
+# Calcul du mois calendaire d'horizon : si on considère un BRSA en janvier 2022, l'horizon 2 est mars 2022
+horizon_brsa = horizon_brsa.withColumn("date_horizon", F.expr("add_months(mois, horizon)"))
+
+```
+:::
+
 ## Etape 6 : récupérer les contrats en cours au mois d'horizon
 
 Les contrats salariés en cours au mois d'horizon n sont ajoutés à la table. Un individu peut avoir pour un même mois d'horizon plusieurs contrats en cours. L'information est résumée : si un individu a au moins un contrat en cours le mois d'horizon n, la variable `en_emploi` vaut 1, sinon 0. La structure de `table_finale` est la suivante :
 
 ![](images/fiche%20retour%20emploi-etape-6.drawio.png){fig-align="center"}
+
+::: panel-tabset
+### R
 
 ```{r}
 #| eval: false
@@ -280,9 +452,51 @@ table_finale <- beneficiaires_rsa %>%
 
 ```
 
+### Python
+
+```{python}
+#| eval: false
+#| echo: true
+#| python.reticulate: false
+
+# Jointure avec les mois d'emploi BIT
+ajout_mois_emploi_bit = horizon_brsa.alias("LHS")
+    .join(MMO_pivot.alias("RHS"),
+    (F.col("LHS.id_midas") == F.col("RHS.id_midas")) &
+    (F.col("RHS.date_emploi_bit_deb") <= F.col("LHS.date_horizon")) &
+    (F.col("RHS.date_emploi_bit_fin") >= F.col("LHS.date_horizon")),
+    how="left")
+
+ajout_mois_emploi_bit = (ajout_mois_emploi_bit
+    .withColumn("en_emploi", F.when(F.col("DebutCTT").isNotNull(), 1).otherwise(0)) # si un contrat est retrouvé, l'individu est en emploi salarié le mois d'horizon considéré
+    .withColumn("en_emploi_durable", F.when((F.col("DebutCTT").isNotNull()) & (F.col("emploi_d") == 1), 1).otherwise(0))
+)
+
+ajout_mois_emploi_bit = (ajout_mois_emploi_bit.groupBy("id_midas", "KROD3", "horizon") # on dédoublonne : plusieurs contrats emploi BIT peuvent être retrouvés pour un individu un même mois d'horizon
+    .agg(
+        F.when(F.sum("en_emploi") >= 1, 1).otherwise(0).alias("en_emploi"),
+        F.when(F.sum("en_emploi_durable") >= 1, 1).otherwise(0).alias("en_emploi_durable")
+    )
+)
+
+ajout_mois_emploi_bit.createOrReplaceTempView("ajout_mois_emploi_bit")
+
+spark.catalog.cacheTable("ajout_mois_emploi_bit")
+
+# Ajout à la table individuelle de bénéficiaires mensuels du RSA
+table_finale = (beneficiaires_rsa.select("id_midas", "KROD3", "mois").distinct()
+    .join(ajout_mois_emploi_bit, on=["id_midas", "KROD3"], how="left")
+)
+
+```
+:::
+
 ## Etape 7 : Part de présence en emploi par cohorte mensuelle
 
 Le format de `table_finale` est long : une ligne correspond à un mois d'horizon considéré par rapport au mois de perception du RSA de l'individu. Ce format est pratique pour représenter des taux de présence en emploi salarié avec `ggplot2`. Le programme ci-dessous permet de tracer le profil de présence en emploi salarié par cohorte mensuelle de bénéficiaires du RSA.
+
+::: panel-tabset
+### R
 
 ```{r}
 #| eval: false
@@ -320,6 +534,31 @@ for (i in seq_along(mois)){
 }
 ```
 
+### Python
+
+```{python}
+#| eval: false
+#| echo: true
+#| python.reticulate: false
+
+prop_re = (
+    table_finale
+    .groupBy("mois", "horizon")
+    .agg(
+        F.sum("en_emploi").alias("eff"),
+        F.count("*").alias("tot")
+    )
+    .withColumn("prop", (F.col("eff") * 100 / F.col("tot")))
+    .orderBy("mois")
+)
+
+mois = prop_re.select("mois").rdd.flatMap(lambda x: x).collect()
+
+# La suite n'est pas proposée en PySpark car elle utilise ggplot de R
+
+```
+:::
+
 ## Conclusion
 
 Pour calculer le retour à l'emploi, des colonnes (=vecteurs) de dates sont comparés entre eux, ce qui permet de calculer pour toute cohorte et tout horizon la présence en emploi en une unique opération. Même si joindre l'ensemble des contrats salariés à l'ensemble des mois d'horizon peut donner une table avec plusieurs millions de lignes, spark est tout à fait adapté pour traiter des données aussi volumineuses avec des opérations vectorielles et des jointures optimisées, si le programme limite les shuffles.
@@ -333,6 +572,9 @@ Voici les étapes :
 2.  Une autre boucle for permet pour chaque cohorte mensuelle de bénéficiaires du RSA de repérer la présence en emploi salairé à chaque horizon : pour chaque horizon sur les 24 considérés, la table MMO annuelle correspondante est chargée avec `arrow`, filtrée sur les contrats du mois d'horizon considéré, et appariée avec la cohorte de bénéficiaire du RSA.
 
 3.  Pour supprimer les tables de la mémoire à chaque itération, seuls les effectifs de bénéficiaires du RSA et de bénéficiaires présents en emploi sont conservés à chaque itération.
+
+::: panel-tabset
+### R
 
 ```{r}
 #| eval: false
@@ -420,3 +662,15 @@ for(c in seq_along(cohortes)) {
   
 }
 ```
+
+### Python
+
+```{python}
+#| eval: false
+#| echo: true
+#| python.reticulate: false
+
+
+
+```
+:::
