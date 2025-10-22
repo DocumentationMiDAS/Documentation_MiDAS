@@ -352,6 +352,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="etape-0-connexion-au-cluster" class="level2">
 <h2 class="anchored" data-anchor-id="etape-0-connexion-au-cluster">Etape 0 : connexion au cluster</h2>
 <p>Cette configuration est la configuration recommandée pour utiliser le cluster spark de la bulle Midares. Elle permet d’effectuer des traitements lourds sur la totalité du champ de Midas.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fichier de configuration Spark</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>conf <span class="ot">&lt;-</span> <span class="fu">spark_config</span>()</span>
@@ -364,22 +368,64 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>sc <span class="ot">&lt;-</span> <span class="fu">spark_connect</span>(<span class="at">master=</span><span class="st">"yarn"</span>, <span class="at">config =</span> conf)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell" data-python.reticulate="false">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fichier de configuration Spark</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>spark <span class="op">=</span> (SparkSession.builder</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    .appName(<span class="st">"MonApplicationSpark"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    .master(<span class="st">"yarn"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    .config(<span class="st">"spark.driver.memory"</span>, <span class="st">"20g"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    .config(<span class="st">"spark.executor.memory"</span>, <span class="st">"60g"</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    .config(<span class="st">"spark.executor.cores"</span>, <span class="st">"4"</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    .config(<span class="st">"spark.executor.instances"</span>, <span class="st">"2"</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    .config(<span class="st">"spark.sql.reduction.limit"</span>, <span class="st">"0"</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    .config(<span class="st">"spark.driver.maxResultSize"</span>, <span class="st">"0"</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    .getOrCreate())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="etape-1-charger-lazy-les-tables-cnaf-en-une-fois" class="level2">
 <h2 class="anchored" data-anchor-id="etape-1-charger-lazy-les-tables-cnaf-en-une-fois">Etape 1 : charger (lazy) les tables cnaf en une fois</h2>
 <p>Spark est optimisé pour les traitements vectoriels : il est conseillé de traiter toutes les tables mensuelles de la CNAF comme une unique table complète. Il est beaucoup plus rapide pour spark d’effectuer une fois une opération sur les colonnes d’une table très volumineuse que de segmenter le calcul sur des tables mensuelles.</p>
 <p>Spark permet de pointer vers l’ensemble des tables d’un même dossier en une fois, de manière lazy. L’option mergeSchema permet de conserver les variables qui peuvent être absentes dans certaines tables. Par exemple, pour lire l’ensemble des tables passage, il est important de mettre cette option pour garder la variable topconj qui n’est dans les tables qu’à partir de juillet 2018.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Chemin vers les données MiDAS </span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>chemin_cnaf <span class="ot">&lt;-</span> <span class="st">"hdfs:///dataset/MiDAS_v6/Allstat/minsoc/"</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Cohortes de BRSA considérées</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>cohortes <span class="ot">&lt;-</span> <span class="fu">sprintf</span>(<span class="st">"%02d22"</span>,<span class="dv">01</span><span class="sc">:</span><span class="dv">12</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># chargement des tables prestations et filtre sur les cohortes mensuelles considérées</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>table_cnaf_totale_s <span class="ot">&lt;-</span> <span class="fu">spark_read_parquet</span>(sc, <span class="at">name =</span> <span class="st">"table_cnaf_totale"</span>, <span class="at">path =</span> <span class="fu">paste0</span>(chemin_cnaf, <span class="st">"cnaf_indiv_*.parquet"</span>), <span class="at">options =</span> <span class="fu">list</span>(<span class="at">mergeSchema =</span> <span class="st">"true"</span>), <span class="at">memory =</span> F) <span class="sc">%&gt;%</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id_midas, RSAVERS, MTRSAVER) <span class="sc">%&gt;%</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mois =</span> DTREFFRE) <span class="sc">%&gt;%</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(mois <span class="sc">&gt;=</span> <span class="fu">as.Date</span>(<span class="st">"2022-01-01"</span>) <span class="sc">&amp;</span> mois <span class="sc">&lt;=</span> <span class="fu">as.Date</span>(<span class="st">"2022-12-01"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Chemin vers les données MiDAS </span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>chemin_cnaf <span class="ot">&lt;-</span> <span class="st">"hdfs:///dataset/MiDAS_v6/Allstat/minsoc/"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Cohortes de BRSA considérées</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>cohortes <span class="ot">&lt;-</span> <span class="fu">sprintf</span>(<span class="st">"%02d22"</span>,<span class="dv">01</span><span class="sc">:</span><span class="dv">12</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Chargement des tables prestations et filtre sur les cohortes mensuelles considérées</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>table_cnaf_totale_s <span class="ot">&lt;-</span> <span class="fu">spark_read_parquet</span>(sc, <span class="at">name =</span> <span class="st">"table_cnaf_totale"</span>, <span class="at">path =</span> <span class="fu">paste0</span>(chemin_cnaf, <span class="st">"cnaf_indiv_*.parquet"</span>), <span class="at">options =</span> <span class="fu">list</span>(<span class="at">mergeSchema =</span> <span class="st">"true"</span>), <span class="at">memory =</span> F) <span class="sc">%&gt;%</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id_midas, RSAVERS, MTRSAVER) <span class="sc">%&gt;%</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mois =</span> DTREFFRE) <span class="sc">%&gt;%</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(mois <span class="sc">&gt;=</span> <span class="fu">as.Date</span>(<span class="st">"2022-01-01"</span>) <span class="sc">&amp;</span> mois <span class="sc">&lt;=</span> <span class="fu">as.Date</span>(<span class="st">"2022-12-01"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell" data-python.reticulate="false">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Chemin vers les données MiDAS</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>chemin_cnaf <span class="op">=</span> <span class="st">"hdfs:///dataset/MiDAS_v6/Allstat/minsoc/"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Cohortes de BRSA considérées</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>cohortes <span class="op">=</span> [<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">:02d}</span><span class="ss">22"</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">13</span>)]</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Chargement des tables prestations et filtre sur les cohortes mensuelles considérées</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>table_cnaf_totale_s <span class="op">=</span> (spark.read</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    .option(<span class="st">"mergeSchema"</span>, <span class="st">"true"</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    .parquet(<span class="ss">f"</span><span class="sc">{</span>chemin_cnaf<span class="sc">}</span><span class="ss">cnaf_indiv_*.parquet"</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    .select(<span class="st">"id_midas"</span>, <span class="st">"RSAVERS"</span>, <span class="st">"MTRSAVER"</span>, <span class="st">"DTREFFRE"</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    .withColumn(<span class="st">"mois"</span>, to_date(col(<span class="st">"DTREFFRE"</span>)))</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>((col(<span class="st">"mois"</span>) <span class="op">&gt;=</span> <span class="st">"2022-01-01"</span>) <span class="op">&amp;</span> (col(<span class="st">"mois"</span>) <span class="op">&lt;=</span> <span class="st">"2022-12-01"</span>))</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
 </div>
 <p>La table obtenue <code>table_cnaf_totale_s</code> est un spark_data_frame : c’est une table qui contient toutes les tables mensuelles prestations de la CNAF de l’année 2022. Voici un aperçu de la structure de <code>table_cnaf_totale_s</code>:</p>
 <div class="quarto-figure quarto-figure-center">
@@ -391,14 +437,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="etape-2-repérer-les-bénéficiaires-du-rsa" class="level2">
 <h2 class="anchored" data-anchor-id="etape-2-repérer-les-bénéficiaires-du-rsa">Etape 2 : repérer les bénéficiaires du RSA</h2>
 <p>Seuls les bénéficiaires du RSA qui perçoivent effectivement un montant de RSA non nul un mois donné sont conservés dans le champ.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>beneficiaires_rsa <span class="ot">&lt;-</span> table_cnaf_totale_s <span class="sc">%&gt;%</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(RSAVERS <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"RSA droit commun"</span>, <span class="st">"RSA droit local"</span>, <span class="st">"RSA jeune"</span>, <span class="st">"RSA expérimental"</span>,</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                        <span class="st">"C"</span>, <span class="st">"L"</span>, <span class="st">"J"</span>, <span class="st">"E"</span>) <span class="sc">&amp;</span> MTRSAVER <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas, mois) <span class="sc">%&gt;%</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sdf_register</span>(<span class="st">"beneficiaires_rsa"</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_cache</span>(sc, <span class="st">"beneficiaires_rsa"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>beneficiaires_rsa <span class="ot">&lt;-</span> table_cnaf_totale_s <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(RSAVERS <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"RSA droit commun"</span>, <span class="st">"RSA droit local"</span>, <span class="st">"RSA jeune"</span>, <span class="st">"RSA expérimental"</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                        <span class="st">"C"</span>, <span class="st">"L"</span>, <span class="st">"J"</span>, <span class="st">"E"</span>) <span class="sc">&amp;</span> MTRSAVER <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas, mois) <span class="sc">%&gt;%</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sdf_register</span>(<span class="st">"beneficiaires_rsa"</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_cache</span>(sc, <span class="st">"beneficiaires_rsa"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div class="cell" data-python.reticulate="false">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>beneficiaires_rsa <span class="op">=</span> (table_cnaf_totale_s</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>((col(<span class="st">"RSAVERS"</span>).isin(<span class="st">"RSA droit commun"</span>, <span class="st">"RSA droit local"</span>, <span class="st">"RSA jeune"</span>, <span class="st">"RSA expérimental"</span>, <span class="st">"C"</span>, <span class="st">"L"</span>, <span class="st">"J"</span>, <span class="st">"E"</span>)) <span class="op">&amp;</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>            (col(<span class="st">"MTRSAVER"</span>) <span class="op">&gt;</span> <span class="dv">0</span>))</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    .select(<span class="st">"id_midas"</span>, <span class="st">"mois"</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    .dropDuplicates()</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>beneficiaires_rsa.createOrReplaceTempView(<span class="st">"beneficiaires_rsa"</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>spark.catalog.cacheTable(<span class="st">"beneficiaires_rsa"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
 </div>
 <p>Cette table de champ est persistée en mémoire RAM par spark à l’aide de la fonction <code>tbl_cache()</code>.</p>
 <p>La table <code>beneficiaires_rsa</code> a la structure suivante :</p>
@@ -432,25 +499,59 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 <p>Elle ne contient que les contrats dont le salaire en DSN est bien déclarée (<code>Quali_Salaire_Base == 7</code>).</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>chemin_mmo <span class="ot">&lt;-</span> <span class="st">"C:/Users/Public/Documents/MiDAS_parquet/Vague 6/MMO/"</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>MMO_2022 <span class="ot">&lt;-</span> <span class="fu">spark_read_parquet</span>(sc, <span class="fu">paste0</span>(chemin_mmo, <span class="st">"MMO_2_2022_M6.parquet"</span>), <span class="at">memory =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>MMO_2023 <span class="ot">&lt;-</span> <span class="fu">spark_read_parquet</span>(sc, <span class="fu">paste0</span>(chemin_mmo, <span class="st">"MMO_2_2023_M6.parquet"</span>), <span class="at">memory =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>MMO_2024 <span class="ot">&lt;-</span> <span class="fu">spark_read_parquet</span>(sc, <span class="fu">paste0</span>(chemin_mmo, <span class="st">"MMO_2_2024_M6.parquet"</span>), <span class="at">memory =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>MMO_tot <span class="ot">&lt;-</span> <span class="fu">sdf_bind_rows</span>(MMO_2022, MMO_2023, MMO_2024) <span class="sc">%&gt;%</span> <span class="co">#Empiler les tables annuelles pour travailler en vectoriel</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Quali_Salaire_Base <span class="sc">==</span> <span class="dv">7</span>) <span class="sc">%&gt;%</span> <span class="co"># uniquement les contrats dont le salaire est bien déclaré</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">FinCTT =</span> <span class="fu">as.Date</span>(FinCTT), <span class="at">DebutCTT =</span> <span class="fu">as.Date</span>(DebutCTT)) <span class="sc">%&gt;%</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">type_contrat =</span> <span class="fu">case_when</span>(Nature <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"01"</span>, <span class="st">"09"</span>, <span class="st">"50"</span>, <span class="st">"82"</span>, <span class="st">"91"</span>) <span class="sc">~</span> <span class="st">"CDI"</span>,</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>                                  Nature <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"02"</span>, <span class="st">"07"</span>, <span class="st">"10"</span>, <span class="st">"20"</span>, <span class="st">"21"</span>, <span class="st">"32"</span>, <span class="st">"51"</span>, <span class="st">"52"</span>, <span class="st">"80"</span>, <span class="st">"81"</span>, <span class="st">"92"</span>, <span class="st">"93"</span>) <span class="sc">~</span> <span class="st">"CDD"</span>,</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>                                  Nature <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"03"</span>, <span class="st">"08"</span>) <span class="sc">~</span> <span class="st">"interim"</span>,</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>                                  Nature <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"29"</span>, <span class="st">"53"</span>, <span class="st">"60"</span>, <span class="st">"70"</span>, <span class="st">"89"</span>, <span class="st">"90"</span>) <span class="sc">~</span> <span class="st">"autre"</span>,</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>                                  <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(DebutCTT)) <span class="sc">%&gt;%</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">duree_ctt =</span> <span class="fu">DATEDIFF</span>(FinCTT,DebutCTT) <span class="sc">+</span> <span class="dv">1</span>, </span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">emploi_d =</span> <span class="fu">ifelse</span>((type_contrat <span class="sc">==</span> <span class="st">"CDD"</span> <span class="sc">&amp;</span> (duree_ctt <span class="sc">&gt;</span> <span class="dv">180</span> <span class="sc">|</span> <span class="fu">is.na</span>(duree_ctt))) <span class="sc">|</span> type_contrat <span class="sc">==</span> <span class="st">"CDI"</span>, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="sc">%&gt;%</span> <span class="co"># définition de l'emploi durable : CDD de plus de 6 mois ou CDI</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id_midas, DebutCTT, FinCTT, <span class="fu">starts_with</span>(<span class="st">"emploi_bit"</span>), emploi_d) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>chemin_mmo <span class="ot">&lt;-</span> <span class="st">"C:/Users/Public/Documents/MiDAS_parquet/Vague 6/MMO/"</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>MMO_2022 <span class="ot">&lt;-</span> <span class="fu">spark_read_parquet</span>(sc, <span class="fu">paste0</span>(chemin_mmo, <span class="st">"MMO_2_2022_M6.parquet"</span>), <span class="at">memory =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>MMO_2023 <span class="ot">&lt;-</span> <span class="fu">spark_read_parquet</span>(sc, <span class="fu">paste0</span>(chemin_mmo, <span class="st">"MMO_2_2023_M6.parquet"</span>), <span class="at">memory =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>MMO_2024 <span class="ot">&lt;-</span> <span class="fu">spark_read_parquet</span>(sc, <span class="fu">paste0</span>(chemin_mmo, <span class="st">"MMO_2_2024_M6.parquet"</span>), <span class="at">memory =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>MMO_tot <span class="ot">&lt;-</span> <span class="fu">sdf_bind_rows</span>(MMO_2022, MMO_2023, MMO_2024) <span class="sc">%&gt;%</span> <span class="co">#Empiler les tables annuelles pour travailler en vectoriel</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Quali_Salaire_Base <span class="sc">==</span> <span class="dv">7</span>) <span class="sc">%&gt;%</span> <span class="co"># uniquement les contrats dont le salaire est bien déclaré</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">FinCTT =</span> <span class="fu">as.Date</span>(FinCTT), <span class="at">DebutCTT =</span> <span class="fu">as.Date</span>(DebutCTT)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">type_contrat =</span> <span class="fu">case_when</span>(Nature <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"01"</span>, <span class="st">"09"</span>, <span class="st">"50"</span>, <span class="st">"82"</span>, <span class="st">"91"</span>) <span class="sc">~</span> <span class="st">"CDI"</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>                                  Nature <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"02"</span>, <span class="st">"07"</span>, <span class="st">"10"</span>, <span class="st">"20"</span>, <span class="st">"21"</span>, <span class="st">"32"</span>, <span class="st">"51"</span>, <span class="st">"52"</span>, <span class="st">"80"</span>, <span class="st">"81"</span>, <span class="st">"92"</span>, <span class="st">"93"</span>) <span class="sc">~</span> <span class="st">"CDD"</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>                                  Nature <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"03"</span>, <span class="st">"08"</span>) <span class="sc">~</span> <span class="st">"interim"</span>,</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>                                  Nature <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"29"</span>, <span class="st">"53"</span>, <span class="st">"60"</span>, <span class="st">"70"</span>, <span class="st">"89"</span>, <span class="st">"90"</span>) <span class="sc">~</span> <span class="st">"autre"</span>,</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>                                  <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(DebutCTT)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">duree_ctt =</span> <span class="fu">DATEDIFF</span>(FinCTT,DebutCTT) <span class="sc">+</span> <span class="dv">1</span>, </span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">emploi_d =</span> <span class="fu">ifelse</span>((type_contrat <span class="sc">==</span> <span class="st">"CDD"</span> <span class="sc">&amp;</span> (duree_ctt <span class="sc">&gt;</span> <span class="dv">180</span> <span class="sc">|</span> <span class="fu">is.na</span>(duree_ctt))) <span class="sc">|</span> type_contrat <span class="sc">==</span> <span class="st">"CDI"</span>, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="sc">%&gt;%</span> <span class="co"># définition de l'emploi durable : CDD de plus de 6 mois ou CDI</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id_midas, DebutCTT, FinCTT, <span class="fu">starts_with</span>(<span class="st">"emploi_bit"</span>), emploi_d) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<div class="cell" data-python.reticulate="false">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>chemin_mmo <span class="op">=</span> <span class="st">"C:/Users/Public/Documents/MiDAS_parquet/Vague 6/MMO/"</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>MMO_2022 <span class="op">=</span> spark.read.parquet(<span class="ss">f"</span><span class="sc">{</span>chemin_mmo<span class="sc">}</span><span class="ss">MMO_2_2022_M6.parquet"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>MMO_2023 <span class="op">=</span> spark.read.parquet(<span class="ss">f"</span><span class="sc">{</span>chemin_mmo<span class="sc">}</span><span class="ss">MMO_2_2023_M6.parquet"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>MMO_2024 <span class="op">=</span> spark.read.parquet(<span class="ss">f"</span><span class="sc">{</span>chemin_mmo<span class="sc">}</span><span class="ss">MMO_2_2024_M6.parquet"</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>MMO_tot <span class="op">=</span> MMO_2022.unionByName(MMO_2023).unionByName(MMO_2024)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>MMO_tot <span class="op">=</span> (MMO_tot</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(F.col(<span class="st">"Quali_Salaire_Base"</span>) <span class="op">==</span> <span class="dv">7</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    .withColumn(<span class="st">"FinCTT"</span>, F.to_date(F.col(<span class="st">"FinCTT"</span>)))</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    .withColumn(<span class="st">"DebutCTT"</span>, F.to_date(F.col(<span class="st">"DebutCTT"</span>)))</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    .withColumn(<span class="st">"type_contrat"</span>, F.when(F.col(<span class="st">"Nature"</span>).isin(<span class="st">"01"</span>, <span class="st">"09"</span>, <span class="st">"50"</span>, <span class="st">"82"</span>, <span class="st">"91"</span>), <span class="st">"CDI"</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>                                .when(F.col(<span class="st">"Nature"</span>).isin(<span class="st">"02"</span>, <span class="st">"07"</span>, <span class="st">"10"</span>, <span class="st">"20"</span>, <span class="st">"21"</span>, <span class="st">"32"</span>, <span class="st">"51"</span>, <span class="st">"52"</span>, <span class="st">"80"</span>, <span class="st">"81"</span>, <span class="st">"92"</span>, <span class="st">"93"</span>), <span class="st">"CDD"</span>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>                                .when(F.col(<span class="st">"Nature"</span>).isin(<span class="st">"03"</span>, <span class="st">"08"</span>), <span class="st">"interim"</span>)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>                                .when(F.col(<span class="st">"Nature"</span>).isin(<span class="st">"29"</span>, <span class="st">"53"</span>, <span class="st">"60"</span>, <span class="st">"70"</span>, <span class="st">"89"</span>, <span class="st">"90"</span>), <span class="st">"autre"</span>)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>                                .otherwise(<span class="va">None</span>))</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(F.col(<span class="st">"DebutCTT"</span>).isNotNull())</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    .withColumn(<span class="st">"duree_ctt"</span>, F.datediff(F.col(<span class="st">"FinCTT"</span>), F.col(<span class="st">"DebutCTT"</span>)) <span class="op">+</span> F.lit(<span class="dv">1</span>))</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    .withColumn(<span class="st">"emploi_d"</span>, </span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    F.when((F.col(<span class="st">"type_contrat"</span>) <span class="op">==</span> <span class="st">"CDD"</span>) <span class="op">&amp;</span> ((F.col(<span class="st">"duree_ctt"</span>) <span class="op">&gt;</span> <span class="dv">180</span>) <span class="op">|</span> F.col(<span class="st">"duree_ctt"</span>).isNull()), <span class="dv">1</span>)</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    .when(F.col(<span class="st">"type_contrat"</span>) <span class="op">==</span> <span class="st">"CDI"</span>, <span class="dv">1</span>).otherwise(<span class="dv">0</span>))</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    .select(<span class="st">"id_midas"</span>, <span class="st">"DebutCTT"</span>, <span class="st">"FinCTT"</span>, <span class="op">*</span>[c <span class="cf">for</span> c <span class="kw">in</span> MMO_tot.columns <span class="cf">if</span> c.startswith(<span class="st">"emploi_bit"</span>)], <span class="st">"emploi_d"</span>)</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
 </div>
 </section>
 <section id="etape-4-pivot-pour-filtrer-sur-les-mois-demploi-bit" class="level2">
@@ -462,14 +563,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="images/fiche retour emploi-etape-4.drawio.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>MMO_pivot <span class="ot">&lt;-</span> MMO_tot <span class="sc">%&gt;%</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"emploi_bit_"</span>), <span class="at">names_to =</span> <span class="st">"date_emploi_bit"</span>, <span class="at">names_prefix =</span> <span class="st">"emploi_bit_"</span>, <span class="at">values_to =</span> <span class="st">"emploi_bit"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># passage des variables emploi bit en ligne contrat X mois avec une indicatrice </span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># pour chaque mois qui indique si le contrat correspond à de l'emploi bit sur le mois</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date_emploi_bit_deb =</span> <span class="fu">as.Date</span>(<span class="fu">paste0</span>(<span class="fu">substr</span>(date_emploi_bit,<span class="dv">1</span>,<span class="dv">4</span>), <span class="st">"-"</span>, <span class="fu">substr</span>(date_emploi_bit,<span class="dv">6</span>,<span class="dv">7</span>), <span class="st">"-01"</span>)),</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">date_emploi_bit_fin =</span> <span class="fu">last_day</span>(date_emploi_bit_deb)) <span class="sc">%&gt;%</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(emploi_bit <span class="sc">==</span> <span class="dv">1</span>) <span class="co"># on ne conserve que les lignes contrats X mois où les contrats sont en emploi BIT</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>MMO_pivot <span class="ot">&lt;-</span> MMO_tot <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"emploi_bit_"</span>), <span class="at">names_to =</span> <span class="st">"date_emploi_bit"</span>, <span class="at">names_prefix =</span> <span class="st">"emploi_bit_"</span>, <span class="at">values_to =</span> <span class="st">"emploi_bit"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># passage des variables emploi bit en ligne contrat X mois avec une indicatrice </span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># pour chaque mois qui indique si le contrat correspond à de l'emploi bit sur le mois</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date_emploi_bit_deb =</span> <span class="fu">as.Date</span>(<span class="fu">paste0</span>(<span class="fu">substr</span>(date_emploi_bit,<span class="dv">1</span>,<span class="dv">4</span>), <span class="st">"-"</span>, <span class="fu">substr</span>(date_emploi_bit,<span class="dv">6</span>,<span class="dv">7</span>), <span class="st">"-01"</span>)),</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">date_emploi_bit_fin =</span> <span class="fu">last_day</span>(date_emploi_bit_deb)) <span class="sc">%&gt;%</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(emploi_bit <span class="sc">==</span> <span class="dv">1</span>) <span class="co"># on ne conserve que les lignes contrats X mois où les contrats sont en emploi BIT</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<div class="cell" data-python.reticulate="false">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>MMO_pivot <span class="op">=</span> (MMO_tot</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    .select(<span class="st">"id_midas"</span>, <span class="st">"DebutCTT"</span>, <span class="st">"FinCTT"</span>,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">*</span>[F.struct(F.lit(c.replace(<span class="st">"emploi_bit_"</span>, <span class="st">""</span>)).alias(<span class="st">"date_emploi_bit"</span>),</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>               F.col(c).alias(<span class="st">"emploi_bit"</span>)).alias(c) <span class="cf">for</span> c <span class="kw">in</span> MMO_tot.columns <span class="cf">if</span> c.startswith(<span class="st">"emploi_bit_"</span>)])</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    .selectExpr(<span class="st">"id_midas"</span>, <span class="st">"DebutCTT"</span>, <span class="st">"FinCTT"</span>, <span class="st">"stack("</span> <span class="op">+</span> </span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>             <span class="bu">str</span>(<span class="bu">len</span>([c <span class="cf">for</span> c <span class="kw">in</span> MMO_tot.columns <span class="cf">if</span> c.startswith(<span class="st">"emploi_bit_"</span>)])) <span class="op">+</span> <span class="st">", "</span> <span class="op">+</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>             <span class="st">", "</span>.join([<span class="ss">f"'</span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">', </span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> c <span class="kw">in</span> MMO_tot.columns <span class="cf">if</span> c.startswith(<span class="st">"emploi_bit_"</span>)]) <span class="op">+</span> </span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>             <span class="st">") as (date_emploi_bit, emploi_bit)"</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co"># passage des variables emploi bit en ligne contrat X mois avec une indicatrice</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co"># pour chaque mois qui indique si le contrat correspond à de l'emploi bit sur le mois</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>MMO_pivot <span class="op">=</span> (MMO_pivot</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    .withColumn(<span class="st">"date_emploi_bit_deb"</span>, F.to_date(F.concat_ws(<span class="st">"-"</span>, F.substring(<span class="st">"date_emploi_bit"</span>, <span class="dv">1</span>, <span class="dv">4</span>), F.substring(<span class="st">"date_emploi_bit"</span>, <span class="dv">6</span>, <span class="dv">2</span>), F.lit(<span class="st">"01"</span>))))</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    .withColumn(<span class="st">"date_emploi_bit_fin"</span>, F.last_day(F.col(<span class="st">"date_emploi_bit_deb"</span>)))</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(F.col(<span class="st">"emploi_bit"</span>) <span class="op">==</span> <span class="dv">1</span>) <span class="co"># on ne conserve que les lignes contrats X mois où les contrats sont en emploi BIT</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
 </div>
 </section>
 <section id="etape-5-repérer-les-horizons" class="level2">
@@ -480,17 +610,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="images/fiche retour emploi-etape-5.drawio.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rlang)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Table des horizons qu'on souhaite considérer</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>horizon_num <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">horizon =</span> <span class="fu">c</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">24</span>))</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>horizon_num_s <span class="ot">&lt;-</span> <span class="fu">copy_to</span>(sc, horizon_num)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Produit cartésien de chaque bénéficiaire du RSA un mois donné avec les 24 horizons observés</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>horizon_brsa <span class="ot">&lt;-</span> beneficiaires_rsa <span class="sc">%&gt;%</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cross_join</span>(horizon_num_s) <span class="sc">%&gt;%</span> </span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date_horizon =</span> <span class="fu">sql</span>(<span class="st">"add_months(mois, horizon)"</span>))  <span class="co"># calcul du mois calendaire d'horizon : si on considère un BRSA en janvier 2022, l'horizon 2 est mars 2022</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rlang)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Table des horizons qu'on souhaite considérer</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>horizon_num <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">horizon =</span> <span class="fu">c</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">24</span>))</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>horizon_num_s <span class="ot">&lt;-</span> <span class="fu">copy_to</span>(sc, horizon_num)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Produit cartésien de chaque bénéficiaire du RSA un mois donné avec les 24 horizons observés</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>horizon_brsa <span class="ot">&lt;-</span> beneficiaires_rsa <span class="sc">%&gt;%</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cross_join</span>(horizon_num_s) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date_horizon =</span> <span class="fu">sql</span>(<span class="st">"add_months(mois, horizon)"</span>))  <span class="co"># calcul du mois calendaire d'horizon : si on considère un BRSA en janvier 2022, l'horizon 2 est mars 2022</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
+<div class="cell" data-python.reticulate="false">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql <span class="im">import</span> Row</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Table des horizons qu'on souhaite considérer</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># En PySpark, on crée directement le DataFrame sans passer par une copie</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>horizon_num <span class="op">=</span> spark.createDataFrame([Row(horizon<span class="op">=</span>i) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">25</span>)])</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Produit cartésien de chaque bénéficiaire du RSA un mois donné avec les 24 horizons observés</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>horizon_brsa <span class="op">=</span> beneficiaires_rsa.crossJoin(horizon_num)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul du mois calendaire d'horizon : si on considère un BRSA en janvier 2022, l'horizon 2 est mars 2022</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>horizon_brsa <span class="op">=</span> horizon_brsa.withColumn(<span class="st">"date_horizon"</span>, F.expr(<span class="st">"add_months(mois, horizon)"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
 </div>
 </section>
 <section id="etape-6-récupérer-les-contrats-en-cours-au-mois-dhorizon" class="level2">
@@ -501,65 +653,129 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="images/fiche retour emploi-etape-6.drawio.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Jointure avec les mois d'emploi BIT</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>ajout_mois_emploi_bit <span class="ot">&lt;-</span> horizon_brsa <span class="sc">%&gt;%</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(MMO_pivot, <span class="at">sql_on =</span> <span class="st">"LHS.id_midas = RHS.id_midas</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="st">            AND RHS.date_emploi_bit_deb &lt;= LHS.date_horizon</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="st">            AND RHS.date_emploi_bit_fin &gt;= LHS.date_horizon"</span>,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">keep =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="co"># pour chaque horizon, on ne conserve que les contrats d'emploi BIT du même mois</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>id_midas_y) <span class="sc">%&gt;%</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">id_midas =</span> id_midas_x) <span class="sc">%&gt;%</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">en_emploi =</span> <span class="fu">ifelse</span>(<span class="sc">!</span><span class="fu">is.na</span>(DebutCTT), <span class="dv">1</span>, <span class="dv">0</span>), <span class="co"># si un contrat est retrouvé, l'individu est en emploi salarié le mois d'horizon considéré</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">en_emploi_durable =</span> <span class="fu">ifelse</span>(<span class="sc">!</span><span class="fu">is.na</span>(DebutCTT) <span class="sc">&amp;</span> emploi_d <span class="sc">==</span> <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id_midas, KROD3, horizon) <span class="sc">%&gt;%</span> <span class="co"># on dédoublonne : plusieurs contrats emploi BIT peuvent être retrouvés pour un individu un même mois d'horizon</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">en_emploi =</span> <span class="fu">ifelse</span>(<span class="fu">sum</span>(en_emploi) <span class="sc">&gt;=</span> <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">en_emploi_durable =</span> <span class="fu">ifelse</span>(<span class="fu">sum</span>(en_emploi_durable) <span class="sc">&gt;=</span> <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  ungroup <span class="sc">%&gt;%</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sdf_register</span>(<span class="at">name =</span> <span class="st">"ajout_mois_emploi_bit"</span>)</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_cache</span>(sc, <span class="at">name =</span> <span class="st">"ajout_mois_emploi_bit"</span>)</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajout à la table individuelle de bénéficiaires mensuels du RSA</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>table_finale <span class="ot">&lt;-</span> beneficiaires_rsa <span class="sc">%&gt;%</span></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas, KROD3, mois) <span class="sc">%&gt;%</span></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(ajout_mois_emploi_bit, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>)) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Jointure avec les mois d'emploi BIT</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>ajout_mois_emploi_bit <span class="ot">&lt;-</span> horizon_brsa <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(MMO_pivot, <span class="at">sql_on =</span> <span class="st">"LHS.id_midas = RHS.id_midas</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="st">            AND RHS.date_emploi_bit_deb &lt;= LHS.date_horizon</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="st">            AND RHS.date_emploi_bit_fin &gt;= LHS.date_horizon"</span>,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">keep =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="co"># pour chaque horizon, on ne conserve que les contrats d'emploi BIT du même mois</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>id_midas_y) <span class="sc">%&gt;%</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">id_midas =</span> id_midas_x) <span class="sc">%&gt;%</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">en_emploi =</span> <span class="fu">ifelse</span>(<span class="sc">!</span><span class="fu">is.na</span>(DebutCTT), <span class="dv">1</span>, <span class="dv">0</span>), <span class="co"># si un contrat est retrouvé, l'individu est en emploi salarié le mois d'horizon considéré</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">en_emploi_durable =</span> <span class="fu">ifelse</span>(<span class="sc">!</span><span class="fu">is.na</span>(DebutCTT) <span class="sc">&amp;</span> emploi_d <span class="sc">==</span> <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id_midas, KROD3, horizon) <span class="sc">%&gt;%</span> <span class="co"># on dédoublonne : plusieurs contrats emploi BIT peuvent être retrouvés pour un individu un même mois d'horizon</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">en_emploi =</span> <span class="fu">ifelse</span>(<span class="fu">sum</span>(en_emploi) <span class="sc">&gt;=</span> <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">en_emploi_durable =</span> <span class="fu">ifelse</span>(<span class="fu">sum</span>(en_emploi_durable) <span class="sc">&gt;=</span> <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  ungroup <span class="sc">%&gt;%</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sdf_register</span>(<span class="at">name =</span> <span class="st">"ajout_mois_emploi_bit"</span>)</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_cache</span>(sc, <span class="at">name =</span> <span class="st">"ajout_mois_emploi_bit"</span>)</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajout à la table individuelle de bénéficiaires mensuels du RSA</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>table_finale <span class="ot">&lt;-</span> beneficiaires_rsa <span class="sc">%&gt;%</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(id_midas, KROD3, mois) <span class="sc">%&gt;%</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(ajout_mois_emploi_bit, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>)) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
+<div class="cell" data-python.reticulate="false">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Jointure avec les mois d'emploi BIT</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>ajout_mois_emploi_bit <span class="op">=</span> horizon_brsa.alias(<span class="st">"LHS"</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    .join(MMO_pivot.alias(<span class="st">"RHS"</span>),</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    (F.col(<span class="st">"LHS.id_midas"</span>) <span class="op">==</span> F.col(<span class="st">"RHS.id_midas"</span>)) <span class="op">&amp;</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    (F.col(<span class="st">"RHS.date_emploi_bit_deb"</span>) <span class="op">&lt;=</span> F.col(<span class="st">"LHS.date_horizon"</span>)) <span class="op">&amp;</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    (F.col(<span class="st">"RHS.date_emploi_bit_fin"</span>) <span class="op">&gt;=</span> F.col(<span class="st">"LHS.date_horizon"</span>)),</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    how<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>ajout_mois_emploi_bit <span class="op">=</span> (ajout_mois_emploi_bit</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    .withColumn(<span class="st">"en_emploi"</span>, F.when(F.col(<span class="st">"DebutCTT"</span>).isNotNull(), <span class="dv">1</span>).otherwise(<span class="dv">0</span>)) <span class="co"># si un contrat est retrouvé, l'individu est en emploi salarié le mois d'horizon considéré</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    .withColumn(<span class="st">"en_emploi_durable"</span>, F.when((F.col(<span class="st">"DebutCTT"</span>).isNotNull()) <span class="op">&amp;</span> (F.col(<span class="st">"emploi_d"</span>) <span class="op">==</span> <span class="dv">1</span>), <span class="dv">1</span>).otherwise(<span class="dv">0</span>))</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>ajout_mois_emploi_bit <span class="op">=</span> (ajout_mois_emploi_bit.groupBy(<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>, <span class="st">"horizon"</span>) <span class="co"># on dédoublonne : plusieurs contrats emploi BIT peuvent être retrouvés pour un individu un même mois d'horizon</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    .agg(</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>        F.when(F.<span class="bu">sum</span>(<span class="st">"en_emploi"</span>) <span class="op">&gt;=</span> <span class="dv">1</span>, <span class="dv">1</span>).otherwise(<span class="dv">0</span>).alias(<span class="st">"en_emploi"</span>),</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>        F.when(F.<span class="bu">sum</span>(<span class="st">"en_emploi_durable"</span>) <span class="op">&gt;=</span> <span class="dv">1</span>, <span class="dv">1</span>).otherwise(<span class="dv">0</span>).alias(<span class="st">"en_emploi_durable"</span>)</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>ajout_mois_emploi_bit.createOrReplaceTempView(<span class="st">"ajout_mois_emploi_bit"</span>)</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>spark.catalog.cacheTable(<span class="st">"ajout_mois_emploi_bit"</span>)</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajout à la table individuelle de bénéficiaires mensuels du RSA</span></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>table_finale <span class="op">=</span> (beneficiaires_rsa.select(<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>, <span class="st">"mois"</span>).distinct()</span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>    .join(ajout_mois_emploi_bit, on<span class="op">=</span>[<span class="st">"id_midas"</span>, <span class="st">"KROD3"</span>], how<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
 </div>
 </section>
 <section id="etape-7-part-de-présence-en-emploi-par-cohorte-mensuelle" class="level2">
 <h2 class="anchored" data-anchor-id="etape-7-part-de-présence-en-emploi-par-cohorte-mensuelle">Etape 7 : Part de présence en emploi par cohorte mensuelle</h2>
 <p>Le format de <code>table_finale</code> est long : une ligne correspond à un mois d’horizon considéré par rapport au mois de perception du RSA de l’individu. Ce format est pratique pour représenter des taux de présence en emploi salarié avec <code>ggplot2</code>. Le programme ci-dessous permet de tracer le profil de présence en emploi salarié par cohorte mensuelle de bénéficiaires du RSA.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-8-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-8-1-tab">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>prop_re <span class="ot">&lt;-</span> table_finale <span class="sc">%&gt;%</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(mois, horizon) <span class="sc">%&gt;%</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">eff =</span> <span class="fu">sum</span>(en_emploi),</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">tot =</span> <span class="fu">n</span>())  <span class="sc">%&gt;%</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> eff<span class="sc">*</span><span class="dv">100</span><span class="sc">/</span>tot) <span class="sc">%&gt;%</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(mois)</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>mois <span class="ot">&lt;-</span> prop_re <span class="sc">%&gt;%</span> <span class="fu">pull</span>(mois)</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(mois)){</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  c0 <span class="ot">&lt;-</span> mois[i]</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  df_c <span class="ot">&lt;-</span> prop_re <span class="sc">%&gt;%</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(mois <span class="sc">==</span> c0) <span class="sc">%&gt;%</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(horizon)</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_c, <span class="fu">aes</span>(<span class="at">x =</span> horizon, <span class="at">y =</span> prop)) <span class="sc">+</span></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">1.8</span>) <span class="sc">+</span></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">24</span>)  <span class="sc">+</span></span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste0</span>(<span class="st">"Taux de présence en emploi - cohorte "</span>, c0),</span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Horizon (mois)"</span>,</span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Présence en contrat salarié"</span>) <span class="sc">+</span></span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>(<span class="at">base_size=</span><span class="dv">12</span>) <span class="sc">+</span></span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>())</span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>  f <span class="ot">&lt;-</span> <span class="fu">paste0</span>(path_resultat, <span class="st">"taux_re_cohorte_"</span>, c0, <span class="st">".png"</span>)</span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggsave</span>(<span class="at">filename =</span> f, <span class="at">plot =</span> p, <span class="at">width =</span> <span class="dv">7</span>, <span class="at">height =</span> <span class="fl">4.2</span>, <span class="at">dpi =</span> <span class="dv">150</span>, <span class="at">units =</span> <span class="st">"in"</span>)</span>
-<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>prop_re <span class="ot">&lt;-</span> table_finale <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(mois, horizon) <span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">eff =</span> <span class="fu">sum</span>(en_emploi),</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">tot =</span> <span class="fu">n</span>())  <span class="sc">%&gt;%</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> eff<span class="sc">*</span><span class="dv">100</span><span class="sc">/</span>tot) <span class="sc">%&gt;%</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(mois)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>mois <span class="ot">&lt;-</span> prop_re <span class="sc">%&gt;%</span> <span class="fu">pull</span>(mois)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(mois)){</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  c0 <span class="ot">&lt;-</span> mois[i]</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  df_c <span class="ot">&lt;-</span> prop_re <span class="sc">%&gt;%</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(mois <span class="sc">==</span> c0) <span class="sc">%&gt;%</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(horizon)</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_c, <span class="fu">aes</span>(<span class="at">x =</span> horizon, <span class="at">y =</span> prop)) <span class="sc">+</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">1.8</span>) <span class="sc">+</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">24</span>)  <span class="sc">+</span></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste0</span>(<span class="st">"Taux de présence en emploi - cohorte "</span>, c0),</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Horizon (mois)"</span>,</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Présence en contrat salarié"</span>) <span class="sc">+</span></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>(<span class="at">base_size=</span><span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>  f <span class="ot">&lt;-</span> <span class="fu">paste0</span>(path_resultat, <span class="st">"taux_re_cohorte_"</span>, c0, <span class="st">".png"</span>)</span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggsave</span>(<span class="at">filename =</span> f, <span class="at">plot =</span> p, <span class="at">width =</span> <span class="dv">7</span>, <span class="at">height =</span> <span class="fl">4.2</span>, <span class="at">dpi =</span> <span class="dv">150</span>, <span class="at">units =</span> <span class="st">"in"</span>)</span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
+<div class="cell" data-python.reticulate="false">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>prop_re <span class="op">=</span> (</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    table_finale</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    .groupBy(<span class="st">"mois"</span>, <span class="st">"horizon"</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    .agg(</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>        F.<span class="bu">sum</span>(<span class="st">"en_emploi"</span>).alias(<span class="st">"eff"</span>),</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>        F.count(<span class="st">"*"</span>).alias(<span class="st">"tot"</span>)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    .withColumn(<span class="st">"prop"</span>, (F.col(<span class="st">"eff"</span>) <span class="op">*</span> <span class="dv">100</span> <span class="op">/</span> F.col(<span class="st">"tot"</span>)))</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    .orderBy(<span class="st">"mois"</span>)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>mois <span class="op">=</span> prop_re.select(<span class="st">"mois"</span>).rdd.flatMap(<span class="kw">lambda</span> x: x).collect()</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="co"># La suite n'est pas proposée en PySpark car elle utilise ggplot de R</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
 </div>
 </section>
 <section id="conclusion" class="level2">
@@ -575,88 +791,100 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Une autre boucle for permet pour chaque cohorte mensuelle de bénéficiaires du RSA de repérer la présence en emploi salairé à chaque horizon : pour chaque horizon sur les 24 considérés, la table MMO annuelle correspondante est chargée avec <code>arrow</code>, filtrée sur les contrats du mois d’horizon considéré, et appariée avec la cohorte de bénéficiaire du RSA.</p></li>
 <li><p>Pour supprimer les tables de la mémoire à chaque itération, seuls les effectifs de bénéficiaires du RSA et de bénéficiaires présents en emploi sont conservés à chaque itération.</p></li>
 </ol>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Chemin vers les données MiDAS </span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>chemin_cnaf <span class="ot">&lt;-</span> <span class="st">"C:/Users/Public/Documents/MiDAS_parquet/Vague 6/Allstat/minsoc/"</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>chemin_mmo <span class="ot">&lt;-</span> <span class="st">"C:/Users/Public/Documents/MiDAS_parquet/Vague 6/MMO/"</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Cohortes de BRSA considérées</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>cohortes <span class="ot">&lt;-</span> <span class="fu">sprintf</span>(<span class="st">"%02d22"</span>,<span class="dv">01</span><span class="sc">:</span><span class="dv">12</span>)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>dates_cohortes <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">as.Date</span>(<span class="st">"2022-01-01"</span>),<span class="fu">as.Date</span>(<span class="st">"2022-12-01"</span>), <span class="at">by =</span> <span class="st">"month"</span>)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>resultats <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(c <span class="cf">in</span> <span class="fu">seq_along</span>(cohortes)) {</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  nom_var_cohorte <span class="ot">&lt;-</span> cohortes[c]</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  debut_cohorte <span class="ot">&lt;-</span> dates_cohortes[c]</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  fin_observation <span class="ot">&lt;-</span> debut_cohorte <span class="sc">%m+%</span> <span class="fu">months</span>(<span class="dv">23</span>)</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  dates_obs <span class="ot">&lt;-</span> <span class="fu">seq</span>(debut_cohorte,fin_observation, <span class="at">by =</span> <span class="st">"month"</span>)</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  dates_obs_fm <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="fu">format</span>(dates_obs <span class="sc">+</span> <span class="dv">31</span>, <span class="st">"%Y-%m-01"</span>)) <span class="sc">-</span> <span class="dv">1</span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  dates_obs_bit <span class="ot">&lt;-</span> <span class="fu">format</span>(dates_obs,<span class="st">"%Y_%m"</span>)</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  table_cnaf <span class="ot">&lt;-</span> <span class="fu">open_dataset</span>(<span class="fu">paste0</span>(chemin_cnaf, <span class="st">"cnaf_indiv_"</span>, nom_var_cohorte, <span class="st">".parquet"</span>))</span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>  brsa_mois <span class="ot">&lt;-</span> table_cnaf <span class="sc">%&gt;%</span></span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(RSAVERS <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"RSA droit commun"</span>, <span class="st">"RSA droit local"</span>, <span class="st">"RSA jeune"</span>, <span class="st">"RSA expérimental"</span>,</span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"C"</span>, <span class="st">"L"</span>, <span class="st">"J"</span>, <span class="st">"E"</span>) <span class="sc">&amp;</span> MTRSAVER <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">distinct</span>(id_midas) <span class="sc">%&gt;%</span> </span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">collect</span>()</span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(dates_obs_fm)) {</span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>    deb_mois <span class="ot">&lt;-</span> dates_obs[i]</span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>    fin_mois <span class="ot">&lt;-</span> dates_obs_fm[i]</span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>    mois_bit <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"emploi_bit_"</span>,dates_obs_bit[i])</span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>    annee_mmo <span class="ot">&lt;-</span> <span class="fu">substr</span>(fin_mois, <span class="dv">1</span>, <span class="dv">4</span>)</span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>    MMO_annee <span class="ot">&lt;-</span> <span class="fu">open_dataset</span>(<span class="fu">paste0</span>(chemin_mmo, <span class="st">"MMO_2_"</span>, annee_mmo, <span class="st">"_M6.parquet"</span>))</span>
-<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>    MMO_mois <span class="ot">&lt;-</span> MMO_annee <span class="sc">%&gt;%</span></span>
-<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">DebutCTT =</span> <span class="fu">as.Date</span>(DebutCTT),</span>
-<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>             <span class="at">FinCTT =</span> <span class="fu">as.Date</span>(FinCTT)) <span class="sc">%&gt;%</span> </span>
-<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(DebutCTT <span class="sc">&lt;=</span> fin_mois <span class="sc">&amp;</span> (<span class="fu">is.na</span>(FinCTT) <span class="sc">|</span> FinCTT <span class="sc">&gt;=</span> deb_mois) </span>
-<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>             <span class="sc">&amp;</span> .data[[mois_bit]] <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> Quali_Salaire_Base <span class="sc">==</span> <span class="dv">7</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">type_contrat =</span> <span class="fu">case_when</span>(Nature <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"01"</span>, <span class="st">"09"</span>, <span class="st">"50"</span>, <span class="st">"82"</span>, <span class="st">"91"</span>) <span class="sc">~</span> <span class="st">"CDI"</span>,</span>
-<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>                                      Nature <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"02"</span>, <span class="st">"07"</span>, <span class="st">"10"</span>, <span class="st">"20"</span>, <span class="st">"21"</span>, <span class="st">"32"</span>, <span class="st">"51"</span>, <span class="st">"52"</span>, <span class="st">"80"</span>, <span class="st">"81"</span>, <span class="st">"92"</span>, <span class="st">"93"</span>) <span class="sc">~</span> <span class="st">"CDD"</span>,</span>
-<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>                                      Nature <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"03"</span>, <span class="st">"08"</span>) <span class="sc">~</span> <span class="st">"interim"</span>,</span>
-<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>                                      Nature <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"29"</span>, <span class="st">"53"</span>, <span class="st">"60"</span>, <span class="st">"70"</span>, <span class="st">"89"</span>, <span class="st">"90"</span>) <span class="sc">~</span> <span class="st">"autre"</span>,</span>
-<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>                                      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"autres"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(id_midas, DebutCTT, FinCTT, .data[[mois_bit]], type_contrat) <span class="sc">%&gt;%</span></span>
-<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>      <span class="fu">collect</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">duree_ctt =</span> FinCTT <span class="sc">-</span> DebutCTT <span class="sc">+</span> <span class="dv">1</span>, </span>
-<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>             <span class="at">emploi_d =</span> <span class="fu">ifelse</span>((type_contrat <span class="sc">==</span> <span class="st">"CDD"</span> <span class="sc">&amp;</span> (duree_ctt <span class="sc">&gt;</span> <span class="dv">180</span> <span class="sc">|</span><span class="fu">is.na</span>(duree_ctt))) <span class="sc">|</span> type_contrat <span class="sc">==</span> <span class="st">"CDI"</span>, <span class="dv">1</span>, <span class="dv">0</span>)) </span>
-<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>    brsa_contrat <span class="ot">&lt;-</span> brsa_mois <span class="sc">%&gt;%</span> </span>
-<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a>      <span class="fu">inner_join</span>(MMO_mois, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"id_midas"</span>))</span>
-<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rm</span>(MMO_mois)</span>
-<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gc</span>()</span>
-<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a>    eff_en_emploi <span class="ot">&lt;-</span> brsa_contrat <span class="sc">%&gt;%</span> </span>
-<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n_distinct</span>(id_midas)) <span class="sc">%&gt;%</span> </span>
-<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a>      <span class="fu">pull</span>(count)</span>
-<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a>    eff_en_emploi_d <span class="ot">&lt;-</span> brsa_contrat <span class="sc">%&gt;%</span></span>
-<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(emploi_d <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n_distinct</span>(id_midas)) <span class="sc">%&gt;%</span> </span>
-<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a>      <span class="fu">pull</span>(count)</span>
-<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a>    eff_tot <span class="ot">&lt;-</span> brsa_mois <span class="sc">%&gt;%</span> </span>
-<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarise</span>(<span class="at">eff_tot =</span> <span class="fu">n_distinct</span>(id_midas)) <span class="sc">%&gt;%</span> </span>
-<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a>      <span class="fu">pull</span>(eff_tot)</span>
-<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a>    resultats[[<span class="fu">length</span>(resultats) <span class="sc">+</span> <span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">cohorte =</span> <span class="fu">format</span>(debut_cohorte,<span class="st">"%Y_%m"</span>),</span>
-<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a>                                                 <span class="at">mois_obs =</span> <span class="fu">format</span>(dates_obs[i],<span class="st">"%Y_%m"</span>),</span>
-<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a>                                                 <span class="at">taux_emploi =</span> <span class="fu">round</span>(eff_en_emploi <span class="sc">/</span> eff_tot <span class="sc">*</span> <span class="dv">100</span>),</span>
-<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a>                                                 <span class="at">taux_emploi_d =</span> <span class="fu">round</span>(eff_en_emploi_d <span class="sc">/</span> eff_tot <span class="sc">*</span> <span class="dv">100</span>))</span>
-<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rm</span>(brsa_contrat)</span>
-<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rm</span>(brsa_mois)</span>
-<span id="cb9-79"><a href="#cb9-79" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gc</span>()</span>
-<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb9-81"><a href="#cb9-81" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Chemin vers les données MiDAS </span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>chemin_cnaf <span class="ot">&lt;-</span> <span class="st">"C:/Users/Public/Documents/MiDAS_parquet/Vague 6/Allstat/minsoc/"</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>chemin_mmo <span class="ot">&lt;-</span> <span class="st">"C:/Users/Public/Documents/MiDAS_parquet/Vague 6/MMO/"</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Cohortes de BRSA considérées</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>cohortes <span class="ot">&lt;-</span> <span class="fu">sprintf</span>(<span class="st">"%02d22"</span>,<span class="dv">01</span><span class="sc">:</span><span class="dv">12</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>dates_cohortes <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">as.Date</span>(<span class="st">"2022-01-01"</span>),<span class="fu">as.Date</span>(<span class="st">"2022-12-01"</span>), <span class="at">by =</span> <span class="st">"month"</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>resultats <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(c <span class="cf">in</span> <span class="fu">seq_along</span>(cohortes)) {</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  nom_var_cohorte <span class="ot">&lt;-</span> cohortes[c]</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  debut_cohorte <span class="ot">&lt;-</span> dates_cohortes[c]</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  fin_observation <span class="ot">&lt;-</span> debut_cohorte <span class="sc">%m+%</span> <span class="fu">months</span>(<span class="dv">23</span>)</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  dates_obs <span class="ot">&lt;-</span> <span class="fu">seq</span>(debut_cohorte,fin_observation, <span class="at">by =</span> <span class="st">"month"</span>)</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  dates_obs_fm <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="fu">format</span>(dates_obs <span class="sc">+</span> <span class="dv">31</span>, <span class="st">"%Y-%m-01"</span>)) <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  dates_obs_bit <span class="ot">&lt;-</span> <span class="fu">format</span>(dates_obs,<span class="st">"%Y_%m"</span>)</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>  table_cnaf <span class="ot">&lt;-</span> <span class="fu">open_dataset</span>(<span class="fu">paste0</span>(chemin_cnaf, <span class="st">"cnaf_indiv_"</span>, nom_var_cohorte, <span class="st">".parquet"</span>))</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>  brsa_mois <span class="ot">&lt;-</span> table_cnaf <span class="sc">%&gt;%</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(RSAVERS <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"RSA droit commun"</span>, <span class="st">"RSA droit local"</span>, <span class="st">"RSA jeune"</span>, <span class="st">"RSA expérimental"</span>,</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"C"</span>, <span class="st">"L"</span>, <span class="st">"J"</span>, <span class="st">"E"</span>) <span class="sc">&amp;</span> MTRSAVER <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">distinct</span>(id_midas) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">collect</span>()</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(dates_obs_fm)) {</span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>    deb_mois <span class="ot">&lt;-</span> dates_obs[i]</span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>    fin_mois <span class="ot">&lt;-</span> dates_obs_fm[i]</span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>    mois_bit <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"emploi_bit_"</span>,dates_obs_bit[i])</span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>    annee_mmo <span class="ot">&lt;-</span> <span class="fu">substr</span>(fin_mois, <span class="dv">1</span>, <span class="dv">4</span>)</span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>    MMO_annee <span class="ot">&lt;-</span> <span class="fu">open_dataset</span>(<span class="fu">paste0</span>(chemin_mmo, <span class="st">"MMO_2_"</span>, annee_mmo, <span class="st">"_M6.parquet"</span>))</span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a>    MMO_mois <span class="ot">&lt;-</span> MMO_annee <span class="sc">%&gt;%</span></span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">DebutCTT =</span> <span class="fu">as.Date</span>(DebutCTT),</span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a>             <span class="at">FinCTT =</span> <span class="fu">as.Date</span>(FinCTT)) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(DebutCTT <span class="sc">&lt;=</span> fin_mois <span class="sc">&amp;</span> (<span class="fu">is.na</span>(FinCTT) <span class="sc">|</span> FinCTT <span class="sc">&gt;=</span> deb_mois) </span>
+<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a>             <span class="sc">&amp;</span> .data[[mois_bit]] <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> Quali_Salaire_Base <span class="sc">==</span> <span class="dv">7</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">type_contrat =</span> <span class="fu">case_when</span>(Nature <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"01"</span>, <span class="st">"09"</span>, <span class="st">"50"</span>, <span class="st">"82"</span>, <span class="st">"91"</span>) <span class="sc">~</span> <span class="st">"CDI"</span>,</span>
+<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a>                                      Nature <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"02"</span>, <span class="st">"07"</span>, <span class="st">"10"</span>, <span class="st">"20"</span>, <span class="st">"21"</span>, <span class="st">"32"</span>, <span class="st">"51"</span>, <span class="st">"52"</span>, <span class="st">"80"</span>, <span class="st">"81"</span>, <span class="st">"92"</span>, <span class="st">"93"</span>) <span class="sc">~</span> <span class="st">"CDD"</span>,</span>
+<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a>                                      Nature <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"03"</span>, <span class="st">"08"</span>) <span class="sc">~</span> <span class="st">"interim"</span>,</span>
+<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a>                                      Nature <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"29"</span>, <span class="st">"53"</span>, <span class="st">"60"</span>, <span class="st">"70"</span>, <span class="st">"89"</span>, <span class="st">"90"</span>) <span class="sc">~</span> <span class="st">"autre"</span>,</span>
+<span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a>                                      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"autres"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb17-47"><a href="#cb17-47" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(id_midas, DebutCTT, FinCTT, .data[[mois_bit]], type_contrat) <span class="sc">%&gt;%</span></span>
+<span id="cb17-48"><a href="#cb17-48" aria-hidden="true" tabindex="-1"></a>      <span class="fu">collect</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb17-49"><a href="#cb17-49" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">duree_ctt =</span> FinCTT <span class="sc">-</span> DebutCTT <span class="sc">+</span> <span class="dv">1</span>, </span>
+<span id="cb17-50"><a href="#cb17-50" aria-hidden="true" tabindex="-1"></a>             <span class="at">emploi_d =</span> <span class="fu">ifelse</span>((type_contrat <span class="sc">==</span> <span class="st">"CDD"</span> <span class="sc">&amp;</span> (duree_ctt <span class="sc">&gt;</span> <span class="dv">180</span> <span class="sc">|</span><span class="fu">is.na</span>(duree_ctt))) <span class="sc">|</span> type_contrat <span class="sc">==</span> <span class="st">"CDI"</span>, <span class="dv">1</span>, <span class="dv">0</span>)) </span>
+<span id="cb17-51"><a href="#cb17-51" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb17-52"><a href="#cb17-52" aria-hidden="true" tabindex="-1"></a>    brsa_contrat <span class="ot">&lt;-</span> brsa_mois <span class="sc">%&gt;%</span> </span>
+<span id="cb17-53"><a href="#cb17-53" aria-hidden="true" tabindex="-1"></a>      <span class="fu">inner_join</span>(MMO_mois, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"id_midas"</span>))</span>
+<span id="cb17-54"><a href="#cb17-54" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb17-55"><a href="#cb17-55" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rm</span>(MMO_mois)</span>
+<span id="cb17-56"><a href="#cb17-56" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gc</span>()</span>
+<span id="cb17-57"><a href="#cb17-57" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb17-58"><a href="#cb17-58" aria-hidden="true" tabindex="-1"></a>    eff_en_emploi <span class="ot">&lt;-</span> brsa_contrat <span class="sc">%&gt;%</span> </span>
+<span id="cb17-59"><a href="#cb17-59" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n_distinct</span>(id_midas)) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-60"><a href="#cb17-60" aria-hidden="true" tabindex="-1"></a>      <span class="fu">pull</span>(count)</span>
+<span id="cb17-61"><a href="#cb17-61" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb17-62"><a href="#cb17-62" aria-hidden="true" tabindex="-1"></a>    eff_en_emploi_d <span class="ot">&lt;-</span> brsa_contrat <span class="sc">%&gt;%</span></span>
+<span id="cb17-63"><a href="#cb17-63" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(emploi_d <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-64"><a href="#cb17-64" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n_distinct</span>(id_midas)) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-65"><a href="#cb17-65" aria-hidden="true" tabindex="-1"></a>      <span class="fu">pull</span>(count)</span>
+<span id="cb17-66"><a href="#cb17-66" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb17-67"><a href="#cb17-67" aria-hidden="true" tabindex="-1"></a>    eff_tot <span class="ot">&lt;-</span> brsa_mois <span class="sc">%&gt;%</span> </span>
+<span id="cb17-68"><a href="#cb17-68" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarise</span>(<span class="at">eff_tot =</span> <span class="fu">n_distinct</span>(id_midas)) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-69"><a href="#cb17-69" aria-hidden="true" tabindex="-1"></a>      <span class="fu">pull</span>(eff_tot)</span>
+<span id="cb17-70"><a href="#cb17-70" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb17-71"><a href="#cb17-71" aria-hidden="true" tabindex="-1"></a>    resultats[[<span class="fu">length</span>(resultats) <span class="sc">+</span> <span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">cohorte =</span> <span class="fu">format</span>(debut_cohorte,<span class="st">"%Y_%m"</span>),</span>
+<span id="cb17-72"><a href="#cb17-72" aria-hidden="true" tabindex="-1"></a>                                                 <span class="at">mois_obs =</span> <span class="fu">format</span>(dates_obs[i],<span class="st">"%Y_%m"</span>),</span>
+<span id="cb17-73"><a href="#cb17-73" aria-hidden="true" tabindex="-1"></a>                                                 <span class="at">taux_emploi =</span> <span class="fu">round</span>(eff_en_emploi <span class="sc">/</span> eff_tot <span class="sc">*</span> <span class="dv">100</span>),</span>
+<span id="cb17-74"><a href="#cb17-74" aria-hidden="true" tabindex="-1"></a>                                                 <span class="at">taux_emploi_d =</span> <span class="fu">round</span>(eff_en_emploi_d <span class="sc">/</span> eff_tot <span class="sc">*</span> <span class="dv">100</span>))</span>
+<span id="cb17-75"><a href="#cb17-75" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb17-76"><a href="#cb17-76" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb17-77"><a href="#cb17-77" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rm</span>(brsa_contrat)</span>
+<span id="cb17-78"><a href="#cb17-78" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rm</span>(brsa_mois)</span>
+<span id="cb17-79"><a href="#cb17-79" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gc</span>()</span>
+<span id="cb17-80"><a href="#cb17-80" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb17-81"><a href="#cb17-81" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-9-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-2-tab">
+<div class="cell" data-python.reticulate="false">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
 </div>
 
 
