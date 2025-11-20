@@ -4,11 +4,11 @@ execute:
   enabled: false
 ---
 
-Date de mise à jour : juin 2024
+Date de mise à jour : septembre 2025
 
 Cette fiche regroupe les modalités qui renseignent sur les allocations, aides et primes perçues par les allocataires de l'assurance-chômage. De nouvelles modalités apparaissent avec l'ajout de nouveaux dispositifs d'indemnisation et la modification des conventions d'assurance-chômage. A chaque nouvelle vague de MiDAS, cette fiche sera donc mise à jour dès que possible pour les intégrer.
 
-Les codes allocations, renseignés dans la variable KCALF (segment PJC) et la variable KCAAJ (segment ODD), sont identiques. Les *aides* et *primes* sont renseignées dans la variable KCDPR (segment PRM) ; dans cette fiche, elles sont indiquées en *italiques* afin de les distinguer des codes allocations. Dans certains cas, les codes allocations sont similaires aux codes d'aides et de primes, ils sont dans ce cas en [*italiques et soulignés*]{.underline} : c'est le cas par exemple des codes "54" et "AC" qui apparaissent dans les trois segments du FNA et qui sont rattachés à l'allocation d'aide au retour à l'emploi (ARE).
+Les codes allocations, renseignés dans la variable KCALF (segment PJC) et la variable KCAAJ (segment ODD), sont identiques. Les *aides* et *primes* sont renseignées dans la variable KCDPR (segment PRM).
 
 Cette fiche regroupe l'ensemble des allocations, aides et primes versées par régimes d'indemnisation puis par groupes d'allocation. Elle fournit également un descriptif des trois régimes d'indemnisation ainsi qu'un script pour les reconstituer.
 
@@ -16,98 +16,17 @@ Cette fiche regroupe l'ensemble des allocations, aides et primes versées par r�
 
 L’assurance-chômage garantit une allocation, pendant une durée limitée, aux salariés involontairement privés d’emploi et ayant suffisamment contribué. **L’allocation d’aide au retour à l’emploi** ([ARE](https://www.unedic.org/la-reglementation/fiches-thematiques/allocation-d-aide-au-retour-a-l-emploi-are)) est la principale allocation d’assurance-chômage, puisqu’elle représente 90 % des dépenses. Elle est versée aux personnes involontairement privées de leur dernier emploi ou qui démissionnent pour des raisons légitimes. En cas de formation, elle est remplacée par **l’ARE-formation** (Aref), de même montant que l’ARE. Le régime de l’assurance-chômage comprend également l’**allocation de sécurisation professionnelle** ([ASP](https://www.unedic.org/la-reglementation/fiches-thematiques/allocation-de-securisation-professionnelle-asp)) ou encore l’**aide à la reprise ou à la création d’entreprise** ([Arce](https://www.unedic.org/la-reglementation/fiches-thematiques/aide-la-reprise-ou-la-creation-dentreprise-arce)).
 
-| Groupe allocation | N° | Nom allocation | Codes FNA |
-|:----------------:|:----------------:|:----------------:|------------------|
-| ARE | 1 | Allocation d'aide au retour à l'emploi[^1] (ARE) | 01,21,22,27,40,43,47,[*54*]{.underline},64,67,82,[*AC*]{.underline},BB,BK,CJ,DM,EF,EW,FL,GV,HF |
-|  | 2 | Allocation d'aide au retour à l'emploi intermittent (ARE-I) | CN |
-|  | 3 | Allocation d'aide au retour à l'emploi différé (ARED) | BP,CQ,HD |
-| AREF | 4 | Allocation d'aide au retour à l'emploi formation[^2] (AREF) | 33,34,35,48,49,55,65,83,AD,BC,BN,CK,DQ,EL,EX,FO,GZ,HG |
-|  | 5 | Allocation d'aide au retour à l'emploi formation intermittent (AREF-I) | CO |
-|  | 6 | Allocation d'aide au retour à l'emploi formation différé (AREF-D) | BQ,CR,HE |
-| ARER | 7 | Allocation d'aide au retour à l'emploi de rattrapage (ARER) | FM |
-|  | 8 | Allocation d'aide au retour à l'emploi de rattrapage intermittent (ARER-I) | CT,DT,EN |
-|  | 9 | Allocation d'aide au retour à l'emploi de rattrapage formation intermittent (ARER-FI) | CU,DU,EO |
-|  | 10 | Allocation d'aide au retour à l'emploi formation de rattrapage (AREFR) | FP |
-| ATI | 11 | Allocation des travailleurs indépendants (ATI) | EA,GI |
-|  | 12 | Allocation des travailleurs indépendants formation (ATIF) | EB,GJ |
-| ADM | 13 | Allocation des démissionnaires (ADM) | EC,GS |
-|  | 14 | Allocation des démissionnaires formation (ADM-F) | EP,GT |
-| ASP | 15 | Allocation de sécurisation professionnelle (ASP) | AM,AO,AQ,[*BU*]{.underline},*CE*,*CG*,BV,BW,BX,BY,[*FR*]{.underline},FS,FT,FU,FV,[*FW*]{.underline},FX,*FZ*,*GA* |
-|  | 16 | Allocation de sécurisation professionnelle formation (ASP-F) | AN,AP,AR,BZ,CA,CB,CC,GC,GD,GE, GF,GG,GH |
-|  | 17 | Allocation de sécurisation professionnelle ARE (ASP-ARE) | AK,GK |
-|  | 18 | Allocation de sécurisation professionnelle AREF (ASP-AREF) | AL,GL |
-|  | *19* | *Indemnité différentielle de reclassement CSP (IDR-CSP)* | *AG,AS,CD,FY* |
-|  | 20 | Allocation spécifique de reclassement (ASR) | 61 |
-|  | 21 | Allocation spécifique de reclassement formation (ASRF) | 84 |
-|  | 22 | Allocation spécifique de reclassement ARE (ASR-ARE) | 62 |
-|  | 23 | Allocation spécifique de reclassement AREF (ASR-AREF) | 85 |
-| ATP | 24 | Allocation de transition professionnelle (ATP) | 70,88,91 |
-| ADR | 25 | Aide différentielle de reclassement (ADR) | 66,86,AG |
-| *ARCE* | *26* | *Aide à la reprise ou à la création d'entreprise (ARCE)* | *68,87,AH,AZ,DR,ED,EH,GX* |
-|  | *27* | *Aide à la reprise ou à la création d'entreprise intermittent (ARCE-I)* | *CP* |
-| *DC* | *28* | *Allocation décès (DC)* | *AW,BL,CS,CV,DN,EG,GW* |
-| AFPS | 29 | Allocation du fonds spécifique provisoire (AFPS) | 57 |
-| AFPSF | 30 | Allocation du fonds spécifique provisoire formation (AFPSF) | 58 |
-| AFT | 31 | Allocation du fonds transitoire (AFT) | 59 |
-| AFTF | 32 | Allocation du fonds transitoire formation (AFTF) | 60 |
-| AFD-RAC | 33 | Allocation de fin de droit (AFD-RAC) | 23,28,31,32 |
-| *RAC-PRM* | *RAC-PRM* | *Autres aides et primes* | *CH,CW,ES,ET,EV,EU,FA,FB,FC,FD,FE,FF,FG,FI,FJ,FK,GM,GN,GP,GQ,GR* |
-
-[^1]: Inclut l'AUD (Allocation unique dégressive) et l'ACA (Allocation chômeur âgé).
-
-[^2]: Inclut l'AFR (Allocation de formation reclassement).
-
 # Régime de l'État
 
 Le régime de solidarité prend en charge les personnes n’ayant pas ou plus de droit à l’assurance-chômage et pouvant justifier d’une durée d’activité de 5 ans dans les 10 années précédant la fin du contrat de travail. **L’allocation de solidarité spécifique** ([ASS](https://drees.solidarites-sante.gouv.fr/sites/default/files/2023-09/MS2023-Fiche%2023%20-%20L%E2%80%99allocation%20de%20solidarit%C3%A9%20sp%C3%A9cifique%20%28ASS%29.pdf)) est la principale allocation d’État. Les autres allocations sont : l’ASS-formation, l’aide aux chômeurs et créateurs d’entreprise (Accre-ASS), l’allocation équivalent retraite (AER), devenue l’allocation transitoire de solidarité (ATS), l’allocation temporaire d’attente (ATA), ainsi que les allocations du Fonds de professionnalisation et de solidarité (AFPS), qui regroupent l’allocation de professionnalisation et de solidarité (APS) et l’allocation de fin de droits (AFD).
-
-| Groupe allocation | N° | Nom allocation | Codes FNA |
-|:----------------:|:----------------:|:----------------:|------------------|
-| ASS | 34 | Allocation de solidarité spécifique (ASS) | 25,30,44,[*56*]{.underline},BD |
-|  | 35 | Allocation de solidarité spécifique formation (ASS-F) | 51 |
-| ATA | 36 | Allocation d'insertion (AI) | 24 |
-|  | 37 | Allocation temporaire d'attente (ATA) | 73,74,90 |
-| ATS | 38 | Allocation équivalent retraite (AER) | 52,53,93,94,97,98 |
-|  | 39 | Allocation transitoire de solidarité (ATS) | AT,AV,BE,BF,BS,BT |
-| AF | 40 | Allocation forfaitaire (AF) | 4,63 |
-| AFPS | 41 | Allocation de professionnalisation et de solidarité (APS) | 71,75,DV |
-|  | 42 | Allocation du Fonds de professionnalisation et de solidarité formation (APS-F) | 72,76,DX |
-|  | 43 | Allocation de fin de droits (AFD) | 77,DW |
-|  | 44 | Allocation de fin de droits formation (AFD-F) | 78,DY |
-| AEPE | 45 | Allocation exceptionnelle de retour à l'emploi (AEPE) | 96 |
-| RFF | 46 | Rémunération de fin de formation (RFF)\[1\] | 99,AY,BG,BJ,BR,CI,CX,DZ,EE |
-| RSP | 47 | Rémunération des stagiaires du régime public (RSP) | 39 |
-| AFDEF | 48 | Allocation en faveur des demandeurs d'emploi en formation (AFDEF) | 92,95 |
-| ASC | 49 | Allocation spécifique de conversion (ASC) | 29 |
-| AFF | 50 | Allocation de fin de formation (AFF) | 41,50 |
-| ACCRE-ASS | 51 | Aide aux chômeurs créateurs d'entreprise (ACCRE-ASS) | 45 |
 
 # Régime de France Travail
 
 Le régime de France Travail concerne les personnes prises en charge par l’opérateur au titre d’une convention de gestion (qui permet aux [employeurs publics](https://www.francetravail.fr/employeur/vos-declarations-et-cotisations/vous-etes-un-employeur-public/lassurance-chomage-des-employeur.html) de confier la gestion administrative de l’indemnisation à France Travail) ou d’une formation : il peut s’agir d’un projet de formation cofinancé par France Travail, qui donne droit à une **rémunération de formation de France Travail** ([RFFT](https://www.francetravail.fr/candidat/en-formation/les-dispositifs/la-remuneration-des-formations-d.html), anciennement RFPE), ou bien d’une **rémunération de fin de formation** ([RFF](https://www.francetravail.fr/candidat/en-formation/les-dispositifs/la-remuneration-de-fin-de-format.html)), si l’allocation de formation perçue par le demandeur d’emploi se termine avant la fin de sa formation.
 
-| Groupe allocation | N° | Nom allocation | Codes FNA |
-|:----------------:|:----------------:|:----------------:|------------------|
-| ARE-CG | 52 | Allocation d'aide au retour à l'emploi convention de gestion (ARE-CG) | [*AE*]{.underline},BH,BM,CL,DO,EI,EY,FN,GY |
-|  | 53 | Allocation d'aide au retour à l'emploi formation convention de gestion (AREF-CG) | AF,BI,BO,CM,DR,EM,EZ,FQ,HA |
-| RFPE | 54 | Rémunération formation Pôle emploi (RFPE) | 81 |
-| RFF | 55 | Rémunération de fin de formation[^3] (RFF) | EQ,ER,FH,GU,HH |
-| ASFNE | 56 | Pré-retraite (ASFNE[^4]) | 0C,0E,15 |
-| PRP | 57 | Pré-retraite progressive (PRP) | 11,17,18 |
-| ACO | 58 | Allocation complémentaire (ACO) | 26 |
-| ARPE | 59 | Allocation de remplacement pour l'emploi (ARPE) | 42 |
-| AAP | 60 | Allocation d'accompagnement personnalisé (AAP) | CY,CZ,DA,DB,DC,DD,DE,DF,DG,DH,DI, DJ,DK,DL |
-| ADR-CG | 61 | Aide différentielle de reclassement convention de gestion (ADR-CG) | AI |
-| *ARCE-CG* | *62* | *Aide à la reprise ou à la création d'entreprise convention de gestion (ARCE-CG)* | *AJ,BA,DS,EK,HC* |
-| *DC-CG* | *63* | *Allocation décès convention de gestion (DC-CG)* | *DP,EJ,HB* |
-
-[^3]: Appartient au régime État jusqu'en 2019 et au régime France Travail à partir de 2020.
-
-[^4]: Allocation conventionnelle du Fonds national de l'emploi.
-
 # Reconstituer les régimes d'indemnisation
 
-On peut reconstituer les régimes d'indemnisation en appariant les tables PJC, ODD et PRM pour créer une variable ALLOC qui distingue les codes allocations selon les regroupements réalisés précédemment.
+On peut reconstituer les régimes d'indemnisation en appariant les tables PJC, ODD et PRM.
 
 ::: panel-tabset
 ### R
@@ -115,90 +34,94 @@ On peut reconstituer les régimes d'indemnisation en appariant les tables PJC, O
 ```{r}
 # Chargement des tables
 
-PJC_s <- spark_read_parquet(sc,
-                            path = "hdfs:///dataset/MiDAS_v6/FNA/pjc.parquet",
-                            memory = FALSE)
-PRM_s <- spark_read_parquet(sc,
-                            path = "hdfs:///dataset/MiDAS_v6/FNA/prm.parquet",
-                            memory = FALSE)
-ODD_s <- spark_read_parquet(sc,
-                            path = "hdfs:///dataset/MiDAS_v6/FNA/odd.parquet",
-                            memory = FALSE)
+PJC_s <- spark_read_parquet(sc,path = "hdfs:///dataset/MiDAS_v7/FNA/pjc.parquet",memory=FALSE)
+PRM_s <- spark_read_parquet(sc,path = "hdfs:///dataset/MiDAS_v7/FNA/prm.parquet",memory=FALSE)
+ODD_s <- spark_read_parquet(sc,path = "hdfs:///dataset/MiDAS_v7/FNA/odd.parquet",memory=FALSE)
 
-# Période étudiée
+
+#### Période étudiée ####
+
 date_fin <- as.Date("2024-12-31")
+date_deb <- as.Date("2024-12-01")
+
+
+##### Allocations agrégées et régimes d'indemnisation #####
 
 codes_pjc <- PJC_s %>%
-  rename(KROD1 = KROD3) %>% # Pour l'appariement avec ODD
-  filter(KDDPJ <= date_fin & KDFPJ >= date_fin) %>%  # On se restreint aux indemnisables à fin décembre
-  mutate(alloc = case_when(KCALF %in% c("01","21","22","27","40","43","47","54","64","67","82","AC","BB","BK","CJ","DM","EF","EW","FL","GV","HF") ~ "01", # ARE
-                           KCALF == "CN" ~ "02", # ARE-I
-                           KCALF %in% c("BP","CQ","HD") ~ "03", # ARED
-                           KCALF %in% c("33","34","35","48","49","55","65","83","AD","BC","BN","CK","DQ","EL","EX","FO","GZ","HG") ~ "04", # AREF-I
-                           KCALF == "CO" ~ "05", # AREF-I
-                           KCALF %in% c("BQ","CR","HE") ~ "06", # AREF-D
-                           KCALF == "FM" ~ "07", # ARER
-                           KCALF %in% c("CT","DT","EN") ~ "08", # ARER-I
-                           KCALF %in% c("CU","DU","EO") ~ "09", # ARER-FI
-                           KCALF == "FP" ~ "10" , # AREFR
-                           KCALF %in% c("EA","GI") ~ "11", # ATI
-                           KCALF %in% c("EB","GJ") ~ "12", # ATIF
-                           KCALF %in% c("EC","GS") ~ "13", # ADM
-                           KCALF %in% c("EP","GT") ~ "14", # ADM-F
-                           KCALF %in% c("AM","AO","AQ","BU","BV","BW","BX","BY","FR","FS","FT","FU","FV","FW","FX") ~ "15", # ASP
-                           KCALF %in% c("AN","AP","AR","BZ","CA","CB","CC","GC","GD","GE","GF","GG","GH") ~ "16", # ASP-F
-                           KCALF %in% c("AK","GK") ~ "17", # ASP-ARE
-                           KCALF %in% c("AL","GL") ~ "18", # ASP-AREF
-                           KCALF == "61" ~ "20", # ASR
-                           KCALF == "84" ~ "21", # ASRF
-                           KCALF == "62" ~ "22", # ASR-ARE
-                           KCALF == "85" ~ "23", # ASR-AREF
-                           KCALF %in% c("70","88","91") ~ "24", # ATP
-                           KCALF %in% c("66","86","AG") ~ "25", # ADR
-                           KCALF == "CP" ~ "27", # ARCE-I
-                           KCALF == "57" ~ "29", # AFPS
-                           KCALF == "58" ~ "30", # AFPSF
-                           KCALF == "59" ~ "31", # AFT
-                           KCALF == "60" ~ "32", # AFTF
-                           KCALF %in% c("23","28","31","32") ~ "33", # AFD-RAC
-                           
-                           
-                           KCALF %in% c("25","30","44","56","BD") ~ "34", # ASS
-                           KCALF == "51" ~ "35", # ASS-F
-                           KCALF == "24" ~ "36", # AI
-                           KCALF %in% c("73","74","90") ~ "37", # ATA
-                           KCALF %in% c("52","53","93","94","97","98") ~ "38", # AER
-                           KCALF %in% c("AT","AV","BE","BF","BS","BT") ~ "39", # ATS
-                           KCALF %in% c("04","63") ~ "40", # AF
-                           KCALF %in% c("71","75","DV") ~ "41", # APS
-                           KCALF %in% c("72","76","DX") ~ "42", # APS-F
-                           KCALF %in% c("77","DW") ~ "43", # AFD
-                           KCALF %in% c("78","DY") ~ "44", # AFD-F
-                           KCALF == "96"  ~ "45", # AEPE
-                           KCALF %in% c("99","AY","BG","BJ","BR","CI","CX","DZ","EE") ~ "46", # RFF
-                           KCALF == "39" ~ "47", # RSP
-                           KCALF %in% c("92","95")~ "48", # AFDEF
-                           KCALF == "29" ~ "49", # ASC
-                           KCALF %in% c("41","50") ~ "50", # AFF
-                           KCALF == "45" ~ "51", # ACCRE-ASS
-                           
-                           KCALF %in% c("AE","BH","BM","CL","DO","EI","EY","FN","GY") ~ "52", # ARE-CG
-                           KCALF %in% c("AF","BI","BO","CM","DR","EM","EZ","FQ","HA") ~ "53", # AREF-CG
-                           KCALF == "81" ~ "54", # RFPE
-                           KCALF %in% c("EQ","ER","FH","GU","HH") ~ "55", # RFF
-                           KCALF %in% c("0C","0E","15") ~ "56", # ASFNE
-                           KCALF %in% c("11","17","18") ~ "57", # PRP
-                           KCALF == "26" ~ "58", # ACO
-                           KCALF == "42" ~ "59", # ARPE
-                           KCALF %in% c("CY","CZ","DA","DB","DC","DD","DE","DF","DG","DH","DI","DJ","DK","DL") ~ "60", # AAP
-                           KCALF == "AI" ~ "61", # ADR-CG
-                           T ~ "NA"), 
-         regime_alloc = case_when(alloc %in% c("01","02","03","04","05","06","07","08","09","10","11","12","13","14","15",
-                                                "16","17","18","20","21","22","23","24","25","27","29","30","31","32","33","RAC-PRM") ~ "1", # Régime de l'assurance-chômage
-                                   alloc %in% c("34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51") ~ "2", # Régime de l'Etat
-                                   alloc %in% c("52","53","54","55","56","57","58","59","60","61") ~ "3", # Régime de France Travail
-                                   T ~ "NA"))
+  mutate(code_alloc = case_when(KCALF %in% c("01","21","22","27","40","43","47","54","64","67","82","AC","BB","BK","CJ","DM","EF","EW","FL","GV","HF","HI") ~ "ARE", # Allocation d'aide au retour à l'emploi
+                                KCALF == "CN" ~ "ARE-I", # ARE intermittent
+                                KCALF %in% c("BP","CQ","HU") ~ "ARED", # ARE différée
+                                KCALF == "HF" ~ "CFD", # Allocation de complément de fin de droit
+                                KCALF %in% c("33","34","35","48","49","55","65","83","AD","BC","BN","CK","DQ","EL","EX","FO","GZ","HO") ~ "AREF", # ARE formation
+                                KCALF == "CO" ~ "AREF-I", # AREF intermittent
+                                KCALF %in% c("BQ","CR","HV") ~ "AREF-D", # AREF différée
+                                KCALF == "HG" ~ "CFF", # Allocation de complément de fin de formation
+                                KCALF %in% c("FM","HR") ~ "ARER", # ARE rattrapage
+                                KCALF %in% c("FP","HS") ~ "ARER-F" , # ARER formation
+                                KCALF %in% c("CT","DT","EN") ~ "ARER-I", # ARER intermittent
+                                KCALF %in% c("CU","DU","EO") ~ "ARER-FI", # ARER formation intermittent
+                                KCALF %in% c("EA","GI") ~ "ATI", # Allocation des travailleurs indépendants 
+                                KCALF %in% c("EB","GJ") ~ "ATIF", # ATI formation
+                                KCALF %in% c("EC","GS","HD") ~ "ADM", # Allocation des démissionnaires
+                                KCALF %in% c("EP","GT","HE") ~ "ADM-F", # ADM formation
+                                KCALF %in% c("AM","AO","AQ","BU","BV","BW","BX","BY","FR","FS","FT","FU","FV","FW","FX") ~ "ASP", # Allocation de sécurisation professionnelle
+                                KCALF %in% c("AK","GK") ~ "ASP-ARE",
+                                KCALF %in% c("AN","AP","AR","BZ","CA","CB","CC","GC","GD","GE","GF","GG","GH") ~ "ASP-F", # ASP formation
+                                KCALF %in% c("AL","GL") ~ "ASP-AREF",
+                                KCALF %in% c("AG","AS","CD","FY") ~ "IDR-CSP", # Indemnité différentielle de reclassement - Contrat de sécurisation professionnel
+                                KCALF == "61" ~ "ASR", # Allocation spécifique de reclassement
+                                KCALF == "62" ~ "ASR-ARE",
+                                KCALF == "84" ~ "ASR-F", # ASR formation
+                                KCALF == "85" ~ "ASR-AREF",
+                                KCALF %in% c("70","88","91") ~ "ATP", # Allocation de transition professionnelle
+                                KCALF %in% c("66","86","AG") ~ "ADR", # Aide différentielle de reclassement
+                                KCALF %in% c("68","87","AH","AZ","DR","ED","EH","GX") ~ "ARCE", # Aide à la reprise ou à la création d'entreprise
+                                KCALF == "CP" ~ "ARCE-I", # ARCE intermittent
+                                KCALF %in% c("AW","BL","CS","CV","DN","EG","GW") ~ "DC", # Allocation décès
+                                KCALF == "57" ~ "AFPS", # Allocation du Fonds de professionnalisation et de solidarité
+                                KCALF == "58" ~ "AFPS-F", # AFPS formation
+                                KCALF == "59" ~ "AFT", # Allocation du Fonds transitoire
+                                KCALF == "60" ~ "AFT-F", # AFT formation
+                                KCALF %in% c("23","28","31","32") ~ "AFD-RAC", # Allocation de fin de droit
+                                KCALF %in% c("CH","CW","ES","ET","EV","EU","FA","FB","FC","FD","FE","FF","FG","FI","FJ","FK","GM","GN","GP","GQ","GR","HQ") ~ "RAC-PRM", # Autres aides et primes
+                                
+                                KCALF %in% c("25","30","44","56","BD") ~ "ASS", # Allocation de solidarité spécifique
+                                KCALF == "51" ~ "ASS-F", # ASS formation
+                                KCALF == "24" ~ "AI", # Allocation d'insertion
+                                KCALF %in% c("73","74","90") ~ "ATA", # Allocation temporaire d'attente
+                                KCALF %in% c("52","53","93","94","97","98") ~ "AER", # Allocation équivalent retraite
+                                KCALF %in% c("AT","AV","BE","BF","BS","BT") ~ "ATS", # Allocation transitoire de solidarité
+                                KCALF %in% c("04","63") ~ "AF", # Allocation forfaitaire
+                                KCALF %in% c("71","75","DV") ~ "APS", # Allocation de professionnalisation et de solidarité
+                                KCALF %in% c("72","76","DX") ~ "APS-F", # APS formation
+                                KCALF %in% c("77","DW") ~ "AFD", # Allocation de fin de droit
+                                KCALF %in% c("78","DY") ~ "AFD-F", # AFD formation
+                                KCALF == "96"  ~ "AEPE", # Alocation exceptionnelle de retour à l'emploi
+                                KCALF %in% c("99","AY","BG","BJ","BR","CI","CX","DZ","EE") ~ "RFF-RSN", # Rémunération de fin de formation (régime Etat)
+                                KCALF == "39" ~ "RSP", # Rémunération des stagiaires du régime public
+                                KCALF %in% c("92","95")~ "AFDEF", # Allocation en faveur des demandeurs d'emploi en formation
+                                KCALF == "29" ~ "ASC", # Allocation spécifique de conversion
+                                KCALF %in% c("41","50","FA") ~ "AFF", # Allocation de fin de formation
+                                KCALF == "45" ~ "ACCRE-ASS", # Aide aux chômeurs créateurs d'entreprise
+                                
+                                KCALF %in% c("AE","BH","BM","CL","DO","EI","EY","FN","GY","HL") ~ "ARE-CG", # ARE-convention de gestion
+                                KCALF %in% c("AF","BI","BO","CM","DR","EM","EZ","FQ","HA","HP") ~ "AREF-CG",
+                                KCALF == "81" ~ "RFFT", # Rémunération formation France Travail
+                                KCALF %in% c("EQ","ER","FH","GU","HH","HT") ~ "RFF", # Rémunération de fin de formation
+                                KCALF %in% c("0C","0E","15") ~ "ASFNE", # Allocation conventionnelle du Fonds national de l'emploi (pré-retraite)
+                                KCALF %in% c("11","17","18") ~ "PRP", # Pré-retraite progressive
+                                KCALF == "26" ~ "ACO", # Allocation complémentaire
+                                KCALF == "42" ~ "ARPE", # Allocation de remplacement pour l'emploi
+                                KCALF %in% c("CY","CZ","DA","DB","DC","DD","DE","DF","DG","DH","DI","DJ","DK","DL") ~ "AAP", # Allocation d'accompagnement personnalisé
+                                KCALF == "AI" ~ "ADR-CG", # Aide différentielle de reclassement convention de gestion
+                                KCALF %in% c("AJ","BA","CP","DS","EK","HC","HN") ~ "ARCE-CG",
+                                KCALF %in% c("DP","EJ","HB") ~ "DC-CG",
+                                T ~ "NA"))
 
+pjc_fm <- codes_pjc %>% 
+  select(id_midas,KROD3,KDDPJ,KDFPJ,code_alloc,KCPJC) %>% # On conserve les variables d'intérêt
+  filter(KDDPJ <= date_fin & KDFPJ >= date_fin)  # On se restreint aux indemnisables à fin décembre
+ 
 
 prm_fm <- PRM_s %>% 
   select(id_midas,KROD7,KDDTA,KDFTA,KCDPR) %>% 
@@ -206,6 +129,8 @@ prm_fm <- PRM_s %>%
                            KCDPR == "ACEJ" ~ "FG", # RAC-PRM
                            KCDPR == "ADR11" ~ "AG", # IDR-CSP
                            KCDPR == "AES-S22" ~ "GP", # RAC-PRM (GO correspond à la même aide)
+                           KCDPR == "AGDE" ~ "FB", # RAC-PRM
+                           KCDPR == "AFD" ~ "77", # AFD
                            KCDPR == "AFFORM" ~ "FA", # RAC-PRM
                            KCDPR == "AIJ20" ~ "ET", # RAC-PRM
                            KCDPR == "AIJA20" ~ "EV", # RAC-PRM
@@ -217,7 +142,9 @@ prm_fm <- PRM_s %>%
                            KCDPR == "ARCE17" ~ "DR", # ARCE
                            KCDPR == "ARCE19" ~ "EH", # ARCE
                            KCDPR == "ARCE23" ~ "GX", # ARCE
+                           KCDPR == "ARCE24" ~ "HK", # ARCE
                            KCDPR == "ARCE23CG" ~ "HC", # ARCECG
+                           KCDPR == "ARCE24CG" ~ "HN", # ARCECG
                            KCDPR == "ARCEA816" ~ "CP", # ARCECG
                            KCDPR == "ARCECG17" ~ "DS", # ARCECG
                            KCDPR == "ARCECG19" ~ "EK", # ARCECG
@@ -233,8 +160,8 @@ prm_fm <- PRM_s %>%
                            KCDPR == "CSPPR15R" ~ "CG", # ASP
                            KCDPR == "CSPPR21" ~ "FZ", # ASP
                            KCDPR == "CSPPR21E" ~ "GA",# ASP
-                           KCDPR %in% c("DCARE06","DCARE09","DCARE11","DCARE14","DCARE17","DCARE19","DCARE23") ~ "GW", # DC
-                           KCDPR == "DCARECG" ~ "HB", # DC-CG
+                           KCDPR %in% c("DC/ARE06","DC/ARE09","DC/ARE11","DC/ARE14","DC/ARE17","DC/ARE19","DC/ARE23") ~ "GW", # DC
+                           KCDPR == "DC/ARECG" ~ "HB", # DC-CG
                            KCDPR == "DCA816" ~ "CS", # DC
                            KCDPR == "DELD" ~ "FJ", # RAC-PRM
                            KCDPR == "FSSAACRE" ~ "FC", # RAC-PRM
@@ -247,28 +174,41 @@ prm_fm <- PRM_s %>%
                            KCDPR == "IDR" ~ "AS", # IDR-CSP
                            KCDPR == "IDRCSP15" ~ "CD", # IDR-CSP
                            KCDPR == "IDRCSP21" ~ "FY", # IDR
-                           KCDPR == "INFL21" ~ "FI", # à définir
-                           KCDPR == "JO2024" ~ "", # à définir
+                           KCDPR == "INFL21" ~ "FI", # # RAC-PRM
+                           KCDPR == "JO24" ~ "HQ", # RAC-PRM
                            KCDPR == "PEP20" ~ "ES", # RAC-PRM
                            KCDPR == "PTS15" ~ "CH", # RAC-PRM
                            T ~ "NA"), 
-         prime_alloc = case_when(prime %in% c("54","AC") ~ "01", # ARE
-                                 prime %in% c("BU","CE","CG","FR","FW","FZ","GA") ~ "15", # ASP
-                                 prime %in% c("AG","AS","CD","FY") ~ "19", # IDR-CSP
-                                 prime %in% c("68","87","AH","AZ","DR","ED","EH","GX") ~ "26", # ARCE
-                                 prime %in% c("AW","BL","CS","CV","DN","EG","GW") ~ "28", # DC
-                                 prime %in% c("CH","CW","ES","ET","EV","EU","FA","FC","FD","FE","FF","FG","FJ","FK","GM","GN","GP","GQ","GR") ~ "RAC-PRM", # Autres aides et primes
-                                 prime == "56" ~ "34", # ASS
-                                 prime == "AE" ~ "52", # ARE-CG
-                                 prime %in% c("AJ","BA","CP","DS","EK","HC") ~ "62", # ARCE-CG
-                                 prime %in% c("DP","EJ","HB") ~ "63", # DC-CG
-                                 T ~ "NA")) %>% 
+         code_prime = case_when(prime %in% c("54","AC") ~ "ARE",
+                                prime %in% c("BU","CE","CG","FR","FW","FZ","GA") ~ "ASP",
+                                prime %in% c("AG","AS","CD","FY") ~ "IDR-CSP",
+                                prime == "77" ~ "AFD",
+                                prime %in% c("68","AH","AZ","DR","ED","EH","GX","HK") ~ "ARCE",
+                                prime %in% c("AW","BL","CS","CV","DN","EG","GW") ~ "DC",
+                                prime %in% c("CH","CW","ES","ET","EV","EU","FA","FB","FC","FD","FE","FF","FG","FI","FJ","FK","GM","GN","GP","GQ","GR","HQ") ~ "RAC-PRM", # Autres aides et primes
+                                prime == "56" ~ "ASS",
+                                prime == "AE" ~ "ARE-CG",
+                                prime %in% c("AJ","BA","CP","DS","EK","HC","HN") ~ "ARCE-CG",
+                                prime %in% c("DP","EJ","HB") ~ "DC-CG",
+                                T ~ "NA")) %>% 
   filter(KDDTA <= date_fin & KDFTA >= date_fin) # On conserve les aides et primes versées sur la période étudiée
 
 
+# Sélection des variables d'intérêt dans la table ODD
+odd_fm <- ODD_s %>% 
+  select(id_midas,KROD1,KCRD)   
+
 alloc_fm <- pjc_fm %>% 
-  left_join(ODD_s, by = c("id_midas","KROD1")) %>% 
-  left_join(prm_fm, by = "id_midas") %>%
+  left_join(odd_fm, by = c("id_midas","KROD1")) %>% 
+  full_join(prm_fm, by = "id_midas") %>%
+  mutate(alloc = if_else(!is.na(code_alloc),code_alloc,code_prime),
+         regime = case_when(alloc %in% c("ARE","ARE-I","ARED","CFD","AREF","AREF-I","AREF-D","CFF","ARER","ARER-F","ARER-I","ARER-FI",
+                                         "ATI","ATIF","ADM","ADM-F","ASP","ASP-ARE","ASP-F","ASP-AREF","IDR-CSP","ASR","ASR-ARE","ASR-F","ASR-AREF",
+                                         "ATP","ADR","ARCE","ARCE-I","DC","AFPS","AFPS-F","AFT","AFT-F","AFD-RAC","RAC-PRM") ~ "1", # Régime de l'assurance-chômage (Unédic)
+                            alloc %in% c("ASS","ASS-F","AI","ATA","AER","ATS","AF","APS","APS-F","AFD","AFD-F","AEPE","RFF-RSN","RSP","AFDEF",
+                                         "ASC","AFF","ACCRE-ASS") ~ "2", # Régime de solidarité national (Etat)
+                            alloc %in% c("ARE-CG","AREF-CG","RFFT","RFF","ASFNE","PRP","ACO","ARPE","AAP","ADR-CG","ARCE-CG","DC-CG") ~ "3", # Régime de France Travail
+                            T ~ "NA")) %>% 
   sdf_register(name = "alloc_fm_cache")
 
 tbl_cache(sc, name = "alloc_fm_cache")
