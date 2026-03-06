@@ -16,6 +16,8 @@ website:
         href: Allstat_FR6/Allstat_FR6_presentation.qmd
       - text: "DSN"
         href: DSN/DSN_presentation.qmd
+      - text: "SIMILO"
+        href: SIMILO/SIMILO_presentation.qmd
       - text: "Fiches"
         href: Fiches/Fiches_presentation.qmd
       - text: "Codes"
@@ -225,7 +227,31 @@ website:
           - href: Fiches/Foyers_BRSA.qmd
           - href: Fiches/Cumul_AC_MS.qmd
             
-
+    - title: "SIMILO"
+      style: "docked"
+      background: light
+      contents: 
+      - section: "Présentation"
+        contents: 
+          - SIMILO/SIMILO_presentation.qmd
+      - section: "DIM_JEUNE"
+        contents: 
+          - href: SIMILO/DIM_JEUNE/DIM_JEUNE_presentation.qmd
+          - section: "Dictionnaire"
+            contents: 
+               - href: SIMILO/DIM_JEUNE/DIM_JEUNE_dictionnaire/DIM_JEUNE_dictionnaire.qmd
+      - section: "DIM_DISPOSITIF"
+        contents: 
+            - href: SIMILO/DIM_DISPOSITIF/DIM_DISPOSITIF_presentation.qmd
+            - section: "Dictionnaire"
+              contents: 
+                - href: SIMILO/DIM_DISPOSITIF/DIM_DISPOSITIF_dictionnaire/DIM_DISPOSITIF_dictionnaire.qmd
+      - section: "DIM_JEUNE_ACCUEIL"
+        contents: 
+          - href: SIMILO/DIM_JEUNE_ACCUEIL/DIM_JEUNE_ACCUEIL_presentation.qmd
+          - section: "Dictionnaire"
+            contents: 
+               - href: SIMILO/DIM_JEUNE_ACCUEIL/DIM_JEUNE_ACCUEIL_dictionnaire/DIM_JEUNE_ACCUEIL_dictionnaire.qmd
 
 format:
   html:
