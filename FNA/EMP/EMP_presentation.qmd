@@ -1,0 +1,5 @@
+---
+title: "Présentation de la table"
+---
+
+Ce segment a pour particularité que les lignes sont des entreprises, définies de façon unique par un numéro interne (KREN), indépendamment de leurs caractéristiques (type, statut juridique, nationalité…). Il contient des informations principalement administratives concernant l’entreprise (notamment le SIRET).

@@ -1,8 +1,8 @@
 ---
-title: "MOTANN_a"
+title: "MOTANN_a" 
 ---
 
-Motif d\'annulation de la demande détaillé
+Motif d'annulation de la demande détaillé
 
 **Non renseigné :** Demande annulée par le FH : plus de dossier transmis pour ce demandeur
 
@@ -290,6 +290,8 @@ CK. Entrée en emploi d'avenir professeur
 
 CX\. Refus action insertion : suspension 15 jours
 
+DM. Décès MILO
+
 DX\. Refus contrat aidé : suspension 15 jours
 
 D1. Refus contrat aidé : suspension 1 mois
@@ -334,6 +336,8 @@ H5. Refus de deux offres raisonnables d'emploi : suspension 5 mois
 
 H6. Refus de deux offres raisonnables d'emploi : suspension 6 mois
 
+IM. Injoignable par MILO
+
 IX\. Refus d'une action d'aide à la recherche d'emploi : suspension 15 jours
 
 I1. Refus d'une action d'aide à la recherche d'emploi : suspension 1 mois
@@ -347,6 +351,8 @@ I4. Refus d'une action d'aide à la recherche d'emploi : suspension 4 mois
 I5. Refus d'une action d'aide à la recherche d'emploi : suspension 5 mois
 
 I6. Refus d'une action d'aide à la recherche d'emploi : suspension 6 mois
+
+JM. Refus jeune MILO
 
 J2. Refus d'actualisation PPAE : suspension 2 mois
 
@@ -505,5 +511,173 @@ NL. Action brève non déclarée : suspension temporaire 5 mois
 NM. Action brève non déclarée : suspension temporaire 6 mois
 
 NN. Action brève non déclarée : radiation 6 mois suspension définitive
+
+RA. Manquements aux obligations du contrat d’engagement : radiation 1 mois
+
+RB. Manquements aux obligations du contrat d’engagement : radiation 2 mois
+
+RC. Manquements aux obligations du contrat d’engagement : radiation 3 mois
+
+RD. Manquements aux obligations du contrat d’engagement : radiation 4 mois
+
+RE. Manquements aux obligations du contrat d’engagement : radiation 5 mois
+
+RF. Manquements aux obligations du contrat d’engagement : radiation 6 mois
+
+RG Manquements aux obligations du contrat d’engagement : radiation 7 mois
+
+RH. Manquements aux obligations du contrat d’engagement : radiation 8 mois
+
+RI. Manquements aux obligations du contrat d’engagement : radiation 9 mois
+
+RJ. Manquements aux obligations du contrat d’engagement : radiation 10 mois
+
+RK. Manquements aux obligations du contrat d’engagement : radiation 11 mois
+
+RL. Manquements aux obligations du contrat d’engagement : radiation 12 mois
+
+RM. Manquements aux obligations du contrat d'engagement : PRP radiation 1 mois
+
+RN. Manquements aux obligations du contrat d'engagement : PRP radiation 2 mois
+
+RO. Manquements aux obligations du contrat d'engagement : PRP radiation 3 mois
+
+RP. Manquements aux obligations du contrat d'engagement : PRP radiation 4 mois
+
+RQ. Manquements aux obligations du contrat d'engagement : PRP radiation 5 mois
+
+RR. Manquements aux obligations du contrat d'engagement : PRP radiation 6 mois
+
+RS. Manquements aux obligations du contrat d'engagement : PRP radiation 7 mois
+
+RT. Manquements aux obligations du contrat d'engagement : PRP radiation 8 mois
+
+RU. Manquements aux obligations du contrat d'engagement : PRP radiation 9 mois
+
+RV. Manquements aux obligations du contrat d'engagement : PRP radiation 10 mois
+
+RW. Manquements aux obligations du contrat d'engagement : PRP radiation 11 mois
+
+RX. Manquements aux obligations du contrat d'engagement : PRP radiation 12 mois
+
+RY. Refus d'élaborer le contrat d'engagement : radiation 1 mois
+
+RZ. Refus d'élaborer le contrat d'engagement : radiation 2 mois
+
+R1. Refus d'élaborer le contrat d'engagement : radiation 3 mois
+
+R2. Refus d'élaborer le contrat d'engagement : radiation 4 mois
+
+R3. Refus d'élaborer le contrat d'engagement : radiation 5 mois
+
+R4. Refus d'élaborer le contrat d'engagement : radiation 6 mois
+
+R5. Refus d'élaborer le contrat d'engagement : radiation 7 mois
+
+R6. Refus d'élaborer le contrat d'engagement : radiation 8 mois
+
+R7. Refus d'élaborer le contrat d'engagement : radiation 9 mois
+
+R8. Refus d'élaborer le contrat d'engagement : radiation 10 mois
+
+R9. Refus d'élaborer le contrat d'engagement : radiation 11 mois
+
+SA. Refus d'élaborer le contrat d'engagement : radiation 12 mois
+
+SB. Refus d'actualiser le contrat d'engagement : radiation 1 mois
+
+SC. Refus d'actualiser le contrat d'engagement : radiation 2 mois
+
+SD. Refus d'actualiser le contrat d'engagement : radiation 3 mois
+
+SE. Refus d'actualiser le contrat d'engagement : radiation 4 mois
+
+SF. Refus d'actualiser le contrat d'engagement : radiation 5 mois
+
+SG. Refus d'actualiser le contrat d'engagement : radiation 6 mois
+
+SH. Refus d'actualiser le contrat d'engagement : radiation 7 mois
+
+SI. Refus d'actualiser le contrat d'engagement : radiation 8 mois
+
+SJ. Refus d'actualiser le contrat d'engagement : radiation 9 mois
+
+SK. Refus d'actualiser le contrat d'engagement : radiation 10 mois
+
+SL. Refus d'actualiser le contrat d'engagement : radiation 11 mois
+
+SM. Refus d'actualiser le contrat d'engagement : radiation 12 mois
+
+SN. Second refus d'une offre raisonnable d'emploi : radiation 1 mois
+
+SO. Second refus d'une offre raisonnable d'emploi : radiation 2 mois
+
+SP. Second refus d'une offre raisonnable d'emploi : radiation 3 mois
+
+SQ. Second refus d'une offre raisonnable d'emploi : radiation 4 mois
+
+SR. Second refus d'une offre raisonnable d'emploi : radiation 5 mois
+
+SS. Second refus d'une offre raisonnable d'emploi : radiation 6 mois
+
+ST. Second refus d'une offre raisonnable d'emploi : radiation 7 mois
+
+SU. Second refus d'une offre raisonnable d'emploi : radiation 8 mois
+
+SV. Second refus d'une offre raisonnable d'emploi : radiation 9 mois
+
+SW. Second refus d'une offre raisonnable d'emploi : radiation 10 mois
+
+SX. Second refus d'une offre raisonnable d'emploi : radiation 11 mois
+
+SY. Second refus d'une offre raisonnable d'emploi : radiation 12 mois
+
+SZ. Fraude - Fausses déclarations inscription et/ou allocations 1 mois
+
+S1. Fraude - Fausses déclarations inscription et/ou allocations 2 mois
+
+S2. Fraude - Fausses déclarations inscription et/ou allocations 3 mois
+
+S3. Fraude - Fausses déclarations inscription et/ou allocations 4 mois
+
+S4. Fraude - Fausses déclarations inscription et/ou allocations 5 mois
+
+S5. Fraude - Fausses déclarations inscription et/ou allocations 6 mois
+
+S6. Fraude - Fausses déclarations inscription et/ou allocations 7 mois
+
+S7. Fraude - Fausses déclarations inscription et/ou allocations 8 mois
+
+S8. Fraude - Fausses déclarations inscription et/ou allocations 9 mois
+
+S9. Fraude - Fausses déclarations inscription et/ou allocations 10 mois
+
+TA. Fraude - Fausses déclarations inscription et/ou allocations 11 mois
+
+TB. Fraude - Fausses déclarations inscription et/ou allocations 12 mois
+
+TC. Activité professionnelle très brève non déclarée : radiation 1 mois
+
+TD. Activité professionnelle très brève non déclarée : radiation 2 mois
+
+TE. Activité professionnelle très brève non déclarée : radiation 3 mois
+
+TF. Activité professionnelle très brève non déclarée : radiation 4 mois
+
+TG. Activité professionnelle très brève non déclarée : radiation 5 mois
+
+TH. Activité professionnelle très brève non déclarée : radiation 6 mois
+
+TI. Activité professionnelle très brève non déclarée : radiation 7 mois
+
+TJ. Activité professionnelle très brève non déclarée : radiation 8 mois
+
+TK. Activité professionnelle très brève non déclarée : radiation 9 mois
+
+TL. Activité professionnelle très brève non déclarée : radiation 10 mois
+
+TM. Activité professionnelle très brève non déclarée : radiation 11 mois
+
+TN. Activité professionnelle très brève non déclarée : radiation 12 mois
 
 ZZ. Changement d'agence intra base régionale

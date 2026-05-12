@@ -6,6 +6,7 @@ title: "Dictionnaire des variables"
 |:-------------:|:-------------:|:-------------:|:-------------:|:-------------:|
 | <br>KCCT1 | <br>ODDID1 | <br>Identifiant de la période fait générateur | <br>Identifiant du fait générateur, permettant la jonction avec KCCT du segment CDT | <br> |
 | <br>KCCT2 | <br>ODDID2 | <br>Identifiant de la dernière période d'activité | <br>Identifiant de la dernière période d'activité, permettant la jonction avec KCCT du segment CDT | <br> |
+| <br>KCNCFD |  | <br>Motif de non application de la contracyclicité | <br> | <br>0. Application de nouvelles règles de la convention 2023 ou non concerné <br>1. Le règlement applicable n'est pas concerné par la réduction de durée <br>2. La personne habite dans un DOM/TOM au moment de l'attribution du droit |
 | <br>KCRGC | <br>ODDREG | <br>Code Régime de l'ouverture de droit | <br>Code Régime de l'ouverture de droit. | <br>1. RAC \[Régime d'Assurance-chômage\]<br> 2. RSN \[Régime de solidarité National -- Régime État\]<br> 3. PRERETRAITE<br> 4. ASC<br> 5. RSP<br> 6. FSP<br> X. Valeur hors table |
 | <br>KCRRD | <br>ODDDFLAG | <br>Indicateur de réadmission ou nouveaux types d'ODD | <br>Flag de réadmission, calculé à partir des règles de réadmission de la Convention 2006. Cette rubrique permet le suivi et l'analyse des droits en réadmission. | <br>0. Pas de nouvelle réadmission<br> 1. Réadmission de l'ancien droit (capital et montant)<br> 2. Droit courant retenu (capital et montant)<br> 3. Réadmission avec capital de l'OD courante et montant du droit précédent<br> 4. Réadmission avec capital de l'OD précédente et montant du droit courant<br> 5. OD suite à Rechargement avec condition minimale (AC 2014)<br> 6. OD suite à perte d'une activité conservée (AC 2014)<br> 7. OD suite à Rechargement de droit commun pour les apprentis (Avenants AC 2014)<br> 8. OD suite à Rechargement de droit commun hors apprentis (Avenants AC 2014 droit d'option élargi) |
 | <br>KCTPP | <br>ODDTPAR | <br>Coefficient de réduction de temps partiel | <br>Cette rubrique décrit le coefficient réducteur calculé en fonction de l'horaire de travail pratiqué par l'individu.<br> Il servira à réduire la partie fixe. Selon le régime applicable, ce coefficient sera calculé de la façon suivante :<br> - Del 27 du régime général : ce coefficient est égal au rapport des heures de travail correspondant à l'horaire de l'individu pendant la période servant au calcul du salaire de référence sur l'horaire légal ou horaire de la convention ou de l'accord collectif correspondant à la même période.<br> - Art 25 de l'Annexe 12 : ce coefficient est égal au rapport du nombre d'heures de travail effectué pendant les 12 derniers mois sur 1815. |  |
@@ -24,13 +25,16 @@ title: "Dictionnaire des variables"
 | <br>KNFILD | <br>ODDFILD | <br>Code filière d'indemnisation théorique | <br>Il s'agit du code filière du droit potentiel | <br>Cf. KNFIL |
 | <br>KNJCPP | <br> | <br>Nombre de jours de franchises congés | <br> | <br> |
 | <br>KNJECP | <br> | <br>Nombre de jours d'écrêtement de la durée du droit | <br> | <br> |
+| <br>KPCFDP | <br> | <br>Durée du complément de fin de droit | <br> | <br> |
 | <br>KPJDFP | <br> | <br>Nombre de jours de différé des annexes 8 et 10 | <br> | <br> |
 | <br>KPJDXP | <br>ODDDMAX | <br>Durée maximale d'indemnisation du droit | <br>Durée maximale d'indemnisation du droit. Cette durée est exprimée en jours. Elle permet le suivi et l'analyse des droits en réadmission. |  |
 | <br>KPJTPR |  |  | <br>Nombre de jours travaillés sur la PRC |  |
 | <br>KPJTRP | <br>ODDNBJTR | <br>Diviseur utilisé pour le calcul du SJR (KQCSJP) | <br>Nombre de jours pris en compte dans la PRC (Période Référence Calcul) pour le calcul du SJR | <br> |
 | <br>KPMODP | <br> | <br>Durée maximale de l'indemnisation à l'ouverture du droit | <br> | <br> |
 | <br>KQBFRP | <br>ODDSBNP | <br>Salaire brut non plafonné sur la PRC | <br> | <br> |
+| <br>KQBIAP |  | <br>Montant brut initial de l'allocation journalière |  |  |
 | <br>KQCSJP | <br>ODDSJR | <br>Montant retenu du SJR | <br>Le montant du SJR retenu est le salaire journalier de référence plafonné et revalorisé. Il est égal au Salaire de référence divisé par le nombre de jours retenus pour la période de Référence. |  |
+| <br>KQCSJ3 |  | <br>Montant du SJR en cas de réadmission | Il s'agit d'un montant brut moins le précompte retraite |  |
 | <br>KQDIFP | <br>ODDMTDIF | <br>Montant des indemnités ICCP et ISLR | <br>Il s'agit du montant des indemnités ICCP (Indemnités Compensatrices de Congés Payés) et ISLR (Indemnités Supra Légales Réglementaires) pour calcul du différé. |  |
 | <br>KQICPP | <br>ODDMTICP | <br>Montant des indemnités ICCP | <br>Il s'agit du montant des indemnités ICCP pour calcul du différé |  |
 | <br>KQISLP | <br>ODDMTISL | <br>Montant des indemnités ISLR | <br>Il s'agit du montant des indemnités ISLR pour le calcul du différé |  |
