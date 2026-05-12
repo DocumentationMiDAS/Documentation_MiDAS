@@ -1,0 +1,11 @@
+---
+title: "Présentation des données SIMILO"
+---
+
+Les Missions Locales sont des agences du Réseau Pour l'Emploi recevant des jeunes de 16 à 28 ans ayant un besoin d'accompagenement social et/ou professionnel. Dans le cadre de l'appariement MiDAS seuls les jeunes en dispositif [Contrat d'Engagement Jeune (CEJ)](https://travail-emploi.gouv.fr/le-contrat-dengagement-jeune-cej), [Parcours contractualisé d’accompagnement vers l’emploi et l’autonomie (PACEA)](https://dares.travail-emploi.gouv.fr/definitions-et-concepts/parcours-contractualise-daccompagnement-vers-lemploi-et-lautonomie-pacea#:~:text='autonomie%20(PACEA)-,Parcours%20contractualis%C3%A9%20d'accompagnement%20vers%20l'emploi%20et%20l',autonomie%20et%20%C3%A0%20l'emploi.) ou [Garantie Jeune (GJ)](https://dares.travail-emploi.gouv.fr/definitions-et-concepts/garantie-jeunes) entre le 1er janvier 2017 et 30 novembre 2025 (pour la vague 8).
+
+IMILO n’est pas une base construite à des fins statistiques, mais c’est une base administrative. Il s’agit d’une extraction du logiciel sur lequel les conseillers en mission locale saisissent directement les informations concernant les jeunes et leur suivi. La base est mouvante, car les conseillers peuvent saisir et rétrosaisir des informations à n’importe quel moment dans le logiciel.
+
+Parce que les conseillers peuvent directement mettre à jour les informations, Imilo est une base historicisée. Cela veut dire qu’à chaque fois qu’une information est mise à jour, une nouvelle ligne apparaît. Chaque observation comprend les dates pendant laquelle elle a été active. Ces dates sont *ScdDateBegId* (début) et *ScdDateEndId* (fin). Pour chaque observation, la ligne active au moment de l’extraction de la base est repérable par le filtre SCD_ACTIVE= "O".
+
+L'idenfitifant principal d'IMILO est l'ID_DOSSIER qui correspond à un jeune dans une Mission Locale donnée. Si un jeune change de dispositif (passe d'un CEJ à une PACEA par exemple), l'ID_DOSSIER sera le même mais l'ID_DISPOSITIF_INSTANCE (dans la table DIM_DISPOSITIF) sera différent. **Si un jeune change de Mission Locale il aura en revanche un nouveau ID_DOSSIER.**
