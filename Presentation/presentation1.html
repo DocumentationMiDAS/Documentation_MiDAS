@@ -42,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f68841f65b61c6d637cf2eb34ab473a0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-2204ff613271b993a18e467932d8e644.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -100,6 +100,10 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">FHS</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../FT-A/FT-A_presentation.html"> 
+<span class="menu-text">FT-A</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../FNA/FNA_presentation.html"> 
 <span class="menu-text">FNA</span></a>
   </li>  
@@ -112,8 +116,8 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">DSN</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../SIMILO/SIMILO_presentation.html"> 
-<span class="menu-text">SIMILO</span></a>
+    <a class="nav-link" href="../MILO/MILO_presentation.html"> 
+<span class="menu-text">MILO</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../Fiches/Fiches_presentation.html"> 
@@ -208,10 +212,10 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li><p>Du côté des <strong>données de France Travail</strong>, MiDAS comprend l’ensemble des personnes inscrites à France Travail au moins un jour depuis 2017, dont les indemnisables et indemnisés à l’assurance-chômage (AC) ;</p></li>
 <li><p>Du côté des <strong>données de la Cnaf</strong>, MiDAS comprend l’ensemble des foyers sociaux bénéficiaires au moins un mois depuis 2017 du Revenu de solidarité active (RSA), de la prime d’activité (PA) et les personnes handicapées bénéficiaires de l’Allocation aux adultes handicapés (AAH) ;</p></li>
-<li><p>Du côté des <strong>données de la Dares,</strong> MiDAS contient, parmi les MMO, tous les contrats salariés en cours ou terminés après le 1er janvier 2017 pour les individus du champ.</p></li>
+<li><p>Du côté des <strong>données de la Dares,</strong> MiDAS contient, parmi les MMO, tous les contrats salariés en cours ou terminés après le 1er janvier 2017 pour les individus du champ. MiDAS contient également les jeunes de 16-18 ans suivis par une Mission Locale depuis le 1er janvier 2017 dans les dispositifs suivants : Contrat d’Engagement Jeune (CEJ),&nbsp;Parcours contractualisé d’accompagnement vers l’emploi et l’autonomie (PACEA)&nbsp;et&nbsp;Garantie Jeune (GJ).</p></li>
 </ul>
-<p>Le champ de MiDAS comprend ainsi les inscrits à France Travail (fichier FHS) dont les indemnisables et indemnisés (fichier FNA), auxquels sont appariés les bénéficiaires des minima sociaux (fichiers “Prestations”). Les données MMO sont appariées à ce champ, de même que les données de la Cnaf portant sur la composition du ménage (fichiers “Ménages”).</p>
-<p><img src="images/clipboard-3311172363.png" class="img-fluid"></p>
+<p>Le champ de MiDAS comprend ainsi les inscrits à France Travail (fichier FHS) dont les indemnisables et indemnisés (fichier FNA), auxquels sont appariés les bénéficiaires des minima sociaux (fichiers “Prestations”) ainsi que les jeunes suivis par une Mission Locale (Milo). Les données MMO sont appariées à ce champ, de même que les données de la Cnaf portant sur la composition du ménage (fichiers “Ménages”).</p>
+<p><img src="images/clipboard-867713597.png" class="img-fluid"></p>
 <section id="champ-détaillé-de-chaque-source" class="level2">
 <h2 class="anchored" data-anchor-id="champ-détaillé-de-chaque-source">Champ détaillé de chaque source</h2>
 <table class="caption-top table">
@@ -228,19 +232,23 @@ ul.task-list li input[type="checkbox"] {
 <tbody>
 <tr class="odd">
 <td>FHS</td>
-<td>Toute personne inscrite à France Travail au moins un jour depuis le 1er janvier 2017 avec son historique d’inscription remontant à 10 ans (juin 2012) pour la France entière.</td>
+<td>Inclut toute personne inscrite à France Travail au moins un jour depuis le 1er janvier 2017 avec son historique d’inscription remontant à 10 ans à la date d’extraction du fichier pour la France entière.</td>
 </tr>
 <tr class="even">
 <td>FNA</td>
-<td>Personnes indemnisables au moins 1 jour depuis le 1er janvier 2017. Pour ces individus, MiDAS contient tout l’historique de l’indemnisation depuis 1993, des périodes d’affiliation et de l’activité réduite.</td>
+<td>Inclut toutes les personnes indemnisables au moins 1 jour depuis le 1er janvier 2017. Pour ces individus, MiDAS contient tout l’historique de l’indemnisation depuis 1993, des périodes d’affiliation et de l’activité réduite.</td>
 </tr>
 <tr class="odd">
 <td>Allstat-FR6</td>
-<td>L’ensemble des foyers sociaux bénéficiaires du RSA, de la PA et de l’AAH depuis janvier 2017 (fichier « Prestations ») pour la France entière. Ainsi, tout adulte seul ou membre d’un couple constitutif d’un foyer social qui perçoit un droit au RSA ou à la PA est suivi dans MiDAS quel que soit son âge. À noter l’absence des enfants de 18 à 25 ans qui vivent chez leurs parents, même si ces derniers appartiennent au foyer social bénéficiaire du RSA ou de la PA. Enfin, pour l’AAH, si son versement est soumis aux conditions de ressources du ménage , il s’agit d’une prestation individuelle et seul l’allocataire en est le bénéficiaire. Ainsi, son conjoint est conservé dans MiDAS s’il a été inscrit au moins une fois à France Travail ou si le couple a bénéficié du RSA ou de la PA depuis 2017.</td>
+<td>Inclut l’ensemble des foyers sociaux bénéficiaires du RSA, de la PA et de l’AAH depuis janvier 2017 (fichier « Prestations ») pour la France entière. Ainsi, tout adulte seul ou membre d’un couple constitutif d’un foyer social qui perçoit un droit au RSA ou à la PA est suivi dans MiDAS quel que soit son âge. À noter l’absence des enfants de 18 à 25 ans qui vivent chez leurs parents, même si ces derniers appartiennent au foyer social bénéficiaire du RSA ou de la PA. Enfin, pour l’AAH, si son versement est soumis aux conditions de ressources du ménage , il s’agit d’une prestation individuelle et seul l’allocataire en est le bénéficiaire. Ainsi, son conjoint est conservé dans MiDAS s’il a été inscrit au moins une fois à France Travail ou si le couple a bénéficié du RSA ou de la PA depuis 2017.</td>
 </tr>
 <tr class="even">
 <td>MMO</td>
-<td>L’ensemble des contrats salariés depuis le 1er janvier 2017 pour les individus du champ MiDAS. Les données sont représentatives de l’ensemble des établissements employeurs de France métropolitaine sur le champ privé et public. Le champ recouvert par la DSN s’étant accru depuis 2017, l’exhaustivité des déclarations est meilleure en fin de période qu’en début de période. Les données portant sur les établissements de moins de 10 salariés sont également disponibles. Le champ de MiDAS comprendra de nouveaux publics à mesure qu’ils sont intégrés à la DSN. En revanche, MiDAS n’intègre pas les indépendants.</td>
+<td>Inclut l’ensemble des contrats salariés depuis le 1er janvier 2017 pour les individus du champ MiDAS. Les données sont représentatives de l’ensemble des établissements employeurs de <u>France métropolitaine</u> sur le champ privé et public. Le champ recouvert par la DSN s’étant accru depuis 2017, l’exhaustivité des déclarations est meilleure en fin de période qu’en début de période. Les données portant sur les établissements de moins de 10 salariés sont également disponibles. Le champ de MiDAS comprendra de nouveaux publics à mesure qu’ils sont intégrés à la DSN. En revanche, MiDAS n’intègre pas les indépendants.</td>
+</tr>
+<tr class="odd">
+<td>Milo</td>
+<td>Inclut les jeunes de 16-28 ans suivis par les Missions Locales et présents dans les dispositifs suivants : &nbsp;Contrat d’Engagement Jeune (CEJ),&nbsp;Parcours contractualisé d’accompagnement vers l’emploi et l’autonomie (PACEA) et Garantie Jeune (GJ).</td>
 </tr>
 </tbody>
 </table>

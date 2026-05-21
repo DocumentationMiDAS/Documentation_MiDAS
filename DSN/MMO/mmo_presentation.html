@@ -42,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-f68841f65b61c6d637cf2eb34ab473a0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-2204ff613271b993a18e467932d8e644.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -100,6 +100,10 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">FHS</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../../FT-A/FT-A_presentation.html"> 
+<span class="menu-text">FT-A</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../../FNA/FNA_presentation.html"> 
 <span class="menu-text">FNA</span></a>
   </li>  
@@ -112,8 +116,8 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">DSN</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../SIMILO/SIMILO_presentation.html"> 
-<span class="menu-text">SIMILO</span></a>
+    <a class="nav-link" href="../../MILO/MILO_presentation.html"> 
+<span class="menu-text">MILO</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../Fiches/Fiches_presentation.html"> 
@@ -289,11 +293,11 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>La Dares fournit les données de Mouvements de Main-d’œuvre (MMO)[^1] tirées de l’exploitation des déclarations sociales nominatives (DSN).</p>
+<p>La Dares fournit les données de Mouvements de Main-d’œuvre (MMO) tirées de l’exploitation des déclarations sociales nominatives (DSN).</p>
 <p>Plusieurs tables MMO sont transmises selon la période de référence considérée. <u>L’unité statistique des tables est celle du contrat</u> : chaque table contient une ligne pour tout contrat actif au moins un jour sur la période de référence. Plusieurs lignes peuvent correspondre à un même individu si celui-ci a eu plusieurs contrats sur la période de référence. Les contrats sont qualifiés selon leur modalité active au dernier jour de la période de référence.</p>
 <p><u>Exemple</u> : la table « 2017 » contient les contrats actifs au moins un jour sur l’année 2017, c’est-à-dire ayant une date de début antérieure au 1er janvier 2018 et une date de fin postérieure au 31 décembre 2016 ou manquante si le contrat est en cours. La PCS renseignée est la PCS du contrat au 31/12/2017.</p>
 <p>Un contrat actif sur plusieurs périodes de référence (par exemple 2017 et 2018) peut être identifié via l’identifiant du contrat (L_CONTRAT_SQN). Sur une période donnée, les contrats dont l’identifiant L_CONTRAT_SQN est vide sont des contrats inactifs sur cette période (mais actifs sur une autre période).</p>
-<p><u>Exemple</u> : un contrat actif sur les années 2017 et 2018 (date de début ≤ 31.12.2017 et 01.01.2018 ≤ date de fin ≤ 31.12.2018) sera présent dans toutes les tables mais identifiable via son identifiant L_CONTRAT_SQN dans les tables 2017 et 2018 uniquement.</p>
+<p><u>Exemple</u> : un contrat actif sur les années 2017 et 2018 (date de début ≤ 31/12/2017 et 01/01/2018 ≤ date de fin ≤ 31/12/2018) sera présent dans toutes les tables mais uniquement identifiable via son identifiant L_CONTRAT_SQN dans les tables 2017 et 2018.</p>
 
 
 

@@ -42,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f68841f65b61c6d637cf2eb34ab473a0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-2204ff613271b993a18e467932d8e644.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -100,6 +100,10 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">FHS</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../FT-A/FT-A_presentation.html"> 
+<span class="menu-text">FT-A</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link active" href="../FNA/FNA_presentation.html" aria-current="page"> 
 <span class="menu-text">FNA</span></a>
   </li>  
@@ -112,8 +116,8 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">DSN</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../SIMILO/SIMILO_presentation.html"> 
-<span class="menu-text">SIMILO</span></a>
+    <a class="nav-link" href="../MILO/MILO_presentation.html"> 
+<span class="menu-text">MILO</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../Fiches/Fiches_presentation.html"> 
@@ -553,6 +557,7 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li><p>Le segment <strong>« <a href="../FNA/IND/IND_presentation.html">Individu</a> » (IND, LN4A)</strong>&nbsp;: table centrale qui fait la jonction avec les autres tables, au niveau de l’individu&nbsp;;</p></li>
 <li><p>Le segment <strong>« <a href="../FNA/CDT/CDT_presentation.html">Contrat de travail</a> » (CDT, LN4E)</strong> indique la nature du dernier contrat de travail avant l’ouverture du droit (fait générateur) et son motif de fin ;</p></li>
+<li><p>Le segment <strong>« <a href="EMP/EMP_presentation.html">Employeur</a> » (EMP, LN4B)</strong> renseigne sur l’employeur (identifié via le Siret) de l’allocataire lors de son contrat fait générateur ;</p></li>
 <li><p>Le segment <strong>« <a href="../FNA/PAF/PAF_presentation.html">Période d’affiliation</a> » (PAF, LN2L)</strong> : pour un droit, cette table contient l’ensemble des évènements (contrats de travail, périodes de formations, arrêts maladie…) connus d’un individu, indiqués par une date de début (KDDPE) et une date de fin (KDFPE). Si ces variables sont identiques à celles présentes dans CDT, elles ne renvoient pas nécessairement à un contrat car le « champ » de PAF est plus large que celui de CDT. L’ensemble des contrats ayant permis l’ouverture de droit peuvent être repérés grâce à KCFPL et sont exprimés en heures alors que les arrêts maladie sont exprimés en jours (KCAFF) ;</p></li>
 <li><p>Le segment <strong>« <a href="../FNA/DAL/DAL_presentation.html">Demande d’allocation</a> » (DAL, LN1N)</strong> : table qui renseigne sur les demandes d’allocation (type de demande, nombre de jours de différés, demandes rejetées) rattachées aux droits ouverts. Cette table contient toutes les demandes, y compris celles qui n’ont pas débouché sur une ouverture de droit&nbsp;;</p></li>
 <li><p>Le segment <strong>« <a href="../FNA/ODD/ODD_presentation.html">Ouverture de droit</a> » (ODD, LN1S)</strong> : cette table fournit les caractéristiques du droit ouvert. Une ligne correspond à un droit. On distingue plusieurs situations :</p>
@@ -575,11 +580,7 @@ ul.task-list li input[type="checkbox"] {
 <li><p>Une fois la DAL acceptée, la personne peut s’ouvrir un droit à l’assurance-chômage, dont les caractéristiques sont présentes au sein de la table ODD (ouverture de droit) ;</p></li>
 <li><p>Pour chaque droit ouvert, est associée une ou plusieurs périodes à justification constante (PJC) pendant lesquelles les paramètres de l’indemnisation restent inchangés.</p></li>
 </ul>
-<p>L’activité réduite&nbsp;: l’information sur les allocataires de l’assurance-chômage qui travaillent est renseignée dans le FHS (table E0) et dans le FNA (table PAR). Deux différences sont à noter entre ces deux tables :</p>
-<ul>
-<li><p>Seule la table PAR renseigne sur le salaire brut perçu dans le cadre d’une activité réduite (variable KQBARP) ;</p></li>
-<li><p>La table E0 ne contient que les heures d’activité réduite des personnes inscrites en catégories B ou C.</p></li>
-</ul>
+<p>L’activité réduite&nbsp;: l’information sur les personnes inscrites et/ou allocataires de l’assurance-chômage qui travaillent est renseignée dans le FHS (table E0) et dans le FNA (table PAR). Cette <a href="../../../Fiches/Activité réduite.html">fiche</a> détaille comment repérer les personnes en activité réduite.</p>
 
 
 </section>
