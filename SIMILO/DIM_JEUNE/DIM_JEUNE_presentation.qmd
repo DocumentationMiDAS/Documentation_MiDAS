@@ -1,9 +1,0 @@
----
-title: "Présentation de la table"
----
-
-DIM_JEUNE contient les principales caractéristiques des jeunes tout au long de son dispositif au sein d'une Missions Locale.
-
-Les informations des jeunes sont historicisées donc si un jeune déménage on aura pour un même ID_DOSSIER, un première ligne avec l'ancienne adresse et la variable "SCD_ACTIVE='N'" pour signifier qu'il s'agit d'une information ancienne et une autre ligne avec une autre adresse avec cette fois "SCD_ACTIVE='O'".
-
-A noter que ces modifications peuvent correspondre à de véritables changements de situation ou de rétro-saisie pour corriger une information qui était érronée.

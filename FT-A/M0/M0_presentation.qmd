@@ -1,0 +1,5 @@
+---
+title: "Présentation de la table"
+---
+
+Cette table renseigne sur les mises en relation avec les entreprises.

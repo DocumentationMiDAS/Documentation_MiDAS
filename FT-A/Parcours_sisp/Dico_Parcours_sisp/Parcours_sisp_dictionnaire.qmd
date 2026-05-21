@@ -1,0 +1,23 @@
+---
+title: "Dictionnaire des variables"
+---
+
+| <br>Variables | <br>Libellé | <br>Modalités | <br>Commentaires |
+|:----------------------------:|:----------------------:|:---------------:|:---------------------:|
+| <br>KC_DOSSIERSUIVIRETOUREMPLOI_ID | <br> | <br> | <br> |
+| <br>KC_PARCOURSMODALITE |  |  |  |
+| <br>DC_STATUTPCSMOD | <br>Statut du parcours | <br>OU. Ouvert<br>FR. Fermé |  |
+| <br>DD_DATEOUVERTUREPCSMOD | <br>Date d'ouverture du parcours |  |  |
+| <br>DD_DATEFERMETUREPCSMOD | <br>Date de fermeture du parcours |  |  |
+| <br>DC_TYPEPARCOURSMODALITE | <br>Type de parcours | <br>SUI. Suivi<br>GUI. Guidé<br>REN. Renforcé<br>GLO. Global | <br> Plus de détails ci-dessous |
+| <br>DC_AGENT_MAJPCSMOD_H | <br>Identifiant du conseiller qui a effectué la modification du parcours |  | Pas de lien possible avec l'identifiant conseiller disponible dans la table E1, les identifiants étant différents |
+
+4 types de parcours d'accompagnement :
+
+-   **Parcours suivi** : s’adresse aux pesonnes les plus proches du marché de l’emploi et dont l’autonomie dans la recherche d’emploi est la plus grande. Il propose un suivi plus collectif et plus digital (transmission d’offres d’emploi, de point d’étape en ligne, adhésion à une plateforme collaborative : Sphère emploi, …). Ce suivi est supervisé par le conseiller référent de la recherche d’emploi ;
+
+-   **Parcours guidé** : s’adresse aux personnes dont le profil est plutôt adapté au marché de l’emploi, qui ont besoin d’un appui régulier par leur conseiller référent dans la recherche d’emploi ou pour une mobilité professionnelle, notamment à travers des contacts dont la nature, les modalités et la fréquence sont personnalisées ;
+
+-   **Parcours renforcé** : s'adresse aux personnes les plus éloignées du marché de l’emploi, qui ont besoin d’être fortement accompagnées par leur conseiller référent dans leur trajectoire de retour à l’emploi, notamment à travers des contacts fréquents dont le rythme et le contenu répondent au besoin de la personne. Cela inclut les dispositifs d’accompagnement intensifs suivants : AIJ, CEJ, Equip'emploi - Equip'recrut, Parcours de remobilisation ;
+
+-   **Parcours global** : il s’agit d’un accompagnement personnalisé et intensif, réalisé par un binôme constitué d’un conseiller France Travail dédié et d’un travailleur social. Cet accompagnement a pour objectif l'accès à l’emploi par la résolution ou la réduction des difficultés sociales et professionnelles qu’ils rencontrent. Il s’adresse à toute personne inscrite présentant un cumul de contraintes sociales et professionnelles qui accepte d’adhérer à cet accompagnement.

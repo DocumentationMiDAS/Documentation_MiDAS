@@ -1,0 +1,12 @@
+---
+title: "Dictionnaire des variables"
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+| <br>Variables | <br>Libellé | <br>Modalités | <br>Commentaires |
+|:-----------:|:---------:|:---------------------:|:---------------------:|
+| <br>DD_DATEENTREEPARCOURS | <br>Date d'entrée dans le parcours | <br> | <br> |
+| <br>DD_DATESORTIEPARCOURS | <br>Date de sortie du parcours |  |  |
+| <br>DC_TYPEPARCOURS | <br>Type de parcours | <br>PSP. Parcours socio-professionnel<br>PSO. Parcours social<br>PED. Pacours professionnel |  |

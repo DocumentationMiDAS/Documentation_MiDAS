@@ -2,7 +2,7 @@
 title: "Présentation de la table"
 ---
 
-La Dares fournit les données de Mouvements de Main-d'œuvre (MMO)[^1] tirées de l'exploitation des déclarations sociales nominatives (DSN).
+La Dares fournit les données de Mouvements de Main-d'œuvre (MMO) tirées de l'exploitation des déclarations sociales nominatives (DSN).
 
 Plusieurs tables MMO sont transmises selon la période de référence considérée. [L'unité statistique des tables est celle du contrat]{.underline} : chaque table contient une ligne pour tout contrat actif au moins un jour sur la période de référence. Plusieurs lignes peuvent correspondre à un même individu si celui-ci a eu plusieurs contrats sur la période de référence. Les contrats sont qualifiés selon leur modalité active au dernier jour de la période de référence.
 
@@ -10,4 +10,4 @@ Plusieurs tables MMO sont transmises selon la période de référence considér�
 
 Un contrat actif sur plusieurs périodes de référence (par exemple 2017 et 2018) peut être identifié via l'identifiant du contrat (L_CONTRAT_SQN). Sur une période donnée, les contrats dont l'identifiant L_CONTRAT_SQN est vide sont des contrats inactifs sur cette période (mais actifs sur une autre période).
 
-[Exemple]{.underline} : un contrat actif sur les années 2017 et 2018 (date de début ≤ 31.12.2017 et 01.01.2018 ≤ date de fin ≤ 31.12.2018) sera présent dans toutes les tables mais identifiable via son identifiant L_CONTRAT_SQN dans les tables 2017 et 2018 uniquement.
+[Exemple]{.underline} : un contrat actif sur les années 2017 et 2018 (date de début ≤ 31/12/2017 et 01/01/2018 ≤ date de fin ≤ 31/12/2018) sera présent dans toutes les tables mais uniquement identifiable via son identifiant L_CONTRAT_SQN dans les tables 2017 et 2018.

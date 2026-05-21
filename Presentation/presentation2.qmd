@@ -2,6 +2,8 @@
 title: "Calendrier des vagues"
 ---
 
-L'appariement est réalisé par le CASD sur le NIR haché. Le CASD met les données à disposition et conserve une table de passage, contenant uniquement les identifiants non signifiants des bases de données utilisées pour l'appariement, à savoir l'IDX-Région, l'ID_FR6, l'ID_MMO et l'ID_MiDAS. Le calendrier est détaillé dans le tableau ci-dessous :
+L'appariement est réalisé par le CASD sur le NIR haché. Le CASD met les données à disposition et conserve une table de passage, contenant uniquement les identifiants non signifiants des bases de données utilisées pour l'appariement, à savoir l'IDX-Région, l'ID_FR6, l'ID_MMO, l'ID_Milo et l'ID_MiDAS. Le calendrier est détaillé dans le tableau ci-dessous :
 
-![](images/clipboard-1701191916.png)
+![](images/clipboard-1293791472.png)
+
+\*Les données FT-A commencent au 1er janvier 2022.

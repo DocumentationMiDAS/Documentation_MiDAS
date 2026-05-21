@@ -1,0 +1,31 @@
+---
+title: "Dictionnaire des variables"
+editor: 
+  markdown: 
+    wrap: 72
+---
+
++-----------------+--------------+--------------+--------------+
+| <br>Variables   | <br>Libellé  | <            | <br>         |
+|                 |              | br>Modalités | Commentaires |
++:===============:+:============:+:============:+:============:+
+| <br>MOISTA      | <br>Mois     | <br>         | <br>         |
+|                 | concerné     |              |              |
++-----------------+--------------+--------------+--------------+
+| <b              | <br>Date de  |              | <br>Dernier  |
+| r>DTE_RADIATION | radiation    |              | jour du mois |
+|                 | STMT         |              |              |
++-----------------+--------------+--------------+--------------+
+| <br>MTFANUSTA   | <br>Motif de | <br>13.      |              |
+|                 | radiation    | Défaut d     |              |
+|                 |              | 'a           |              |
+|                 |              | ctualisation |              |
+|                 |              | hybride RSA  |              |
+|                 |              |              |              |
+|                 |              | <br>14.      |              |
+|                 |              | Défaut d     |              |
+|                 |              | 'a           |              |
+|                 |              | ctualisation |              |
+|                 |              | hyvbride     |              |
+|                 |              | autre        |              |
++-----------------+--------------+--------------+--------------+

@@ -16,6 +16,8 @@ Dans le cadre de MiDAS, les données sélectionnées sont issues de 8 segments d
 
 -   Le segment **« [Contrat de travail](CDT/CDT_presentation.qmd) » (CDT, LN4E)** indique la nature du dernier contrat de travail avant l'ouverture du droit (fait générateur) et son motif de fin ;
 
+-   Le segment **« [Employeur](EMP/EMP_presentation.html) » (EMP, LN4B)** renseigne sur l'employeur (identifié via le Siret) de l'allocataire lors de son contrat fait générateur ;
+
 -   Le segment **« [Période d'affiliation](PAF/PAF_presentation.qmd) » (PAF, LN2L)** : pour un droit, cette table contient l'ensemble des évènements (contrats de travail, périodes de formations, arrêts maladie...) connus d'un individu, indiqués par une date de début (KDDPE) et une date de fin (KDFPE). Si ces variables sont identiques à celles présentes dans CDT, elles ne renvoient pas nécessairement à un contrat car le « champ » de PAF est plus large que celui de CDT. L'ensemble des contrats ayant permis l'ouverture de droit peuvent être repérés grâce à KCFPL et sont exprimés en heures alors que les arrêts maladie sont exprimés en jours (KCAFF) ;
 
 -   Le segment **« [Demande d'allocation](DAL/DAL_presentation.qmd) » (DAL, LN1N)** : table qui renseigne sur les demandes d'allocation (type de demande, nombre de jours de différés, demandes rejetées) rattachées aux droits ouverts. Cette table contient toutes les demandes, y compris celles qui n'ont pas débouché sur une ouverture de droit ;
@@ -46,8 +48,4 @@ Un personne qui s'inscrit à France Travail apparaît dans la table DE du FHS. E
 
 -   Pour chaque droit ouvert, est associée une ou plusieurs périodes à justification constante (PJC) pendant lesquelles les paramètres de l'indemnisation restent inchangés.
 
-L'activité réduite : l'information sur les allocataires de l'assurance-chômage qui travaillent est renseignée dans le FHS (table E0) et dans le FNA (table PAR). Deux différences sont à noter entre ces deux tables :
-
--   Seule la table PAR renseigne sur le salaire brut perçu dans le cadre d'une activité réduite (variable KQBARP) ;
-
--   La table E0 ne contient que les heures d'activité réduite des personnes inscrites en catégories B ou C.
+L'activité réduite : l'information sur les personnes inscrites et/ou allocataires de l'assurance-chômage qui travaillent est renseignée dans le FHS (table E0) et dans le FNA (table PAR). Cette [fiche](../../../Fiches/Activité%20réduite.html) détaille comment repérer les personnes en activité réduite.

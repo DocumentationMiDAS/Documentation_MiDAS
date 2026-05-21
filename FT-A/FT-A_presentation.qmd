@@ -1,0 +1,5 @@
+---
+title: "France Travail - Accompagnement"
+---
+
+Ces tables complètent les données du FHS et portent sur tout ce qui a trait à l'accompagnement des personnes inscrites (entretiens, mises en relation, périodes d'immersion...).

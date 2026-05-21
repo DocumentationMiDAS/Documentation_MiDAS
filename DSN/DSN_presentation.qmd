@@ -1,10 +1,8 @@
 ---
 title: "Présentation de la DSN"
 ---
- 
-La Déclaration Sociale Nominative (DSN) permet de suivre l'ensemble des contrats salariés des personnes inscrites à Frace Travail et des bénéficiaires de minima sociaux. La DSN repose sur la transmission unique, mensuelle et dématérialisée des données issues de la paie et sur des signalements d’évènements. Plus précisément, la DSN remplace depuis 2017, dans la plupart des entreprises, la déclaration annuelle de données sociales unifiée (DADS-U) afin d'unifier les déclarations et démarches relatives à la gestion de la protection sociale des employés, autrefois adressées à une diversité d'acteurs (CPAM, Urssaf, AGIRC ARRCO, Organismes complémentaires, Pôle emploi, Centre des impôts, Caisses de régimes spéciaux...).
 
-[^1]: Cette partie est issue de la documentation ForCE (Formation, Chômage Emploi), les données MMO transmises au CASD pour ces deux appariements étant identiques.
+La Déclaration Sociale Nominative (DSN) permet de suivre l'ensemble des contrats salariés des personnes présentes dans le champ de MiDAS. La DSN repose sur la transmission unique, mensuelle et dématérialisée, des données issues de la paie et sur des signalements d’évènements. Plus précisément, la DSN remplace depuis 2017, dans la plupart des entreprises, la déclaration annuelle de données sociales unifiée (DADS-U) afin d'unifier les déclarations et démarches relatives à la gestion de la protection sociale des employés, autrefois adressées à une diversité d'acteurs (CPAM, Urssaf, AGIRC ARRCO, Organismes complémentaires, Pôle emploi, Centre des impôts, Caisses de régimes spéciaux...).
 
 Le champ des contrats couverts par la DSN est progressivement élargi, ce qui crée une rupture de champ :
 

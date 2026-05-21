@@ -10,14 +10,16 @@ website:
         href: Presentation/présentation.qmd
       - text: "FHS"
         href: FHS/FHS_presentation.qmd
+      - text: "FT-A"
+        href: FT-A/FT-A_presentation.qmd
       - text: "FNA"
         href: FNA/FNA_presentation.qmd
       - text: "Allstat-FR6"
         href: Allstat_FR6/Allstat_FR6_presentation.qmd
       - text: "DSN"
         href: DSN/DSN_presentation.qmd
-      - text: "SIMILO"
-        href: SIMILO/SIMILO_presentation.qmd
+      - text: "MILO"
+        href: MILO/MILO_presentation.qmd
       - text: "Fiches"
         href: Fiches/Fiches_presentation.qmd
       - text: "Codes"
@@ -62,6 +64,18 @@ website:
             - section: "Dictionnaire"
               contents: 
               - href: FHS/E0/Dico_FHS_E0/E0_dictionnaire.qmd
+        - section: "Cat9_10"
+          contents: 
+            - href: FHS/Cat9_10/Cat_presentation.qmd
+            - section: "Dictionnaire"
+              contents: 
+              - href: FHS/Cat9_10/Dico_FHS_CAT9_10/Cat_dictionnaire.qmd
+        - section: "Rad_actuh"
+          contents: 
+            - href: FHS/Rad_actuh/Rad_presentation.qmd
+            - section: "Dictionnaire"
+              contents: 
+              - href: FHS/Rad_actuh/Dico_FHS_Rad_actuh/Rad_dictionnaire.qmd
         - section: "P2"
           contents: 
             - href: FHS/P2/P2_presentation.qmd
@@ -97,6 +111,46 @@ website:
             - section: "Dictionnaire"
               contents: 
               - href: FHS/E3/Dico_FHS_E3/E3_dictionnaire.qmd        
+         
+    - title: "FT-A"
+      style: "docked"
+      background: light
+      contents:  
+        - section: "Présentation"
+          contents: 
+            - FT-A/FT-A_presentation.qmd
+        - section: "M0"
+          contents: 
+            - href: FT-A/M0/M0_presentation.qmd
+            - section: "Dictionnaire"
+              contents: 
+              - href: FT-A/M0/Dico_M0/M0_dictionnaire.qmd 
+        - section: "XP_ARSA"
+          contents: 
+            - href: FT-A/XP_ARSA/ARSA_presentation.qmd
+            - section: "Dictionnaire"
+              contents: 
+              - href: FT-A/XP_ARSA/Dico_ARSA/ARSA_dictionnaire.qmd 
+        - section: "E1"
+          contents: 
+            - href: FT-A/E1/E1_presentation.qmd
+            - section: "Dictionnaire"
+              contents: 
+              - href: FT-A/E1/Dico_E1/E1_dictionnaire.qmd
+        - section: "Parcours_sisp"
+          contents: 
+            - href: FT-A/Parcours_sisp/Parcours_sisp_presentation.qmd
+            - section: "Dictionnaire"
+              contents: 
+              - href: FT-A/Parcours_sisp/Dico_Parcours_sisp/Parcours_sisp_dictionnaire.qmd
+        - section: "Immersions"
+          contents: 
+            - href: FT-A/Immersions/Immersions_presentation.qmd
+            - section: "Dictionnaire"
+              contents: 
+              - href: FT-A/Immersions/Dico_Immersions/Immersions_dictionnaire.qmd 
+              
+        
             
     - title: "FNA"
       style: "docked"
@@ -200,7 +254,6 @@ website:
         - section: "Présentation"
           contents: 
             - DSN/DSN_presentation.qmd
-            
         - section: "MMO"
           contents: 
             - href: DSN/MMO/mmo_presentation.qmd
@@ -217,8 +270,35 @@ website:
             - section: "Dictionnaire"
               contents:
               - href: DSN/BTS/Dico_BTS/BTS_dictionnaire.qmd
-          
-    - title : "Fiches"
+            
+              
+    - title: "MILO"
+      style: "docked"
+      background: light
+      contents: 
+        - section: "Présentation"
+          contents: 
+            - MILO/MILO_presentation.qmd
+        - section: "DIM_JEUNE"
+          contents: 
+            - href: MILO/DIM_JEUNE/DIM_JEUNE_presentation.qmd
+            - section: "Dictionnaire"
+              contents: 
+                - href: MILO/DIM_JEUNE/DIM_JEUNE_dictionnaire/DIM_JEUNE_dictionnaire.qmd
+        - section: "DIM_DISPOSITIF"
+          contents: 
+            - href: MILO/DIM_DISPOSITIF/DIM_DISPOSITIF_presentation.qmd
+            - section: "Dictionnaire"
+              contents: 
+                - href: MILO/DIM_DISPOSITIF/DIM_DISPOSITIF_dictionnaire/DIM_DISPOSITIF_dictionnaire.qmd
+        - section: "DIM_JEUNE_ACCUEIL"
+          contents: 
+            - href: MILO/DIM_JEUNE_ACCUEIL/DIM_JEUNE_ACCUEIL_presentation.qmd
+            - section: "Dictionnaire"
+              contents: 
+                - href: MILO/DIM_JEUNE_ACCUEIL/DIM_JEUNE_ACCUEIL_dictionnaire/DIM_JEUNE_ACCUEIL_dictionnaire.qmd
+
+    - title: "Fiches"
       style: "docked"
       background: light
       contents:
@@ -234,32 +314,7 @@ website:
           - href: Fiches/Cumul_AC_MS.qmd
           - href: Fiches/Catégories_FHS.qmd
             
-    - title: "SIMILO"
-      style: "docked"
-      background: light
-      contents: 
-      - section: "Présentation"
-        contents: 
-          - SIMILO/SIMILO_presentation.qmd
-      - section: "DIM_JEUNE"
-        contents: 
-          - href: SIMILO/DIM_JEUNE/DIM_JEUNE_presentation.qmd
-          - section: "Dictionnaire"
-            contents: 
-               - href: SIMILO/DIM_JEUNE/DIM_JEUNE_dictionnaire/DIM_JEUNE_dictionnaire.qmd
-      - section: "DIM_DISPOSITIF"
-        contents: 
-            - href: SIMILO/DIM_DISPOSITIF/DIM_DISPOSITIF_presentation.qmd
-            - section: "Dictionnaire"
-              contents: 
-                - href: SIMILO/DIM_DISPOSITIF/DIM_DISPOSITIF_dictionnaire/DIM_DISPOSITIF_dictionnaire.qmd
-      - section: "DIM_JEUNE_ACCUEIL"
-        contents: 
-          - href: SIMILO/DIM_JEUNE_ACCUEIL/DIM_JEUNE_ACCUEIL_presentation.qmd
-          - section: "Dictionnaire"
-            contents: 
-               - href: SIMILO/DIM_JEUNE_ACCUEIL/DIM_JEUNE_ACCUEIL_dictionnaire/DIM_JEUNE_ACCUEIL_dictionnaire.qmd
-
+   
 format:
   html:
     theme: pulse

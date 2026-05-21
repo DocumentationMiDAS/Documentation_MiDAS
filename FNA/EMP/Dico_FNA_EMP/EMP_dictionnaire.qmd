@@ -3,7 +3,7 @@ title: "Dictionnaire des variables"
 ---
 
 | <br>Nom Oracle (SAS) | <br>Nom segment | <br>Libellé | <br>Description | <br>Modalités |
-|----|----|----|----|----|
+|--------------|------------|------------|-------------|-----------------------|
 | <br>KCASS | <br>EMPASS | Code site |  |  |
 | <br>KCRAE | <br>EMPREG | Code régime d'affiliation de l'employeur |  | <br>00. Sans objet (ex : AI) <br>01. Régime d’Assurance Chômage (droit commun) <br>02. Régime d’Assurance Chômage (adhésion volontaire) <br>03. Régime d’Assurance Chômage (CES) <br>04. Régime d’Assurance Chômage (Secteur public CES) <br>10. Régime particulier aux CES <br>11. Régime Agricole (employeur cotisant aux CMSA) <br>12. Employeur cotisant à la CCVRP (Caisse de Compensation des VRP) <br>13. Employeur cotisant au centre de recouvrement d’Annecy (Ciné. spectacles) <br>14. Employeur cotisant à la caisse des expatriés <br>15. Expatriés affiliation obligatoire <br>16. Expatriés sans distinction <br>20. Employeur en convention de gestion <br>30. Employeur en auto-assurance <br>40. Employeur à l’étranger (non cotisant) <br>90. Situation indéterminée (en cours de création...) <br>XX. Valeur hors table |
 | <br>KCSIRE | <br>EMPSIRET | <br>Numéro Siret |  |  |

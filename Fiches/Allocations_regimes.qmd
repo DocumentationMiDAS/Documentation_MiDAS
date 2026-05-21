@@ -4,7 +4,7 @@ execute:
   enabled: false
 ---
 
-Date de mise à jour : septembre 2025
+Date de mise à jour : Décembre 2025
 
 Cette fiche regroupe les modalités qui renseignent sur les allocations, aides et primes perçues par les allocataires de l'assurance-chômage. De nouvelles modalités apparaissent avec l'ajout de nouveaux dispositifs d'indemnisation et la modification des conventions d'assurance-chômage. A chaque nouvelle vague de MiDAS, cette fiche sera donc mise à jour dès que possible pour les intégrer.
 
@@ -107,7 +107,7 @@ codes_pjc <- PJC_s %>%
                                 KCALF %in% c("AE","BH","BM","CL","DO","EI","EY","FN","GY","HL") ~ "ARE-CG", # ARE-convention de gestion
                                 KCALF %in% c("AF","BI","BO","CM","DR","EM","EZ","FQ","HA","HP") ~ "AREF-CG",
                                 KCALF == "81" ~ "RFFT", # Rémunération formation France Travail
-                                KCALF %in% c("EQ","ER","FH","GU","HH","HT") ~ "RFF", # Rémunération de fin de formation
+                                KCALF %in% c("EQ","ER","FH","GU","HH","HT","HW") ~ "RFF", # Rémunération de fin de formation
                                 KCALF %in% c("0C","0E","15") ~ "ASFNE", # Allocation conventionnelle du Fonds national de l'emploi (pré-retraite)
                                 KCALF %in% c("11","17","18") ~ "PRP", # Pré-retraite progressive
                                 KCALF == "26" ~ "ACO", # Allocation complémentaire

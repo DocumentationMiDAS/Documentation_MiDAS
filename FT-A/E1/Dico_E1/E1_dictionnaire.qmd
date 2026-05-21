@@ -1,0 +1,19 @@
+---
+title: "Dictionnaire des variables"
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+| <br>Variables | <br>Libellé | <br>Modalités | <br>Commentaires |
+|:-----------------:|:------------:|:-------------------:|:---------------------:|
+| <br>KD_DATEENTRETIEN | <br>Date de réalisation de l'entretien | <br> |  |
+| <br>KC_TYPEENTRETIENAC_ID | <br>Type d'entretien | <br> Cf. image ci-dessous |  |
+| <br>DC_LBLTYPEENTRETIENAC | <br>Libellé du type d'entretien | <br> Cf. image ci-dessous |  |
+| <br>DC_MODALITECONTACT_ID | <br> Format de l'entretien réalisé |  |  |
+| <br>DC_LBLCOMPLETMODALITEENTRETIEN | <br>Libellé du format de l'entretien réalisé |  |  |
+| <br>DC_AGENT_REFERENT_H | <br> Identifiant du conseiller ayant effectué l'entretien |  |  |
+
+Modalités de KC_TYPEENTRETIENAC_ID :
+
+![](images/clipboard-107435640.png)

@@ -1,0 +1,8 @@
+---
+title: "Dictionnaire des variables"
+---
+
+| <br>Variables | <br>Libellé                     | <br>Commentaires |
+|---------------|---------------------------------|------------------|
+| <br>NOFX      | <br>Numéro de l'offre           | <br>             |
+| <br>DATMER    | <br>Date de la mise en relation | <br>             |

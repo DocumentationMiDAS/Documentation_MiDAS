@@ -1,7 +1,0 @@
----
-title: "Présentation de la table"
----
-
-Table contenant les informations des jeunes à leur accueil en Mission Locale. Les informations contenues sont donc éventuellement vouées à évoluer au cours de l'accompagnement.
-
-Cette table ne contient pas de variable SCD_ACTIVE puisque l'information contenue dedans n'est pas vouée à changer au fur et à mesure du temps.

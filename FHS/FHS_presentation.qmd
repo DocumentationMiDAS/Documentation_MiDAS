@@ -8,13 +8,17 @@ Les données du FHS permettent d'analyser la trajectoire d'inscription et d'écl
 
 ## Champ
 
-Toute personne inscrite à France Travail au moins un jour depuis le 1er janvier 2017 avec son historique d'inscription remontant sur les 10 années qui précèdent pour la France entière.
+Toute personne inscrite à France Travail au moins un jour depuis le 1er janvier 2017 avec son historique d'inscription remontant sur les 10 années qui précèdent la date d'exraction du fichier pour la France entière.
 
 ## Structure des tables
 
 Dans le cadre de MiDAS, les tables suivantes sont disponibles :
 
 -   La **table [DE](DE/DE_presentation.html) (Demandes d'emploi)** : cette table contient des informations sur les caractéristiques des inscrits à France Travail (sexe, date de naissance, qualification, commune de résidence...) et des demandes (dates et motif d'inscription, catégorie d'inscription, type d'emploi recherché, date et motif d'annulation...) ;
+
+-   La **table [Cat9_10](Cat9_10/Cat_presentation.html)** permet de repérer les personnes inscrites en catégories F et G ;
+
+-   La **table [Rad_actuh](Rad_actuh/Rad_presentation.html)** permet d'identifier les personnes radiées en raison d'un défaut d'actualisation hybride ;
 
 -   La **table [E0](E0/E0_presentation.qmd)** **(activité réduite)** : cette table permet de connaître les périodes (année et mois) d'activité réduite exercées par les inscrits en catégories B et C.
 
@@ -37,4 +41,3 @@ Les tables E3 et E3 Cons n'ont pas été exploitées par la Dares et n'ont donc 
 
 Il n'est pas recommandé d'utiliser cette table car les informations qu'elle contient sur l'indemnisabilité sont moins fiables que celles du **FNA**, présent dans MiDAS.
 :::
-

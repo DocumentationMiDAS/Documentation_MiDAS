@@ -3,7 +3,13 @@ title: "Présentation générale"
 css: homepage.css
 ---
 
-MiDAS (**Mi**nima Sociaux, **D**roits d'**A**ssurance-chômage, parcours **S**alariés) est un appariement de données administratives mené par la **Dares** (département Suivi et indemnisation des demandeurs d'emploi (D-Side)), en collaboration avec la Cnaf et France Travail. Cet appariement porte sur le **champ exhaustif des personnes qui ont été inscrites à France Travail au moins une fois depuis le 1er janvier 2017**, complété par l'**ensemble des foyers bénéficiaires de minima sociaux (RSA, PA, AAH)** depuis cette même date.
+MiDAS (**Mi**nima Sociaux, **D**roits d'**A**ssurance-chômage, parcours **S**alariés) est un appariement de données administratives mené par la **Dares** (département Suivi et indemnisation des demandeurs d'emploi (D-Side)), en collaboration avec la Cnaf et France Travail. Cet appariement porte sur le **champ exhaustif, depuis le 1er janvier 2017 :**
+
+-   Des personnes qui ont été inscrites à France Travail au moins une fois ;
+
+-   De l'ensemble des foyers bénéficiaires de minima sociaux : Revenu de solidarité active (RSA), prime d'activité (PA), allocation aux adultes handicapés (AAH) ;
+
+-   Des jeunes de 16-28 ans suivis par une Mission Locale et présents dans les dispositifs suivants : Contrat d’Engagement Jeune (CEJ), Parcours contractualisé d’accompagnement vers l’emploi et l’autonomie (PACEA) et Garantie Jeune (GJ).
 
 Cet appariement permet de reconstituer les **trajectoires professionnelles** des allocataires de l'assurance-chômage et des minima sociaux, afin notamment de pouvoir chiffrer de manière précise les **effets de la réforme de l'assurance-chômage initiée en 2019** et d'étudier le retour et l'insertion dans l'emploi des inscrits à France Travail et bénéficiaires de minima sociaux.
 
@@ -15,6 +21,10 @@ MiDAS regroupe ainsi les données :
 
 -   De la **Cnaf**, qui renseignent sur les bénéficiaires de prestations sociales via le fichier Allstat-FR6 ;
 
--   De la **Dares**, qui contiennent les contrats de travail (activité salariée), reconstitués dans les fichiers Mouvements de main-d'œuvre (MMO) à partir de la Déclaration sociale nominative (DSN).
+-   De la **Dares**, qui contiennent, d'une part, les contrats de travail (activité salariée), reconstitués dans les fichiers Mouvements de main-d'œuvre (MMO) à partir de la Déclaration sociale nominative (DSN) ; et, d'autre part, certains jeunes suivis en Mission locale présents dans la base IMILO.
 
-![](images/clipboard-676693331.png)
+::: callout-warning
+Les données FT-A et MILO constituent des modules complémentaires à l'appariement MiDAS. Pour y accéder, une demande d'habilitation doit être formulée auprès du comité du secret statistique.
+:::
+
+![](images/clipboard-1303209134.png)

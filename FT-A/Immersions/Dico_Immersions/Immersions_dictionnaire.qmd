@@ -1,0 +1,20 @@
+---
+title: "Dictionnaire des variables"
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+| <br>Variables | <br>Libellé | <br>Modalités | <br>Commentaires |
+|:--------------------:|:----------------:|:--------------------------:|:---------------:|
+| <br>KC_CONVENTIONPMSMP | <br>Numéro de convention de l'immersion | <br> | <br> |
+| <br>DC_SIRETETABLISSEMENT | <br>Siret de l'établissement d'accueil |  |  |
+| <br>DC_NAFREV2_ID | <br>Code NAF REV2 |  |  |
+| <br>DC_ETATCONVENTIONPMSMP_ID | <br>Etat de la convention |  |  |
+| <br>DC_LBLETATCONVENTIONPMSMP | <br>Libellé de l'état de la convention |  |  |
+| <br>DC_ETATBILANPMSMP_ID | <br>Statut du bilan |  |  |
+| <br>DC_LBLETATBILANPMSMP | <br>Libellé du statut du bilan |  |  |
+| <br>DD_DATEDEBUTCONVENTIONPMSMP | <br>Date de début de l'immersion |  |  |
+| <br>DD_DATEFINCONVENTIONPMSMP | <br>Date de fin de l'immersion |  |  |
+| <br>DN_DUREEHEURE | <br>Durée de l'immersion en heure |  |  |
+| <br>DN_DUREMINUTE | <br>Durée de  l'immersion en minute |  |  |
