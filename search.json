@@ -82,7 +82,6 @@
     "section": "",
     "text": "Cette table porte sur les périodes de mise en situation en milieu professionnel (PMSMP).",
     "crumbs": [
-      "FT-A",
       "Immersions",
       "Présentation de la table"
     ]
@@ -94,7 +93,6 @@
     "section": "",
     "text": "Variables\nLibellé\nModalités\nCommentaires\n\n\n\n\nKC_DOSSIERSUIVIRETOUREMPLOI_ID\n\n\n\n\n\nKC_PARCOURSMODALITE\n\n\n\n\n\nDC_STATUTPCSMOD\nStatut du parcours\nOU. OuvertFR. Fermé\n\n\n\nDD_DATEOUVERTUREPCSMOD\nDate d’ouverture du parcours\n\n\n\n\nDD_DATEFERMETUREPCSMOD\nDate de fermeture du parcours\n\n\n\n\nDC_TYPEPARCOURSMODALITE\nType de parcours\nSUI. SuiviGUI. GuidéREN. RenforcéGLO. Global\n Plus de détails ci-dessous\n\n\nDC_AGENT_MAJPCSMOD_H\nIdentifiant du conseiller qui a effectué la modification du parcours\n\nPas de lien possible avec l’identifiant conseiller disponible dans la table E1, les identifiants étant différents\n\n\n\n4 types de parcours d’accompagnement :\n\nParcours suivi : s’adresse aux pesonnes les plus proches du marché de l’emploi et dont l’autonomie dans la recherche d’emploi est la plus grande. Il propose un suivi plus collectif et plus digital (transmission d’offres d’emploi, de point d’étape en ligne, adhésion à une plateforme collaborative : Sphère emploi, …). Ce suivi est supervisé par le conseiller référent de la recherche d’emploi ;\nParcours guidé : s’adresse aux personnes dont le profil est plutôt adapté au marché de l’emploi, qui ont besoin d’un appui régulier par leur conseiller référent dans la recherche d’emploi ou pour une mobilité professionnelle, notamment à travers des contacts dont la nature, les modalités et la fréquence sont personnalisées ;\nParcours renforcé : s’adresse aux personnes les plus éloignées du marché de l’emploi, qui ont besoin d’être fortement accompagnées par leur conseiller référent dans leur trajectoire de retour à l’emploi, notamment à travers des contacts fréquents dont le rythme et le contenu répondent au besoin de la personne. Cela inclut les dispositifs d’accompagnement intensifs suivants : AIJ, CEJ, Equip’emploi - Equip’recrut, Parcours de remobilisation ;\nParcours global : il s’agit d’un accompagnement personnalisé et intensif, réalisé par un binôme constitué d’un conseiller France Travail dédié et d’un travailleur social. Cet accompagnement a pour objectif l’accès à l’emploi par la résolution ou la réduction des difficultés sociales et professionnelles qu’ils rencontrent. Il s’adresse à toute personne inscrite présentant un cumul de contraintes sociales et professionnelles qui accepte d’adhérer à cet accompagnement.",
     "crumbs": [
-      "FT-A",
       "Parcours_sisp",
       "Dictionnaire",
       "Dictionnaire des variables"
@@ -107,7 +105,6 @@
     "section": "",
     "text": "Cette table renseigne sur les mises en relation avec les entreprises.",
     "crumbs": [
-      "FT-A",
       "M0",
       "Présentation de la table"
     ]
@@ -119,7 +116,6 @@
     "section": "",
     "text": "Cette table renseigne sur les entretiens.",
     "crumbs": [
-      "FT-A",
       "E1",
       "Présentation de la table"
     ]
@@ -131,7 +127,6 @@
     "section": "",
     "text": "Variables\nLibellé\nModalités\nCommentaires\n\n\n\n\nDD_DATEENTREEPARCOURS\nDate d’entrée dans le parcours\n\n\n\n\nDD_DATESORTIEPARCOURS\nDate de sortie du parcours\n\n\n\n\nDC_TYPEPARCOURS\nType de parcours\nPSP. Parcours socio-professionnelPSO. Parcours socialPED. Pacours professionnel",
     "crumbs": [
-      "FT-A",
       "XP_ARSA",
       "Dictionnaire",
       "Dictionnaire des variables"
@@ -149,7 +144,7 @@
     "href": "Presentation/présentation.html",
     "title": "Présentation générale",
     "section": "",
-    "text": "MiDAS (Minima Sociaux, Droits d’Assurance-chômage, parcours Salariés) est un appariement de données administratives mené par la Dares (département Suivi et indemnisation des demandeurs d’emploi (D-Side)), en collaboration avec la Cnaf et France Travail. Cet appariement porte sur le champ exhaustif, depuis le 1er janvier 2017 :\n\nDes personnes qui ont été inscrites à France Travail au moins une fois ;\nDe l’ensemble des foyers bénéficiaires de minima sociaux : Revenu de solidarité active (RSA), prime d’activité (PA), allocation aux adultes handicapés (AAH) ;\nDes jeunes de 16-28 ans suivis par une Mission Locale et présents dans les dispositifs suivants : Contrat d’Engagement Jeune (CEJ), Parcours contractualisé d’accompagnement vers l’emploi et l’autonomie (PACEA) et Garantie Jeune (GJ).\n\nCet appariement permet de reconstituer les trajectoires professionnelles des allocataires de l’assurance-chômage et des minima sociaux, afin notamment de pouvoir chiffrer de manière précise les effets de la réforme de l’assurance-chômage initiée en 2019 et d’étudier le retour et l’insertion dans l’emploi des inscrits à France Travail et bénéficiaires de minima sociaux.\nLa première vague est disponible depuis janvier 2023.\nMiDAS regroupe ainsi les données :\n\nDe France Travail, qui permettent le suivi des inscrits à France Travail via le Fichier historique statistique (FHS) ainsi que le suivi de l’indemnisation des allocataires de l’assurance-chômage via le Fichier national des allocataires (FNA) ;\nDe la Cnaf, qui renseignent sur les bénéficiaires de prestations sociales via le fichier Allstat-FR6 ;\nDe la Dares, qui contiennent, d’une part, les contrats de travail (activité salariée), reconstitués dans les fichiers Mouvements de main-d’œuvre (MMO) à partir de la Déclaration sociale nominative (DSN) ; et, d’autre part, certains jeunes suivis en Mission locale présents dans la base IMILO.\n\n\n\n\n\n\n\nWarning\n\n\n\nLes données FT-A et MILO constituent des modules complémentaires à l’appariement MiDAS. Pour y accéder, une demande d’habilitation doit être formulée auprès du comité du secret statistique.",
+    "text": "MiDAS (Minima Sociaux, Droits d’Assurance-chômage, parcours Salariés) est un appariement de données administratives mené par la Dares (département Suivi et indemnisation des demandeurs d’emploi (D-Side)), en collaboration avec la Cnaf et France Travail. Cet appariement porte sur le champ exhaustif, depuis le 1er janvier 2017 :\n\nDes personnes qui ont été inscrites à France Travail au moins une fois ;\nDe l’ensemble des foyers bénéficiaires de minima sociaux : Revenu de solidarité active (RSA), prime d’activité (PA), allocation aux adultes handicapés (AAH) ;\nDes jeunes de 16-28 ans suivis par une Mission Locale et présents dans les dispositifs suivants : Contrat d’Engagement Jeune (CEJ), Parcours contractualisé d’accompagnement vers l’emploi et l’autonomie (PACEA) et Garantie Jeune (GJ).\n\nCet appariement permet de reconstituer les trajectoires professionnelles des allocataires de l’assurance-chômage et des minima sociaux, afin notamment de pouvoir chiffrer de manière précise les effets de la réforme de l’assurance-chômage initiée en 2019 et d’étudier le retour et l’insertion dans l’emploi des inscrits à France Travail et bénéficiaires de minima sociaux.\nLa première vague est disponible depuis janvier 2023.\nMiDAS regroupe ainsi les données :\n\nDe France Travail, qui permettent le suivi des inscrits à France Travail via le Fichier historique statistique (FHS) ainsi que le suivi de l’indemnisation des allocataires de l’assurance-chômage via le Fichier national des allocataires (FNA) ;\nDe la Cnaf, qui renseignent sur les bénéficiaires de prestations sociales via le fichier Allstat-FR6 ;\nDe la Dares, qui contiennent, d’une part, les contrats de travail (activité salariée), reconstitués dans les fichiers Mouvements de main-d’œuvre (MMO) à partir de la Déclaration sociale nominative (DSN) ; et, d’autre part, certains jeunes suivis en Mission locale présents dans la base IMILO.",
     "crumbs": [
       "MiDAS",
       "Présentation générale"
@@ -1833,7 +1828,6 @@
     "section": "",
     "text": "Cette table porte sur les entrants dans l’expérimentation de l’accompagnement rénové des bénéficiaires du RSA.",
     "crumbs": [
-      "FT-A",
       "XP_ARSA",
       "Présentation de la table"
     ]
@@ -1845,7 +1839,6 @@
     "section": "",
     "text": "Variables\nLibellé\nModalités\nCommentaires\n\n\n\n\nKD_DATEENTRETIEN\nDate de réalisation de l’entretien\n\n\n\n\nKC_TYPEENTRETIENAC_ID\nType d’entretien\n Cf. image ci-dessous\n\n\n\nDC_LBLTYPEENTRETIENAC\nLibellé du type d’entretien\n Cf. image ci-dessous\n\n\n\nDC_MODALITECONTACT_ID\n Format de l’entretien réalisé\n\n\n\n\nDC_LBLCOMPLETMODALITEENTRETIEN\nLibellé du format de l’entretien réalisé\n\n\n\n\nDC_AGENT_REFERENT_H\n Identifiant du conseiller ayant effectué l’entretien\n\n\n\n\n\nModalités de KC_TYPEENTRETIENAC_ID :",
     "crumbs": [
-      "FT-A",
       "E1",
       "Dictionnaire",
       "Dictionnaire des variables"
@@ -1858,7 +1851,6 @@
     "section": "",
     "text": "Ces tables complètent les données du FHS et portent sur tout ce qui a trait à l’accompagnement des personnes inscrites (entretiens, mises en relation, périodes d’immersion…).",
     "crumbs": [
-      "FT-A",
       "Présentation",
       "France Travail - Accompagnement"
     ]
@@ -1870,7 +1862,6 @@
     "section": "",
     "text": "Variables\nLibellé\nCommentaires\n\n\n\n\nNOFX\nNuméro de l’offre\n\n\n\nDATMER\nDate de la mise en relation",
     "crumbs": [
-      "FT-A",
       "M0",
       "Dictionnaire",
       "Dictionnaire des variables"
@@ -1883,7 +1874,6 @@
     "section": "",
     "text": "Cette table porte sur les parcours d’accompagnement.",
     "crumbs": [
-      "FT-A",
       "Parcours_sisp",
       "Présentation de la table"
     ]
@@ -1895,7 +1885,6 @@
     "section": "",
     "text": "Variables\nLibellé\nModalités\nCommentaires\n\n\n\n\nKC_CONVENTIONPMSMP\nNuméro de convention de l’immersion\n\n\n\n\nDC_SIRETETABLISSEMENT\nSiret de l’établissement d’accueil\n\n\n\n\nDC_NAFREV2_ID\nCode NAF REV2\n\n\n\n\nDC_ETATCONVENTIONPMSMP_ID\nEtat de la convention\n\n\n\n\nDC_LBLETATCONVENTIONPMSMP\nLibellé de l’état de la convention\n\n\n\n\nDC_ETATBILANPMSMP_ID\nStatut du bilan\n\n\n\n\nDC_LBLETATBILANPMSMP\nLibellé du statut du bilan\n\n\n\n\nDD_DATEDEBUTCONVENTIONPMSMP\nDate de début de l’immersion\n\n\n\n\nDD_DATEFINCONVENTIONPMSMP\nDate de fin de l’immersion\n\n\n\n\nDN_DUREEHEURE\nDurée de l’immersion en heure\n\n\n\n\nDN_DUREMINUTE\nDurée de l’immersion en minute",
     "crumbs": [
-      "FT-A",
       "Immersions",
       "Dictionnaire",
       "Dictionnaire des variables"
