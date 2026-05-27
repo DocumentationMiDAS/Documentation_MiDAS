@@ -10,8 +10,8 @@ website:
         href: Presentation/présentation.qmd
       - text: "FHS"
         href: FHS/FHS_presentation.qmd
-      - text: "FT-A"
-        href: FT-A/FT-A_presentation.qmd
+      # - text: "FT-A"
+      #   href: FT-A/FT-A_presentation.qmd
       - text: "FNA"
         href: FNA/FNA_presentation.qmd
       - text: "Allstat-FR6"

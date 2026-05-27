@@ -23,8 +23,4 @@ MiDAS regroupe ainsi les données :
 
 -   De la **Dares**, qui contiennent, d'une part, les contrats de travail (activité salariée), reconstitués dans les fichiers Mouvements de main-d'œuvre (MMO) à partir de la Déclaration sociale nominative (DSN) ; et, d'autre part, certains jeunes suivis en Mission locale présents dans la base IMILO.
 
-::: callout-warning
-Les données FT-A et MILO constituent des modules complémentaires à l'appariement MiDAS. Pour y accéder, une demande d'habilitation doit être formulée auprès du comité du secret statistique.
-:::
-
-![](images/clipboard-1303209134.png)
+![](images/clipboard-1951084669.png)
