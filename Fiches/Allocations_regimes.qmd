@@ -114,7 +114,7 @@ codes_pjc <- PJC_s %>%
                                 KCALF == "42" ~ "ARPE", # Allocation de remplacement pour l'emploi
                                 KCALF %in% c("CY","CZ","DA","DB","DC","DD","DE","DF","DG","DH","DI","DJ","DK","DL") ~ "AAP", # Allocation d'accompagnement personnalisé
                                 KCALF == "AI" ~ "ADR-CG", # Aide différentielle de reclassement convention de gestion
-                                KCALF %in% c("AJ","BA","CP","DS","EK","HC","HN") ~ "ARCE-CG",
+                                KCALF %in% c("AJ","BA","DS","EK","HC","HN") ~ "ARCE-CG",
                                 KCALF %in% c("DP","EJ","HB") ~ "DC-CG",
                                 T ~ "NA"))
 

@@ -8,7 +8,7 @@ Le champ est le suivant selon les bases de données :
 
 -   Du côté des **données de la Cnaf**, MiDAS comprend l'ensemble des foyers sociaux bénéficiaires au moins un mois depuis 2017 du Revenu de solidarité active (RSA), de la prime d'activité (PA) et les personnes handicapées bénéficiaires de l'Allocation aux adultes handicapés (AAH) ;
 
--   Du côté des **données de la Dares,** MiDAS contient, parmi les MMO, tous les contrats salariés en cours ou terminés après le 1er janvier 2017 pour les individus du champ. MiDAS contient également les jeunes de 16-18 ans suivis par une Mission Locale depuis le 1er janvier 2017 dans les dispositifs suivants : Contrat d’Engagement Jeune (CEJ), Parcours contractualisé d’accompagnement vers l’emploi et l’autonomie (PACEA) et Garantie Jeune (GJ).
+-   Du côté des **données de la Dares,** MiDAS contient, parmi les MMO, tous les contrats salariés en cours ou terminés après le 1er janvier 2017 pour les individus du champ. MiDAS contient également les jeunes de 16-28 ans suivis par une Mission Locale depuis le 1er janvier 2017 dans les dispositifs suivants : Contrat d’Engagement Jeune (CEJ), Parcours contractualisé d’accompagnement vers l’emploi et l’autonomie (PACEA) et Garantie Jeune (GJ).
 
 Le champ de MiDAS comprend ainsi les inscrits à France Travail (fichier FHS) dont les indemnisables et indemnisés (fichier FNA), auxquels sont appariés les bénéficiaires des minima sociaux (fichiers "Prestations") ainsi que les jeunes suivis par une Mission Locale (Milo). Les données MMO sont appariées à ce champ, de même que les données de la Cnaf portant sur la composition du ménage (fichiers "Ménages").
 

@@ -1,5 +1,6 @@
 project:
   type: website
+  
 
 website:
   title: "Documentation MiDAS"
@@ -10,15 +11,15 @@ website:
         href: Presentation/présentation.qmd
       - text: "FHS"
         href: FHS/FHS_presentation.qmd
-      # - text: "FT-A"
-      #   href: FT-A/FT-A_presentation.qmd
+      - text: "FTA"
+        href: FT-A/FT-A_presentation.qmd
       - text: "FNA"
         href: FNA/FNA_presentation.qmd
       - text: "Allstat-FR6"
         href: Allstat_FR6/Allstat_FR6_presentation.qmd
       - text: "DSN"
         href: DSN/DSN_presentation.qmd
-      - text: "MILO"
+      - text: "IMILO"
         href: MILO/MILO_presentation.qmd
       - text: "Fiches"
         href: Fiches/Fiches_presentation.qmd
@@ -309,7 +310,7 @@ website:
           - href: Fiches/Allocations_regimes.qmd
           - href: Fiches/Parcours_indemnisation.qmd
           - href: Fiches/Differe_indemnisation.qmd
-          - href: Fiches/Activité réduite.qmd
+          - href: Fiches/Activité_réduite.qmd
           - href: Fiches/Foyers_BRSA.qmd
           - href: Fiches/Cumul_AC_MS.qmd
           - href: Fiches/Catégories_FHS.qmd

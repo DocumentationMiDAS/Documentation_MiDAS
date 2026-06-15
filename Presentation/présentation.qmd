@@ -11,8 +11,6 @@ MiDAS (**Mi**nima Sociaux, **D**roits d'**A**ssurance-chômage, parcours **S**al
 
 -   Des jeunes de 16-28 ans suivis par une Mission Locale et présents dans les dispositifs suivants : Contrat d’Engagement Jeune (CEJ), Parcours contractualisé d’accompagnement vers l’emploi et l’autonomie (PACEA) et Garantie Jeune (GJ).
 
-Cet appariement permet de reconstituer les **trajectoires professionnelles** des allocataires de l'assurance-chômage et des minima sociaux, afin notamment de pouvoir chiffrer de manière précise les **effets de la réforme de l'assurance-chômage initiée en 2019** et d'étudier le retour et l'insertion dans l'emploi des inscrits à France Travail et bénéficiaires de minima sociaux.
-
 La première vague est disponible depuis janvier 2023.
 
 MiDAS regroupe ainsi les données :
@@ -23,4 +21,8 @@ MiDAS regroupe ainsi les données :
 
 -   De la **Dares**, qui contiennent, d'une part, les contrats de travail (activité salariée), reconstitués dans les fichiers Mouvements de main-d'œuvre (MMO) à partir de la Déclaration sociale nominative (DSN) ; et, d'autre part, certains jeunes suivis en Mission locale présents dans la base IMILO.
 
-![](images/clipboard-1951084669.png)
+::: callout-note
+Les données IMILO (noir) et les données FTA (rose) constituent des modules complémentaires de l'appariement MiDAS. Il et possible d'y accéder en effectuant une demande à cette [page](https://cdap.casd.eu/).
+:::
+
+![](images/clipboard-3379952398.png)
