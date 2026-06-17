@@ -303,6 +303,19 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Il s’agit d’un module complémentaire auquel il est possible d’accéder à cette <a href="https://cdap.casd.eu/">page</a> sous réserve de disposer au préalable d’un accès aux données MiDAS. <strong>Ce module élargit le champ MiDAS et ne contient que les données qui lui sont propres.</strong></p>
+</div>
+</div>
 <p>Les Missions Locales sont des agences du Réseau Pour l’Emploi recevant des jeunes de 16 à 28 ans ayant un besoin d’accompagenement social et/ou professionnel. Dans le cadre de l’appariement MiDAS, sont inclus uniquement les jeunes présents depuis le 1er janvier 2017 dans les dispositifs suivants : <a href="https://travail-emploi.gouv.fr/le-contrat-dengagement-jeune-cej">Contrat d’Engagement Jeune (CEJ)</a>, <a href="https://dares.travail-emploi.gouv.fr/definitions-et-concepts/parcours-contractualise-daccompagnement-vers-lemploi-et-lautonomie-pacea#:~:text='autonomie%20(PACEA)-,Parcours%20contractualis%C3%A9%20d'accompagnement%20vers%20l'emploi%20et%20l',autonomie%20et%20%C3%A0%20l'emploi.">Parcours contractualisé d’accompagnement vers l’emploi et l’autonomie (PACEA)</a> et <a href="https://dares.travail-emploi.gouv.fr/definitions-et-concepts/garantie-jeunes">Garantie Jeune (GJ)</a>. Ces données sont transmises depuis la vague 8.</p>
 <p>IMILO n’est pas une base construite à des fins statistiques, mais c’est une base administrative. Il s’agit d’une extraction du logiciel sur lequel les conseillers en Mission Locale saisissent directement les informations concernant les jeunes et leur suivi. La base est mouvante, car les conseillers peuvent saisir et rétrosaisir des informations à n’importe quel moment dans le logiciel.</p>
 <p>Parce que les conseillers peuvent directement mettre à jour les informations, IMILO est une base historicisée. Cela veut dire qu’à chaque fois qu’une information est mise à jour, une nouvelle ligne apparaît. Chaque observation comprend les dates pendant laquelle elle a été active. Ces dates sont <em>ScdDateBegId</em> (début) et <em>ScdDateEndId</em> (fin). Pour chaque observation, la ligne active au moment de l’extraction de la base est repérable par le filtre SCD_ACTIVE= “O”.</p>
