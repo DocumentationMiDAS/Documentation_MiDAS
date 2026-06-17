@@ -2,6 +2,10 @@
 title: "Présentation des données SIMILO"
 ---
 
+::: callout-note
+Il s'agit d'un module complémentaire auquel il est possible d'accéder à cette [page](https://cdap.casd.eu/) sous réserve de disposer au préalable d'un accès aux données MiDAS. **Ce module élargit le champ MiDAS et ne contient que les données qui lui sont propres.**
+:::
+
 Les Missions Locales sont des agences du Réseau Pour l'Emploi recevant des jeunes de 16 à 28 ans ayant un besoin d'accompagenement social et/ou professionnel. Dans le cadre de l'appariement MiDAS, sont inclus uniquement les jeunes présents depuis le 1er janvier 2017 dans les dispositifs suivants : [Contrat d'Engagement Jeune (CEJ)](https://travail-emploi.gouv.fr/le-contrat-dengagement-jeune-cej), [Parcours contractualisé d’accompagnement vers l’emploi et l’autonomie (PACEA)](https://dares.travail-emploi.gouv.fr/definitions-et-concepts/parcours-contractualise-daccompagnement-vers-lemploi-et-lautonomie-pacea#:~:text='autonomie%20(PACEA)-,Parcours%20contractualis%C3%A9%20d'accompagnement%20vers%20l'emploi%20et%20l',autonomie%20et%20%C3%A0%20l'emploi.) et [Garantie Jeune (GJ)](https://dares.travail-emploi.gouv.fr/definitions-et-concepts/garantie-jeunes). Ces données sont transmises depuis la vague 8.
 
 IMILO n’est pas une base construite à des fins statistiques, mais c’est une base administrative. Il s’agit d’une extraction du logiciel sur lequel les conseillers en Mission Locale saisissent directement les informations concernant les jeunes et leur suivi. La base est mouvante, car les conseillers peuvent saisir et rétrosaisir des informations à n’importe quel moment dans le logiciel.

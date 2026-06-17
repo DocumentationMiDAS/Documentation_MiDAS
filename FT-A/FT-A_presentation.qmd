@@ -2,4 +2,18 @@
 title: "France Travail - Accompagnement"
 ---
 
-Ces tables complètent les données du FHS et portent sur tout ce qui a trait à l'accompagnement des personnes inscrites (entretiens, mises en relation, périodes d'immersion...).
+::: callout-note
+Il s'agit d'un module complémentaire auquel il est possible d'accéder à cette [page](https://cdap.casd.eu/) sous réserve de disposer au préalable d'un accès aux données MiDAS. **Ce module est uniquement constitué de tables supplémnetaires qui viennent complérer les informations déjà présentes dans le FHS**.
+:::
+
+Ces tables complètent les données du FHS et portent sur tout ce qui a trait à l'accompagnement des personnes inscrites :
+
+-   Les **mises en relation avec les entreprises ([M0](M0/M0_presentation.html))** ;
+
+-   Les **entrants dans l'expérimentation de l'accompagnement rénové des bénéficiaires du RSA ([XP_ARSA](XP_ARSA/ARSA_presentation.html))** ;
+
+-   Les **entretiens ([E1](E1/E1_presentation.html))** ;
+
+-   Les **parcours ([PARCOURS_SISP](Parcours_sisp/Parcours_sisp_presentation.html))** ;
+
+-   Les **périodes de mise en situation en milieu professionnel (PMSMP**) **([Immersions](Immersions/Immersions_presentation.html))**.

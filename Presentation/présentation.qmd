@@ -22,7 +22,13 @@ MiDAS regroupe ainsi les données :
 -   De la **Dares**, qui contiennent, d'une part, les contrats de travail (activité salariée), reconstitués dans les fichiers Mouvements de main-d'œuvre (MMO) à partir de la Déclaration sociale nominative (DSN) ; et, d'autre part, certains jeunes suivis en Mission locale présents dans la base IMILO.
 
 ::: callout-note
-Les données IMILO (noir) et les données FTA (rose) constituent des modules complémentaires de l'appariement MiDAS. Il et possible d'y accéder en effectuant une demande à cette [page](https://cdap.casd.eu/).
+L'appariement MiDAS inclut deux modules complémentaires :
+
+-   Les données FTA (France Travail - Accompagnement) qui complètent les données du FHS sur l'accompagnement des inscrits à France Travail (tables en rose ci-dessous) ;
+
+-   Les données IMILO portent sur les jeunes de 16-28 ans inscrits en Mission locale (tables en noir ci-dessous).
+
+Il est possible d'accéder à ces modules en faisant une demande spécifique à cette [page](https://cdap.casd.eu/), sous réserve de disposer au préalable d'un accès aux données MiDAS. **Ces modules ne contiennent que leurs données propres et non l'ensemble du contenu de l'appariement MiDAS**.
 :::
 
 ![](images/clipboard-3379952398.png)
