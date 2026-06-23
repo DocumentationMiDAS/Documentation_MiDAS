@@ -2,4 +2,4 @@
 title: "Présentation de la table"
 ---
 
-Cette table permet d'identifier les personnes toujours présentes dans le FHS mais qui sont en réalité radiées pour défaut d'actualisation hybride. Cette [fiche](../../../Fiches/Catégories_FHS.html) détaille comment l'utiliser.
+Cette table permet d'identifier les personnes toujours présentes dans le FHS mais qui sont en réalité radiées pour défaut d'actualisation hybride. Cette [fiche](../../../Fiches/Catégories_FHS.qmd) détaille comment l'utiliser.

@@ -6,9 +6,9 @@ editor:
 ---
 
 | <br>Variables | <br>Libellé | <br>Modalités | <br>Commentaires |
-|:-------------:|:-------------:|:--------------:|:------------------------:|
+|:----------------:|:----------------:|:----------------:|:----------------:|
 | <br>MOISTA | <br>Mois concerné | <br> | <br> |
-| <br>CATCALCULEE | <br>Catégorie calculée | <br> | <br>La modalité "9" correspond à la catégorie F. La catégorie G comprend les modalités "101" et "102" (cf. [Fiche](../../../Fiches/Catégories_FHS.html)) |
+| <br>CATCALCULEE | <br>Catégorie calculée | <br> | <br>La modalité "9" correspond à la catégorie F. La catégorie G comprend les modalités "101" et "102" (cf. [Fiche](../../../Fiches/Catégories_FHS.qmd)) |
 | <br>DEBCAT | <br>Début de l'inscription |  |  |
 | <br>FINCAT | <br>Fin de l'inscription |  |  |
 | <br>DEBCAT_MOIS | <br>Date de début de période d’inscription bornée sur le mois concerné MOISTA |  | <br>Pour une période d’inscription commençant le 10 avril 2025 (DEBCAT), si l’on regarde la ligne pour le mois de mai 2025 (MOISTA = 202505), la date DEBCAT_MOIS vaudra 1er mai 2025 (si toujours en cours en mai) |

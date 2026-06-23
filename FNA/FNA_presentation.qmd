@@ -48,4 +48,4 @@ Un personne qui s'inscrit à France Travail apparaît dans la table DE du FHS. E
 
 -   Pour chaque droit ouvert, est associée une ou plusieurs périodes à justification constante (PJC) pendant lesquelles les paramètres de l'indemnisation restent inchangés.
 
-L'activité réduite : l'information sur les personnes inscrites et/ou allocataires de l'assurance-chômage qui travaillent est renseignée dans le FHS (table E0) et dans le FNA (table PAR). Cette [fiche](../../../Fiches/Activité%20réduite.html) détaille comment repérer les personnes en activité réduite.
+L'activité réduite : l'information sur les personnes inscrites et/ou allocataires de l'assurance-chômage qui travaillent est renseignée dans le FHS (table E0) et dans le FNA (table PAR). Cette [fiche](../../../Fiches/Activité_réduite.qmd) détaille comment repérer les personnes en activité réduite.
