@@ -562,7 +562,7 @@
     "href": "FHS/Cat9_10/Cat_presentation.html",
     "title": "Présentation de la table",
     "section": "",
-    "text": "Cette table permet d’identifier les personnes inscrites en catégories F et G à France Travail. Cette fiche détaille comment l’utiliser.",
+    "text": "Cette table permet d’identifier les personnes inscrites en catégories F et G à France Travail. La fiche “Les catégories d’inscription dans le FHS” détaille comment l’utiliser.",
     "crumbs": [
       "FHS",
       "Cat9_10",
@@ -1456,7 +1456,7 @@
     "href": "FHS/Rad_actuh/Rad_presentation.html",
     "title": "Présentation de la table",
     "section": "",
-    "text": "Cette table permet d’identifier les personnes toujours présentes dans le FHS mais qui sont en réalité radiées pour défaut d’actualisation hybride. Cette fiche détaille comment l’utiliser.",
+    "text": "Cette table permet d’identifier les personnes toujours présentes dans le FHS mais qui sont en réalité radiées pour défaut d’actualisation hybride. La fiche “Les catégories d’inscription dans le FHS” détaille comment l’utiliser.\nLes données du FHS intègrent depuis janvier 2025 des personnes qui sont radiées de France Travail dans les données de la STMT en raison d’un défaut d’actualisation. Pour identifier ces personnes, il faut utiliser la table rad_actuh qui reprend la même logique mensuelle que la table cat9_10. Cette table est composée des variables suivantes :\n\nMOISTA : mois concerné\nDTE_RADIATION : date de radiation STMT (dernier jour du mois)\nMTFANUSTA : motif de radiation\n\n13 : Défaut d’actualisation hybride RSA\n14 : Défaut d’actualisation hybride autre\n\n\nCette table est disponible depuis la vague 8 avec reprise du stock depuis janvier 2025 et est transmise de manière exhaustive à chaque vague, sans mise à jour des données passées.",
     "crumbs": [
       "FHS",
       "Rad_actuh",

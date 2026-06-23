@@ -579,7 +579,18 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Cette table permet d’identifier les personnes toujours présentes dans le FHS mais qui sont en réalité radiées pour défaut d’actualisation hybride. Cette <a href="../../../Fiches/Catégories_FHS.qmd">fiche</a> détaille comment l’utiliser.</p>
+<p>Cette table permet d’identifier les personnes toujours présentes dans le FHS mais qui sont en réalité radiées pour défaut d’actualisation hybride. La fiche “Les catégories d’inscription dans le FHS” détaille comment l’utiliser.</p>
+<p>Les données du FHS intègrent depuis janvier 2025 des personnes qui sont radiées de France Travail dans les données de la <a href="https://dares.travail-emploi.gouv.fr/enquete-source/les-statistiques-du-marche-du-travail">STMT</a> en raison d’un défaut d’actualisation. Pour identifier ces personnes, il faut utiliser la table rad_actuh qui reprend la même logique mensuelle que la table cat9_10. Cette table est composée des variables suivantes :</p>
+<ul>
+<li><p>MOISTA : mois concerné</p></li>
+<li><p>DTE_RADIATION : date de radiation STMT (dernier jour du mois)</p></li>
+<li><p>MTFANUSTA : motif de radiation</p>
+<ul>
+<li><p>13 : Défaut d’actualisation hybride RSA</p></li>
+<li><p>14 : Défaut d’actualisation hybride autre</p></li>
+</ul></li>
+</ul>
+<p>Cette table est disponible depuis la vague 8 avec reprise du stock depuis janvier 2025 et est transmise de manière exhaustive à chaque vague, sans mise à jour des données passées.</p>
 
 
 
