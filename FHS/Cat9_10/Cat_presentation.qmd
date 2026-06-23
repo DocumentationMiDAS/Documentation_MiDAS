@@ -2,4 +2,12 @@
 title: "Présentation de la table"
 ---
 
-Cette table permet d'identifier les personnes inscrites en catégories F et G à France Travail. Cette [fiche](../../../Fiches/Catégories_FHS.qmd) détaille comment l'utiliser.
+Cette table permet d'identifier les personnes inscrites en catégories F et G à France Travail. La fiche "Les catégories d'inscription dans le FHS" détaille comment l'utiliser.
+
+![![](images/clipboard-1048245743.png)](images/clipboard-4117134898.png)
+
+![![](images/clipboard-3938847364.png)](images/clipboard-3141993822.png)
+
+![![](images/clipboard-3381593699.png)](images/clipboard-710000128.png)
+
+![![](images/clipboard-2542202577.png)](images/clipboard-2619786572.png)
